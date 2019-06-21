@@ -4,7 +4,7 @@ info:
   title: 'ELKUMULOS'
   description: 'ELKUMULOS'
 
-host: api.kumulos.com 
+host: api.kumulos.com
 basePath: /b2.2/5b95bd4f-1ea1-4e20-9222-26a19bd19bdd
 
 x-flopro-kumulosrpc: true
@@ -20,7 +20,7 @@ security:
   - basicAuth: []
 
 paths:
-  
+
   /owGetSettings.json/:
     post:
       summary: Get Settings
@@ -45,7 +45,7 @@ paths:
           type: string
           description: customerNo
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -111,7 +111,7 @@ paths:
                             type: boolean
                           IsAllowCreateLead:
                             type: boolean
-                
+
               sessionToken:
                 type: string
               requestedMethod:
@@ -125,16 +125,75 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
-  
-  
+
+  /owGetDashboard.json/:
+    post:
+      summary: Get Dashboard
+      description: Get Dashboard
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          OutstandingBalance:
+                            type: number
+                            format: double
+                          ActiveJobs:
+                            type: integer
+
+        default:
+          description: Failed Server Response
+
+
+
   /umLogout.json/:
     post:
       summary: Logout Remove InstallID against Logged in User
@@ -159,7 +218,7 @@ paths:
           type: string
           description: Notification Install ID
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -185,14 +244,14 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
+
   /umStoreInstallID.json/:
     post:
       summary: Store Notification InstallID against Logged in User
@@ -217,7 +276,7 @@ paths:
           type: string
           description: Notification Install ID
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -243,16 +302,16 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
-  
-  
+
+
+
   /umSendUserPushNotification.json/:
     post:
       summary: SendUserPushNotification
@@ -287,7 +346,7 @@ paths:
           type: string
           description: notificationMessage
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -300,14 +359,14 @@ paths:
                 type: string
               payload:
                 type: object
-                properties: 
+                properties:
                   appId:
                     type: integer
                   source:
                     type: integer
                   status:
                     type: integer
-                  filters: 
+                  filters:
                     type: string
                   title:
                     type: string
@@ -336,14 +395,14 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
+
   /umChangePassword.json/:
     post:
       summary: Change Password with forgotten password code
@@ -373,7 +432,7 @@ paths:
           type: string
           description: clientIdentifier
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -399,14 +458,14 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
+
   /umForgottenPassword.json/:
     post:
       summary: Request forgotten password code
@@ -426,7 +485,7 @@ paths:
           type: string
           description: clientIdentifier
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -452,14 +511,14 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
+
   /umCreateNavUser.json/:
     post:
       summary: To create a nav user in HUB called from NAV system
@@ -482,7 +541,7 @@ paths:
         - in: formData
           name: params[navUserName]
           type: string
-          description: navUserName 
+          description: navUserName
           required: true
         - in: formData
           name: params[navServiceKey]
@@ -501,7 +560,7 @@ paths:
           name: params[jwtExpiryTime]
           type: string
           description: user jwt expiry time
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -527,14 +586,14 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-                
+
         default:
           description: Failed Server Response
-  
+
   /umregisterEmailUser.json/:
     post:
       summary: Register User with Activation Code
@@ -557,14 +616,14 @@ paths:
         - in: formData
           name: params[activationCode]
           type: string
-          description: activation Code 
+          description: activation Code
           required: true
         - in: formData
           name: params[clientIdentifier]
           type: string
           description: clientIdentifier
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -590,14 +649,14 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
-  
+
         default:
           description: Failed Server Response
-  
+
   /umlogin.json/:
     post:
       summary: Login
@@ -622,7 +681,7 @@ paths:
           type: string
           description: client Identifier
           required: true
-        
+
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -635,7 +694,7 @@ paths:
                 type: string
               payload:
                 type: object
-                properties: 
+                properties:
                   token:
                     type: string
                   expiresAt:
@@ -681,7 +740,7 @@ paths:
                 type: string
                 format: time
               maxAllowedRequestTime:
-                type: integer 
+                type: integer
               requestProcessingTime:
                 type: string
                 format: double
