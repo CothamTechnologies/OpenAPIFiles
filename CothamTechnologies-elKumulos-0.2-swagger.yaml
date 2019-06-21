@@ -192,6 +192,111 @@ paths:
         default:
           description: Failed Server Response
 
+  /owGetAccountDetails.json/:
+    post:
+      summary: Get Account Details
+      description: Get Account Details
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          CustomerNo:
+                            type: string
+                          Name:
+                            type: string
+                          Address:
+                            type: string
+                          Address2:
+                            type: string
+                          City:
+                            type: string
+                          County:
+                            type: string
+                          PostCode:
+                            type: string
+                          PhoneNo:
+                            type: string
+                          MobilePhoneNo:
+                            type: string
+                          Email:
+                            type: string
+                          DealNo:
+                            type: string
+                          ParkCode:
+                            type: string
+                          ParkName:
+                            type: string
+                          Plot:
+                            type: string
+                          UnitDescription:
+                            type: string
+                          UnitManufacturerCode:
+                            type: string
+                          UnitManufacturerName:
+                            type: string
+                          UnitModelCode:
+                            type: string
+                          UnitModelName:
+                            type: string
+                          UnitLength:
+                            type: integer
+                          UnitWidth:
+                            type: integer
+                          UnitYear:
+                            type: integer
+                          UnitNoOfBedrooms:
+                            type: integer
+                          UnitChassisNo:
+                            type: integer
+                          UnitSerialNo:
+                            type: integer
+
+        default:
+          description: Failed Server Response
+
+
 
 
   /umLogout.json/:
