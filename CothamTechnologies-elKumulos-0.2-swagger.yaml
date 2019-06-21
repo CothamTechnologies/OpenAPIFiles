@@ -297,6 +297,450 @@ paths:
           description: Failed Server Response
 
 
+  /owContactPreferences.json/:
+    post:
+      summary: Get Contact Preferences
+      description: Get Contact Preferences
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          ContactPreferences:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                ProductCode:
+                                  type: string
+                                TypeCode:
+                                  type: string
+                                ProductDescription:
+                                  type: string
+                                TypeDescription:
+                                  type: string
+                                Opt-In:
+                                  type: boolean
+
+        default:
+          description: Failed Server Response
+
+
+  /owGetFinanceDetails.json/:
+    post:
+      summary: Get Financial Details
+      description: Get Financial Details
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          Balance:
+                            type: number
+                            format: double
+                          AmountPending:
+                            type: number
+                            format: double
+                          Invoices:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                No:
+                                  type: string
+                                Description:
+                                  type: string
+                                DocumentDate:
+                                  type: string
+                                  format: date-time
+                                DueDate:
+                                  type: string
+                                  format: date-time
+                                Amount:
+                                  type: number
+                                  format: double
+                                RemainingAmount:
+                                  type: number
+                                  format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owGetStoreItems.json/:
+    post:
+      summary: Get Store Items
+      description: Get Store Items
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          StoreItems:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                No:
+                                  type: string
+                                Name:
+                                  type: string
+                                Description:
+                                  type: string
+                                MaxQuantity:
+                                  type: integer
+                                UnitPrice:
+                                  type: number
+                                  format: double
+
+        default:
+          description: Failed Server Response
+
+  /owGetStoreReceipts.json/:
+    post:
+      summary: Get Store Receipts
+      description: Get Store Receipts
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          Receipts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                ReceiptNo:
+                                  type: string
+                                LineNo:
+                                  type: integer
+                                DeliveryDate:
+                                  type: string
+                                  format: date-time
+                                DeliveryNote:
+                                  type: string
+                                Quantity:
+                                  type: integer
+                                Amount:
+                                  type: number
+                                  format: double
+
+        default:
+          description: Failed Server Response
+
+  /owGetJobs.json/:
+    post:
+      summary: Get Jobs
+      description: Get Jobs
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          Jobs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                JobNo:
+                                  type: string
+                                Description:
+                                  type: string
+                                Status:
+                                  type: string
+                                StatusDate:
+                                  type: string
+                                  format: date-time
+                                AddedDate:
+                                  type: string
+                                  format: date-time
+                                CompletedDate:
+                                  type: string
+                                  format: date-time
+                                CancelledDate:
+                                  type: string
+                                  format: date-time
+
+        default:
+          description: Failed Server Response
+
+
+  /owGetContactInformation.json/:
+    post:
+      summary: Get Contact Information
+      description: Get Contact Information
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          ParkPhoneNo:
+                            type: string
+                          ParkEmail:
+                            type: string
+                          FinancePhoneNo:
+                            type: string
+                          FinanceEmail:
+                            type: string
+                          LeadTypes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                Code:
+                                  type: string
+                                Description:
+                                  type: string
+
+        default:
+          description: Failed Server Response
+
 
 
   /umLogout.json/:
