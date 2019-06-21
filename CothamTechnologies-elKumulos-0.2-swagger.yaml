@@ -1,0 +1,687 @@
+swagger: '2.0'
+info:
+  version: "0.2"
+  title: 'ELKUMULOS'
+  description: 'ELKUMULOS'
+
+host: api.kumulos.com 
+basePath: /b2.2/5b95bd4f-1ea1-4e20-9222-26a19bd19bdd
+
+x-flopro-kumulosrpc: true
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  
+  /owGetSettings.json/:
+    post:
+      summary: Get Settings
+      description: Get Settings
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getSettings_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          IsAllowOwner:
+                            type: boolean
+                          IsAllowViewOwner:
+                            type: boolean
+                          IsAllowUpdateOwner:
+                            type: boolean
+                          IsAllowViewContactPreferences:
+                            type: boolean
+                          IsAllowUpdateContactPreference:
+                            type: boolean
+                          IsAllowFinance:
+                            type: boolean
+                          IsAllowViewInvoices:
+                            type: boolean
+                          IsAllowViewBalance:
+                            type: boolean
+                          IsAllowPrintInvoice:
+                            type: boolean
+                          IsAllowPayInvoice:
+                            type: boolean
+                          IsAllowPrintStatement:
+                            type: boolean
+                          IsAllowStore:
+                            type: boolean
+                          IsAllowViewStoreItems:
+                            type: boolean
+                          IsAllowBuyStoreItems:
+                            type: boolean
+                          IsAllowViewStoreReceipts:
+                            type: boolean
+                          IsAllowPrintStoreReceipts:
+                            type: boolean
+                          IsAllowJobs:
+                            type: boolean
+                          IsAllowViewJobs:
+                            type: boolean
+                          IsAllowCreateJob:
+                            type: boolean
+                          IsAllowCreateLead:
+                            type: boolean
+                
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  
+  
+  /umLogout.json/:
+    post:
+      summary: Logout Remove InstallID against Logged in User
+      description: Remove InstallID against Logged in User
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[installID]
+          type: string
+          description: Notification Install ID
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umStoreInstallID.json/:
+    post:
+      summary: Store Notification InstallID against Logged in User
+      description: Store Notification InstallID against Logged in User
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[installID]
+          type: string
+          description: Notification Install ID
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  
+  
+  /umSendUserPushNotification.json/:
+    post:
+      summary: SendUserPushNotification
+      description: SendUserPushNotification
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[backendIdentifier]
+          type: string
+          description: backendIdentifier
+          required: true
+        - in: formData
+          name: params[navUserName]
+          type: string
+          description: navUserName
+          required: true
+        - in: formData
+          name: params[notificationTitle]
+          type: string
+          description: notificationTitle
+          required: true
+        - in: formData
+          name: params[notificationMessage]
+          type: string
+          description: notificationMessage
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties: 
+                  appId:
+                    type: integer
+                  source:
+                    type: integer
+                  status:
+                    type: integer
+                  filters: 
+                    type: string
+                  title:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: string
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  createdAt:
+                    type: string
+                    format: date-time
+                  id:
+                    type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umChangePassword.json/:
+    post:
+      summary: Change Password with forgotten password code
+      description: Change Password with forgotten password code
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password
+          required: true
+        - in: formData
+          name: params[changePasswordCode]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umForgottenPassword.json/:
+    post:
+      summary: Request forgotten password code
+      description: Request forgotten password code
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umCreateNavUser.json/:
+    post:
+      summary: To create a nav user in HUB called from NAV system
+      description: To create a nav user in HUB  called from NAV system
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[backendIdentifier]
+          type: string
+          description: backendIdentifier
+          required: true
+        - in: formData
+          name: params[navUserName]
+          type: string
+          description: navUserName 
+          required: true
+        - in: formData
+          name: params[navServiceKey]
+          type: string
+          description: navServiceKey
+          required: true
+        - in: formData
+          name: params[firstName]
+          type: string
+          description: firstName
+        - in: formData
+          name: params[lastName]
+          type: string
+          description: lastName
+        - in: formData
+          name: params[jwtExpiryTime]
+          type: string
+          description: user jwt expiry time
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umregisterEmailUser.json/:
+    post:
+      summary: Register User with Activation Code
+      description: Register User with Activation Code
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password of User
+          required: true
+        - in: formData
+          name: params[activationCode]
+          type: string
+          description: activation Code 
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
+        default:
+          description: Failed Server Response
+  
+  /umlogin.json/:
+    post:
+      summary: Login
+      description: Login
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password of User
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: client Identifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties: 
+                  token:
+                    type: string
+                  expiresAt:
+                    type: string
+                  companyName:
+                    type: string
+                  fullName:
+                    type: string
+                  IsError:
+                    type: string
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+                  IsAllowedLogin:
+                    type: string
+                  liveCustomerNo:
+                    type: string
+                  liveCustomerDescription:
+                    type: string
+                  customerCount:
+                    type: integer
+                  Customers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        No:
+                          type: string
+                        Description:
+                          type: string
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
