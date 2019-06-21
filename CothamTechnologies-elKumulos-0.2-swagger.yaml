@@ -120,14 +120,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -239,14 +239,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -297,14 +297,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -390,14 +390,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -453,14 +453,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -506,14 +506,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -581,14 +581,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -644,14 +644,14 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
 
         default:
@@ -735,12 +735,12 @@ paths:
                 type: string
               timestamp:
                 type: string
-                format: time
+                format: date-time
               requestReceivedTime:
                 type: string
-                format: time
+                format: date-time
               maxAllowedRequestTime:
                 type: integer
               requestProcessingTime:
-                type: string
+                type: number
                 format: double
