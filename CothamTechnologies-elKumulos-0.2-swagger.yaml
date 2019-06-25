@@ -297,7 +297,7 @@ paths:
           description: Failed Server Response
 
 
-  /owContactPreferences.json/:
+  /owGetContactPreferences.json/:
     post:
       summary: Get Contact Preferences
       description: Get Contact Preferences
@@ -335,7 +335,7 @@ paths:
               payload:
                 type: object
                 properties:
-                  ContactPreferences_Result:
+                  getContactPreferences_Result:
                     type: object
                     properties:
                       return_value:
