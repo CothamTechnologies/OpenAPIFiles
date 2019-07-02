@@ -691,6 +691,10 @@ paths:
                             type: integer
                           UnitSerialNo:
                             type: integer
+                          AddressCombo:
+                            type: string
+                          AddressCombo2:
+                            type: string
 
         default:
           description: Failed Server Response
