@@ -21,6 +21,405 @@ security:
 
 paths:
 
+  /owGetBasket.json/:
+    post:
+      summary: Get All The Items In The Shopping Basket
+      description: Get All The Items In The Shopping Basket
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  total:
+                    description: The total cost of the items in the basket
+                    type: number
+                    format: double
+                  itemCount:
+                    description: The total number of individual items in the basket
+                    type: integer
+                  lineCount:
+                    description: The total number of line items in the basket
+                    type: integer
+                  contents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        clientIdentifier:
+                          type: string
+                        customerNo:
+                          type: string
+                        itemNo:
+                          type: string
+                        itemName:
+                          type: string
+                        description:
+                          type: string
+                        quantity:
+                          type: integer
+                        UnitPrice:
+                          type: number
+                          format: double
+                        basketID:
+                          type: integer
+                        lineTotal:
+                          type: number
+                          format: double
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owAddToBasket.json/:
+    post:
+      summary: Add A Line Item To The Shopping Basket
+      description: Add A Line Item To The Shopping Basket
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[itemNo]
+          type: string
+          description: itemNo
+          required: true
+        - in: formData
+          name: params[itemName]
+          type: string
+          description: itemName
+          required: true
+        - in: formData
+          name: params[description]
+          type: string
+          description: description
+          required: true
+        - in: formData
+          name: params[quantity]
+          type: integer
+          description: quantity
+          required: true
+        - in: formData
+          name: params[unitPrice]
+          type: number
+          format: double
+          description: unitPrice
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  basketID:
+                    description: The basketID of the record added or updated
+                    type: integer
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owRemoveFromBasket.json/:
+    post:
+      summary: Remove A Line Item From The Shopping Basket
+      description: Remove A Line Item From The Shopping Basket
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[basketID]
+          type: integer
+          description: basketID
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  basketID:
+                    description: The basketID removed (-1 if nothing changed)
+                    type: integer
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owUpdateBasketQuantity.json/:
+    post:
+      summary: Update A Quantity In The Shopping Basket
+      description: Update A Quantity In The Shopping Basket
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[basketID]
+          type: integer
+          description: basketID
+          required: true
+        - in: formData
+          name: params[newQuantity]
+          type: integer
+          description: basketID
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  basketID:
+                    description: The basketID updated (-1 if nothing changed)
+                    type: integer
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owEmptyBasket.json/:
+    post:
+      summary: Empty The Shopping Basket
+      description: Empty The Shopping Basket
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[basketID]
+          type: integer
+          description: basketID
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  numberOfRecords:
+                    description: The number of line items removed from the basket
+                    type: integer
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+
   /owGetSettings.json/:
     post:
       summary: Get Settings
