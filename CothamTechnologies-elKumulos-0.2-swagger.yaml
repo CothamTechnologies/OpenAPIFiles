@@ -179,12 +179,8 @@ paths:
               responseMessage:
                 type: string
               payload:
-                type: object
-                properties:
-                  basketID:
-                    description: The basketID of the record added or updated
-                    type: integer
-
+                description: The basketID of the record added or updated
+                type: integer
               sessionToken:
                 type: string
               requestedMethod:
