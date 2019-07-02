@@ -314,12 +314,8 @@ paths:
               responseMessage:
                 type: string
               payload:
-                type: object
-                properties:
-                  basketID:
-                    description: The basketID updated (-1 if nothing changed)
-                    type: integer
-
+                description: The basketID updated (-1 if nothing changed)
+                type: integer
               sessionToken:
                 type: string
               requestedMethod:
@@ -383,12 +379,8 @@ paths:
               responseMessage:
                 type: string
               payload:
-                type: object
-                properties:
-                  numberOfRecords:
-                    description: The number of line items removed from the basket
-                    type: integer
-
+                description: The number of line items removed from the basket
+                type: integer
               sessionToken:
                 type: string
               requestedMethod:
