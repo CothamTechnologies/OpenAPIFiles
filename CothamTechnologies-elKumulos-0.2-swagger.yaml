@@ -247,7 +247,7 @@ paths:
                 type: integer
               responseMessage:
                 type: string
-              basketID:
+              payload:
                 description: The basketID removed (-1 if nothing changed)
                 type: integer
               sessionToken:
