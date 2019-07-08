@@ -734,6 +734,8 @@ paths:
                             type: string
                           ErrorMessage:
                             type: string
+                          ContactPreferenceCount:
+                            type: integer
                           ContactPreferences:
                             type: array
                             items:
@@ -879,6 +881,8 @@ paths:
                           AmountPending:
                             type: number
                             format: double
+                          InvoiceCount:
+                            type: integer
                           Invoices:
                             type: array
                             items:
@@ -1130,6 +1134,8 @@ paths:
                             type: string
                           ErrorMessage:
                             type: string
+                          StoreItemCount:
+                            type: integer
                           StoreItems:
                             type: array
                             items:
@@ -1288,6 +1294,8 @@ paths:
                             type: string
                           ErrorMessage:
                             type: string
+                          ReceiptCount:
+                            type: integer
                           Receipts:
                             type: array
                             items:
@@ -1361,6 +1369,8 @@ paths:
                             type: string
                           ErrorMessage:
                             type: string
+                          JobCount:
+                            type: integer
                           Jobs:
                             type: array
                             items:
@@ -1585,6 +1595,8 @@ paths:
                             type: string
                           FinanceEmail:
                             type: string
+                          LeadTypeCount:
+                            type: integer
                           LeadTypes:
                             type: array
                             items:
@@ -2121,7 +2133,7 @@ paths:
                     type: string
                   liveCustomerDescription:
                     type: string
-                  customerCount:
+                  CustomerCount:
                     type: integer
                   Customers:
                     type: array
@@ -2152,137 +2164,137 @@ paths:
                 format: double
 
 
-/umNewLogin.json/:
-    post:
-      summary: Login
-      description: Newer version of login
-      tags:
-        - 0. User Management
-      consumes:
-        - application/x-www-form-urlencoded
-      parameters:
-        - in: formData
-          name: params[email]
-          type: string
-          description: emailaddress of User
-          required: true
-        - in: formData
-          name: params[password]
-          type: string
-          description: password of User
-          required: true
-        - in: formData
-          name: params[clientIdentifier]
-          type: string
-          description: client Identifier
-          required: true
-        - in: formData
-          name: params[customerNo]
-          type: string
-          description: Optional customer number
+  /umNewLogin.json/:
+      post:
+        summary: Login
+        description: Newer version of login
+        tags:
+          - 0. User Management
+        consumes:
+          - application/x-www-form-urlencoded
+        parameters:
+          - in: formData
+            name: params[email]
+            type: string
+            description: emailaddress of User
+            required: true
+          - in: formData
+            name: params[password]
+            type: string
+            description: password of User
+            required: true
+          - in: formData
+            name: params[clientIdentifier]
+            type: string
+            description: client Identifier
+            required: true
+          - in: formData
+            name: params[customerNo]
+            type: string
+            description: Optional customer number
 
-      responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: object
-            properties:
-              responseCode:
-                type: integer
-              responseMessage:
-                type: string
-              payload:
-                type: object
-                properties:
-                  token:
-                    type: string
-                  expiresAt:
-                    type: string
-                  companyName:
-                    type: string
-                  fullName:
-                    type: string
-                  IsError:
-                    type: string
-                  ErrorCode:
-                    type: string
-                  ErrorMessage:
-                    type: string
-                  IsAllowedLogin:
-                    type: string
-                  liveCustomerNo:
-                    type: string
-                  liveCustomerDescription:
-                    type: string
-                  customerCount:
-                    type: integer
-                  Customers:
-                    type: array
-                    items:
+        responses:
+          200:
+            description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                responseMessage:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+                    expiresAt:
+                      type: string
+                    companyName:
+                      type: string
+                    fullName:
+                      type: string
+                    IsError:
+                      type: string
+                    ErrorCode:
+                      type: string
+                    ErrorMessage:
+                      type: string
+                    IsAllowedLogin:
+                      type: string
+                    liveCustomerNo:
+                      type: string
+                    liveCustomerDescription:
+                      type: string
+                    CustomerCount:
+                      type: integer
+                    Customers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          No:
+                            type: string
+                          Description:
+                            type: string
+                    customerSettings:
                       type: object
                       properties:
-                        No:
-                          type: string
-                        Description:
-                          type: string
-                  customerSettings:
-                    type: object
-                    properties:
-                      IsAllowOwner:
-                        type: boolean
-                      IsAllowViewOwner:
-                        type: boolean
-                      IsAllowUpdateOwner:
-                        type: boolean
-                      IsAllowViewContactPreferences:
-                        type: boolean
-                      IsAllowUpdateContactPreference:
-                        type: boolean
-                      IsAllowFinance:
-                        type: boolean
-                      IsAllowViewInvoices:
-                        type: boolean
-                      IsAllowViewBalance:
-                        type: boolean
-                      IsAllowPrintInvoice:
-                        type: boolean
-                      IsAllowPayInvoice:
-                        type: boolean
-                      IsAllowPrintStatement:
-                        type: boolean
-                      IsAllowStore:
-                        type: boolean
-                      IsAllowViewStoreItems:
-                        type: boolean
-                      IsAllowBuyStoreItems:
-                        type: boolean
-                      IsAllowViewStoreReceipts:
-                        type: boolean
-                      IsAllowPrintStoreReceipts:
-                        type: boolean
-                      IsAllowJobs:
-                        type: boolean
-                      IsAllowViewJobs:
-                        type: boolean
-                      IsAllowCreateJob:
-                        type: boolean
-                      IsAllowCreateLead:
-                        type: boolean
+                        IsAllowOwner:
+                          type: boolean
+                        IsAllowViewOwner:
+                          type: boolean
+                        IsAllowUpdateOwner:
+                          type: boolean
+                        IsAllowViewContactPreferences:
+                          type: boolean
+                        IsAllowUpdateContactPreference:
+                          type: boolean
+                        IsAllowFinance:
+                          type: boolean
+                        IsAllowViewInvoices:
+                          type: boolean
+                        IsAllowViewBalance:
+                          type: boolean
+                        IsAllowPrintInvoice:
+                          type: boolean
+                        IsAllowPayInvoice:
+                          type: boolean
+                        IsAllowPrintStatement:
+                          type: boolean
+                        IsAllowStore:
+                          type: boolean
+                        IsAllowViewStoreItems:
+                          type: boolean
+                        IsAllowBuyStoreItems:
+                          type: boolean
+                        IsAllowViewStoreReceipts:
+                          type: boolean
+                        IsAllowPrintStoreReceipts:
+                          type: boolean
+                        IsAllowJobs:
+                          type: boolean
+                        IsAllowViewJobs:
+                          type: boolean
+                        IsAllowCreateJob:
+                          type: boolean
+                        IsAllowCreateLead:
+                          type: boolean
 
-              sessionToken:
-                type: string
-              requestedMethod:
-                type: string
-              requestedFormat:
-                type: string
-              timestamp:
-                type: string
-                format: date-time
-              requestReceivedTime:
-                type: string
-                format: date-time
-              maxAllowedRequestTime:
-                type: integer
-              requestProcessingTime:
-                type: number
-                format: double
+                sessionToken:
+                  type: string
+                requestedMethod:
+                  type: string
+                requestedFormat:
+                  type: string
+                timestamp:
+                  type: string
+                  format: date-time
+                requestReceivedTime:
+                  type: string
+                  format: date-time
+                maxAllowedRequestTime:
+                  type: integer
+                requestProcessingTime:
+                  type: number
+                  format: double
