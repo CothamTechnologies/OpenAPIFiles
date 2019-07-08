@@ -758,8 +758,8 @@ paths:
 
   /owUpdateContactPreferences.json/:
     post:
-      summary: Record purchases from the store
-      description: Record purchases from the store
+      summary: Update contact preferences
+      description: Update contact preferences
       tags:
         - 1. Elite Owner App
       consumes:
@@ -2365,138 +2365,138 @@ paths:
           description: Failed Server Response
 
 
-/owPrintStatement.json/:
-    post:
-      summary: Print a statement
-      description: Print a statement
-      tags:
-        - 1. Elite Owner App
-      consumes:
-        - application/x-www-form-urlencoded
-      parameters:
-        - in: formData
-          name: params[jwt]
-          type: string
-          description: jwt
-          required: true
-        - in: formData
-          name: params[clientIdentifier]
-          type: string
-          description: clientIdentifier
-          required: true
-        - in: formData
-          name: params[customerNo]
-          type: string
-          description: customerNo
-          required: true
-        - in: formData
-          name: params[fromDate]
-          type: string
-          format: date-time
-          description: fromDate
-          required: true
-        - in: formData
-          name: params[toDate]
-          type: string
-          format: date-time
-          description: toDate
-          required: true
+  /owPrintStatement.json/:
+      post:
+        summary: Print a statement
+        description: Print a statement
+        tags:
+          - 1. Elite Owner App
+        consumes:
+          - application/x-www-form-urlencoded
+        parameters:
+          - in: formData
+            name: params[jwt]
+            type: string
+            description: jwt
+            required: true
+          - in: formData
+            name: params[clientIdentifier]
+            type: string
+            description: clientIdentifier
+            required: true
+          - in: formData
+            name: params[customerNo]
+            type: string
+            description: customerNo
+            required: true
+          - in: formData
+            name: params[fromDate]
+            type: string
+            format: date-time
+            description: fromDate
+            required: true
+          - in: formData
+            name: params[toDate]
+            type: string
+            format: date-time
+            description: toDate
+            required: true
 
 
-      responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: object
-            properties:
-              responseCode:
-                type: integer
-              responseMessage:
-                type: string
-              payload:
-                type: object
-                properties:
-                  printStatement_Result:
-                    type: object
-                    properties:
-                      return_value:
-                        type: object
-                        properties:
-                          IsError:
-                            type: boolean
-                          ErrorCode:
-                            type: string
-                          ErrorMessage:
-                            type: string
-                          DocumentName:
-                            type: string
-                          Base64PDF:
-                            type: text
+        responses:
+          200:
+            description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                responseMessage:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    printStatement_Result:
+                      type: object
+                      properties:
+                        return_value:
+                          type: object
+                          properties:
+                            IsError:
+                              type: boolean
+                            ErrorCode:
+                              type: string
+                            ErrorMessage:
+                              type: string
+                            DocumentName:
+                              type: string
+                            Base64PDF:
+                              type: text
 
-        default:
-          description: Failed Server Response
-
-
-/owPrintReceipt.json/:
-    post:
-      summary: Print copies of receipts
-      description: Print copies of receipts
-      tags:
-        - 1. Elite Owner App
-      consumes:
-        - application/x-www-form-urlencoded
-      parameters:
-        - in: formData
-          name: params[jwt]
-          type: string
-          description: jwt
-          required: true
-        - in: formData
-          name: params[clientIdentifier]
-          type: string
-          description: clientIdentifier
-          required: true
-        - in: formData
-          name: params[customerNo]
-          type: string
-          description: customerNo
-          required: true
-        - in: formData
-          name: params[receiptNo]
-          type: string
-          description: receiptNo
-          required: true
+          default:
+            description: Failed Server Response
 
 
-      responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: object
-            properties:
-              responseCode:
-                type: integer
-              responseMessage:
-                type: string
-              payload:
-                type: object
-                properties:
-                  printReceipt_Result:
-                    type: object
-                    properties:
-                      return_value:
-                        type: object
-                        properties:
-                          IsError:
-                            type: boolean
-                          ErrorCode:
-                            type: string
-                          ErrorMessage:
-                            type: string
-                          DocumentName:
-                            type: string
-                          Base64PDF:
-                            type: text
+  /owPrintReceipt.json/:
+      post:
+        summary: Print copies of receipts
+        description: Print copies of receipts
+        tags:
+          - 1. Elite Owner App
+        consumes:
+          - application/x-www-form-urlencoded
+        parameters:
+          - in: formData
+            name: params[jwt]
+            type: string
+            description: jwt
+            required: true
+          - in: formData
+            name: params[clientIdentifier]
+            type: string
+            description: clientIdentifier
+            required: true
+          - in: formData
+            name: params[customerNo]
+            type: string
+            description: customerNo
+            required: true
+          - in: formData
+            name: params[receiptNo]
+            type: string
+            description: receiptNo
+            required: true
 
-        default:
-          description: Failed Server Response
+
+        responses:
+          200:
+            description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                responseMessage:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    printReceipt_Result:
+                      type: object
+                      properties:
+                        return_value:
+                          type: object
+                          properties:
+                            IsError:
+                              type: boolean
+                            ErrorCode:
+                              type: string
+                            ErrorMessage:
+                              type: string
+                            DocumentName:
+                              type: string
+                            Base64PDF:
+                              type: text
+
+          default:
+            description: Failed Server Response
