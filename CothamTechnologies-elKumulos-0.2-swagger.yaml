@@ -2392,11 +2392,13 @@ paths:
         - in: formData
           name: params[fromDate]
           type: string
+          format: date-time
           description: fromDate
           required: true
         - in: formData
           name: params[toDate]
           type: string
+          format: date-time
           description: toDate
           required: true
 
@@ -2435,7 +2437,7 @@ paths:
           description: Failed Server Response
 
 
-  /owPrintReceipt.json/:
+/owPrintReceipt.json/:
     post:
       summary: Print copies of receipts
       description: Print copies of receipts
