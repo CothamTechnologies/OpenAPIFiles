@@ -2576,3 +2576,433 @@ paths:
 
           default:
             description: Failed Server Response
+
+
+  /stripeCreatePaymentIntent.json/:
+      post:
+        summary: Create a payment intent in Stripe
+        description: Create a payment intent in Stripe
+        tags:
+          - 2. Stripe Integration
+        consumes:
+          - application/x-www-form-urlencoded
+        parameters:
+          - in: formData
+            name: params[jwt]
+            type: string
+            description: jwt
+            required: true
+          - in: formData
+            name: params[clientIdentifier]
+            type: string
+            description: clientIdentifier
+            required: true
+          - in: formData
+            name: params[amount]
+            type: string
+            description: Amount to be charged
+            required: true
+          - in: formData
+            name: params[captureMethod]
+            type: string
+            description: captureMethod
+            required: true
+          - in: formData
+            name: params[currency]
+            type: string
+            description: currency
+            required: true
+          - in: formData
+            name: params[confirmationMethod]
+            type: string
+            description: confirmationMethod
+            required: true
+          - in: formData
+            name: params[confirm]
+            type: string
+            description: confirm
+            required: true
+          - in: formData
+            name: params[paymentMethod]
+            type: string
+            description: paymentMethod
+            required: true
+
+        responses:
+          200:
+            description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                responseMessage:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    object:
+                      type: string
+                    amount:
+                      type: number
+                    amount_capturable:
+                      type: number
+                    amount_received:
+                      type: number
+                    application: {}
+                    application_fee_amount: {}
+                    canceled_at: {}
+                    cancellation_reason: {}
+                    capture_method:
+                      type: string
+                    charges:
+                      type: object
+                      properties:
+                        object:
+                          type: string
+                        data:
+                          type: array
+                          items:
+                            required: []
+                            type: object
+                            properties: {}
+                        has_more:
+                          type: boolean
+                        total_count:
+                          type: number
+                        url:
+                          type: string
+                    client_secret:
+                      type: string
+                    confirmation_method:
+                      type: string
+                    created:
+                      type: number
+                    currency:
+                      type: string
+                    customer:
+                      type: string
+                    description: {}
+                    invoice: {}
+                    last_payment_error: {}
+                    livemode:
+                      type: boolean
+                    metadata:
+                      type: object
+                      properties: {}
+                    next_action:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        use_stripe_sdk:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            stripe_js:
+                              type: string
+                    on_behalf_of: {}
+                    payment_method:
+                      type: string
+                    payment_method_types:
+                      type: array
+                      items:
+                        type: string
+                    receipt_email: {}
+                    review: {}
+                    setup_future_usage: {}
+                    shipping: {}
+                    source: {}
+                    statement_descriptor: {}
+                    status:
+                      type: string
+                    transfer_data: {}
+                    transfer_group: {}
+                sessionToken:
+                  type: string
+                requestedMethod:
+                  type: string
+                requestedFormat:
+                  type: string
+                timestamp:
+                  type: string
+                  format: time
+                requestReceivedTime:
+                  type: string
+                  format: time
+                maxAllowedRequestTime:
+                  type: integer
+                requestProcessingTime:
+                  type: string
+
+          default:
+            description: Failed Server Response
+
+
+
+  /stripeConfirmPaymentIntent.json/:
+      post:
+        summary: Confirm a payment intent in Stripe
+        description: Confirm a payment intent in Stripe
+        tags:
+          - 2. Stripe Integration
+        consumes:
+          - application/x-www-form-urlencoded
+        parameters:
+          - in: formData
+            name: params[jwt]
+            type: string
+            description: jwt
+            required: true
+          - in: formData
+            name: params[clientIdentifier]
+            type: string
+            description: clientIdentifier
+            required: true
+          - in: formData
+            name: params[paymentIntent]
+            type: string
+            description: paymentIntent
+            required: true
+          - in: formData
+            name: params[paymentMethod]
+            type: string
+            description: paymentMethod
+            required: true
+
+        responses:
+          200:
+            description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                responseMessage:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    object:
+                      type: string
+                    amount:
+                      type: number
+                    amount_capturable:
+                      type: number
+                    amount_received:
+                      type: number
+                    application: {}
+                    application_fee_amount: {}
+                    canceled_at: {}
+                    cancellation_reason: {}
+                    capture_method:
+                      type: string
+                    charges:
+                      type: object
+                      properties:
+                        object:
+                          type: string
+                        data:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: string
+                              object:
+                                type: string
+                              amount:
+                                type: number
+                              amount_refunded:
+                                type: number
+                              application: {}
+                              application_fee: {}
+                              application_fee_amount: {}
+                              balance_transaction: {}
+                              billing_details:
+                                type: object
+                                properties:
+                                  address:
+                                    type: object
+                                    properties:
+                                      city: {}
+                                      country: {}
+                                      line1: {}
+                                      line2: {}
+                                      postal_code: {}
+                                      state: {}
+                                  email: {}
+                                  name: {}
+                                  phone: {}
+                              captured:
+                                type: boolean
+                              created:
+                                type: number
+                              currency:
+                                type: string
+                              customer:
+                                type: string
+                              description: {}
+                              destination: {}
+                              dispute: {}
+                              failure_code: {}
+                              failure_message: {}
+                              fraud_details:
+                                type: object
+                                properties: {}
+                              invoice: {}
+                              livemode:
+                                type: boolean
+                              metadata:
+                                type: object
+                                properties: {}
+                              on_behalf_of: {}
+                              order: {}
+                              outcome:
+                                type: object
+                                properties:
+                                  network_status:
+                                    type: string
+                                  reason: {}
+                                  risk_level:
+                                    type: string
+                                  risk_score:
+                                    type: number
+                                  seller_message:
+                                    type: string
+                                  type:
+                                    type: string
+                              paid:
+                                type: boolean
+                              payment_intent:
+                                type: string
+                              payment_method:
+                                type: string
+                              payment_method_details:
+                                type: object
+                                properties:
+                                  card:
+                                    type: object
+                                    properties:
+                                      brand:
+                                        type: string
+                                      checks:
+                                        type: object
+                                        properties:
+                                          address_line1_check: {}
+                                          address_postal_code_check: {}
+                                          cvc_check: {}
+                                      country:
+                                        type: string
+                                      exp_month:
+                                        type: number
+                                      exp_year:
+                                        type: number
+                                      fingerprint:
+                                        type: string
+                                      funding:
+                                        type: string
+                                      last4:
+                                        type: string
+                                      three_d_secure: {}
+                                      wallet: {}
+                                  type:
+                                    type: string
+                              receipt_email: {}
+                              receipt_number: {}
+                              receipt_url:
+                                type: string
+                              refunded:
+                                type: boolean
+                              refunds:
+                                type: object
+                                properties:
+                                  object:
+                                    type: string
+                                  data:
+                                    type: array
+                                    items:
+                                      required: []
+                                      type: object
+                                      properties: {}
+                                  has_more:
+                                    type: boolean
+                                  total_count:
+                                    type: number
+                                  url:
+                                    type: string
+                              review: {}
+                              shipping: {}
+                              source: {}
+                              source_transfer: {}
+                              statement_descriptor: {}
+                              status:
+                                type: string
+                              transfer_data: {}
+                              transfer_group: {}
+                            type: object
+                        has_more:
+                          type: boolean
+                        total_count:
+                          type: number
+                        url:
+                          type: string
+                    client_secret:
+                      type: string
+                    confirmation_method:
+                      type: string
+                    created:
+                      type: number
+                    currency:
+                      type: string
+                    customer:
+                      type: string
+                    description: {}
+                    invoice: {}
+                    last_payment_error: {}
+                    livemode:
+                      type: boolean
+                    metadata:
+                      type: object
+                      properties: {}
+                    next_action: {}
+                    on_behalf_of: {}
+                    payment_method:
+                      type: string
+                    payment_method_types:
+                      type: array
+                      items:
+                        type: string
+                    receipt_email: {}
+                    review: {}
+                    setup_future_usage: {}
+                    shipping: {}
+                    source: {}
+                    statement_descriptor: {}
+                    status:
+                      type: string
+                    transfer_data: {}
+                    transfer_group: {}
+                sessionToken:
+                  type: string
+                requestedMethod:
+                  type: string
+                requestedFormat:
+                  type: string
+                timestamp:
+                  type: string
+                  format: time
+                requestReceivedTime:
+                  type: string
+                  format: time
+                maxAllowedRequestTime:
+                  type: integer
+                requestProcessingTime:
+                  type: string
+
+          default:
+            description: Failed Server Response
