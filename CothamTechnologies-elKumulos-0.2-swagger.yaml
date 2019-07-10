@@ -3016,8 +3016,8 @@ paths:
 
   /stripeGetEphemeralKey1.json/:
       post:
-        summary: Retrieve an ephemeral key from Stripe
-        description: Retrieve an ephemeral key from Stripe
+        summary: Get an ephemeral key from Stripe
+        description: Get an ephemeral key from Stripe
         tags:
           - 2. Stripe Integration
         consumes:
