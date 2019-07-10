@@ -3011,3 +3011,84 @@ paths:
 
           default:
             description: Failed Server Response
+
+
+
+  /stripeGetEphemeralKey1.json/:
+      post:
+        summary: Retrieve an ephemeral key from Stripe
+        description: Retrieve an ephemeral key from Stripe
+        tags:
+          - 2. Stripe Integration
+        consumes:
+          - application/x-www-form-urlencoded
+        parameters:
+          - in: formData
+            name: params[jwt]
+            type: string
+            description: jwt
+            required: true
+          - in: formData
+            name: params[clientIdentifier]
+            type: string
+            description: clientIdentifier
+            required: true
+          - in: formData
+            name: params[api_version]
+            type: string
+            description: api_version
+            required: true
+
+        responses:
+          200:
+            description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                responseMessage:
+                  type: string
+                payload:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    object:
+                      type: string
+                    associated_objects:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          id:
+                            type: string
+                    created:
+                      type: number
+                    expires:
+                      type: number
+                    livemode:
+                      type: boolean
+                    secret:
+                      type: string
+                sessionToken:
+                  type: string
+                requestedMethod:
+                  type: string
+                requestedFormat:
+                  type: string
+                timestamp:
+                  type: string
+                  format: time
+                requestReceivedTime:
+                  type: string
+                  format: time
+                maxAllowedRequestTime:
+                  type: integer
+                requestProcessingTime:
+                  type: string
+
+          default:
+            description: Failed Server Response
