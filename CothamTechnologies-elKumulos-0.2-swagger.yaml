@@ -2521,6 +2521,11 @@ paths:
             type: string
             description: clientIdentifier
             required: true
+          - in: formData
+            name: params[api_version]
+            type: string
+            description: api_version
+            required: true
 
 
         responses:
