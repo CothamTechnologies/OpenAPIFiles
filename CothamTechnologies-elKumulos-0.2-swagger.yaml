@@ -2606,7 +2606,7 @@ paths:
             name: params[amount]
             type: string
             description: Amount to be charged
-            required: true
+            required: false
           - in: formData
             name: params[captureMethod]
             type: string
@@ -2616,22 +2616,22 @@ paths:
             name: params[currency]
             type: string
             description: currency
-            required: true
+            required: false
           - in: formData
             name: params[confirmationMethod]
             type: string
             description: confirmationMethod
-            required: true
+            required: false
           - in: formData
             name: params[confirm]
             type: string
             description: confirm
-            required: true
+            required: false
           - in: formData
             name: params[paymentMethod]
             type: string
             description: paymentMethod
-            required: true
+            required: false
 
         responses:
           200:
