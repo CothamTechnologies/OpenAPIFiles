@@ -20,6 +20,101 @@ security:
   - basicAuth: []
 
 paths:
+  /owGetCollection.json/:
+    post:
+      summary: Get All The Items In The Invoice Collection
+      description: Get All The Items In The Invoice Collection
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  total:
+                    description: The total cost of the items in the collection
+                    type: number
+                    format: double
+                  totalDisplay:
+                    type: string
+                    description: Currency prefixed total for display
+                  invoiceCount:
+                    description: The total number of individual items in the basket
+                    type: integer
+                  contents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        clientIdentifier:
+                          type: string
+                        customerNo:
+                          type: string
+                        invoiceNumber:
+                          type: string
+                        collectionID:
+                          type: integer
+                        totalAmount:
+                          type: number
+                          format: double
+                        totalAmountDisplay:
+                          type: string
+                          description: Currency prefixed line total for display
+                        toPayAmount:
+                          type: number
+                          format: double
+                        toPayAmountDisplay:
+                          type: string
+                          description: Currency prefixed to pay total for display
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
 
   /owGetBasket.json/:
     post:
