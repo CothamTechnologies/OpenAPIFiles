@@ -889,9 +889,15 @@ paths:
                           Balance:
                             type: number
                             format: double
+                          BalanceDisplay:
+                            type: string
+                            description: Currency prefixed balance for display
                           AmountPending:
                             type: number
                             format: double
+                          AmountPendingDisplay:
+                            type: string
+                            description: Currency prefixed amount pending for display
                           InvoiceCount:
                             type: integer
                           Invoices:
@@ -912,9 +918,15 @@ paths:
                                 Amount:
                                   type: number
                                   format: double
+                                AmountDisplay:
+                                  type: string
+                                  description: Currency prefixed amount for display
                                 RemainingAmount:
                                   type: number
                                   format: double
+                                RemainingAmountDisplay:
+                                  type: string
+                                  description: Currency prefixed remaining amount for display
 
         default:
           description: Failed Server Response
