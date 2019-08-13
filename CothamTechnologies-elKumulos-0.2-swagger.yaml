@@ -91,9 +91,9 @@ paths:
                           type: integer
                         unitPrice:
                           type: number
-                          description: Currency prefixed unit price for display
                         unitPriceDisplay:
                           type: string
+                          description: Currency prefixed unit price for display
                         basketID:
                           type: integer
                         lineTotal:
@@ -1175,6 +1175,9 @@ paths:
                                 UnitPrice:
                                   type: number
                                   format: double
+                                UnitPriceDisplay:
+                                  type: string
+                                  description: Currency prefixed unit price for display
 
         default:
           description: Failed Server Response
@@ -1338,6 +1341,9 @@ paths:
                                 Amount:
                                   type: number
                                   format: double
+                                AmountDisplay:
+                                  type: string
+                                  description: Currency prefixed amount for display
 
         default:
           description: Failed Server Response
