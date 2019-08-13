@@ -577,6 +577,9 @@ paths:
                           OutstandingBalance:
                             type: number
                             format: double
+                          OutstandingBalanceDisplay:
+                            type: string
+                            description: Currency prefixed balance for display
                           ActiveJobs:
                             type: integer
 
