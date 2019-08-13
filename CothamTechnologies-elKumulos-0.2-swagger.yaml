@@ -63,6 +63,9 @@ paths:
                     description: The total cost of the items in the basket
                     type: number
                     format: double
+                  totalDisplay:
+                    type: string
+                    description: Currency prefixed total for display
                   itemCount:
                     description: The total number of individual items in the basket
                     type: integer
@@ -88,12 +91,17 @@ paths:
                           type: integer
                         unitPrice:
                           type: number
-                          format: double
+                          description: Currency prefixed unit price for display
+                        unitPriceDisplay:
+                          type: string
                         basketID:
                           type: integer
                         lineTotal:
                           type: number
                           format: double
+                        lineTotalDisplay:
+                          type: string
+                          description: Currency prefixed line total for display
 
               sessionToken:
                 type: string
