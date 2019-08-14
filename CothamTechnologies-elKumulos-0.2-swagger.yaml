@@ -93,6 +93,8 @@ paths:
                         toPayAmountDisplay:
                           type: string
                           description: Currency prefixed to pay total for display
+                        description:
+                          type: string
 
               sessionToken:
                 type: string
@@ -344,6 +346,11 @@ paths:
           name: params[invoiceNumber]
           type: string
           description: invoiceNumber
+          required: true
+        - in: formData
+          name: params[description]
+          type: string
+          description: description
           required: true
 
       responses:
