@@ -306,6 +306,81 @@ paths:
           description: Failed Server Response
 
 
+  /owAddToCollection.json/:
+    post:
+      summary: Add and invoice to the collection
+      description: Add and invoice to the collection
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[toPayAmount]
+          type: double
+          description: toPayAmount
+          required: true
+        - in: formData
+          name: params[invoiceAmount]
+          type: double
+          description: invoiceAmount
+          required: true
+        - in: formData
+          name: params[invoiceNumber]
+          type: string
+          description: invoiceNumber
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                description: The collectionID of the record added or updated
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
   /owRemoveFromBasket.json/:
     post:
       summary: Remove A Line Item From The Shopping Basket
@@ -348,6 +423,71 @@ paths:
                 type: string
               payload:
                 description: The basketID removed (-1 if nothing changed)
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owRemoveFromCollection.json/:
+    post:
+      summary: Remove a line item from the collection
+      description: Remove a line item from the collection
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[collectionID]
+          type: integer
+          description: collectionID
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                description: The collectionID removed (-1 if nothing changed)
                 type: integer
               sessionToken:
                 type: string
@@ -441,7 +581,7 @@ paths:
           description: Failed Server Response
 
 
-  /owUpdateCollection.json/:
+  /owUpdateInvoiceToPayAmount.json/:
     post:
       summary: Update an invoice payment amount in a collection
       description: Update an invoice payment amount in a collection
@@ -471,9 +611,9 @@ paths:
           description: collectionID
           required: true
         - in: formData
-          name: params[newAmount]
+          name: params[newAmountToPay]
           type: integer
-          description: newAmount
+          description: newAmountToPay
           required: true
 
       responses:
@@ -535,11 +675,6 @@ paths:
           type: string
           description: customerNo
           required: true
-        - in: formData
-          name: params[basketID]
-          type: integer
-          description: basketID
-          required: true
 
       responses:
         200:
@@ -574,6 +709,68 @@ paths:
 
         default:
           description: Failed Server Response
+
+
+  /owEmptyCollection.json/:
+    post:
+      summary: Empty the collection
+      description: Empty the collection
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                description: The number of line items removed from the collection
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
 
 
 
