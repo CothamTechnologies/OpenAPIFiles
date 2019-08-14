@@ -62,6 +62,9 @@ paths:
                     description: The total cost of the items in the collection
                     type: number
                     format: double
+                  description:
+                    type: string
+                    description: A concatenation of the invoice numbers in this collection
                   totalDisplay:
                     type: string
                     description: Currency prefixed total for display
