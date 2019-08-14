@@ -98,6 +98,11 @@ paths:
                           description: Currency prefixed to pay total for display
                         description:
                           type: string
+                        remainingAmount:
+                          type: number
+                          format: double
+                        remainingAmountDisplay:
+                          type: string
 
               sessionToken:
                 type: string
@@ -354,6 +359,11 @@ paths:
           name: params[description]
           type: string
           description: description
+          required: true
+        - in: formData
+          name: params[remainingAmount]
+          type: string
+          description: remainingAmount
           required: true
 
       responses:
