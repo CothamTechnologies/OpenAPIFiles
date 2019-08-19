@@ -1654,6 +1654,8 @@ paths:
                                   type: string
                                 lineStatus:
                                   type: string
+                                lineChangeStatus:
+                                  type: string
                                 entryLines:
                                   type: array
                                   items:
@@ -1686,6 +1688,8 @@ paths:
                                       serviceLineID: 
                                         type: string
                                       entryLineComment:
+                                        type: string
+                                      entryChangeStatus:
                                         type: string
                                       photos: 
                                         type: array
