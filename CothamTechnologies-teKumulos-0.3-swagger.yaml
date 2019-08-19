@@ -1,0 +1,1611 @@
+swagger: '2.0'
+info:
+  version: "0.2"
+  title: 'TEKUMULOS'
+  description: 'TEKUMULOS Point to Driver Environment'
+
+host: api.kumulos.com 
+basePath: /b2.2/36b6a932-be39-4bf0-b789-bdafe2f87943
+
+x-flopro-kumulosrpc: true
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  
+  /fmUpdateNotification.json/:
+    post:
+      summary: Update  Notification Status
+      description: Update  Notification Status
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[status]
+          type: string
+          required: true
+          description: New Status
+        - in: formData
+          name: params[entry_no]
+          type: integer
+          description: entry_no
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  Request_Status:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
+  /fmUpdateRequest.json/:
+    post:
+      summary: Update  Request Status
+      description: Update  Request Status
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[status]
+          type: string
+          required: true
+          description: New Status
+        - in: formData
+          name: params[entry_no]
+          type: integer
+          description: entry_no
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  Request_Status:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+        default:
+          description: Failed Server Response
+          
+  /fmCreateNotification.json/:
+    post:
+      summary: Create Notification
+      description: Create Notification
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[notificationDetail]
+          type: string
+          required: true
+          description: notificationDetail
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    odata.metadata:
+                      type: string
+                    Entry_No: 
+                      type: integer
+                    User_Security_ID:
+                      type: string
+                    Notification_Detail: 
+                      type: string
+                    Status:
+                      type: string
+                    Enwis_App:
+                      type: string
+                    ETag: 
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmCreateRequest.json/:
+    post:
+      summary: Create Request
+      description: Create Request
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[userRefNumber]
+          type: string
+          required: true
+          description: userRefNumber
+        - in: formData
+          name: params[contractNumber]
+          type: string
+          description: contractNumber
+          required: true
+        - in: formData
+          name: params[quantity]
+          type: string
+          description: quantity
+          required: true
+        - in: formData
+          name: params[detail]
+          type: string
+          description: detail
+          required: true
+        - in: formData
+          name: params[serviceNumber]
+          type: string
+          description: serviceNumber
+          required: true
+        - in: formData
+          name: params[taskAtCode]
+          type: string
+          description: taskAtCode
+          required: true
+        - in: formData
+          name: params[device]
+          type: string
+          description: device
+          required: true
+        - in: formData
+          name: params[requestDate]
+          type: string
+          format: date-time
+          description: requestDate
+          required: true
+        - in: formData
+          name: params[requestType]
+          type: string
+          description: requestType
+          required: true
+        
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Entry_No: 
+                      type: integer
+                    User_Security_ID: 
+                      type: string
+                    Request_User: 
+                      type: string
+                    Business_with_No: 
+                      type: string
+                    Service_No: 
+                      type: string
+                    Request_Date: 
+                      type: string
+                      format: date-time
+                    Request_Time: 
+                      type: string
+                    Detail: 
+                      type: string
+                    ETag: 
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umStoreInstallID.json/:
+    post:
+      summary: Store Notification InstallID against Logged in User
+      description: Store Notification InstallID against Logged in User
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[installID]
+          type: string
+          description: Notification Install ID
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetRequestNotificationCounts.json/:
+    post:
+      summary: fmGetRequestNotificationCounts
+      description: fmGetRequestNotificationCounts
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties: 
+                  notificationCount:
+                    type: integer
+                  requestCount: 
+                    type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetSupportInfo.json/:
+    post:
+      summary: GetSupportInfo
+      description: GetSupportInfo
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Name: 
+                      type: string
+                    Address: 
+                      type: string
+                    Address_2: 
+                      type: string
+                    County: 
+                      type: string
+                    City: 
+                      type: string
+                    Post_Code: 
+                      type: string
+                    Country_Region_Code:
+                      type: string
+                    Phone_No: 
+                      type: string
+                    E_Mail: 
+                      type: string
+                    E_Mail_2: 
+                      type: string
+                    Home_Page: 
+                      type: string
+                    AuxiliaryIndex1: 
+                      type: string
+                    AuxiliaryIndex2: 
+                      type: string
+                    AuxiliaryIndex3: 
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetCompanyInfo.json/:
+    post:
+      summary: GetCompanyInfo
+      description: GetCompanyInfo
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Name: 
+                      type: string
+                    Address: 
+                      type: string
+                    Address_2: 
+                      type: string
+                    County: 
+                      type: string
+                    City: 
+                      type: string
+                    Post_Code: 
+                      type: string
+                    Country_Region_Code:
+                      type: string
+                    Phone_No: 
+                      type: string
+                    E_Mail: 
+                      type: string
+                    Home_Page: 
+                      type: string
+                    AuxiliaryIndex1: 
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetRequests.json/:
+    post:
+      summary: get Requests
+      description: get Requests
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  odata.metadata:
+                    type: string
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties: 
+                        Request_Type:
+                          type: string
+                        Request_Status:
+                          type: string
+                        Businness_with_No: 
+                          type: string
+                        Service_No: 
+                          type: string
+                        Request_Date: 
+                          type: string
+                          format: date-time
+                        Request_Time: 
+                          type: string
+                        Detail: 
+                          type: string
+                        Task_at_Code:
+                          type: string
+                        Quantity:
+                          type: integer
+                        User_Reference_No:
+                          type: string
+                        Contract_No:
+                          type: string
+                        Request_Day:
+                          type: string
+                        Request_Month:
+                          type: string
+                        Request_Year:
+                          type: string
+                        Service_Description: 
+                          type: string
+                        Created_Date:
+                          type: string
+                        Created_Time:
+                          type: string
+                        AuxiliaryIndex1: 
+                          type: string
+                        AuxiliaryIndex2: 
+                          type: string
+                        AuxiliaryIndex3: 
+                          type: string
+                        AuxiliaryIndex4: 
+                          type: integer
+                        AuxiliaryIndex5: 
+                          type: integer
+                        User_Security_ID_FilterOnly: 
+                          type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetNotificationsRead.json/:
+    post:
+      summary: get Notifications Read
+      description: get Notifications Read
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Notification_Detail: 
+                      type: string
+                    Created_Date:
+                      type: string
+                      format: date-time
+                    Created_Time:
+                      type: string
+                    Created_Day: 
+                      type: integer
+                    Created_Month:
+                      type: integer
+                    Created_Year: 
+                      type: integer
+                    AuxiliaryIndex1:
+                      type: string
+                    AuxiliaryIndex2:
+                      type: string
+                    AuxiliaryIndex3:
+                      type: integer
+                    AuxiliaryIndex4:
+                      type: integer
+                    AuxiliaryIndex5:
+                      type: integer
+                    User_Security_ID_FilterOnly: 
+                      type: string
+                    Enwis_App_FilterOnly: 
+                      type: string    
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
+        default:
+          description: Failed Server Response
+  
+  /fmGetNotificationsNew.json/:
+    post:
+      summary: get Notifications New
+      description: get Notifications New
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Notification_Detail: 
+                      type: string
+                    Created_Date:
+                      type: string
+                      format: date-time
+                    Created_Time:
+                      type: string
+                    Created_Day: 
+                      type: integer
+                    Created_Month:
+                      type: integer
+                    Created_Year: 
+                      type: integer
+                    AuxiliaryIndex1:
+                      type: string
+                    AuxiliaryIndex2:
+                      type: string
+                    AuxiliaryIndex3:
+                      type: integer
+                    AuxiliaryIndex4:
+                      type: integer
+                    AuxiliaryIndex5:
+                      type: integer
+                    User_Security_ID_FilterOnly: 
+                      type: string
+                    Enwis_App_FilterOnly: 
+                      type: string    
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetNonContractServices.json/:
+    post:
+      summary: NonContractServices
+      description: NonContractServices
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Business_with_No:
+                      type: string
+                    Contract_No:
+                      type: string
+                    Service_No: 
+                      type: string
+                    Task_Site_Code:
+                      type: string
+                    Count_:
+                      type: integer
+                    Unit_Price:
+                      type: string
+                    Service_Description: 
+                      type: string
+                    Task_Site_Name:
+                      type: string
+                    Task_Site_Address:
+                      type: string
+                    User_Security_ID_FilterOnly:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmWastePie.json/:
+    post:
+      summary: Waste Pie
+      description: Waste Pie
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Waste_Stream:
+                      type: string
+                    Quantity: 
+                      type: string
+                    User_Security_ID_FilterOnly:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmWasteGraph.json/:
+    post:
+      summary: Waste Graph
+      description: Waste Graph
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    SortingOrder:
+                      type: integer
+                    Period_Name: 
+                      type: string
+                    Sum_Quantity:
+                      type: string
+                    User_Security_ID_FilterOnly:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /fmGetContractedServices.json/:
+    post:
+      summary: getContractedServices
+      description: getContractedServices
+      tags:
+        - 1. Facilities Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    Business_with_No:
+                      type: string
+                    Contract_No:
+                      type: string
+                    Service_No: 
+                      type: string
+                    Task_Site_Code:
+                      type: string
+                    Quantity:
+                      type: string
+                    Unit_Price:
+                      type: string
+                    Next_Service_Date:
+                      type: string
+                      format: date-time
+                    Day_Next_Service_Date:
+                      type: integer
+                    Month_Next_Service_Date:
+                      type: integer
+                    Year_Next_Service_Date:
+                      type: integer
+                    Current_Frequency:
+                      type: string
+                    Service_Description: 
+                      type: string  
+                    Material_Description: 
+                      type: string
+                    Equipment_Description: 
+                      type: string
+                    Task_Site_Name:
+                      type: string
+                    Task_Site_Address:
+                      type: string
+                    Task_Site_PostCode:
+                      type: string
+                    Count_:
+                      type: integer
+                    User_Security_ID_FilterOnly:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umSendUserPushNotification.json/:
+    post:
+      summary: SendUserPushNotification
+      description: SendUserPushNotification
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[backendIdentifier]
+          type: string
+          description: backendIdentifier
+          required: true
+        - in: formData
+          name: params[navUserName]
+          type: string
+          description: navUserName
+          required: true
+        - in: formData
+          name: params[notificationTitle]
+          type: string
+          description: notificationTitle
+          required: true
+        - in: formData
+          name: params[notificationMessage]
+          type: string
+          description: notificationMessage
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties: 
+                  appId:
+                    type: integer
+                  source:
+                    type: integer
+                  status:
+                    type: integer
+                  filters: 
+                    type: string
+                  title:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: string
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  createdAt:
+                    type: string
+                    format: date-time
+                  id:
+                    type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umChangePassword.json/:
+    post:
+      summary: Change Password with forgotten password code
+      description: Change Password with forgotten password code
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password
+          required: true
+        - in: formData
+          name: params[changePasswordCode]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umForgottenPassword.json/:
+    post:
+      summary: Request forgotten password code
+      description: Request forgotten password code
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umCreateNavUser.json/:
+    post:
+      summary: To create a nav user in HUB called from NAV system
+      description: To create a nav user in HUB  called from NAV system
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[backendIdentifier]
+          type: string
+          description: backendIdentifier
+          required: true
+        - in: formData
+          name: params[navUserName]
+          type: string
+          description: navUserName 
+          required: true
+        - in: formData
+          name: params[navServiceKey]
+          type: string
+          description: navServiceKey
+          required: true
+        - in: formData
+          name: params[firstName]
+          type: string
+          description: firstName
+        - in: formData
+          name: params[lastName]
+          type: string
+          description: lastName
+        - in: formData
+          name: params[jwtExpiryTime]
+          type: string
+          description: user jwt expiry time
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+  
+  /umregisterEmailUser.json/:
+    post:
+      summary: Register User with Activation Code
+      description: Register User with Activation Code
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password of User
+          required: true
+        - in: formData
+          name: params[activationCode]
+          type: string
+          description: activation Code 
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
+        default:
+          description: Failed Server Response
+  
+  /umlogin.json/:
+    post:
+      summary: Login
+      description: Login
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: emailaddress of User
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password of User
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: client Identifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties: 
+                  token:
+                    type: string
+                  expiresAt:
+                    type: string
+                  Company_Name:
+                    type: string
+                  Name:
+                    type: string
+                  E_Mail:
+                    type: string
+                  First_Name:
+                    type: string
+                  Surname:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
