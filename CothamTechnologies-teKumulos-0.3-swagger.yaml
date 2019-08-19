@@ -5,7 +5,7 @@ info:
   description: 'TEKUMULOS Point to Driver Environment'
 
 host: api.kumulos.com 
-basePath: /b2.2/36b6a932-be39-4bf0-b789-bdafe2f87943
+basePath: /b2.2/2fe006a7-4a3d-45fe-814c-cf820e34b91a
 
 x-flopro-kumulosrpc: true
 
