@@ -21,6 +21,102 @@ security:
 
 paths:
 
+  /drGetSupportInfo.json/:
+    post:
+      summary: GetSupportInfo
+      description: GetSupportInfo
+      tags:
+        - 1. Driver
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    User_Name: 
+                      type: string
+                    Company_Name: 
+                      type: string
+                    Waste_Employee_No: 
+                      type: string
+                    Name: 
+                      type: string
+                    Address: 
+                      type: string
+                    Address_2: 
+                      type: string
+                    County: 
+                      type: string
+                    City: 
+                      type: string
+                    Post_Code: 
+                      type: string
+                    Country_Region_Code:
+                      type: string
+                    Phone_No: 
+                      type: string
+                    E_Mail: 
+                      type: string
+                    E_Mail_2: 
+                      type: string
+                    Home_Page: 
+                      type: string
+                    AuxiliaryIndex1: 
+                      type: string
+                    AuxiliaryIndex2: 
+                      type: string
+                    AuxiliaryIndex3: 
+                      type: string
+                    AuxiliaryIndex4: 
+                      type: string
+                    AuxiliaryIndex5: 
+                      type: string
+                    User_Security_ID_FilterOnly: 
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+                
+        default:
+          description: Failed Server Response
+
   /umUpdateNotification.json/:
     post:
       summary: Update  Notification Status
