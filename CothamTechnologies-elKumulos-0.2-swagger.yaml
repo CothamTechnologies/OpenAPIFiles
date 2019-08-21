@@ -20,6 +20,136 @@ security:
   - basicAuth: []
 
 paths:
+  /owMarkBasketPaid.json/:
+    post:
+      summary: Marks all unpaid items in the basket as paid
+      description: Marks all unpaid items in the basket as paid
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    description: The number of items marked as paid
+                    type: number
+                    format: integer
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
+  /owMarkCollectionPaid.json/:
+    post:
+      summary: Marks all unpaid items in the collection as paid
+      description: Marks all unpaid items in the collection as paid
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    description: The number of items marked as paid
+                    type: number
+                    format: integer
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+
   /owGetCollection.json/:
     post:
       summary: Get All The Items In The Invoice Collection
@@ -103,6 +233,8 @@ paths:
                           format: double
                         remainingAmountDisplay:
                           type: string
+                        paid:
+                          type: boolean
 
               sessionToken:
                 type: string
@@ -207,6 +339,8 @@ paths:
                         lineTotalDisplay:
                           type: string
                           description: Currency prefixed line total for display
+                        paid:
+                          type: boolean
 
               sessionToken:
                 type: string
@@ -789,9 +923,6 @@ paths:
 
         default:
           description: Failed Server Response
-
-
-
 
 
   /owGetSettings.json/:
