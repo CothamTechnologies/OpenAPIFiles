@@ -1591,7 +1591,7 @@ paths:
               payload:
                 type: object
                 properties:
-                  updateFinanceDetails_Result:
+                  updateAccountDetails_Result:
                     type: object
                     properties:
                       return_value:
