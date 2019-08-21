@@ -56,13 +56,7 @@ paths:
               responseMessage:
                 type: string
               payload:
-                type: object
-                properties:
-                  count:
-                    description: The number of items marked as paid
-                    type: number
-                    format: integer
-
+                type: integer
               sessionToken:
                 type: string
               requestedMethod:
@@ -121,13 +115,7 @@ paths:
               responseMessage:
                 type: string
               payload:
-                type: object
-                properties:
-                  count:
-                    description: The number of items marked as paid
-                    type: number
-                    format: integer
-
+                type: integer
               sessionToken:
                 type: string
               requestedMethod:
