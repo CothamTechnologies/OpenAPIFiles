@@ -1,0 +1,56 @@
+swagger: '2.0'
+info:
+  version: "0.1"
+  title: 'Seat Geek API'
+  description: 'Seat Geek API'
+
+host: api.seatgeek.com
+basePath: /2
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  /events:
+    get:
+      summary: Get All Events
+      description: Get All Events
+      tags:
+        - 1. Events
+      consumes:
+        - application/json
+      parameters:
+        - in: query
+          name: client_id
+          type: string
+          description: client id
+        - in: query
+          name: client_secret
+          type: string
+          description: client secret
+          
+        
+
+      responses:
+        200:
+          description: success response
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  notsure:
+                    type: string
+                  

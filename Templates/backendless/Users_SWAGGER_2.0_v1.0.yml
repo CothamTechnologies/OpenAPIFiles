@@ -1,0 +1,976 @@
+swagger: "2.0"
+info:
+  version: '1.0'
+  title: 'Backendless Users API'
+
+host: 'api.backendless.com'
+
+basePath: '/7956BC49-9623-94AF-FFA3-F6128BB1CB00/227E2446-9081-9E7C-FF6D-7B5E1F837400'
+
+schemes:
+  - http
+  - https
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+securityDefinitions:
+   userTokenHeader:
+     type: apiKey
+     in: header
+     name: user-token
+
+security:
+  - userTokenHeader: []
+
+paths:
+  /data/Users:
+    get:
+      summary: 'Load Users objects'
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/pageSize'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/where'
+        - $ref: '#/parameters/loadRelations'
+        - $ref: '#/parameters/relationsDepth'
+        - $ref: '#/parameters/loadUsersProperties'
+        - $ref: '#/parameters/sortUsersProperties'
+      responses:
+        '200':
+          description: 'List of Users objects'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    post:
+      summary: 'Create Users object'
+      tags:
+        - Users
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/NewUsers'
+      responses:
+        '200':
+          description: 'A Users object'
+          schema:
+            $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /data/Users/count:
+    get:
+      summary: Get Users objects Count
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/where'
+      responses:
+        '200':
+          description: Count of objects
+          schema:
+            type: integer
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /data/Users/{objectId}:
+    get:
+      summary: Find Users object by ID
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/objectId'
+        - $ref: '#/parameters/loadRelations'
+        - $ref: '#/parameters/relationsDepth'
+        - $ref: '#/parameters/loadUsersProperties'
+      responses:
+        '200':
+          description: 'A Users object'
+          schema:
+            $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    put:
+      summary: Update Users object
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/objectId'
+        - name: Body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/NewUsers'
+      responses:
+        '200':
+          description: 'Updated Users object'
+          schema:
+            $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    delete:
+      summary: Delete Users Object
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/objectId'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /data/Users/first:
+    get:
+      summary: Find the first Users object
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/where'
+        - $ref: '#/parameters/loadRelations'
+        - $ref: '#/parameters/relationsDepth'
+        - $ref: '#/parameters/loadUsersProperties'
+        - $ref: '#/parameters/sortUsersProperties'
+      responses:
+        '200':
+          description: 'A Users objects'
+          schema:
+            $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /data/Users/last:
+    get:
+      summary: Find the last Users object
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/where'
+        - $ref: '#/parameters/loadRelations'
+        - $ref: '#/parameters/relationsDepth'
+        - $ref: '#/parameters/loadUsersProperties'
+        - $ref: '#/parameters/sortUsersProperties'
+      responses:
+        '200':
+          description: 'A Users objects'
+          schema:
+            $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /data/bulk/Users:
+    post:
+      summary: Bulk Create Users objects
+      tags:
+        - Users
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NewUsers'
+      responses:
+        '200':
+          description: List of created Users objects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/StoredUsers'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    put:
+      summary: Bulk Update Users objects
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/where'
+        - name: Body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/NewUsers'
+      responses:
+        '200':
+          description: Count of updated objects
+          schema:
+            type: integer
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    delete:
+      summary: Bulk Delete Users objects
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/parameters/where'
+      responses:
+        '200':
+          description: Count of deleted objects
+          schema:
+            type: integer
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+
+  /data/Users/properties:
+    get:
+      summary: Load Users Schema
+      tags:
+        - Users
+      responses:
+        '200':
+          description: List of Users table columns
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TableColumn'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/register:
+    post:
+      summary: Register a new User
+      tags:
+        - UserService
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                blUserLocale:
+                  type: string
+                  default: 'en'
+            required: [email,password,blUserLocale]
+
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+                email:
+                  type: string
+                created:
+                  type: string
+                  format: date-time
+                name:
+                  type: string
+                updated:
+                  type: string
+                  format: date-time
+                objectId:
+                  type: string
+                ownerId:
+                  type: string
+                blUserLocale:
+                  type: string
+                userStatus:
+                  type: string
+                socialAccount:
+                  type: string
+                lastLogin:
+                  type: string
+                  format: date-time
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/restorepassword/{userIdentity}:
+    get:
+      summary: Restore User Password
+      tags:
+        - UserService
+      parameters:
+        - name: userIdentity
+          in: path
+          required: true
+          type: string
+          description: User Identity
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/login:
+    post:
+      summary: User Login
+      tags:
+        - UserService
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              created:
+                type: string
+                format: date-time
+              name:
+                type: string
+              updated:
+                type: string
+                format: date-time
+              objectId:
+                type: string
+              ownerId:
+                type: string
+              blUserLocale:
+                type: string
+              userStatus:
+                type: string
+              socialAccount:
+                type: string
+              lastLogin:
+                type: string
+                format: date-time
+              user-token:
+                type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/register/guest:
+    post:
+      summary: User Login as Guest
+      tags:
+        - UserService
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              user-token:
+                type: string
+              objectId:
+                type: string
+              userStatus:
+                type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/logout:
+    post:
+      summary: User Logout
+      tags:
+        - UserService
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+
+definitions:
+  NewUsers:
+    type: object
+    description: This is a schema of non stored Users object
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      blUserLocale:
+        type: string
+        default: 'en'
+    required: [email,password,blUserLocale]
+
+  StoredUsers:
+    type: object
+    description: This is a schema of stored Users object
+    properties:
+      email:
+        type: string
+      created:
+        type: string
+        format: date-time
+      name:
+        type: string
+      updated:
+        type: string
+        format: date-time
+      objectId:
+        type: string
+      ownerId:
+        type: string
+      blUserLocale:
+        type: string
+        default: 'en'
+      userStatus:
+        type: string
+      socialAccount:
+        type: string
+      lastLogin:
+        type: string
+        format: date-time
+
+  TableColumn:
+    type: object
+    description: Table Column
+    properties:
+      name:
+        type: string
+        description: Property name
+      type:
+        type: string
+        description: Property type
+        enum:
+          - INT
+          - DOUBLE
+          - BOOLEAN
+          - DATETIME
+          - STRING
+          - STRING_ID
+          - EXTENDED_STRING
+          - TEXT
+          - FILE_REF
+          - DATA_REF
+          - GEO_REF
+          - CHILD_OF
+          - UNKNOWN
+      defaultValue:
+        type: string
+        description: Default property value
+      required:
+        type: boolean
+        description: Is property required
+      customRegex:
+        type: string
+        description: Validation RegExp
+      relatedTable:
+        type: string
+        description: Related table name
+      autoLoad:
+        type: boolean
+        description: Autoload relations
+      isPrimaryKey:
+        type: boolean
+        description: Is Primary key
+
+  BackendlessError:
+    type: object
+    description: Backendless Error
+    properties:
+      code:
+        type: number
+      message:
+        type: string
+
+parameters:
+  tableName:
+    in: path
+    name: tableName
+    required: true
+    type: string
+    description: Table name
+
+  objectId:
+    in: path
+    name: objectId
+    required: true
+    type: string
+    description: Object Id
+
+  relationName:
+    in: path
+    name: relationName
+    required: true
+    type: string
+    description: Relation name
+
+  objectIds:
+    in: body
+    name: objectIds
+    required: true
+    schema:
+      type: array
+      items:
+        type: string
+      example:
+        - objectId_1
+        - objectId_2
+        - objectId_3
+    description: List of objectIds
+
+  optionalObjectIds:
+    in: body
+    name: objectIds
+    required: false
+    schema:
+      type: array
+      items:
+        type: string
+      example:
+        - objectId_1
+        - objectId_2
+        - objectId_3
+    description: List of objectIds
+
+  pageSize:
+    in: query
+    name: pageSize
+    required: false
+    minimum: 1
+    type: integer
+    description: Page Size
+
+  offset:
+    in: query
+    name: offset
+    required: false
+    minimum: 0
+    type: integer
+    description: Page Offset
+
+  where:
+    in: query
+    name: where
+    required: false
+    type: string
+    description: Where Clause
+
+  loadRelations:
+    in: query
+    name: loadRelations
+    required: false
+    type: string
+    description: Load Relations
+
+  relationsDepth:
+    in: query
+    name: relationsDepth
+    required: false
+    type: integer
+    description: Relations Depth
+
+  loadUsersProperties:
+    in: query
+    name: props
+    description: Object Properties
+    type: array
+    required: false
+    uniqueItems: true
+    items:
+      type: string
+      enum: [email,created,name,updated,objectId,ownerId,password,blUserLocale,userStatus,socialAccount,lastLogin]
+
+  sortUsersProperties:
+    in: query
+    name: sortBy
+    description: Sorting Properties
+    type: array
+    required: false
+    uniqueItems: true
+    items:
+      type: string
+      enum: [email asc,email desc,created asc,created desc,name asc,name desc,updated asc,updated desc,objectId asc,objectId desc,ownerId asc,ownerId desc,password asc,password desc,blUserLocale asc,blUserLocale desc,userStatus asc,userStatus desc,socialAccount asc,socialAccount desc,lastLogin asc,lastLogin desc]
