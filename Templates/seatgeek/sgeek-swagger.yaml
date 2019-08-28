@@ -107,6 +107,8 @@ paths:
                 properties:
                   city:
                     type: string
+                  extended_address:
+                    type: string
                   name:
                     type: string
                   url:
