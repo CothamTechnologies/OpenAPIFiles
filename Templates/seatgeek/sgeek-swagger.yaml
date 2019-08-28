@@ -161,13 +161,13 @@ paths:
         - application/json
       parameters:
         - in: query
-          name: client_id
+          name: per_page
           type: string
-          description: client id
+          description: return per page
         - in: query
-          name: client_secret
+          name: q
           type: string
-          description: client secret
+          description: query string
           
         
 
