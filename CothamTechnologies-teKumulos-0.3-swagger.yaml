@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: "0.2"
   title: 'TEKUMULOS'
-  description: 'TEKUMULOS Point to Driver Environment'
+  description: 'TEKUMULOS Point to Driver Environment.'
 
 host: api.kumulos.com 
 basePath: /b2.2/2fe006a7-4a3d-45fe-814c-cf820e34b91a

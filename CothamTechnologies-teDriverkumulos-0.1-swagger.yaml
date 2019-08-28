@@ -26,7 +26,7 @@ paths:
       summary: GetSupportInfo
       description: GetSupportInfo
       tags:
-        - 1. Driver
+        - 1. Driver App
       consumes:
         - application/x-www-form-urlencoded
       parameters:
