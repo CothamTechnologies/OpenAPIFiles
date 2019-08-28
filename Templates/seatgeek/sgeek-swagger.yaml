@@ -57,15 +57,11 @@ paths:
                     type: number
                   page:
                     type: number
-              in_hand:
-                type: string
               events:
                 type: array
                 items:
                   type: object
                   properties:
-                    links:
-                      type: string 
                     event_promotion:
                       type: string 
                     conditional:
@@ -78,9 +74,7 @@ paths:
                       type: object
                       properties:
                         visible_listing_count:
-                          type: number
-                        dq_bucket_counts:
-                          type: string
+                          type: number                       
                         average_price:
                           type: number
                         lowest_sg_base_price_good_deals: 
@@ -108,7 +102,18 @@ paths:
                     access_method:
                       type: string
                     announcements:
-                      type: string
+                      type: object
+                      properties:
+                        checkout_disclosures:
+                          type: object
+                          properties:
+                            messages:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
                     taxonomies:
                       type: array
                       items:
@@ -117,10 +122,7 @@ paths:
                           name:
                             type: string
                           parent_id: 
-                            type: object
-                            properties:
-                              prop:
-                                type: string
+                            type: string
                           id:
                             type: number
                         
@@ -148,8 +150,6 @@ paths:
                           primary:
                             type: boolean
                           colors: 
-                            type: string
-                          images:
                             type: string
                           has_upcoming_events:
                             type: boolean
@@ -215,8 +215,6 @@ paths:
                     venue:
                       type: object
                       properties:
-                        links:
-                          type: string
                         metro_code:
                           type: number
                         postal_code:
