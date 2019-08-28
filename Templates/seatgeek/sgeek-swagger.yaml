@@ -212,8 +212,6 @@ paths:
                               type: number
                             lon:
                               type: number
-                        access_method:
-                          type: string
                         num_upcoming_events:
                           type: number
                         address:
