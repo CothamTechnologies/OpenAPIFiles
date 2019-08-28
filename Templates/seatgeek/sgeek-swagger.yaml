@@ -44,13 +44,235 @@ paths:
           schema:
             type: object
             properties:
-              responseCode:
-                type: integer
-              responseMessage:
-                type: string
-              payload:
+              meta:
                 type: object
                 properties:
-                  notsure:
+                  geolocation:
                     type: string
+                  per_page:
+                    type: number
+                  total:
+                    type: number
+                  took:
+                    type: number
+                  page:
+                    type: number
+              in_hand:
+                type: string
+              events:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    links:
+                      type: string 
+                    event_promotion:
+                      type: string 
+                    conditional:
+                      type: boolean
+                    is_open:
+                      type: boolean
+                    id:
+                      type: number
+                    stats:
+                      type: object
+                      properties:
+                        visible_listing_count:
+                          type: number
+                        dq_bucket_counts:
+                          type: string
+                        average_price:
+                          type: number
+                        lowest_sg_base_price_good_deals: 
+                          type: string
+                        lowest_price_good_deals: 
+                          type: string
+                        median_price:
+                          type: number
+                        listing_count:
+                          type: number
+                        variants: 
+                          type: string
+                        lowest_price:
+                          type: number
+                        lowest_sg_base_price:
+                          type: number
+                        highest_price:
+                          type: number
+                    title:
+                      type: string
+                    announce_date:
+                      type: string
+                    score:
+                      type: number
+                    access_method:
+                      type: string
+                    announcements:
+                      type: string
+                    taxonomies:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          parent_id: 
+                            type: object
+                            properties:
+                              prop:
+                                type: string
+                          id:
+                            type: number
+                        
+                    type:
+                      type: string
+                    status:
+                      type: string
+                    description:
+                      type: string
+                    datetime_local:
+                      type: string
+                    visible_until_utc:
+                      type: string
+                    time_tbd:
+                      type: boolean
+                    date_tbd:
+                      type: boolean
+                    performers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          image: 
+                            type: string
+                          primary:
+                            type: boolean
+                          colors: 
+                            type: string
+                          images:
+                            type: string
+                          has_upcoming_events:
+                            type: boolean
+                          id:
+                            type: number
+                          stats:
+                            type: object
+                            properties:
+                              event_count:
+                                type: number
+                          image_license: 
+                            type: string
+                          score:
+                            type: number
+                          location: 
+                            type: string
+                          taxonomies:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                parent_id: 
+                                  type: string
+                                id:
+                                  type: number
+                                document_source:
+                                  type: object
+                                  properties:
+                                    source_type:
+                                      type: string
+                                    generation_type:
+                                      type: string
+                              
+                          type:
+                            type: string
+                          num_upcoming_events:
+                            type: number
+                          short_name:
+                            type: string
+                          home_venue_id: 
+                            type: string
+                          slug:
+                            type: string
+                          divisions: 
+                            type: string
+                          name:
+                            type: string
+                          url:
+                            type: string
+                          popularity:
+                            type: number
+                          image_attribution: 
+                            type: string
+                        
+                    url:
+                      type: string
+                    created_at:
+                      type: string
+                    popularity:
+                      type: number
+                    venue:
+                      type: object
+                      properties:
+                        links:
+                          type: string
+                        metro_code:
+                          type: number
+                        postal_code:
+                          type: string
+                        timezone:
+                          type: string
+                        has_upcoming_events:
+                          type: boolean
+                        id:
+                          type: number
+                        city:
+                          type: string
+                        extended_address:
+                          type: string
+                        display_location:
+                          type: string
+                        state:
+                          type: string
+                        score:
+                          type: number
+                        location:
+                          type: object
+                          properties:
+                            lat:
+                              type: number
+                            lon:
+                              type: number
+                        access_method:
+                          type: string
+                        num_upcoming_events:
+                          type: number
+                        address:
+                          type: string
+                        capacity:
+                          type: number
+                        slug:
+                          type: string
+                        name:
+                          type: string
+                        url:
+                          type: string
+                        country:
+                          type: string
+                        popularity:
+                          type: number
+                        name_v2:
+                          type: string
+                    enddatetime_utc: 
+                      type: string
+                    short_title:
+                      type: string
+                    datetime_utc:
+                      type: string
+                    general_admission:
+                      type: boolean
+                    datetime_tbd:
+                      type: boolean
+                  
                   
