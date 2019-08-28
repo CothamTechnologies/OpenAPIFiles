@@ -78,4 +78,22 @@ paths:
                           type: number
                     title:
                       type: string
-                    
+                    announce_date:
+                      type: string
+                    score:
+                      type: number
+                    access_method:
+                      type: string
+                    announcements:
+                      type: object
+                      properties:
+                        checkout_disclosures:
+                          type: object
+                          properties:
+                            messages:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
