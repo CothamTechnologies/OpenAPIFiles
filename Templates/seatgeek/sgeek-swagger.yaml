@@ -126,56 +126,6 @@ paths:
                       type: boolean
                     date_tbd:
                       type: boolean
-                    performers:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          primary:
-                            type: boolean
-                          has_upcoming_events:
-                            type: boolean
-                          id:
-                            type: number
-                          stats:
-                            type: object
-                            properties:
-                              event_count:
-                                type: number
-                          score:
-                            type: number
-                          taxonomies:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                name:
-                                  type: string
-                                id:
-                                  type: number
-                                document_source:
-                                  type: object
-                                  properties:
-                                    source_type:
-                                      type: string
-                                    generation_type:
-                                      type: string
-                              
-                          type:
-                            type: string
-                          num_upcoming_events:
-                            type: number
-                          short_name:
-                            type: string
-                          slug:
-                            type: string
-                          name:
-                            type: string
-                          url:
-                            type: string
-                          popularity:
-                            type: number
-                        
                     url:
                       type: string
                     created_at:
