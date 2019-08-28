@@ -82,8 +82,6 @@ paths:
                       type: string
                     score:
                       type: number
-                    access_method:
-                      type: string
                     announcements:
                       type: object
                       properties:
