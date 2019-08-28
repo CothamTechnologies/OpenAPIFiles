@@ -139,7 +139,6 @@ paths:
                 items:
                   type: object
                   properties:
-                    parent_id: {}
                     id:
                       type: number
                     name:
