@@ -1,0 +1,277 @@
+swagger: '2.0'
+info:
+  title: 'ORDS generated API for oracle.example.hr'
+  version: '1.0'
+
+host: apex.oracle.com
+basePath: /pls/apex/cotham/hr
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /empinfo/:
+    get:
+      description: employe info
+      produces:
+        - text/csv
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+  /employees/:
+    get:
+      description: get mployees
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uri:
+                      type: object
+                      properties:
+                        $ref:
+                          type: string
+                    rn:
+                      type: number
+                    empno:
+                      type: number
+                    ename:
+                      type: string
+                    job:
+                      type: string
+                    hiredate:
+                      type: string
+                    mgr:
+                      type: number
+                    sal:
+                      type: number
+                    comm: 
+                      type: string
+                    deptno:
+                      type: number
+              first:
+                type: object
+                properties:
+                  $ref:
+                    type: string
+              next:
+                type: object
+                properties:
+                  $ref:
+                    type: string
+                    
+  '/employees/{id}':
+    get:
+      description: get single employee
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: implicit
+          pattern: '^[^/]+$'
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              ename:
+                type: string
+              job:
+                type: string
+              hiredate:
+                type: string
+              mgr:
+                type: string
+              sal:
+                type: string
+              comm:
+                type: string
+              deptno:
+                type: string
+      
+    put:
+      description: update employee
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: implicit
+          pattern: '^[^/]+$'
+        - name: payload
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              ename:
+                type: string
+              job:
+                type: string
+              hiredate:
+                type: string
+              mgr:
+                type: string
+              sal:
+                type: string
+              comm:
+                type: string
+              deptno:
+                type: string
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              empno:
+                type: number
+              ename:
+                type: string
+              job:
+                type: string
+              mgr:
+                type: number
+              hiredate:
+                type: string
+              sal:
+                type: number
+              comm: 
+                type: string
+              deptno:
+                type: number
+ 
+      
+  /employeesfeed/:
+    get:
+      description: get employees feed
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uri:
+                      type: object
+                      properties:
+                        $ref:
+                          type: string
+                    empno:
+                      type: number
+                    ename:
+                      type: string
+                  
+              first:
+                type: object
+                properties:
+                  $ref:
+                    type: string
+                    
+  '/employeesfeed/{id}':
+    get:
+      description: get employee single feed
+      produces:
+        - text/csv
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: implicit
+          pattern: '^[^/]+$'
+          
+  '/empsec/{empname}':
+    get:
+      description: empsec
+      produces:
+        - application/json
+      parameters:
+        - name: empname
+          in: path
+          required: true
+          type: string
+          description: implicit
+          pattern: '^[^/]+$'
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    empno:
+                      type: number
+                    ename:
+                      type: string
+                    deptno:
+                      type: number
+                    job:
+                      type: string
+                  
+              first:
+                type: object
+                properties:
+                  $ref:
+                    type: string
+      
+          
+  '/empsecformat/{empname}':
+    get:
+      description: empsecformat HTML
+      parameters:
+        - name: empname
+          in: path
+          required: true
+          type: string
+          description: implicit
+          pattern: '^[^/]+$'
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: string
+            
+      
+  /version/:
+    get:
+      description: version
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              version:
+                type: string
