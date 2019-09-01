@@ -10,6 +10,67 @@ schemes:
 produces:
   - application/json
 paths:
+  
+  /employeesbyjob/:
+    get:
+      description: get employees by job
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    job:
+                      type: number
+                    count:
+                      type: string
+              hasMore:
+                type: string
+              limit:
+                type: number
+              offset:
+                type: number
+              count:
+                type: number
+  
+  /employeesbydept/:
+    get:
+      description: get employees by dept
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    deptno:
+                      type: number
+                    count:
+                      type: string
+              hasMore:
+                type: string
+              limit:
+                type: number
+              offset:
+                type: number
+              count:
+                type: number
+  
+  
+  
   /empinfo/:
     get:
       description: employe info
@@ -60,6 +121,12 @@ paths:
                       type: string
                     deptno:
                       type: number
+                    imageurl:
+                      type: string
+                    pdfurl: 
+                      type: string
+                    imagebase64:
+                      type: string
               first:
                 type: object
                 properties:
@@ -103,6 +170,12 @@ paths:
                 type: string
               deptno:
                 type: string
+              imageurl:
+                type: string
+              pdfurl: 
+                type: string
+              imagebase64:
+                type: string
       
     put:
       description: update employee
@@ -133,6 +206,12 @@ paths:
                 type: string
               deptno:
                 type: string
+              imageurl:
+                type: string
+              pdfurl: 
+                type: string
+              imagebase64:
+                type: string
       responses:
         '200':
           description: output of the endpoint
@@ -155,6 +234,12 @@ paths:
                 type: string
               deptno:
                 type: number
+              imageurl:
+                type: string
+              pdfurl: 
+                type: string
+              imagebase64:
+                type: string
  
       
   /employeesfeed/:
@@ -238,6 +323,12 @@ paths:
                     deptno:
                       type: number
                     job:
+                      type: string
+                    imageurl:
+                      type: string
+                    pdfurl: 
+                      type: string
+                    imagebase64:
                       type: string
                   
               first:
