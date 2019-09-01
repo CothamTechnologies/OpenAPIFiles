@@ -137,6 +137,64 @@ paths:
                 properties:
                   $ref:
                     type: string
+
+    post:
+      description: insert employee
+      parameters:
+        - name: payload
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              ename:
+                type: string
+              job:
+                type: string
+              hiredate:
+                type: string
+              mgr:
+                type: string
+              sal:
+                type: string
+              comm:
+                type: string
+              deptno:
+                type: string
+              imageurl:
+                type: string
+              pdfurl: 
+                type: string
+              imagebase64:
+                type: string
+      responses:
+        '200':
+          description: output of the endpoint
+          schema:
+            type: object
+            properties: 
+              empno:
+                type: number
+              ename:
+                type: string
+              job:
+                type: string
+              mgr:
+                type: number
+              hiredate:
+                type: string
+              sal:
+                type: number
+              comm: 
+                type: string
+              deptno:
+                type: number
+              imageurl:
+                type: string
+              pdfurl: 
+                type: string
+              imagebase64:
+                type: string
                     
   '/employees/{id}':
     get:
