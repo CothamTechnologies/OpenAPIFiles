@@ -52,7 +52,6 @@ paths:
             properties:
               count:
                 type: integer
-                description: The total number of matching records returned
               records:
                 type: array
                 items:
@@ -104,7 +103,6 @@ paths:
             properties:
               recordsUpdated:
                 type: integer
-                description: The total number of matching records marked
         default:
           description: Failed Server Response
 
@@ -130,7 +128,6 @@ paths:
             properties:
               recordsUpdated:
                 type: integer
-                description: The total number of matching records unmarked
         default:
           description: Failed Server Response
 
@@ -156,7 +153,6 @@ paths:
             properties:
               count:
                 type: integer
-                description: The total number of matching records returned
               parts:
                 type: array
                 items:
