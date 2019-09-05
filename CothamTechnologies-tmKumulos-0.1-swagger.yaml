@@ -1,8 +1,8 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   version: "0.1"
-  title: 'TMKUMULOS'
-  description: 'TMKUMULOS'
+  title: "TMKUMULOS"
+  description: "TMKUMULOS"
 
 host: api.kumulos.com
 basePath: /b2.2/58f128a7-3f4e-449b-81b7-64def90bfda7
@@ -213,6 +213,190 @@ paths:
                           type: integer
                         totalOutstanding:
                           type: integer
+
+        default:
+          description: Failed Server Response
+
+  /tmGetStockDetails.json:
+    post:
+      summary: Returns stock information for a given part number and val type
+      description: Returns stock information for a given part number and val type
+      tags:
+        - 1. TechModal
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[partNo]
+          type: string
+          description: Part number
+          required: true
+        - in: formData
+          name: params[valType]
+          type: string
+          description: val_type
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        part_no:
+                          type: string
+                        owner:
+                          type: string
+                        plant:
+                          type: string
+                        sloc:
+                          type: string
+                        batch_no:
+                          type: integer
+                        val_type:
+                          type: string
+                        expiry_date:
+                          type: string
+                        inspect_status:
+                          type: string
+                        stock_qty:
+                          type: integer
+                        tm_srt_stk_stock_fltID:
+                          type: integer
+
+        default:
+          description: Failed Server Response
+
+  /tmGetOrderDetails.json:
+    post:
+      summary: Returns order information for a given part number
+      description: Returns order information for a given part number
+      tags:
+        - 1. TechModal
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[partNo]
+          type: string
+          description: Part number
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        part_no:
+                          type: string
+                        customer:
+                          type: string
+                        order_qty:
+                          type: integer
+                        outstanding_qty:
+                          type: integer
+                        del_date:
+                          type: string
+                        buf_del_date:
+                          type: string
+                        tm_srt_stk_orders_fltID:
+                          type: string
+
+        default:
+          description: Failed Server Response
+
+  /tmGetPartFunctionalLocations.json:
+    post:
+      summary: Returns information about other parts in the same location
+      description: Returns information about other parts in the same location
+      tags:
+        - 1. TechModal
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[partNo]
+          type: string
+          description: Part number
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  locations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        count:
+                          type: integer
+                        parts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              part_no:
+                                type: string
+                              project_name:
+                                type: string
+                              chapter_name:
+                                type: string
+                              figure_name:
+                                type: string
+                              index_name:
+                                type: string
+                              func_loc_en:
+                                type: string
+                              ip_lineseqno:
+                                type: string
+                              indent_no:
+                                type: string
+                              mod_in:
+                                type: integer
+                              mod_out:
+                                type: integer
+                              add_info:
+                                type: string
+                              tm_srt_erd_func_loc_fltID:
+                                type: string
 
         default:
           description: Failed Server Response
