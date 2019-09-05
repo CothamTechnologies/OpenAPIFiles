@@ -50,34 +50,41 @@ paths:
           schema:
             type: object
             properties:
-              count:
+              responseCode:
                 type: integer
-              records:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    part_no:
-                      type: string
-                    dmc:
-                      type: string
-                    store_class:
-                      type: string
-                    part_desc:
-                      type: string
-                    std_price:
-                      type: number
-                      format: double
-                    lead_time:
-                      type: integer
-                    last_received_date:
-                      type: string
-                    selected:
-                      type: boolean
-                    nsn:
-                      type: string
-                    tm_srt_erd_part_list_fltID:
-                      type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        part_no:
+                          type: string
+                        dmc:
+                          type: string
+                        store_class:
+                          type: string
+                        part_desc:
+                          type: string
+                        std_price:
+                          type: number
+                          format: double
+                        lead_time:
+                          type: integer
+                        last_received_date:
+                          type: string
+                        selected:
+                          type: boolean
+                        nsn:
+                          type: string
+                        tm_srt_erd_part_list_fltID:
+                          type: integer
         default:
           description: Failed Server Response
 
@@ -101,8 +108,15 @@ paths:
           schema:
             type: object
             properties:
-              recordsUpdated:
+              responseCode:
                 type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  recordsUpdated:
+                    type: integer
         default:
           description: Failed Server Response
 
@@ -126,8 +140,15 @@ paths:
           schema:
             type: object
             properties:
-              recordsUpdated:
+              responseCode:
                 type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  recordsUpdated:
+                    type: integer
         default:
           description: Failed Server Response
 
@@ -151,40 +172,47 @@ paths:
           schema:
             type: object
             properties:
-              count:
+              responseCode:
                 type: integer
-              parts:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    part_no:
-                      type: string
-                    dmc:
-                      type: string
-                    store_class:
-                      type: string
-                    part_desc:
-                      type: string
-                    std_price:
-                      type: number
-                      format: double
-                    lead_time:
-                      type: integer
-                    last_received_date:
-                      type: string
-                    selected:
-                      type: boolean
-                    nsn:
-                      type: string
-                    total_new:
-                      type: integer
-                    totalServiceable:
-                      type: integer
-                    totalUnserviceable:
-                      type: integer
-                    totalOutstanding:
-                      type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  parts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        part_no:
+                          type: string
+                        dmc:
+                          type: string
+                        store_class:
+                          type: string
+                        part_desc:
+                          type: string
+                        std_price:
+                          type: number
+                          format: double
+                        lead_time:
+                          type: integer
+                        last_received_date:
+                          type: string
+                        selected:
+                          type: boolean
+                        nsn:
+                          type: string
+                        total_new:
+                          type: integer
+                        totalServiceable:
+                          type: integer
+                        totalUnserviceable:
+                          type: integer
+                        totalOutstanding:
+                          type: integer
 
         default:
           description: Failed Server Response
