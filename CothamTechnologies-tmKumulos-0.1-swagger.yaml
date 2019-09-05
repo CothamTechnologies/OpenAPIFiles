@@ -205,7 +205,7 @@ paths:
                           type: boolean
                         nsn:
                           type: string
-                        total_new:
+                        totalNew:
                           type: integer
                         totalServiceable:
                           type: integer
