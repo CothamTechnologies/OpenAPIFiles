@@ -1,8 +1,8 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
   version: "0.1"
-  title: "TMKUMULOS"
-  description: "TMKUMULOS"
+  title: 'TMKUMULOS'
+  description: 'TMKUMULOS'
 
 host: api.kumulos.com
 basePath: /b2.2/58f128a7-3f4e-449b-81b7-64def90bfda7
