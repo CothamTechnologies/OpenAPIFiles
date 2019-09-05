@@ -1,0 +1,244 @@
+swagger: '2.0'
+info:
+  version: "0.1"
+  title: 'Seat Geek API'
+  description: 'Seat Geek API'
+
+host: api.seatgeek.com
+basePath: /2
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  /events:
+    get:
+      summary: Get All Events
+      description: Get All Events
+      tags:
+        - 1. Events
+      consumes:
+        - application/json
+      parameters:
+        - in: query
+          name: client_id
+          type: string
+          description: client id
+        - in: query
+          name: client_secret
+          type: string
+          description: client secret
+          
+        
+
+      responses:
+        200:
+          description: success response
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  per_page:
+                    type: number
+                  total:
+                    type: number
+                  took:
+                    type: number
+                  page:
+                    type: number
+              events:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    conditional:
+                      type: boolean
+                    is_open:
+                      type: boolean
+                    id:
+                      type: number
+                    stats:
+                      type: object
+                      properties:
+                        visible_listing_count:
+                          type: number                       
+                        average_price:
+                          type: number
+                        median_price:
+                          type: number
+                        listing_count:
+                          type: number
+                        lowest_price:
+                          type: number
+                        lowest_sg_base_price:
+                          type: number
+                        highest_price:
+                          type: number
+                    title:
+                      type: string
+                    announce_date:
+                      type: string
+                    score:
+                      type: number
+                    announcements:
+                      type: object
+                      properties:
+                        checkout_disclosures:
+                          type: object
+                          properties:
+                            messages:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
+                    taxonomies:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          id:
+                            type: number
+                        
+                    type:
+                      type: string
+                    status:
+                      type: string
+                    description:
+                      type: string
+                    datetime_local:
+                      type: string
+                    visible_until_utc:
+                      type: string
+                    time_tbd:
+                      type: boolean
+                    date_tbd:
+                      type: boolean
+                    performers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          primary:
+                            type: boolean
+                          has_upcoming_events:
+                            type: boolean
+                          id:
+                            type: number
+                          stats:
+                            type: object
+                            properties:
+                              event_count:
+                                type: number
+                          score:
+                            type: number
+                          taxonomies:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                id:
+                                  type: number
+                                document_source:
+                                  type: object
+                                  properties:
+                                    source_type:
+                                      type: string
+                                    generation_type:
+                                      type: string
+                              
+                          type:
+                            type: string
+                          num_upcoming_events:
+                            type: number
+                          short_name:
+                            type: string
+                          slug:
+                            type: string
+                          name:
+                            type: string
+                          url:
+                            type: string
+                          popularity:
+                            type: number
+                        
+                    url:
+                      type: string
+                    created_at:
+                      type: string
+                    popularity:
+                      type: number
+                    venue:
+                      type: object
+                      properties:
+                        metro_code:
+                          type: number
+                        postal_code:
+                          type: string
+                        timezone:
+                          type: string
+                        has_upcoming_events:
+                          type: boolean
+                        id:
+                          type: number
+                        city:
+                          type: string
+                        extended_address:
+                          type: string
+                        display_location:
+                          type: string
+                        state:
+                          type: string
+                        score:
+                          type: number
+                        location:
+                          type: object
+                          properties:
+                            lat:
+                              type: number
+                            lon:
+                              type: number
+                        num_upcoming_events:
+                          type: number
+                        address:
+                          type: string
+                        capacity:
+                          type: number
+                        slug:
+                          type: string
+                        name:
+                          type: string
+                        url:
+                          type: string
+                        country:
+                          type: string
+                        popularity:
+                          type: number
+                        name_v2:
+                          type: string
+                    enddatetime_utc: 
+                      type: string
+                    short_title:
+                      type: string
+                    datetime_utc:
+                      type: string
+                    general_admission:
+                      type: boolean
+                    datetime_tbd:
+                      type: boolean
+                  
+                  

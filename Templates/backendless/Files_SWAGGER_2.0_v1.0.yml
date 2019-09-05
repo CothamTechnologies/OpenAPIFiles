@@ -1,0 +1,730 @@
+swagger: "2.0"
+info:
+  version: '1.0'
+  title: 'Backendless Files API'
+
+host: 'api.backendless.com'
+
+basePath: '/7956BC49-9623-94AF-FFA3-F6128BB1CB00/227E2446-9081-9E7C-FF6D-7B5E1F837400'
+
+schemes:
+  - http
+  - https
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+securityDefinitions:
+   userTokenHeader:
+     type: apiKey
+     in: header
+     name: user-token
+
+security:
+  - userTokenHeader: []
+
+paths:
+
+  /files{directoryPath}{fileName}:
+    post:
+      summary: 'Upload File'
+      tags:
+        - FilesService
+      consumes:
+        - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/directoryPath'
+        - $ref: '#/parameters/fileName'
+        - $ref: '#/parameters/overwrite'
+        - in: formData
+          name: file
+          type: file
+          description: The file to upload.
+      responses:
+        '200':
+          description: 'ok'
+          schema:
+            type: object
+            properties:
+              fileURL:
+                type: string
+                description: File URL
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    get:
+      summary: 'Download File'
+      tags:
+        - FilesService
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/directoryPath'
+        - $ref: '#/parameters/fileName'
+      responses:
+        '200':
+          description: 'ok'
+          schema:
+            type: file
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+             $ref: '#/definitions/BackendlessError'
+    delete:
+      summary: 'Delete File'
+      tags:
+        - FilesService
+      parameters:
+        - $ref: '#/parameters/directoryPath'
+        - $ref: '#/parameters/fileName'
+      responses:
+        '200':
+          description: 'ok'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /files{directoryPath}:
+    get:
+      summary: 'Get Directory Listing'
+      tags:
+        - FilesService
+      parameters:
+        - $ref: '#/parameters/directoryPath'
+        - $ref: '#/parameters/pattern'
+        - $ref: '#/parameters/recursive'
+        - $ref: '#/parameters/pageSize'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/action'
+      responses:
+        '200':
+          description: 'ok'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DirectoryElement'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+    delete:
+      summary: 'Delete Directory'
+      tags:
+        - FilesService
+      parameters:
+        - $ref: '#/parameters/directoryPath'
+      responses:
+        '200':
+          description: 'ok'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /files/rename:
+    put:
+      summary: Rename File/Directory
+      tags:
+        - FilesService
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              oldPathName:
+                type: string
+                description: Path of Old File/Directory
+              newName:
+                type: string
+                description: Path of New File/Directory
+
+      responses:
+        '200':
+          description: 'ok'
+          schema:
+            type: string
+            description: Absolute path of the renamed File/Directory
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /files/copy:
+    put:
+      summary: Copy File/Directory
+      tags:
+        - FilesService
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              sourcePath:
+                type: string
+                description: Path of Source File/Directory
+              targetPath:
+                type: string
+                description: Path of Target File/Directory
+
+      responses:
+        '200':
+          description: 'ok'
+          schema:
+            type: string
+            description: Absolute path of the copied File/Directory
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /files/move:
+    put:
+      summary: Move File/Directory
+      tags:
+        - FilesService
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              sourcePath:
+                type: string
+                description: Path of Source File/Directory
+              targetPath:
+                type: string
+                description: Path of Target File/Directory
+
+      responses:
+        '200':
+          description: 'ok'
+          schema:
+            type: string
+            description: Absolute path of the moved File/Directory
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/register:
+    post:
+      summary: Register a new User
+      tags:
+        - UserService
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                blUserLocale:
+                  type: string
+                  default: 'en'
+            required: [email,password,blUserLocale]
+
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+                email:
+                  type: string
+                created:
+                  type: string
+                  format: date-time
+                name:
+                  type: string
+                updated:
+                  type: string
+                  format: date-time
+                objectId:
+                  type: string
+                ownerId:
+                  type: string
+                blUserLocale:
+                  type: string
+                userStatus:
+                  type: string
+                socialAccount:
+                  type: string
+                lastLogin:
+                  type: string
+                  format: date-time
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/restorepassword/{userIdentity}:
+    get:
+      summary: Restore User Password
+      tags:
+        - UserService
+      parameters:
+        - name: userIdentity
+          in: path
+          required: true
+          type: string
+          description: User Identity
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/login:
+    post:
+      summary: User Login
+      tags:
+        - UserService
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              created:
+                type: string
+                format: date-time
+              name:
+                type: string
+              updated:
+                type: string
+                format: date-time
+              objectId:
+                type: string
+              ownerId:
+                type: string
+              blUserLocale:
+                type: string
+              userStatus:
+                type: string
+              socialAccount:
+                type: string
+              lastLogin:
+                type: string
+                format: date-time
+              user-token:
+                type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/register/guest:
+    post:
+      summary: User Login as Guest
+      tags:
+        - UserService
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              user-token:
+                type: string
+              objectId:
+                type: string
+              userStatus:
+                type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+  /users/logout:
+    post:
+      summary: User Logout
+      tags:
+        - UserService
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/BackendlessError'
+
+
+definitions:
+  DirectoryElement:
+    type: object
+    description: Directory Element
+    properties:
+      name:
+        type: string
+        description: name of the file or directory without any path information
+      publicUrl:
+        type: string
+        description: absolute URL of the file or directory
+      url:
+        type: string
+        description: relative URL of the file or directory starting from the root of the file storage
+      createdOn:
+        type: number
+        description: a timestamp indicating when the file or directory were created
+  BackendlessError:
+    type: object
+    description: Backendless Error
+    properties:
+      code:
+        type: number
+      message:
+        type: string
+
+parameters:
+  fileName:
+    in: path
+    name: fileName
+    required: true
+    type: string
+    description: File Name
+
+  directoryPath:
+    in: path
+    name: directoryPath
+    required: true
+    type: string
+    format: uri
+    description: Directory Path
+
+  overwrite:
+    in: query
+    name: overwrite
+    required: false
+    type: boolean
+    description: Overwrite File
+
+  pattern:
+    in: query
+    name: pattern
+    required: false
+    type: string
+    description: A pattern which the returned files and directories must match
+
+  recursive:
+    in: query
+    name: recursive
+    required: false
+    type: boolean
+    description: If present and is true, requests that the listing must be retrieved recursively for all directories
+
+  pageSize:
+    in: query
+    name: pageSize
+    required: false
+    minimum: 1
+    type: integer
+    description: Page Size
+
+  offset:
+    in: query
+    name: offset
+    required: false
+    minimum: 0
+    type: integer
+    description: Page Offset
+
+  action:
+    in: query
+    name: action
+    required: false
+    type: string
+    enum:
+      - count
+    description: Use ?action=count for getting count of files

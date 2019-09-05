@@ -26,7 +26,7 @@ paths:
       summary: GetSupportInfo
       description: GetSupportInfo
       tags:
-        - 1. Driver
+        - 1. Driver App
       consumes:
         - application/x-www-form-urlencoded
       parameters:
@@ -728,6 +728,64 @@ paths:
                 type: string
               payload:
                 type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+
+  /drGetGoogleMapURL.json/:
+    post:
+      summary: drGetGoogleMapURL
+      description: drGetGoogleMapURL
+      tags:
+        - 1. Driver App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[jobID]
+          type: integer
+          description: Unique Tour Number
+          required: true
+  
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  mapURL:
+                    type: string
               sessionToken:
                 type: string
               requestedMethod:
@@ -1629,6 +1687,10 @@ paths:
                             type: string
                           orderNo:
                             type: string
+                          latitude:
+                            type: string
+                          longitude:
+                            type: string
                           serviceLines: 
                             type: array
                             items:
@@ -1690,6 +1752,8 @@ paths:
                                       entryLineComment:
                                         type: string
                                       entryChangeStatus:
+                                        type: string
+                                      reasonCode:
                                         type: string
                                       photos: 
                                         type: array
