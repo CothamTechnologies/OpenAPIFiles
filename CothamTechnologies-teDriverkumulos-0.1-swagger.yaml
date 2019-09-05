@@ -1753,6 +1753,8 @@ paths:
                                         type: string
                                       entryChangeStatus:
                                         type: string
+                                      reasonCode:
+                                        type: string
                                       photos: 
                                         type: array
                                         items:
