@@ -143,6 +143,11 @@ paths:
       consumes:
         - application/x-www-form-urlencoded
       parameters:
+        - in: formData
+          name: params[dummy]
+          type: string
+          description: dummy
+          required: true
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
