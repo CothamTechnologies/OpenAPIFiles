@@ -400,3 +400,52 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /tmPartGraphData.json:
+    post:
+      summary: Returns detailed and grouped stock information about a part
+      description: Returns detailed and grouped stock information about a part
+      tags:
+        - 1. TechModal
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[partNo]
+          type: string
+          description: Part number
+          required: true
+        - in: formData
+          name: params[groupBy]
+          type: string
+          description: Column name used to group results
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        part_no:
+                          type: string
+                        query:
+                          type: string
+                        total:
+                          type: integer
+
+        default:
+          description: Failed Server Response
