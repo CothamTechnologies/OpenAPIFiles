@@ -368,6 +368,16 @@ paths:
                       properties:
                         count:
                           type: integer
+                        project:
+                          type: string
+                        chapter:
+                          type: string
+                        figure:
+                          type: string
+                        index:
+                          type: string
+                        func_loc:
+                          type: string
                         parts:
                           type: array
                           items:
