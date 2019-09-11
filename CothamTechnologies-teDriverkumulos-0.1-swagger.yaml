@@ -1591,6 +1591,11 @@ paths:
           type: string
           description: defectNumber
           required: false
+        - in: formData
+          name: params[checkStatus]
+          type: string
+          description: checkStatus
+          required: false
         
       responses:
         200:
