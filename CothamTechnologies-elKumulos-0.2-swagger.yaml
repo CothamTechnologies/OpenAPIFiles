@@ -2050,7 +2050,7 @@ paths:
               payload:
                 type: object
                 properties:
-                  createJob_Result:
+                  createLead_Result:
                     type: object
                     properties:
                       return_value:
