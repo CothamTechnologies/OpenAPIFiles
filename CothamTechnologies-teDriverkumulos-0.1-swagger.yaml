@@ -1164,6 +1164,134 @@ paths:
                 type: string
                 format: double
   
+  /drGetTourStatus.json/:
+    post:
+      summary: drGetTourStatus
+      description: drGetTourStatus
+      tags:
+        - 1. Driver App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[tourNo]
+          type: integer
+          description: Unique Tour Number
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  tourStatus:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
+  /drCancelTour.json/:
+    post:
+      summary: drCancelTour
+      description: drCancelTour
+      tags:
+        - 1. Driver App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[tourNo]
+          type: integer
+          description: Unique Tour Number
+          required: true
+        - in: formData
+          name: params[localDateTimeStamp]
+          type: string
+          description: date time when processed on the device
+          required: false
+        - in: formData
+          name: params[lng]
+          type: string
+          description: longitude
+          required: false
+        - in: formData
+          name: params[lat]
+          type: string
+          description: latitude
+          required: false
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
   /drPauseTour.json/:
     post:
       summary: drPauseTour
@@ -1462,6 +1590,11 @@ paths:
           name: params[defectNumber]
           type: string
           description: defectNumber
+          required: false
+        - in: formData
+          name: params[checkStatus]
+          type: string
+          description: checkStatus
           required: false
         
       responses:
