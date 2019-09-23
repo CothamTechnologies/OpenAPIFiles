@@ -1845,6 +1845,13 @@ paths:
                                 AmountDisplay:
                                   type: string
                                   description: Currency prefixed amount for display
+                                No:
+                                  type: string
+                                DeliveryStatus:
+                                  type: string
+                                Description:
+                                  type: string
+
 
         default:
           description: Failed Server Response
