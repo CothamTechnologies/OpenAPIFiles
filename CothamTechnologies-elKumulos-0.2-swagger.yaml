@@ -410,8 +410,17 @@ paths:
               responseMessage:
                 type: string
               payload:
-                description: The basketID of the record added or updated
-                type: integer
+                type: object
+                properties:
+                  recordAdded:
+                    description: The basketID of the record added or updated
+                    type: integer
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
               sessionToken:
                 type: string
               requestedMethod:
