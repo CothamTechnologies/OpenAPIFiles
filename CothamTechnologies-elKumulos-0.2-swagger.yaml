@@ -1849,6 +1849,8 @@ paths:
                                   type: string
                                 Description:
                                   type: string
+                                Date:
+                                  type: string
 
         default:
           description: Failed Server Response
