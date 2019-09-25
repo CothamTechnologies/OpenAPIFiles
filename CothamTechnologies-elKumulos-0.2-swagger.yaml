@@ -1881,6 +1881,11 @@ paths:
           type: string
           description: customerNo
           required: true
+        - in: formData
+          name: params[openOnly]
+          type: boolean
+          description: openOnly
+          required: true
 
       responses:
         200:
