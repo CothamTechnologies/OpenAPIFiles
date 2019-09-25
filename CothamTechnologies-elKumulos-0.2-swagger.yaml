@@ -1830,9 +1830,6 @@ paths:
                                   type: string
                                 LineNo:
                                   type: integer
-                                DeliveryDate:
-                                  type: string
-                                  format: date-time
                                 DeliveryNote:
                                   type: string
                                 Quantity:
@@ -1845,11 +1842,11 @@ paths:
                                   description: Currency prefixed amount for display
                                 No:
                                   type: string
-                                DeliveryStatus:
-                                  type: string
                                 Description:
                                   type: string
                                 Date:
+                                  type: string
+                                Status:
                                   type: string
 
         default:
