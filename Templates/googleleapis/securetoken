@@ -1,0 +1,59 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'get new tokne with refresj token'
+  description: ''
+
+host: securetoken.googleapis.com
+basePath: /v1
+schemes: 
+  - https
+  
+paths:
+  /token:
+    post:
+      summary: create entry in collection
+      description: create entry in collection
+      tags: 
+        - documents
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: query
+          name: key
+          description: WEb API key
+          type: string
+          required: true
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              grant_type:
+                type: string
+                example: refresh_token
+              refresh_token:
+                type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+              expires_in:
+                type: string
+              token_type:
+                type: string
+              refresh_token:
+                type: string
+              id_token:
+                type: string
+              user_id:
+                type: string
+              project_id:
+                type: string
