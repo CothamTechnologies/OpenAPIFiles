@@ -12,8 +12,8 @@ schemes:
 paths:
   /token:
     post:
-      summary: create entry in collection
-      description: create entry in collection
+      summary: get token
+      description: get token
       tags: 
         - documents
       produces:
