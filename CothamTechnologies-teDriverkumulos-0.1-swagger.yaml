@@ -3240,6 +3240,8 @@ paths:
                     type: string
                   Name:
                     type: string
+                  Company_Info_Name:
+                    type: string
                   E_Mail:
                     type: string
                   First_Name:
