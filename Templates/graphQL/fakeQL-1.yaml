@@ -48,6 +48,8 @@ paths:
                       properties:
                         firstname:
                           type: string
+                        age:
+                          type: string 
                 
         default:
           description: Failed Server Response
