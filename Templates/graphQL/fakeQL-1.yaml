@@ -22,7 +22,7 @@ paths:
       consumes:
         - application/json
       parameters:
-        - in: Body
+        - in: body
           name: body
           description: graphQL Query JSON
           required: true
