@@ -1729,6 +1729,9 @@ paths:
           required: true
         
       responses:
+        default:
+          description: Failed Server Response
+        
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
           schema:
