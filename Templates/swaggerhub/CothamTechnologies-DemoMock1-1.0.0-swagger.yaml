@@ -1,0 +1,184 @@
+swagger: '2.0'
+info:
+  description: Demo Mock
+  version: 1.0.0
+  title: Demo Mock
+
+host: virtserver.swaggerhub.com
+basePath: /CothamTechnologies/DemoMock1/1.0.0
+schemes:
+ - https
+
+paths:
+  
+  /generalData:
+    get:
+      summary: generalData
+      description: generalData
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              attr1:
+                type: string
+              attr2:
+                type: string
+              attr3:
+                type: string
+              attr4:
+                type: string
+        default:
+          description: server error
+  
+  /list1:
+    get:
+      summary: list1
+      description: list1
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                description: 
+                  type: string
+
+        default:
+          description: server error
+  
+  /list2:
+    get:
+      summary: list2
+      description: list2
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                description: 
+                  type: string
+
+
+        default:
+          description: server error
+  
+  /list3:
+    get:
+      summary: list3
+      description: list3
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                description: 
+                  type: string                             
+
+        default:
+          description: server error
+  
+  /list4:
+    get:
+      summary: list4
+      description: list4
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                fueltype:
+                  type: string
+                price:
+                  type: string
+
+        default:
+          description: server error
+  
+  /login:
+    get:
+      summary: login
+      description: login
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: email
+        type: string
+        description: email
+        required: true
+      - in: query
+        name: password
+        type: string
+        description: password
+        required: true 
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              expiry:
+                type: string
+        default:
+          description: server error
