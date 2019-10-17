@@ -152,6 +152,33 @@ paths:
         default:
           description: server error
   
+  /list5:
+    get:
+      summary: list5
+      description: list5
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                vehicletank:
+                  type: string
+
+        default:
+          description: server error
+
   /login:
     get:
       summary: login
