@@ -15,6 +15,8 @@ paths:
     get:
       summary: generalData
       description: generalData
+      tags:
+        - General
       produces:
       - application/json
       parameters:
@@ -32,19 +34,25 @@ paths:
             properties:
               attr1:
                 type: string
+
               attr2:
                 type: string
+
               attr3:
                 type: string
+
               attr4:
                 type: string
+
         default:
           description: server error
   
-  /list1:
+  /fueltypes:
     get:
-      summary: list1
-      description: list1
+      summary: Get Fuel Types
+      description: Get Fuel Types
+      tags:
+        - Crowe Mackay
       produces:
       - application/json
       parameters:
@@ -64,14 +72,20 @@ paths:
               properties:
                 description: 
                   type: string
+                              
+
 
         default:
           description: server error
   
-  /list2:
+
+  
+  /vehiclemetadata:
     get:
-      summary: list2
-      description: list2
+      summary: get vehicle meta data
+      description: get vehicle makes - models 
+      tags:
+        - Crowe Mackay
       produces:
       - application/json
       parameters:
@@ -89,44 +103,57 @@ paths:
             items:
               type: object
               properties:
-                description: 
+                makeName: 
                   type: string
+                model:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      modelName:
+                        type: string
+            example:
+              - makeName: Audi
+                model:
+                  - modelName: model 1
+                  - modelName: model 2
+                  - modelName: model 3
+              - makeName: Jaguar
+                model:
+                  - modelName: model 1
+                  - modelName: model 2
+                  - modelName: model 3
+              - makeName: Porche
+                model:
+                  - modelName: model 1
+                  - modelName: model 2
+                  - modelName: model 3
+              - makeName: VW
+                model:
+                  - modelName: model 1
+                  - modelName: model 2
+                  - modelName: model 3
+              - makeName: Ford
+                model:
+                  - modelName: model 1
+                  - modelName: model 2
+                  - modelName: model 3
+              - makeName: Honda
+                model:
+                  - modelName: model 1
+                  - modelName: model 2
+                  - modelName: model 3
 
 
         default:
           description: server error
   
-  /list3:
+  /fuelprices:
     get:
-      summary: list3
-      description: list3
-      produces:
-      - application/json
-      parameters:
-      - in: query
-        name: token
-        type: string
-        description: token
-        required: false
-     
-      responses:
-        200:
-          description: OK
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                description: 
-                  type: string                             
-
-        default:
-          description: server error
-  
-  /list4:
-    get:
-      summary: list4
-      description: list4
+      summary: Get fuel prices
+      description: Get fuel prices
+      tags:
+        - Crowe Mackay
       produces:
       - application/json
       parameters:
@@ -149,13 +176,16 @@ paths:
                 price:
                   type: string
 
+
         default:
           description: server error
   
-  /list5:
+  /tankvehicle:
     get:
-      summary: list5
-      description: list5
+      summary: get tank vehicle list
+      description: get tank vehicle list
+      tags:
+        - Crowe Mackay
       produces:
       - application/json
       parameters:
@@ -176,13 +206,79 @@ paths:
                 vehicletank:
                   type: string
 
+
         default:
           description: server error
+  
+ 
+  /salutations:
+    get:
+      summary: salutations
+      description: salutations
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
 
+
+        default:
+          description: server error
+  
+  /addresstype:
+    get:
+      summary: addresstype
+      description: addresstype
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+
+
+
+
+        default:
+          description: server error
+  
   /login:
     get:
       summary: login
       description: login
+      tags:
+        - General
       produces:
       - application/json
       parameters:
@@ -207,5 +303,6 @@ paths:
                 type: string
               expiry:
                 type: string
+
         default:
           description: server error
