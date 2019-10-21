@@ -34,13 +34,10 @@ paths:
             properties:
               attr1:
                 type: string
-
               attr2:
                 type: string
-
               attr3:
                 type: string
-
               attr4:
                 type: string
 
@@ -72,13 +69,9 @@ paths:
               properties:
                 description: 
                   type: string
-                              
-
 
         default:
           description: server error
-  
-
   
   /vehiclemetadata:
     get:
@@ -112,9 +105,7 @@ paths:
                     properties:
                       modelName:
                         type: string
-            
-
-
+       
         default:
           description: server error
   
