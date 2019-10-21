@@ -112,37 +112,7 @@ paths:
                     properties:
                       modelName:
                         type: string
-            example:
-              - makeName: Audi
-                model:
-                  - modelName: model 1
-                  - modelName: model 2
-                  - modelName: model 3
-              - makeName: Jaguar
-                model:
-                  - modelName: model 1
-                  - modelName: model 2
-                  - modelName: model 3
-              - makeName: Porche
-                model:
-                  - modelName: model 1
-                  - modelName: model 2
-                  - modelName: model 3
-              - makeName: VW
-                model:
-                  - modelName: model 1
-                  - modelName: model 2
-                  - modelName: model 3
-              - makeName: Ford
-                model:
-                  - modelName: model 1
-                  - modelName: model 2
-                  - modelName: model 3
-              - makeName: Honda
-                model:
-                  - modelName: model 1
-                  - modelName: model 2
-                  - modelName: model 3
+            
 
 
         default:
