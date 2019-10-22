@@ -1,0 +1,124 @@
+swagger: '2.0'
+info:
+  description: Internal FloFrame Stripe Make Payment API - developed from the swaggerHub simpleAPI template
+  version: 1.0.0
+  title: Internal Stripe Make Payment API
+  # put the contact info for your development or API team
+  contact:
+    email: you@your-company.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+
+paths:
+  /makePayment:
+    post:
+      tags:
+      - admins
+      summary: instructs Payment IC to make a payment
+      description: Instructs PaymentIC to make a payment
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: inventoryItem
+        description: Inventory item to add
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: d290f1ee-6c54-4b01-90e6-d701748f0851
+            name:
+              type: string
+              example: Widget Adapter
+            releaseDate:
+              type: string
+              format: date-time
+              example: 2016-08-29T09:12:33.001Z
+            manufacturer:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: ACME Corporation
+                homePage:
+                  type: string
+                  format: url
+                  example:  https://www.acme-corp.com
+                phone:
+                  type: string
+                  example: 408-867-5309
+      responses:
+        200:
+          description: item created
+          schema:
+            type: object
+            properties:
+              amount: 
+                type: integer
+              canceledAt:
+                type: integer
+              captureMethod: 
+                type: string
+              clientSecret:
+                type: string
+              confirmationMethod:
+                type: string
+              created:
+                type: integer
+              currency:
+                type: string
+              description:
+                type: string
+              id:
+                type: string
+              liveMode:
+                type: boolean
+              nextAction:
+                type: string
+              nextActionType:
+                type: string
+              objectType:
+                type: string
+              paymentMethodTypes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    card:
+                      type: string
+              receiptEmail:
+                type: string
+              source:
+                type: string
+              status:
+                type: string
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+# Added by API Auto Mocking Plugin
+# host: flolocal
+# basePath: /CothamTechnologies/internalSimpleApi/1.0.0
+schemes:
+ - https
+# Added by API Auto Mocking Plugin
+basePath: /CothamTechnologies/internalStripeMakePayment/1.0.0
+# Added by API Auto Mocking Plugin
+# host: flolocal
+# Added by API Auto Mocking Plugin
+# host: flolocal
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com

@@ -315,6 +315,38 @@ paths:
         default:
           description: server error
   
+  /activate:
+    get:
+      summary: activate user
+      description: activate user
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: email
+        type: string
+        description: email
+        required: true
+      - in: query
+        name: code
+        type: string
+        description: activation code
+        required: true 
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              activated:
+                type: string
+
+        default:
+          description: server error
+  
   /login:
     get:
       summary: login
