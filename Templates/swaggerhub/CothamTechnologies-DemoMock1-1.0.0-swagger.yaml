@@ -142,6 +142,48 @@ paths:
           description: server error
   
   /vehicles:
+    post:
+      summary: Add vehicle
+      description: Add vehicle
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            registration:
+              type: string
+            make:
+              type: string
+            model:
+              type: string
+            fueltype:
+              type: string
+            capacity:
+              type: number
+     
+      responses:
+        201:
+          description: Vehicle Created
+          schema:
+            type: object
+            properties:
+              created :
+                type: string
+
+        default:
+          description: server error
+    
     get:
       summary: Get vehicles
       description: Get vehicles
