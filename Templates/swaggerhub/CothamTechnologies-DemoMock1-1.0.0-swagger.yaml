@@ -160,20 +160,25 @@ paths:
         200:
           description: OK
           schema:
-            type: array
-            items:
-              type: object
-              properties:
-                registration:
-                  type: string
-                make:
-                  type: string
-                model:
-                  type: string
-                fueltype:
-                  type: string
-                capacity:
-                  type: number
+            type: object
+            properties:
+              count:
+                type: integer
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    registration:
+                      type: string
+                    make:
+                      type: string
+                    model:
+                      type: string
+                    fueltype:
+                      type: string
+                    capacity:
+                      type: number
 
   /tankvehicle:
     get:
