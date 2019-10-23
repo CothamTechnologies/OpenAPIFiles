@@ -1,0 +1,55 @@
+swagger: '2.0'
+
+info:
+  version: "0.1"
+  title: 'Fake QL Test 1'
+  description: 'Fake QL Test 1'
+
+host: fakeql.com
+basePath: /graphql
+
+schemes:
+  - https
+
+paths:
+
+  /34f1449c300bf1c5c442de78934e00f0:
+    post:
+      summary: Get Users
+      description: get Users
+      tags:
+        - 1. Query
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        firstname:
+                          type: string
+                        age:
+                          type: string 
+                
+        default:
+          description: Failed Server Response
