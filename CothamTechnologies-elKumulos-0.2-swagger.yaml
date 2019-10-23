@@ -3262,6 +3262,8 @@ paths:
                     type: string
                   transfer_data: {}
                   transfer_group: {}
+                  publishable_key:
+                    type: string
               sessionToken:
                 type: string
               requestedMethod:
