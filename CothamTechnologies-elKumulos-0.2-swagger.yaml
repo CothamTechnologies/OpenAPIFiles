@@ -3545,3 +3545,53 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /owGetHelpInformation.json/:
+    post:
+      summary: Gets help contact information for users
+      description: Gets help contact information for users
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[dummy]
+          type: string
+          description: dummy
+          required: false
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getHelpInformation_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          Url:
+                            type: string
+                          Email:
+                            type: string
+                          PhoneNo:
+                            type: string
+
+        default:
+          description: Failed Server Response
