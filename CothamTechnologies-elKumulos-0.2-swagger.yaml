@@ -2278,7 +2278,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[backendIdentifier]
@@ -2379,7 +2379,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -2389,7 +2389,7 @@ paths:
         - in: formData
           name: params[changePasswordCode]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[clientIdentifier]
@@ -2442,7 +2442,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[clientIdentifier]
@@ -2495,7 +2495,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[backendIdentifier]
@@ -2570,7 +2570,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -2633,7 +2633,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -2721,7 +2721,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -3620,7 +3620,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[backendIdentifier]
@@ -3693,7 +3693,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[backendIdentifier]
@@ -3704,7 +3704,7 @@ paths:
           name: params[token]
           type: string
           description: token
-          required: true
+          required: false
         - in: formData
           name: params[clientIdentifier]
           type: string
@@ -3713,7 +3713,7 @@ paths:
         - in: formData
           name: params[all]
           type: boolean
-          description: all
+          description: if true removes all tokens assigned to this user
           required: false
 
       responses:
