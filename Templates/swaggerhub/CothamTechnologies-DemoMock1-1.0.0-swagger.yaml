@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: Demo Mock
+  description: Demo Mock.
   version: 1.0.0
   title: Demo Mock
 
