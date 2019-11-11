@@ -3618,6 +3618,11 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
           name: params[email]
           type: string
           description: email address of User
@@ -3685,6 +3690,11 @@ paths:
       consumes:
         - application/x-www-form-urlencoded
       parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
         - in: formData
           name: params[email]
           type: string
