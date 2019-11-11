@@ -1,0 +1,165 @@
+swagger: '2.0'
+info:
+  version: '1'
+  title: 'fuel demo'
+  description: 'fuel demo'
+
+host: uk1.ukvehicledata.co.uk
+basePath: /api/datapackage
+schemes:
+  - https
+
+
+paths: 
+
+  /FuelPriceData:
+    get:
+      summary: fuel price data
+      description: fuel price data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: v
+          type: string
+          description: version eq 2
+          required: true
+        - in: query
+          name: api_nullitems
+          type: string
+          description: is 1
+          required: true
+        - in: query
+          name: auth_apikey
+          type: string
+          description: apikey
+          required: true
+        - in: query
+          name: key_LATITUDE
+          type: string
+          description: latitude
+          required: false
+        - in: query
+          name: key_LONGITUDE
+          type: string
+          description: logitude
+          required: false
+        - in: query
+          name: key_POSTCODE
+          type: string
+          description: version
+          required: false
+          
+      responses:
+        200:
+          description: OK response
+          schema:
+            type: object
+            properties:
+              BillingAccount:
+                type: object
+                properties:
+                  AccountType:
+                    type: string
+                  AccountBalance:
+                    type: number
+                  TransactionCost:
+                    type: number
+              Request:
+                type: object
+                properties:
+                  RequestGuid:
+                    type: string
+                  PackageId:
+                    type: string
+                  PackageVersion:
+                    type: number
+                  ResponseVersion:
+                    type: number
+                  DataKeys:
+                    type: object
+                    properties:
+                      Latitude:
+                        type: string
+                      Longitude:
+                        type: string
+              Response:
+                type: object
+                properties:
+                  StatusCode:
+                    type: string
+                  StatusMessage:
+                    type: string
+                  StatusInformation:
+                    type: object
+                    properties:
+                      Lookup:
+                        type: object
+                        properties:
+                          StatusCode:
+                            type: string
+                          StatusMessage:
+                            type: string
+                  DataItems:
+                    type: object
+                    properties:
+                      FuelStationDetails:
+                        type: object
+                        properties:
+                          FuelStationCount:
+                            type: number
+                          SearchRadiusUsed:
+                            type: number
+                          FuelStationList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                DistanceFromSearchPostcode:
+                                  type: number
+                                Brand:
+                                  type: string
+                                Name:
+                                  type: string
+                                Street:
+                                  type: string
+                                Suburb:
+                                  type: string
+                                Town:
+                                  type: string
+                                County:
+                                  type: string
+                                Postcode:
+                                  type: string
+                                Features:
+                                  type: object
+                                  properties:
+                                    Fuel:
+                                      type: object
+                                      properties:
+                                        HasUnleaded:
+                                          type: boolean
+                                        HasDiesel:
+                                          type: boolean
+                                FuelPriceCount:
+                                  type: number
+                                FuelPriceList:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      FuelType:
+                                        type: string
+                                      LatestRecordedPrice:
+                                        type: object
+                                        properties:
+                                          InPence:
+                                            type: number
+                                          InGbp:
+                                            type: number
+                                          TimeRecorded:
+                                            type: string
+                                    
+                              
