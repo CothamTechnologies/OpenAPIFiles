@@ -35,6 +35,7 @@ paths:
               items:
                 type: array
                 items:
+                  type: object
                   properties:
                     kind:
                       type: string
