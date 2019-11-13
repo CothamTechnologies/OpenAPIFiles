@@ -152,3 +152,7 @@ paths:
                       properties:
                         textSnippet:
                           type: string
+                          
+      default:
+         description: default
+   
