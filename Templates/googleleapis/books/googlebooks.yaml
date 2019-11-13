@@ -23,6 +23,8 @@ paths:
           required: true
         
       responses:
+        400:
+          description: fail
         200:
           description: OK
           schema:
