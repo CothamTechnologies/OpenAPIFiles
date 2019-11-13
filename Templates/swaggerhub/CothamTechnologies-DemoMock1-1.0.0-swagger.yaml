@@ -11,6 +11,122 @@ schemes:
 
 paths:
   
+  /lawyers:
+    get:
+      summary: Get lawyers
+      description: Get lawyers
+      tags:
+        - Legal Dawn Raid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name: 
+                  type: string
+                jobTitle: 
+                  type: string
+                phone: 
+                  type: string
+                email: 
+                  type: string
+                location: 
+                  type: string
+                avatar:
+                  type: string
+
+        default:
+          description: server error
+  
+  /guidelines:
+    get:
+      summary: Get guidelines
+      description: Get Dawn Raid guidelines
+      tags:
+        - Legal Dawn Raid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                category: 
+                  type: string
+                guidelines:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      guiddescription:
+                        type: string
+                      guideurl:
+                        type: string
+           
+        default:
+          description: server error
+  
+  /instructions:
+    get:
+      summary: Get Instructions
+      description: Get Dawn Raid Instructions
+      tags:
+        - Legal Dawn Raid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                category: 
+                  type: string
+                instructions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      instdescription:
+                        type: string
+                      checkbox:
+                        type: string
+           
+              
+        default:
+          description: server error
+
   /generalData:
     get:
       summary: generalData
@@ -32,9 +148,9 @@ paths:
           schema:
             type: object
             properties:
-              attr1:
+              emergencyPhone:
                 type: string
-              attr2:
+              emergencyEmail:
                 type: string
               attr3:
                 type: string
