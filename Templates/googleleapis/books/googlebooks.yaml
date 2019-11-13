@@ -23,7 +23,25 @@ paths:
           required: true
         
       responses:
-        200:
+        400:
+		   description: fail
+   		   schema:
+      			type: object
+      			properties:
+      				error:
+      					type: object
+      					properties:
+      						code:
+      							type: number
+      						errors:
+      							type: array
+      							items:
+      								type: object
+      								properties:
+      									message:
+      										type: string
+   	
+   	   200:
           description: OK
           schema:
             type: object
