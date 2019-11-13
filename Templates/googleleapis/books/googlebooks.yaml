@@ -153,6 +153,6 @@ paths:
                         textSnippet:
                           type: string
                           
-      default:
-         description: default
+        default:
+          description: default
    
