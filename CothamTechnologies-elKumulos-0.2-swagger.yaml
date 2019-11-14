@@ -2769,6 +2769,8 @@ paths:
                     type: string
                   liveCustomerNo:
                     type: string
+                  email:
+                    type: string
                   liveCustomerDescription:
                     type: string
                   CustomerCount:
