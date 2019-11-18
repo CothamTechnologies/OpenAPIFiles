@@ -1,0 +1,160 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'ctDemoFavouriteBooks'
+  description: 'ctDemoFavouriteBooks'
+
+host: www.googleapis.com
+basePath: /books/v1
+schemes: 
+  - https
+paths:
+  /volumes:
+    get:
+      summary: ISBN Lookup
+      description: ISBN Lookup
+      produces: 
+        - application/json
+      parameters:
+        - in: query
+          name: q
+          description: ISBN
+          type: string
+          required: true
+        
+      responses:
+        400:
+          description: fail
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              kind:
+                type: string
+              totalItems:
+                type: number
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    kind:
+                      type: string
+                    id:
+                      type: string
+                    etag:
+                      type: string
+                    selfLink:
+                      type: string
+                    volumeInfo:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        authors:
+                          type: array
+                          items:
+                            type: string
+                        publisher:
+                          type: string
+                        publishedDate:
+                          type: string
+                        description:
+                          type: string
+                        industryIdentifiers:
+                          type: array
+                          items:
+                            properties:
+                              type:
+                                type: string
+                              identifier:
+                                type: string
+                            type: object
+                        readingModes:
+                          type: object
+                          properties:
+                            text:
+                              type: boolean
+                            image:
+                              type: boolean
+                        pageCount:
+                          type: number
+                        printType:
+                          type: string
+                        categories:
+                          type: array
+                          items:
+                            type: string
+                        averageRating:
+                          type: number
+                        ratingsCount:
+                          type: number
+                        maturityRating:
+                          type: string
+                        allowAnonLogging:
+                          type: boolean
+                        contentVersion:
+                          type: string
+                        imageLinks:
+                          type: object
+                          properties:
+                            smallThumbnail:
+                              type: string
+                            thumbnail:
+                              type: string
+                        language:
+                          type: string
+                        previewLink:
+                          type: string
+                        infoLink:
+                          type: string
+                        canonicalVolumeLink:
+                          type: string
+                    saleInfo:
+                      type: object
+                      properties:
+                        country:
+                          type: string
+                        saleability:
+                          type: string
+                        isEbook:
+                          type: boolean
+                    accessInfo:
+                      type: object
+                      properties:
+                        country:
+                          type: string
+                        viewability:
+                          type: string
+                        embeddable:
+                          type: boolean
+                        publicDomain:
+                          type: boolean
+                        textToSpeechPermission:
+                          type: string
+                        epub:
+                          type: object
+                          properties:
+                            isAvailable:
+                              type: boolean
+                        pdf:
+                          type: object
+                          properties:
+                            isAvailable:
+                              type: boolean
+                        webReaderLink:
+                          type: string
+                        accessViewStatus:
+                          type: string
+                        quoteSharingAllowed:
+                          type: boolean
+                    searchInfo:
+                      type: object
+                      properties:
+                        textSnippet:
+                          type: string
+                          
+        default:
+          description: default
+   

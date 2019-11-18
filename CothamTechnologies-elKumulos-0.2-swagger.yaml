@@ -3623,11 +3623,6 @@ paths:
           description: jwt
           required: true
         - in: formData
-          name: params[email]
-          type: string
-          description: email address of User
-          required: true
-        - in: formData
           name: params[token]
           type: string
           description: token
@@ -3694,11 +3689,6 @@ paths:
           name: params[jwt]
           type: string
           description: jwt
-          required: true
-        - in: formData
-          name: params[email]
-          type: string
-          description: email address of User
           required: true
         - in: formData
           name: params[token]
