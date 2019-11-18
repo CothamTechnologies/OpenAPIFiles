@@ -463,6 +463,68 @@ paths:
         default:
           description: server error
   
+  /menuitemsmore:
+    get:
+      summary: menu items more
+      description: menu items more
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+      
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id: 
+                  type: string
+                title: 
+                  type: string
+                subtitle: 
+                  type: string
+                image: 
+                  type: string
+                
+                              
+            example:
+              - id: 1
+                title: Profile
+                subtitle: Your Profile
+                image:
+              - id: 2
+                title: Addresses
+                subtitle: Delivery & Billing Addresses
+                image:
+              - id: 3
+                title: Send Email to Support
+                subtitle: Send Email to Support
+                image:
+              - id: 4
+                title: About & Notices
+                subtitle: Tanks
+                image:
+              - id: 5
+                title: Payment methods
+                subtitle: Payment methods
+                image:
+              - id: 6
+                title: Orders
+                subtitle: Orders
+                image:
+
+        default:
+          description: server error
+
   /login:
     get:
       summary: login
