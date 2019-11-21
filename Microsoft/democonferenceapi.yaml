@@ -1,0 +1,264 @@
+swagger: '2.0'
+info:
+  title: Demo Conference API
+  description: >- 
+        A sample API with information related to a technical conference.  The available resources 
+        include *Speakers*, *Sessions* and *Topics*.  A single write operation is available to provide 
+        feedback on a session.
+  version: '2.0.0'
+host: conferenceapi.azurewebsites.net
+schemes:
+  - https
+
+paths:
+  /sessions:
+    get:
+      summary: GetSessions
+      description: >-
+        A list of sessions.  Optional parameters work as filters to reduce the
+        listed sessions.
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - name: speakername
+          in: query
+          type: string
+        - name: dayno
+          in: query
+          description: Format - int32.
+          type: integer
+        - name: keyword
+          in: query
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              collection:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                        data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              value:
+                                type: string
+                        links:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              rel:
+                                type: string
+                              value:
+                                href: string
+                        
+      
+  /session/{id}:
+    get:
+      description: Retreive a representation of a single session by Id
+      summary: GetSession
+      produces:
+        - application/hal+json
+        - text/plain
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+      
+
+  /session/{id}/topics:
+    get:
+      summary: GetSessionTopics
+      description: A list of topics covered by a particular session
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+
+  /session/{id}/feedback:
+    post:
+      description: Retreive a representation of a single session by Id
+      summary: SubmitSession
+      produces:
+        - application/hal+json
+        - text/plain
+      consumes:
+        - text/plain
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+      
+  '/speakers':
+    get:
+      summary: GetSpeakers
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - name: dayno
+          in: query
+          description: Format - int32.
+          type: integer
+        - name: speakername
+          in: query
+          type: string
+      responses:
+        '200':
+          description: OK
+      
+  '/speaker/{id}':
+    get:
+      summary: GetSpeaker
+      produces:
+        - application/vnd.hal+json
+        - text/plain
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+  '/speaker/{id}/sessions':
+    get:
+      summary: GetSpeakerSessions
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+  '/speaker/{id}/topics':
+    get:
+      summary: GetSpeakerTopics
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+  '/topics':
+    get:
+      summary: GetTopics
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - name: dayno
+          in: query
+          required: false
+          description: Format - int32.
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+  '/topic/{id}':
+    get:
+      summary: GetTopic
+      produces:
+        - application/hal+json
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+
+  '/topic/{id}/speakers':
+    get:
+      summary: GetTopicSpeakers
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
+  '/topic/{id}/sessions':
+    get:
+      summary: GetTopicSessions
+      produces:
+        - application/vnd.collection+json
+      parameters:
+        - id:
+          name: id
+          in: path
+          description: Format - int32.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK
+      
