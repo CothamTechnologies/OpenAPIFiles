@@ -25,7 +25,7 @@ paths:
       summary: create single record in Table
       description: Create single record in  Table
       tags:
-        - Photos
+        - Employees
       consumes:
         - application/json
       produces:
@@ -73,7 +73,11 @@ paths:
                 type: string
               hireDateString:
                 type: string
-              leavingDateString:
+              leaveDateString:
+                type: string
+              hireDate:
+                type: string
+              leavingDate:
                 type: string
               avatarImage:
                 type: string
@@ -109,7 +113,7 @@ paths:
       summary: get all table records
       description: get all table records
       tags:
-        - Photos
+        - Employees
       produces:
         - application/json
       parameters:
@@ -179,7 +183,7 @@ paths:
                   type: string
                 hireDateString:
                   type: string
-                leavingDateString:
+                leaveDateString:
                   type: string
                 avatarImage:
                   type: string
@@ -217,7 +221,7 @@ paths:
       summary: Return single record from Table
       description: Return single record from Table
       tags:
-        - Photos
+        - Employees
       produces:
         - application/json
       parameters:
@@ -268,7 +272,7 @@ paths:
                 type: string
               hireDateString:
                 type: string
-              leavingDateString:
+              leaveDateString:
                 type: string
               avatarImage:
                 type: string
@@ -305,7 +309,7 @@ paths:
       summary: Delete single record from Table
       description: Delete single record from Table
       tags:
-        - Photos
+        - Employees
       produces:
         - application/json
       parameters:
@@ -336,7 +340,7 @@ paths:
       summary: Update single record in Table
       description: Update single record in Table
       tags:
-        - Photos
+        - Employees
       consumes:
         - application/json
       produces:
@@ -387,7 +391,7 @@ paths:
                 type: string
               hireDateString:
                 type: string
-              leavingDateString:
+              leaveDateString:
                 type: string
               avatarImage:
                 type: string
@@ -439,7 +443,7 @@ paths:
                 type: string
               hireDateString:
                 type: string
-              leavingDateString:
+              leaveDateString:
                 type: string
               avatarImage:
                 type: string
