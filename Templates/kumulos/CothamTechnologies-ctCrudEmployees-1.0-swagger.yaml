@@ -19,6 +19,242 @@ security:
 
 paths:
 
+  /7068_7803_ctCrudStatusTypes/:
+    get:
+      summary: get all StatusTypes
+      description: get all StatusTypes
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudStatusTypeID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudDepartments/:
+    get:
+      summary: get all Departments
+      description: get all Departments
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudDepartmentID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudCostCentres/:
+    get:
+      summary: get all CostCentres
+      description: get all CostCentres
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudCostCentreID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudRoles/:
+    get:
+      summary: get all roles
+      description: get all roles
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudRoleID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
   /7068_7803_ctCrudEmployees/:
   
     post:
