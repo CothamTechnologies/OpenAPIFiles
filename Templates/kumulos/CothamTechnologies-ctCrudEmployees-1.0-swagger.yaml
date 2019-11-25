@@ -71,10 +71,6 @@ paths:
                 type: string
               status:
                 type: string
-              hireDate:
-                type: string
-              leavingDate:
-                type: string
               hireDateString:
                 type: string
               leavingDateString:
