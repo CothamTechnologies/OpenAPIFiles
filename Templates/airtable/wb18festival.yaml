@@ -1,0 +1,80 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'WB18 Festival'
+  description: 'WB18 Festival Airtable Demo'
+
+host: api.airtable.com
+basePath: /v0/appMRqzoh8hP79b1B
+
+schemes:
+  - https
+
+securityDefinitions:  
+  
+  bearerToken:
+    type: apiKey
+    name: Authorization
+    in: header
+    
+security:  
+  - bearerToken: []
+
+paths:
+
+  /Artists:
+    get:
+      summary: list artists
+      description: list artists
+      tags:
+        - Artists
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        artistCode:
+                          type: string
+                        artistName:
+                          type: string
+                        artistBiog:
+                          type: string
+                        artistUrl:
+                          type: string
+                        artistimageLg:
+                          type: string
+                    createdTime:
+                      type: string
+
+                
