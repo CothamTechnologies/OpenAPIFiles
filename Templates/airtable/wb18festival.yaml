@@ -10,15 +10,6 @@ basePath: /v0/appMRqzoh8hP79b1B
 schemes:
   - https
 
-securityDefinitions:  
-  
-  bearerToken:
-    type: apiKey
-    name: Authorization
-    in: header
-    
-security:  
-  - bearerToken: []
 
 paths:
 
@@ -31,6 +22,10 @@ paths:
       produces:
         - application/json
       parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
         - in: query
           name: filterByFormula
           type: string
