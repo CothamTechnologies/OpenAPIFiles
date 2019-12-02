@@ -13,6 +13,108 @@ schemes:
 
 paths:
 
+  /Diary:
+    get:
+      summary: list Diary
+      description: list Diary
+      tags:
+        - WB18
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        Name:
+                          type: string
+                        Date:
+                          type: string
+                        Image:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              url:
+                                type: string
+                              filename:
+                                type: string
+                              size:
+                                type: string  
+                              type:
+                                type: string
+                              thumbnails:
+                                type: object
+                                properties:
+                                  small:
+                                    type: object 
+                                    properties:
+                                      url:
+                                        type: string
+                                      width:
+                                        type: string
+                                      height:
+                                        type: string
+                                  large:
+                                    type: object 
+                                    properties:
+                                      url:
+                                        type: string
+                                      width:
+                                        type: string
+                                      height:
+                                        type: string
+                                  full:
+                                    type: object 
+                                    properties:
+                                      url:
+                                        type: string
+                                      width:
+                                        type: string
+                                      height:
+                                        type: string
+
+
+
+                    createdTime:
+                      type: string
+
+
   /Events:
     get:
       summary: list Events
@@ -207,4 +309,67 @@ paths:
                     createdTime:
                       type: string
 
-                
+    post:
+      summary: create artists
+      description: create artists
+      tags:
+        - WB18
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    fields:
+                      type: object
+                      properties:
+                        artistCode:
+                          type: string
+                        artistName:
+                          type: string
+                        artistBiog:
+                          type: string
+                        artistUrl:
+                          type: string
+                        artistimageLg:
+                          type: string   
+  
+      responses:
+        200:
+          description: Saved
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        artistCode:
+                          type: string
+                        artistName:
+                          type: string
+                        artistBiog:
+                          type: string
+                        artistUrl:
+                          type: string
+                        artistimageLg:
+                          type: string
+                    createdTime:
+                      type: string       
