@@ -1,0 +1,444 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'Festival'
+  description: 'Festival Airtable Demo'
+
+host: api.airtable.com
+basePath: /v0
+
+schemes:
+  - https
+
+
+paths:
+
+  /{id}/AppSetup:
+    get:
+      summary: list Apps
+      description: list Apps
+      tags:
+        - App Admin
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        appID:
+                          type: string
+                        Name:
+                          type: string
+                        baseID:
+                          type: string
+
+                    createdTime:
+                      type: string
+
+  /{id}/Diary:
+    get:
+      summary: list Diary
+      description: list Diary
+      tags:
+        - Festival App
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+          required: true
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        Name:
+                          type: string
+                        Date:
+                          type: string
+                        imageURL:
+                          type: string
+                        dayCode:
+                          type: string
+       
+                    createdTime:
+                      type: string
+
+
+  /{id}/Events:
+    get:
+      summary: list Events
+      description: list Events
+      tags:
+        - Festival App
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        eventCode:
+                          type: string
+                        eventStart:
+                          type: string
+                        eventEnd:
+                          type: string
+                        eventName:
+                          type: string
+                        artistCode:
+                          type: string
+                        venueCode:
+                          type: string
+                        eventDescription:
+                          type: string
+                        eventImage:
+                          type: string
+
+                    createdTime:
+                      type: string
+
+  /{id}/Venues:
+    get:
+      summary: list venues
+      description: list venues
+      tags:
+        - Festival App
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        venueCode:
+                          type: string
+                        venueName:
+                          type: string
+                        venueAddress:
+                          type: string
+                        venuePostcode:
+                          type: string
+                        venuePhone:
+                          type: string
+                        venueTimes:
+                          type: string
+                        venueUrl:
+                          type: string
+                        venueLat:
+                          type: string
+                        venueLong:
+                          type: string
+                        venueImage:
+                          type: string
+                    createdTime:
+                      type: string
+
+  /{id}/Artists:
+    get:
+      summary: list artists
+      description: list artists
+      tags:
+        - Festival App
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        artistCode:
+                          type: string
+                        artistName:
+                          type: string
+                        artistBiog:
+                          type: string
+                        artistUrl:
+                          type: string
+                        artistimageLg:
+                          type: string
+                    createdTime:
+                      type: string
+
+    post:
+      summary: create artists
+      description: create artists
+      tags:
+        - Festival App
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    fields:
+                      type: object
+                      properties:
+                        artistCode:
+                          type: string
+                        artistName:
+                          type: string
+                        artistBiog:
+                          type: string
+                        artistUrl:
+                          type: string
+                        artistimageLg:
+                          type: string   
+  
+      responses:
+        200:
+          description: Saved
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        artistCode:
+                          type: string
+                        artistName:
+                          type: string
+                        artistBiog:
+                          type: string
+                        artistUrl:
+                          type: string
+                        artistimageLg:
+                          type: string
+                    createdTime:
+                      type: string       
