@@ -1,0 +1,4792 @@
+swagger: '2.0'
+info:
+  title: SAP OData Service for namespace GWSAMPLE_BASIC
+  version: "1.0.0"
+  description: >-
+    This OData service is located at
+    [https://sapes5.sapdevcenter.com/sap/opu/odata/IWBEP/GWSAMPLE_BASIC]
+
+host: sapes5.sapdevcenter.com
+basePath: /sap/opu/odata/IWBEP/GWSAMPLE_BASIC
+
+schemes:
+  - https
+  
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+security:
+  - basicAuth: []
+
+
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: BusinessPartnerSet
+  - name: ProductSet
+  - name: SalesOrderSet
+  - name: SalesOrderLineItemSet
+  - name: ContactSet
+  - name: VH_SexSet
+  - name: VH_CountrySet
+  - name: VH_AddressTypeSet
+  - name: VH_CategorySet
+  - name: VH_CurrencySet
+  - name: VH_UnitQuantitySet
+  - name: VH_UnitWeightSet
+  - name: VH_UnitLengthSet
+  - name: VH_ProductTypeCodeSet
+  - name: VH_BPRoleSet
+  - name: VH_LanguageSet
+paths:
+  /BusinessPartnerSet:
+    get:
+      summary: Get entities from BusinessPartnerSet
+      tags:
+        - BusinessPartnerSet
+      parameters:
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - Address desc
+              - BusinessPartnerID
+              - BusinessPartnerID desc
+              - CompanyName
+              - CompanyName desc
+              - EmailAddress
+              - EmailAddress desc
+              - PhoneNumber
+              - PhoneNumber desc
+              - FaxNumber
+              - FaxNumber desc
+              - LegalForm
+              - LegalForm desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - BusinessPartnerRole
+              - BusinessPartnerRole desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - BusinessPartnerID
+              - CompanyName
+              - WebAddress
+              - EmailAddress
+              - PhoneNumber
+              - FaxNumber
+              - LegalForm
+              - CurrencyCode
+              - BusinessPartnerRole
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of BusinessPartner
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+        default:
+          $ref: '#/responses/error'
+    post:
+      summary: Add new entity to BusinessPartnerSet
+      tags:
+        - BusinessPartnerSet
+      parameters:
+        - name: BusinessPartner
+          in: body
+          description: New entity
+          schema:
+            $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner-create'
+      responses:
+        '201':
+          description: Created entity
+          schema:
+            title: BusinessPartner
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+        default:
+          $ref: '#/responses/error'
+  '/BusinessPartnerSet(''{BusinessPartnerID}'')':
+    get:
+      summary: Get entity from BusinessPartnerSet by key
+      tags:
+        - BusinessPartnerSet
+      parameters:
+        - name: BusinessPartnerID
+          in: path
+          required: true
+          description: Business Partner ID
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - BusinessPartnerID
+              - CompanyName
+              - WebAddress
+              - EmailAddress
+              - PhoneNumber
+              - FaxNumber
+              - LegalForm
+              - CurrencyCode
+              - BusinessPartnerRole
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: BusinessPartner
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+        default:
+          $ref: '#/responses/error'
+    patch:
+      summary: Update entity in BusinessPartnerSet
+      tags:
+        - BusinessPartnerSet
+      parameters:
+        - name: BusinessPartnerID
+          in: path
+          required: true
+          description: Business Partner ID
+          type: string
+        - name: BusinessPartner
+          in: body
+          description: New property values
+          schema:
+            title: Modified BusinessPartner
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner-update'
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+    delete:
+      summary: Delete entity from BusinessPartnerSet
+      tags:
+        - BusinessPartnerSet
+      parameters:
+        - name: BusinessPartnerID
+          in: path
+          required: true
+          description: Business Partner ID
+          type: string
+        - name: If-Match
+          in: header
+          description: ETag
+          type: string
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+  '/BusinessPartnerSet(''{BusinessPartnerID}'')/ToSalesOrders':
+    get:
+      summary: Get related SalesOrderSet
+      tags:
+        - BusinessPartnerSet
+        - SalesOrderSet
+      parameters:
+        - name: BusinessPartnerID
+          in: path
+          required: true
+          description: Business Partner ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - SalesOrderID desc
+              - CustomerID
+              - CustomerID desc
+              - CustomerName
+              - CustomerName desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - GrossAmount
+              - GrossAmount desc
+              - NetAmount
+              - NetAmount desc
+              - TaxAmount
+              - TaxAmount desc
+              - LifecycleStatus
+              - LifecycleStatus desc
+              - BillingStatus
+              - BillingStatus desc
+              - DeliveryStatus
+              - DeliveryStatus desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - Note
+              - NoteLanguage
+              - CustomerID
+              - CustomerName
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - LifecycleStatus
+              - LifecycleStatusDescription
+              - BillingStatus
+              - BillingStatusDescription
+              - DeliveryStatus
+              - DeliveryStatusDescription
+              - CreatedAt
+              - ChangedAt
+              - ToBusinessPartner
+              - ToLineItems
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+              - ToLineItems
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of SalesOrder
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+  '/BusinessPartnerSet(''{BusinessPartnerID}'')/ToContacts':
+    get:
+      summary: Get related ContactSet
+      tags:
+        - BusinessPartnerSet
+        - ContactSet
+      parameters:
+        - name: BusinessPartnerID
+          in: path
+          required: true
+          description: Business Partner ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - Address desc
+              - ContactGuid
+              - ContactGuid desc
+              - BusinessPartnerID
+              - BusinessPartnerID desc
+              - Title
+              - Title desc
+              - FirstName
+              - FirstName desc
+              - MiddleName
+              - MiddleName desc
+              - LastName
+              - LastName desc
+              - Nickname
+              - Nickname desc
+              - Initials
+              - Initials desc
+              - Sex
+              - Sex desc
+              - PhoneNumber
+              - PhoneNumber desc
+              - FaxNumber
+              - FaxNumber desc
+              - EmailAddress
+              - EmailAddress desc
+              - Language
+              - Language desc
+              - DateOfBirth
+              - DateOfBirth desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - ContactGuid
+              - BusinessPartnerID
+              - Title
+              - FirstName
+              - MiddleName
+              - LastName
+              - Nickname
+              - Initials
+              - Sex
+              - PhoneNumber
+              - FaxNumber
+              - EmailAddress
+              - Language
+              - DateOfBirth
+              - ToBusinessPartner
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of Contact
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.Contact'
+        default:
+          $ref: '#/responses/error'
+  '/BusinessPartnerSet(''{BusinessPartnerID}'')/ToProducts':
+    get:
+      summary: Get related ProductSet
+      tags:
+        - BusinessPartnerSet
+        - ProductSet
+      parameters:
+        - name: BusinessPartnerID
+          in: path
+          required: true
+          description: Business Partner ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - ProductID desc
+              - TypeCode
+              - TypeCode desc
+              - Category
+              - Category desc
+              - SupplierID
+              - SupplierID desc
+              - SupplierName
+              - SupplierName desc
+              - TaxTarifCode
+              - TaxTarifCode desc
+              - MeasureUnit
+              - MeasureUnit desc
+              - WeightMeasure
+              - WeightMeasure desc
+              - WeightUnit
+              - WeightUnit desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - Price
+              - Price desc
+              - Width
+              - Width desc
+              - Depth
+              - Depth desc
+              - Height
+              - Height desc
+              - DimUnit
+              - DimUnit desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - TypeCode
+              - Category
+              - Name
+              - NameLanguage
+              - Description
+              - DescriptionLanguage
+              - SupplierID
+              - SupplierName
+              - TaxTarifCode
+              - MeasureUnit
+              - WeightMeasure
+              - WeightUnit
+              - CurrencyCode
+              - Price
+              - Width
+              - Depth
+              - Height
+              - DimUnit
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrderLineItems
+              - ToSupplier
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrderLineItems
+              - ToSupplier
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of Product
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+        default:
+          $ref: '#/responses/error'
+  /ProductSet:
+    get:
+      summary: Get entities from ProductSet
+      tags:
+        - ProductSet
+      parameters:
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - ProductID desc
+              - TypeCode
+              - TypeCode desc
+              - Category
+              - Category desc
+              - SupplierID
+              - SupplierID desc
+              - SupplierName
+              - SupplierName desc
+              - TaxTarifCode
+              - TaxTarifCode desc
+              - MeasureUnit
+              - MeasureUnit desc
+              - WeightMeasure
+              - WeightMeasure desc
+              - WeightUnit
+              - WeightUnit desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - Price
+              - Price desc
+              - Width
+              - Width desc
+              - Depth
+              - Depth desc
+              - Height
+              - Height desc
+              - DimUnit
+              - DimUnit desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - TypeCode
+              - Category
+              - Name
+              - NameLanguage
+              - Description
+              - DescriptionLanguage
+              - SupplierID
+              - SupplierName
+              - TaxTarifCode
+              - MeasureUnit
+              - WeightMeasure
+              - WeightUnit
+              - CurrencyCode
+              - Price
+              - Width
+              - Depth
+              - Height
+              - DimUnit
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrderLineItems
+              - ToSupplier
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrderLineItems
+              - ToSupplier
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of Product
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+        default:
+          $ref: '#/responses/error'
+    post:
+      summary: Add new entity to ProductSet
+      tags:
+        - ProductSet
+      parameters:
+        - name: Product
+          in: body
+          description: New entity
+          schema:
+            $ref: '#/definitions/GWSAMPLE_BASIC.Product-create'
+      responses:
+        '201':
+          description: Created entity
+          schema:
+            title: Product
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+        default:
+          $ref: '#/responses/error'
+  '/ProductSet(''{ProductID}'')':
+    get:
+      summary: Get entity from ProductSet by key
+      tags:
+        - ProductSet
+      parameters:
+        - name: ProductID
+          in: path
+          required: true
+          description: Product ID
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - TypeCode
+              - Category
+              - Name
+              - NameLanguage
+              - Description
+              - DescriptionLanguage
+              - SupplierID
+              - SupplierName
+              - TaxTarifCode
+              - MeasureUnit
+              - WeightMeasure
+              - WeightUnit
+              - CurrencyCode
+              - Price
+              - Width
+              - Depth
+              - Height
+              - DimUnit
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrderLineItems
+              - ToSupplier
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrderLineItems
+              - ToSupplier
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: Product
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+        default:
+          $ref: '#/responses/error'
+    patch:
+      summary: Update entity in ProductSet
+      tags:
+        - ProductSet
+      parameters:
+        - name: ProductID
+          in: path
+          required: true
+          description: Product ID
+          type: string
+        - name: Product
+          in: body
+          description: New property values
+          schema:
+            title: Modified Product
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.Product-update'
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+    delete:
+      summary: Delete entity from ProductSet
+      tags:
+        - ProductSet
+      parameters:
+        - name: ProductID
+          in: path
+          required: true
+          description: Product ID
+          type: string
+        - name: If-Match
+          in: header
+          description: ETag
+          type: string
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+  '/ProductSet(''{ProductID}'')/ToSalesOrderLineItems':
+    get:
+      summary: Get related SalesOrderLineItemSet
+      tags:
+        - ProductSet
+        - SalesOrderLineItemSet
+      parameters:
+        - name: ProductID
+          in: path
+          required: true
+          description: Product ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - SalesOrderID desc
+              - ItemPosition
+              - ItemPosition desc
+              - ProductID
+              - ProductID desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - GrossAmount
+              - GrossAmount desc
+              - NetAmount
+              - NetAmount desc
+              - TaxAmount
+              - TaxAmount desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - ItemPosition
+              - ProductID
+              - Note
+              - NoteLanguage
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - DeliveryDate
+              - Quantity
+              - QuantityUnit
+              - ToHeader
+              - ToProduct
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToHeader
+              - ToProduct
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of SalesOrderLineItem
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+        default:
+          $ref: '#/responses/error'
+  '/ProductSet(''{ProductID}'')/ToSupplier':
+    get:
+      summary: Get related BusinessPartnerSet
+      tags:
+        - ProductSet
+        - BusinessPartnerSet
+      parameters:
+        - name: ProductID
+          in: path
+          required: true
+          description: Product ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - Address desc
+              - BusinessPartnerID
+              - BusinessPartnerID desc
+              - CompanyName
+              - CompanyName desc
+              - EmailAddress
+              - EmailAddress desc
+              - PhoneNumber
+              - PhoneNumber desc
+              - FaxNumber
+              - FaxNumber desc
+              - LegalForm
+              - LegalForm desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - BusinessPartnerRole
+              - BusinessPartnerRole desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - BusinessPartnerID
+              - CompanyName
+              - WebAddress
+              - EmailAddress
+              - PhoneNumber
+              - FaxNumber
+              - LegalForm
+              - CurrencyCode
+              - BusinessPartnerRole
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of BusinessPartner
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+        default:
+          $ref: '#/responses/error'
+  /SalesOrderSet:
+    get:
+      summary: Get entities from SalesOrderSet
+      tags:
+        - SalesOrderSet
+      parameters:
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - SalesOrderID desc
+              - CustomerID
+              - CustomerID desc
+              - CustomerName
+              - CustomerName desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - GrossAmount
+              - GrossAmount desc
+              - NetAmount
+              - NetAmount desc
+              - TaxAmount
+              - TaxAmount desc
+              - LifecycleStatus
+              - LifecycleStatus desc
+              - BillingStatus
+              - BillingStatus desc
+              - DeliveryStatus
+              - DeliveryStatus desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - Note
+              - NoteLanguage
+              - CustomerID
+              - CustomerName
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - LifecycleStatus
+              - LifecycleStatusDescription
+              - BillingStatus
+              - BillingStatusDescription
+              - DeliveryStatus
+              - DeliveryStatusDescription
+              - CreatedAt
+              - ChangedAt
+              - ToBusinessPartner
+              - ToLineItems
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+              - ToLineItems
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of SalesOrder
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+    post:
+      summary: Add new entity to SalesOrderSet
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrder
+          in: body
+          description: New entity
+          schema:
+            $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder-create'
+      responses:
+        '201':
+          description: Created entity
+          schema:
+            title: SalesOrder
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+  '/SalesOrderSet(''{SalesOrderID}'')':
+    get:
+      summary: Get entity from SalesOrderSet by key
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - Note
+              - NoteLanguage
+              - CustomerID
+              - CustomerName
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - LifecycleStatus
+              - LifecycleStatusDescription
+              - BillingStatus
+              - BillingStatusDescription
+              - DeliveryStatus
+              - DeliveryStatusDescription
+              - CreatedAt
+              - ChangedAt
+              - ToBusinessPartner
+              - ToLineItems
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+              - ToLineItems
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: SalesOrder
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+    delete:
+      summary: Delete entity from SalesOrderSet
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: If-Match
+          in: header
+          description: ETag
+          type: string
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+  '/SalesOrderSet(''{SalesOrderID}'')/ToBusinessPartner':
+    get:
+      summary: Get related BusinessPartnerSet
+      tags:
+        - SalesOrderSet
+        - BusinessPartnerSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - Address desc
+              - BusinessPartnerID
+              - BusinessPartnerID desc
+              - CompanyName
+              - CompanyName desc
+              - EmailAddress
+              - EmailAddress desc
+              - PhoneNumber
+              - PhoneNumber desc
+              - FaxNumber
+              - FaxNumber desc
+              - LegalForm
+              - LegalForm desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - BusinessPartnerRole
+              - BusinessPartnerRole desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - BusinessPartnerID
+              - CompanyName
+              - WebAddress
+              - EmailAddress
+              - PhoneNumber
+              - FaxNumber
+              - LegalForm
+              - CurrencyCode
+              - BusinessPartnerRole
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of BusinessPartner
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+        default:
+          $ref: '#/responses/error'
+  '/SalesOrderSet(''{SalesOrderID}'')/ToLineItems':
+    get:
+      summary: Get related SalesOrderLineItemSet
+      tags:
+        - SalesOrderSet
+        - SalesOrderLineItemSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - SalesOrderID desc
+              - ItemPosition
+              - ItemPosition desc
+              - ProductID
+              - ProductID desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - GrossAmount
+              - GrossAmount desc
+              - NetAmount
+              - NetAmount desc
+              - TaxAmount
+              - TaxAmount desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - ItemPosition
+              - ProductID
+              - Note
+              - NoteLanguage
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - DeliveryDate
+              - Quantity
+              - QuantityUnit
+              - ToHeader
+              - ToProduct
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToHeader
+              - ToProduct
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of SalesOrderLineItem
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+        default:
+          $ref: '#/responses/error'
+  /SalesOrderLineItemSet:
+    get:
+      summary: Get entities from SalesOrderLineItemSet
+      tags:
+        - SalesOrderLineItemSet
+      parameters:
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - SalesOrderID desc
+              - ItemPosition
+              - ItemPosition desc
+              - ProductID
+              - ProductID desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - GrossAmount
+              - GrossAmount desc
+              - NetAmount
+              - NetAmount desc
+              - TaxAmount
+              - TaxAmount desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - ItemPosition
+              - ProductID
+              - Note
+              - NoteLanguage
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - DeliveryDate
+              - Quantity
+              - QuantityUnit
+              - ToHeader
+              - ToProduct
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToHeader
+              - ToProduct
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of SalesOrderLineItem
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+        default:
+          $ref: '#/responses/error'
+    post:
+      summary: Add new entity to SalesOrderLineItemSet
+      tags:
+        - SalesOrderLineItemSet
+      parameters:
+        - name: SalesOrderLineItem
+          in: body
+          description: New entity
+          schema:
+            $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem-create'
+      responses:
+        '201':
+          description: Created entity
+          schema:
+            title: SalesOrderLineItem
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+        default:
+          $ref: '#/responses/error'
+  '/SalesOrderLineItemSet(SalesOrderID=''{SalesOrderID}'',ItemPosition=''{ItemPosition}'')':
+    get:
+      summary: Get entity from SalesOrderLineItemSet by key
+      tags:
+        - SalesOrderLineItemSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: ItemPosition
+          in: path
+          required: true
+          description: Item Position
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - ItemPosition
+              - ProductID
+              - Note
+              - NoteLanguage
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - DeliveryDate
+              - Quantity
+              - QuantityUnit
+              - ToHeader
+              - ToProduct
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToHeader
+              - ToProduct
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: SalesOrderLineItem
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+        default:
+          $ref: '#/responses/error'
+    patch:
+      summary: Update entity in SalesOrderLineItemSet
+      tags:
+        - SalesOrderLineItemSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: ItemPosition
+          in: path
+          required: true
+          description: Item Position
+          type: string
+        - name: SalesOrderLineItem
+          in: body
+          description: New property values
+          schema:
+            title: Modified SalesOrderLineItem
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem-update'
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+    delete:
+      summary: Delete entity from SalesOrderLineItemSet
+      tags:
+        - SalesOrderLineItemSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: ItemPosition
+          in: path
+          required: true
+          description: Item Position
+          type: string
+        - name: If-Match
+          in: header
+          description: ETag
+          type: string
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+  '/SalesOrderLineItemSet(SalesOrderID=''{SalesOrderID}'',ItemPosition=''{ItemPosition}'')/ToHeader':
+    get:
+      summary: Get related SalesOrderSet
+      tags:
+        - SalesOrderLineItemSet
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: ItemPosition
+          in: path
+          required: true
+          description: Item Position
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - SalesOrderID desc
+              - CustomerID
+              - CustomerID desc
+              - CustomerName
+              - CustomerName desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - GrossAmount
+              - GrossAmount desc
+              - NetAmount
+              - NetAmount desc
+              - TaxAmount
+              - TaxAmount desc
+              - LifecycleStatus
+              - LifecycleStatus desc
+              - BillingStatus
+              - BillingStatus desc
+              - DeliveryStatus
+              - DeliveryStatus desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - SalesOrderID
+              - Note
+              - NoteLanguage
+              - CustomerID
+              - CustomerName
+              - CurrencyCode
+              - GrossAmount
+              - NetAmount
+              - TaxAmount
+              - LifecycleStatus
+              - LifecycleStatusDescription
+              - BillingStatus
+              - BillingStatusDescription
+              - DeliveryStatus
+              - DeliveryStatusDescription
+              - CreatedAt
+              - ChangedAt
+              - ToBusinessPartner
+              - ToLineItems
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+              - ToLineItems
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of SalesOrder
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+  '/SalesOrderLineItemSet(SalesOrderID=''{SalesOrderID}'',ItemPosition=''{ItemPosition}'')/ToProduct':
+    get:
+      summary: Get related ProductSet
+      tags:
+        - SalesOrderLineItemSet
+        - ProductSet
+      parameters:
+        - name: SalesOrderID
+          in: path
+          required: true
+          description: Sales Order ID
+          type: string
+        - name: ItemPosition
+          in: path
+          required: true
+          description: Item Position
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - ProductID desc
+              - TypeCode
+              - TypeCode desc
+              - Category
+              - Category desc
+              - SupplierID
+              - SupplierID desc
+              - SupplierName
+              - SupplierName desc
+              - TaxTarifCode
+              - TaxTarifCode desc
+              - MeasureUnit
+              - MeasureUnit desc
+              - WeightMeasure
+              - WeightMeasure desc
+              - WeightUnit
+              - WeightUnit desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - Price
+              - Price desc
+              - Width
+              - Width desc
+              - Depth
+              - Depth desc
+              - Height
+              - Height desc
+              - DimUnit
+              - DimUnit desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ProductID
+              - TypeCode
+              - Category
+              - Name
+              - NameLanguage
+              - Description
+              - DescriptionLanguage
+              - SupplierID
+              - SupplierName
+              - TaxTarifCode
+              - MeasureUnit
+              - WeightMeasure
+              - WeightUnit
+              - CurrencyCode
+              - Price
+              - Width
+              - Depth
+              - Height
+              - DimUnit
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrderLineItems
+              - ToSupplier
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrderLineItems
+              - ToSupplier
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of Product
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+        default:
+          $ref: '#/responses/error'
+  /ContactSet:
+    get:
+      summary: Get entities from ContactSet
+      tags:
+        - ContactSet
+      parameters:
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - Address desc
+              - ContactGuid
+              - ContactGuid desc
+              - BusinessPartnerID
+              - BusinessPartnerID desc
+              - Title
+              - Title desc
+              - FirstName
+              - FirstName desc
+              - MiddleName
+              - MiddleName desc
+              - LastName
+              - LastName desc
+              - Nickname
+              - Nickname desc
+              - Initials
+              - Initials desc
+              - Sex
+              - Sex desc
+              - PhoneNumber
+              - PhoneNumber desc
+              - FaxNumber
+              - FaxNumber desc
+              - EmailAddress
+              - EmailAddress desc
+              - Language
+              - Language desc
+              - DateOfBirth
+              - DateOfBirth desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - ContactGuid
+              - BusinessPartnerID
+              - Title
+              - FirstName
+              - MiddleName
+              - LastName
+              - Nickname
+              - Initials
+              - Sex
+              - PhoneNumber
+              - FaxNumber
+              - EmailAddress
+              - Language
+              - DateOfBirth
+              - ToBusinessPartner
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of Contact
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.Contact'
+        default:
+          $ref: '#/responses/error'
+    post:
+      summary: Add new entity to ContactSet
+      tags:
+        - ContactSet
+      parameters:
+        - name: Contact
+          in: body
+          description: New entity
+          schema:
+            $ref: '#/definitions/GWSAMPLE_BASIC.Contact-create'
+      responses:
+        '201':
+          description: Created entity
+          schema:
+            title: Contact
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.Contact'
+        default:
+          $ref: '#/responses/error'
+  '/ContactSet({ContactGuid})':
+    get:
+      summary: Get entity from ContactSet by key
+      tags:
+        - ContactSet
+      parameters:
+        - name: ContactGuid
+          in: path
+          required: true
+          description: Contact GUID
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - ContactGuid
+              - BusinessPartnerID
+              - Title
+              - FirstName
+              - MiddleName
+              - LastName
+              - Nickname
+              - Initials
+              - Sex
+              - PhoneNumber
+              - FaxNumber
+              - EmailAddress
+              - Language
+              - DateOfBirth
+              - ToBusinessPartner
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToBusinessPartner
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: Contact
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.Contact'
+        default:
+          $ref: '#/responses/error'
+    patch:
+      summary: Update entity in ContactSet
+      tags:
+        - ContactSet
+      parameters:
+        - name: ContactGuid
+          in: path
+          required: true
+          description: Contact GUID
+          type: string
+        - name: Contact
+          in: body
+          description: New property values
+          schema:
+            title: Modified Contact
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.Contact-update'
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+    delete:
+      summary: Delete entity from ContactSet
+      tags:
+        - ContactSet
+      parameters:
+        - name: ContactGuid
+          in: path
+          required: true
+          description: Contact GUID
+          type: string
+        - name: If-Match
+          in: header
+          description: ETag
+          type: string
+      responses:
+        '204':
+          description: Success
+        default:
+          $ref: '#/responses/error'
+  '/ContactSet({ContactGuid})/ToBusinessPartner':
+    get:
+      summary: Get related BusinessPartnerSet
+      tags:
+        - ContactSet
+        - BusinessPartnerSet
+      parameters:
+        - name: ContactGuid
+          in: path
+          required: true
+          description: Contact GUID
+          type: string
+        - $ref: '#/parameters/top'
+        - $ref: '#/parameters/skip'
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $orderby
+          in: query
+          description: >-
+            Order items by property values, see [OData
+            Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - Address desc
+              - BusinessPartnerID
+              - BusinessPartnerID desc
+              - CompanyName
+              - CompanyName desc
+              - EmailAddress
+              - EmailAddress desc
+              - PhoneNumber
+              - PhoneNumber desc
+              - FaxNumber
+              - FaxNumber desc
+              - LegalForm
+              - LegalForm desc
+              - CurrencyCode
+              - CurrencyCode desc
+              - BusinessPartnerRole
+              - BusinessPartnerRole desc
+              - CreatedAt
+              - CreatedAt desc
+              - ChangedAt
+              - ChangedAt desc
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Address
+              - BusinessPartnerID
+              - CompanyName
+              - WebAddress
+              - EmailAddress
+              - PhoneNumber
+              - FaxNumber
+              - LegalForm
+              - CurrencyCode
+              - BusinessPartnerRole
+              - CreatedAt
+              - ChangedAt
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+        - name: $expand
+          in: query
+          description: >-
+            Expand related entities, see [OData
+            Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - ToSalesOrders
+              - ToContacts
+              - ToProducts
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of BusinessPartner
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+        default:
+          $ref: '#/responses/error'
+  /VH_SexSet:
+    get:
+      summary: Get entities from VH_SexSet
+      tags:
+        - VH_SexSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Sex
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_Sex
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_Sex'
+        default:
+          $ref: '#/responses/error'
+  '/VH_SexSet(''{Sex}'')':
+    get:
+      summary: Get entity from VH_SexSet by key
+      tags:
+        - VH_SexSet
+      parameters:
+        - name: Sex
+          in: path
+          required: true
+          description: Sex
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Sex
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_Sex
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_Sex'
+        default:
+          $ref: '#/responses/error'
+  /VH_CountrySet:
+    get:
+      summary: Get entities from VH_CountrySet
+      tags:
+        - VH_CountrySet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Land1
+              - Landx
+              - Natio
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_Country
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_Country'
+        default:
+          $ref: '#/responses/error'
+  '/VH_CountrySet(''{Land1}'')':
+    get:
+      summary: Get entity from VH_CountrySet by key
+      tags:
+        - VH_CountrySet
+      parameters:
+        - name: Land1
+          in: path
+          required: true
+          description: Country
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Land1
+              - Landx
+              - Natio
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_Country
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_Country'
+        default:
+          $ref: '#/responses/error'
+  /VH_AddressTypeSet:
+    get:
+      summary: Get entities from VH_AddressTypeSet
+      tags:
+        - VH_AddressTypeSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - AddressType
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_AddressType
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_AddressType'
+        default:
+          $ref: '#/responses/error'
+  '/VH_AddressTypeSet(''{AddressType}'')':
+    get:
+      summary: Get entity from VH_AddressTypeSet by key
+      tags:
+        - VH_AddressTypeSet
+      parameters:
+        - name: AddressType
+          in: path
+          required: true
+          description: Address Type
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - AddressType
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_AddressType
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_AddressType'
+        default:
+          $ref: '#/responses/error'
+  /VH_CategorySet:
+    get:
+      summary: Get entities from VH_CategorySet
+      tags:
+        - VH_CategorySet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Category
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_Category
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_Category'
+        default:
+          $ref: '#/responses/error'
+  '/VH_CategorySet(''{Category}'')':
+    get:
+      summary: Get entity from VH_CategorySet by key
+      tags:
+        - VH_CategorySet
+      parameters:
+        - name: Category
+          in: path
+          required: true
+          description: Prod. Cat.
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Category
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_Category
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_Category'
+        default:
+          $ref: '#/responses/error'
+  /VH_CurrencySet:
+    get:
+      summary: Get entities from VH_CurrencySet
+      tags:
+        - VH_CurrencySet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Waers
+              - Ltext
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_Currency
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_Currency'
+        default:
+          $ref: '#/responses/error'
+  '/VH_CurrencySet(''{Waers}'')':
+    get:
+      summary: Get entity from VH_CurrencySet by key
+      tags:
+        - VH_CurrencySet
+      parameters:
+        - name: Waers
+          in: path
+          required: true
+          description: Currency
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Waers
+              - Ltext
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_Currency
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_Currency'
+        default:
+          $ref: '#/responses/error'
+  /VH_UnitQuantitySet:
+    get:
+      summary: Get entities from VH_UnitQuantitySet
+      tags:
+        - VH_UnitQuantitySet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Msehi
+              - Msehl
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_UnitQuantity
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_UnitQuantity'
+        default:
+          $ref: '#/responses/error'
+  '/VH_UnitQuantitySet(''{Msehi}'')':
+    get:
+      summary: Get entity from VH_UnitQuantitySet by key
+      tags:
+        - VH_UnitQuantitySet
+      parameters:
+        - name: Msehi
+          in: path
+          required: true
+          description: Int. meas. unit
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Msehi
+              - Msehl
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_UnitQuantity
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_UnitQuantity'
+        default:
+          $ref: '#/responses/error'
+  /VH_UnitWeightSet:
+    get:
+      summary: Get entities from VH_UnitWeightSet
+      tags:
+        - VH_UnitWeightSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Msehi
+              - Msehl
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_UnitWeight
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_UnitWeight'
+        default:
+          $ref: '#/responses/error'
+  '/VH_UnitWeightSet(''{Msehi}'')':
+    get:
+      summary: Get entity from VH_UnitWeightSet by key
+      tags:
+        - VH_UnitWeightSet
+      parameters:
+        - name: Msehi
+          in: path
+          required: true
+          description: Int. meas. unit
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Msehi
+              - Msehl
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_UnitWeight
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_UnitWeight'
+        default:
+          $ref: '#/responses/error'
+  /VH_UnitLengthSet:
+    get:
+      summary: Get entities from VH_UnitLengthSet
+      tags:
+        - VH_UnitLengthSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Msehi
+              - Msehl
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_UnitLength
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_UnitLength'
+        default:
+          $ref: '#/responses/error'
+  '/VH_UnitLengthSet(''{Msehi}'')':
+    get:
+      summary: Get entity from VH_UnitLengthSet by key
+      tags:
+        - VH_UnitLengthSet
+      parameters:
+        - name: Msehi
+          in: path
+          required: true
+          description: Int. meas. unit
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Msehi
+              - Msehl
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_UnitLength
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_UnitLength'
+        default:
+          $ref: '#/responses/error'
+  /VH_ProductTypeCodeSet:
+    get:
+      summary: Get entities from VH_ProductTypeCodeSet
+      tags:
+        - VH_ProductTypeCodeSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - TypeCode
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_ProductTypeCode
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_ProductTypeCode'
+        default:
+          $ref: '#/responses/error'
+  '/VH_ProductTypeCodeSet(''{TypeCode}'')':
+    get:
+      summary: Get entity from VH_ProductTypeCodeSet by key
+      tags:
+        - VH_ProductTypeCodeSet
+      parameters:
+        - name: TypeCode
+          in: path
+          required: true
+          description: Prod. Type Code
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - TypeCode
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_ProductTypeCode
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_ProductTypeCode'
+        default:
+          $ref: '#/responses/error'
+  /VH_BPRoleSet:
+    get:
+      summary: Get entities from VH_BPRoleSet
+      tags:
+        - VH_BPRoleSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - BpRole
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_BPRole
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_BPRole'
+        default:
+          $ref: '#/responses/error'
+  '/VH_BPRoleSet(''{BpRole}'')':
+    get:
+      summary: Get entity from VH_BPRoleSet by key
+      tags:
+        - VH_BPRoleSet
+      parameters:
+        - name: BpRole
+          in: path
+          required: true
+          description: Bus. Part. Role
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - BpRole
+              - Shorttext
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_BPRole
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_BPRole'
+        default:
+          $ref: '#/responses/error'
+  /VH_LanguageSet:
+    get:
+      summary: Get entities from VH_LanguageSet
+      tags:
+        - VH_LanguageSet
+      parameters:
+        - name: $filter
+          in: query
+          description: >-
+            Filter items by property values, see [OData
+            Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - $ref: '#/parameters/count'
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Spras
+              - Sptxt
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            title: Wrapper
+            type: object
+            properties:
+              d:
+                title: Collection of VH_Language
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GWSAMPLE_BASIC.VH_Language'
+        default:
+          $ref: '#/responses/error'
+  '/VH_LanguageSet(''{Spras}'')':
+    get:
+      summary: Get entity from VH_LanguageSet by key
+      tags:
+        - VH_LanguageSet
+      parameters:
+        - name: Spras
+          in: path
+          required: true
+          description: Language
+          type: string
+        - name: $select
+          in: query
+          description: >-
+            Select properties to be returned, see [OData
+            Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - Spras
+              - Sptxt
+      responses:
+        '200':
+          description: Retrieved entity
+          schema:
+            title: VH_Language
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.VH_Language'
+        default:
+          $ref: '#/responses/error'
+  /RegenerateAllData:
+    post:
+      summary: Invoke action RegenerateAllData
+      tags:
+        - Service Operations
+      parameters:
+        - name: NoOfSalesOrders
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          schema:
+            title: CT_String
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.CT_String'
+        default:
+          $ref: '#/responses/error'
+  /SalesOrder_Confirm:
+    post:
+      summary: Invoke action SalesOrder_Confirm
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: query
+          required: true
+          description: Value needs to be enclosed in single quotes
+          type: string
+          maxLength: 12
+          pattern: '^''[^'']*(''''[^'']*)*''$'
+      responses:
+        '200':
+          description: Success
+          schema:
+            title: SalesOrder
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+  /SalesOrder_Cancel:
+    post:
+      summary: Invoke action SalesOrder_Cancel
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: query
+          required: true
+          description: Value needs to be enclosed in single quotes
+          type: string
+          maxLength: 12
+          pattern: '^''[^'']*(''''[^'']*)*''$'
+      responses:
+        '200':
+          description: Success
+          schema:
+            title: SalesOrder
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+  /SalesOrder_InvoiceCreated:
+    post:
+      summary: Invoke action SalesOrder_InvoiceCreated
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: query
+          required: true
+          description: Value needs to be enclosed in single quotes
+          type: string
+          maxLength: 12
+          pattern: '^''[^'']*(''''[^'']*)*''$'
+      responses:
+        '200':
+          description: Success
+          schema:
+            title: SalesOrder
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+  /SalesOrder_GoodsIssueCreated:
+    post:
+      summary: Invoke action SalesOrder_GoodsIssueCreated
+      tags:
+        - SalesOrderSet
+      parameters:
+        - name: SalesOrderID
+          in: query
+          required: true
+          description: Value needs to be enclosed in single quotes
+          type: string
+          maxLength: 12
+          pattern: '^''[^'']*(''''[^'']*)*''$'
+      responses:
+        '200':
+          description: Success
+          schema:
+            title: SalesOrder
+            type: object
+            properties:
+              d:
+                $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+        default:
+          $ref: '#/responses/error'
+definitions:
+  GWSAMPLE_BASIC.BusinessPartner:
+    type: object
+    properties:
+      Address:
+        $ref: '#/definitions/GWSAMPLE_BASIC.CT_Address'
+      BusinessPartnerID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      CompanyName:
+        type: string
+        maxLength: 80
+        title: Company
+        description: Company
+      WebAddress:
+        type: string
+        example: string
+        title: Web Address
+        description: Web Address
+      EmailAddress:
+        type: string
+        maxLength: 255
+        title: E-Mail
+        description: E-Mail
+      PhoneNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Phone No.
+        description: Phone No.
+      FaxNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Fax Number
+        description: Fax Number
+      LegalForm:
+        type: string
+        maxLength: 10
+        example: string
+        title: Legal Form
+        description: Legal Form
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        title: Currency Code
+        description: Currency Code
+      BusinessPartnerRole:
+        type: string
+        maxLength: 3
+        title: Bus. Part. Role
+        description: Bus. Part. Role
+      CreatedAt:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      ChangedAt:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      ToSalesOrders:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+      ToContacts:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.Contact'
+      ToProducts:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+    title: BusinessPartner
+  GWSAMPLE_BASIC.BusinessPartner-create:
+    type: object
+    properties:
+      Address:
+        $ref: '#/definitions/GWSAMPLE_BASIC.CT_Address-create'
+      CompanyName:
+        type: string
+        maxLength: 80
+        title: Company
+        description: Company
+      WebAddress:
+        type: string
+        example: string
+        title: Web Address
+        description: Web Address
+      EmailAddress:
+        type: string
+        maxLength: 255
+        title: E-Mail
+        description: E-Mail
+      PhoneNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Phone No.
+        description: Phone No.
+      FaxNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Fax Number
+        description: Fax Number
+      LegalForm:
+        type: string
+        maxLength: 10
+        example: string
+        title: Legal Form
+        description: Legal Form
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        title: Currency Code
+        description: Currency Code
+      BusinessPartnerRole:
+        type: string
+        maxLength: 3
+        title: Bus. Part. Role
+        description: Bus. Part. Role
+      ToSalesOrders:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder-create'
+      ToContacts:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.Contact-create'
+      ToProducts:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.Product-create'
+    title: BusinessPartner (for create)
+  GWSAMPLE_BASIC.BusinessPartner-update:
+    type: object
+    properties:
+      Address:
+        $ref: '#/definitions/GWSAMPLE_BASIC.CT_Address-update'
+      CompanyName:
+        type: string
+        maxLength: 80
+        title: Company
+        description: Company
+      WebAddress:
+        type: string
+        example: string
+        title: Web Address
+        description: Web Address
+      EmailAddress:
+        type: string
+        maxLength: 255
+        title: E-Mail
+        description: E-Mail
+      PhoneNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Phone No.
+        description: Phone No.
+      FaxNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Fax Number
+        description: Fax Number
+      LegalForm:
+        type: string
+        maxLength: 10
+        example: string
+        title: Legal Form
+        description: Legal Form
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        title: Currency Code
+        description: Currency Code
+      BusinessPartnerRole:
+        type: string
+        maxLength: 3
+        title: Bus. Part. Role
+        description: Bus. Part. Role
+    title: BusinessPartner (for update)
+  GWSAMPLE_BASIC.Product:
+    type: object
+    properties:
+      ProductID:
+        type: string
+        maxLength: 10
+        title: Product ID
+        description: Product ID
+      TypeCode:
+        type: string
+        maxLength: 2
+        title: Type Code
+        description: Type Code
+      Category:
+        type: string
+        maxLength: 40
+        title: Category
+        description: Category
+      Name:
+        type: string
+        maxLength: 255
+        title: Product Name
+        description: Product Name
+      NameLanguage:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language
+        description: Language
+      Description:
+        type: string
+        maxLength: 255
+        example: string
+        title: Prod.Descrip.
+        description: Prod.Descrip.
+      DescriptionLanguage:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language
+        description: Language
+      SupplierID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      SupplierName:
+        type: string
+        maxLength: 80
+        example: string
+        title: Company
+        description: Company
+      TaxTarifCode:
+        type: integer
+        format: uint8
+        title: Tax Tariff Code
+        description: Tax Tariff Code
+      MeasureUnit:
+        type: string
+        maxLength: 3
+        title: Unit of Measure
+        description: Unit of Measure
+      WeightMeasure:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Weight
+        description: Weight
+      WeightUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Unit of Measure
+        description: Unit of Measure
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        title: Currency Code
+        description: Currency Code
+      Price:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Price
+        description: Price
+      Width:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      Depth:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      Height:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      DimUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Dimension Unit
+        description: Dimension Unit
+      CreatedAt:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      ChangedAt:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      ToSalesOrderLineItems:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+      ToSupplier:
+        $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+    title: Product
+  GWSAMPLE_BASIC.Product-create:
+    type: object
+    properties:
+      ProductID:
+        type: string
+        maxLength: 10
+        title: Product ID
+        description: Product ID
+      TypeCode:
+        type: string
+        maxLength: 2
+        title: Type Code
+        description: Type Code
+      Category:
+        type: string
+        maxLength: 40
+        title: Category
+        description: Category
+      Name:
+        type: string
+        maxLength: 255
+        title: Product Name
+        description: Product Name
+      Description:
+        type: string
+        maxLength: 255
+        example: string
+        title: Prod.Descrip.
+        description: Prod.Descrip.
+      SupplierID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      TaxTarifCode:
+        type: integer
+        format: uint8
+        title: Tax Tariff Code
+        description: Tax Tariff Code
+      MeasureUnit:
+        type: string
+        maxLength: 3
+        title: Unit of Measure
+        description: Unit of Measure
+      WeightMeasure:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Weight
+        description: Weight
+      WeightUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Unit of Measure
+        description: Unit of Measure
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        title: Currency Code
+        description: Currency Code
+      Price:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Price
+        description: Price
+      Width:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      Depth:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      Height:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      DimUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Dimension Unit
+        description: Dimension Unit
+      ToSalesOrderLineItems:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem-create'
+      ToSupplier:
+        $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner-create'
+    required:
+      - ProductID
+    title: Product (for create)
+  GWSAMPLE_BASIC.Product-update:
+    type: object
+    properties:
+      TypeCode:
+        type: string
+        maxLength: 2
+        title: Type Code
+        description: Type Code
+      Category:
+        type: string
+        maxLength: 40
+        title: Category
+        description: Category
+      Name:
+        type: string
+        maxLength: 255
+        title: Product Name
+        description: Product Name
+      Description:
+        type: string
+        maxLength: 255
+        example: string
+        title: Prod.Descrip.
+        description: Prod.Descrip.
+      SupplierID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      TaxTarifCode:
+        type: integer
+        format: uint8
+        title: Tax Tariff Code
+        description: Tax Tariff Code
+      MeasureUnit:
+        type: string
+        maxLength: 3
+        title: Unit of Measure
+        description: Unit of Measure
+      WeightMeasure:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Weight
+        description: Weight
+      WeightUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Unit of Measure
+        description: Unit of Measure
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        title: Currency Code
+        description: Currency Code
+      Price:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Price
+        description: Price
+      Width:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      Depth:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      Height:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Dimensions
+        description: Dimensions
+      DimUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Dimension Unit
+        description: Dimension Unit
+    title: Product (for update)
+  GWSAMPLE_BASIC.SalesOrder:
+    type: object
+    properties:
+      SalesOrderID:
+        type: string
+        maxLength: 10
+        title: Sales Order ID
+        description: Sales Order ID
+      Note:
+        type: string
+        maxLength: 255
+        example: string
+        title: Description
+        description: Description
+      NoteLanguage:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language
+        description: Language
+      CustomerID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      CustomerName:
+        type: string
+        maxLength: 80
+        example: string
+        title: Company
+        description: Company
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        example: string
+        title: Currency Code
+        description: Currency Code
+      GrossAmount:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Gross Amount
+        description: Gross Amount
+      NetAmount:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Net Amount
+        description: Net Amount
+      TaxAmount:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Tax Amount
+        description: Tax Amount
+      LifecycleStatus:
+        type: string
+        maxLength: 1
+        example: string
+        title: Lifecycle Status
+        description: Lifecycle Status
+      LifecycleStatusDescription:
+        type: string
+        maxLength: 60
+        example: string
+        title: Lifecycle Descript.
+        description: Lifecycle Descript.
+      BillingStatus:
+        type: string
+        maxLength: 1
+        example: string
+        title: Confirmation Status
+        description: Confirmation Status
+      BillingStatusDescription:
+        type: string
+        maxLength: 60
+        example: string
+        title: Billing Description
+        description: Billing Description
+      DeliveryStatus:
+        type: string
+        maxLength: 1
+        example: string
+        title: Ordering Status
+        description: Ordering Status
+      DeliveryStatusDescription:
+        type: string
+        maxLength: 60
+        example: string
+        title: Delivery Description
+        description: Delivery Description
+      CreatedAt:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      ChangedAt:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      ToBusinessPartner:
+        $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+      ToLineItems:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem'
+    title: SalesOrder
+  GWSAMPLE_BASIC.SalesOrder-create:
+    type: object
+    properties:
+      Note:
+        type: string
+        maxLength: 255
+        example: string
+        title: Description
+        description: Description
+      CustomerID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        example: string
+        title: Currency Code
+        description: Currency Code
+      ToBusinessPartner:
+        $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner-create'
+      ToLineItems:
+        type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrderLineItem-create'
+    title: SalesOrder (for create)
+  GWSAMPLE_BASIC.SalesOrder-update:
+    type: object
+    title: SalesOrder (for update)
+  GWSAMPLE_BASIC.SalesOrderLineItem:
+    type: object
+    properties:
+      SalesOrderID:
+        type: string
+        maxLength: 10
+        title: Sales Order ID
+        description: Sales Order ID
+      ItemPosition:
+        type: string
+        maxLength: 10
+        title: Item Position
+        description: Item Position
+      ProductID:
+        type: string
+        maxLength: 10
+        title: Product ID
+        description: Product ID
+      Note:
+        type: string
+        maxLength: 255
+        example: string
+        title: Description
+        description: Description
+      NoteLanguage:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language
+        description: Language
+      CurrencyCode:
+        type: string
+        maxLength: 5
+        example: string
+        title: Currency Code
+        description: Currency Code
+      GrossAmount:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Gross Amount
+        description: Gross Amount
+      NetAmount:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Net Amount
+        description: Net Amount
+      TaxAmount:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        example: '0'
+        title: Tax Amount
+        description: Tax Amount
+      DeliveryDate:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      Quantity:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Quantity
+        description: Quantity
+      QuantityUnit:
+        type: string
+        maxLength: 3
+        example: string
+        title: Unit of Measure
+        description: Unit of Measure
+      ToHeader:
+        $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder'
+      ToProduct:
+        $ref: '#/definitions/GWSAMPLE_BASIC.Product'
+    title: SalesOrderLineItem
+  GWSAMPLE_BASIC.SalesOrderLineItem-create:
+    type: object
+    properties:
+      SalesOrderID:
+        type: string
+        maxLength: 10
+        title: Sales Order ID
+        description: Sales Order ID
+      ProductID:
+        type: string
+        maxLength: 10
+        title: Product ID
+        description: Product ID
+      Note:
+        type: string
+        maxLength: 255
+        example: string
+        title: Description
+        description: Description
+      DeliveryDate:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      Quantity:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Quantity
+        description: Quantity
+      ToHeader:
+        $ref: '#/definitions/GWSAMPLE_BASIC.SalesOrder-create'
+      ToProduct:
+        $ref: '#/definitions/GWSAMPLE_BASIC.Product-create'
+    required:
+      - SalesOrderID
+    title: SalesOrderLineItem (for create)
+  GWSAMPLE_BASIC.SalesOrderLineItem-update:
+    type: object
+    properties:
+      ProductID:
+        type: string
+        maxLength: 10
+        title: Product ID
+        description: Product ID
+      Note:
+        type: string
+        maxLength: 255
+        example: string
+        title: Description
+        description: Description
+      DeliveryDate:
+        type: string
+        example: /Date(1492098664000)/
+        title: Time Stamp
+        description: Time Stamp
+      Quantity:
+        type: string
+        format: decimal
+        multipleOf: 0.001
+        minimum: -9999999999.999
+        maximum: 9999999999.999
+        example: '0'
+        title: Quantity
+        description: Quantity
+    title: SalesOrderLineItem (for update)
+  GWSAMPLE_BASIC.Contact:
+    type: object
+    properties:
+      Address:
+        $ref: '#/definitions/GWSAMPLE_BASIC.CT_Address'
+      ContactGuid:
+        type: string
+        format: uuid
+        example: 01234567-89ab-cdef-0123-456789abcdef
+        title: Contact GUID
+        description: Contact GUID
+      BusinessPartnerID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      Title:
+        type: string
+        maxLength: 10
+        example: string
+        title: Title
+        description: Title
+      FirstName:
+        type: string
+        maxLength: 40
+        title: First Name
+        description: First Name
+      MiddleName:
+        type: string
+        maxLength: 40
+        example: string
+        title: Middle Name
+        description: Middle Name
+      LastName:
+        type: string
+        maxLength: 40
+        example: string
+        title: Last Name
+        description: Last Name
+      Nickname:
+        type: string
+        maxLength: 40
+        example: string
+        title: Nickname
+        description: Nickname
+      Initials:
+        type: string
+        maxLength: 10
+        example: string
+        title: Initials
+        description: Initials
+      Sex:
+        type: string
+        maxLength: 1
+        title: Gender
+        description: Gender
+      PhoneNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Phone No.
+        description: Phone No.
+      FaxNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Fax Number
+        description: Fax Number
+      EmailAddress:
+        type: string
+        maxLength: 255
+        example: string
+        title: E-Mail
+        description: E-Mail
+      Language:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language Key
+        description: Language Key
+      DateOfBirth:
+        type: string
+        example: /Date(1492098664000)/
+        title: Date of Birth
+        description: Date of Birth
+      ToBusinessPartner:
+        $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner'
+    title: Contact
+  GWSAMPLE_BASIC.Contact-create:
+    type: object
+    properties:
+      Address:
+        $ref: '#/definitions/GWSAMPLE_BASIC.CT_Address-create'
+      BusinessPartnerID:
+        type: string
+        maxLength: 10
+        title: Business Partner ID
+        description: Business Partner ID
+      Title:
+        type: string
+        maxLength: 10
+        example: string
+        title: Title
+        description: Title
+      FirstName:
+        type: string
+        maxLength: 40
+        title: First Name
+        description: First Name
+      MiddleName:
+        type: string
+        maxLength: 40
+        example: string
+        title: Middle Name
+        description: Middle Name
+      LastName:
+        type: string
+        maxLength: 40
+        example: string
+        title: Last Name
+        description: Last Name
+      Nickname:
+        type: string
+        maxLength: 40
+        example: string
+        title: Nickname
+        description: Nickname
+      Initials:
+        type: string
+        maxLength: 10
+        example: string
+        title: Initials
+        description: Initials
+      Sex:
+        type: string
+        maxLength: 1
+        title: Gender
+        description: Gender
+      PhoneNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Phone No.
+        description: Phone No.
+      FaxNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Fax Number
+        description: Fax Number
+      EmailAddress:
+        type: string
+        maxLength: 255
+        example: string
+        title: E-Mail
+        description: E-Mail
+      Language:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language Key
+        description: Language Key
+      DateOfBirth:
+        type: string
+        example: /Date(1492098664000)/
+        title: Date of Birth
+        description: Date of Birth
+      ToBusinessPartner:
+        $ref: '#/definitions/GWSAMPLE_BASIC.BusinessPartner-create'
+    title: Contact (for create)
+  GWSAMPLE_BASIC.Contact-update:
+    type: object
+    properties:
+      Address:
+        $ref: '#/definitions/GWSAMPLE_BASIC.CT_Address-update'
+      Title:
+        type: string
+        maxLength: 10
+        example: string
+        title: Title
+        description: Title
+      FirstName:
+        type: string
+        maxLength: 40
+        title: First Name
+        description: First Name
+      MiddleName:
+        type: string
+        maxLength: 40
+        example: string
+        title: Middle Name
+        description: Middle Name
+      LastName:
+        type: string
+        maxLength: 40
+        example: string
+        title: Last Name
+        description: Last Name
+      Nickname:
+        type: string
+        maxLength: 40
+        example: string
+        title: Nickname
+        description: Nickname
+      Initials:
+        type: string
+        maxLength: 10
+        example: string
+        title: Initials
+        description: Initials
+      Sex:
+        type: string
+        maxLength: 1
+        title: Gender
+        description: Gender
+      PhoneNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Phone No.
+        description: Phone No.
+      FaxNumber:
+        type: string
+        maxLength: 30
+        example: string
+        title: Fax Number
+        description: Fax Number
+      EmailAddress:
+        type: string
+        maxLength: 255
+        example: string
+        title: E-Mail
+        description: E-Mail
+      Language:
+        type: string
+        maxLength: 2
+        example: string
+        title: Language Key
+        description: Language Key
+      DateOfBirth:
+        type: string
+        example: /Date(1492098664000)/
+        title: Date of Birth
+        description: Date of Birth
+    title: Contact (for update)
+  GWSAMPLE_BASIC.VH_Sex:
+    type: object
+    properties:
+      Sex:
+        type: string
+        maxLength: 1
+        title: Sex
+        description: Sex
+      Shorttext:
+        type: string
+        maxLength: 60
+        title: Short Descript.
+        description: Short Descript.
+    title: VH_Sex
+  GWSAMPLE_BASIC.VH_Sex-create:
+    type: object
+    title: VH_Sex (for create)
+  GWSAMPLE_BASIC.VH_Sex-update:
+    type: object
+    title: VH_Sex (for update)
+  GWSAMPLE_BASIC.VH_Country:
+    type: object
+    properties:
+      Land1:
+        type: string
+        maxLength: 3
+        title: Country
+        description: Country
+      Landx:
+        type: string
+        maxLength: 15
+        title: Name
+        description: Name
+      Natio:
+        type: string
+        maxLength: 15
+        title: Nationality
+        description: Nationality
+    title: VH_Country
+  GWSAMPLE_BASIC.VH_Country-create:
+    type: object
+    title: VH_Country (for create)
+  GWSAMPLE_BASIC.VH_Country-update:
+    type: object
+    title: VH_Country (for update)
+  GWSAMPLE_BASIC.VH_AddressType:
+    type: object
+    properties:
+      AddressType:
+        type: string
+        maxLength: 2
+        title: Address Type
+        description: Address Type
+      Shorttext:
+        type: string
+        maxLength: 60
+        title: Short Descript.
+        description: Short Descript.
+    title: VH_AddressType
+  GWSAMPLE_BASIC.VH_AddressType-create:
+    type: object
+    title: VH_AddressType (for create)
+  GWSAMPLE_BASIC.VH_AddressType-update:
+    type: object
+    title: VH_AddressType (for update)
+  GWSAMPLE_BASIC.VH_Category:
+    type: object
+    properties:
+      Category:
+        type: string
+        maxLength: 40
+        title: Prod. Cat.
+        description: Prod. Cat.
+    title: VH_Category
+  GWSAMPLE_BASIC.VH_Category-create:
+    type: object
+    title: VH_Category (for create)
+  GWSAMPLE_BASIC.VH_Category-update:
+    type: object
+    title: VH_Category (for update)
+  GWSAMPLE_BASIC.VH_Currency:
+    type: object
+    properties:
+      Waers:
+        type: string
+        maxLength: 5
+        title: Currency
+        description: Currency
+      Ltext:
+        type: string
+        maxLength: 40
+        title: Long Text
+        description: Long Text
+    title: VH_Currency
+  GWSAMPLE_BASIC.VH_Currency-create:
+    type: object
+    title: VH_Currency (for create)
+  GWSAMPLE_BASIC.VH_Currency-update:
+    type: object
+    title: VH_Currency (for update)
+  GWSAMPLE_BASIC.VH_UnitQuantity:
+    type: object
+    properties:
+      Msehi:
+        type: string
+        maxLength: 3
+        title: Int. meas. unit
+        description: Int. meas. unit
+      Msehl:
+        type: string
+        maxLength: 30
+        title: Unit text
+        description: Unit text
+    title: VH_UnitQuantity
+  GWSAMPLE_BASIC.VH_UnitQuantity-create:
+    type: object
+    title: VH_UnitQuantity (for create)
+  GWSAMPLE_BASIC.VH_UnitQuantity-update:
+    type: object
+    title: VH_UnitQuantity (for update)
+  GWSAMPLE_BASIC.VH_UnitWeight:
+    type: object
+    properties:
+      Msehi:
+        type: string
+        maxLength: 3
+        title: Int. meas. unit
+        description: Int. meas. unit
+      Msehl:
+        type: string
+        maxLength: 30
+        title: Unit text
+        description: Unit text
+    title: VH_UnitWeight
+  GWSAMPLE_BASIC.VH_UnitWeight-create:
+    type: object
+    title: VH_UnitWeight (for create)
+  GWSAMPLE_BASIC.VH_UnitWeight-update:
+    type: object
+    title: VH_UnitWeight (for update)
+  GWSAMPLE_BASIC.VH_UnitLength:
+    type: object
+    properties:
+      Msehi:
+        type: string
+        maxLength: 3
+        title: Int. meas. unit
+        description: Int. meas. unit
+      Msehl:
+        type: string
+        maxLength: 30
+        title: Unit text
+        description: Unit text
+    title: VH_UnitLength
+  GWSAMPLE_BASIC.VH_UnitLength-create:
+    type: object
+    title: VH_UnitLength (for create)
+  GWSAMPLE_BASIC.VH_UnitLength-update:
+    type: object
+    title: VH_UnitLength (for update)
+  GWSAMPLE_BASIC.VH_ProductTypeCode:
+    type: object
+    properties:
+      TypeCode:
+        type: string
+        maxLength: 2
+        title: Prod. Type Code
+        description: Prod. Type Code
+      Shorttext:
+        type: string
+        maxLength: 60
+        title: Short Descript.
+        description: Short Descript.
+    title: VH_ProductTypeCode
+  GWSAMPLE_BASIC.VH_ProductTypeCode-create:
+    type: object
+    title: VH_ProductTypeCode (for create)
+  GWSAMPLE_BASIC.VH_ProductTypeCode-update:
+    type: object
+    title: VH_ProductTypeCode (for update)
+  GWSAMPLE_BASIC.VH_BPRole:
+    type: object
+    properties:
+      BpRole:
+        type: string
+        maxLength: 3
+        title: Bus. Part. Role
+        description: Bus. Part. Role
+      Shorttext:
+        type: string
+        maxLength: 60
+        title: Short Descript.
+        description: Short Descript.
+    title: VH_BPRole
+  GWSAMPLE_BASIC.VH_BPRole-create:
+    type: object
+    title: VH_BPRole (for create)
+  GWSAMPLE_BASIC.VH_BPRole-update:
+    type: object
+    title: VH_BPRole (for update)
+  GWSAMPLE_BASIC.VH_Language:
+    type: object
+    properties:
+      Spras:
+        type: string
+        maxLength: 2
+        title: Language
+        description: Language
+      Sptxt:
+        type: string
+        maxLength: 16
+        title: Name
+        description: Name
+    title: VH_Language
+  GWSAMPLE_BASIC.VH_Language-create:
+    type: object
+    title: VH_Language (for create)
+  GWSAMPLE_BASIC.VH_Language-update:
+    type: object
+    title: VH_Language (for update)
+  GWSAMPLE_BASIC.CT_Address:
+    type: object
+    properties:
+      City:
+        type: string
+        maxLength: 40
+        example: string
+        title: City
+        description: City
+      PostalCode:
+        type: string
+        maxLength: 10
+        example: string
+        title: Postal Code
+        description: Postal Code
+      Street:
+        type: string
+        maxLength: 60
+        example: string
+        title: Street
+        description: Street
+      Building:
+        type: string
+        maxLength: 10
+        example: string
+        title: Building
+        description: Building
+      Country:
+        type: string
+        maxLength: 3
+        example: string
+        title: Country
+        description: Country
+      AddressType:
+        type: string
+        maxLength: 2
+        example: string
+        title: Address Type
+        description: Address Type
+    title: CT_Address
+  GWSAMPLE_BASIC.CT_Address-create:
+    type: object
+    properties:
+      City:
+        type: string
+        maxLength: 40
+        example: string
+        title: City
+        description: City
+      PostalCode:
+        type: string
+        maxLength: 10
+        example: string
+        title: Postal Code
+        description: Postal Code
+      Street:
+        type: string
+        maxLength: 60
+        example: string
+        title: Street
+        description: Street
+      Building:
+        type: string
+        maxLength: 10
+        example: string
+        title: Building
+        description: Building
+      Country:
+        type: string
+        maxLength: 3
+        example: string
+        title: Country
+        description: Country
+      AddressType:
+        type: string
+        maxLength: 2
+        example: string
+        title: Address Type
+        description: Address Type
+    title: CT_Address (for create)
+  GWSAMPLE_BASIC.CT_Address-update:
+    type: object
+    properties:
+      City:
+        type: string
+        maxLength: 40
+        example: string
+        title: City
+        description: City
+      PostalCode:
+        type: string
+        maxLength: 10
+        example: string
+        title: Postal Code
+        description: Postal Code
+      Street:
+        type: string
+        maxLength: 60
+        example: string
+        title: Street
+        description: Street
+      Building:
+        type: string
+        maxLength: 10
+        example: string
+        title: Building
+        description: Building
+      Country:
+        type: string
+        maxLength: 3
+        example: string
+        title: Country
+        description: Country
+      AddressType:
+        type: string
+        maxLength: 2
+        example: string
+        title: Address Type
+        description: Address Type
+    title: CT_Address (for update)
+  GWSAMPLE_BASIC.CT_String:
+    type: object
+    properties:
+      String:
+        type: string
+    title: CT_String
+  GWSAMPLE_BASIC.CT_String-create:
+    type: object
+    title: CT_String (for create)
+  GWSAMPLE_BASIC.CT_String-update:
+    type: object
+    title: CT_String (for update)
+  odata.error:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        $ref: '#/definitions/odata.error.main'
+  odata.error.main:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: string
+      message:
+        $ref: '#/definitions/odata.error.message'
+      innererror:
+        type: object
+        description: The structure of this object is service-specific
+  odata.error.message:
+    type: object
+    required:
+      - lang
+      - value
+    properties:
+      lang:
+        type: string
+      value:
+        type: string
+parameters:
+  top:
+    name: $top
+    in: query
+    description: >-
+      Show only the first n items, see [OData Paging -
+      Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)
+    type: integer
+    minimum: 0
+  skip:
+    name: $skip
+    in: query
+    description: >-
+      Skip the first n items, see [OData Paging -
+      Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)
+    type: integer
+    minimum: 0
+  count:
+    name: $inlinecount
+    in: query
+    description: >-
+      Include count of items, see [OData
+      Count](http://www.odata.org/documentation/odata-version-2-0/uri-conventions/#InlinecountSystemQueryOption)
+    type: string
+    enum:
+      - allpages
+      - none
+responses:
+  error:
+    description: Error
+    schema:
+      $ref: '#/definitions/odata.error'
