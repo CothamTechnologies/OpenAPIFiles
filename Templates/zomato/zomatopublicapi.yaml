@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: Zomato Public API
   version: 1.0.0
-  title: Zomato API
+  title: Zomato API.
 host: developers.zomato.com
 basePath: /api/v2.1
 schemes:
