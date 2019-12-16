@@ -26,12 +26,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: path
+        - in: query
           name: dummy
           type: string
       responses:
         '200':
           description: ''
-          headers: {}
+          schema:
+            type: object
+            properties:
+              test:
+                type: string
   
   
