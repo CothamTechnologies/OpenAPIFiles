@@ -1,0 +1,37 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Cumulocity API
+  description: https://cumulocity.com/guides/microservice-sdk/rest/
+
+host: cotham.eu-latest.cumulocity.com
+basePath: /
+
+schemes:
+  - https
+
+securityDefinitions:
+  auth:
+    type: basic
+security:
+  - auth: []
+
+paths:
+  /user/currentUser:
+    get:
+      description: Get Current user details
+      summary: Get current user information
+      tags:
+        - User
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: dummy
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  
+  
