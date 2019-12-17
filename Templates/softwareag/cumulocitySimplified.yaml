@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: Cumulocity API
+  title: Cumulocity  API
   description: https://cumulocity.com/guides/microservice-sdk/rest/
 
 host: cotham.eu-latest.cumulocity.com
