@@ -31,10 +31,29 @@ paths:
           name: Host
           type: string
       responses:
-        '200':
-          description: ''
-        '404':
-          description: ''
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              loginOptions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: 
+                      type: string
+                    visibleOnLoginPage:
+                      type: integer
+                    buttonName:
+                      type: string
+                    initRequest:
+                      type: string
+
+        default:
+          description: server error
+
+
           
   
   /user/currentUser:
