@@ -4,7 +4,7 @@ info:
   title: Cumulocity API
   description: https://cumulocity.com/guides/microservice-sdk/rest/
 
-host: cotham.eu-latest.cumulocity
+host: cotham.eu-latest.cumulocity.com
 basePath: 
 
 schemes:
@@ -25,7 +25,7 @@ paths:
       tags:
         - Tenant
       produces:
-        - application/vnd.com.nsn.cumulocity.error+json;ver=0.9;charset=UTF-8
+        - application/json
       parameters:
         - in: header
           name: Host
