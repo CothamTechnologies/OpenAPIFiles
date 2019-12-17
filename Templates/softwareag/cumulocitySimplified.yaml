@@ -69,8 +69,8 @@ paths:
           name: dummy
           type: string
       responses:
-        '200':
-          description: ''
+        200:
+          description: Success
           schema:
             type: object
             properties:
@@ -80,5 +80,10 @@ paths:
                 type: string
               firstName:
                 type: string
+        401:
+          description: Unauthorised
+        
+        default:
+          description: server error
   
   
