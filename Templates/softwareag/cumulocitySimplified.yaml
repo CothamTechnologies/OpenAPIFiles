@@ -17,6 +17,28 @@ security:
   - auth: []
 
 paths:
+  
+  /tenant/loginOptions:
+    get:
+      description: Get Tenant Login details
+      summary: Get Tenant Login details
+      tags:
+        - Tenant
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: dummy
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              test:
+                type: string
+  
   /user/currentUser:
     get:
       description: Get Current user details
