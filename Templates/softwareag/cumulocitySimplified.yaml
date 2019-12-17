@@ -74,7 +74,11 @@ paths:
           schema:
             type: object
             properties:
-              test:
+              lastName:
+                type: string
+              userName:
+                type: string
+              firstName:
                 type: string
   
   
