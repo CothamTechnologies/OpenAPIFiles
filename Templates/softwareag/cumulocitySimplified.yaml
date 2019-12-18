@@ -23,7 +23,7 @@ paths:
       description: Get Inventory Items
       summary: Get Inventory Items
       tags:
-        - Tenant
+        - Inventory
       produces:
         - application/json
       parameters:
@@ -40,57 +40,52 @@ paths:
           schema:
             type: object
             properties:
-              loginOptions:
+              next: 
+                type: string
+              self:
+                type: integer
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              managedObjects:
                 type: array
                 items:
                   type: object
                   properties:
-                    next: 
+                    owner: 
                       type: string
-                    self:
-                      type: integer
-                    statistics:
+                    creationTime: 
+                      type: string
+                    lastUpdated: 
+                      type: string
+                    type: 
+                      type: string
+                    name: 
+                      type: string
+                    id: 
+                      type: string
+                    c8y_Position: 
                       type: object
                       properties:
-                        totalPages:
-                          type: integer
-                        currentPage:
-                          type: integer
-                        pageSize:
-                          type: integer
-                    managedObjects:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          owner: 
-                            type: string
-                          creationTime: 
-                            type: string
-                          lastUpdated: 
-                            type: string
-                          type: 
-                            type: string
-                          name: 
-                            type: string
-                          id: 
-                            type: string
-                          c8y_Position: 
-                            type: object
-                            properties:
-                              lng:
-                                type: string
-                              lat:
-                                type: string
-                              alt:
-                                type: string
-                          c8y_Hardware: 
-                            type: object
-                            properties:
-                              serialNumber:
-                                type: string
-                              model:
-                                type: string
+                        lng:
+                          type: string
+                        lat:
+                          type: string
+                        alt:
+                          type: string
+                    c8y_Hardware: 
+                      type: object
+                      properties:
+                        serialNumber:
+                          type: string
+                        model:
+                          type: string
                           
 
                     
