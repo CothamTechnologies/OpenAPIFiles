@@ -18,12 +18,151 @@ security:
 
 paths:
   
+  /inventory/managedObjects:
+    get:
+      description: Get Inventory Items
+      summary: Get Inventory Items
+      tags:
+        - Tenant
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          type: integer
+        - in: query
+          name: query
+          type: string
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              loginOptions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    next: 
+                      type: string
+                    self:
+                      type: integer
+                    statistics:
+                      type: object
+                      properties:
+                        totalPages:
+                          type: integer
+                        currentPage:
+                          type: integer
+                        pageSize:
+                          type: integer
+                    managedObjects:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          owner: 
+                            type: string
+                          creationTime: 
+                            type: string
+                          lastUpdated: 
+                            type: string
+                          type: 
+                            type: string
+                          name: 
+                            type: string
+                          id: 
+                            type: string
+                          c8y_Position: 
+                            type: object
+                            properties:
+                              lng:
+                                type: string
+                              lat:
+                                type: string
+                              alt:
+                                type: string
+                          c8y_Hardware: 
+                            type: object
+                            properties:
+                              serialNumber:
+                                type: string
+                              model:
+                                type: string
+                          
+
+                    
+
+        default:
+          description: server error
+  
+    post:
+      description: Add Inventory Items
+      summary: Create device with temperature measurement support
+      tags:
+        - Inventory
+
+      produces:
+        - application/json
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ''
+        - name: Accept
+          in: header
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type: 
+                type: string
+              c8y_IsDevice:
+                type: string
+              c8y_SupportedMeasurements:
+                type: string
+              c8y_Hardware:
+                type: string 
+            
+      responses:
+        '201':
+          description: success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              lastUpdated:
+                type: string
+              name:
+                type: string
+              owner:
+                type: string
+              type: 
+                type: string
+              
+
+        default:
+          description: server error
+
+
   /tenant/loginOptions:
     get:
       description: Get Tenant Login details
       summary: Get Tenant Login details
       tags:
-        - Tenant
+        - Inventory
       produces:
         - application/json
       parameters:
@@ -53,7 +192,7 @@ paths:
         default:
           description: server error
 
-
+  
           
   
   /user/currentUser:
