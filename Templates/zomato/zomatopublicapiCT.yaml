@@ -53,6 +53,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/Location'
+              status:
+                type: string
+              has_more:
+                type: integer
+              has_total:
+                type: integer
+              user_has_addresses:
+                type: boolean
         '403':
           description: Invalid API key
   /location_details:
