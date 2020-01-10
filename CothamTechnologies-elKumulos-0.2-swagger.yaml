@@ -2280,7 +2280,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[backendIdentifier]
@@ -2301,6 +2301,16 @@ paths:
           name: params[notificationMessage]
           type: string
           description: notificationMessage
+          required: true
+        - in: formData
+          name: params[useDevBackend]
+          type: boolean
+          description: useDevBackend
+          required: false
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
           required: true
 
       responses:
@@ -2371,7 +2381,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -2381,7 +2391,7 @@ paths:
         - in: formData
           name: params[changePasswordCode]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[clientIdentifier]
@@ -2434,7 +2444,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[clientIdentifier]
@@ -2487,7 +2497,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[backendIdentifier]
@@ -2562,7 +2572,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -2625,7 +2635,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -2713,7 +2723,7 @@ paths:
         - in: formData
           name: params[email]
           type: string
-          description: emailaddress of User
+          description: email address of User
           required: true
         - in: formData
           name: params[password]
@@ -3264,6 +3274,8 @@ paths:
                     type: string
                   transfer_data: {}
                   transfer_group: {}
+                  publishable_key:
+                    type: string
               sessionToken:
                 type: string
               requestedMethod:
@@ -3544,6 +3556,197 @@ paths:
                 type: integer
               requestProcessingTime:
                 type: string
+
+        default:
+          description: Failed Server Response
+
+  /owGetHelpInformation.json/:
+    post:
+      summary: Gets help contact information for users
+      description: Gets help contact information for users
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[dummy]
+          type: string
+          description: dummy
+          required: false
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getHelpInformation_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          Url:
+                            type: string
+                          Email:
+                            type: string
+                          PhoneNo:
+                            type: string
+
+        default:
+          description: Failed Server Response
+
+  /umRegisterFCMToken.json/:
+    post:
+      summary: Register a push service token
+      description: Register a push service token
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[token]
+          type: string
+          description: token
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  recordAdded:
+                    description: The ID of the record added
+                    type: integer
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+  /umRemoveFCMToken.json/:
+    post:
+      summary: Delete a push service token
+      description: Delete a push service token
+      tags:
+        - 0. User Management
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[token]
+          type: string
+          description: token
+          required: false
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[all]
+          type: boolean
+          description: if true removes all tokens assigned to this user
+          required: false
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  recordsRemoved:
+                    description: The total number of records removed
+                    type: integer
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
 
         default:
           description: Failed Server Response

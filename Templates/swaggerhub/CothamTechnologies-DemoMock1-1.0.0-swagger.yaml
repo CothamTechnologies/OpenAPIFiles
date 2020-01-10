@@ -1,0 +1,589 @@
+swagger: '2.0'
+info:
+  description: Demo Mock.
+  version: 1.0.0
+  title: Demo Mock
+
+host: virtserver.swaggerhub.com
+basePath: /CothamTechnologies/DemoMock1/1.0.0
+schemes:
+ - https
+
+paths:
+  
+  /instances:
+    get:
+      summary: Get Instances
+      description: Get Instances
+      tags:
+        - Cumulocity
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                description: 
+                  type: string
+
+        default:
+          description: server error
+
+  /lawyers:
+    get:
+      summary: Get lawyers
+      description: Get lawyers
+      tags:
+        - Legal Dawn Raid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name: 
+                  type: string
+                jobTitle: 
+                  type: string
+                phone: 
+                  type: string
+                email: 
+                  type: string
+                location: 
+                  type: string
+                avatar:
+                  type: string
+
+        default:
+          description: server error
+  
+  /guidelines:
+    get:
+      summary: Get guidelines
+      description: Get Dawn Raid guidelines
+      tags:
+        - Legal Dawn Raid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                category: 
+                  type: string
+                guidelines:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      guiddescription:
+                        type: string
+                      guideurl:
+                        type: string
+           
+        default:
+          description: server error
+  
+  /instructions:
+    get:
+      summary: Get Instructions
+      description: Get Dawn Raid Instructions
+      tags:
+        - Legal Dawn Raid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                category: 
+                  type: string
+                instructions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      instdescription:
+                        type: string
+                      checkbox:
+                        type: string
+           
+              
+        default:
+          description: server error
+
+  /generalData:
+    get:
+      summary: generalData
+      description: generalData
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              emergencyPhone:
+                type: string
+              emergencyEmail:
+                type: string
+              attr3:
+                type: string
+              attr4:
+                type: string
+
+        default:
+          description: server error
+  
+  /fueltypes:
+    get:
+      summary: Get Fuel Types
+      description: Get Fuel Types
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                description: 
+                  type: string
+
+        default:
+          description: server error
+  
+  /vehiclemetadata:
+    get:
+      summary: get vehicle meta data
+      description: get vehicle makes - models 
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                makeName: 
+                  type: string
+                model:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      modelName:
+                        type: string
+       
+        default:
+          description: server error
+  
+  /fuelprices:
+    get:
+      summary: Get fuel prices
+      description: Get fuel prices
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                fueltype:
+                  type: string
+                price:
+                  type: string
+
+
+        default:
+          description: server error
+  
+  /vehicles:
+    post:
+      summary: Add vehicle
+      description: Add vehicle
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          properties:
+            registration:
+              type: string
+            make:
+              type: string
+            model:
+              type: string
+            fueltype:
+              type: string
+            capacity:
+              type: number
+     
+      responses:
+        201:
+          description: Vehicle Created
+          schema:
+            type: object
+            properties:
+              created :
+                type: string
+
+        default:
+          description: server error
+    
+    get:
+      summary: Get vehicles
+      description: Get vehicles
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    registration:
+                      type: string
+                    make:
+                      type: string
+                    model:
+                      type: string
+                    fueltype:
+                      type: string
+                    capacity:
+                      type: number
+
+  /tankvehicle:
+    get:
+      summary: get tank vehicle list
+      description: get tank vehicle list
+      tags:
+        - Crowe Mackay
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                vehicletank:
+                  type: string
+
+
+        default:
+          description: server error
+  
+ 
+  /salutations:
+    get:
+      summary: salutations
+      description: salutations
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+
+
+        default:
+          description: server error
+  
+  /addresstype:
+    get:
+      summary: addresstype
+      description: addresstype
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+
+
+
+
+        default:
+          description: server error
+  
+  /activate:
+    get:
+      summary: activate user
+      description: activate user
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: email
+        type: string
+        description: email
+        required: true
+      - in: query
+        name: code
+        type: string
+        description: activation code
+        required: true 
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              activated:
+                type: string
+
+        default:
+          description: server error
+  
+  /menuitemsmore:
+    get:
+      summary: menu items more
+      description: menu items more
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+      
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id: 
+                  type: string
+                title: 
+                  type: string
+                subtitle: 
+                  type: string
+                image: 
+                  type: string
+                
+                              
+            example:
+              - id: 1
+                title: Profile
+                subtitle: Your Profile
+                image:
+              - id: 2
+                title: Addresses
+                subtitle: Delivery & Billing Addresses
+                image:
+              - id: 3
+                title: Send Email to Support
+                subtitle: Send Email to Support
+                image:
+              - id: 4
+                title: About & Notices
+                subtitle: Tanks
+                image:
+              - id: 5
+                title: Payment methods
+                subtitle: Payment methods
+                image:
+              - id: 6
+                title: Orders
+                subtitle: Orders
+                image:
+
+        default:
+          description: server error
+
+  /login:
+    get:
+      summary: login
+      description: login
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: email
+        type: string
+        description: email
+        required: true
+      - in: query
+        name: password
+        type: string
+        description: password
+        required: true 
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              expiry:
+                type: string
+
+        default:
+          description: server error

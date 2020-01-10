@@ -1,0 +1,45 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'cloudinary'
+  description: 'cloudinary'
+  
+host: api.cloudinary.com
+basePath: /v1_1/ddniayemy
+schemes: 
+  - https
+  
+paths:
+
+  /video/upload:
+    post:
+      summary: video upload
+      description: video upload
+      tags:
+        - video
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: formData
+          name: file
+          type: file
+          description: The video to upload
+        - in: formData
+          name: upload_preset
+          type: string
+          description: upload preset key
+          
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+              secure_url:
+                type: string
+              original_filename:
+                type: string

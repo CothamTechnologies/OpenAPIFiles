@@ -1,0 +1,722 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'CRUD Demo Employees'
+  description: 'Employees CRUD Demo - Kumulos REST API Example, use REST Key as username and anything for password '
+
+host: api.kumulos.com 
+basePath: /v1/data
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+
+  /7068_7803_ctCrudStatusTypes/:
+    get:
+      summary: get all StatusTypes
+      description: get all StatusTypes
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudStatusTypeID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudDepartments/:
+    get:
+      summary: get all Departments
+      description: get all Departments
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudDepartmentID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudCostCentres/:
+    get:
+      summary: get all CostCentres
+      description: get all CostCentres
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudCostCentreID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudRoles/:
+    get:
+      summary: get all roles
+      description: get all roles
+      tags:
+        - Ref Data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - name
+            - -name
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                ctCrudRoleID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+                
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /7068_7803_ctCrudEmployees/:
+  
+    post:
+      summary: create single record in Table
+      description: Create single record in  Table
+      tags:
+        - Employees
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: DummyHeader
+          description: Dummy Header param
+          type: string
+          required: false
+          
+        - in: body
+          name: body
+          description: JSON holding data to create
+          schema:
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              url:
+                type: string
+              role:
+                type: string
+              jobDescription:
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              county:
+                type: string
+              postcode:
+                type: string
+              salary:
+                type: string
+              status:
+                type: string
+              hireDateString:
+                type: string
+              leaveDateString:
+                type: string
+              hireDate:
+                type: string
+              leavingDate:
+                type: string
+              avatarImage:
+                type: string
+              cvFile:
+                type: string
+              costcentre:
+                type: string
+              department:
+                type: string
+           
+      responses:
+        201:
+          description: OK - Returns URL of new record in Location header 
+          headers:
+            location:
+              type: string
+              description: URL of new record created
+            
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+
+  
+    get:
+      summary: get all table records
+      description: get all table records
+      tags:
+        - Employees
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+        - in: query
+          name: numberPerPage
+          type: integer
+          description: The desired number of records per page default 50, max 1000
+          required: false
+          maximum: 1000
+        - in: query
+          name: sortBy
+          type: string
+          description: Field name to sort by, prefix - to reverse sort direction
+          required: false
+          enum:
+            - firstName
+            - lastName
+            - department
+            - -firstName
+            - -lastName
+            - -department
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                url:
+                  type: string
+                role:
+                  type: string
+                jobDescription:
+                  type: string
+                addressLine1:
+                  type: string
+                addressLine2:
+                  type: string
+                city:
+                  type: string
+                county:
+                  type: string
+                postcode:
+                  type: string
+                salary:
+                  type: string
+                status:
+                  type: string
+                hireDate:
+                  type: string
+                leavingDate:
+                  type: string
+                hireDateString:
+                  type: string
+                leaveDateString:
+                  type: string
+                avatarImage:
+                  type: string
+                cvFile:
+                  type: string
+                costcentre:
+                  type: string
+                department:
+                  type: string
+                ctCrudEmployeeID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+          headers:
+            etag:
+              type: string
+              description: eTag of record
+        default:
+          description: default Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+  
+  /7068_7803_ctCrudEmployees/{id}:
+    get:
+      summary: Return single record from Table
+      description: Return single record from Table
+      tags:
+        - Employees
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: table record id
+          required: true
+
+      responses:
+        200:
+          description: OK
+          schema:
+            
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              url:
+                type: string
+              role:
+                type: string
+              jobDescription:
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              county:
+                type: string
+              postcode:
+                type: string
+              salary:
+                type: string
+              status:
+                type: string
+              hireDate:
+                type: string
+              leavingDate:
+                type: string
+              hireDateString:
+                type: string
+              leaveDateString:
+                type: string
+              avatarImage:
+                type: string
+              cvFile:
+                type: string
+              costcentre:
+                type: string
+              department:
+                type: string
+              ctCrudEmployeeID:
+                type: integer
+              timeCreated:
+                type: string
+                format: date-time
+              timeUpdated:
+                type: string
+                format: date-time
+          headers:
+            etag:
+              type: string
+
+        default:
+          description: ERROR
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+    
+    delete:
+      summary: Delete single record from Table
+      description: Delete single record from Table
+      tags:
+        - Employees
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: table record id
+          required: true
+
+      responses:
+        201:
+          description: 201 No Content will be retuend on success.
+        204:
+          description: Seems to return 204 on success or failure but doc says 201? 
+          
+        default:
+          description: ERROR
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+          
+    put:
+      summary: Update single record in Table
+      description: Update single record in Table
+      tags:
+        - Employees
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: table record id
+          required: true
+        - in: body
+          name: body
+          description: JSON holding data to update
+          schema:
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              url:
+                type: string
+              role:
+                type: string
+              jobDescription:
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              county:
+                type: string
+              postcode:
+                type: string
+              salary:
+                type: string
+              status:
+                type: string
+              hireDate:
+                type: string
+              leavingDate:
+                type: string
+              hireDateString:
+                type: string
+              leaveDateString:
+                type: string
+              avatarImage:
+                type: string
+              cvFile:
+                type: string
+              costcentre:
+                type: string
+              department:
+                type: string
+          required: true
+           
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              url:
+                type: string
+              role:
+                type: string
+              jobDescription:
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              county:
+                type: string
+              postcode:
+                type: string
+              salary:
+                type: string
+              status:
+                type: string
+              hireDate:
+                type: string
+              leavingDate:
+                type: string
+              hireDateString:
+                type: string
+              leaveDateString:
+                type: string
+              avatarImage:
+                type: string
+              cvFile:
+                type: string
+              costcentre:
+                type: string
+              department:
+                type: string
+              ctCrudEmployeeID:
+                type: integer
+              timeCreated:
+                type: string
+                format: date-time
+              timeUpdated:
+                type: string
+                format: date-time
+                  
+        400:
+          description: Bad request
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    
+ 
+        default:
+          description: ERROR
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string

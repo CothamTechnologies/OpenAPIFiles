@@ -93,7 +93,7 @@ paths:
           type: string
           required: true
         - in: body
-          name: body
+        
           schema:
             type: object
             properties:
