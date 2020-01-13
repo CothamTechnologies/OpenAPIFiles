@@ -13,8 +13,8 @@ paths:
   
   /tapivehicleChecks:
     get:
-      summary: Get vehicle checks
-      description: Get vehicle checks
+      summary: Get TAPI checks
+      description: Get TAPI checks
       tags:
         - TAPI Estimator App
       produces:
@@ -53,8 +53,8 @@ paths:
   
   /tapitodaysbookings:
     get:
-      summary: Get todays bookings
-      description: Get todays bookings
+      summary: Get TAPI todays bookings
+      description: Get TAPI todays bookings
       tags:
         - TAPI Estimator App
       produces:
