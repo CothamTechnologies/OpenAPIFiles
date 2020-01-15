@@ -18,6 +18,367 @@ security:
 
 paths:
   
+  /event/events:
+    post:
+      description: Create new event
+      summary: Create new event
+      tags:
+        - Event
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              source:
+                type: object
+                properties:
+                  id:
+                    type: string
+              text: 
+                type: string
+              time: 
+                type: string
+              type:
+                type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+              
+      responses:
+        201:
+          description: success
+          
+
+  /measurement/measurements:        
+    post:
+      description: Create measurement
+      summary: Create measurement
+      tags:
+        - Measurement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              source:
+                type: object
+                properties:
+                  id:
+                    type: string
+              time: 
+                type: string
+              type:
+                type: string
+              c8y_SignalStrength:
+                type: object
+                properties:
+                  rssi:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  ber:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              c8y_TemperatureMeasurement:
+                type: object
+                properties:
+                  T:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              cTh_AccelerationMeasurement:
+                type: object
+                properties:
+                  X:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Y:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Z:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              
+
+      responses:
+        201:
+          description: success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              self:
+                type: string
+              time:
+                type: string
+              type:
+                type: string
+              source:
+                type: string
+              c8y_SignalStrength:
+                type: object
+                properties:
+                  rssi:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  ber:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              c8y_TemperatureMeasurement:
+                type: object
+                properties:
+                  T:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              cTh_AccelerationMeasurement:
+                type: object
+                properties:
+                  X:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Y:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Z:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+
+  /inventory/managedObjects/{deviceId}:
+    get:
+      description: Get a specific managedObject
+      summary: Get a specific managedObject
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              owner: 
+                type: string
+              creationTime: 
+                type: string
+              lastUpdated: 
+                type: string
+              type: 
+                type: string
+              name: 
+                type: string
+              id: 
+                type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Firmware:
+                type: object
+                properties:
+                  version:
+                    type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+         
+    put:
+      description: Add motion tracking to a device
+      summary: Add motion tracking to a device
+      tags:
+        - Inventory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              c8y_Firmware:
+                  type: object
+                  properties:
+                    version:
+                      type: string
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        200:
+          description: success
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+          
+    delete:
+      description: Delete a specific managedObject
+      summary: Delete a specific managedObject
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        204:
+          description: success
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+          
+  
   /identity/globalIds/{deviceId}/externalIds:
     get:
       description: Get all externalIds registered for a managedObject
@@ -285,21 +646,35 @@ paths:
                       type: string
                     id: 
                       type: string
-                    c8y_Position: 
+                    c8y_Hardware:
                       type: object
                       properties:
-                        lng:
+                        model:
                           type: string
-                        lat:
+                        serialNumber:
+                          type: string 
+                    c8y_Mobile:
+                      type: object
+                      properties:
+                        imei:
                           type: string
+                        cellId:
+                          type: string 
+                        iccid:
+                          type: string 
+                    c8y_Firmware:
+                      type: object
+                      properties:
+                        version:
+                          type: string
+                    c8y_Position:
+                      type: object
+                      properties:
                         alt:
                           type: string
-                    c8y_Hardware: 
-                      type: object
-                      properties:
-                        serialNumber:
-                          type: string
-                        model:
+                        lng:
+                          type: string 
+                        lat:
                           type: string
 
         default:
@@ -341,6 +716,8 @@ paths:
                 type: object
               c8y_SupportedMeasurements:
                 type: array
+                items:
+                  type: string
               c8y_Hardware:
                 type: object
                 properties:
