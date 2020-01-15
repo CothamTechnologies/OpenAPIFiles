@@ -18,6 +18,86 @@ security:
 
 paths:
   
+  /inventory/managedObjects/{deviceId}/childDevices/{childId}:
+    delete:
+      description: Delete Child Device ref to a device
+      summary: Add Child Device ref to a device
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: childId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        204:
+          description: success
+        
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+
+  /inventory/managedObjects/{deviceId}/childDevices:
+    post:
+      description: Add Child Device ref to a device
+      summary: Add Child Device ref to a device
+      tags:
+        - Inventory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              managedObject:
+                type: object
+                properties:
+                  self:
+                    type: string
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        201:
+          description: success
+        
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+          
+  
   /event/events:
     post:
       description: Create new event
@@ -60,7 +140,18 @@ paths:
       responses:
         201:
           description: success
-          
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string    
 
   /measurement/measurements:        
     post:
@@ -309,8 +400,8 @@ paths:
                 type: string
          
     put:
-      description: Add motion tracking to a device
-      summary: Add motion tracking to a device
+      description: Update device
+      summary: Update device
       tags:
         - Inventory
       consumes:
