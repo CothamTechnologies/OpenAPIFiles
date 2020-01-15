@@ -11,6 +11,143 @@ schemes:
 
 paths:
   
+  /tapivehicleChecks:
+    get:
+      summary: Get TAPI checks
+      description: Get TAPI checks
+      tags:
+        - TAPI Estimator App
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              bookingdate:
+                type: string
+              status:
+                type: string
+              checklist:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    question: 
+                      type: string
+                    answer: 
+                      type: string
+                    comments: 
+                      type: string
+
+        default:
+          description: server error
+  
+  /tapitodaysbookings:
+    get:
+      summary: Get TAPI todays bookings
+      description: Get TAPItodays bookings
+      tags:
+        - TAPI Estimator App
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              bookings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bookingDate: 
+                      type: string
+                    bookingTime:
+                      type: string
+                    bookingNumber: 
+                      type: string
+                    salesPersonCode: 
+                      type: string
+                    storeName: 
+                      type: string
+                    customerNo:
+                      type: string
+                    name: 
+                      type: string
+                    fullAddress: 
+                      type: string
+                    phoneNo:
+                      type: string
+                    mobile: 
+                      type: string
+                    comment: 
+                      type: string
+                    status:
+                      type: string
+                    detailsPdf:
+                      type: string
+                    questions:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          question:
+                            type: string
+                          answer:
+                            type: string
+                          comments:
+                            type: string
+                    images:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          photoId:
+                            type: string
+                          photo:
+                            type: string
+                          photoComment:
+                            type: string
+                    confirmationBlock:
+                      type: object
+                      properties:
+                        question1:
+                          type: string
+                        answer1:
+                          type: string
+                        question2:
+                          type: string
+                        answer2:
+                          type: string
+                        question3:
+                          type: string
+                        answer3:
+                          type: string
+                        customerSignature:
+                          type: string
+            
+        default:
+          description: server error
+
   /instances:
     get:
       summary: Get Instances
