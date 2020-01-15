@@ -18,6 +18,221 @@ security:
 
 paths:
   
+  /identity/globalIds/{deviceId}/externalIds:
+    get:
+      description: Get all externalIds registered for a managedObject
+      summary: Get all externalIds registered for a managedObject
+      tags:
+        - Identity
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: Unique external ID
+      responses:
+        200:
+          description: Found Device
+          schema:
+            type: object
+            properties:
+              externalId:
+                type: string
+              managedObject:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  self:
+                    type: string
+              self:
+                type: string
+              type:
+                type: string
+
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+    post:
+      description: Create an externalId for a managedObject
+      summary: Create an externalId for a managedObject
+      tags:
+        - Identity
+      consumes:
+        - application/json 
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+              externalId:
+                type: string     
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: unique device ID
+      responses:
+        201:
+          description: Success
+          schema:
+            type: object
+            properties:
+              externalId:
+                type: string
+              managedObject:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  self:
+                    type: string
+              self:
+                type: string
+              type:
+                type: string
+
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+  /identity/externalIds/{externalIdType}/{externalId}:
+    get:
+      description: Get ManagedObject for a specific externalId
+      summary: Get ManagedObject for a specific externalId
+      tags:
+        - Identity
+      produces:
+        - application/json
+      parameters:
+        - name: externalIdType
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: externalId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        200:
+          description: Found Device
+          schema:
+            type: object
+            properties:
+              externalId:
+                type: string
+              managedObject:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  self:
+                    type: string
+              self:
+                type: string
+              type:
+                type: string
+
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+          
+
+  /identity/externalIds/{type}/{externalId}:
+    delete:
+      description: Remove externalId from a managed object
+      summary: Remove externalId from a managed object
+      tags:
+        - Identity
+      produces:
+        - application/json
+      parameters:
+        - name: type
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: externalId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        204:
+          description: success
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
   /inventory/managedObjects:
     get:
       description: Get Inventory Items
@@ -86,32 +301,29 @@ paths:
                           type: string
                         model:
                           type: string
-                          
-
-                    
 
         default:
-          description: server error
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
   
     post:
-      description: Add Inventory Items
-      summary: Create device with temperature measurement support
+      description: Add Inventory Item
+      summary: Add Device to Inventory
       tags:
         - Inventory
-
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
-        - name: Content-Type
-          in: header
-          required: true
-          type: string
-          description: ''
-        - name: Accept
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: Body
           in: body
           required: true
@@ -124,11 +336,41 @@ paths:
               type: 
                 type: string
               c8y_IsDevice:
-                type: string
+                type: object
+              com_cumulocity_model_Agent:
+                type: object
               c8y_SupportedMeasurements:
-                type: string
+                type: array
               c8y_Hardware:
-                type: string 
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Firmware:
+                type: object
+                properties:
+                  version:
+                    type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
             
       responses:
         '201':
@@ -146,10 +388,44 @@ paths:
                 type: string
               type: 
                 type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
               
 
         default:
-          description: server error
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
 
 
   /tenant/loginOptions:

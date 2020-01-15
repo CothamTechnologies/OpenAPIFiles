@@ -54,7 +54,7 @@ paths:
   /tapitodaysbookings:
     get:
       summary: Get TAPI todays bookings
-      description: Get TAPI todays bookings
+      description: Get TAPItodays bookings
       tags:
         - TAPI Estimator App
       produces:
