@@ -1,0 +1,109 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'Cumulocity Sensor API'
+  description: 'Cumulocity Sensor API - Kumulos RPC API , use APIkey/Secret Key as Credentials'
+
+
+host: api.kumulos.com
+basePath: /b2.2/58f128a7-3f4e-449b-81b7-64def90bfda7
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+
+  /cumulocity_PostEvent.json/:
+    post:
+      description: Create new event
+      summary: Create new event
+      tags:
+        - Event
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[cUserName]
+          type: string
+          description: cUserName
+          required: true
+        - in: formData
+          name: params[cPassword]
+          type: string
+          description: cPassword
+          required: true
+        - in: formData
+          name: params[cText]
+          type: string
+          description: cText
+          required: true
+        - in: formData
+          name: params[cTime]
+          type: string
+          description: cTime
+          required: true
+        - in: formData
+          name: params[cType]
+          type: string
+          description: cType
+          required: true
+        - in: formData
+          name: params[sourceId]
+          type: string
+          description: sourceId
+          required: true
+        - in: formData
+          name: params[alt]
+          type: string
+          description: alt
+          required: true
+        - in: formData
+          name: params[lng]
+          type: string
+          description: lng
+          required: true
+        - in: formData
+          name: params[lat]
+          type: string
+          description: lat
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
