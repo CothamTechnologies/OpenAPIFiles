@@ -1,13 +1,11 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  version: '0.1'
+  version: "0.1"
   title: "TAPI Direct"
   description: "TAPI's hosted MS NAV environment"
 
-consumes:
-  - application/json
-produces:
-  - application/json
+host: masterdev.scinetcloud.net:17348
+basePath: /TAPI_100_DEV/ODataV4
 
 schemes:
   - https
@@ -19,21 +17,22 @@ securityDefinitions:
 security:
   - basicAuth: []
 
-host: masterdev.scinetcloud.net:17348
-basePath: /TAPI_100_DEV/ODataV4
-
 paths:
   /Company('{Name}')/MNCheckMyVan:
     parameters:
-    - name: Name
-      in: path
-      required: true
-      description: 'key: Name'
-      type: string
+      - name: Name
+        in: path
+        required: true
+        description: "key: Name"
+        type: string
     get:
       summary: Get entities from related MNCheckMyVan
       tags:
         - Company
+      consumes:
+        - application/json
+      produces:
+        - application/json
       parameters:
         - name: "$top"
           in: query
@@ -61,44 +60,17 @@ paths:
           in: query
           description: Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
           type: array
-          uniqueItems: true
           items:
             type: string
-            enum:
-            - Resource_No
-            - Resource_No desc
-            - Booking_Date
-            - Booking_Date desc
-            - Entry_No
-            - Entry_No desc
-            - Completed
-            - Completed desc
-            - All_Mandatory_Filled
-            - All_Mandatory_Filled desc
-            - Answer_Group_No
-            - Answer_Group_No desc
-            - FieldControl
-            - FieldControl desc
-            - ETag
-            - ETag desc
         - name: "$select"
           in: query
           description: Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
           type: array
-          uniqueItems: true
           items:
             type: string
-            enum:
-            - Resource_No
-            - Booking_Date
-            - Entry_No
-            - Completed
-            - All_Mandatory_Filled
-            - Answer_Group_No
-            - FieldControl
-            - ETag
+
       responses:
-        '200':
+        "200":
           description: Retrieved entities
           schema:
             title: Collection of MNCheckMyVan
@@ -114,66 +86,44 @@ paths:
                     Booking_Date:
                       type: string
                       format: date-time
-                      example: '2017-04-13T15:51:04Z'
                     Entry_No:
-                      type:
-                      - integer
-                      - 'null'
-                      format: int32
+                      type: string
                     Completed:
-                      type:
-                      - boolean
-                      - 'null'
+                      type: string
                     All_Mandatory_Filled:
-                      type:
-                      - boolean
-                      - 'null'
+                      type: string
                     Answer_Group_No:
-                      type:
-                      - string
-                      - 'null'
-                      example: string
+                      type: string
                     FieldControl:
-                      type:
-                      - string
-                      - 'null'
-                      example: string
+                      type: string
                     ETag:
-                      type:
-                      - string
-                      - 'null'
-                      example: string
-        '400':
-          type: object
-          required:
-          - error
-          properties:
-            error:
-              type: object
-              required:
-              - code
-              - message
-              properties:
-                code:
-                  type: string
-                message:
-                  type: string
-                target:
-                  type: string
-                details:
-                  type: array
-                  items:
+                      type: string
+
+        "400":
+          description: Error object
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+                        target:
+                          type: string
+                  innererror:
                     type: object
-                    required:
-                    - code
-                    - message
-                    properties:
-                      code:
-                        type: string
-                      message:
-                        type: string
-                      target:
-                        type: string
-                innererror:
-                  type: object
-                  description: The structure of this object is service-specific
+                    description: The structure of this object is service-specific
