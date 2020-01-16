@@ -20,7 +20,7 @@ security:
 paths:
   /Company('{CompanyName}')/MNCheckMyVan:
     get:
-      description: Get entities from related MNCheckMyVan
+      description: MNCheckMyVan
       summary: Get entities from related MNCheckMyVan
       tags:
         - Company
