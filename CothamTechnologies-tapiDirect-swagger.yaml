@@ -18,7 +18,7 @@ security:
   - basicAuth: []
 
 paths:
-  /Company('{Name}')/MNCheckMyVan:
+  /Company('{CompanyName}')/MNCheckMyVan:
     get:
       description: Get entities from related MNCheckMyVan
       summary: Get entities from related MNCheckMyVan
@@ -29,10 +29,10 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: Name
+        - name: CompanyName
           in: path
           required: true
-          description: "key: Name"
+          description: "key: CompanyName"
           type: string
         - name: "$top"
           in: query
