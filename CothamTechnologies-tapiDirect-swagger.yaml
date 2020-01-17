@@ -487,3 +487,139 @@ paths:
                           type: string
                         target:
                           type: string
+
+  /Company('{CompanyName}')/SNAnswer:
+    get:
+      description: SNAnswer
+      summary: Get the questions for this Answer Group
+      tags:
+        - Company
+      parameters:
+        - name: CompanyName
+          in: path
+          required: true
+          description: "key: CompanyName"
+          type: string
+        - name: "$top"
+          in: query
+          description: Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)
+          type: integer
+        - name: "$skip"
+          in: query
+          description: Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)
+          type: integer
+        - name: "$search"
+          in: query
+          description: Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)
+          type: string
+        - name: "$filter"
+          in: query
+          description: Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - name: "$count"
+          in: query
+          description: Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)
+          type: boolean
+        - name: "$orderby"
+          in: query
+          description: Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          items:
+            type: string
+        - name: "$select"
+          in: query
+          description: Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          items:
+            type: string
+
+      responses:
+        "200":
+          description: Retrieved entities
+          schema:
+            title: Collection of SNAnswer
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Answer_Group_No:
+                      type: string
+                    Question_No:
+                      type: string
+                    Question_Description:
+                      type: string
+                    Position:
+                      type: integer
+                      format: int32
+                    Data_Type:
+                      type: string
+                    Mandatory:
+                      type: boolean
+                    Answer:
+                      type: string
+                    Answer_Integer:
+                      type: integer
+                      format: int32
+                    Answer_Decimal:
+                      type: number
+                      format: decimal
+                    Answer_Date:
+                      type: string
+                      format: date-time
+                    Answer_DT:
+                      type: string
+                      format: date-time
+                    Answer_Time:
+                      type: string
+                    Answer_Option:
+                      type: string
+                    Valid_Parent_Answer_Conditions:
+                      type: boolean
+                    FieldControl:
+                      type: string
+                      example: string
+                    OnlineFieldControl:
+                      type: string
+                      example: string
+                    HasRelation:
+                      type: boolean
+                    Recalculate:
+                      type: boolean
+                    Capture_Signature:
+                      type: boolean
+                    Signature:
+                      type: boolean
+                    Signature_Size:
+                      type: integer
+                      format: int32
+                    ETag:
+                      type: string
+
+        "400":
+          description: Error object
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+                        target:
+                          type: string
