@@ -18,14 +18,9 @@ security:
   - basicAuth: []
 
 paths:
-  /Company('{Name}')/MNCheckMyVan:
-    parameters:
-      - name: Name
-        in: path
-        required: true
-        description: "key: Name"
-        type: string
+  /Company('{CompanyName}')/MNCheckMyVan:
     get:
+      description: MNCheckMyVan
       summary: Get entities from related MNCheckMyVan
       tags:
         - Company
@@ -34,16 +29,19 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: CompanyName
+          in: path
+          required: true
+          description: "key: CompanyName"
+          type: string
         - name: "$top"
           in: query
           description: Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)
           type: integer
-          minimum: 0
         - name: "$skip"
           in: query
           description: Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)
           type: integer
-          minimum: 0
         - name: "$search"
           in: query
           description: Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)
@@ -73,7 +71,6 @@ paths:
         "200":
           description: Retrieved entities
           schema:
-            title: Collection of MNCheckMyVan
             type: object
             properties:
               value:
@@ -124,6 +121,369 @@ paths:
                           type: string
                         target:
                           type: string
-                  innererror:
-                    type: object
-                    description: The structure of this object is service-specific
+
+  /Company('{CompanyName}')/MNEstimationBookings:
+    get:
+      description: MNEstimationBookings
+      summary: Get today's bookings
+      tags:
+        - Company
+      parameters:
+        - name: CompanyName
+          in: path
+          required: true
+          description: "key: CompanyName"
+          type: string
+        - name: "$top"
+          in: query
+          description: Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)
+          type: integer
+        - name: "$skip"
+          in: query
+          description: Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)
+          type: integer
+        - name: "$search"
+          in: query
+          description: Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)
+          type: string
+        - name: "$filter"
+          in: query
+          description: Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - name: "$count"
+          in: query
+          description: Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)
+          type: boolean
+        - name: "$orderby"
+          in: query
+          description: Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          items:
+            type: string
+        - name: "$select"
+          in: query
+          description: Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          items:
+            type: string
+
+      responses:
+        "200":
+          description: Retrieved bookings for today
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Document_Type:
+                      type: string
+                    "No":
+                      type: string
+                    Salesperson_Code:
+                      type: string
+                    ERP_Store_Code:
+                      type: string
+                    ERP_Store_Name:
+                      type: string
+                    Starting_Date:
+                      type: string
+                      format: date-time
+                    Starting_Time:
+                      type: string
+                    Customer_No:
+                      type: string
+                    Name:
+                      type: string
+                    Service_Order_Type:
+                      type: string
+                    Address:
+                      type: string
+                    Address_2:
+                      type: string
+                    City:
+                      type: string
+                    County:
+                      type: string
+                    Post_Code:
+                      type: string
+                    Phone_No:
+                      type: string
+                    Phone_No_2:
+                      type: string
+                    Status:
+                      type: string
+                    Order_Date:
+                      type: string
+                      format: date-time
+                    Order_Time:
+                      type: string
+                    Priority:
+                      type: string
+                    Release_Status:
+                      type: string
+                    Shortcut_Dimension_1_Code:
+                      type: string
+                    Shortcut_Dimension_2_Code:
+                      type: string
+                    Notify_Customer:
+                      type: string
+                    Contract_No:
+                      type: string
+                    Document_Date:
+                      type: string
+                    Due_Date:
+                      type: string
+                      format: date-time
+                    Shipping_Advice:
+                      type: string
+                    Warning_Status:
+                      type: string
+                    Allocated_Hours:
+                      type: string
+                      format: decimal
+                    Expected_Finishing_Date:
+                      type: string
+                      format: date-time
+                    Finishing_Time:
+                      type: string
+                    Finishing_Date:
+                      type: string
+                      format: date-time
+                    Service_Time_Hours:
+                      type: string
+                      format: decimal
+                    Answer_Group_No:
+                      type: string
+                      example: string
+                    AddComment:
+                      type: string
+                      example: string
+                    Picture1_Size:
+                      type: integer
+                      format: int32
+                    Picture2_Size:
+                      type: integer
+                      format: int32
+                    Picture3_Size:
+                      type: integer
+                      format: int32
+                    Picture4_Size:
+                      type: integer
+                      format: int32
+                    Picture5_Size:
+                      type: integer
+                      format: int32
+                    Signature_Size:
+                      type: integer
+                      format: int32
+                    ResourceFilter:
+                      type: string
+                    FieldControl:
+                      type: string
+                    IsQuestionnaireComplete:
+                      type: boolean
+                    CurrentDateTime:
+                      type: string
+                      format: date-time
+                    Date_Filter:
+                      type: string
+                    Resource_Filter:
+                      type: string
+                    Resource_Group_Filter:
+                      type: string
+                    ETag:
+                      type: string
+
+        "400":
+          description: Error object
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+                        target:
+                          type: string
+
+  /Company('{CompanyName}')/MNEstimationBookingTomorrow:
+    get:
+      description: MNEstimationBookingTomorrow
+      summary: Get tomorrow's bookings
+      tags:
+        - Company
+      parameters:
+        - name: CompanyName
+          in: path
+          required: true
+          description: "key: CompanyName"
+          type: string
+        - name: "$top"
+          in: query
+          description: Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)
+          type: integer
+        - name: "$skip"
+          in: query
+          description: Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)
+          type: integer
+        - name: "$search"
+          in: query
+          description: Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)
+          type: string
+        - name: "$filter"
+          in: query
+          description: Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)
+          type: string
+        - name: "$count"
+          in: query
+          description: Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)
+          type: boolean
+        - name: "$orderby"
+          in: query
+          description: Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
+          type: array
+          items:
+            type: string
+        - name: "$select"
+          in: query
+          description: Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
+          type: array
+          items:
+            type: string
+
+      responses:
+        "200":
+          description: Retrieved bookings for tomorrow
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Document_Type:
+                      type: string
+                    "No":
+                      type: string
+                    Starting_Date:
+                      type: string
+                      format: date-time
+                    Starting_Time:
+                      type: string
+                    Customer_No:
+                      type: string
+                    Name:
+                      type: string
+                    Address:
+                      type: string
+                    Address_2:
+                      type: string
+                    City:
+                      type: string
+                    County:
+                      type: string
+                    Post_Code:
+                      type: string
+                    Phone_No:
+                      type: string
+                    Phone_No_2:
+                      type: string
+                    Status:
+                      type: string
+                    Order_Date:
+                      type: string
+                      format: date-time
+                    Order_Time:
+                      type: string
+                    Priority:
+                      type: string
+                    Release_Status:
+                      type: string
+                    Shortcut_Dimension_1_Code:
+                      type: string
+                    Shortcut_Dimension_2_Code:
+                      type: string
+                    Notify_Customer:
+                      type: string
+                    Service_Order_Type:
+                      type: string
+                    Contract_No:
+                      type: string
+                    Document_Date:
+                      type: string
+                      format: date-time
+                    Due_Date:
+                      type: string
+                      format: date-time
+                    Shipping_Advice:
+                      type: string
+                    Warning_Status:
+                      type: string
+                    Allocated_Hours:
+                      type: string
+                      format: decimal
+                    Expected_Finishing_Date:
+                      type: string
+                      format: date-time
+                    Finishing_Time:
+                      type: string
+                    Finishing_Date:
+                      type: string
+                      format: date-time
+                    Service_Time_Hours:
+                      type: string
+                      format: decimal
+                    FieldControl:
+                      type: string
+                    Date_Filter:
+                      type: string
+                    Resource_Filter:
+                      type: string
+                    Resource_Group_Filter:
+                      type: string
+                    ETag:
+                      type: string
+
+        "400":
+          description: Error object
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+                        target:
+                          type: string
