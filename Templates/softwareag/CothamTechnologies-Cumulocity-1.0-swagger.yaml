@@ -20,6 +20,226 @@ security:
 
 paths:
 
+  /cumulocity_RegisterDevice.json/:
+    post:
+      description: Register/Create Device
+      summary: Register/Create device 
+      tags:
+        - User
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[externalIdType]
+          type: string
+          description: externalIdType
+          required: true
+        - in: formData
+          name: params[externalId]
+          type: string
+          description: externalId
+          required: true
+        - in: formData
+          name: params[deviceName]
+          type: string
+          description: deviceName
+          required: true
+        - in: formData
+          name: params[deviceType]
+          type: string
+          description: deviceType
+          required: true
+        - in: formData
+          name: params[deviceModel]
+          type: string
+          description: deviceModel
+          required: true
+        - in: formData
+          name: params[deviceSerialNumber]
+          type: string
+          description: deviceSerialNumber
+          required: true
+        - in: formData
+          name: params[deviceFirmwareVersion]
+          type: string
+          description: deviceFirmwareVersion
+          required: true
+        - in: formData
+          name: params[deviceAlt]
+          type: string
+          description: deviceAlt
+          required: true
+        - in: formData
+          name: params[deviceLng]
+          type: string
+          description: deviceLng
+          required: true
+        - in: formData
+          name: params[deviceLat]
+          type: string
+          description: deviceLat
+          required: true
+        - in: formData
+          name: params[deviceDateTime]
+          type: string
+          description: deviceDateTime
+          required: true
+        
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  externalId:
+                    type: string
+                  managedObject:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      self:
+                        type: string
+                  self:
+                    type: string
+                  type:
+                    type: string
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+  /cumulocity_Login.json/:
+    post:
+      description: Login
+      summary: Login
+      tags:
+        - User
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[email]
+          type: string
+          description: email
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password
+          required: true
+        - in: formData
+          name: params[tenant]
+          type: string
+          description: tenant
+          required: true
+        - in: formData
+          name: params[instance]
+          type: string
+          description: instance
+          required: true
+        - in: formData
+          name: params[qrCodeData]
+          type: string
+          description: qrCodeData
+          required: true
+        
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  lastName:
+                    type: string
+                  userName:
+                    type: string
+                  firstName:
+                    type: string
+                  id:
+                    type: string
+                  token:
+                    type: string
+                  expiresAt:
+                    type: string
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
   /cumulocity_PostEvent.json/:
     post:
       description: Create new event
@@ -30,14 +250,9 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
-          name: params[cUserName]
+          name: params[jwt]
           type: string
-          description: cUserName
-          required: true
-        - in: formData
-          name: params[cPassword]
-          type: string
-          description: cPassword
+          description: jwt
           required: true
         - in: formData
           name: params[cText]
