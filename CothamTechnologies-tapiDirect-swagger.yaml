@@ -579,10 +579,8 @@ paths:
                       type: boolean
                     FieldControl:
                       type: string
-                      example: string
                     OnlineFieldControl:
                       type: string
-                      example: string
                     HasRelation:
                       type: boolean
                     Recalculate:
