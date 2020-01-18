@@ -20,6 +20,101 @@ security:
 
 paths:
 
+  /cumulocity_Get_Events.json/:
+    post:
+      description: Get Events 
+      summary: Get Events 
+      tags:
+        - Event
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[deviceId]
+          type: string
+          description: deviceId
+          required: true
+       
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  events: 
+                    type: array
+                    items:
+                      type: object
+                      properties: 
+                        creationTime:
+                          type: string
+                        source:
+                          type: object
+                          properties: 
+                            name: 
+                              type: string
+                            id: 
+                              type: string
+                        type: 
+                          type: string
+                        time:
+                          type: string
+                        id: 
+                          type: string
+                        c8y_Position:
+                          type: object
+                          properties:
+                            alt:
+                              type: string
+                            lng:
+                              type: string 
+                            lat:
+                              type: string
+
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
   /cumulocity_Update_Device.json/:
     post:
       description: Update Device
