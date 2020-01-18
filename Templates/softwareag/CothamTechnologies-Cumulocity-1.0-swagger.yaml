@@ -70,6 +70,8 @@ paths:
                               type: string
                         type: 
                           type: string
+                        text: 
+                          type: string
                         time:
                           type: string
                         id: 
