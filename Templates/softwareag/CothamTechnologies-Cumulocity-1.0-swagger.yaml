@@ -20,12 +20,130 @@ security:
 
 paths:
 
+  /cumulocity_Update_Device.json/:
+    post:
+      description: Update Device
+      summary: Update Device
+      tags:
+        - Inventory
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[deviceId]
+          type: string
+          description: deviceId
+          required: true
+        - in: formData
+          name: params[alt]
+          type: string
+          description: alt
+        - in: formData
+          name: params[lng]
+          type: string
+          description: lng
+        - in: formData
+          name: params[lat]
+          type: string
+          description: lat
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  owner: 
+                    type: string
+                  creationTime: 
+                    type: string
+                  lastUpdated: 
+                    type: string
+                  type: 
+                    type: string
+                  name: 
+                    type: string
+                  id: 
+                    type: string
+                  c8y_Hardware:
+                    type: object
+                    properties:
+                      model:
+                        type: string
+                      serialNumber:
+                        type: string 
+                  c8y_Mobile:
+                    type: object
+                    properties:
+                      imei:
+                        type: string
+                      cellId:
+                        type: string 
+                      iccid:
+                        type: string 
+                  c8y_Firmware:
+                    type: object
+                    properties:
+                      version:
+                        type: string
+                  c8y_Position:
+                    type: object
+                    properties:
+                      alt:
+                        type: string
+                      lng:
+                        type: string 
+                      lat:
+                        type: string
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+  
   /cumulocity_Get_Device.json/:
     post:
       description: Get Device
       summary: Get Device
       tags:
-        - User
+        - Inventory
       consumes:
         - application/x-www-form-urlencoded
       parameters:
