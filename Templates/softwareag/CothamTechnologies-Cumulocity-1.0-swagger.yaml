@@ -471,6 +471,72 @@ paths:
         default:
           description: Failed Server Response
 
+  /cumulocity_Verify_Server.json/:
+    post:
+      description: Verify Server
+      summary: Verify Server
+      tags:
+        - Platform
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[tenant]
+          type: string
+          description: tenant
+          required: true
+        - in: formData
+          name: params[instance]
+          type: string
+          description: instance
+          required: true      
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  self:
+                    type: string
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
   /cumulocity_Login.json/:
     post:
       description: Login
