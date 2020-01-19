@@ -608,6 +608,45 @@ paths:
                     type: string
                   message:
                     type: string
+                  masterData:
+                    type: object
+                    properties:
+                      timeIntervals:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            interval:
+                              type: string
+                      templates:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            templateName:
+                              type: string
+                            fragmentName:
+                              type: string
+                            series:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  seriesName:
+                                    type: string
+                                  min:
+                                    type: string
+                                  max:
+                                    type: string
+                                  defaultUnit:
+                                    type: string
+                                  units:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties: 
+                                        unitCode:
+                                          type: string
               sessionToken:
                 type: string
               requestedMethod:
