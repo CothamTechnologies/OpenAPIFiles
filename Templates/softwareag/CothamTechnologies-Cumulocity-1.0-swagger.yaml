@@ -632,6 +632,8 @@ paths:
                               items:
                                 type: object
                                 properties:
+                                  status:
+                                    type: string
                                   seriesName:
                                     type: string
                                   min:
