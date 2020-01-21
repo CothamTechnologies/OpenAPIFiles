@@ -765,6 +765,17 @@ paths:
                   masterData:
                     type: object
                     properties:
+                      moremenu:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            url:
+                              type: string
+                            email:
+                              type: string
                       timeIntervals:
                         type: array
                         items:
