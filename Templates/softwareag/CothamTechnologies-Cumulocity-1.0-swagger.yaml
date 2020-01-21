@@ -20,6 +20,81 @@ security:
 
 paths:
 
+  /cumulocity_Remove_Device.json/:
+    post:
+      description: Remove device
+      summary: Remove device
+      tags:
+        - Inventory
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[deviceId]
+          type: string
+          description: deviceId
+          required: true
+        - in: formData
+          name: params[externalIdType]
+          type: string
+          description: externalIdType
+          required: true
+        - in: formData
+          name: params[externalId]
+          type: string
+          description: externalId
+          required: true
+        
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
   /cumulocity_Post_Sim_Measurement.json/:
     post:
       description: Post Sim Measurement
