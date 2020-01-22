@@ -20,6 +20,58 @@ security:
 
 paths:
 
+  /cumulocity_Get_Instances.json/:
+    post:
+      description: Get Instances
+      summary: Get Instances
+      tags:
+        - Inventory
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[dummy]
+          type: string
+          description: dummy      
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
   /cumulocity_Remove_Device.json/:
     post:
       description: Remove device
