@@ -61,8 +61,6 @@ paths:
                 items:
                   type: object
                   properties:
-                    "@odata.etag":
-                      type: string
                     Answer_Group_No:
                       type: string
                     Question_No:
