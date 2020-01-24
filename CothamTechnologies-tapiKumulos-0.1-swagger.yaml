@@ -120,3 +120,6 @@ paths:
                       type: array
                       items:
                         type: string
+
+        default:
+          description: Failed Server Response
