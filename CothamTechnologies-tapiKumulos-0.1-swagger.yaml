@@ -1,0 +1,121 @@
+swagger: "2.0"
+info:
+  version: "0.1"
+  title: "TAPIKUMULOS"
+  description: "TAPIKUMULOS"
+
+host: api.kumulos.com
+basePath: /b2.2/ddf142dd-cae2-41cc-929a-3d2ed2c2cb4b
+
+x-flopro-kumulosrpc: true
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  /tapiGetVanCheckInfo.json/:
+    post:
+      summary: Gets pre-round check questions
+      description: Gets pre-round check questions
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  "@odata.etag":
+                    type: string
+                  Answer_Group_No:
+                    type: string
+                  Question_No:
+                    type: string
+                  Question_Description:
+                    type: string
+                  Position:
+                    type: integer
+                  Data_Type:
+                    type: string
+                  Mandatory:
+                    type: boolean
+                  Answer:
+                    type: string
+                  Answer_Integer:
+                    type: integer
+                  Answer_Decimal:
+                    type: number
+                    format: double
+                  Answer_Date:
+                    type: string
+                    format: date-time
+                  Answer_DT:
+                    type: string
+                    format: date-time
+                  Answer_Time:
+                    type: string
+                  Answer_Option:
+                    type: string
+                  Valid_Parent_Answer_Conditions:
+                    type: boolean
+                  FieldControl:
+                    type: string
+                  OnlineFieldControl:
+                    type: string
+                  HasRelation:
+                    type: boolean
+                  Recalculate:
+                    type: boolean
+                  Capture_Signature:
+                    type: boolean
+                  Signature:
+                    type: boolean
+                  Signature_Size:
+                    type: integer
+                  ETag:
+                    type: string
+                  questionOptionsCount:
+                    type: integer
+                  Child_Question:
+                    type: string
+                  Parent_Question:
+                    type: string
+                  questionOptions:
+                    type: array
+                    items:
+                      type: string
+
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
