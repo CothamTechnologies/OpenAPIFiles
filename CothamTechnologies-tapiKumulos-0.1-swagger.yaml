@@ -102,20 +102,20 @@ paths:
                     items:
                       type: string
 
-              sessionToken:
-                type: string
-              requestedMethod:
-                type: string
-              requestedFormat:
-                type: string
-              timestamp:
-                type: string
-                format: date-time
-              requestReceivedTime:
-                type: string
-                format: date-time
-              maxAllowedRequestTime:
-                type: integer
-              requestProcessingTime:
-                type: number
-                format: double
+            sessionToken:
+              type: string
+            requestedMethod:
+              type: string
+            requestedFormat:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+            requestReceivedTime:
+              type: string
+              format: date-time
+            maxAllowedRequestTime:
+              type: integer
+            requestProcessingTime:
+              type: number
+              format: double
