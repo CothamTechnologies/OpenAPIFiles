@@ -61,6 +61,8 @@ paths:
                 items:
                   type: object
                   properties:
+                    @odata.context:
+                      type: string
                     Answer_Group_No:
                       type: string
                     Question_No:
