@@ -147,6 +147,90 @@ paths:
         default:
           description: Failed Server Response
 
+  /cumulocity_Post_Device_Measurement.json/:
+    post:
+      description: Post Device Measurement
+      summary: Post Device Measurement
+      tags:
+        - Measurements
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[deviceId]
+          type: string
+          description: deviceId
+          required: true
+        - in: formData
+          name: params[dateTime]
+          type: string
+          description: dateTime
+          required: true
+        - in: formData
+          name: params[type]
+          type: string
+          description: type
+          required: true
+        - in: formData
+          name: params[sensorName]
+          type: string
+          description: sensorName
+          required: true
+        - in: formData
+          name: params[measurementData]
+          type: string
+          description: measurementData
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  isError:
+                    type: string
+                  StatusCode:
+                    type: string
+                  error:
+                    type: string
+                  info:
+                    type: string
+                  message:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
   /cumulocity_Post_Sim_Measurement.json/:
     post:
       description: Post Sim Measurement
