@@ -229,7 +229,6 @@ paths:
                           type: array
                           items:
                             type: string
-
                   todaysBookings:
                     type: array
                     items:
@@ -303,6 +302,16 @@ paths:
                           type: string
                         Allocated_Hours:
                           type: integer
+                        Expected_Finishing_Date:
+                          type: string
+                          format: date-time
+                        Finishing_Time:
+                          type: string
+                        Finishing_Date:
+                          type: string
+                          format: date-time
+                        Service_Time_Hours:
+                          type: integer
                         Answer_Group_No:
                           type: string
                         AddComment:
@@ -336,8 +345,6 @@ paths:
                           type: string
                         ETag:
                           type: string
-
-
                   tomorrowsBookings:
                     type: array
                     items:
