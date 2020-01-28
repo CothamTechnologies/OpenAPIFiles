@@ -905,6 +905,31 @@ paths:
                   masterData:
                     type: object
                     properties:
+                      intervalDefaults:
+                        type: object
+                        properties:
+                          simInterval:
+                            type: string
+                          sensorPhoneInterval:
+                            type: string
+                          bluetoothInterval:
+                            type: string
+                      sensorPhoneSensorList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            thresholds:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  thresholdName:
+                                    type: string
+                                  thresholdValue:
+                                    type: string
                       moremenu:
                         type: array
                         items:
