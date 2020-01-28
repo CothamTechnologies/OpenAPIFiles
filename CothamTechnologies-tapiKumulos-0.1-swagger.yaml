@@ -165,6 +165,8 @@ paths:
                 properties:
                   Answer_Group_No:
                     type: string
+                  companyName:
+                    type: string
                   questionList:
                     type: object
                     properties:
