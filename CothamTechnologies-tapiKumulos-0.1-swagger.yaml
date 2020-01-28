@@ -237,7 +237,7 @@ paths:
                   todaysBookings:
                     type: object
                     properties:
-                      todaysBookingCount:
+                      todaysBookingsCount:
                         type: integer
                       bookings:
                         type: array
