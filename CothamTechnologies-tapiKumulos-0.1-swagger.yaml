@@ -462,3 +462,67 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /tapiFakeCheck.json/:
+    post:
+      summary: tapiFakeCheck
+      description: Fakes MNCheckMyVan data
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    odata.etag:
+                      type: string
+                    Resource_No:
+                      type: string
+                    Booking_Date:
+                      type: string
+                      format: date-time
+                    Entry_No:
+                      type: integer
+                    Completed:
+                      type: boolean
+                    All_Mandatory_Filled:
+                      type: boolean
+                    Answer_Group_No:
+                      type: string
+                    FieldControl:
+                      type: string
+                    ETag:
+                      type: string
+
+        default:
+          description: Failed Server Response
