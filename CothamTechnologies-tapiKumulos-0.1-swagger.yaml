@@ -357,6 +357,10 @@ paths:
                               type: string
                             ETag:
                               type: string
+                            bookingSummary:
+                              type: string
+                            addressSummary:
+                              type: string
                   tomorrowsBookings:
                     type: object
                     properties:
@@ -450,6 +454,10 @@ paths:
                             Resource_Group_Filter:
                               type: string
                             ETag:
+                              type: string
+                            bookingSummary:
+                              type: string
+                            addressSummary:
                               type: string
 
         default:
