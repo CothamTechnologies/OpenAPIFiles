@@ -237,10 +237,6 @@ paths:
                                   type: string
                                 captionText:
                                   type: string
-                            questionOptions:
-                              type: array
-                              items:
-                                type: string
                   todaysBookings:
                     type: object
                     properties:
