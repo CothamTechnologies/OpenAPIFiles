@@ -228,10 +228,15 @@ paths:
                               type: string
                             isAnswerBinary:
                               type: boolean
-                            Child_Question:
-                              type: string
-                            Parent_Question:
-                              type: string
+                            hasCaption:
+                              type: boolean
+                            caption:
+                              type: object
+                              properties:
+                                parentAnswerValueTrigger:
+                                  type: string
+                                captionText:
+                                  type: string
                             questionOptions:
                               type: array
                               items:
