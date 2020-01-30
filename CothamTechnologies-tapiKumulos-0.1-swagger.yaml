@@ -529,3 +529,59 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /tapiAnswerQuestions.json/:
+    post:
+      summary: Send through answer data
+      description: Send through answer data
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[answerGroup]
+          type: string
+          description: answerGroup
+          required: true
+        - in: formData
+          name: params[questions]
+          type: string
+          description: questions
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  empty:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
