@@ -228,15 +228,6 @@ paths:
                               type: string
                             isAnswerBinary:
                               type: boolean
-                            hasCaption:
-                              type: boolean
-                            caption:
-                              type: object
-                              properties:
-                                parentAnswerValueTrigger:
-                                  type: string
-                                captionText:
-                                  type: string
                   todaysBookings:
                     type: object
                     properties:
