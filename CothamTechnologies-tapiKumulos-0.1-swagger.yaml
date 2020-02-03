@@ -353,6 +353,8 @@ paths:
                               type: string
                             addressSummary:
                               type: string
+                            timeSummary:
+                              type: string
                   tomorrowsBookings:
                     type: object
                     properties:
@@ -450,6 +452,8 @@ paths:
                             bookingSummary:
                               type: string
                             addressSummary:
+                              type: string
+                            timeSummary:
                               type: string
 
         default:
