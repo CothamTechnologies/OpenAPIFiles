@@ -357,7 +357,73 @@ paths:
                               type: string
                             addressFull:
                               type: string
-
+                            questionList:
+                              type: object
+                              properties:
+                                questionCount:
+                                  type: integer
+                                questions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      odata.etag:
+                                        type: string
+                                      Answer_Group_No:
+                                        type: string
+                                      Question_No:
+                                        type: string
+                                      Question_Description:
+                                        type: string
+                                      Position:
+                                        type: integer
+                                      Data_Type:
+                                        type: string
+                                      Mandatory:
+                                        type: boolean
+                                      Answer:
+                                        type: string
+                                      Answer_Integer:
+                                        type: integer
+                                      Answer_Decimal:
+                                        type: number
+                                        format: double
+                                      Answer_Date:
+                                        type: string
+                                        format: date-time
+                                      Answer_DT:
+                                        type: string
+                                        format: date-time
+                                      Answer_Time:
+                                        type: string
+                                      Answer_Option:
+                                        type: string
+                                      Valid_Parent_Answer_Conditions:
+                                        type: boolean
+                                      Extra_Options:
+                                        type: string
+                                      FieldControl:
+                                        type: string
+                                      OnlineFieldControl:
+                                        type: string
+                                      HasRelation:
+                                        type: boolean
+                                      Recalculate:
+                                        type: boolean
+                                      Capture_Signature:
+                                        type: boolean
+                                      Signature:
+                                        type: boolean
+                                      Signature_Size:
+                                        type: integer
+                                      ETag:
+                                        type: string
+                                      isAnswerBinary:
+                                        type: boolean
+                                      questionOptions:
+                                        type: array
+                                        items:
+                                          type: string
                   tomorrowsBookings:
                     type: object
                     properties:
