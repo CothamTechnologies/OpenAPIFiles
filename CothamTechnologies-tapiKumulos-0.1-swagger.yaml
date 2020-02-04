@@ -420,6 +420,8 @@ paths:
                                         type: string
                                       isAnswerBinary:
                                         type: boolean
+                                      thirdAnswer:
+                                        type: string
                                       questionOptions:
                                         type: array
                                         items:
