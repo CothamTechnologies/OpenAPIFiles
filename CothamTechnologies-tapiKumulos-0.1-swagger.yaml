@@ -649,3 +649,61 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /tapiLogin.json/:
+    post:
+      summary: Implement a login system
+      description: Implement a login system
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[username]
+          type: string
+          description: username
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  isError:
+                    type: boolean
+                  token:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
