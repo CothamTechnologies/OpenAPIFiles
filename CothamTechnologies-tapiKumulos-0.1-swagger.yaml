@@ -132,6 +132,12 @@ paths:
         - 1. Tapi estimators app
       consumes:
         - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[auth]
+          type: string
+          description: auth
+          required: true
 
       responses:
         200:
@@ -357,6 +363,13 @@ paths:
                               type: string
                             addressFull:
                               type: string
+                            images:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  image:
+                                    type: string
                             questionList:
                               type: object
                               properties:
@@ -612,6 +625,11 @@ paths:
           name: params[questions]
           type: string
           description: questions
+          required: true
+        - in: formData
+          name: params[auth]
+          type: string
+          description: auth
           required: true
 
       responses:
