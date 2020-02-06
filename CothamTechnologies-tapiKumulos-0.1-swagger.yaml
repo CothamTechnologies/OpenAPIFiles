@@ -429,6 +429,8 @@ paths:
                                         type: boolean
                                       Signature_Size:
                                         type: integer
+                                      capturedSig:
+                                        type: string
                                       ETag:
                                         type: string
                                       isAnswerBinary:
