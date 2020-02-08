@@ -914,6 +914,22 @@ paths:
                             type: string
                           bluetoothInterval:
                             type: string
+                      t1PhoneSensorList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            thresholds:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  thresholdName:
+                                    type: string
+                                  thresholdValue:
+                                    type: string
                       sensorPhoneSensorList:
                         type: array
                         items:
