@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: Cumulocity  API
-  description: https://cumulocity.com/guides/microservice-sdk/rest/
+  title: Cumulocity REST API
+  description: Cumulocity REST API
 
 host: cotham.eu-latest.cumulocity.com
 basePath: 
@@ -696,9 +696,40 @@ paths:
       parameters:
         - in: query
           name: pageSize
+          description: Default 5, Max 2000
           type: integer
         - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
           name: query
+          description: 'query language eg only query to database: …?query=name eq ‘M01’
+                        keyword $filter=: …?query=$filter=name eq ‘M01’
+                        keyword $orderby=: …?query=$orderby=id asc
+                        keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: ids
+          description: ids={ids}
           type: string
 
       responses:
