@@ -714,10 +714,6 @@ paths:
           type: string
         - in: query
           name: query
-          description: 'query language eg only query to database: …?query=name eq ‘M01’
-                        keyword $filter=: …?query=$filter=name eq ‘M01’
-                        keyword $orderby=: …?query=$orderby=id asc
-                        keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
           type: string
         - in: query
           name: fragmentType
