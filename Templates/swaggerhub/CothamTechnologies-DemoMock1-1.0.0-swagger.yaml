@@ -725,32 +725,6 @@ paths:
                 image: 
                   type: string
                 
-                              
-            example:
-              - id: 1
-                title: Profile
-                subtitle: Your Profile
-                image:
-              - id: 2
-                title: Addresses
-                subtitle: Delivery & Billing Addresses
-                image:
-              - id: 3
-                title: Send Email to Support
-                subtitle: Send Email to Support
-                image:
-              - id: 4
-                title: About & Notices
-                subtitle: Tanks
-                image:
-              - id: 5
-                title: Payment methods
-                subtitle: Payment methods
-                image:
-              - id: 6
-                title: Orders
-                subtitle: Orders
-                image:
 
         default:
           description: server error
