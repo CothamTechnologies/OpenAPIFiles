@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '0.1'
   title: Cumulocity REST API
-  description: Cumulocity REST API
+  description: Cumulocity REST API for FloPro Integration
 
 host: cotham.eu-latest.cumulocity.com
 basePath: 
@@ -17,16 +17,106 @@ security:
   - auth: []
 
 paths:
-  
-  /inventory/managedObjects/{deviceId}/childDevices:
+  /inventory/managedObjects/{deviceId}:
     get:
-      description: Get Child Inventory Items
-      summary: Get Child Inventory Items
+      description: Get a managedObject
+      summary: https://cumulocity.com/guides/reference/inventory/#managed-object
       tags:
         - Inventory
       produces:
         - application/json
       parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: device id
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              owner: 
+                type: string
+              creationTime: 
+                type: string
+              lastUpdated: 
+                type: string
+              type: 
+                type: string
+              name: 
+                type: string
+              id: 
+                type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Firmware:
+                type: object
+                properties:
+                  version:
+                    type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+  /inventory/managedObjects/{deviceId}/{referenceType}:
+    get:
+      description: Get Managed Object Reference Collection
+      summary: https://cumulocity.com/guides/reference/inventory/#managed-object-reference-collection
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: referenceType
+          in: path
+          required: true
+          type: string
+          description: reference type childDevices or childAssets
         - name: deviceId
           in: path
           required: true
@@ -151,8 +241,8 @@ paths:
 
   /inventory/managedObjects:
     get:
-      description: Get Inventory Items
-      summary: Get Inventory Items
+      description: Get Managed Object Collection
+      summary: https://cumulocity.com/guides/reference/inventory/#managed-object-collection
       tags:
         - Inventory
       produces:
@@ -220,9 +310,11 @@ paths:
                 items:
                   type: object
                   properties:	
-                    childAssets:
+                    additionParents:
                       type: object
                       properties:
+                        self:
+                          type: string
                         references:
                           type: array
                           items:
@@ -235,6 +327,103 @@ paths:
                                     type: string
                                   id: 
                                     type: string
+                                  self:
+                                    type: string
+                    assetParents:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        references:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              managedObject:
+                                type: object
+                                properties:
+                                  name: 
+                                    type: string
+                                  id: 
+                                    type: string
+                                  self:
+                                    type: string
+                    childAdditions:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        references:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              managedObject:
+                                type: object
+                                properties:
+                                  name: 
+                                    type: string
+                                  id: 
+                                    type: string
+                                  self:
+                                    type: string
+                    childAssets:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        references:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              managedObject:
+                                type: object
+                                properties:
+                                  name: 
+                                    type: string
+                                  id: 
+                                    type: string
+                                  self:
+                                    type: string
+                    childDevices:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        references:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              managedObject:
+                                type: object
+                                properties:
+                                  name: 
+                                    type: string
+                                  id: 
+                                    type: string
+                                  self:
+                                    type: string
+                    deviceParents:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        references:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              managedObject:
+                                type: object
+                                properties:
+                                  name: 
+                                    type: string
+                                  id: 
+                                    type: string
+                                  self:
+                                    type: string
                     owner: 
                       type: string
                     creationTime: 
@@ -246,6 +435,10 @@ paths:
                     name: 
                       type: string
                     id: 
+                      type: string
+                    c8y_IsDeviceGroup:
+                      type: string
+                    c8y_Global:
                       type: string
                     c8y_Hardware:
                       type: object
