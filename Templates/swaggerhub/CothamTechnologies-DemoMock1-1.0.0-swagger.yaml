@@ -11,6 +11,136 @@ schemes:
 
 paths:
   
+  /gettasks:
+    get:
+      summary: Get tasks
+      description: Get tasks
+      tags:
+        - Responder
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              tasks:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    taskId: 
+                      type: string
+                    taskDescription:
+                      type: string
+                    taskStatus: 
+                      type: string
+                    notes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          note:
+                            type: string
+                          dateTime:
+                            type: string
+                    images:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          photo:
+                            type: string
+                          dateTime:
+                            type: string
+                    
+                    videos:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          video:
+                            type: string
+                          dateTime:
+                            type: string
+                              
+            example:
+              tasks:
+                - taskId: "R1-1"
+                  taskDescription: "Enquire evacuation of all people from the building" 
+                  taskStatus: "Not Started"
+                  notes:
+                    - note: "some notes" 
+                      dateTime: ""
+                  images:
+                    - photo:  ""
+                      dateTime: ""
+                  videos:
+                    - video:  ""
+                      dateTime: ""
+                      
+                - taskId: "R1-2"
+                  taskDescription: "Identify the hazards and risks to crews and third parties" 
+                  taskStatus: "Not Started"
+                  notes:
+                    - note: "some notes" 
+                      dateTime: ""
+                  images:
+                    - photo:  ""
+                      dateTime: ""
+                  videos:
+                    - video:  ""
+                      dateTime: ""
+                      
+                - taskId: "R1-3"
+                  taskDescription: "Assess the available resources against the objectives of the incident and request additional support where required." 
+                  taskStatus: "Not Started"
+                  notes:
+                    - note: "some notes" 
+                      dateTime: ""
+                  images:
+                    - photo:  ""
+                      dateTime: ""
+                  videos:
+                    - video:  ""
+                      dateTime: ""
+                      
+                - taskId: "R1-4"
+                  taskDescription: "Form a robust plan to meet the objectives of the incident" 
+                  taskStatus: "Not Started"
+                  notes:
+                    - note: "some notes" 
+                      dateTime: ""
+                  images:
+                    - photo:  ""
+                      dateTime: ""
+                  videos:
+                    - video:  ""
+                      dateTime: ""
+                      
+                - taskId: "R1-5"
+                  taskDescription: "Consider environmental issues such as run off water or airborne pollution." 
+                  taskStatus: "Not Started"
+                  notes:
+                    - note: "some notes" 
+                      dateTime: ""
+                  images:
+                    - photo:  ""
+                      dateTime: ""
+                  videos:
+                    - video:  ""
+                      dateTime: ""
+        default:
+          description: server error
+
   /tapivehicleChecks:
     get:
       summary: Get TAPI checks
