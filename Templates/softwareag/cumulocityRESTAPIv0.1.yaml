@@ -220,7 +220,7 @@ paths:
                 items:
                   type: object
                   properties:	
-                    managedObject:
+                    childAssets:
                       type: object
                       properties:
                         references:
