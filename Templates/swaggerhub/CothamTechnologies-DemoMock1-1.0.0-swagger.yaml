@@ -71,73 +71,7 @@ paths:
                             type: string
                           dateTime:
                             type: string
-                              
-            example:
-              tasks:
-                - taskId: "R1-1"
-                  taskDescription: "Enquire evacuation of all people from the building" 
-                  taskStatus: "Not Started"
-                  notes:
-                    - note: "some notes" 
-                      dateTime: ""
-                  images:
-                    - photo:  ""
-                      dateTime: ""
-                  videos:
-                    - video:  ""
-                      dateTime: ""
-                      
-                - taskId: "R1-2"
-                  taskDescription: "Identify the hazards and risks to crews and third parties" 
-                  taskStatus: "Not Started"
-                  notes:
-                    - note: "some notes" 
-                      dateTime: ""
-                  images:
-                    - photo:  ""
-                      dateTime: ""
-                  videos:
-                    - video:  ""
-                      dateTime: ""
-                      
-                - taskId: "R1-3"
-                  taskDescription: "Assess the available resources against the objectives of the incident and request additional support where required." 
-                  taskStatus: "Not Started"
-                  notes:
-                    - note: "some notes" 
-                      dateTime: ""
-                  images:
-                    - photo:  ""
-                      dateTime: ""
-                  videos:
-                    - video:  ""
-                      dateTime: ""
-                      
-                - taskId: "R1-4"
-                  taskDescription: "Form a robust plan to meet the objectives of the incident" 
-                  taskStatus: "Not Started"
-                  notes:
-                    - note: "some notes" 
-                      dateTime: ""
-                  images:
-                    - photo:  ""
-                      dateTime: ""
-                  videos:
-                    - video:  ""
-                      dateTime: ""
-                      
-                - taskId: "R1-5"
-                  taskDescription: "Consider environmental issues such as run off water or airborne pollution." 
-                  taskStatus: "Not Started"
-                  notes:
-                    - note: "some notes" 
-                      dateTime: ""
-                  images:
-                    - photo:  ""
-                      dateTime: ""
-                  videos:
-                    - video:  ""
-                      dateTime: ""
+
         default:
           description: server error
 
