@@ -759,6 +759,8 @@ paths:
                 type: string
               expiry:
                 type: string
+              username:
+                type: string
 
         default:
           description: server error
