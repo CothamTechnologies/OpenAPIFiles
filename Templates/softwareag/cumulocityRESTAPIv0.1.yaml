@@ -80,9 +80,20 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
+                    next: 
                       type: string
                     self:
+                      type: integer
+                    statistics:
+                      type: object
+                      properties:
+                        totalPages:
+                          type: integer
+                        currentPage:
+                          type: integer
+                    pageSize:
+                      type: integer
+                    id:
                       type: string
                     time:
                       type: string
