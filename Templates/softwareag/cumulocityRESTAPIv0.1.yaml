@@ -75,67 +75,101 @@ paths:
           schema:
             type: object
             properties:
-              id:
-                type: string
-              self:
-                type: string
-              time:
-                type: string
-              type:
-                type: string
-              source:
-                type: string
-              c8y_SignalStrength:
-                type: object
-                properties:
-                  rssi:
+              measurements:
+                type: array
+                items:
+                  id:
+                    type: string
+                  self:
+                    type: string
+                  time:
+                    type: string
+                  type:
+                    type: string
+                  source:
+                    type: string
+                  ct_CustomSensor_sim:
                     type: object
                     properties:
-                      value:
-                        type: string
-                      unit:
-                        type: string
-                  ber:
+                      ct_CustomSeries_1:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                      ct_CustomSeries_2:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                      ct_CustomSeries_3:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                      ct_CustomSeries_4:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                  c8y_SignalStrength:
                     type: object
                     properties:
-                      value:
-                        type: string
-                      unit:
-                        type: string
-              c8y_TemperatureMeasurement:
-                type: object
-                properties:
-                  T:
+                      rssi:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                      ber:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                  c8y_TemperatureMeasurement:
                     type: object
                     properties:
-                      value:
-                        type: string
-                      unit:
-                        type: string
-              cTh_AccelerationMeasurement:
-                type: object
-                properties:
-                  X:
+                      T:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                  cTh_AccelerationMeasurement:
                     type: object
                     properties:
-                      value:
-                        type: string
-                      unit:
-                        type: string
-                  Y:
-                    type: object
-                    properties:
-                      value:
-                        type: string
-                      unit:
-                        type: string
-                  Z:
-                    type: object
-                    properties:
-                      value:
-                        type: string
-                      unit:
-                        type: string
+                      X:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                      Y:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
+                      Z:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                          unit:
+                            type: string
 
         default:
           description: Other Error
