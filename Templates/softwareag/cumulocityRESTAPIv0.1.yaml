@@ -17,6 +17,138 @@ security:
   - auth: []
 
 paths:
+  
+  /measurement/measurements:        
+    post:
+      description: Create measurement
+      summary: Create measurement
+      tags:
+        - Measurement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: X-Cumulocity-System-Of-Units
+          description: possible values imperial or metric
+          type: string
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+              
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              self:
+                type: string
+              time:
+                type: string
+              type:
+                type: string
+              source:
+                type: string
+              c8y_SignalStrength:
+                type: object
+                properties:
+                  rssi:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  ber:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              c8y_TemperatureMeasurement:
+                type: object
+                properties:
+                  T:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              cTh_AccelerationMeasurement:
+                type: object
+                properties:
+                  X:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Y:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Z:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+  
   /inventory/managedObjects/{deviceId}:
     get:
       description: Get a managedObject
