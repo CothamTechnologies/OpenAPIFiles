@@ -19,9 +19,9 @@ security:
 paths:
   
   /measurement/measurements:        
-    post:
-      description: Create measurement
-      summary: Create measurement
+    get:
+      description: Get Measurement Collection
+      summary: https://cumulocity.com/guides/reference/measurements/#measurement-collection
       tags:
         - Measurement
       consumes:
