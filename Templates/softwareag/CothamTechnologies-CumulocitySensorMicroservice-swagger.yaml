@@ -46,7 +46,23 @@ paths:
         description: Request containing details about the simulated measurement
         required: true
         schema:
-          $ref: '#/definitions/SimMeasurement'
+          type: object
+          properties:
+            jwt:
+              type: string
+              description: JWT Token
+            deviceId:
+              type: string
+              description: Device that is posting the measurement
+            dateTime:
+              type: string
+              description: Date of measurement
+            type:
+              type: string
+              description: Type of measurement
+            simJSON:
+              type: string
+              description: JSON-formatted string containing simulation data
       responses:
         "201":
           description: Created
@@ -60,11 +76,6 @@ paths:
 definitions:
   SimMeasurement:
     type: object
-    required:
-    - dateTime
-    - deviceId
-    - simJSON
-    - type
     properties:
       jwt:
         type: string
