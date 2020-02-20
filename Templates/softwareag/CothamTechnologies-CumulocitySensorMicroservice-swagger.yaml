@@ -15,10 +15,10 @@ security:
 paths:
   /:
     get:
-      tags:
-      - Test tags
       summary: Receive a welcome message
       description: Get Welcome message from the service
+      tags:
+      - Test tags
       produces:
       - application/json
       parameters:
@@ -32,10 +32,10 @@ paths:
             $ref: '#/definitions/inline_response_200'
   /sim-measurements:
     post:
-      tags:
-      - Simulation
       summary: Post a simulated measurement
       description: Post a simulated measurement to the Cumulocity API
+      tags:
+      - Simulation
       consumes:
       - application/json
       produces:
