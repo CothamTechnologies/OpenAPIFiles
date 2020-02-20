@@ -7,6 +7,9 @@ host: cotham.eu-latest.cumulocity.com
 basePath: /service/sensor-microservice
 schemes:
 - https
+securityDefinitions:
+  auth:
+    type: basic
 security:
 - auth: []
 paths:
@@ -18,7 +21,10 @@ paths:
       description: Get Welcome message from the service
       produces:
       - application/json
-      parameters: []
+      parameters:
+        - in: query
+          name: dummy 
+          type: string
       responses:
         "200":
           description: Success
@@ -27,7 +33,6 @@ paths:
   /sim-measurements:
     post:
       tags:
-      - Test tags
       - Simulation
       summary: Post a simulated measurement
       description: Post a simulated measurement to the Cumulocity API
@@ -51,9 +56,7 @@ paths:
           description: Unprocessable entity
           schema:
             $ref: '#/definitions/InvalidRequestError'
-securityDefinitions:
-  auth:
-    type: basic
+
 definitions:
   SimMeasurement:
     type: object
@@ -65,50 +68,38 @@ definitions:
     properties:
       jwt:
         type: string
-        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODE0MTM5MzQsImV4cCI6MTU5MTQxMzkzMywiaXNzIjoic2Vuc29yQXBwIiwiYXVkIjoiaHR0cHM6XC9cL2NvdGhhbS5ldS1sYXRlc3QuY3VtdWxvY2l0eS5jb20iLCJzdWIiOiJqYW1lc0Bjb3RoYW10ZWNobm9sb2dpZXMuY29tIiwiY29kZSI6IjN2VUNBSlltQ0lKS1pDZ2sreXRWdVcxQVwvUGdpSDg3Q2R2RTd1bHc3dUR0OGlYS1NiMUYwYXRQRUJpVktlVW5hZXQxWjRJanFmWXErOUJKcnM0V3JjeXNZXC9EV1JcL3lNWmNzUkl0cHNvRnl3XC9kdWE0OHRzdmZaQVZxSTZRIn0.CujIJAf_jRTl7L49cM6qzUXMeNOTBlYvG2qLxnR56QY
         description: JWT Token
       deviceId:
         type: string
-        example: "853299"
         description: Device that is posting the measurement
       dateTime:
         type: string
-        example: 2019-04-20T08:30:00.000Z
         description: Date of measurement
       type:
         type: string
-        example: ct_CustomSensor_sim
         description: Type of measurement
       simJSON:
         type: string
-        example: '[{"status":"Disabled","min":"","decimals":"2","units":[{"unitCode":""}],"max":"","defaultUnit":"","seriesName":"ct_CustomSeries_4"},{"status":"Enabled","min":"5","decimals":"2","units":[{"unitCode":""}],"max":"50","defaultUnit":"C","seriesName":"ct_CustomSeries_2"},{"status":"Disabled","min":"","decimals":"2","units":[{"unitCode":""}],"max":"","defaultUnit":"","seriesName":"ct_CustomSeries_3"},{"status":"Enabled","min":"2","decimals":"2","units":[{"unitCode":""}],"max":"10","defaultUnit":"C","seriesName":"ct_CustomSeries_1"}]'
         description: JSON-formatted string containing simulation data
   CreatedMeasurement:
     type: object
     properties:
       self:
         type: string
-        example: https://cotham.eu-latest.cumulocity.com/measurement/measurements/870985
       time:
         type: string
-        example: 2019-04-20T08:30:00.000Z
       id:
         type: string
-        example: "870985"
       source:
         $ref: '#/definitions/CreatedMeasurement_source'
       type:
         type: string
-        example: ct_Simulation
       statusCode:
         type: integer
-        example: 201
       statusText:
         type: string
-        example: Created
       isError:
         type: boolean
-        example: false
   InvalidRequestError:
     type: object
     properties:
@@ -126,24 +117,18 @@ definitions:
     properties:
       self:
         type: string
-        example: https://cotham.eu-latest.cumulocity.com/inventory/managedObjects/853299
       id:
         type: string
-        example: "853299"
     description: Device that posted the measurement
   InvalidRequestError_errors:
     type: object
     properties:
       value:
         type: integer
-        example: 2
       msg:
         type: string
-        example: '"jwt" must be a valid JWT token'
       param:
         type: string
-        example: jwt
       location:
         type: string
-        example: body
    
