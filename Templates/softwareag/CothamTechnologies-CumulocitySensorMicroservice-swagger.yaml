@@ -37,32 +37,35 @@ paths:
       tags:
       - Simulation
       consumes:
-      - application/json
+      - application/x-www-form-urlencoded
       produces:
       - application/json
       parameters:
-      - in: body
-        name: body
-        description: Request containing details about the simulated measurement
+      - name: jwt
+        in: formData
+        description: JWT Token
+        required: false
+        type: string
+      - name: deviceId
+        in: formData
+        description: Device that is posting the measurement
         required: true
-        schema:
-          type: object
-          properties:
-            jwt:
-              type: string
-              description: JWT Token
-            deviceId:
-              type: string
-              description: Device that is posting the measurement
-            dateTime:
-              type: string
-              description: Date of measurement
-            type:
-              type: string
-              description: Type of measurement
-            simJSON:
-              type: string
-              description: JSON-formatted string containing simulation data
+        type: string
+      - name: dateTime
+        in: formData
+        description: Date of measurement
+        required: true
+        type: string
+      - name: type
+        in: formData
+        description: Type of measurement
+        required: true
+        type: string
+      - name: simJSON
+        in: formData
+        description: JSON-formatted string containing simulation data
+        required: true
+        type: string
       responses:
         "201":
           description: Created
