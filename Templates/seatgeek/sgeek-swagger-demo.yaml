@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: "0.1"
+  version: "0.2"
   title: 'SeatGeek API'
   description: 'Seat Geek API for FloPro tutorial'
 
