@@ -21,8 +21,8 @@ paths:
 
   /events/{eventid}:
     get:
-      summary: Get single Event
-      description: Get single Event
+      summary: Get Single Event
+      description: Get Single Event
       tags:
         - 1. Events
       consumes:
