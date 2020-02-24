@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
   version: "0.1"
-  title: 'Seat Geek API'
-  description: 'Seat Geek AP for instructions'
+  title: 'SeatGeek API'
+  description: 'Seat Geek API for FloPro tutorial'
 
 host: api.seatgeek.com
 basePath: /2
