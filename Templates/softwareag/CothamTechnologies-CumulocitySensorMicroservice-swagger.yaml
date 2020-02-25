@@ -1,51 +1,26 @@
 swagger: "2.0"
 info:
-  description: Cumulocity microservice REST API for FloPro Integration
+  description: Cumulocity sensor microservice REST API for FloPro Integration
   version: "0.1"
   title: Cumulocity sensor microservice
 host: cotham.eu-latest.cumulocity.com
 basePath: /service/sensor-microservice
 schemes:
 - https
-securityDefinitions:
-  auth:
-    type: basic
 security:
 - auth: []
 paths:
-  /:
-    get:
-      summary: Receive a welcome message
-      description: Get Welcome message from the service
-      tags:
-      - Test tags
-      produces:
-      - application/json
-      parameters:
-        - in: query
-          name: dummy 
-          type: string
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: '#/definitions/inline_response_200'
   /sim-measurements:
     post:
-      summary: Post a simulated measurement
-      description: Post a simulated measurement to the Cumulocity API
       tags:
-      - Simulation
+      - Measurement
+      summary: Post a simulated sensor measurement
+      description: Post a simulated sensor measurement to the Cumulocity API
       consumes:
       - application/x-www-form-urlencoded
       produces:
       - application/json
       parameters:
-      - name: jwt
-        in: formData
-        description: JWT Token
-        required: false
-        type: string
       - name: deviceId
         in: formData
         description: Device that is posting the measurement
@@ -75,26 +50,153 @@ paths:
           description: Unprocessable entity
           schema:
             $ref: '#/definitions/InvalidRequestError'
-
+  /device-measurements:
+    post:
+      tags:
+      - Measurement
+      summary: Post a device sensor measurement
+      description: Post a device sensor measurement to the Cumulocity API
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: deviceId
+        in: formData
+        description: Device that is posting the measurement
+        required: true
+        type: string
+      - name: dateTime
+        in: formData
+        description: Date of measurement
+        required: true
+        type: string
+      - name: type
+        in: formData
+        description: Type of measurement
+        required: true
+        type: string
+      - name: sensorName
+        in: formData
+        description: Sensor that read the measurement
+        required: true
+        type: string
+      - name: measurementData
+        in: formData
+        description: JSON-formatted string containing measurement data.
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/CreatedMeasurement'
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
+  /devices:
+    post:
+      tags:
+      - Device
+      summary: Register a device
+      description: Add (or update) a device object within the Cumulocity API inventory
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: externalIdType
+        in: formData
+        description: Type of the device
+        required: true
+        type: string
+      - name: externalId
+        in: formData
+        description: External ID of the device, should always be a Physical ID (serial number, IMEI...) 
+        required: true
+        type: string
+      - name: deviceName
+        in: formData
+        description: Name of the device
+        required: true
+        type: string
+      - name: deviceType
+        in: formData
+        description: Type of the device
+        required: true
+        type: string
+      - name: deviceModel
+        in: formData
+        description: Model of the device
+        required: true
+        type: string
+      - name: deviceSerialNumber
+        in: formData
+        description: Physical ID (serial number, IMEI...) of the device
+        required: true
+        type: string
+      - name: deviceFirmwareVersion
+        in: formData
+        description: Firmware version of the device
+        required: true
+        type: string
+      - name: deviceAlt
+        in: formData
+        description: Altitude of the device
+        required: false
+        type: number
+      - name: deviceLng
+        in: formData
+        description: Longitude of the device
+        required: true
+        type: number
+      - name: deviceLat
+        in: formData
+        description: Latitude of the device
+        required: true
+        type: number
+      - name: deviceDateTime
+        in: formData
+        description: Date of creation/update
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        "409":
+          description: Conflict
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
+securityDefinitions:
+  auth:
+    type: basic
 definitions:
-  SimMeasurement:
+  ManagedObject:
     type: object
     properties:
-      jwt:
+      managedObject:
+        $ref: '#/definitions/ManagedObject_source'
+      externalId:
         type: string
-        description: JWT Token
-      deviceId:
+      self:
         type: string
-        description: Device that is posting the measurement
-      dateTime:
-        type: string
-        description: Date of measurement
       type:
         type: string
-        description: Type of measurement
-      simJSON:
+      statusCode:
+        type: integer
+      statusText:
         type: string
-        description: JSON-formatted string containing simulation data
+      isError:
+        type: boolean
   CreatedMeasurement:
     type: object
     properties:
@@ -121,11 +223,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/InvalidRequestError_errors'
-  inline_response_200:
-    type: object
-    properties:
-      message:
-        type: string
   CreatedMeasurement_source:
     type: object
     properties:
@@ -134,6 +231,14 @@ definitions:
       id:
         type: string
     description: Device that posted the measurement
+  ManagedObject_source:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+    description: Device that was created/updated
   InvalidRequestError_errors:
     type: object
     properties:
@@ -145,4 +250,3 @@ definitions:
         type: string
       location:
         type: string
-   
