@@ -10,10 +10,10 @@ schemes:
 security:
 - auth: []
 paths:
-  /sim-measurements:
+  /simMeasurements:
     post:
       tags:
-      - Measurement
+      - Measurements
       summary: Post a simulated sensor measurement
       description: Post a simulated sensor measurement to the Cumulocity API
       consumes:
@@ -50,10 +50,10 @@ paths:
           description: Unprocessable entity
           schema:
             $ref: '#/definitions/InvalidRequestError'
-  /device-measurements:
+  /deviceMeasurements:
     post:
       tags:
-      - Measurement
+      - Measurements
       summary: Post a device sensor measurement
       description: Post a device sensor measurement to the Cumulocity API
       consumes:
@@ -98,7 +98,7 @@ paths:
   /devices:
     post:
       tags:
-      - Device
+      - Devices
       summary: Register a device
       description: Add (or update) a device object within the Cumulocity API inventory
       consumes:
@@ -139,7 +139,7 @@ paths:
       - name: deviceFirmwareVersion
         in: formData
         description: Firmware version of the device
-        required: true
+        required: false
         type: string
       - name: deviceAlt
         in: formData
@@ -149,12 +149,12 @@ paths:
       - name: deviceLng
         in: formData
         description: Longitude of the device
-        required: true
+        required: false
         type: number
       - name: deviceLat
         in: formData
         description: Latitude of the device
-        required: true
+        required: false
         type: number
       - name: deviceDateTime
         in: formData
@@ -176,6 +176,233 @@ paths:
           description: Unprocessable entity
           schema:
             $ref: '#/definitions/InvalidRequestError'
+  /devices/{deviceId}:
+    put:
+      tags:
+      - Devices
+      summary: Update a device
+      description: Update an existing device object within the Cumulocity API inventory
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: deviceId
+        in: path
+        description: ID of the device
+        required: true
+        type: integer
+      - name: alt
+        in: formData
+        description: Altitude of the device
+        required: false
+        type: number
+      - name: lng
+        in: formData
+        description: Longitude of the device
+        required: false
+        type: number
+      - name: lat
+        in: formData
+        description: Latitude of the device
+        required: false
+        type: number
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DeviceInfo'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
+    get:
+      tags:
+      - Devices
+      summary: Get a device
+      description: Read info about an existing device object within the Cumulocity API inventory
+      produces:
+      - application/json
+      parameters:
+      - name: deviceId
+        in: path
+        description: ID of the device
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DeviceInfo'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+      - Devices
+      summary: Remove a device
+      description: Delete an existing device object from the Cumulocity API inventory
+      produces:
+      - application/json
+      parameters:
+      - name: deviceId
+        in: path
+        description: ID of the device
+        required: true
+        type: integer
+      - name: externalId
+        in: query
+        description: External ID of the device 
+        required: false
+        type: string
+      - name: externalIdType
+        in: query
+        description: Type of external ID
+        required: false
+        type: string
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /devices/{deviceId}/events:
+    get:
+      tags:
+      - Devices
+      - Events
+      summary: Get events for a device
+      description: Get all the events posted by an existing device object within the Cumulocity API inventory
+      produces:
+      - application/json
+      parameters:
+      - name: deviceId
+        in: path
+        description: ID of the device
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DeviceEvents'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /events:
+    post:
+      tags:
+      - Events
+      summary: Register a new event
+      description: Add a new event (e.g. position update) for a device object within the Cumulocity API inventory
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: sourceId
+        in: formData
+        description: ID of the device
+        required: true
+        type: integer
+      - name: cTime
+        in: formData
+        description: Time of the event
+        required: true
+        type: string
+      - name: cType
+        in: formData
+        description: Type of the event
+        required: true
+        type: string
+      - name: cText
+        in: formData
+        description: Description of the event
+        required: true
+        type: string
+      - name: alt
+        in: formData
+        description: Altitude of the device
+        required: false
+        type: number
+      - name: lng
+        in: formData
+        description: Longitude of the device
+        required: false
+        type: number
+      - name: lat
+        in: formData
+        description: Latitude of the device
+        required: false
+        type: number
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/CreatedEvent'
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
+  /environment:
+    get:
+      tags:
+      - Extra
+      summary: Get environment variables
+      description: Read values of the environment variables used for authentication on the Cumulocity API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+    post:
+      tags:
+      - Extra
+      summary: Write/Modify environment variables
+      description: (TEST - BE CAREFUL) Assign new values to the environment variables used for authentication on the Cumulocity API
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: formData
+        description: Tenant
+        required: true
+        type: string
+      - name: user
+        in: formData
+        description: Username
+        required: true
+        type: string
+      - name: password
+        in: formData
+        description: Password
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+  /instances:
+    get:
+      tags:
+      - Extra
+      summary: Get server instances
+      description: Get server instances
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Instances'
 securityDefinitions:
   auth:
     type: basic
@@ -223,6 +450,147 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/InvalidRequestError_errors'
+  CreatedEvent:
+    type: object
+    properties:
+      creationTime:
+        type: string
+      source:
+        $ref: '#/definitions/CreatedEvent_source'
+      type:
+        type: string
+      self:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      id:
+        type: string
+      statusCode:
+        type: integer
+      statusText:
+        type: string
+      isError:
+        type: boolean
+  DeviceInfo:
+    type: object
+    properties:
+      additionParents:
+        $ref: '#/definitions/ObjectReferences'
+      owner:
+        type: string
+      childDevices:
+        $ref: '#/definitions/ObjectReferences'
+      childAssets:
+        $ref: '#/definitions/ObjectReferences'
+      creationTime:
+        type: string
+      type:
+        type: string
+      lastUpdated:
+        type: string
+      childAdditions:
+        $ref: '#/definitions/ObjectReferences'
+      name:
+        type: string
+      assetParents:
+        $ref: '#/definitions/ObjectReferences'
+      deviceParents:
+        $ref: '#/definitions/ObjectReferences'
+      self:
+        type: string
+      id:
+        type: string
+      statusCode:
+        type: integer
+      statusText:
+        type: string
+      isError:
+        type: boolean
+  ErrorResponse:
+    type: object
+    properties: 
+      error:
+        type: string
+      message:
+        type: string
+      info:
+        type: string
+      statusCode:
+        type: integer
+      statusText:
+        type: string
+      isError:
+        type: boolean
+  DeviceEvents:
+    type: object
+    properties:
+      next:
+        type: string
+      self:
+        type: string
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      statistics:
+        $ref: '#/definitions/Statistics'
+      statusCode:
+        type: integer
+      statusText:
+        type: string
+      isError:
+        type: boolean
+  Instances:
+    type: object
+    properties:
+      statusCode:
+        type: integer
+      statusText:
+        type: string
+      isError:
+        type: boolean
+      instances:
+        type: array
+        items:
+          $ref: '#/definitions/Instance'
+  Event:
+    type: object
+    properties:
+      creationTime:
+        type: string
+      source:
+        $ref: '#/definitions/CreatedEvent_source'
+      type:
+        type: string
+      self:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      id:
+        type: string
+  ObjectReferences:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          type: string
+  CreatedEvent_source:
+    type: object
+    properties:
+      name:
+        type: string
+      self:
+        type: string
+      id:
+        type: string
+    description: Device that posted the event
   CreatedMeasurement_source:
     type: object
     properties:
@@ -250,3 +618,15 @@ definitions:
         type: string
       location:
         type: string
+  Instance:
+    type: object
+    properties:
+      description:
+        type: string
+  Statistics:
+    type: object
+    properties:
+      currentPage:
+        type: integer
+      pageSize:
+        type: integer
