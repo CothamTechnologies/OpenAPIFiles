@@ -1,0 +1,211 @@
+swagger: "2.0"
+info:
+  version: "0.1"
+  title: "ESLKUMULOS"
+  description: "ESLKUMULOS"
+
+host: api.kumulos.com
+basePath: /b2.2/58f128a7-3f4e-449b-81b7-64def90bfda7
+
+x-flopro-kumulosrpc: true
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  /eslCreateNote.json/:
+    post:
+      summary: Creates a new task note
+      description: Creates a new task note
+      tags:
+        - 1. esl task notes app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[taskId]
+          type: string
+          description: taskId
+          required: true
+        - in: formData
+          name: params[taskNotes]
+          type: string
+          description: taskNotes
+          required: true
+        - in: formData
+          name: params[lat]
+          type: number
+          format: double
+          description: lat
+          required: true
+        - in: formData
+          name: params[lng]
+          type: number
+          format: double
+          description: lng
+          required: true
+        - in: formData
+          name: params[dateTime]
+          type: string
+          description: dateTime
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                description: The id of the database record created
+                type: integer
+
+        default:
+          description: Failed Server Response
+
+  /eslGetNotes.json/:
+    post:
+      summary: eslGetNotes
+      description: Gets all records for a given taskId
+      tags:
+        - 1. esl task notes app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[taskId]
+          type: string
+          description: taskId
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        taskId:
+                          type: string
+                        taskNotes:
+                          type: string
+                        dateTime:
+                          type: string
+                        lat:
+                          type: number
+                          format: double
+                        lng:
+                          type: number
+                          format: double
+                        eslTaskNoteID:
+                          type: integer
+
+        default:
+          description: Failed Server Response
+
+  /eslDeleteNote.json/:
+    post:
+      summary: Removes a task note
+      description: Removes a task note
+      tags:
+        - 1. esl task notes app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[eslTaskNoteID]
+          type: string
+          description: eslTaskNoteID
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                description: The number of database records deleted
+                type: integer
+
+        default:
+          description: Failed Server Response
