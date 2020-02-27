@@ -273,42 +273,18 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   /devices/{deviceId}/events:
-    get:
-      tags:
-      - Devices
-      - Events
-      summary: Get events for a device
-      description: Get all the events posted by an existing device object within the Cumulocity API inventory
-      produces:
-      - application/json
-      parameters:
-      - name: deviceId
-        in: path
-        description: ID of the device
-        required: true
-        type: integer
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/DeviceEvents'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-  /events:
     post:
       tags:
       - Events
-      summary: Register a new event
+      summary: Post a new device event
       description: Add a new event (e.g. position update) for a device object within the Cumulocity API inventory
       consumes:
       - application/x-www-form-urlencoded
       produces:
       - application/json
       parameters:
-      - name: sourceId
-        in: formData
+      - name: deviceId
+        in: path
         description: ID of the device
         required: true
         type: integer
@@ -351,6 +327,28 @@ paths:
           description: Unprocessable entity
           schema:
             $ref: '#/definitions/InvalidRequestError'
+    get:
+      tags:
+      - Events
+      summary: Get events for a device
+      description: Get all the events posted by an existing device object within the Cumulocity API inventory
+      produces:
+      - application/json
+      parameters:
+      - name: deviceId
+        in: path
+        description: ID of the device
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/DeviceEvents'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /environment:
     get:
       tags:
