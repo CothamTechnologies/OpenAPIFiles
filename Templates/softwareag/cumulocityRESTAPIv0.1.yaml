@@ -33,6 +33,13 @@ paths:
               type: string
             text:
               type: string
+            source:
+                type: object
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
             status:
               type: string
             severity:
