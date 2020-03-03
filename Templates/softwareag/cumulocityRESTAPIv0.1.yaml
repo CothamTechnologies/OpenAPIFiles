@@ -77,67 +77,11 @@ paths:
         200:
           description: success
           schema:
-            type: object
-            properties:
-              next: 
-                type: string
-              prev: 
-                type: string
-              self:
-                type: integer
-              statistics:
-                type: object
-                properties:
-                  totalPages:
-                    type: integer
-                  currentPage:
-                    type: integer
-                  pageSize:
-                      type: integer
-              alarms:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    self:
-                      type: integer
-                    id:
-                      type: string                   
-                    time:
-                      type: string
-                    type:
-                      type: string
-                    creationTime:
-                      type: integer
-                    text:
-                      type: string                   
-                    status:
-                      type: string
-                    severity:
-                      type: string
-                    count:
-                      type: integer
-                    source:
-                      type: object
-                      properties:
-                        self:
-                          type: integer
-                        id:
-                          type: string
-                    
-
+            $ref: '#/definitions/AlarmCollection'
         default:
           description: Other Error
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string 
-
+            $ref: '#/definitions/GenericError'
   /measurement/measurements:        
     get:
       description: Get Measurement Collection
@@ -808,8 +752,6 @@ paths:
                 type: string
               message:
                 type: string
-
-
 definitions:
   GenericError:
     type: object
