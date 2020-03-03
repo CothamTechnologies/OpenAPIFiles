@@ -22,9 +22,8 @@ paths:
       - application/json
       parameters:
       - in: body
-        name: Alarm
+        name: body
         description: The Alarm to create
-        required: true
         schema:
           type: object
           required:
@@ -135,7 +134,7 @@ definitions:
       self:
         type: integer
       statistics:
-        $ref: '#/definitions/inline_response_200_statistics'
+        $ref: '#/definitions/PagingStatistics'
       alarms:
         type: array
         items:
@@ -147,7 +146,7 @@ definitions:
         type: string
       id:
         type: integer
-  inline_response_200_statistics:
+  PagingStatistics:
     type: object
     properties:
       totalPages:
