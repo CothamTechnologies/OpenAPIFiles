@@ -5,6 +5,8 @@ info:
   description: Cumulocity REST API for FloPro Integration
 
 host: cotham.eu-latest.cumulocity.com
+
+
 schemes:
   - https
 
@@ -17,9 +19,7 @@ security:
 paths:
   /alarm:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: http://cumulocity.com/guides/reference/alarms/
       summary: Get the AlarmAPI resource
       tags:
         - Alarms
@@ -37,9 +37,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /alarm/alarms:        
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: http://cumulocity.com/guides/reference/alarms/
       summary: Get an alarm collection
       tags:
         - Alarms
@@ -98,9 +96,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out our [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: http://cumulocity.com/guides/reference/alarms/
       summary: Create a new Alarm
       tags:
         - Alarms
@@ -320,7 +316,6 @@ paths:
                               type: string
                             unit:
                               type: string
-
         default:
           description: Other Error
           schema:
