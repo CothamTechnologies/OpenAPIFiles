@@ -131,7 +131,12 @@ paths:
               text:
                 type: string
               source:
-                $ref: '#/definitions/ManagedObject'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  self:
+                    type: string
               status:
                 type: string
               severity:
@@ -831,9 +836,9 @@ definitions:
     type: object
     properties:
       self:
-        type: integer
-      id:
         type: string
+      id:
+        type: integer
   AlarmAPI:
     type: object
     properties:
