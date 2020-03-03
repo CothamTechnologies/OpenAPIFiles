@@ -1,33 +1,27 @@
-swagger: '2.0'
+---
+swagger: "2.0"
 info:
-  version: '0.1'
-  title: Cumulocity REST API
   description: Cumulocity REST API for FloPro Integration
-
+  version: "0.1"
+  title: Cumulocity REST API
 host: cotham.eu-latest.cumulocity.com
 basePath: /
-
 schemes:
-  - https
-
-securityDefinitions:
-  auth:
-    type: basic
+- https
 security:
-  - auth: []
-
+- auth: []
 paths:
   /alarm:
     get:
-      description: http://cumulocity.com/guides/reference/alarms/
-      summary: Get the AlarmAPI resource
       tags:
-        - Alarms
+      - Alarms
+      summary: Get the AlarmAPI resource
+      description: http://cumulocity.com/guides/reference/alarms/
       produces:
-        - application/json
+      - application/json
       parameters: []
       responses:
-        200:
+        "200":
           description: Success
           schema:
             $ref: '#/definitions/AlarmAPI'
@@ -35,59 +29,70 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
-  /alarm/alarms:        
+  /alarm/alarms:
     get:
-      description: http://cumulocity.com/guides/reference/alarms/
-      summary: Get an alarm collection
       tags:
-        - Alarms
+      - Alarms
+      summary: Get an alarm collection
+      description: http://cumulocity.com/guides/reference/alarms/
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: query
-          name: pageSize
-          description: Default 5, Max 2000
-          type: integer
-        - in: query
-          name: currentPage
-          type: integer
-        - in: query
-          name: withTotalPages
-          type: boolean
-        - in: query
-          name: dateFrom
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: dateTo
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: status
-          description: status={status}
-          type: string
-        - in: query
-          name: resolved
-          description: resolved={resolved}
-          type: string
-        - in: query
-          name: severity
-          description: severity={severity}
-          type: string
-        - in: query
-          name: source
-          description: source={source}
-          type: string
-        - in: query
-          name: withAssets
-          description: withAssets={withAssets}
-          type: string
-        - in: query
-          name: withDevices
-          description: withDevices={withDevices}
-          type: string
+      - name: pageSize
+        in: query
+        description: Default 5, Max 2000
+        required: false
+        type: integer
+      - name: currentPage
+        in: query
+        required: false
+        type: integer
+      - name: withTotalPages
+        in: query
+        required: false
+        type: boolean
+      - name: dateFrom
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: dateTo
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: status
+        in: query
+        description: status={status}
+        required: false
+        type: string
+      - name: resolved
+        in: query
+        description: resolved={resolved}
+        required: false
+        type: string
+      - name: severity
+        in: query
+        description: severity={severity}
+        required: false
+        type: string
+      - name: source
+        in: query
+        description: source={source}
+        required: false
+        type: string
+      - name: withAssets
+        in: query
+        description: withAssets={withAssets}
+        required: false
+        type: string
+      - name: withDevices
+        in: query
+        description: withDevices={withDevices}
+        required: false
+        type: string
       responses:
-        200:
+        "200":
           description: Success
           schema:
             $ref: '#/definitions/AlarmCollection'
@@ -96,47 +101,23 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: http://cumulocity.com/guides/reference/alarms/
-      summary: Create a new Alarm
       tags:
-        - Alarms
+      - Alarms
+      summary: Create a new Alarm
+      description: http://cumulocity.com/guides/reference/alarms/
       consumes:
-        - application/json
+      - application/json
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: Alarm
-          in: body
-          required: true
-          description: The Alarm to create
-          schema:
-            type: object
-            required:
-              - type
-              - time
-              - text
-              - source
-              - severity
-            properties:
-              type:
-                type: string
-              time:
-                type: string
-              text:
-                type: string
-              source:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  self:
-                    type: string
-              status:
-                type: string
-              severity:
-                type: string
+      - in: body
+        name: Alarm
+        description: The Alarm to create
+        required: true
+        schema:
+          $ref: '#/definitions/Alarm_1'
       responses:
-        200:
+        "200":
           description: Success
           schema:
             $ref: '#/definitions/Alarm'
@@ -144,669 +125,236 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
-  /measurement/measurements:        
+  /measurement/measurements:
     get:
-      description: Get Measurement Collection
-      summary: https://cumulocity.com/guides/reference/measurements/#measurement-collection
       tags:
-        - Measurement
+      - Measurement
+      summary: https://cumulocity.com/guides/reference/measurements/#measurement-collection
+      description: Get Measurement Collection
       consumes:
-        - application/json
+      - application/json
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: header
-          name: X-Cumulocity-System-Of-Units
-          description: possible values imperial or metric
-          type: string
-        - in: query
-          name: pageSize
-          description: Default 5, Max 2000
-          type: integer
-        - in: query
-          name: currentPage
-          type: integer
-        - in: query
-          name: withTotalPages
-          type: boolean
-        - in: query
-          name: dateFrom
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: dateTo
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: valueFragmentType
-          description: valueFragmentType={valueFragmentType}
-          type: string
-        - in: query
-          name: valueFragmentSeries
-          description: valueFragmentSeries={valueFragmentSeries}
-          type: string
-        - in: query
-          name: type
-          description: type={type}
-          type: string
-        - in: query
-          name: source
-          description: source={source}
-          type: string
-              
-
+      - name: X-Cumulocity-System-Of-Units
+        in: header
+        description: possible values imperial or metric
+        required: false
+        type: string
+      - name: pageSize
+        in: query
+        description: Default 5, Max 2000
+        required: false
+        type: integer
+      - name: currentPage
+        in: query
+        required: false
+        type: integer
+      - name: withTotalPages
+        in: query
+        required: false
+        type: boolean
+      - name: dateFrom
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: dateTo
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: valueFragmentType
+        in: query
+        description: valueFragmentType={valueFragmentType}
+        required: false
+        type: string
+      - name: valueFragmentSeries
+        in: query
+        description: valueFragmentSeries={valueFragmentSeries}
+        required: false
+        type: string
+      - name: type
+        in: query
+        description: type={type}
+        required: false
+        type: string
+      - name: source
+        in: query
+        description: source={source}
+        required: false
+        type: string
       responses:
-        200:
+        "200":
           description: success
           schema:
-            type: object
-            properties:
-              next: 
-                type: string
-              self:
-                type: integer
-              statistics:
-                type: object
-                properties:
-                  totalPages:
-                    type: integer
-                  currentPage:
-                    type: integer
-                  pageSize:
-                    type: integer
-              measurements:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    self:
-                      type: integer
-                    id:
-                      type: string
-                    time:
-                      type: string
-                    type:
-                      type: string
-                    source:
-                      type: object
-                      properties:
-                        self:
-                          type: integer
-                        id:
-                          type: string
-                    ct_CustomSensor_sim:
-                      type: object
-                      properties:
-                        ct_CustomSeries_1:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                        ct_CustomSeries_2:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                        ct_CustomSeries_3:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                        ct_CustomSeries_4:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                    c8y_SignalStrength:
-                      type: object
-                      properties:
-                        rssi:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                        ber:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                    c8y_TemperatureMeasurement:
-                      type: object
-                      properties:
-                        T:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                    cTh_AccelerationMeasurement:
-                      type: object
-                      properties:
-                        X:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                        Y:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-                        Z:
-                          type: object
-                          properties:
-                            value:
-                              type: string
-                            unit:
-                              type: string
-
+            $ref: '#/definitions/inline_response_200'
         default:
           description: Other Error
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string  
-  
+            $ref: '#/definitions/inline_response_default'
   /inventory/managedObjects/{deviceId}:
     get:
-      description: Get a managedObject
-      summary: https://cumulocity.com/guides/reference/inventory/#managed-object
       tags:
-        - Inventory
+      - Inventory
+      summary: https://cumulocity.com/guides/reference/inventory/#managed-object
+      description: Get a managedObject
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: deviceId
-          in: path
-          required: true
-          type: string
-          description: device id
+      - name: deviceId
+        in: path
+        description: device id
+        required: true
+        type: string
       responses:
-        200:
+        "200":
           description: success
           schema:
-            type: object
-            properties:
-              owner: 
-                type: string
-              creationTime: 
-                type: string
-              lastUpdated: 
-                type: string
-              type: 
-                type: string
-              name: 
-                type: string
-              id: 
-                type: string
-              c8y_Hardware:
-                type: object
-                properties:
-                  model:
-                    type: string
-                  serialNumber:
-                    type: string 
-              c8y_Mobile:
-                type: object
-                properties:
-                  imei:
-                    type: string
-                  cellId:
-                    type: string 
-                  iccid:
-                    type: string 
-              c8y_Firmware:
-                type: object
-                properties:
-                  version:
-                    type: string
-              c8y_Position:
-                type: object
-                properties:
-                  alt:
-                    type: string
-                  lng:
-                    type: string 
-                  lat:
-                    type: string
-        404: 
+            $ref: '#/definitions/inline_response_200_1'
+        "404":
           description: Not Found Device
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string
-
+            $ref: '#/definitions/inline_response_default'
         default:
           description: Other Error
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string
-
+            $ref: '#/definitions/inline_response_default'
   /inventory/managedObjects/{deviceId}/{referenceType}:
     get:
-      description: Get Managed Object Reference Collection
-      summary: https://cumulocity.com/guides/reference/inventory/#managed-object-reference-collection
       tags:
-        - Inventory
+      - Inventory
+      summary: https://cumulocity.com/guides/reference/inventory/#managed-object-reference-collection
+      description: Get Managed Object Reference Collection
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: referenceType
-          in: path
-          required: true
-          type: string
-          description: reference type childDevices or childAssets
-        - name: deviceId
-          in: path
-          required: true
-          type: string
-          description: device ID of parent
-        - in: query
-          name: pageSize
-          description: Default 5, Max 2000
-          type: integer
-        - in: query
-          name: currentPage
-          type: integer
-        - in: query
-          name: withTotalPages
-          type: boolean
-        - in: query
-          name: dateFrom
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: dateTo
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: query
-          description: 'query language eg only query to database: …?query=name eq ‘M01’
-                        keyword $filter=: …?query=$filter=name eq ‘M01’
-                        keyword $orderby=: …?query=$orderby=id asc
-                        keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
-          type: string
-        - in: query
-          name: fragmentType
-          description: fragmentType={fragmentType}
-          type: string
-        - in: query
-          name: type
-          description: type={type}
-          type: string
-        - in: query
-          name: ids
-          description: ids={ids}
-          type: string
-
+      - name: referenceType
+        in: path
+        description: reference type childDevices or childAssets
+        required: true
+        type: string
+      - name: deviceId
+        in: path
+        description: device ID of parent
+        required: true
+        type: string
+      - name: pageSize
+        in: query
+        description: Default 5, Max 2000
+        required: false
+        type: integer
+      - name: currentPage
+        in: query
+        required: false
+        type: integer
+      - name: withTotalPages
+        in: query
+        required: false
+        type: boolean
+      - name: dateFrom
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: dateTo
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: query
+        in: query
+        description: 'query language eg only query to database: …?query=name eq ‘M01’ keyword $filter=: …?query=$filter=name eq ‘M01’ keyword $orderby=: …?query=$orderby=id asc keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
+        required: false
+        type: string
+      - name: fragmentType
+        in: query
+        description: fragmentType={fragmentType}
+        required: false
+        type: string
+      - name: type
+        in: query
+        description: type={type}
+        required: false
+        type: string
+      - name: ids
+        in: query
+        description: ids={ids}
+        required: false
+        type: string
       responses:
-        200:
+        "200":
           description: success
           schema:
-            type: object
-            properties:
-              next: 
-                type: string
-              self:
-                type: integer
-              statistics:
-                type: object
-                properties:
-                  totalPages:
-                    type: integer
-                  currentPage:
-                    type: integer
-                  pageSize:
-                    type: integer
-              references:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    managedObject:
-                      type: object
-                      properties:
-                        owner: 
-                          type: string
-                        creationTime: 
-                          type: string
-                        lastUpdated: 
-                          type: string
-                        type: 
-                          type: string
-                        name: 
-                          type: string
-                        id: 
-                          type: string
-                        c8y_ActiveAlarmStatus:
-                          type: object
-                          properties:
-                            major:
-                              type: string
-                        c8y_Availability:
-                          type: object
-                          properties:
-                            lastMessage:
-                              type: string
-                            status:
-                              type: string
-                        c8y_Connection:
-                          type: object
-                          properties:
-                            status:
-                              type: string
-                        c8y_Hardware:
-                          type: object
-                          properties:
-                            model:
-                              type: string
-                            serialNumber:
-                              type: string 
-                        c8y_Mobile:
-                          type: object
-                          properties:
-                            imei:
-                              type: string
-                            cellId:
-                              type: string 
-                            iccid:
-                              type: string 
-                        c8y_Firmware:
-                          type: object
-                          properties:
-                            version:
-                              type: string
-                        c8y_Position:
-                          type: object
-                          properties:
-                            alt:
-                              type: string
-                            lng:
-                              type: string 
-                            lat:
-                              type: string
-
+            $ref: '#/definitions/inline_response_200_2'
         default:
           description: Other Error
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string
-
+            $ref: '#/definitions/inline_response_default'
   /inventory/managedObjects:
     get:
-      description: Get Managed Object Collection
-      summary: https://cumulocity.com/guides/reference/inventory/#managed-object-collection
       tags:
-        - Inventory
+      - Inventory
+      summary: https://cumulocity.com/guides/reference/inventory/#managed-object-collection
+      description: Get Managed Object Collection
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: query
-          name: pageSize
-          description: Default 5, Max 2000
-          type: integer
-        - in: query
-          name: currentPage
-          type: integer
-        - in: query
-          name: withTotalPages
-          type: boolean
-        - in: query
-          name: dateFrom
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: dateTo
-          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
-          type: string
-        - in: query
-          name: query
-          description: 'query language eg only query to database: …?query=name eq ‘M01’
-                        keyword $filter=: …?query=$filter=name eq ‘M01’
-                        keyword $orderby=: …?query=$orderby=id asc
-                        keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
-          type: string
-        - in: query
-          name: fragmentType
-          description: fragmentType={fragmentType}
-          type: string
-        - in: query
-          name: type
-          description: type={type}
-          type: string
-        - in: query
-          name: ids
-          description: ids={ids}
-          type: string
-
+      - name: pageSize
+        in: query
+        description: Default 5, Max 2000
+        required: false
+        type: integer
+      - name: currentPage
+        in: query
+        required: false
+        type: integer
+      - name: withTotalPages
+        in: query
+        required: false
+        type: boolean
+      - name: dateFrom
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: dateTo
+        in: query
+        description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        required: false
+        type: string
+      - name: query
+        in: query
+        description: 'query language eg only query to database: …?query=name eq ‘M01’ keyword $filter=: …?query=$filter=name eq ‘M01’ keyword $orderby=: …?query=$orderby=id asc keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
+        required: false
+        type: string
+      - name: fragmentType
+        in: query
+        description: fragmentType={fragmentType}
+        required: false
+        type: string
+      - name: type
+        in: query
+        description: type={type}
+        required: false
+        type: string
+      - name: ids
+        in: query
+        description: ids={ids}
+        required: false
+        type: string
       responses:
-        200:
+        "200":
           description: success
           schema:
-            type: object
-            properties:
-              next: 
-                type: string
-              self:
-                type: integer
-              statistics:
-                type: object
-                properties:
-                  totalPages:
-                    type: integer
-                  currentPage:
-                    type: integer
-                  pageSize:
-                    type: integer
-              managedObjects:
-                type: array
-                items:
-                  type: object
-                  properties:  
-                    additionParents:
-                      type: object
-                      properties:
-                        self:
-                          type: string
-                        references:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              managedObject:
-                                type: object
-                                properties:
-                                  name: 
-                                    type: string
-                                  id: 
-                                    type: string
-                                  self:
-                                    type: string
-                    assetParents:
-                      type: object
-                      properties:
-                        self:
-                          type: string
-                        references:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              managedObject:
-                                type: object
-                                properties:
-                                  name: 
-                                    type: string
-                                  id: 
-                                    type: string
-                                  self:
-                                    type: string
-                    childAdditions:
-                      type: object
-                      properties:
-                        self:
-                          type: string
-                        references:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              managedObject:
-                                type: object
-                                properties:
-                                  name: 
-                                    type: string
-                                  id: 
-                                    type: string
-                                  self:
-                                    type: string
-                    childAssets:
-                      type: object
-                      properties:
-                        self:
-                          type: string
-                        references:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              managedObject:
-                                type: object
-                                properties:
-                                  name: 
-                                    type: string
-                                  id: 
-                                    type: string
-                                  self:
-                                    type: string
-                    childDevices:
-                      type: object
-                      properties:
-                        self:
-                          type: string
-                        references:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              managedObject:
-                                type: object
-                                properties:
-                                  name: 
-                                    type: string
-                                  id: 
-                                    type: string
-                                  self:
-                                    type: string
-                    deviceParents:
-                      type: object
-                      properties:
-                        self:
-                          type: string
-                        references:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              managedObject:
-                                type: object
-                                properties:
-                                  name: 
-                                    type: string
-                                  id: 
-                                    type: string
-                                  self:
-                                    type: string
-                    owner: 
-                      type: string
-                    creationTime: 
-                      type: string
-                    lastUpdated: 
-                      type: string
-                    type: 
-                      type: string
-                    name: 
-                      type: string
-                    id: 
-                      type: string
-                    c8y_IsDeviceGroup:
-                      type: string
-                    c8y_Global:
-                      type: string
-                    c8y_Hardware:
-                      type: object
-                      properties:
-                        model:
-                          type: string
-                        serialNumber:
-                          type: string 
-                    c8y_Mobile:
-                      type: object
-                      properties:
-                        imei:
-                          type: string
-                        cellId:
-                          type: string 
-                        iccid:
-                          type: string 
-                    c8y_Firmware:
-                      type: object
-                      properties:
-                        version:
-                          type: string
-                    c8y_Position:
-                      type: object
-                      properties:
-                        alt:
-                          type: string
-                        lng:
-                          type: string 
-                        lat:
-                          type: string
-
+            $ref: '#/definitions/inline_response_200_3'
         default:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+securityDefinitions:
+  auth:
+    type: basic
 definitions:
   GenericError:
     type: object
@@ -850,7 +398,7 @@ definitions:
       self:
         type: integer
       id:
-        type: string                   
+        type: string
       time:
         type: string
       type:
@@ -858,7 +406,7 @@ definitions:
       creationTime:
         type: integer
       text:
-        type: string                   
+        type: string
       status:
         type: string
       severity:
@@ -868,59 +416,369 @@ definitions:
       firstOccurrenceTime:
         type: string
       source:
-        type: object
-        properties:
-          self:
-            type: string
-          id:
-            type: integer
+        $ref: '#/definitions/Alarm_source'
   AlarmCollection:
     type: object
     properties:
-      next: 
+      next:
         type: string
-      prev: 
+      prev:
         type: string
       self:
         type: integer
       statistics:
-        type: object
-        properties:
-          totalPages:
-            type: integer
-          currentPage:
-            type: integer
-          pageSize:
-              type: integer
+        $ref: '#/definitions/inline_response_200_statistics'
       alarms:
         type: array
         items:
-          type: object
-          properties:
-            self:
-              type: integer
-            id:
-              type: string                   
-            time:
-              type: string
-            type:
-              type: string
-            creationTime:
-              type: integer
-            text:
-              type: string                   
-            status:
-              type: string
-            severity:
-              type: string
-            count:
-              type: integer
-            firstOccurrenceTime:
-              type: string
-            source:
-              type: object
-              properties:
-                self:
-                  type: string
-                id:
-                  type: integer
+          $ref: '#/definitions/AlarmCollection_alarms'
+  alarmalarms_source:
+    type: object
+    properties:
+      id:
+        type: integer
+      self:
+        type: string
+  Alarm_1:
+    type: object
+    required:
+    - severity
+    - source
+    - text
+    - time
+    - type
+    properties:
+      type:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      source:
+        $ref: '#/definitions/alarmalarms_source'
+      status:
+        type: string
+      severity:
+        type: string
+  inline_response_200_statistics:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      currentPage:
+        type: integer
+      pageSize:
+        type: integer
+  inline_response_200_source:
+    type: object
+    properties:
+      self:
+        type: integer
+      id:
+        type: string
+  inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1:
+    type: object
+    properties:
+      value:
+        type: string
+      unit:
+        type: string
+  inline_response_200_ct_CustomSensor_sim:
+    type: object
+    properties:
+      ct_CustomSeries_1:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+      ct_CustomSeries_2:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+      ct_CustomSeries_3:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+      ct_CustomSeries_4:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+  inline_response_200_c8y_SignalStrength:
+    type: object
+    properties:
+      rssi:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+      ber:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+  inline_response_200_c8y_TemperatureMeasurement:
+    type: object
+    properties:
+      T:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+  inline_response_200_cTh_AccelerationMeasurement:
+    type: object
+    properties:
+      X:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+      Y:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+      Z:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim_ct_CustomSeries_1'
+  inline_response_200_measurements:
+    type: object
+    properties:
+      self:
+        type: integer
+      id:
+        type: string
+      time:
+        type: string
+      type:
+        type: string
+      source:
+        $ref: '#/definitions/inline_response_200_source'
+      ct_CustomSensor_sim:
+        $ref: '#/definitions/inline_response_200_ct_CustomSensor_sim'
+      c8y_SignalStrength:
+        $ref: '#/definitions/inline_response_200_c8y_SignalStrength'
+      c8y_TemperatureMeasurement:
+        $ref: '#/definitions/inline_response_200_c8y_TemperatureMeasurement'
+      cTh_AccelerationMeasurement:
+        $ref: '#/definitions/inline_response_200_cTh_AccelerationMeasurement'
+  inline_response_200:
+    type: object
+    properties:
+      next:
+        type: string
+      self:
+        type: integer
+      statistics:
+        $ref: '#/definitions/inline_response_200_statistics'
+      measurements:
+        type: array
+        items:
+          $ref: '#/definitions/inline_response_200_measurements'
+  inline_response_default:
+    type: object
+    properties:
+      error:
+        type: string
+      info:
+        type: string
+      message:
+        type: string
+  inline_response_200_1_c8y_Hardware:
+    type: object
+    properties:
+      model:
+        type: string
+      serialNumber:
+        type: string
+  inline_response_200_1_c8y_Mobile:
+    type: object
+    properties:
+      imei:
+        type: string
+      cellId:
+        type: string
+      iccid:
+        type: string
+  inline_response_200_1_c8y_Firmware:
+    type: object
+    properties:
+      version:
+        type: string
+  inline_response_200_1_c8y_Position:
+    type: object
+    properties:
+      alt:
+        type: string
+      lng:
+        type: string
+      lat:
+        type: string
+  inline_response_200_1:
+    type: object
+    properties:
+      owner:
+        type: string
+      creationTime:
+        type: string
+      lastUpdated:
+        type: string
+      type:
+        type: string
+      name:
+        type: string
+      id:
+        type: string
+      c8y_Hardware:
+        $ref: '#/definitions/inline_response_200_1_c8y_Hardware'
+      c8y_Mobile:
+        $ref: '#/definitions/inline_response_200_1_c8y_Mobile'
+      c8y_Firmware:
+        $ref: '#/definitions/inline_response_200_1_c8y_Firmware'
+      c8y_Position:
+        $ref: '#/definitions/inline_response_200_1_c8y_Position'
+  inline_response_200_2_managedObject_c8y_ActiveAlarmStatus:
+    type: object
+    properties:
+      major:
+        type: string
+  inline_response_200_2_managedObject_c8y_Availability:
+    type: object
+    properties:
+      lastMessage:
+        type: string
+      status:
+        type: string
+  inline_response_200_2_managedObject_c8y_Connection:
+    type: object
+    properties:
+      status:
+        type: string
+  inline_response_200_2_managedObject:
+    type: object
+    properties:
+      owner:
+        type: string
+      creationTime:
+        type: string
+      lastUpdated:
+        type: string
+      type:
+        type: string
+      name:
+        type: string
+      id:
+        type: string
+      c8y_ActiveAlarmStatus:
+        $ref: '#/definitions/inline_response_200_2_managedObject_c8y_ActiveAlarmStatus'
+      c8y_Availability:
+        $ref: '#/definitions/inline_response_200_2_managedObject_c8y_Availability'
+      c8y_Connection:
+        $ref: '#/definitions/inline_response_200_2_managedObject_c8y_Connection'
+      c8y_Hardware:
+        $ref: '#/definitions/inline_response_200_1_c8y_Hardware'
+      c8y_Mobile:
+        $ref: '#/definitions/inline_response_200_1_c8y_Mobile'
+      c8y_Firmware:
+        $ref: '#/definitions/inline_response_200_1_c8y_Firmware'
+      c8y_Position:
+        $ref: '#/definitions/inline_response_200_1_c8y_Position'
+  inline_response_200_2_references:
+    type: object
+    properties:
+      managedObject:
+        $ref: '#/definitions/inline_response_200_2_managedObject'
+  inline_response_200_2:
+    type: object
+    properties:
+      next:
+        type: string
+      self:
+        type: integer
+      statistics:
+        $ref: '#/definitions/inline_response_200_statistics'
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/inline_response_200_2_references'
+  inline_response_200_3_additionParents_managedObject:
+    type: object
+    properties:
+      name:
+        type: string
+      id:
+        type: string
+      self:
+        type: string
+  inline_response_200_3_additionParents_references:
+    type: object
+    properties:
+      managedObject:
+        $ref: '#/definitions/inline_response_200_3_additionParents_managedObject'
+  inline_response_200_3_additionParents:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/inline_response_200_3_additionParents_references'
+  inline_response_200_3_managedObjects:
+    type: object
+    properties:
+      additionParents:
+        $ref: '#/definitions/inline_response_200_3_additionParents'
+      assetParents:
+        $ref: '#/definitions/inline_response_200_3_additionParents'
+      childAdditions:
+        $ref: '#/definitions/inline_response_200_3_additionParents'
+      childAssets:
+        $ref: '#/definitions/inline_response_200_3_additionParents'
+      childDevices:
+        $ref: '#/definitions/inline_response_200_3_additionParents'
+      deviceParents:
+        $ref: '#/definitions/inline_response_200_3_additionParents'
+      owner:
+        type: string
+      creationTime:
+        type: string
+      lastUpdated:
+        type: string
+      type:
+        type: string
+      name:
+        type: string
+      id:
+        type: string
+      c8y_IsDeviceGroup:
+        type: string
+      c8y_Global:
+        type: string
+      c8y_Hardware:
+        $ref: '#/definitions/inline_response_200_1_c8y_Hardware'
+      c8y_Mobile:
+        $ref: '#/definitions/inline_response_200_1_c8y_Mobile'
+      c8y_Firmware:
+        $ref: '#/definitions/inline_response_200_1_c8y_Firmware'
+      c8y_Position:
+        $ref: '#/definitions/inline_response_200_1_c8y_Position'
+  inline_response_200_3:
+    type: object
+    properties:
+      next:
+        type: string
+      self:
+        type: integer
+      statistics:
+        $ref: '#/definitions/inline_response_200_statistics'
+      managedObjects:
+        type: array
+        items:
+          $ref: '#/definitions/inline_response_200_3_managedObjects'
+  Alarm_source:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: integer
+  AlarmCollection_alarms:
+    type: object
+    properties:
+      self:
+        type: integer
+      id:
+        type: string
+      time:
+        type: string
+      type:
+        type: string
+      creationTime:
+        type: integer
+      text:
+        type: string
+      status:
+        type: string
+      severity:
+        type: string
+      count:
+        type: integer
+      firstOccurrenceTime:
+        type: string
+      source:
+        $ref: '#/definitions/Alarm_source'
