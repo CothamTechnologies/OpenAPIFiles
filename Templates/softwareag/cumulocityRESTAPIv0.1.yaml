@@ -26,12 +26,6 @@ paths:
         description: The Alarm to create
         schema:
           type: object
-          required:
-          - severity
-          - source
-          - text
-          - time
-          - type
           properties:
             type:
               type: string
@@ -45,13 +39,13 @@ paths:
                   self:
                     type: string
                   id:
-                    type: integer
+                    type: string
             status:
               type: string
             severity:
               type: string
       responses:
-        "200":
+        200:
           description: Success
           schema:
             $ref: '#/definitions/Alarm'
