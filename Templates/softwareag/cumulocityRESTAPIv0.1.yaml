@@ -5,7 +5,7 @@ info:
   description: Cumulocity REST API for FloPro Integration
 
 host: cotham.eu-latest.cumulocity.com
-basePath: 
+basePath: /
 
 schemes:
   - https
@@ -17,15 +17,34 @@ security:
   - auth: []
 
 paths:
-  
+  /alarm:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [Alarm
+        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      summary: Get the AlarmAPI resource
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/AlarmAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /alarm/alarms:        
     get:
-      description: Get alarm Collection
-      summary: https://cumulocity.com/guides/reference/alarms/#alarm-api
+      description: >-
+        #### For a detailed description of the API please check out the [Alarm
+        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      summary: Get an alarm collection
       tags:
-        - Alarm
-      consumes:
-        - application/json
+        - Alarms
       produces:
         - application/json
       parameters:
@@ -71,73 +90,61 @@ paths:
           name: withDevices
           description: withDevices={withDevices}
           type: string
-              
-
       responses:
         200:
-          description: success
+          description: Success
           schema:
-            type: object
-            properties:
-              next: 
-                type: string
-              prev: 
-                type: string
-              self:
-                type: integer
-              statistics:
-                type: object
-                properties:
-                  totalPages:
-                    type: integer
-                  currentPage:
-                    type: integer
-                  pageSize:
-                      type: integer
-              alarms:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    self:
-                      type: integer
-                    id:
-                      type: string                   
-                    time:
-                      type: string
-                    type:
-                      type: string
-                    creationTime:
-                      type: integer
-                    text:
-                      type: string                   
-                    status:
-                      type: string
-                    severity:
-                      type: string
-                    count:
-                      type: integer
-                    source:
-                      type: object
-                      properties:
-                        self:
-                          type: integer
-                        id:
-                          type: string
-                    
-
+            $ref: '#/definitions/AlarmCollection'
         default:
           description: Other Error
           schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out our [Alarm
+        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      summary: Create a new Alarm
+      tags:
+        - Alarms
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Alarm
+          in: body
+          required: true
+          description: The Alarm to create
+          schema:
             type: object
+            required:
+              - type
+              - time
+              - text
+              - source
+              - severity
             properties:
-              error:
+              type:
                 type: string
-              info:
+              time:
                 type: string
-              message:
-                type: string 
-
+              text:
+                type: string
+              source:
+                $ref: '#/definitions/ManagedObject'
+              status:
+                type: string
+              severity:
+                type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Alarm'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /measurement/measurements:        
     get:
       description: Get Measurement Collection
@@ -635,7 +642,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  properties:	
+                  properties:  
                     additionParents:
                       type: object
                       properties:
@@ -800,11 +807,97 @@ paths:
         default:
           description: Other Error
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string
+            $ref: '#/definitions/GenericError'
+definitions:
+  GenericError:
+    type: object
+    properties:
+      error:
+        type: string
+      info:
+        type: string
+      message:
+        type: string
+  PagingStatistics:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      currentPage:
+        type: integer
+      pageSize:
+          type: integer
+  ManagedObject:
+    type: object
+    properties:
+      self:
+        type: integer
+      id:
+        type: string
+  AlarmAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      alarms:
+        type: string
+      alarmsForStatus:
+        type: string
+      alarmsForSource:
+        type: string
+      alarmsForSourceAndStatus:
+        type: string
+      alarmsForTime:
+        type: string
+      alarmsForStatusAndTime:
+        type: string
+      alarmsForSourceAndTime:
+        type: string
+      alarmsForSourceAndStatusAndTime:
+        type: string
+      alarmsForSourceWithAssetsAndWithDevices:
+        type: string
+      alarmsForSeverity:
+        type: string
+      alarmsForResolved:
+        type: string
+  Alarm:
+    type: object
+    properties:
+      self:
+        type: integer
+      id:
+        type: string                   
+      time:
+        type: string
+      type:
+        type: string
+      creationTime:
+        type: integer
+      text:
+        type: string                   
+      status:
+        type: string
+      severity:
+        type: string
+      count:
+        type: integer
+      firstOccurrenceTime:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+  AlarmCollection:
+    type: object
+    properties:
+      next: 
+        type: string
+      prev: 
+        type: string
+      self:
+        type: integer
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      alarms:
+        type: array
+        items:
+          $ref: '#/definitions/Alarm'
