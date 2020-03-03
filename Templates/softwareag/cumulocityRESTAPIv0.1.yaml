@@ -17,15 +17,30 @@ security:
   - auth: []
 
 paths:
-  
+  /alarm:
+    get:
+      description: http://cumulocity.com/guides/reference/alarms/
+      summary: Get the AlarmAPI resource
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/AlarmAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /alarm/alarms:        
     get:
-      description: Get alarm Collection
-      summary: https://cumulocity.com/guides/reference/alarms/#alarm-api
+      description: http://cumulocity.com/guides/reference/alarms/
+      summary: Get an alarm collection
       tags:
-        - Alarm
-      consumes:
-        - application/json
+        - Alarms
       produces:
         - application/json
       parameters:
@@ -71,13 +86,60 @@ paths:
           name: withDevices
           description: withDevices={withDevices}
           type: string
-              
-
       responses:
         200:
-          description: success
+          description: Success
           schema:
             $ref: '#/definitions/AlarmCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: http://cumulocity.com/guides/reference/alarms/
+      summary: Create a new Alarm
+      tags:
+        - Alarms
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Alarm
+          in: body
+          required: true
+          description: The Alarm to create
+          schema:
+            type: object
+            required:
+              - type
+              - time
+              - text
+              - source
+              - severity
+            properties:
+              type:
+                type: string
+              time:
+                type: string
+              text:
+                type: string
+              source:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  self:
+                    type: string
+              status:
+                type: string
+              severity:
+                type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Alarm'
         default:
           description: Other Error
           schema:
@@ -579,7 +641,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  properties:	
+                  properties:  
                     additionParents:
                       type: object
                       properties:
@@ -744,14 +806,7 @@ paths:
         default:
           description: Other Error
           schema:
-            type: object
-            properties:
-              error:
-                type: string
-              info:
-                type: string
-              message:
-                type: string
+            $ref: '#/definitions/GenericError'
 definitions:
   GenericError:
     type: object
