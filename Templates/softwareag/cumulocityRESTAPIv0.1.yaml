@@ -5,6 +5,8 @@ info:
   description: Cumulocity REST API for FloPro Integration
 
 host: cotham.eu-latest.cumulocity.com
+
+
 schemes:
   - https
 
