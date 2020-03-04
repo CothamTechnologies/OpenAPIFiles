@@ -15,15 +15,18 @@ paths:
       tags:
       - Alarms
       summary: Create a new Alarm
-      description: http://cumulocity.com/guides/reference/alarms/
+      description: >-
+        #### For a detailed description of the API please check out our [Alarm
+        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
       consumes:
       - application/json
       produces:
       - application/json
       parameters:
       - in: body
-        name: body
+        name: Alarm
         description: The Alarm to create
+        required: true
         schema:
           type: object
           properties:
@@ -45,8 +48,8 @@ paths:
             severity:
               type: string
       responses:
-        200:
-          description: Success
+        201:
+          description: Created
           schema:
             $ref: '#/definitions/Alarm'
         default:
@@ -117,7 +120,7 @@ definitions:
       firstOccurrenceTime:
         type: string
       source:
-        $ref: '#/definitions/Alarm_source'
+        $ref: '#/definitions/ManagedObject'
   AlarmCollection:
     type: object
     properties:
@@ -133,7 +136,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Alarm'
-  Alarm_source:
+  ManagedObject:
     type: object
     properties:
       self:
