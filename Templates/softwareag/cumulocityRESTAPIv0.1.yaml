@@ -14,6 +14,7 @@ paths:
   /alarm:
     get:
       tags:
+      - Cumulocity API Overview
       - Alarms
       summary: Get the AlarmAPI resource
       description: >-
@@ -315,6 +316,362 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /application:
+    get:
+      tags:
+      - Applications
+      - Cumulocity API Overview
+      summary: Get the ApplicationAPI resource
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications:
+    get:
+      tags:
+      - Applications
+      summary: Get an application collection
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Applications
+      summary: Create a new application
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Application
+        description: The Application to create
+        required: true
+        schema:
+          type: object
+          properties:
+            key:
+              type: string
+              description: Shared secret of application
+            name:
+              type: string
+              description: Name of application
+            type:
+              type: string
+              description: Type of application. Possible values are EXTERNAL, HOSTED, MICROSERVICE
+            contextPath:
+              type: string
+              description: contextPath of the hosted application
+            resourcesUrl:
+              type: string
+              description: URL to application base directory hosted on an external server (Mandatory when application type is HOSTED)
+            externalUrl:
+              type: string
+              description: URL to the external application (Mandatory when application type is EXTERNAL)
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{applicationId}/clone:
+    post:
+      tags:
+      - Applications
+      summary: Copy an application
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+        
+        The properties are copied to the newly created application. For name, key and context path a “clone” prefix is added in order to be unique.
+        
+        If the target application is hosted and has an active version, the new application will have the active version with the same content.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: applicationId
+        description: The id of the application which will be cloned
+        required: true
+        type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{applicationId}:
+    put:
+      tags:
+      - Applications
+      summary: Update an application
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: applicationId
+        description: Application id.
+        required: true
+        type: string
+      - in: body
+        name: Application
+        description: The application properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            key:
+              type: string
+              description: Shared secret of application
+            name:
+              type: string
+              description: Name of application
+            contextPath:
+              type: string
+              description: contextPath of the hosted application
+            resourcesUrl:
+              type: string
+              description: URL to application base directory hosted on an external server (Mandatory when application type is HOSTED)
+            externalUrl:
+              type: string
+              description: URL to the external application (Mandatory when application type is EXTERNAL)
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Applications
+      summary: Get an application 
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: applicationId
+          description: Application id.
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Applications
+      summary: Delete an application 
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: applicationId
+          description: Application id.
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{microservice-applicationId}/bootstrapUser:
+    get:
+      tags:
+      - Applications
+      summary: Get bootstrap user
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: microservice-applicationId
+          description: Microservice application id.
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationUser'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/currentApplication:
+    get:
+      tags:
+      - Applications
+      summary: Get current application 
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+        
+        Required authentication with bootstrap user
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Applications
+      summary: Update current application
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+        
+        Required authentication with bootstrap user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Application
+        description: The application properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            availability:
+              type: string
+            id:
+              type: string
+            key:
+              type: string
+              description: Shared secret of application
+            name:
+              type: string
+              description: Name of application
+            owner:
+              type: object
+              properties:
+                self:
+                  type: string
+                tenant:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+            self:
+              type: string
+            type:
+              type: string
+            contextPath:
+              type: string
+              description: contextPath of the hosted application
+            resourcesUrl:
+              type: string
+              description: URL to application base directory hosted on an external server (Mandatory when application type is HOSTED)
+            externalUrl:
+              type: string
+              description: URL to the external application (Mandatory when application type is EXTERNAL)
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/currentApplication/subscriptions:
+    get:
+      tags:
+      - Applications
+      summary: Get current application subscriptions
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+        
+        Required authentication with bootstrap user
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationSubscriptionCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -395,6 +752,89 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Alarm'
+  ApplicationAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      applicationById:
+        type: string
+      applications:
+        type: string
+      applicationsByName:
+        type: string
+      applicationsByTenant:
+        type: string
+      applicationsByOwner:
+        type: string
+  Application:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      key:
+        type: string
+      type:
+        type: string
+      availability:
+        type: string
+      owner:
+        $ref: '#/definitions/TenantReference'
+      contextPath:
+        type: string
+      resourcesUrl:
+        type: string
+      resourcesUsername:
+        type: string
+      resourcesPassword:
+        type: string
+      externalUrl:
+        type: string
+  ApplicationCollection:
+    type: object
+    properties:
+      self:
+        type: string
+  ApplicationSubscriptionCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicationUser'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ApplicationUser:
+    type: object
+    properties:
+      tenant:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+  TenantReference:
+    type: object
+    properties:
+      self:
+        type: string
+      tenant:
+        $ref: '#/definitions/Tenant'
+  Tenant:
+    type: object
+    properties:
+      id:
+        type: string
   ManagedObject:
     type: object
     properties:
