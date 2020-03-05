@@ -672,6 +672,242 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /application/applications/{applicationId}/binaries:
+    post:
+      tags:
+      - Applications
+      summary: Upload application binary
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Application Reference
+        Guide](http://cumulocity.com/guides/reference/applications/)
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: applicationId
+        description: Application id
+        required: true
+        type: string
+      - in: formData
+        name: ApplicationZIP
+        type: file
+        description: The application folder to upload
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /audit:
+    get:
+      tags:
+      - Auditing
+      - Cumulocity API Overview
+      summary: Get the AuditAPI resource
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Auditing Reference
+        Guide](http://cumulocity.com/guides/reference/auditing/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuditAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /audit/auditRecords:
+    post:
+      tags:
+      - Auditing
+      summary: Create a new audit record
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Auditing Reference
+        Guide](http://cumulocity.com/guides/reference/auditing/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Audit Record
+        description: The Audit Record to create
+        required: true
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Identifies the type of this audit record
+            time:
+              type: string
+              description: Time of the audit record
+            text:
+              type: string
+              description: Text description of the audit record
+            source:
+              type: object
+              description: An optional ManagedObject that the audit record originated from, as object containing properties “id” and “self”
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+            user:
+              type: string
+              description: The user responsible for the audited action
+            application:
+              type: string
+              description: The application used to carry out the audited action
+            activity:
+              type: string
+              description: The activity that was carried out
+            severity:
+              type: string
+              description: The severity of action. Can be critical, major, minor, warning or information
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/AuditRecord'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Auditing
+      summary: Get audit records
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Auditing Reference
+        Guide](http://cumulocity.com/guides/reference/auditing/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: user
+          description: user={user}
+          type: string
+        - in: query
+          name: application
+          description: application={application}
+          type: string
+        - in: query
+          name: revert
+          description: revert={revert}
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuditRecordCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Auditing
+      summary: Delete a collection of audit records
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Auditing Reference
+        Guide](http://cumulocity.com/guides/reference/auditing/)
+        
+        Important: This method has been deprecated and will be removed completely with the July 2020 release (10.6.6). With Cumulocity IoT >= 10.6.6 the deletion of audit logs will no longer be permitted. All DELETE requests to the audit API will return the error 405 Method not allowed. Note that retention rules still apply to audit logs and will delete audit log records older than the specified retention time.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: user
+          description: user={user}
+          type: string
+        - in: query
+          name: application
+          description: application={application}
+          type: string
+      responses:
+        204:
+          description: No content
+        405:
+          description: Not allowed
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /audit/auditRecords/{recordId}:
+    get:
+      tags:
+      - Auditing
+      summary: Get an audit record
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Auditing Reference
+        Guide](http://cumulocity.com/guides/reference/auditing/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: recordId
+          description: Record id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuditRecord'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -799,6 +1035,16 @@ definitions:
     properties:
       self:
         type: string
+      applications:
+        type: array
+        items:
+          $ref: '#/definitions/Application'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
   ApplicationSubscriptionCollection:
     type: object
     properties:
@@ -822,6 +1068,71 @@ definitions:
       name:
         type: string
       password:
+        type: string
+  AuditAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      auditRecords:
+        type: string
+      auditRecordsForType:
+        type: string
+      auditRecordsForUser:
+        type: string
+      auditRecordsForApplication:
+        type: string
+      auditRecordsForUserAndType:
+        type: string
+      auditRecordsForUserAndApplication:
+        type: string
+      auditRecordsForTypeAndApplication:
+        type: string
+      auditRecordsForTypeAndUserAndApplication:
+        type: string
+  AuditRecord:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      creationTime:
+        type: string
+      type:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+      user:
+        type: string
+      application:
+        type: string
+      activity:
+        type: string
+      severity:
+        type: string
+      changes:
+        type: array
+        items:
+          type: string
+  AuditRecordCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      auditRecords:
+        type: array
+        items:
+          $ref: '#/definitions/AuditRecord'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
         type: string
   TenantReference:
     type: object
