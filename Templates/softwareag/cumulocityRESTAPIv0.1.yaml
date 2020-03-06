@@ -1045,6 +1045,227 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /devicecontrol:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Device control
+      summary: Get the Device Control API resource
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/DeviceControlAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/operations:
+    post:
+      tags:
+      - Device control
+      summary: Create an Operation
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Operation
+        description: The Operation to create
+        required: true
+        schema:
+          type: object
+          properties:
+            deviceId:
+              type: string
+              description: Identifies the target device on which this operation should be performed
+            #temporary
+            com_cumulocity_model_WebCamDevice:
+              type: object
+              properties:
+                name:
+                  type: string
+                parameters:
+                  type: object
+                  properties:
+                    duration:
+                      type: string
+                    quality:
+                      type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Operation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device control
+      summary: Get a collection of operations
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: agentId
+          description: agentId={agentId}
+          type: string
+        - in: query
+          name: deviceId
+          description: deviceId={deviceId}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/OperationCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Device control
+      summary: Delete a collection of operations
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: agentId
+          description: agentId={agentId}
+          type: string
+        - in: query
+          name: deviceId
+          description: deviceId={deviceId}
+          type: string
+      responses:
+        204:
+          description: No content
+        405:
+          description: Not allowed
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/operations/{operationId}:
+    get:
+      tags:
+      - Device control
+      summary: Get an Operation
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: operationId
+          description: Operation id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Operation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Device control
+      summary: Update an Operation
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: operationId
+        description: Operation id
+        required: true
+        type: string
+      - in: body
+        name: Operation
+        description: The operation properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              description: Operation status, can be one of SUCCESSFUL, FAILED, EXECUTING or PENDING
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Operation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -1286,6 +1507,83 @@ definitions:
         type: string
       next:
         type: string
+  DeviceControlAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      operations:
+        type: string
+      operationsByStatus:
+        type: string
+      operationsByAgentId:
+        type: string
+      operationsByAgentIdAndStatus:
+        type: string
+      operationsByDeviceId:
+        type: string
+      operationsByDeviceIdAndStatus:
+        type: string
+  OperationCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/Operation'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Operation:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      creationTime:
+        type: string
+      deviceID:
+        type: string
+      deviceExternalIDs:
+        $ref: '#/definitions/ExternalIDCollection'
+      bulkOperationId:
+        type: string
+      status:
+        type: string
+      failureReason:
+        type: string
+  ExternalIDCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      externalIds:
+        type: array
+        items:
+          $ref: '#/definitions/ExternalID'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ExternalID:
+    type: object
+    properties:
+      externalId:
+        type: string
+      self:
+        type: string
+      type:
+        type: string
+      managedObject:
+        $ref: '#/definitions/ManagedObject'
   TenantReference:
     type: object
     properties:
