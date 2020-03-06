@@ -1266,6 +1266,165 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /devicecontrol/bulkoperations:
+    get:
+      tags:
+      - Device control
+      summary: Get a collection of bulk operations
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: withDeleted
+          type: boolean
+          description: withDeleted = {withDeleted}
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/BulkOperationCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Device control
+      summary: Create a Bulk Operation
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Bulk Operation
+        description: The Bulk Operation to create
+        required: true
+        schema:
+          type: object
+          properties:
+            startDate:
+              type: string
+              description: Time when operations should be created
+            creationRamp:
+              type: string
+              description: Delay between every operation creation
+            operationPrototype:
+              description: Operation to be executed for every device in a group
+              type: object
+              properties:
+                description:
+                  type: string
+                c8y_Command:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                c8y_Restart:
+                  type: object
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/BulkOperation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/bulkoperations/{bulkOperationId}:
+    put:
+      tags:
+      - Device control
+      summary: Update a Bulk Operation
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: bulkOperationId
+        description: Bulk Operation id
+        required: true
+        type: string
+      - in: body
+        name: Bulk Operation
+        description: The bulk operation properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            creationRamp:
+              type: string
+              description: Delay between every operation creation
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/BulkOperation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device control
+      summary: Get a Bulk Operation  
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: bulkOperationId
+          description: Bulk Operation id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/BulkOperation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Device control
+      summary: Delete a Bulk Operation 
+      description: >-
+        #### For a detailed description of the API please check out the [Device
+        Control Reference
+        Guide](http://cumulocity.com/guides/reference/device-control/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: bulkOperationId
+          description: Bulk Operation id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -1584,6 +1743,67 @@ definitions:
         type: string
       managedObject:
         $ref: '#/definitions/ManagedObject'
+  BulkOperation:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      groupId:
+        type: string
+      failedParentId:
+        type: string
+      startDate:
+        type: string
+      creationRamp:
+        type: number
+      operationPrototype:
+        $ref: '#/definitions/OperationRepresentation'
+      status:
+        type: string
+      progress:
+        $ref: '#/definitions/BulkOperationProgressRepresentation'
+  OperationRepresentation:
+    type: object
+    properties:
+      description:
+        type: string
+      c8y_Command:
+        type: object
+        properties:
+          text:
+            type: string
+      c8y_Restart:
+        type: object
+  BulkOperationProgressRepresentation:
+    type: object
+    properties:
+      pending:
+        type: integer
+      failed:
+        type: integer
+      executing:
+        type: integer
+      successful:
+        type: integer
+      all:
+        type: integer
+  BulkOperationCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      bulkOperations:
+        type: array
+        items:
+          $ref: '#/definitions/BulkOperation'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
   TenantReference:
     type: object
     properties:
