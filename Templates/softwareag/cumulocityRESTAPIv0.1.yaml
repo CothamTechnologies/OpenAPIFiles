@@ -908,6 +908,143 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /inventory/binaries:
+    get:
+      tags:
+      - Binaries
+      summary: Get a binaries collection
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Binaries Reference
+        Guide](http://cumulocity.com/guides/reference/binaries/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Binaries
+      summary: Upload a new binary
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Binaries Reference
+        Guide](http://cumulocity.com/guides/reference/binaries/)
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: object
+        description: A JSON object containing information about the file
+        type: string
+      - in: formData
+        name: filesize
+        description: The size of the binary in bytes
+        type: integer
+      - in: formData
+        name: file
+        type: file
+        description: The binary file which will be uploaded
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/binaries/{binaryId}:
+    get:
+      tags:
+      - Binaries
+      summary: Download a binary
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Binaries Reference
+        Guide](http://cumulocity.com/guides/reference/binaries/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: binaryId
+          description: Binary id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Binaries
+      summary: Replace a binary
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Binaries Reference
+        Guide](http://cumulocity.com/guides/reference/binaries/)
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: binaryId
+        description: Binary id
+        required: true
+        type: string
+      - in: formData
+        name: Binary
+        description: The binary to update
+        required: true
+        type: file
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Binaries
+      summary: Delete a binary
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Binaries Reference
+        Guide](http://cumulocity.com/guides/reference/binaries/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: binaryId
+          description: Binary id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -1134,6 +1271,21 @@ definitions:
         type: string
       next:
         type: string
+  ManagedObjectCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      auditRecords:
+        type: array
+        items:
+          $ref: '#/definitions/ManagedObject'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
   TenantReference:
     type: object
     properties:
@@ -1152,7 +1304,11 @@ definitions:
       self:
         type: string
       id:
-        type: integer
+        type: string
+      name:
+        type: string
+      type:
+        type: string
   PagingStatistics:
     type: object
     properties:
