@@ -2060,6 +2060,153 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /identity:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Identity
+      summary: Get the Identity API resource
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Identity Reference
+        Guide](http://cumulocity.com/guides/reference/identity/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/IdentityAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /identity/globalIds/{deviceId}/externalIds:
+    get:
+      tags:
+      - Identity
+      summary: Get an External ID collection for a device
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Identity Reference
+        Guide](http://cumulocity.com/guides/reference/identity/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ExternalIDCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Identity
+      summary: Create an External ID for a device
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Identity Reference
+        Guide](http://cumulocity.com/guides/reference/identity/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        type: string
+        required: true
+      - in: body
+        name: ExternalID
+        description: The External ID to create
+        required: true
+        schema:
+          type: object
+          properties:
+            externalId:
+              type: string
+              description: The identifier used in the external system that Cumulocity interfaces with
+            type:
+              type: string
+              description: The type of the external identifier as string, e.g., “com_cumulocity_model_idtype_SerialNumber”.
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ExternalID'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /identity/externalIds/{externalIdType}/{externalId}:
+    get:
+      tags:
+      - Identity
+      summary: Get an External ID for a device
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Identity Reference
+        Guide](http://cumulocity.com/guides/reference/identity/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: externalIdType
+          description: Type of external id
+          type: string
+          required: true
+        - in: path
+          name: externalId
+          description: External id
+          type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ExternalID'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Identity
+      summary: Delete an External ID for a device
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Identity Reference
+        Guide](http://cumulocity.com/guides/reference/identity/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: externalIdType
+          description: Type of external id
+          type: string
+          required: true
+        - in: path
+          name: externalId
+          description: External id
+          type: string
+          required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -2351,6 +2498,15 @@ definitions:
       status:
         type: string
       failureReason:
+        type: string
+  IdentityAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      externalId:
+        type: string
+      externalIdsOfGlobalId:
         type: string
   ExternalIDCollection:
     type: object
