@@ -349,7 +349,25 @@ paths:
         Guide](http://cumulocity.com/guides/reference/applications/)
       produces:
       - application/json
-      parameters: []
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
       responses:
         200:
           description: OK
@@ -662,7 +680,25 @@ paths:
         Required authentication with bootstrap user
       produces:
       - application/json
-      parameters: []
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
       responses:
         200:
           description: OK
@@ -919,7 +955,25 @@ paths:
         Guide](http://cumulocity.com/guides/reference/binaries/)
       produces:
       - application/json
-      parameters: []
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
       responses:
         200:
           description: OK
@@ -1425,6 +1479,224 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /devicecontrol/newDeviceRequests:
+    post:
+      tags:
+      - Device credentials
+      summary: Create a new device request
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: NewDeviceRequest
+        description: The request to create
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Id of the device that has to be registered
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/NewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device credentials
+      summary: Return all new device requests
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/NewDeviceRequestCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/newDeviceRequests/{requestId}:
+    put:
+      tags:
+      - Device credentials
+      summary: Update a new device request
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: requestId
+        description: Request id
+        required: true
+        type: string
+      - in: body
+        name: NewDeviceRequest
+        description: The request properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              description: Status of registration, can be WAITING_FOR_CONNECTION, PENDING_ACCEPTANCE, ACCEPTED
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/NewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device credentials
+      summary: Return all new device requests
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: requestId
+          description: Request id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/NewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Device credentials
+      summary: Delete a new device request
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: requestId
+          description: Request id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/deviceCredentials:
+    post:
+      tags:
+      - Device credentials
+      summary: Create a device credentials request
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: DeviceCredentials
+        description: The credentials request to create
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Id of the device 
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/DeviceCredentials'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/bulkNewDeviceRequests:
+    post:
+      tags:
+      - Device credentials
+      summary: Create a bulk device credentials request
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Device Credentials Reference
+        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: file
+        description: A CSV-formatted file containing, for each line, device credentials and device representation
+        type: string
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/BulkNewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -1804,6 +2076,72 @@ definitions:
         type: string
       next:
         type: string
+  NewDeviceRequest:
+    type: object
+    properties:
+      id:
+        type: string
+      status:
+        type: string
+      self:
+        type: string
+  NewDeviceRequestCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      newDeviceRequests:
+        type: array
+        items:
+          $ref: '#/definitions/NewDeviceRequest'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  DeviceCredentials:
+    type: object
+    properties:
+      id:
+        type: string
+      tenantId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+      self:
+        type: string
+  BulkNewDeviceRequest:
+    type: object
+    properties:
+      numberOfAll:
+        type: integer
+      numberOfCreated:
+        type: integer
+      numberOfFailed:
+        type: integer
+      numberOfSuccessful:
+        type: integer
+      credentialUpdatedList:
+        type: object
+        properties:
+          bulkNewDeviceStatus:
+            type: string
+          deviceId:
+            type: string
+      failedCreationList:
+        type: object
+        properties:
+          bulkNewDeviceStatus:
+            type: string
+          deviceId:
+            type: string
+          failureReason:
+            type: string
+          line:
+            type: string
   TenantReference:
     type: object
     properties:
