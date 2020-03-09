@@ -2207,6 +2207,531 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /inventory:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Inventory
+      summary: Get the Inventory API resource
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/InventoryAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects:
+    get:
+      tags:
+      - Inventory
+      summary: Get a ManagedObject collection
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+        
+        Important: If you query /inventory/managedObjects?type=c8y_Firmware&query=$filter=(name+eq+'Controller 1') 
+        the type queryParam is ignored.
+        
+        Instead url/inventory/managedObjects?query=$filter=(type+eq+c8y_Firmware+and+c8y_Filter.type+eq+'Controller 1') has to be queried.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: text
+          description: text={text}
+          type: string
+        - in: query
+          name: ids
+          description: ids={ids}
+          type: string
+        - in: query
+          name: query
+          description: Query language is applied to all managed objects.
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/EventCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Inventory
+      summary: Create a new ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: ManagedObject
+        description: The ManagedObject to create
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Human-readable name that is used for representing the object in user interfaces
+            type:
+              type: string
+              description: The most specific type of the managed object as fully qualified Java-style type name, dots replaced by underscores
+            creationDate:
+              type: string
+              description: The time when the object has been created
+            com_cumulocity_model_BinarySwitch:
+              type: object
+              description: Custom property to create a binary switch
+              properties:
+                state:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Inventory
+      summary: Update a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: body
+        name: ManagedObject
+        description: The object properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Human-readable name that is used for representing the object in user interfaces
+            type:
+              type: string
+              description: The most specific type of the managed object as fully qualified Java-style type name, dots replaced by underscores
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+        tags:
+        - Inventory
+        summary: Delete a ManagedObject
+        description: >-
+          #### For a detailed description of the API please check out the
+          [Inventory Reference
+          Guide](http://cumulocity.com/guides/reference/inventory/)
+        produces:
+        - application/json
+        parameters:
+          - in: path
+            name: deviceId
+            description: Device id
+            required: true
+            type: string
+        responses:
+          204:
+            description: No content
+          default:
+            description: Other Error
+            schema:
+              $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/supportedMeasurements:
+    get:
+      tags:
+      - Inventory
+      summary: Get supported measurements of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/SupportedMeasurements'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/supportedSeries:
+    get:
+      tags:
+      - Inventory
+      summary: Get supported series of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/SupportedSeries'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childDevices:
+    post:
+      tags:
+      - Inventory
+      summary: Add a managed object reference to the collection of child devices
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: body
+        name: ManagedObjectReference
+        description: The managed object reference to create
+        required: true
+        schema:
+          type: object
+          properties:
+            managedObject:
+              type: object
+              description: The ManagedObject being referenced
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Inventory
+      summary: Get child devices of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childDevices/{referenceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a child device reference of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Inventory
+      summary: Delete a child device reference of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childAssets:
+    post:
+      tags:
+      - Inventory
+      summary: Add a managed object reference to the collection of child assets
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: body
+        name: ManagedObjectReference
+        description: The managed object reference to create
+        required: true
+        schema:
+          type: object
+          properties:
+            managedObject:
+              type: object
+              description: The ManagedObject being referenced
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Inventory
+      summary: Get child assets of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childAssets/{referenceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a child asset reference of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Inventory
+      summary: Delete a child asset reference of a ManagedObject
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Inventory Reference
+        Guide](http://cumulocity.com/guides/reference/inventory/)
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -2438,7 +2963,7 @@ definitions:
     properties:
       self:
         type: string
-      auditRecords:
+      managedObjects:
         type: array
         items:
           $ref: '#/definitions/ManagedObject'
@@ -2730,6 +3255,43 @@ definitions:
         type: string
       source:
         $ref: '#/definitions/ManagedObject'
+  InventoryAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      managedObjects:
+        $ref: '#/definitions/ManagedObjectCollection'
+      managedObjectsForType:
+        type: string
+      managedObjectsForFragmentType:
+        type: string
+      managedObjectsForListOfIds:
+        type: string
+      managedObjectsForText:
+        type: string
+  ManagedObjectReference:
+    type: object
+    properties:
+      self:
+        type: string
+      managedObject:
+        $ref: '#/definitions/ManagedObject'
+  ManagedObjectReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/ManagedObjectReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
   TenantReference:
     type: object
     properties:
@@ -2753,6 +3315,20 @@ definitions:
         type: string
       type:
         type: string
+  SupportedMeasurements:
+    type: object
+    properties:
+      c8y_SupportedMeasurements:
+        type: array
+        items:
+          type: string
+  SupportedSeries:
+    type: object
+    properties:
+      c8y_SupportedSeries:
+        type: array
+        items:
+          type: string
   PagingStatistics:
     type: object
     properties:
