@@ -2732,6 +2732,326 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /measurement:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Measurements
+      summary: Get the Measurement API resource
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement/measurements:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      summary: Get a collection of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+        - text/csv
+        - application/vnd.ms-excel
+        - application/json-stream
+      parameters:        
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      summary: Create a new measurement
+      tags:
+        - Measurements
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Measurement
+        description: The measurement to create
+        required: true
+        schema:
+          type: object
+          properties:
+            time:
+              type: string
+              description: Time of the measurement
+            type:
+              type: string
+              description: The most specific type of this entire measurement
+            source:
+              type: object
+              description: The ManagedObject which is the source of this measurement, as object containing the properties “id” and “self”
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+            com_cumulocity_model_energy_measurement_SinglePhaseElectricityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                A+:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+                A-:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_TemperatureMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                T:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_MotionMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_AccelerationMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_LightMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_HumidityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_MoistureMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_DistanceMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_SinglePhaseElectricityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_ThreePhaseElectricityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_CurrentMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_VoltageMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_Position:
+              type: object
+              description: Custom fragment to create a measurement
+            c8y_SignalStrength:
+              type: object
+              description: Custom fragment to create a measurement
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Measurement'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      summary: Delete a measurement collection
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement/measurements/{measurementId}:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      summary: Get a measurement
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - name: measurementId
+          in: path
+          required: true
+          type: string
+          description: Measurement id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Measurement'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      description: >-
+        #### For a detailed description of the API please check out the
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      summary: Delete a measurement
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - name: measurementId
+          in: path
+          required: true
+          type: string
+          description: Measurement id
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement/measurements/series:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out our
+        [Measurement Reference
+        Guide](http://cumulocity.com/guides/reference/measurements/)
+      summary: Retrieve all or some series of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - name: source
+          in: query
+          required: true
+          type: string
+          description: ''
+        - name: dateFrom
+          in: query
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - name: dateTo
+          in: query
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - name: aggregationType
+          in: query
+          required: false
+          type: string
+          description: DAILY, HOURLY, MINUTELY
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementSeries'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -3270,6 +3590,98 @@ definitions:
         type: string
       managedObjectsForText:
         type: string
+  MeasurementAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      measurements:
+        $ref: '#/definitions/MeasurementCollection'
+      measurementsForDate:
+        type: string
+      measurementsForDateAndType:
+        type: string
+      measurementsForDateAndValueFragmentType:
+        type: string
+      measurementsForDateAndValueFragmentTypeAndType:
+        type: string
+      measurementsForDateAndValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForDateAndValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+      measurementsForSource:
+        type: string
+      measurementsForSourceAndDate:
+        type: string
+      measurementsForSourceAndDateAndType:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentType:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentTypeAndType:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+      measurementsForSourceAndType:
+        type: string
+      measurementsForSourceAndValueFragmentType:
+        type: string
+      measurementsForSourceAndValueFragmentTypeAndType:
+        type: string
+      measurementsForSourceAndValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForSourceAndValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+      measurementsForType:
+        type: string
+      measurementsForValueFragmentType:
+        type: string
+      measurementsForValueFragmentTypeAndType:
+        type: string
+      measurementsForValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+  MeasurementCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      measurements:
+        type: array
+        items:
+          $ref: '#/definitions/Measurement'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Measurement:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      time:
+        type: string
+      type:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+  MeasurementSeries:
+    type: object
+    properties:
+      values:
+        type: object
+      series:
+        type: array
+        items:
+          type: object
+      truncated:
+        type: boolean
   ManagedObjectReference:
     type: object
     properties:
