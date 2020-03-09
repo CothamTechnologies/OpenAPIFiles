@@ -1697,6 +1697,369 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /event:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Events
+      summary: Get the EventAPI resource
+      description: >-
+        #### For a detailed description of the API please check out the [Event
+        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/EventAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /event/events:
+    get:
+      tags:
+      - Events
+      summary: Get an event collection
+      description: >-
+        #### For a detailed description of the API please check out the [Event
+        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/EventCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Events
+      summary: Create a new event
+      description: >-
+        #### For a detailed description of the API please check out the [Event
+        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Event
+        description: The Event to create
+        required: true
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Identifies the type of this event
+            time:
+              type: string
+              description: Time of the event
+            text:
+              type: string
+              description: Text description of the event
+            source:
+                type: object
+                description: The ManagedObject that the event originated from, as object containing properties “id”, “self”, “name”, and “type"
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
+            c8y_Position:
+              type: object
+              description: Custom property to update device location
+              properties:
+                lng:
+                  type: number
+                lat:
+                  type: number
+                alt:
+                  type: number
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Events
+      summary: Delete an event collection
+      description: >-
+        #### For a detailed description of the API please check out the [Event
+        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /event/events/{eventId}:
+    get:
+      tags:
+      - Events
+      summary: Get an event 
+      description: >-
+        #### For a detailed description of the API please check out the [Event
+        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: eventId
+          description: event id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Events
+      summary: Update an event
+      description: >-
+        #### For a detailed description of the API please check out the [Event
+        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: eventId
+        description: Event id
+        required: true
+        type: string
+      - in: body
+        name: Event
+        description: The event properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            text:
+              type: string
+              description: Text description of the event
+            c8y_Position:
+              type: object
+              description: Custom property to update device location
+              properties:
+                lng:
+                  type: number
+                lat:
+                  type: number
+                alt:
+                  type: number
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+        tags:
+        - Events
+        summary: Delete an event 
+        description: >-
+          #### For a detailed description of the API please check out the [Event
+          Reference Guide](http://cumulocity.com/guides/reference/events/)
+        produces:
+        - application/json
+        parameters:
+          - in: path
+            name: eventId
+            description: Event id
+            required: true
+            type: string
+        responses:
+          204:
+            description: No content
+          default:
+            description: Other Error
+            schema:
+              $ref: '#/definitions/GenericError'
+  /event/events/{eventId}/binaries:
+    post: 
+      tags:
+      - Events
+      summary: Upload a binary for an event
+      description: >-
+          #### For a detailed description of the API please check out the [Event
+          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: eventId
+        description: Event id
+        required: true
+        type: string
+      - in: formData
+        name: file
+        type: file
+        description: The binary file which will be uploaded
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Events
+      summary: Download a binary for an event
+      description: >-
+          #### For a detailed description of the API please check out the [Event
+          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: eventId
+          description: Event id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Events
+      summary: Replace a binary for an event
+      description: >-
+          #### For a detailed description of the API please check out the [Event
+          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: eventId
+        description: Event id
+        required: true
+        type: string
+      - in: formData
+        name: file
+        description: The binary to update
+        required: true
+        type: file
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Events
+      summary: Delete a binary for an event
+      description: >-
+          #### For a detailed description of the API please check out the [Event
+          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: eventId
+          description: Event id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -2142,6 +2505,75 @@ definitions:
             type: string
           line:
             type: string
+  EventAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      events:
+        $ref: '#/definitions/EventCollection'
+      eventsForType:
+        type: string
+      eventsForSource:
+        type: string
+      eventsForSourceAndType:
+        type: string
+      eventsForTime:
+        type: string
+      eventsForFragmentType:
+        type: string
+      eventsForSourceAndTime:
+        type: string
+      eventsForSourceAndFragmentType:
+        type: string
+      eventsForDateAndFragmentType:
+        type: string
+      eventsForFragmentTypeAndType:
+        type: string
+      eventsForTimeAndType:
+        type: string
+      eventsForSourceAndDateAndFragmentType:
+        type: string
+      eventsForSourceAndDateAndFragmentTypeAndType:
+        type: string
+      eventsForSourceAndFragmentTypeAndType:
+        type: string
+      eventsForSourceAndTimeAndType:
+        type: string
+      eventsForDateAndFragmentTypeAndType:
+        type: string
+  EventCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Event:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      creationTime:
+        type: string
+      type:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
   TenantReference:
     type: object
     properties:
