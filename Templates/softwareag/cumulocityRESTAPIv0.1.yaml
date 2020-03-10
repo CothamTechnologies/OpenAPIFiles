@@ -3052,6 +3052,988 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /user:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Users
+      summary: Get the User API resource
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get a user collection
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: username 
+          description: prefix or full username
+          type: string
+        - in: query
+          name: groups 
+          description: numeric group identifiers separated by commas
+          type: string
+        - in: query
+          name: owner 
+          description: exact username
+          type: string
+        - in: query
+          name: onlyDevices 
+          description: If set to “true”, result will contain only users created during bootstrap process (starting with “device_”)
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Create a new user
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: body
+        name: User
+        description: The user to create
+        required: true
+        schema:
+          type: object
+          properties:
+            userName:
+              type: string
+              description: User name, unique for a given domain. Max 1000 characters. Whitespaces, slashes, special characters not allowed
+            password:
+              type: string
+              description: User password. Min 6, max 32 characters. Only Latin1 chars allowed
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            phone:
+              type: string
+              description: User phone number. Format “+[country code][number]“, has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+            email:
+              type: string
+              description: User email address
+            enabled:
+              type: boolean
+            sendPasswordResetEmail:
+              type: boolean
+            devicePermissions:
+              type: object
+              description: List of device permissions
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userId}:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get a user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: userId
+          in: path
+          required: true
+          type: string
+          description: User id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Users
+      summary: Update a user
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: userId
+        in: path
+        required: true
+        type: string
+        description: User id
+      - in: body
+        name: User
+        description: The user properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            password:
+              type: string
+              description: User password. Min 6, max 32 characters. Only Latin1 chars allowed
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            phone:
+              type: string
+              description: User phone number. Format “+[country code][number]“, has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+            email:
+              type: string
+              description: User email address
+            enabled:
+              type: boolean
+            sendPasswordResetEmail:
+              type: boolean
+            devicePermissions:
+              type: object
+              description: List of device permissions
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Users
+      summary: Delete a user
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: userId
+        in: path
+        required: true
+        type: string
+        description: User id
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/userByName/{userName}:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get a user by his/her name
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: userName
+          in: path
+          required: true
+          type: string
+          description: User name
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/currentUser:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get the current user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Users
+      summary: Update the current user
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: User
+        description: The user properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            password:
+              type: string
+              description: User password. Min 6, max 32 characters. Only Latin1 chars allowed
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            phone:
+              type: string
+              description: User phone number. Format “+[country code][number]“, has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+            email:
+              type: string
+              description: User email address
+            enabled:
+              type: boolean
+            sendPasswordResetEmail:
+              type: boolean
+            devicePermissions:
+              type: object
+              description: List of device permissions
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/users:
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Add user to a group
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: path
+        name: groupId
+        description: Group id
+        type: string
+        required: true
+      - in: body
+        name: UserReference
+        description: The user to add
+        required: true
+        schema:
+          type: object
+          properties:
+            user:
+              type: object
+              description: A reference to the user resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/UserReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get all users of a group
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: groupId
+          in: path
+          required: true
+          type: string
+          description: Group id
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/users/{userName}:
+    delete:
+      tags:
+      - Users
+      summary: Remove user from a group
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      - name: userName
+        in: path
+        required: true
+        type: string
+        description: User name
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: List all groups
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GroupCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Create a group
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: body
+        name: Group
+        description: The group to add
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Descriptive name of the group
+            devicePermissions:
+              type: object
+              description: List of device permissions
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Show group details
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - name: groupId
+          in: path
+          required: true
+          type: string
+          description: Group id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Users
+      summary: Remove a group
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Users
+      summary: Update a group
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      - in: body
+        name: Group
+        description: The group properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Descriptive name of the group
+            devicePermissions:
+              type: object
+              description: List of device permissions
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groupByName/{groupName}:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get a group by its name
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: groupName
+          in: path
+          required: true
+          type: string
+          description: Group name
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userName}/groups:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get all groups of a user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: path
+          name: userName
+          description: User name
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GroupReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/roles:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get all available roles
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters: 
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userName}/roles:
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Assign Role to user
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: path
+        name: userName
+        description: userName
+        type: string
+        required: true
+      - in: body
+        name: RoleReference
+        description: The role to add
+        required: true
+        schema:
+          type: object
+          properties:
+            role:
+              type: object
+              description: A reference to the role resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RoleReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get all roles of a user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: path
+          name: userName
+          description: User name
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/roles:
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Assign Role to group
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: path
+        name: groupId
+        description: groupId
+        type: string
+        required: true
+      - in: body
+        name: RoleReference
+        description: The role to add
+        required: true
+        schema:
+          type: object
+          properties:
+            role:
+              type: object
+              description: A reference to the role resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RoleReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      summary: Get all roles of a group
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: path
+          name: groupId
+          description: Group id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userName}/roles/{roleName}:
+    delete:
+      tags:
+      - Users
+      summary: Unassign role from user
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: userName
+        in: path
+        required: true
+        type: string
+        description: User name
+      - in: path
+        name: roleName
+        description: Role name
+        type: string
+        required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/roles/{roleName}:
+    delete:
+      tags:
+      - Users
+      summary: Unassign role from group
+      description: >-
+        #### For a detailed description of the API please check out the [User
+        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      - in: path
+        name: roleName
+        description: Role name
+        type: string
+        required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
 securityDefinitions:
   auth:
     type: basic
@@ -3682,6 +4664,181 @@ definitions:
           type: object
       truncated:
         type: boolean
+  UserAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      userByName:
+        type: string
+      users:
+        type: string
+      currentUser:
+        type: string
+      groupByName:
+        type: string
+      groups:
+        type: string
+      roles:
+        type: string
+  UserCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      userName:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      phone:
+        type: string
+      email:
+        type: string
+      enabled:
+        type: boolean
+      customProperties:
+        type: object
+      groups:
+        $ref: '#/definitions/GroupReferenceCollection'
+      roles:
+        $ref: '#/definitions/RoleReferenceCollection'
+      devicePermissions:
+          type: object
+  UserReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/UserReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  UserReference:
+    type: object
+    properties:
+      self:
+        type: string
+      user:
+          $ref: '#/definitions/User'
+  GroupReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      groups:
+        type: array
+        items:
+          $ref: '#/definitions/GroupReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  GroupReference:
+    type: object
+    properties:
+      self:
+        type: string
+      group:
+        $ref: '#/definitions/Group'
+  GroupCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      groups:
+        type: array
+        items:
+          $ref: '#/definitions/Group'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Group:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      name:
+        type: string
+      roles:
+        $ref: '#/definitions/RoleReferenceCollection'
+      devicePermissions:
+        type: object
+  RoleReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/RoleReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  RoleReference:
+    type: object
+    properties:
+      self:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  RoleCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      roles:
+        type: array
+        items:
+          $ref: '#/definitions/Role'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Role:
+    type: object
+    properties:
+      id: 
+        type: string
+      name:
+        type: string
   ManagedObjectReference:
     type: object
     properties:
