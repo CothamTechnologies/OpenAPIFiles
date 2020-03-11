@@ -3158,6 +3158,770 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /tenant:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Tenants
+      summary: Get the Tenant API resource
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants:
+    get:
+      tags:
+      - Tenants
+      summary: Get a tenant collection
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      summary: Create a new tenant
+      tags:
+        - Tenants
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Tenant
+        description: The tenant to create
+        required: true
+        schema:
+          type: object
+          properties:
+            company:
+              type: string
+              description: Company name
+            domain:
+              type: string
+              description: Domain name to be used for the tenant
+            id:
+              type: string
+              description: The tenant ID. Will be auto-generated if not present
+            adminName:
+              type: string
+              description: Username of the tenant administrator
+            adminPass:
+              type: string
+              description: Password of the tenant administrator
+            adminEmail:
+              type: string
+              description: Email address of the administrator
+            contactName:
+              type: string
+              description: A contact name, for example an administrator, of the tenant
+            contact_phone:
+              type: string
+              description: Phone number of the contant. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Tenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants/{tenantId}:
+    get:
+      tags:
+      - Tenants
+      summary: Get a tenant 
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: tenantId
+          description: Tenant id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Tenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Tenants
+      summary: Update a tenant
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: tenantId
+        description: Tenant id
+        required: true
+        type: string
+      - in: body
+        name: Application
+        description: The tenant properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            company:
+              type: string
+              description: Company name
+            domain:
+              type: string
+              description: Domain name to be used for the tenant
+            adminName:
+              type: string
+              description: Username of the tenant administrator
+            adminPass:
+              type: string
+              description: Password of the tenant administrator
+            adminEmail:
+              type: string
+              description: Email address of the administrator
+            contactName:
+              type: string
+              description: A contact name, for example an administrator, of the tenant
+            contact_phone:
+              type: string
+              description: Phone number of the contant. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Tenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Tenants
+      summary: Delete a tenant
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+        
+        Important: Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant.
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: tenantId
+          description: Tenant id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/currentTenant:
+    get:
+      tags:
+      - Tenants
+      summary: Get current tenant
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CurrentTenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants/{tenantId}/applications:
+    get:
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      summary: Get all applications of a tenant
+      tags:
+        - Tenants
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenantId
+          description: Tenant id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      summary: Add application to a tenant
+      tags:
+        - Tenants
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenantId
+        description: Tenant id
+        type: string
+        required: true
+      - in: body
+        name: ApplicationReference
+        description: The application to add
+        required: true
+        schema:
+          type: object
+          properties:
+            application:
+              type: object
+              description: A reference to the application resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ApplicationReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants/{tenantId}/applications/{applicationId}:
+    delete:
+      tags:
+      - Tenants
+      summary: Remove application from tenant
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+      - name: tenantId
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - in: path
+        name: applicationId
+        description: Application id
+        type: string
+        required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options:
+    get:
+      tags:
+      - Tenants
+      summary: Get a option collection
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/OptionCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      summary: Create a new option
+      tags:
+        - Tenants
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Option
+        description: The option to create
+        required: true
+        schema:
+          type: object
+          properties:
+            category:
+              type: string
+              description: Category of option
+            key:
+              type: string
+              description: Key of option
+            value:
+              type: string
+              description: Value of option
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options/{category}/{key}:
+    get:
+      tags:
+      - Tenants
+      summary: Get a option 
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: category
+          description: Option category
+          required: true
+          type: string
+        - in: path
+          name: key
+          description: Option key
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Tenants
+      summary: Update a option
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: category
+        description: Option category
+        required: true
+        type: string
+      - in: path
+        name: key
+        description: Option key
+        required: true
+        type: string
+      - in: body
+        name: Option
+        description: The option properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            category:
+              type: string
+              description: Category of option
+            key:
+              type: string
+              description: Key of option
+            value:
+              type: string
+              description: Value of option
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options/{category}/{key}/editable:
+    put:
+      tags:
+      - Tenants
+      summary: Define option editability
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: category
+        description: Option category
+        required: true
+        type: string
+      - in: path
+        name: key
+        description: Option key
+        required: true
+        type: string
+      - in: body
+        name: OptionEditability
+        description: The property to update
+        required: true
+        schema:
+          type: object
+          properties:
+            editable:
+              type: string
+              description: Editability of option
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options/{category}:
+    get:
+      tags:
+      - Tenants
+      summary: Get multiple options in a category
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: category
+          description: Option category
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MultipleOptions'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Tenants
+      summary: Update multiple options in a category
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: category
+        description: Option category
+        required: true
+        type: string
+      - in: body
+        name: MultipleOptions
+        description: The option properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            key1:
+              type: string
+              description: Key of option
+            key2:
+              type: string
+              description: Key of option 
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/system/options:
+    get:
+      tags:
+      - Tenants
+      summary: Get system options
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/OptionCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/system/options/{category}/{key}:
+    get:
+      tags:
+      - Tenants
+      summary: Get a system option 
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: category
+          description: Option category
+          required: true
+          type: string
+        - in: path
+          name: key
+          description: Option key
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/statistics:
+    get:
+      tags:
+      - Tenants
+      summary: Get usage statistics collection for a tenant
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantUsageStatisticsCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/statistics/allTenantsSummary:
+    get:
+      tags:
+      - Tenants
+      summary: Get a summary of all tenant usage statistics
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AllTenantsUsageStatisticsSummary'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/statistics/summary:
+    get:
+      tags:
+      - Tenants
+      summary: Get a summary of usage statistics for the current tenant
+      description: >-
+        #### For a detailed description of the API please check out the [Tenant
+        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantUsageStatisticsSummary'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /user:
     get:
       tags:
@@ -5026,6 +5790,25 @@ definitions:
         type: string
       next:
         type: string
+  TenantAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      tenants:
+        $ref: '#/definitions/TenantCollection'
+      tenantApplicationsForId:
+        type: string
+      options:
+          $ref: '#/definitions/OptionCollection'
+      tenantForId:
+        type: string
+      tenantOptionForCategoryAndKey:
+        type: string
+      tenantOptionForCategory:
+        type: string
+      tenantApplications:
+        type: string
   TenantReference:
     type: object
     properties:
@@ -5036,8 +5819,238 @@ definitions:
   Tenant:
     type: object
     properties:
+      self:
+        type: string
       id:
         type: string
+      status:
+        type: string
+      adminName:
+        type: string
+      adminEmail:
+        type: string
+      allowCreateTenants:
+        type: boolean
+      storageLimitPerDevice:
+        type: number
+      adminPassword:
+        type: string
+      sendPasswordResetEmail:
+        type: boolean
+      domain:
+        type: string
+      company:
+        type: string
+      contactName:
+        type: string
+      contactPhone:
+        type: string
+      applications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+      ownedApplications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+      customProperties:
+        $ref: '#/definitions/CustomProperties'
+      parent:
+        type: string
+  TenantCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      tenants:
+        type: array
+        items:
+          $ref: '#/definitions/Tenant'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  CurrentTenant:
+    type: object
+    properties:
+      name:
+        type: string
+      domainName:
+        type: string
+      allowCreateTenants:
+        type: boolean
+      customProperties:
+        $ref: '#/definitions/CustomProperties'
+      applications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+      ownedApplications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+  ApplicationReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicationReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ApplicationReference:
+    type: object
+    properties:
+      self:
+        type: string
+      tenant:
+        $ref: '#/definitions/Application'
+  OptionCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      options:
+        type: array
+        items:
+          $ref: '#/definitions/Option'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Option:
+    type: object
+    properties:
+      self:
+        type: string
+      category:
+        type: string
+      key:
+        type: string
+      value:
+        type: string
+  MultipleOptions:
+    type: object
+    properties:
+      key1:
+        type: string
+      key2:
+        type: string
+  UsageStatistics:
+    type: object
+    properties:
+      day:
+        type: string
+      deviceCount:
+        type: number
+      deviceEndpointCount:
+        type: number
+      deviceRequestCount:
+        type: number
+      deviceWithChildrenCount:
+        type: number
+      requestCount:
+        type: number
+      storageSize:
+        type: number
+      subscribedApplications:
+        type: array
+        items:
+          type: string
+  TenantUsageStatistics:
+    type: object
+    properties:
+      tenantId:
+        type: string
+      deviceCount:
+        type: number
+      deviceEndpointCount:
+        type: number
+      deviceRequestCount:
+        type: number
+      deviceWithChildrenCount:
+        type: number
+      requestCount:
+        type: number
+      storageSize:
+        type: number
+      subscribedApplications:
+        type: array
+        items:
+          type: string
+  TenantUsageStatisticsCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      usageStatistics:
+        type: array
+        items:
+          $ref: '#/definitions/UsageStatistics'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  AllTenantsUsageStatisticsSummary:
+    type: array
+    items:
+      $ref: '#/definitions/TenantUsageStatistics'
+  TenantUsageStatisticsSummary:
+    type: object
+    properties:
+      day:
+        type: string
+      deviceCount:
+        type: number
+      deviceEndpointCount:
+        type: number
+      deviceRequestCount:
+        type: number
+      deviceWithChildrenCount:
+        type: number
+      requestCount:
+        type: number
+      storageSize:
+        type: number
+      subscribedApplications:
+        type: array
+        items:
+          type: string
+      resources:
+        $ref: '#/definitions/Resources'
+      inventoriesUpdatedCount:
+        type: number
+      eventsUpdatedCount:
+        type: number
+      eventsCreatedCount:
+        type: number
+      alarmsCreatedCount:
+        type: number
+      alarmsUpdatedCount:
+        type: number
+      inventoriesCreatedCount:
+        type: number
+      measurementsCreatedCount:
+        type: number
+      totalResourceCreateAndUpdateCount:
+        type: number
+      self:
+        type: string
+  Resources:
+    type: object
+    properties:
+      cpu: 
+        type: number
+      memory:
+        type: number
+      usedBy:
+        type: array
+        items:
+          type: string
   ManagedObject:
     type: object
     properties:
