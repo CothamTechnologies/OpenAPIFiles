@@ -3120,7 +3120,7 @@ paths:
   /measurement/measurements/series:
     get:
       description: >-
-        #### For a detailed description of the API please check out our
+        #### For a detailed description of the API please check out the
         [Measurement Reference
         Guide](http://cumulocity.com/guides/reference/measurements/)
       summary: Retrieve all or some series of measurements
@@ -3148,7 +3148,7 @@ paths:
           in: query
           required: false
           type: string
-          description: DAILY, HOURLY, MINUTELY
+          description: Possible values can be DAILY, HOURLY, MINUTELY
       responses:
         200:
           description: OK
@@ -3219,7 +3219,7 @@ paths:
           type: string
         - in: query
           name: onlyDevices 
-          description: If set to “true”, result will contain only users created during bootstrap process (starting with “device_”)
+          description: If set to true, result will contain only users created during bootstrap process (starting with "device_")
           type: boolean
       responses:
         200:
@@ -3268,12 +3268,12 @@ paths:
               description: User last name
             phone:
               type: string
-              description: User phone number. Format “+[country code][number]“, has to be a valid MSISDN
+              description: User phone number. Format is +[country code][number], has to be a valid MSISDN
             customProperties:
               type: object
               description: Keeps a list of custom properties
               properties:
-                property:
+                customProperty:
                   type: string
             email:
               type: string
@@ -3286,7 +3286,7 @@ paths:
               type: object
               description: List of device permissions
               properties:
-                property:
+                devicePermission:
                   type: string
       responses:
         201:
@@ -3367,12 +3367,12 @@ paths:
               description: User last name
             phone:
               type: string
-              description: User phone number. Format “+[country code][number]“, has to be a valid MSISDN
+              description: User phone number. Format is +[country code][number], has to be a valid MSISDN
             customProperties:
               type: object
               description: Keeps a list of custom properties
               properties:
-                property:
+                customProperty:
                   type: string
             email:
               type: string
@@ -3385,7 +3385,7 @@ paths:
               type: object
               description: List of device permissions
               properties:
-                property:
+                devicePermission:
                   type: string
       responses:
         200:
@@ -3503,12 +3503,12 @@ paths:
               description: User last name
             phone:
               type: string
-              description: User phone number. Format “+[country code][number]“, has to be a valid MSISDN
+              description: User phone number. Format is +[country code][number], has to be a valid MSISDN
             customProperties:
               type: object
               description: Keeps a list of custom properties
               properties:
-                property:
+                customProperty:
                   type: string
             email:
               type: string
@@ -3521,7 +3521,7 @@ paths:
               type: object
               description: List of device permissions
               properties:
-                property:
+                devicePermission:
                   type: string
       responses:
         200:
@@ -3715,7 +3715,7 @@ paths:
               type: object
               description: List of device permissions
               properties:
-                property:
+                devicePermission:
                   type: string
       responses:
         201:
@@ -3819,7 +3819,7 @@ paths:
               type: object
               description: List of device permissions
               properties:
-                property:
+                devicePermission:
                   type: string
       responses:
         200:
@@ -4787,13 +4787,34 @@ definitions:
     type: object
     properties:
       values:
-        type: object
+        $ref: '#/definitions/MeasurementSeries_values'
       series:
+        $ref: '#/definitions/MeasurementSeries_series'
+      truncated:
+        type: boolean
+  MeasurementSeries_values:
+    type: object
+    properties:
+      date:
         type: array
         items:
           type: object
-      truncated:
-        type: boolean
+          properties:
+            min: 
+              type: number
+            max:
+              type: number
+  MeasurementSeries_series:
+    type: array
+    items:
+      type: object
+      properties:
+        unit:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
   UserAPI:
     type: object
     properties:
@@ -4846,13 +4867,23 @@ definitions:
       enabled:
         type: boolean
       customProperties:
-        type: object
+        $ref: '#/definitions/CustomProperties'
       groups:
         $ref: '#/definitions/GroupReferenceCollection'
       roles:
         $ref: '#/definitions/RoleReferenceCollection'
       devicePermissions:
-          type: object
+        $ref: '#/definitions/DevicePermissions'
+  CustomProperties:
+    type: object
+    properties:
+      customProperty:
+        type: string
+  DevicePermissions:
+    type: object
+    properties:
+      devicePermission:
+        type: string
   UserReferenceCollection:
     type: object
     properties:
@@ -4924,7 +4955,7 @@ definitions:
       roles:
         $ref: '#/definitions/RoleReferenceCollection'
       devicePermissions:
-        type: object
+        $ref: '#/definitions/DevicePermissions'
   RoleReferenceCollection:
     type: object
     properties:
@@ -5002,6 +5033,21 @@ definitions:
     type: object
     properties:
       id:
+        type: string
+  TenantCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      tenants:
+        type: array
+        items:
+          $ref: '#/definitions/Tenant'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
         type: string
   ManagedObject:
     type: object
