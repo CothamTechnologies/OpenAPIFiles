@@ -3218,6 +3218,86 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /cep/realtime:
+    post:
+      tags:
+      - Real-time notifications
+      description: >-
+        #### For a detailed description of the API please check out the [Real-time notifications
+        Reference Guide](http://cumulocity.com/guides/reference/real-time-notifications/)
+      summary: Send requests
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Requests
+        description: The requests to send
+        required: true
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of message, required to match response message
+              channel:
+                type: string
+                description: Name of channel, required value
+              ext:
+                type: object
+                description: (HANSHAKE) Authentication object passed to handshake. (only over websockets)
+                properties:
+                  com.cumulocity.authn:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                      tfa:
+                        type: string
+                      xsrfToken:
+                        type: string
+                  systemOfUnits:
+                    type: string
+              version:
+                type: string
+                description: (HANDSHAKE) Bayeux protocol version used by client
+              minimumVersion:
+                type: string
+                description: (HANDSHAKE) Minimum server-side Bayeux protocol version required by client
+              supportedConnectionTypes:
+                type: array
+                description: (HANDSHAKE) List of connection types supported by client
+                items:
+                  type: string
+              clientId:
+                type: string
+                description: Unique ID of client received during handshake
+              subscription:
+                type: string
+                description: Name of channel to subscribe/unsubscribe to
+              connectionType:
+                type: string
+                description: Selected connection type
+              advice:
+                type: object
+                description: Configuration parameters for connect message
+                properties:
+                  timeout:
+                    type: integer
+                  interval:
+                    type: integer
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Responses'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /retention/retentions:
     get:
       tags:
@@ -6372,4 +6452,36 @@ definitions:
       prev:
         type: string
       next:
+        type: string
+  Responses:
+    type: array
+    items:
+      $ref: '#/definitions/Response'
+  Response:
+    type: object
+    properties:
+      id:
+        type: integer
+      channel:
+        type: string
+      version:
+        type: string
+      minimumVersion:
+        type: string
+      supportedConnectionTypes:
+        type: array
+        items:
+          type: string
+      subscription:
+        type: string
+      data:
+        type: object
+        properties:
+          property:
+            type: string
+      clientId:
+        type: string
+      successful:
+        type: boolean
+      error:
         type: string
