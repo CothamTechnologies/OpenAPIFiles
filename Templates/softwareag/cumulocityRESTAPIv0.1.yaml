@@ -3158,6 +3158,180 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /retention/retentions:
+    get:
+      tags:
+      - Retention rules
+      summary: Get a RetentionRule collection
+      description: >-
+        #### For a detailed description of the API please check out the [Retention rules
+        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RetentionRuleCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [Retention rules
+        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      summary: Create a new RetentionRule
+      tags:
+        - Retention rules
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: RetentionRule
+        description: The retention rule to create
+        required: true
+        schema:
+          type: object
+          properties:
+            dataType:
+              type: string
+              description: RetentionRule will be applied to this type of documents, possible values [ALARM, AUDIT, EVENT, MEASUREMENT, OPERATION, *].
+            fragmentType:
+              type: string
+              description: RetentionRule will be applied to documents with fragmentType
+            type:
+              type: string
+              description: RetentionRule will be applied to documents with type
+            source:
+              type: string
+              description: RetentionRule will be applied to documnets with source
+            maximumAge:
+              type: string
+              description: Maximum age of document in days
+            editable:
+              type: boolean
+              description: Whether the rule is editable. Can be updated only by management tenant
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RetentionRule'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /retention/retentions/{retentionRuleId}:
+    get:
+      tags:
+      - Retention rules
+      summary: Get a RetentionRule
+      description: >-
+        #### For a detailed description of the API please check out the [Retention rules
+        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: retentionRuleId
+          description: Retention rule id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RetentionRule'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Retention rules
+      summary: Update a RetentionRule
+      description: >-
+        #### For a detailed description of the API please check out the [Retention rules
+        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: retentionRuleId
+        description: Retention rule id
+        required: true
+        type: string
+      - in: body
+        name: RetentionRule
+        description: The retention rule properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            dataType:
+              type: string
+              description: RetentionRule will be applied to this type of documents, possible values [ALARM, AUDIT, EVENT, MEASUREMENT, OPERATION, *].
+            fragmentType:
+              type: string
+              description: RetentionRule will be applied to documents with fragmentType
+            type:
+              type: string
+              description: RetentionRule will be applied to documents with type
+            source:
+              type: string
+              description: RetentionRule will be applied to documnets with source
+            maximumAge:
+              type: string
+              description: Maximum age of document in days
+            editable:
+              type: boolean
+              description: Whether the rule is editable. Can be updated only by management tenant
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RetentionRule'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Retention rules
+      summary: Delete a RetentionRule
+      description: >-
+        #### For a detailed description of the API please check out the [Retention rules
+        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: retentionRuleId
+          description: Retention rule id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /tenant:
     get:
       tags:
@@ -6085,3 +6259,37 @@ definitions:
         type: integer
       pageSize:
         type: integer
+  RetentionRule:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+      dataType:
+        type: string
+      fragmentType:
+        type: string
+      type:
+        type: string
+      source:
+        type: string
+      maximumAge:
+        type: integer
+      editable:
+        type: boolean
+  RetentionRuleCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      retentionRules:
+        type: array
+        items:
+          $ref: '#/definitions/RetentionRule'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
