@@ -3123,7 +3123,7 @@ paths:
         #### For a detailed description of the API please check out the
         [Measurement Reference
         Guide](http://cumulocity.com/guides/reference/measurements/)
-      summary: Retrieve all or some series of measurements
+      summary: Retrieve a series of measurements
       tags:
         - Measurements
       produces:
@@ -3133,7 +3133,7 @@ paths:
           in: query
           required: true
           type: string
-          description: ''
+          description: Source device id
         - name: dateFrom
           in: query
           required: true
@@ -4798,23 +4798,27 @@ definitions:
       date:
         type: array
         items:
-          type: object
-          properties:
-            min: 
-              type: number
-            max:
-              type: number
+          $ref: '#/definitions/MeasurementSeries_values_item'
+  MeasurementSeries_values_item:
+    type: object
+    properties:
+      min: 
+        type: number
+      max:
+        type: number
   MeasurementSeries_series:
     type: array
     items:
-      type: object
-      properties:
-        unit:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
+      $ref: '#/definitions/MeasurementSeries_series_item'
+  MeasurementSeries_series_item:
+    type: object
+    properties:
+      unit:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
   UserAPI:
     type: object
     properties:
@@ -5033,21 +5037,6 @@ definitions:
     type: object
     properties:
       id:
-        type: string
-  TenantCollection:
-    type: object
-    properties:
-      self:
-        type: string
-      tenants:
-        type: array
-        items:
-          $ref: '#/definitions/Tenant'
-      statistics:
-        $ref: '#/definitions/PagingStatistics'
-      prev:
-        type: string
-      next:
         type: string
   ManagedObject:
     type: object
