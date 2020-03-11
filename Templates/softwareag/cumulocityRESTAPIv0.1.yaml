@@ -2732,6 +2732,66 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /tenant/loginOptions:
+    get:
+      tags:
+      - Login
+      summary: Get login options
+      description: >-
+        #### For a detailed description of the API please check out the [Login
+        Reference Guide](http://cumulocity.com/guides/reference/login/)
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginOptions'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/oauth:
+    post:
+      description: >-
+        #### For a detailed description of the API please check out the [Login
+        Reference Guide](http://cumulocity.com/guides/reference/login/)
+      summary: Login with OAuth
+      tags:
+        - Login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: query
+        name: grant_type
+        description: Grant type
+        required: true
+        type: string
+      - in: query
+        name: code
+        description: OAuth code
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /measurement:
     get:
       tags:
@@ -5640,6 +5700,26 @@ definitions:
         type: string
       managedObjectsForText:
         type: string
+  LoginOption:
+    type: object
+    properties:
+      self:
+        type: string
+      type:
+        type: string
+      buttonName:
+        type: string
+      grantType:
+        type: string
+      initRequest:
+        type: string
+  LoginOptions:
+    type: object
+    properties:
+      self:
+        type: string
+      loginOptions:
+        $ref: '#/definitions/LoginOption'
   MeasurementAPI:
     type: object
     properties:
