@@ -11,6 +11,26 @@ schemes:
 security:
 - auth: []
 paths:
+  /platform:
+    get:
+      tags:
+      - Cumulocity API Overview
+      summary: Get the Platform resource
+      description: >-
+        #### For a detailed description of the API please check out the [REST implementation
+        Reference Guide](http://cumulocity.com/guides/reference/rest-implementation/)
+      produces:
+      - application/vnd.com.nsn.cumulocity.platformApi+json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Platform'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
   /alarm:
     get:
       tags:
@@ -3472,6 +3492,68 @@ paths:
           description: Other Error
           schema:
             $ref: '#/definitions/GenericError'
+  /s:
+    post:
+      description: >-
+        #### For a detailed description of the API please check out our
+        [SmartREST Reference
+        Guide](http://cumulocity.com/guides/reference/smartrest/)
+
+
+        You have to register all templates (request and response) in one single
+        request.
+
+
+        For a better overview this example contains only request templates.
+
+
+        ###### Syntax:
+
+        10,{unique id},{request method},{uri},{content
+        type},{accept},{placeholder},{parameter type},{template string}
+
+
+
+        * unique id: message identifier inside die SmartREST template
+
+        * request method: HTTP method to use for the request
+
+        * uri: the uri to the Cumulocity ressource
+
+        * content type: HTTP Content-Type header
+
+        * accept: HTTP Accept header
+
+        * placeholder: string that will be replaced in the template string with
+        the values of a SmartREST request
+
+        * parameter type: optional list to set data type of parameters for
+        validation in SmartREST
+
+        * template string: request body including placeholders that will be send
+        by SmartREST
+      summary: Register Request Templates
+      tags:
+        - SmartREST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+        - text/csv
+      parameters:
+        - name: X-Id
+          in: header
+          required: true
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: Request body
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
   /tenant:
     get:
       tags:
@@ -5246,6 +5328,29 @@ securityDefinitions:
   auth:
     type: basic
 definitions:
+  Platform:
+    type: object
+    properties:
+      self:
+        type: string
+      inventory:
+        $ref: '#/definitions/InventoryAPI'
+      identity:
+        $ref: '#/definitions/IdentityAPI'
+      event:
+        $ref: '#/definitions/EventAPI'
+      measurement:
+        $ref: '#/definitions/MeasurementAPI'
+      audit:
+        $ref: '#/definitions/AuditAPI'
+      alarm:
+        $ref: '#/definitions/AlarmAPI'
+      user:
+        $ref: '#/definitions/UserAPI'
+      deviceControl:
+        $ref: '#/definitions/DeviceControlAPI'
+      tenant:
+          $ref: '#/definitions/TenantAPI'
   GenericError:
     type: object
     properties:
