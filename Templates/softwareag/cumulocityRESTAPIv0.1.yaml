@@ -2308,7 +2308,7 @@ paths:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/EventCollection'
+            $ref: '#/definitions/ManagedObjectCollection'
         default:
           description: Other Error
           schema:
