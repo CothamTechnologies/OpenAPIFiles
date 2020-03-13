@@ -491,10 +491,7 @@ paths:
       tags:
       - Applications
       summary: Get an application 
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Get an application 
       produces:
       - application/json
       parameters:
@@ -516,10 +513,7 @@ paths:
       tags:
       - Applications
       summary: Delete an application 
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Delete an application 
       produces:
       - application/json
       parameters:
@@ -540,10 +534,7 @@ paths:
       tags:
       - Applications
       summary: Get bootstrap user
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Get bootstrap user
       produces:
       - application/json
       parameters:
@@ -566,12 +557,7 @@ paths:
       tags:
       - Applications
       summary: Get current application 
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
-        
-        Required authentication with bootstrap user
+      description: Get current application Required authentication with bootstrap user
       produces:
       - application/json
       parameters: []
@@ -588,12 +574,7 @@ paths:
       tags:
       - Applications
       summary: Update current application
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
-        
-        Required authentication with bootstrap user
+      description: Update current application Required authentication with bootstrap user
       consumes:
       - application/json
       produces:
@@ -653,12 +634,7 @@ paths:
       tags:
       - Applications
       summary: Get current application subscriptions
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
-        
-        Required authentication with bootstrap user
+      description: Get current application subscriptions Required authentication with bootstrap user
       produces:
       - application/json
       parameters:
@@ -694,10 +670,7 @@ paths:
       tags:
       - Applications
       summary: Upload application binary
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Upload application binary
       consumes:
       - multipart/form-data
       produces:
@@ -728,10 +701,7 @@ paths:
       - Auditing
       - Cumulocity API Overview
       summary: Get the AuditAPI resource
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Auditing Reference
-        Guide](http://cumulocity.com/guides/reference/auditing/)
+      description: Get the AuditAPI resource
       produces:
       - application/json
       parameters: []
@@ -749,10 +719,7 @@ paths:
       tags:
       - Auditing
       summary: Create a new audit record
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Auditing Reference
-        Guide](http://cumulocity.com/guides/reference/auditing/)
+      description: Create a new audit record
       consumes:
       - application/json
       produces:
@@ -807,10 +774,7 @@ paths:
       tags:
       - Auditing
       summary: Get audit records
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Auditing Reference
-        Guide](http://cumulocity.com/guides/reference/auditing/)
+      description: Get audit records
       produces:
       - application/json
       parameters:
@@ -861,12 +825,7 @@ paths:
       tags:
       - Auditing
       summary: Delete a collection of audit records
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Auditing Reference
-        Guide](http://cumulocity.com/guides/reference/auditing/)
-        
-        Important: This method has been deprecated and will be removed completely with the July 2020 release (10.6.6). With Cumulocity IoT >= 10.6.6 the deletion of audit logs will no longer be permitted. All DELETE requests to the audit API will return the error 405 Method not allowed. Note that retention rules still apply to audit logs and will delete audit log records older than the specified retention time.
+      description: Delete a collection of audit records Important This method has been deprecated and will be removed completely with the July 2020 release (10.6.6). With Cumulocity IoT >= 10.6.6 the deletion of audit logs will no longer be permitted. All DELETE requests to the audit API will return the error 405 Method not allowed. Note that retention rules still apply to audit logs and will delete audit log records older than the specified retention time.
       produces:
       - application/json
       parameters:
@@ -904,10 +863,7 @@ paths:
       tags:
       - Auditing
       summary: Get an audit record
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Auditing Reference
-        Guide](http://cumulocity.com/guides/reference/auditing/)
+      description: Get an audit record
       produces:
       - application/json
       parameters:
@@ -930,10 +886,7 @@ paths:
       tags:
       - Binaries
       summary: Get a binaries collection
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Binaries Reference
-        Guide](http://cumulocity.com/guides/reference/binaries/)
+      description: Get a binaries collection
       produces:
       - application/json
       parameters:
@@ -968,10 +921,7 @@ paths:
       tags:
       - Binaries
       summary: Upload a new binary
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Binaries Reference
-        Guide](http://cumulocity.com/guides/reference/binaries/)
+      description: Upload a new binary
       consumes:
       - multipart/form-data
       produces:
@@ -1004,10 +954,7 @@ paths:
       tags:
       - Binaries
       summary: Download a binary
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Binaries Reference
-        Guide](http://cumulocity.com/guides/reference/binaries/)
+      description: Download a binary
       produces:
       - application/json
       parameters:
@@ -1029,10 +976,7 @@ paths:
       tags:
       - Binaries
       summary: Replace a binary
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Binaries Reference
-        Guide](http://cumulocity.com/guides/reference/binaries/)
+      description: Replace a binary
       consumes:
       - multipart/form-data
       produces:
@@ -1061,10 +1005,7 @@ paths:
       tags:
       - Binaries
       summary: Delete a binary
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Binaries Reference
-        Guide](http://cumulocity.com/guides/reference/binaries/)
+      description: Delete a binary
       produces:
       - application/json
       parameters:
@@ -1086,10 +1027,7 @@ paths:
       - Cumulocity API Overview
       - Device control
       summary: Get the Device Control API resource
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Get the Device Control API resource
       produces:
       - application/json
       parameters: []
@@ -1107,10 +1045,7 @@ paths:
       tags:
       - Device control
       summary: Create an Operation
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Create an Operation
       consumes:
       - application/json
       produces:
@@ -1152,10 +1087,7 @@ paths:
       tags:
       - Device control
       summary: Get a collection of operations
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Get a collection of operations
       produces:
       - application/json
       parameters:
@@ -1202,10 +1134,7 @@ paths:
       tags:
       - Device control
       summary: Delete a collection of operations
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Delete a collection of operations
       produces:
       - application/json
       parameters:
@@ -1243,10 +1172,7 @@ paths:
       tags:
       - Device control
       summary: Get an Operation
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Get an Operation
       produces:
       - application/json
       parameters:
@@ -1268,10 +1194,7 @@ paths:
       tags:
       - Device control
       summary: Update an Operation
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Update an Operation
       consumes:
       - application/json
       produces:
@@ -1306,10 +1229,7 @@ paths:
       tags:
       - Device control
       summary: Get a collection of bulk operations
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Get a collection of bulk operations
       produces:
       - application/json
       parameters:
@@ -1330,10 +1250,7 @@ paths:
       tags:
       - Device control
       summary: Create a Bulk Operation
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Create a Bulk Operation
       consumes:
       - application/json
       produces:
@@ -1379,10 +1296,7 @@ paths:
       tags:
       - Device control
       summary: Update a Bulk Operation
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Update a Bulk Operation
       consumes:
       - application/json
       produces:
@@ -1416,10 +1330,7 @@ paths:
       tags:
       - Device control
       summary: Get a Bulk Operation  
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Get a Bulk Operation 
       produces:
       - application/json
       parameters:
@@ -1441,10 +1352,7 @@ paths:
       tags:
       - Device control
       summary: Delete a Bulk Operation 
-      description: >-
-        #### For a detailed description of the API please check out the [Device
-        Control Reference
-        Guide](http://cumulocity.com/guides/reference/device-control/)
+      description: Delete a Bulk Operation 
       produces:
       - application/json
       parameters:
@@ -1465,10 +1373,7 @@ paths:
       tags:
       - Device credentials
       summary: Create a new device request
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Create a new device request
       consumes:
       - application/json
       produces:
@@ -1497,10 +1402,7 @@ paths:
       tags:
       - Device credentials
       summary: Return all new device requests
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Return all new device requests
       produces:
       - application/json
       parameters:
@@ -1536,10 +1438,7 @@ paths:
       tags:
       - Device credentials
       summary: Update a new device request
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Update a new device request
       consumes:
       - application/json
       produces:
@@ -1573,10 +1472,7 @@ paths:
       tags:
       - Device credentials
       summary: Return all new device requests
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Return all new device requests
       produces:
       - application/json
       parameters:
@@ -1598,10 +1494,7 @@ paths:
       tags:
       - Device credentials
       summary: Delete a new device request
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Delete a new device request
       produces:
       - application/json
       parameters:
@@ -1622,10 +1515,7 @@ paths:
       tags:
       - Device credentials
       summary: Create a device credentials request
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Create a device credentials request
       consumes:
       - application/json
       produces:
@@ -1655,10 +1545,7 @@ paths:
       tags:
       - Device credentials
       summary: Create a bulk device credentials request
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Device Credentials Reference
-        Guide](https://cumulocity.com/guides/reference/device-credentials/)
+      description: Create a bulk device credentials request
       consumes:
       - multipart/form-data
       produces:
@@ -1684,9 +1571,7 @@ paths:
       - Cumulocity API Overview
       - Events
       summary: Get the EventAPI resource
-      description: >-
-        #### For a detailed description of the API please check out the [Event
-        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Get the EventAPI resource
       produces:
       - application/json
       parameters: []
@@ -1704,9 +1589,7 @@ paths:
       tags:
       - Events
       summary: Get an event collection
-      description: >-
-        #### For a detailed description of the API please check out the [Event
-        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Get an event collection
       produces:
       - application/json
       parameters:
@@ -1753,9 +1636,7 @@ paths:
       tags:
       - Events
       summary: Create a new event
-      description: >-
-        #### For a detailed description of the API please check out the [Event
-        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Create a new event
       consumes:
       - application/json
       produces:
@@ -1808,9 +1689,7 @@ paths:
       tags:
       - Events
       summary: Delete an event collection
-      description: >-
-        #### For a detailed description of the API please check out the [Event
-        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Delete an event collection
       produces:
       - application/json
       parameters:
@@ -1846,9 +1725,7 @@ paths:
       tags:
       - Events
       summary: Get an event 
-      description: >-
-        #### For a detailed description of the API please check out the [Event
-        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Get an event 
       produces:
       - application/json
       parameters:
@@ -1870,9 +1747,7 @@ paths:
       tags:
       - Events
       summary: Update an event
-      description: >-
-        #### For a detailed description of the API please check out the [Event
-        Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Update an event
       consumes:
       - application/json
       produces:
@@ -1916,9 +1791,7 @@ paths:
         tags:
         - Events
         summary: Delete an event 
-        description: >-
-          #### For a detailed description of the API please check out the [Event
-          Reference Guide](http://cumulocity.com/guides/reference/events/)
+        description: Delete an event 
         produces:
         - application/json
         parameters:
@@ -1939,9 +1812,7 @@ paths:
       tags:
       - Events
       summary: Upload a binary for an event
-      description: >-
-          #### For a detailed description of the API please check out the [Event
-          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Upload a binary for an event
       consumes:
       - multipart/form-data
       produces:
@@ -1970,9 +1841,7 @@ paths:
       tags:
       - Events
       summary: Download a binary for an event
-      description: >-
-          #### For a detailed description of the API please check out the [Event
-          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Download a binary for an event
       produces:
       - application/json
       parameters:
@@ -1992,9 +1861,7 @@ paths:
       tags:
       - Events
       summary: Replace a binary for an event
-      description: >-
-          #### For a detailed description of the API please check out the [Event
-          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Replace a binary for an event
       consumes:
       - multipart/form-data
       produces:
@@ -2023,9 +1890,7 @@ paths:
       tags:
       - Events
       summary: Delete a binary for an event
-      description: >-
-          #### For a detailed description of the API please check out the [Event
-          Reference Guide](http://cumulocity.com/guides/reference/events/)
+      description: Delete a binary for an event
       produces:
       - application/json
       parameters:
@@ -2047,10 +1912,7 @@ paths:
       - Cumulocity API Overview
       - Identity
       summary: Get the Identity API resource
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Identity Reference
-        Guide](http://cumulocity.com/guides/reference/identity/)
+      description: Get the Identity API resource
       produces:
       - application/json
       parameters: []
@@ -2068,10 +1930,7 @@ paths:
       tags:
       - Identity
       summary: Get an External ID collection for a device
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Identity Reference
-        Guide](http://cumulocity.com/guides/reference/identity/)
+      description: Get an External ID collection for a device
       produces:
       - application/json
       parameters:
@@ -2093,10 +1952,7 @@ paths:
       tags:
       - Identity
       summary: Create an External ID for a device
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Identity Reference
-        Guide](http://cumulocity.com/guides/reference/identity/)
+      description: Create an External ID for a device
       consumes:
       - application/json
       produces:
@@ -2134,10 +1990,7 @@ paths:
       tags:
       - Identity
       summary: Get an External ID for a device
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Identity Reference
-        Guide](http://cumulocity.com/guides/reference/identity/)
+      description: Get an External ID for a device
       produces:
       - application/json
       parameters:
@@ -2164,10 +2017,7 @@ paths:
       tags:
       - Identity
       summary: Delete an External ID for a device
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Identity Reference
-        Guide](http://cumulocity.com/guides/reference/identity/)
+      description: Delete an External ID for a device
       produces:
       - application/json
       parameters:
@@ -2194,10 +2044,7 @@ paths:
       - Cumulocity API Overview
       - Inventory
       summary: Get the Inventory API resource
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get the Inventory API resource
       produces:
       - application/json
       parameters: []
@@ -2215,15 +2062,7 @@ paths:
       tags:
       - Inventory
       summary: Get a ManagedObject collection
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
-        
-        Important: If you query /inventory/managedObjects?type=c8y_Firmware&query=$filter=(name+eq+'Controller 1') 
-        the type queryParam is ignored.
-        
-        Instead url/inventory/managedObjects?query=$filter=(type+eq+c8y_Firmware+and+c8y_Filter.type+eq+'Controller 1') has to be queried.
+      description: Get a ManagedObject collection Important If you query /inventory/managedObjects?type=c8y_Firmware&query=$filter=(name+eq+'Controller 1') the type queryParam is ignored. Instead url/inventory/managedObjects?query=$filter=(type+eq+c8y_Firmware+and+c8y_Filter.type+eq+'Controller 1') has to be queried.
       produces:
       - application/json
       parameters:
@@ -2278,10 +2117,7 @@ paths:
       tags:
       - Inventory
       summary: Create a new ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Create a new ManagedObject
       consumes:
       - application/json
       produces:
@@ -2323,10 +2159,7 @@ paths:
       tags:
       - Inventory
       summary: Get a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2348,10 +2181,7 @@ paths:
       tags:
       - Inventory
       summary: Update a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Update a ManagedObject
       consumes:
       - application/json
       produces:
@@ -2388,10 +2218,7 @@ paths:
         tags:
         - Inventory
         summary: Delete a ManagedObject
-        description: >-
-          #### For a detailed description of the API please check out the
-          [Inventory Reference
-          Guide](http://cumulocity.com/guides/reference/inventory/)
+        description: Delete a ManagedObject
         produces:
         - application/json
         parameters:
@@ -2412,10 +2239,7 @@ paths:
       tags:
       - Inventory
       summary: Get supported measurements of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get supported measurements of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2438,10 +2262,7 @@ paths:
       tags:
       - Inventory
       summary: Get supported series of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get supported series of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2464,10 +2285,7 @@ paths:
       tags:
       - Inventory
       summary: Add a managed object reference to the collection of child devices
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Add a managed object reference to the collection of child devices
       consumes:
       - application/json
       produces:
@@ -2506,10 +2324,7 @@ paths:
       tags:
       - Inventory
       summary: Get child devices of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get child devices of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2532,10 +2347,7 @@ paths:
       tags:
       - Inventory
       summary: Get a child device reference of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get a child device reference of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2562,10 +2374,7 @@ paths:
       tags:
       - Inventory
       summary: Delete a child device reference of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Delete a child device reference of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2591,10 +2400,7 @@ paths:
       tags:
       - Inventory
       summary: Add a managed object reference to the collection of child assets
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Add a managed object reference to the collection of child assets
       consumes:
       - application/json
       produces:
@@ -2633,10 +2439,7 @@ paths:
       tags:
       - Inventory
       summary: Get child assets of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get child assets of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2659,10 +2462,7 @@ paths:
       tags:
       - Inventory
       summary: Get a child asset reference of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Get a child asset reference of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2689,10 +2489,7 @@ paths:
       tags:
       - Inventory
       summary: Delete a child asset reference of a ManagedObject
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Inventory Reference
-        Guide](http://cumulocity.com/guides/reference/inventory/)
+      description: Delete a child asset reference of a ManagedObject
       produces:
       - application/json
       parameters:
@@ -2718,9 +2515,7 @@ paths:
       tags:
       - Login
       summary: Get login options
-      description: >-
-        #### For a detailed description of the API please check out the [Login
-        Reference Guide](http://cumulocity.com/guides/reference/login/)
+      description: Get login options
       produces:
       - application/json
       parameters:
@@ -2745,10 +2540,8 @@ paths:
             $ref: '#/definitions/GenericError'
   /tenant/oauth:
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [Login
-        Reference Guide](http://cumulocity.com/guides/reference/login/)
       summary: Login with OAuth
+      description: Login with OAuth
       tags:
         - Login
       consumes:
@@ -2779,10 +2572,7 @@ paths:
       - Cumulocity API Overview
       - Measurements
       summary: Get the Measurement API resource
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
+      description: Get the Measurement API resource
       produces:
       - application/json
       parameters: []
@@ -2797,11 +2587,8 @@ paths:
             $ref: '#/definitions/GenericError'
   /measurement/measurements:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
       summary: Get a collection of measurements
+      description: Get a collection of measurements
       tags:
         - Measurements
       produces:
@@ -2854,11 +2641,8 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
       summary: Create a new measurement
+      description: Create a new measurement
       tags:
         - Measurements
       consumes:
@@ -3068,10 +2852,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     delete:
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
+      description: Delete a measurement collection
       summary: Delete a measurement collection
       tags:
         - Measurements
@@ -3111,10 +2892,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /measurement/measurements/{measurementId}:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
+      description: Get a measurement
       summary: Get a measurement
       tags:
         - Measurements
@@ -3136,10 +2914,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     delete:
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
+      description: Delete a measurement
       summary: Delete a measurement
       tags:
         - Measurements
@@ -3160,10 +2935,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /measurement/measurements/series:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Measurement Reference
-        Guide](http://cumulocity.com/guides/reference/measurements/)
+      description: Retrieve a series of measurements
       summary: Retrieve a series of measurements
       tags:
         - Measurements
@@ -3203,9 +2975,7 @@ paths:
     post:
       tags:
       - Real-time notifications
-      description: >-
-        #### For a detailed description of the API please check out the [Real-time notifications
-        Reference Guide](http://cumulocity.com/guides/reference/real-time-notifications/)
+      description: Send requests
       summary: Send requests
       consumes:
         - application/json
@@ -3284,9 +3054,7 @@ paths:
       tags:
       - Retention rules
       summary: Get a RetentionRule collection
-      description: >-
-        #### For a detailed description of the API please check out the [Retention rules
-        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      description: Get a RetentionRule collection
       produces:
       - application/json
       parameters:
@@ -3310,9 +3078,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [Retention rules
-        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      description: Create a new RetentionRule
       summary: Create a new RetentionRule
       tags:
         - Retention rules
@@ -3360,9 +3126,7 @@ paths:
       tags:
       - Retention rules
       summary: Get a RetentionRule
-      description: >-
-        #### For a detailed description of the API please check out the [Retention rules
-        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      description: Get a RetentionRule
       produces:
       - application/json
       parameters:
@@ -3384,9 +3148,7 @@ paths:
       tags:
       - Retention rules
       summary: Update a RetentionRule
-      description: >-
-        #### For a detailed description of the API please check out the [Retention rules
-        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      description: Update a RetentionRule
       consumes:
       - application/json
       produces:
@@ -3435,9 +3197,7 @@ paths:
       tags:
       - Retention rules
       summary: Delete a RetentionRule
-      description: >-
-        #### For a detailed description of the API please check out the [Retention rules
-        Reference Guide](http://cumulocity.com/guides/reference/retention-rules/)
+      description: Delete a RetentionRule
       produces:
       - application/json
       parameters:
@@ -3455,44 +3215,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /s:
     post:
-      description: >-
-        #### For a detailed description of the API please check out our
-        [SmartREST Reference
-        Guide](http://cumulocity.com/guides/reference/smartrest/)
-
-
-        You have to register all templates (request and response) in one single
-        request.
-
-
-        For a better overview this example contains only request templates.
-
-
-        ###### Syntax:
-
-        10,{unique id},{request method},{uri},{content
-        type},{accept},{placeholder},{parameter type},{template string}
-
-
-
-        * unique id: message identifier inside die SmartREST template
-
-        * request method: HTTP method to use for the request
-
-        * uri: the uri to the Cumulocity ressource
-
-        * content type: HTTP Content-Type header
-
-        * accept: HTTP Accept header
-
-        * placeholder: string that will be replaced in the template string with
-        the values of a SmartREST request
-
-        * parameter type: optional list to set data type of parameters for
-        validation in SmartREST
-
-        * template string: request body including placeholders that will be send
-        by SmartREST
+      description: Register Request Templates
       summary: Register Request Templates
       tags:
         - SmartREST
@@ -3521,9 +3244,7 @@ paths:
       - Cumulocity API Overview
       - Tenants
       summary: Get the Tenant API resource
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get the Tenant API resource
       produces:
       - application/json
       parameters: []
@@ -3541,9 +3262,7 @@ paths:
       tags:
       - Tenants
       summary: Get a tenant collection
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a tenant collection
       produces:
       - application/json
       parameters:
@@ -3567,9 +3286,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Create a new tenant
       summary: Create a new tenant
       tags:
         - Tenants
@@ -3629,9 +3346,7 @@ paths:
       tags:
       - Tenants
       summary: Get a tenant 
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a tenant 
       produces:
       - application/json
       parameters:
@@ -3653,9 +3368,7 @@ paths:
       tags:
       - Tenants
       summary: Update a tenant
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Update a tenant
       consumes:
       - application/json
       produces:
@@ -3713,11 +3426,7 @@ paths:
       tags:
       - Tenants
       summary: Delete a tenant
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
-        
-        Important: Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant.
+      description: Delete a tenant Important Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant.
       produces:
       - application/json
       parameters:
@@ -3738,9 +3447,7 @@ paths:
       tags:
       - Tenants
       summary: Get current tenant
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get current tenant
       produces:
       - application/json
       parameters: []
@@ -3755,9 +3462,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /tenant/tenants/{tenantId}/applications:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get all applications of a tenant
       summary: Get all applications of a tenant
       tags:
         - Tenants
@@ -3789,9 +3494,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Add application to a tenant
       summary: Add application to a tenant
       tags:
         - Tenants
@@ -3832,9 +3535,7 @@ paths:
       tags:
       - Tenants
       summary: Remove application from tenant
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Remove application from tenant
       produces:
       - application/json
       parameters:
@@ -3860,9 +3561,7 @@ paths:
       tags:
       - Tenants
       summary: Get a option collection
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a option collection
       produces:
       - application/json
       parameters:
@@ -3886,9 +3585,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Create a new option
       summary: Create a new option
       tags:
         - Tenants
@@ -3927,9 +3624,7 @@ paths:
       tags:
       - Tenants
       summary: Get a option 
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a option 
       produces:
       - application/json
       parameters:
@@ -3956,9 +3651,7 @@ paths:
       tags:
       - Tenants
       summary: Update a option
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Update a option
       consumes:
       - application/json
       produces:
@@ -4004,9 +3697,7 @@ paths:
       tags:
       - Tenants
       summary: Define option editability
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Define option editability
       consumes:
       - application/json
       produces:
@@ -4046,9 +3737,7 @@ paths:
       tags:
       - Tenants
       summary: Get multiple options in a category
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description:  Get multiple options in a category
       produces:
       - application/json
       parameters:
@@ -4070,9 +3759,7 @@ paths:
       tags:
       - Tenants
       summary: Update multiple options in a category
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Update multiple options in a category
       consumes:
       - application/json
       produces:
@@ -4110,9 +3797,7 @@ paths:
       tags:
       - Tenants
       summary: Get system options
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get system options
       produces:
       - application/json
       parameters:
@@ -4140,9 +3825,7 @@ paths:
       tags:
       - Tenants
       summary: Get a system option 
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a system option 
       produces:
       - application/json
       parameters:
@@ -4170,9 +3853,7 @@ paths:
       tags:
       - Tenants
       summary: Get usage statistics collection for a tenant
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get usage statistics collection for a tenant
       produces:
       - application/json
       parameters:
@@ -4208,9 +3889,7 @@ paths:
       tags:
       - Tenants
       summary: Get a summary of all tenant usage statistics
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a summary of all tenant usage statistics
       produces:
       - application/json
       parameters:
@@ -4246,9 +3925,7 @@ paths:
       tags:
       - Tenants
       summary: Get a summary of usage statistics for the current tenant
-      description: >-
-        #### For a detailed description of the API please check out the [Tenant
-        Reference Guide](http://cumulocity.com/guides/reference/tenants/)
+      description: Get a summary of usage statistics for the current tenant
       produces:
       - application/json
       parameters:
@@ -4285,9 +3962,7 @@ paths:
       - Cumulocity API Overview
       - Users
       summary: Get the User API resource
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get the User API resource
       produces:
       - application/json
       parameters: []
@@ -4302,9 +3977,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/users:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get a user collection
       summary: Get a user collection
       tags:
         - Users
@@ -4352,9 +4025,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Create a new user
       summary: Create a new user
       tags:
         - Users
@@ -4420,9 +4091,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/users/{userId}:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get a user
       summary: Get a user
       tags:
         - Users
@@ -4452,9 +4121,7 @@ paths:
       tags:
       - Users
       summary: Update a user
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Update a user
       consumes:
       - application/json
       produces:
@@ -4521,9 +4188,7 @@ paths:
       tags:
       - Users
       summary: Delete a user
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Delete a user
       produces:
       - application/json
       parameters:
@@ -4546,9 +4211,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/userByName/{userName}:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get a user by his/her name
       summary: Get a user by his/her name
       tags:
         - Users
@@ -4576,9 +4239,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/currentUser:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get the current user
       summary: Get the current user
       tags:
         - Users
@@ -4598,9 +4259,7 @@ paths:
       tags:
       - Users
       summary: Update the current user
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Update the current user
       consumes:
       - application/json
       produces:
@@ -4655,9 +4314,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/groups/{groupId}/users:
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Add user to a group
       summary: Add user to a group
       tags:
         - Users
@@ -4699,9 +4356,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get all users of a group
       summary: Get all users of a group
       tags:
         - Users
@@ -4742,9 +4397,7 @@ paths:
       tags:
       - Users
       summary: Remove user from a group
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Remove user from a group
       produces:
       - application/json
       parameters:
@@ -4772,9 +4425,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/groups:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: List all groups
       summary: List all groups
       tags:
         - Users
@@ -4806,9 +4457,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Create a group
       summary: Create a group
       tags:
         - Users
@@ -4849,9 +4498,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/groups/{groupId}:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Show group details
       summary: Show group details
       tags:
         - Users
@@ -4881,9 +4528,7 @@ paths:
       tags:
       - Users
       summary: Remove a group
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Remove a group
       produces:
       - application/json
       parameters:
@@ -4908,9 +4553,7 @@ paths:
       tags:
       - Users
       summary: Update a group
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Update a group
       consumes:
       - application/json
       produces:
@@ -4953,9 +4596,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/groupByName/{groupName}:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get a group by its name
       summary: Get a group by its name
       tags:
         - Users
@@ -4983,9 +4624,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/users/{userName}/groups:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get all groups of a user
       summary: Get all groups of a user
       tags:
         - Users
@@ -5023,9 +4662,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/roles:
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get all available roles
       summary: Get all available roles
       tags:
         - Users
@@ -5053,9 +4690,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/users/{userName}/roles:
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Assign Role to user
       summary: Assign Role to user
       tags:
         - Users
@@ -5097,9 +4732,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get all roles of a user
       summary: Get all roles of a user
       tags:
         - Users
@@ -5137,9 +4770,7 @@ paths:
             $ref: '#/definitions/GenericError'
   /user/{tenant}/groups/{groupId}/roles:
     post:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Assign Role to group
       summary: Assign Role to group
       tags:
         - Users
@@ -5181,9 +4812,7 @@ paths:
           schema:
             $ref: '#/definitions/GenericError'
     get:
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Get all roles of a group
       summary: Get all roles of a group
       tags:
         - Users
@@ -5224,9 +4853,7 @@ paths:
       tags:
       - Users
       summary: Unassign role from user
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Unassign role from user
       produces:
       - application/json
       parameters:
@@ -5257,9 +4884,7 @@ paths:
       tags:
       - Users
       summary: Unassign role from group
-      description: >-
-        #### For a detailed description of the API please check out the [User
-        Reference Guide](http://cumulocity.com/guides/reference/users/)
+      description: Unassign role from group
       produces:
       - application/json
       parameters:
