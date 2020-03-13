@@ -37,9 +37,7 @@ paths:
       - Cumulocity API Overview
       - Alarms
       summary: Get the AlarmAPI resource
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: Get the AlarmAPI resource
       produces:
       - application/json
       parameters: []
@@ -57,9 +55,7 @@ paths:
       tags:
       - Alarms
       summary: Get an alarm collection
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: Get an alarm collection
       produces:
       - application/json
       parameters:
@@ -118,9 +114,7 @@ paths:
       tags:
       - Alarms
       summary: Create a new Alarm
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: Create a new Alarm
       consumes:
       - application/json
       produces:
@@ -163,11 +157,7 @@ paths:
       tags:
       - Alarms
       summary: Bulk update of alarm collection
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
-        
-        The PUT method allows for updating alarms collections. Currently only the status of alarms can be changed.
+      description: Bulk update of alarm collection. The PUT method allows for updating alarms collections. Currently only the status of alarms can be changed.
       consumes:
       - application/json
       produces:
@@ -219,11 +209,7 @@ paths:
       tags:
       - Alarms
       summary: Delete an alarm collection
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
-        
-        Important: Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.
+      description: Delete an alarm collection Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.
       produces:
       - application/json
       parameters:
@@ -275,9 +261,7 @@ paths:
       tags:
       - Alarms
       summary: Get an Alarm 
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
+      description: Get an Alarm
       produces:
       - application/json
       parameters:
@@ -299,11 +283,7 @@ paths:
       tags:
       - Alarms
       summary: Update an Alarm
-      description: >-
-        #### For a detailed description of the API please check out the [Alarm
-        Reference Guide](http://cumulocity.com/guides/reference/alarms/)
-        
-        Only text, status, severity and custom properties can be modified. Non-modifiable fields will be ignored when provided in request.
+      description: Update an Alarm - Only text, status, severity and custom properties can be modified. Non-modifiable fields will be ignored when provided in request.
       consumes:
       - application/json
       produces:
@@ -342,10 +322,7 @@ paths:
       - Applications
       - Cumulocity API Overview
       summary: Get the ApplicationAPI resource
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Get the ApplicationAPI resource
       produces:
       - application/json
       parameters: []
@@ -363,10 +340,7 @@ paths:
       tags:
       - Applications
       summary: Get an application collection
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Get an application collection
       produces:
       - application/json
       parameters:
@@ -401,10 +375,7 @@ paths:
       tags:
       - Applications
       summary: Create a new application
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Create a new application
       consumes:
       - application/json
       produces:
@@ -449,14 +420,7 @@ paths:
       tags:
       - Applications
       summary: Copy an application
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
-        
-        The properties are copied to the newly created application. For name, key and context path a “clone” prefix is added in order to be unique.
-        
-        If the target application is hosted and has an active version, the new application will have the active version with the same content.
+      description: Copy an application. The properties are copied to the newly created application. For name, key and context path a “clone” prefix is added in order to be unique. If the target application is hosted and has an active version, the new application will have the active version with the same content.
       consumes:
       - application/json
       produces:
@@ -481,10 +445,7 @@ paths:
       tags:
       - Applications
       summary: Update an application
-      description: >-
-        #### For a detailed description of the API please check out the
-        [Application Reference
-        Guide](http://cumulocity.com/guides/reference/applications/)
+      description: Update an application
       consumes:
       - application/json
       produces:
