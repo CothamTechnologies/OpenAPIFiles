@@ -18,6 +18,49 @@ security:
 
 paths:
  
+  /user/currentUser:
+    get:
+      description: Get the current user
+      summary: Get the current user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              self:
+                type: string
+              userName:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              phone:
+                type: string
+              email:
+                type: string
+              enabled:
+                type: boolean
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
   /alarm/alarms:
     get:
       tags:
