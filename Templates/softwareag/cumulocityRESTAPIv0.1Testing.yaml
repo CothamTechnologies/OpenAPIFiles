@@ -4,6 +4,7 @@ info:
     https://cumulocity.com/guides/reference/rest-implementation/
   version: "0.1"
   title: Cumulocity REST API
+
 host: cotham.eu-latest.cumulocity.com
 
 schemes:
@@ -15,6 +16,19 @@ securityDefinitions:
 
 security:
 - auth: []
+
+x-ct-server:
+  url: '{scheme}://{tenant}.{server}'
+  variables:
+    - name: scheme
+      description: scheme eg https
+      type: string
+    - name: tenant
+      description: tenant name eg cotham
+      type: string
+    - name: server
+      description: server name eg cumulocity.com
+      type: string
 
 paths:
  
