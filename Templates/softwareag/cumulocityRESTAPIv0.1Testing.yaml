@@ -143,6 +143,43 @@ paths:
                       type: string
                     type:
                       type: string
+                    c8y_Position:
+                      type: object
+                      description: Position Property
+                      properties:
+                        lng:
+                          type: number
+                        lat:
+                          type: number
+                        alt:
+                          type: number
+                    c8y_ActiveAlarmStatus:
+                      type: object
+                      description: Active Alarm Property
+                      properties:
+                        criticial:
+                          type: integer
+                        major:
+                          type: integer
+                        minor:
+                          type: integer
+                        warning:
+                          type: integer
+                    c8y_Availability:
+                      type: object
+                      description: availability Property
+                      properties:
+                        lastMessage:
+                          type: string
+                        status:
+                          type: string
+                    c8y_Connection:
+                      type: object
+                      description: Connection Property
+                      properties:
+                        status:
+                          type: string
+
               statistics:
                 type: object
                 properties:
