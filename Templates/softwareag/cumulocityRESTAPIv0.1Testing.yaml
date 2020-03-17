@@ -95,6 +95,9 @@ paths:
           name: withGroups
           type: boolean
         - in: query
+          name: skipChildrenNames
+          type: boolean
+        - in: query
           name: dateFrom
           description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
           type: string
