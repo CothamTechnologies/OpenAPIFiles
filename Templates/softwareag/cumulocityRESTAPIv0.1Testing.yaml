@@ -430,6 +430,74 @@ paths:
               message:
                 type: string
   
+  /alarm/alarms/count:
+    get:
+      tags:
+      - Alarms
+      summary: Get an alarm collection count
+      description: Get an alarm collection count
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: resolved
+          description: resolved={resolved}
+          type: string
+        - in: query
+          name: severity
+          description: severity={severity}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: withAssets
+          description: withAssets={withAssets}
+          type: string
+        - in: query
+          name: withDevices
+          description: withDevices={withDevices}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: integer
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
   /alarm/alarms:
     put:
       tags:
