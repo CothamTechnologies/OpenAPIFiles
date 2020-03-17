@@ -75,7 +75,145 @@ paths:
               message:
                 type: string
   
+  /alarm/alarms/{alarmId}:
+    put:
+      tags:
+      - Alarms
+      summary: Update an Alarm
+      description: Update an Alarm - Only text, status, severity and custom properties can be modified. Non-modifiable fields will be ignored when provided in request.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: alarmId
+        description: Alarm id.
+        required: true
+        type: string
+      - in: body
+        name: Alarm
+        description: The alarm properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            text:
+              type: string
+            status:
+              type: string
+            severity:
+              type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: integer
+              id:
+                type: string
+              time:
+                type: string
+              type:
+                type: string
+              creationTime:
+                type: integer
+              text:
+                type: string
+              status:
+                type: string
+              severity:
+                type: string
+              count:
+                type: integer
+              firstOccurrenceTime:
+                type: string
+              source:
+                type: object
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
   /alarm/alarms:
+    put:
+      tags:
+      - Alarms
+      summary: Bulk update of alarm collection
+      description: Bulk update of alarm collection. The PUT method allows for updating alarms collections. Currently only the status of alarms can be changed.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: status
+        description: Comma separated alarm statuses, for example ACTIVE,CLEARED.
+        type: string
+      - in: query
+        name: source
+        description: Source device id.
+        type: string
+      - in: query
+        name: resolved
+        description: When set to true only resolved alarms will be updated (the one with status CLEARED), false means alarms with status ACTIVE or ACKNOWLEDGED.
+        type: boolean
+      - in: query
+        name: severity
+        description: Alarm severity, for example MINOR.
+        type: string
+      - in: query
+        name: dateFrom
+        description: Start date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        type: string
+      - in: query
+        name: dateTo
+        description: End date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        type: string
+      - in: body
+        name: Status
+        description: The status to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+      responses:
+        200:
+          description: Updated
+        202:
+          description: Process continuing in background
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+    
     get:
       tags:
       - Alarms
