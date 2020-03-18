@@ -198,6 +198,16 @@ paths:
                           type: string
                         type:
                           type: string
+                    c8y_TemperatureSensor_sim:
+                      type: object
+                      properties:
+                        Temperature:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                            unit:
+                              type: string
               statistics:
                 type: object
                 properties:
