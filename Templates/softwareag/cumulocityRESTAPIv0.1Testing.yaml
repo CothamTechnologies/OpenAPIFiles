@@ -77,11 +77,45 @@ paths:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/MeasurementSeries'
+            type: object
+            properties:
+              values:
+                type: object
+                properties:
+                  date:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        min: 
+                          type: number
+                        max:
+                          type: number
+              series:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    unit:
+                      type: string
+                    name:
+                      type: string
+                    type:
+                      type: string
+              truncated:
+                type: boolean
         default:
           description: Other Error
           schema:
-            $ref: '#/definitions/GenericError'
+            schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
   
   /measurement/measurements:
     get:
