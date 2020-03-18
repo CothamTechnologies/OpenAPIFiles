@@ -32,6 +32,163 @@ x-ct-server:
 
 paths:
  
+  /measurement/measurements/series:
+    get:
+      description: Retrieve a series of measurements
+      summary: Retrieve a series of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: series
+          description: Serires Name 
+          type: integer
+        - in: query
+          name: source
+          required: true
+          type: string
+          description: Source device id
+        - in: query
+          name: dateFrom
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - in: query
+          name: dateTo
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - in: query
+          name: aggregationType
+          required: false
+          type: string
+          description: Possible values can be DAILY, HOURLY, MINUTELY
+        - in: query
+          name: revert
+          type: boolean
+          description: reverse order
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementSeries'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  
+  /measurement/measurements:
+    get:
+      summary: Get a collection of measurements
+      description: Get a collection of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+        - text/csv
+        - application/vnd.ms-excel
+        - application/json-stream
+      parameters:        
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: revert
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              measurements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    self:
+                      type: string
+                    time:
+                      type: string
+                    type:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              prev:
+                type: string
+              next:
+                type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
   /inventory/managedObjects/{deviceId}:
     get:
       tags:
