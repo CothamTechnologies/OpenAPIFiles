@@ -298,7 +298,7 @@ paths:
                     type: number
                   alt:
                     type: number
-              c8y_ActiveAlarmStatus:
+              c8y_ActiveAlarmsStatus:
                 type: object
                 description: Active Alarm Property
                 properties:
