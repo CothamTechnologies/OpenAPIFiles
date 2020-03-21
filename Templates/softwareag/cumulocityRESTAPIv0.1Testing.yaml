@@ -31,7 +31,137 @@ x-ct-server:
       type: string
 
 paths:
- 
+  
+  /devicecontrol/operations:
+    get:
+      tags:
+      - Device control
+      summary: Get a collection of operations
+      description: Get a collection of operations
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: agentId
+          description: agentId={agentId}
+          type: string
+        - in: query
+          name: deviceId
+          description: deviceId={deviceId}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              operations:
+                type: array
+                items:
+                  Operation:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      self:
+                        type: string
+                      creationTime:
+                        type: string
+                      deviceID:
+                        type: string
+                      deviceExternalIDs:
+                        ExternalIDCollection:
+                          type: object
+                          properties:
+                            self:
+                              type: string
+                            externalIds:
+                              type: array
+                              items:
+                                ExternalID:
+                                type: object
+                                properties:
+                                  externalId:
+                                    type: string
+                                  self:
+                                    type: string
+                                  type:
+                                    type: string
+                                  managedObject:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      self:
+                                        type: string
+                            statistics:
+                              type: object
+                              properties:
+                                totalPages:
+                                  type: integer
+                                currentPage:
+                                  type: integer
+                                pageSize:
+                                  type: integer
+                            prev:
+                              type: string
+                            next:
+                              type: string
+                      bulkOperationId:
+                        type: string
+                      status:
+                        type: string
+                      failureReason:
+                        type: string
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              prev:
+                type: string
+              next:
+                type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
   /measurement/measurements/series:
     get:
       description: Retrieve a series of measurements
