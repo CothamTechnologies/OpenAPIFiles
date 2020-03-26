@@ -693,6 +693,15 @@ paths:
                       type: string
                     text:
                       type: string
+                    c8y_Position:
+                      type: object
+                      properties:
+                        lng:
+                          type: number
+                        lat:
+                          type: number
+                        alt:
+                          type: number
                     source:
                       type: object
                       properties:
