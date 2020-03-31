@@ -21,19 +21,16 @@ paths:
       produces:
         - "application/json"
       parameters:
-        - in: body
-          name: user
-          description: The user to create.
-          schema:
-            type: object
-            required:
-              - userName
-              - password
-            properties:
-              userName:
-                type: string
-              password:
-                type: string
+        - in: formData
+          name: userName
+          type: string
+          description: userName
+          required: true
+        - in: formData
+          name: password
+          type: string
+          description: password
+          required: true
 
       responses:
         200:
