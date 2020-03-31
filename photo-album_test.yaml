@@ -17,9 +17,9 @@ paths:
       tags:
         - 0. User management
       consumes:
-        - "application/json"
+        - "application/x-www-form-urlencoded"
       produces:
-        - "application/json"
+        - "plain/text"
       parameters:
         - in: formData
           name: userName
