@@ -11,6 +11,8 @@ schemes:
 paths:
   /login:
     post:
+      summary: Login
+      description: Allows user to login
       parameters:
         - in: body
           name: userName
