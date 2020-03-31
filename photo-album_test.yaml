@@ -14,17 +14,27 @@ paths:
     post:
       summary: Login
       description: Allows user to login
-      parameters:
-        - in: body
-          name: userName
-          type: string
-        - in: body
-          name: password
-          type: string
+      tags:
+        - 0. User management
       consumes:
         - "application/json"
       produces:
         - "application/json"
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - userName
+              - password
+            properties:
+              userName:
+                type: string
+              password:
+                type: string
+
       responses:
         200:
           description: "200 response"
