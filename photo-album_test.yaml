@@ -1,0 +1,221 @@
+swagger: "2.0"
+info:
+  version: "0.1"
+  title: "api From Stack api-playground Environment test"
+
+host: "ncb1h8twvl.execute-api.eu-west-2.amazonaws.com"
+basePath: "/test"
+
+schemes:
+  - "https"
+paths:
+  /login:
+    post:
+      parameters:
+        - in: body
+          name: userName
+          type: string
+        - in: body
+          name: password
+          type: string
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /photos:
+    get:
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              count:
+                type: string
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    imageTitle:
+                      type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+    post:
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: body
+          name: imageTitle
+          description: "Title of the image"
+          type: string
+        - in: body
+          name: imageData
+          description: "BASE64 encoded string of the image"
+          type: string
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              id:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /photos/{id}:
+    get:
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: path
+          name: id
+          type: string
+          description: id of image to retrieve
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              imageData:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /users:
+    post:
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              userName:
+                type: string
+              userEmail:
+                type: string
+              password:
+                type: string
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              id:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /users/{id}:
+    put:
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              newPassword1:
+                type: string
+              newPassword2:
+                type: string
+              password:
+                type: string
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
