@@ -51,6 +51,8 @@ paths:
 
   /photos:
     get:
+      summary: Get photos
+      description: Gets a list of photos for this user
       consumes:
         - "application/json"
       produces:
