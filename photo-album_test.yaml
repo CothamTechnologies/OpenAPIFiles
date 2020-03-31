@@ -19,7 +19,7 @@ paths:
       consumes:
         - "application/x-www-form-urlencoded"
       produces:
-        - "plain/text"
+        - "application/json"
       parameters:
         - in: formData
           name: userName
