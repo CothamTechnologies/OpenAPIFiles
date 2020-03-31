@@ -1,0 +1,1109 @@
+swagger: "2.0"
+info:
+  description: Cumulocity REST API for FloPro Integration. This API has been converted from the official Cumulocity Postman Collection.
+    https://cumulocity.com/guides/reference/rest-implementation/
+  version: "0.1"
+  title: Cumulocity REST API cothamtechnologies
+
+host: cothamtechnologies.cumulocity.com
+
+schemes:
+- https
+
+securityDefinitions:
+  auth:
+    type: basic
+
+security:
+- auth: []
+
+x-ct-server:
+  url: '{scheme}://{tenant}.{server}'
+  variables:
+    - name: scheme
+      description: scheme eg https
+      type: string
+    - name: tenant
+      description: tenant name eg cotham
+      type: string
+    - name: server
+      description: server name eg cumulocity.com
+      type: string
+
+paths:
+  
+  /devicecontrol/operations:
+    get:
+      tags:
+      - Device control
+      summary: Get a collection of operations
+      description: Get a collection of operations
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: agentId
+          description: agentId={agentId}
+          type: string
+        - in: query
+          name: deviceId
+          description: deviceId={deviceId}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              operations:
+                type: array
+                items:
+                  Operation:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      self:
+                        type: string
+                      creationTime:
+                        type: string
+                      deviceID:
+                        type: string
+                      deviceExternalIDs:
+                        ExternalIDCollection:
+                          type: object
+                          properties:
+                            self:
+                              type: string
+                            externalIds:
+                              type: array
+                              items:
+                                ExternalID:
+                                type: object
+                                properties:
+                                  externalId:
+                                    type: string
+                                  self:
+                                    type: string
+                                  type:
+                                    type: string
+                                  managedObject:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      self:
+                                        type: string
+                            statistics:
+                              type: object
+                              properties:
+                                totalPages:
+                                  type: integer
+                                currentPage:
+                                  type: integer
+                                pageSize:
+                                  type: integer
+                            prev:
+                              type: string
+                            next:
+                              type: string
+                      bulkOperationId:
+                        type: string
+                      status:
+                        type: string
+                      failureReason:
+                        type: string
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              prev:
+                type: string
+              next:
+                type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+  /measurement/measurements/series:
+    get:
+      description: Retrieve a series of measurements
+      summary: Retrieve a series of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: series
+          description: Serires Name 
+          type: integer
+        - in: query
+          name: source
+          required: true
+          type: string
+          description: Source device id
+        - in: query
+          name: dateFrom
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - in: query
+          name: dateTo
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - in: query
+          name: aggregationType
+          required: false
+          type: string
+          description: Possible values can be DAILY, HOURLY, MINUTELY
+        - in: query
+          name: revert
+          type: boolean
+          description: reverse order
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              values:
+                type: object
+                properties:
+                  date:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        min: 
+                          type: number
+                        max:
+                          type: number
+              series:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    unit:
+                      type: string
+                    name:
+                      type: string
+                    type:
+                      type: string
+              truncated:
+                type: boolean
+        default:
+          description: Other Error
+          schema:
+            schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+  /measurement/measurements:
+    get:
+      summary: Get a collection of measurements
+      description: Get a collection of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+        - text/csv
+        - application/vnd.ms-excel
+        - application/json-stream
+      parameters:        
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: revert
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              measurements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    self:
+                      type: string
+                    time:
+                      type: string
+                    type:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+                    c8y_TemperatureSensor_sim:
+                      type: object
+                      properties:
+                        Temperature:
+                          type: object
+                          properties:
+                            value:
+                              type: number
+                            unit:
+                              type: string
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              prev:
+                type: string
+              next:
+                type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+  /inventory/managedObjects/{deviceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a ManagedObject
+      description: Get a ManagedObject
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              id:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+              owner: 
+                type: string
+              creationTime: 
+                type: string
+              lastUpdated: 
+                type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Firmware:
+                type: object
+                properties:
+                  version:
+                    type: string
+              c8y_Position:
+                type: object
+                description: Position Property
+                properties:
+                  lng:
+                    type: number
+                  lat:
+                    type: number
+                  alt:
+                    type: number
+              c8y_ActiveAlarmsStatus:
+                type: object
+                description: Active Alarm Property
+                properties:
+                  criticial:
+                    type: integer
+                  major:
+                    type: integer
+                  minor:
+                    type: integer
+                  warning:
+                    type: integer
+              c8y_Availability:
+                type: object
+                description: availability Property
+                properties:
+                  lastMessage:
+                    type: string
+                  status:
+                    type: string
+              c8y_Connection:
+                type: object
+                description: Connection Property
+                properties:
+                  status:
+                    type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+  /inventory/managedObjects:
+    get:
+      tags:
+      - Inventory
+      summary: Get a ManagedObject collection
+      description: Get a ManagedObject collection Important If you query /inventory/managedObjects?type=c8y_Firmware&query=$filter=(name+eq+'Controller 1') the type queryParam is ignored. Instead url/inventory/managedObjects?query=$filter=(type+eq+c8y_Firmware+and+c8y_Filter.type+eq+'Controller 1') has to be queried.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: withGroups
+          type: boolean
+        - in: query
+          name: skipChildrenNames
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: text
+          description: text={text}
+          type: string
+        - in: query
+          name: ids
+          description: ids={ids}
+          type: string
+        - in: query
+          name: query
+          description: Query language is applied to all managed objects.
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              managedObjects:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    owner: 
+                      type: string
+                    creationTime: 
+                      type: string
+                    lastUpdated: 
+                      type: string
+                    c8y_Hardware:
+                      type: object
+                      properties:
+                        model:
+                          type: string
+                        serialNumber:
+                          type: string 
+                    c8y_Mobile:
+                      type: object
+                      properties:
+                        imei:
+                          type: string
+                        cellId:
+                          type: string 
+                        iccid:
+                          type: string 
+                    c8y_Firmware:
+                      type: object
+                      properties:
+                        version:
+                          type: string
+                    c8y_Position:
+                      type: object
+                      description: Position Property
+                      properties:
+                        lng:
+                          type: number
+                        lat:
+                          type: number
+                        alt:
+                          type: number
+                    c8y_ActiveAlarmsStatus:
+                      type: object
+                      description: Active Alarm Property
+                      properties:
+                        criticial:
+                          type: integer
+                        major:
+                          type: integer
+                        minor:
+                          type: integer
+                        warning:
+                          type: integer
+                    c8y_Availability:
+                      type: object
+                      description: availability Property
+                      properties:
+                        lastMessage:
+                          type: string
+                        status:
+                          type: string
+                    c8y_Connection:
+                      type: object
+                      description: Connection Property
+                      properties:
+                        status:
+                          type: string
+
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              prev:
+                type: string
+              next:
+                type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+  /event/events:
+    get:
+      tags:
+      - Events
+      summary: Get an event collection
+      description: Get an event collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: string
+              events:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    self:
+                      type: string
+                    creationTime:
+                      type: string
+                    type:
+                      type: string
+                    time:
+                      type: string
+                    text:
+                      type: string
+                    c8y_Position:
+                      type: object
+                      properties:
+                        lng:
+                          type: number
+                        lat:
+                          type: number
+                        alt:
+                          type: number
+                    source:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+                    statistics:
+                      type: object
+                      properties:
+                        totalPages:
+                          type: integer
+                        currentPage:
+                          type: integer
+                        pageSize:
+                          type: integer
+              prev:
+                type: string
+              next:
+                type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+    
+  
+  /user/currentUser:
+    get:
+      description: Get the current user
+      summary: Get the current user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              self:
+                type: string
+              userName:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              phone:
+                type: string
+              email:
+                type: string
+              enabled:
+                type: boolean
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+  /alarm/alarms/{alarmId}:
+    put:
+      tags:
+      - Alarms
+      summary: Update an Alarm
+      description: Update an Alarm - Only text, status, severity and custom properties can be modified. Non-modifiable fields will be ignored when provided in request.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: alarmId
+        description: Alarm id.
+        required: true
+        type: string
+      - in: body
+        name: Alarm
+        description: The alarm properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            text:
+              type: string
+            status:
+              type: string
+            severity:
+              type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: integer
+              id:
+                type: string
+              time:
+                type: string
+              type:
+                type: string
+              creationTime:
+                type: integer
+              text:
+                type: string
+              status:
+                type: string
+              severity:
+                type: string
+              count:
+                type: integer
+              firstOccurrenceTime:
+                type: string
+              source:
+                type: object
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+  /alarm/alarms/count:
+    get:
+      tags:
+      - Alarms
+      summary: Get an alarm collection count
+      description: Get an alarm collection count
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: resolved
+          description: resolved={resolved}
+          type: string
+        - in: query
+          name: severity
+          description: severity={severity}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: withAssets
+          description: withAssets={withAssets}
+          type: string
+        - in: query
+          name: withDevices
+          description: withDevices={withDevices}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: integer
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+  /alarm/alarms:
+    put:
+      tags:
+      - Alarms
+      summary: Bulk update of alarm collection
+      description: Bulk update of alarm collection. The PUT method allows for updating alarms collections. Currently only the status of alarms can be changed.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: status
+        description: Comma separated alarm statuses, for example ACTIVE,CLEARED.
+        type: string
+      - in: query
+        name: source
+        description: Source device id.
+        type: string
+      - in: query
+        name: resolved
+        description: When set to true only resolved alarms will be updated (the one with status CLEARED), false means alarms with status ACTIVE or ACKNOWLEDGED.
+        type: boolean
+      - in: query
+        name: severity
+        description: Alarm severity, for example MINOR.
+        type: string
+      - in: query
+        name: dateFrom
+        description: Start date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        type: string
+      - in: query
+        name: dateTo
+        description: End date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        type: string
+      - in: body
+        name: Status
+        description: The status to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+      responses:
+        200:
+          description: Updated
+        202:
+          description: Process continuing in background
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+    
+    get:
+      tags:
+      - Alarms
+      summary: Get an alarm collection
+      description: Get an alarm collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: resolved
+          description: resolved={resolved}
+          type: string
+        - in: query
+          name: severity
+          description: severity={severity}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: withAssets
+          description: withAssets={withAssets}
+          type: string
+        - in: query
+          name: withDevices
+          description: withDevices={withDevices}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              next:
+                type: string
+              prev:
+                type: string
+              self:
+                type: integer
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              alarms:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    self:
+                      type: integer
+                    id:
+                      type: string
+                    time:
+                      type: string
+                    type:
+                      type: string
+                    creationTime:
+                      type: integer
+                    text:
+                      type: string
+                    status:
+                      type: string
+                    severity:
+                      type: string
+                    count:
+                      type: integer
+                    firstOccurrenceTime:
+                      type: string
+                    source:
+                      type: object
+                      properties:
+                        self:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
