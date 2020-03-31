@@ -127,6 +127,8 @@ paths:
 
   /photos/{id}:
     get:
+      summary: Get a photo
+      description: Gets a specific photo with a certain ID
       parameters:
         - in: header
           name: Authorization
