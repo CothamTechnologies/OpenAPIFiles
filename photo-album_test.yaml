@@ -163,21 +163,26 @@ paths:
 
   /users:
     post:
+      summary: New user
+      description: Creates a new user account
       parameters:
-        - in: body
-          name: user
-          description: The user to create.
-          schema:
-            type: object
-            properties:
-              userName:
-                type: string
-              userEmail:
-                type: string
-              password:
-                type: string
+        - in: formData
+          name: userName
+          type: string
+          description: User name for this user
+          required: true
+        - in: formData
+          name: userEmail
+          type: string
+          description: Email address for this user
+          required: true
+        - in: formData
+          name: password
+          description: The new user's password
+          type: string
+          required: true
       consumes:
-        - "application/json"
+        - "application/x-www-form-urlencoded"
       produces:
         - "application/json"
       responses:
