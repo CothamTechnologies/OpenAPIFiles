@@ -89,6 +89,8 @@ paths:
                 type: string
 
     post:
+      summary: Submit image
+      description: Allows user to submit an image
       consumes:
         - "application/json"
       produces:
@@ -98,11 +100,11 @@ paths:
           name: Authorization
           description: Bearer token
           type: string
-        - in: body
+        - in: formData
           name: imageTitle
           description: "Title of the image"
           type: string
-        - in: body
+        - in: formData
           name: imageData
           description: "BASE64 encoded string of the image"
           type: string
