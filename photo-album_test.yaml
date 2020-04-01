@@ -92,7 +92,7 @@ paths:
       summary: Submit image
       description: Allows user to submit an image
       consumes:
-        - "application/json"
+        - "application/x-www-form-urlencoded"
       produces:
         - "application/json"
       parameters:
