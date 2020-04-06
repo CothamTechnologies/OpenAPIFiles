@@ -4,13 +4,13 @@ info:
   title: "api From Stack api-playground Environment test"
   description: "Simple API for photo album tutorial"
 
-host: "ncb1h8twvl.execute-api.eu-west-2.amazonaws.com"
+host: "4459r2hl15.execute-api.eu-west-2.amazonaws.com"
 basePath: "/test"
 
 schemes:
   - "https"
 paths:
-  /login:
+  /users/login:
     post:
       summary: Login
       description: Allows user to login
@@ -22,9 +22,147 @@ paths:
         - "application/json"
       parameters:
         - in: formData
-          name: userName
+          name: email
           type: string
-          description: userName
+          description: email (required if password provided)
+        - in: formData
+          name: password
+          type: string
+          description: password (required if email provided)
+        - in: formData
+          name: refresh_token
+          type: string
+          description: Refresh token for renewing access token (required if email and password not provided)
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              AccessToken:
+                type: string
+              RefreshToken:
+                type: string
+              IdToken:
+                type: string
+              TokenType:
+                type: string
+              ExpiresIn:
+                type: integer
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+  /users/forgot:
+    post:
+      summary: Forgot password
+      description: Triggers email to user with confirmation code
+      tags:
+        - 0. User management
+      consumes:
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: formData
+          name: email
+          type: string
+          description: email
+          required: true
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              CodeDeliveryDetails:
+                type: object
+                properties:
+                  Destination:
+                    type: string
+                  DeliveryMedium:
+                    type: string
+                  AttributeName:
+                    type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+  /users/forgotconfirm:
+    post:
+      summary: Password change confirmation
+      description: Triggers password change
+      tags:
+        - 0. User management
+      consumes:
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: formData
+          name: email
+          type: string
+          description: email
+          required: true
+        - in: formData
+          name: confirmationCode
+          type: string
+          description: confirmationCode previously sent
+          required: true
+        - in: formData
+          name: password
+          type: string
+          description: new password for this user
+          required: true
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+  /users:
+    post:
+      summary: Signup
+      description: Allows user to signup for an account
+      tags:
+        - 0. User management
+      consumes:
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+      parameters:
+        - in: formData
+          name: email
+          type: string
+          description: email
           required: true
         - in: formData
           name: password
@@ -38,7 +176,7 @@ paths:
           schema:
             type: object
             properties:
-              token:
+              message:
                 type: string
 
         default:
@@ -47,6 +185,8 @@ paths:
             type: object
             properties:
               message:
+                type: string
+              code:
                 type: string
 
   /photos:
@@ -87,6 +227,8 @@ paths:
             properties:
               message:
                 type: string
+              code:
+                type: string
 
     post:
       summary: Submit image
@@ -126,6 +268,8 @@ paths:
             properties:
               message:
                 type: string
+              code:
+                type: string
 
   /photos/{id}:
     get:
@@ -160,69 +304,21 @@ paths:
             properties:
               message:
                 type: string
-
-  /users:
-    post:
-      summary: New user
-      description: Creates a new user account
-      parameters:
-        - in: formData
-          name: userName
-          type: string
-          description: User name for this user
-          required: true
-        - in: formData
-          name: userEmail
-          type: string
-          description: Email address for this user
-          required: true
-        - in: formData
-          name: password
-          description: The new user's password
-          type: string
-          required: true
-      consumes:
-        - "application/x-www-form-urlencoded"
-      produces:
-        - "application/json"
-      responses:
-        200:
-          description: "200 response"
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              id:
+              code:
                 type: string
 
-        default:
-          description: "error object"
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-  /users/{id}:
-    put:
+    delete:
+      summary: Delete a photo
+      description: Deletes a specific photo with a certain ID
       parameters:
         - in: header
           name: Authorization
           description: Bearer token
           type: string
-        - in: body
-          name: user
-          description: The user to create.
-          schema:
-            type: object
-            properties:
-              newPassword1:
-                type: string
-              newPassword2:
-                type: string
-              password:
-                type: string
+        - in: path
+          name: id
+          type: string
+          description: id of image to delete
       consumes:
         - "application/json"
       produces:
@@ -233,7 +329,7 @@ paths:
           schema:
             type: object
             properties:
-              message:
+              imageData:
                 type: string
 
         default:
@@ -242,4 +338,6 @@ paths:
             type: object
             properties:
               message:
+                type: string
+              code:
                 type: string
