@@ -1407,6 +1407,8 @@ paths:
                           AmountPendingDisplay:
                             type: string
                             description: Currency prefixed amount pending for display
+                          DateChecked:
+                            type: string
                           InvoiceCount:
                             type: integer
                           Invoices:
@@ -1916,6 +1918,8 @@ paths:
                             type: string
                           JobCount:
                             type: integer
+                          DateChecked:
+                            type: string
                           Jobs:
                             type: array
                             items:
