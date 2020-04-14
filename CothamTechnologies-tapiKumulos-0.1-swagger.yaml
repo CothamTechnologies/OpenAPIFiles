@@ -1,0 +1,729 @@
+swagger: "2.0"
+info:
+  version: "0.1"
+  title: "TAPIKUMULOS"
+  description: "TAPIKUMULOS"
+
+host: api.kumulos.com
+basePath: /b2.2/ddf142dd-cae2-41cc-929a-3d2ed2c2cb4b
+
+x-flopro-kumulosrpc: true
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+
+paths:
+  /tapiGetVanCheckInfo.json/:
+    post:
+      summary: Gets pre-round check questions
+      description: Gets pre-round check questions
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    odata.context:
+                      type: string
+                    Answer_Group_No:
+                      type: string
+                    Question_No:
+                      type: string
+                    Question_Description:
+                      type: string
+                    Position:
+                      type: integer
+                    Data_Type:
+                      type: string
+                    Mandatory:
+                      type: boolean
+                    Answer:
+                      type: string
+                    Answer_Integer:
+                      type: integer
+                    Answer_Decimal:
+                      type: number
+                      format: double
+                    Answer_Date:
+                      type: string
+                      format: date-time
+                    Answer_DT:
+                      type: string
+                      format: date-time
+                    Answer_Time:
+                      type: string
+                    Answer_Option:
+                      type: string
+                    Valid_Parent_Answer_Conditions:
+                      type: boolean
+                    FieldControl:
+                      type: string
+                    OnlineFieldControl:
+                      type: string
+                    HasRelation:
+                      type: boolean
+                    Recalculate:
+                      type: boolean
+                    Capture_Signature:
+                      type: boolean
+                    Signature:
+                      type: boolean
+                    Signature_Size:
+                      type: integer
+                    ETag:
+                      type: string
+                    isAnswerBinary:
+                      type: boolean
+                    Child_Question:
+                      type: string
+                    Parent_Question:
+                      type: string
+                    questionOptions:
+                      type: array
+                      items:
+                        type: string
+
+        default:
+          description: Failed Server Response
+
+  /tapiStartOfDay.json/:
+    post:
+      summary: tapiStartOfDay
+      description: Gets start of day data
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[auth]
+          type: string
+          description: auth
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                type: object
+                properties:
+                  Answer_Group_No:
+                    type: string
+                  companyName:
+                    type: string
+                  questionList:
+                    type: object
+                    properties:
+                      questionCount:
+                        type: integer
+                      questions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            odataetag:
+                              type: string
+                            Answer_Group_No:
+                              type: string
+                            Question_No:
+                              type: string
+                            Question_Description:
+                              type: string
+                            Position:
+                              type: integer
+                            Data_Type:
+                              type: string
+                            Mandatory:
+                              type: boolean
+                            Answer:
+                              type: string
+                            Answer_Integer:
+                              type: integer
+                            Answer_Decimal:
+                              type: number
+                              format: double
+                            Answer_Date:
+                              type: string
+                              format: date-time
+                            Answer_DT:
+                              type: string
+                              format: date-time
+                            Answer_Time:
+                              type: string
+                            Answer_Option:
+                              type: string
+                            Valid_Parent_Answer_Conditions:
+                              type: boolean
+                            FieldControl:
+                              type: string
+                            OnlineFieldControl:
+                              type: string
+                            HasRelation:
+                              type: boolean
+                            Recalculate:
+                              type: boolean
+                            Capture_Signature:
+                              type: boolean
+                            Signature:
+                              type: boolean
+                            Signature_Size:
+                              type: integer
+                            ETag:
+                              type: string
+                            isAnswerBinary:
+                              type: boolean
+                  todaysBookings:
+                    type: object
+                    properties:
+                      todaysBookingsCount:
+                        type: integer
+                      bookings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            odata.etag:
+                              type: string
+                            Document_Type:
+                              type: string
+                            No:
+                              type: string
+                            Salesperson_Code:
+                              type: string
+                            ERP_Store_Code:
+                              type: string
+                            ERP_Store_Name:
+                              type: string
+                            Starting_Date:
+                              type: string
+                              format: date-time
+                            Starting_Time:
+                              type: string
+                            Customer_No:
+                              type: string
+                            Name:
+                              type: string
+                            Service_Order_Type:
+                              type: string
+                            Address:
+                              type: string
+                            Address2:
+                              type: string
+                            City:
+                              type: string
+                            County:
+                              type: string
+                            Post_Code:
+                              type: string
+                            Phone_No:
+                              type: string
+                            Phone_No_2:
+                              type: string
+                            Status:
+                              type: string
+                            Order_Date:
+                              type: string
+                              format: date-time
+                            Order_Time:
+                              type: string
+                            Priority:
+                              type: string
+                            Release_Status:
+                              type: string
+                            Shortcut_Dimension_1_Code:
+                              type: string
+                            Shortcut_Dimension_2_Code:
+                              type: string
+                            Notify_Customer:
+                              type: string
+                            Contract_No:
+                              type: string
+                            Document_Date:
+                              type: string
+                              format: date-time
+                            Due_Date:
+                              type: string
+                              format: date-time
+                            Shipping_Advice:
+                              type: string
+                            Warning_Status:
+                              type: string
+                            Allocated_Hours:
+                              type: integer
+                            Expected_Finishing_Date:
+                              type: string
+                              format: date-time
+                            Finishing_Time:
+                              type: string
+                            Finishing_Date:
+                              type: string
+                              format: date-time
+                            Service_Time_Hours:
+                              type: integer
+                            Answer_Group_No:
+                              type: string
+                            AddComment:
+                              type: string
+                            Picture1_Size:
+                              type: integer
+                            Picture2_Size:
+                              type: integer
+                            Picture3_Size:
+                              type: integer
+                            Picture4_Size:
+                              type: integer
+                            Picture5_Size:
+                              type: integer
+                            Signature_Size:
+                              type: integer
+                            ResourceFilter:
+                              type: string
+                            FieldControl:
+                              type: string
+                            IsQuestionnaireComplete:
+                              type: boolean
+                            CurrentDateTime:
+                              type: string
+                              format: date-time
+                            Date_Filter:
+                              type: string
+                            Resource_Filter:
+                              type: string
+                            Resource_Group_Filter:
+                              type: string
+                            ETag:
+                              type: string
+                            bookingSummary:
+                              type: string
+                            addressSummary:
+                              type: string
+                            timeSummary:
+                              type: string
+                            addressFull:
+                              type: string
+                            images:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  image:
+                                    type: string
+                            questionList:
+                              type: object
+                              properties:
+                                questionCount:
+                                  type: integer
+                                questions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      odata.etag:
+                                        type: string
+                                      Answer_Group_No:
+                                        type: string
+                                      Question_No:
+                                        type: string
+                                      Question_Description:
+                                        type: string
+                                      Position:
+                                        type: integer
+                                      Data_Type:
+                                        type: string
+                                      Mandatory:
+                                        type: boolean
+                                      Answer:
+                                        type: string
+                                      Answer_Integer:
+                                        type: integer
+                                      Answer_Decimal:
+                                        type: number
+                                        format: double
+                                      Answer_Date:
+                                        type: string
+                                        format: date-time
+                                      Answer_DT:
+                                        type: string
+                                        format: date-time
+                                      Answer_Time:
+                                        type: string
+                                      Answer_Option:
+                                        type: string
+                                      Valid_Parent_Answer_Conditions:
+                                        type: boolean
+                                      Extra_Options:
+                                        type: string
+                                      FieldControl:
+                                        type: string
+                                      OnlineFieldControl:
+                                        type: string
+                                      HasRelation:
+                                        type: boolean
+                                      Recalculate:
+                                        type: boolean
+                                      Capture_Signature:
+                                        type: boolean
+                                      Signature:
+                                        type: boolean
+                                      Signature_Size:
+                                        type: integer
+                                      capturedSig:
+                                        type: string
+                                      ETag:
+                                        type: string
+                                      isAnswerBinary:
+                                        type: boolean
+                                      thirdAnswer:
+                                        type: string
+                                      questionOptions:
+                                        type: array
+                                        items:
+                                          type: string
+                  tomorrowsBookings:
+                    type: object
+                    properties:
+                      tomorrowsBookingsCount:
+                        type: integer
+                      bookings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            odata.etag:
+                              type: string
+                            Document_Type:
+                              type: string
+                            No:
+                              type: string
+                            Starting_Date:
+                              type: string
+                              format: date-time
+                            Starting_Time:
+                              type: string
+                            Customer_No:
+                              type: string
+                            Name:
+                              type: string
+                            Address:
+                              type: string
+                            Address2:
+                              type: string
+                            City:
+                              type: string
+                            County:
+                              type: string
+                            Post_Code:
+                              type: string
+                            Phone_No:
+                              type: string
+                            Phone_No_2:
+                              type: string
+                            Status:
+                              type: string
+                            Order_Date:
+                              type: string
+                              format: date-time
+                            Order_Time:
+                              type: string
+                            Priority:
+                              type: string
+                            Release_Status:
+                              type: string
+                            Shortcut_Dimension_1_Code:
+                              type: string
+                            Shortcut_Dimension_2_Code:
+                              type: string
+                            Notify_Customer:
+                              type: string
+                            Service_Order_Type:
+                              type: string
+                            Contract_No:
+                              type: string
+                            Document_Date:
+                              type: string
+                              format: date-time
+                            Due_Date:
+                              type: string
+                              format: date-time
+                            Shipping_Advice:
+                              type: string
+                            Warning_Status:
+                              type: string
+                            Allocated_Hours:
+                              type: integer
+                            Expected_Finishing_Date:
+                              type: string
+                              format: date-time
+                            Finishing_Time:
+                              type: string
+                            Finishing_Date:
+                              type: string
+                              format: date-time
+                            Service_Time_Hours:
+                              type: integer
+                            ResourceFilter:
+                              type: string
+                            FieldControl:
+                              type: string
+                            Date_Filter:
+                              type: string
+                            Resource_Filter:
+                              type: string
+                            Resource_Group_Filter:
+                              type: string
+                            ETag:
+                              type: string
+                            bookingSummary:
+                              type: string
+                            addressSummary:
+                              type: string
+                            timeSummary:
+                              type: string
+                            addressFull:
+                              type: string
+
+        default:
+          description: Failed Server Response
+
+  /tapiFakeCheck.json/:
+    post:
+      summary: tapiFakeCheck
+      description: Fakes MNCheckMyVan data
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+              payload:
+                type: object
+                properties:
+                  odata.etag:
+                    type: string
+                  Resource_No:
+                    type: string
+                  Booking_Date:
+                    type: string
+                    format: date-time
+                  Entry_No:
+                    type: integer
+                  Completed:
+                    type: boolean
+                  All_Mandatory_Filled:
+                    type: boolean
+                  Answer_Group_No:
+                    type: string
+                  FieldControl:
+                    type: string
+                  ETag:
+                    type: string
+
+        default:
+          description: Failed Server Response
+
+  /tapiAnswerQuestions.json/:
+    post:
+      summary: Send through answer data
+      description: Send through answer data
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[answerGroup]
+          type: string
+          description: answerGroup
+          required: true
+        - in: formData
+          name: params[questions]
+          type: string
+          description: questions
+          required: true
+        - in: formData
+          name: params[auth]
+          type: string
+          description: auth
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  empty:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+  /tapiLogin.json/:
+    post:
+      summary: Implement a login system
+      description: Implement a login system
+      tags:
+        - 1. Tapi estimators app
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[username]
+          type: string
+          description: username
+          required: true
+        - in: formData
+          name: params[password]
+          type: string
+          description: password
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  isError:
+                    type: boolean
+                  token:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
