@@ -1,0 +1,319 @@
+swagger: '2.0'
+info:
+  description: air visual demo
+  version: '0.1'
+  title: air visual demo
+  
+host: api.airvisual.com
+
+
+schemes:
+  - https
+paths:
+  /v2/countries:
+    get:
+      description: get countries
+      produces:
+        - application/json
+      parameters:
+        - name: key
+          in: query
+          required: false
+          type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    country:
+                      type: string
+            
+  /v2/states:
+    get:
+      description: get states
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: query
+          required: false
+          type: string
+          x-example: Argentina
+        - name: key
+          in: query
+          required: false
+          type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: array
+                items:
+                  properties:
+                    state:
+                      type: string
+          
+  /v2/cities:
+    get:
+      description: get cities
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: query
+          required: false
+          type: string
+          x-example: Argentina
+        - name: state
+          in: query
+          required: false
+          type: string
+          x-example: Buenos Aires
+        - name: key
+          in: query
+          required: false
+          type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+            
+  /v2/city:
+    get:
+      description: get specified city data
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: query
+          required: false
+          type: string
+          x-example: USA
+        - name: city
+          in: query
+          required: false
+          type: string
+          x-example: Los Angeles
+        - name: state
+          in: query
+          required: false
+          type: string
+          x-example: California
+        - name: key
+          in: query
+          required: false
+          type: string
+        
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: object
+                properties:
+                  city:
+                    type: string
+                  state:
+                    type: string
+                  country:
+                    type: string
+                  location:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      coordinates:
+                        type: array
+                        items:
+                          type: number
+                          format: double
+                  current:
+                    type: object
+                    properties:
+                      weather:
+                        type: object
+                        properties:
+                          ts:
+                            type: string
+                          tp:
+                            type: integer
+                            format: int32
+                          pr:
+                            type: integer
+                            format: int32
+                          hu:
+                            type: integer
+                            format: int32
+                          ws:
+                            type: number
+                            format: double
+                          wd:
+                            type: integer
+                            format: int32
+                          ic:
+                            type: string
+                      pollution:
+                        type: object
+                        properties:
+                          ts:
+                            type: string
+                          aqius:
+                            type: integer
+                            format: int32
+                          mainus:
+                            type: string
+                          aqicn:
+                            type: integer
+                            format: int32
+                          maincn:
+                            type: string
+        default:
+          description: fail
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+            
+  /v2/nearest_city:
+    get:
+      description: get nearest city data
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: query
+          required: false
+          type: string
+          x-example: USA
+        - name: city
+          in: query
+          required: false
+          type: string
+          x-example: Los Angeles
+        - name: state
+          in: query
+          required: false
+          type: string
+          x-example: California
+        - name: key
+          in: query
+          required: false
+          type: string
+        - name: lon
+          in: query
+          required: false
+          type: string
+          x-example: '34.0669'
+        - name: lat
+          in: query
+          required: false
+          type: string
+          x-example: '-118.2417'
+        - name: param0
+          in: path
+          description: 'Example values form path are: ''city'' and ''nearest_city'''
+          required: true
+          type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: object
+                properties:
+                  city:
+                    type: string
+                  state:
+                    type: string
+                  country:
+                    type: string
+                  location:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      coordinates:
+                        type: array
+                        items:
+                          type: number
+                          format: double
+                  current:
+                    type: object
+                    properties:
+                      weather:
+                        type: object
+                        properties:
+                          ts:
+                            type: string
+                          tp:
+                            type: integer
+                            format: int32
+                          pr:
+                            type: integer
+                            format: int32
+                          hu:
+                            type: integer
+                            format: int32
+                          ws:
+                            type: number
+                            format: double
+                          wd:
+                            type: integer
+                            format: int32
+                          ic:
+                            type: string
+                      pollution:
+                        type: object
+                        properties:
+                          ts:
+                            type: string
+                          aqius:
+                            type: integer
+                            format: int32
+                          mainus:
+                            type: string
+                          aqicn:
+                            type: integer
+                            format: int32
+                          maincn:
+                            type: string
+        default:
+          description: fail
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
