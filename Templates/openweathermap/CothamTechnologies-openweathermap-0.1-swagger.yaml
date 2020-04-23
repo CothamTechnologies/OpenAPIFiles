@@ -1,0 +1,206 @@
+swagger: '2.0'
+info:
+  description: Open Weather Map
+  version: '0.1'
+  title: Open Weather Map
+host: api.openweathermap.org
+basePath: /data/2.5
+
+schemes:
+  - https
+paths:
+  /onecall:
+    get:
+      description: One Call
+      produces:
+        - application/json
+      parameters:
+        - name: appid
+          in: query
+          required: false
+          type: string
+        - name: lon
+          in: query
+          required: false
+          type: string
+        - name: lat
+          in: query
+          required: false
+          type: string
+        - name: units
+          in: query
+          type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            type: object 
+            properties:
+              lat: 
+                type: number
+              lon: 
+                type: number
+              timezone: 
+                type: string
+              current: 
+                type: object
+                properties: 
+                  dt: 
+                    type: integer
+                    format: int32
+                  sunrise: 
+                    type: integer
+                    format: int32
+                  sunset: 
+                    type: integer
+                    format: int32
+                  temp: 
+                    type: number
+                  feels_like: 
+                    type: number
+                  pressure: 
+                    type: integer
+                    format: int32
+                  humidity: 
+                    type: integer
+                    format: int32
+                  dew_point: 
+                    type: number
+                  uvi: 
+                    type: number
+                  clouds: 
+                    type: integer
+                    format: int32
+                  wind_speed: 
+                    type: number
+                  wind_deg: 
+                    type: integer
+                    format: int32
+                  weather: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: integer
+                          format: int32
+                        main: 
+                          type: string
+                        description: 
+                          type: string
+                        icon: 
+                          type: string
+              hourly: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    dt: 
+                      type: integer
+                      format: int32
+                    temp: 
+                      type: number
+                    feels_like: 
+                      type: number
+                    pressure: 
+                      type: integer
+                      format: int32
+                    humidity: 
+                      type: integer
+                      format: int32
+                    dew_point: 
+                      type: number
+                    clouds: 
+                      type: integer
+                      format: int32
+                    wind_speed: 
+                      type: number
+                    wind_deg: 
+                      type: integer
+                      format: int32
+                    weather: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          id: 
+                            type: integer
+                            format: int32
+                          main: 
+                            type: string
+                          description: 
+                            type: string
+                          icon: 
+                            type: string
+              daily: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    dt: 
+                      type: integer
+                      format: int32
+                    sunrise: 
+                      type: integer
+                      format: int32
+                    sunset: 
+                      type: integer
+                      format: int32
+                    temp: 
+                      type: object
+                      properties: 
+                        day: 
+                          type: number
+                        min: 
+                          type: number
+                        max: 
+                          type: number
+                        night: 
+                          type: number
+                        eve: 
+                          type: number
+                        morn: 
+                          type: number
+                    feels_like: 
+                      type: object
+                      properties: 
+                        day: 
+                          type: number
+                        night: 
+                          type: number
+                        eve: 
+                          type: number
+                        morn: 
+                          type: number
+                    pressure: 
+                      type: integer
+                      format: int32
+                    humidity: 
+                      type: integer
+                      format: int32
+                    dew_point: 
+                      type: number
+                    wind_speed: 
+                      type: number
+                    wind_deg: 
+                      type: integer
+                      format: int32
+                    weather: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          id: 
+                            type: integer
+                            format: int32
+                          main: 
+                            type: string
+                          description: 
+                            type: string
+                          icon: 
+                            type: string
+                    clouds: 
+                      type: integer
+                      format: int32
+                    uvi: 
+                      type: number
