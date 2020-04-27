@@ -1,0 +1,998 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Cumulocity REST API
+  description: Cumulocity REST API Cotham Technologies
+
+host: cothamtechnologies.cumulocity.com
+basePath: 
+
+schemes:
+  - https
+
+securityDefinitions:
+  auth:
+    type: basic
+security:
+  - auth: []
+
+paths:
+  
+  /inventory/managedObjects/{deviceId}/childDevices/{childId}:
+    delete:
+      description: Delete Child Device ref to a device
+      summary: Add Child Device ref to a device
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: childId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        204:
+          description: success
+        
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+
+  /inventory/managedObjects/{deviceId}/childDevices:
+    post:
+      description: Add Child Device ref to a device
+      summary: Add Child Device ref to a device
+      tags:
+        - Inventory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              managedObject:
+                type: object
+                properties:
+                  self:
+                    type: string
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        201:
+          description: success
+        
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+          
+  
+  /event/events:
+    post:
+      description: Create new event
+      summary: Create new event
+      tags:
+        - Event
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              source:
+                type: object
+                properties:
+                  id:
+                    type: string
+              text: 
+                type: string
+              time: 
+                type: string
+              type:
+                type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+              
+      responses:
+        201:
+          description: success
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string    
+
+  /measurement/measurements:        
+    post:
+      description: Create measurement
+      summary: Create measurement
+      tags:
+        - Measurement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              source:
+                type: object
+                properties:
+                  id:
+                    type: string
+              time: 
+                type: string
+              type:
+                type: string
+              c8y_SignalStrength:
+                type: object
+                properties:
+                  rssi:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  ber:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              c8y_TemperatureMeasurement:
+                type: object
+                properties:
+                  T:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              cTh_AccelerationMeasurement:
+                type: object
+                properties:
+                  X:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Y:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Z:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              
+
+      responses:
+        201:
+          description: success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              self:
+                type: string
+              time:
+                type: string
+              type:
+                type: string
+              source:
+                type: string
+              c8y_SignalStrength:
+                type: object
+                properties:
+                  rssi:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  ber:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              c8y_TemperatureMeasurement:
+                type: object
+                properties:
+                  T:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+              cTh_AccelerationMeasurement:
+                type: object
+                properties:
+                  X:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Y:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+                  Z:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      unit:
+                        type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string  
+
+  /inventory/managedObjects/{deviceId}:
+    get:
+      description: Get a specific managedObject
+      summary: Get a specific managedObject
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              owner: 
+                type: string
+              creationTime: 
+                type: string
+              lastUpdated: 
+                type: string
+              type: 
+                type: string
+              name: 
+                type: string
+              id: 
+                type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Firmware:
+                type: object
+                properties:
+                  version:
+                    type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+         
+    put:
+      description: Update device
+      summary: Update device
+      tags:
+        - Inventory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              c8y_Firmware:
+                  type: object
+                  properties:
+                    version:
+                      type: string
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        200:
+          description: success
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+          
+    delete:
+      description: Delete a specific managedObject
+      summary: Delete a specific managedObject
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        204:
+          description: success
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+          
+  
+  /identity/globalIds/{deviceId}/externalIds:
+    get:
+      description: Get all externalIds registered for a managedObject
+      summary: Get all externalIds registered for a managedObject
+      tags:
+        - Identity
+      produces:
+        - application/json
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: Unique external ID
+      responses:
+        200:
+          description: Found Device
+          schema:
+            type: object
+            properties:
+              externalId:
+                type: string
+              managedObject:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  self:
+                    type: string
+              self:
+                type: string
+              type:
+                type: string
+
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+    post:
+      description: Create an externalId for a managedObject
+      summary: Create an externalId for a managedObject
+      tags:
+        - Identity
+      consumes:
+        - application/json 
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+              externalId:
+                type: string     
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+          description: unique device ID
+      responses:
+        201:
+          description: Success
+          schema:
+            type: object
+            properties:
+              externalId:
+                type: string
+              managedObject:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  self:
+                    type: string
+              self:
+                type: string
+              type:
+                type: string
+
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+  /identity/externalIds/{externalIdType}/{externalId}:
+    get:
+      description: Get ManagedObject for a specific externalId
+      summary: Get ManagedObject for a specific externalId
+      tags:
+        - Identity
+      produces:
+        - application/json
+      parameters:
+        - name: externalIdType
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: externalId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        200:
+          description: Found Device
+          schema:
+            type: object
+            properties:
+              externalId:
+                type: string
+              managedObject:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  self:
+                    type: string
+              self:
+                type: string
+              type:
+                type: string
+
+        404: 
+          description: Not Found Device
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+          
+
+  /identity/externalIds/{type}/{externalId}:
+    delete:
+      description: Remove externalId from a managed object
+      summary: Remove externalId from a managed object
+      tags:
+        - Identity
+      produces:
+        - application/json
+      parameters:
+        - name: type
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: externalId
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        204:
+          description: success
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+  /inventory/managedObjects:
+    get:
+      description: Get Inventory Items
+      summary: Get Inventory Items
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: query
+          description: 'query language eg only query to database: …?query=name eq ‘M01’
+                        keyword $filter=: …?query=$filter=name eq ‘M01’
+                        keyword $orderby=: …?query=$orderby=id asc
+                        keywords $filter= and $orderby=: …?query=$filter=name eq ‘M01’ $orderby=id'
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: ids
+          description: ids={ids}
+          type: string
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              next: 
+                type: string
+              self:
+                type: integer
+              statistics:
+                type: object
+                properties:
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  pageSize:
+                    type: integer
+              managedObjects:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    owner: 
+                      type: string
+                    creationTime: 
+                      type: string
+                    lastUpdated: 
+                      type: string
+                    type: 
+                      type: string
+                    name: 
+                      type: string
+                    id: 
+                      type: string
+                    c8y_Hardware:
+                      type: object
+                      properties:
+                        model:
+                          type: string
+                        serialNumber:
+                          type: string 
+                    c8y_Mobile:
+                      type: object
+                      properties:
+                        imei:
+                          type: string
+                        cellId:
+                          type: string 
+                        iccid:
+                          type: string 
+                    c8y_Firmware:
+                      type: object
+                      properties:
+                        version:
+                          type: string
+                    c8y_Position:
+                      type: object
+                      properties:
+                        alt:
+                          type: string
+                        lng:
+                          type: string 
+                        lat:
+                          type: string
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+  
+    post:
+      description: Add Inventory Item
+      summary: Add Device to Inventory
+      tags:
+        - Inventory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type: 
+                type: string
+              c8y_IsDevice:
+                type: object
+              com_cumulocity_model_Agent:
+                type: object
+              c8y_SupportedMeasurements:
+                type: array
+                items:
+                  type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Firmware:
+                type: object
+                properties:
+                  version:
+                    type: string
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+            
+      responses:
+        '201':
+          description: success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              lastUpdated:
+                type: string
+              name:
+                type: string
+              owner:
+                type: string
+              type: 
+                type: string
+              c8y_Hardware:
+                type: object
+                properties:
+                  model:
+                    type: string
+                  serialNumber:
+                    type: string 
+              c8y_Mobile:
+                type: object
+                properties:
+                  imei:
+                    type: string
+                  cellId:
+                    type: string 
+                  iccid:
+                    type: string 
+              c8y_Position:
+                type: object
+                properties:
+                  alt:
+                    type: string
+                  lng:
+                    type: string 
+                  lat:
+                    type: string
+              
+
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
+
+
+  /tenant/loginOptions:
+    get:
+      description: Get Tenant Login details
+      summary: Get Tenant Login details
+      tags:
+        - Inventory
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Host
+          type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              loginOptions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: 
+                      type: string
+                    visibleOnLoginPage:
+                      type: integer
+                    buttonName:
+                      type: string
+                    initRequest:
+                      type: string
+
+        default:
+          description: server error
+
+  
+          
+  
+  /user/currentUser:
+    get:
+      description: Get Current user details
+      summary: Get current user information
+      tags:
+        - User
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: dummy
+          type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              lastName:
+                type: string
+              userName:
+                type: string
+              firstName:
+                type: string
+        401:
+          description: Unauthorised
+        
+        default:
+          description: server error
+  
+  
