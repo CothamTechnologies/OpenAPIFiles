@@ -1,0 +1,164 @@
+swagger: '2.0'
+
+
+info:
+  version: "1.0.0"
+  title: Unsplash
+
+host: api.unsplash.com
+
+schemes:
+  - https
+
+
+paths:
+  
+
+  /photos:
+    get:
+      description:
+        Get a single page from the list of all photos.
+      parameters:
+        - name: client_id
+          type: string
+          in: query
+        - name: page
+          type: integer
+          in: query
+          required: false
+          description: |
+            Page number to retrieve. (Optional, default: 1)
+        - name: per_page
+          type: integer
+          in: query
+          required: false
+          description: |
+            Number of items per page. (Optional; default: 10)
+        - name: order_by
+          type: string
+          in: query
+          required: false
+          description: |
+            How to sort the photos. Optional. (Valid values: latest, oldest, popular; default: latest)
+      # Expected responses for this operation:
+      responses:
+       "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                id: 
+                  type: string
+                created_at: 
+                  type: string
+                  format: date-time
+                updated_at: 
+                  type: string
+                  format: date-time
+                promoted_at: 
+                  type: string
+                  format: date-time
+                width: 
+                  type: number
+                height: 
+                  type: number
+                color: 
+                  type: string
+                description: 
+                  type: string
+                  format: nullable
+                alt_description: 
+                  type: string
+                urls: 
+                  type: object
+                  properties: 
+                    raw: 
+                      type: string
+                    full: 
+                      type: string
+                    regular: 
+                      type: string
+                    small: 
+                      type: string
+                    thumb: 
+                      type: string
+                links: 
+                  type: object
+                  properties: 
+                    self: 
+                      type: string
+                    html: 
+                      type: string
+                    download: 
+                      type: string
+                    download_location: 
+                      type: string
+                likes: 
+                  type: number
+                liked_by_user: 
+                  type: boolean
+                user: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    updated_at: 
+                      type: string
+                      format: date-time
+                    username: 
+                      type: string
+                    name: 
+                      type: string
+                    first_name: 
+                      type: string
+                    last_name: 
+                      type: string
+                    twitter_username: 
+                      type: string
+                      format: nullable
+                    portfolio_url: 
+                      type: string
+                      format: nullable
+                    bio: 
+                      type: string
+                    location: 
+                      type: string
+                      format: nullable
+                    links: 
+                      type: object
+                      properties: 
+                        self: 
+                          type: string
+                        html: 
+                          type: string
+                        photos: 
+                          type: string
+                        likes: 
+                          type: string
+                        portfolio: 
+                          type: string
+                        following: 
+                          type: string
+                        followers: 
+                          type: string
+                    profile_image: 
+                      type: object
+                      properties: 
+                        small: 
+                          type: string
+                        medium: 
+                          type: string
+                        large: 
+                          type: string
+                    instagram_username: 
+                      type: string
+                    total_collections: 
+                      type: number
+                    total_likes: 
+                      type: number
+                    total_photos: 
+                      type: number
+                    accepted_tos: 
+                      type: boolean
