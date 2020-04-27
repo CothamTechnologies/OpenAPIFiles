@@ -349,6 +349,116 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /user/{tenantId}/users/{userId}/subscribe:
+    post:
+      tags:
+      - Notifications
+      summary: Subscribe a device against a user
+      description: Device will be notified on any alarm of the user
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        type: string
+      - name: userId
+        required: true
+        in: path
+        type: string
+      - name: idToken
+        in: formData
+        description: Registration token of the device
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        "400":
+          description: Bad Request
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
+  /user/{tenantId}/users/{userId}/unsubscribe:
+    post:
+      tags:
+      - Notifications
+      summary: Unsubscribe a device from a user
+      description: Device will no longer be notified on any alarm of the user
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        type: string
+      - name: userId
+        required: true
+        in: path
+        type: string
+      - name: idToken
+        in: formData
+        description: Registration token of the device
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        "400":
+          description: Bad Request
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
+  /user/{tenantId}/users/{userId}/notifications:
+    post:
+      tags:
+      - Notifications
+      summary: Send a notification to a user
+      description: All the devices subscribed to that user will be notified
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        type: string
+      - name: userId
+        required: true
+        in: path
+        type: string
+      - name: title
+        in: formData
+        description: Title of notification
+        required: true
+        type: string
+      - name: body
+        in: formData
+        description: Body of notification
+        required: true
+        type: string  
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        "400":
+          description: Bad Request
+        "422":
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/InvalidRequestError'
   /environment:
     get:
       tags:
