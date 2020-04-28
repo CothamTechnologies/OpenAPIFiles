@@ -240,8 +240,6 @@ paths:
                   type: string
                 completed: 
                   type: boolean
-                label_ids: 
-                  type: string
                 priority: 
                   type: number
                 comment_count: 
