@@ -296,6 +296,12 @@ paths:
                 type: string
               priority: 
                 type: number
+              parent: 
+                type: number
+              project_id: 
+                type: number
+              section_id: 
+                type: number
       responses:
         200:
           description: success
