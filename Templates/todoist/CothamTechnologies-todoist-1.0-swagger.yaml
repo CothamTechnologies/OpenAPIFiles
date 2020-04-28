@@ -1,0 +1,337 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Todoist Demo for Flopro'
+  description: 'Todoist Demo for Flopro'
+
+host: api.todoist.com
+basePath: /rest/v1
+schemes: 
+  - https
+  
+paths:
+  
+  /tasks/{id}/reopen:
+    post:
+      summary: reopen task
+      description: reopen task
+      tags:
+        - Tasks
+      produces:
+        - application/json
+      parameters:
+        - in: header 
+          name: Authorization
+          type: string
+        - in: path 
+          name: id
+          type: number
+          required: true
+      responses:
+        204:
+          description: success
+        default:
+          description: other error
+          
+  /tasks/{id}/close:
+    post:
+      summary: close task
+      description: close task
+      tags:
+        - Tasks
+      produces:
+        - application/json
+      parameters:
+        - in: header 
+          name: Authorization
+          type: string
+        - in: path 
+          name: id
+          type: number
+          required: true
+      responses:
+        204:
+          description: success
+        default:
+          description: other error
+  
+  /tasks/{id}:
+    get:
+      summary: get single task
+      description: get single task
+      tags:
+        - Tasks
+      produces:
+        - application/json
+      parameters:
+        - in: header 
+          name: Authorization
+          type: string
+        - in: path 
+          name: id
+          type: number
+          required: true
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties: 
+              comment_count: 
+                type: number
+              completed: 
+                type: boolean
+              content: 
+                type: string
+              due: 
+                type: object
+                properties: 
+                  date: 
+                    type: string
+                    format: date
+                  datetime: 
+                    type: string
+                    format: date-time
+                  string: 
+                    type: string
+                  timezone: 
+                    type: string
+              id: 
+                type: number
+              order: 
+                type: number
+              priority: 
+                type: number
+              project_id: 
+                type: number
+              section_id: 
+                type: number
+              url: 
+                type: string
+        default:
+          description: other error
+      
+    delete:
+      summary: delete task
+      description: delete task
+      tags:
+        - Tasks
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header 
+          name: Authorization
+          type: string
+        - in: path 
+          name: id
+          type: number
+          required: true
+      responses:
+        204:
+          description: success
+        default:
+          description: other error 
+    
+    post:
+      summary: update task
+      description: update task
+      tags:
+        - Tasks
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header 
+          name: Authorization
+          type: string
+        - in: path 
+          name: id
+          type: number
+          required: true
+        - in: body
+          name: body
+          description: JSON holding data to create
+          schema:
+            type: object
+            properties:
+              content: 
+                type: string
+              due_string: 
+                type: string
+              due_date: 
+                type: string
+              due_lang: 
+                type: string
+              priority: 
+                type: number
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties: 
+              comment_count: 
+                type: number
+              completed: 
+                type: boolean
+              content: 
+                type: string
+              due: 
+                type: object
+                properties: 
+                  date: 
+                    type: string
+                    format: date
+                  datetime: 
+                    type: string
+                    format: date-time
+                  string: 
+                    type: string
+                  timezone: 
+                    type: string
+              id: 
+                type: number
+              order: 
+                type: number
+              priority: 
+                type: number
+              project_id: 
+                type: number
+              section_id: 
+                type: number
+              url: 
+                type: string
+        default:
+          description: other error
+  
+  /tasks:
+    get:
+      summary: get active tasks
+      description: get active tasks
+      tags:
+        - Tasks
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                id: 
+                  type: number
+                project_id: 
+                  type: number
+                section_id: 
+                  type: number
+                order: 
+                  type: number
+                content: 
+                  type: string
+                completed: 
+                  type: boolean
+                label_ids: 
+                  type: string
+                priority: 
+                  type: number
+                comment_count: 
+                  type: number
+                created: 
+                  type: string
+                  format: date-time
+                due: 
+                  type: object
+                  properties: 
+                    recurring: 
+                      type: boolean
+                    string: 
+                      type: string
+                    date: 
+                      type: string
+                      format: date
+                url: 
+                  type: string
+        default:
+          description: other error
+    
+    post:
+      summary: create task
+      description: create task
+      tags:
+        - Tasks
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header 
+          name: Authorization
+          type: string
+        - in: header 
+          name: X-Request-Id
+          type: string
+        - in: body
+          name: body
+          description: JSON holding data to create
+          schema:
+            type: object
+            properties:
+              content: 
+                type: string
+              due_string: 
+                type: string
+              due_date: 
+                type: string
+              due_lang: 
+                type: string
+              priority: 
+                type: number
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties: 
+              comment_count: 
+                type: number
+              completed: 
+                type: boolean
+              content: 
+                type: string
+              due: 
+                type: object
+                properties: 
+                  date: 
+                    type: string
+                    format: date
+                  datetime: 
+                    type: string
+                    format: date-time
+                  string: 
+                    type: string
+                  timezone: 
+                    type: string
+              id: 
+                type: number
+              order: 
+                type: number
+              priority: 
+                type: number
+              project_id: 
+                type: number
+              section_id: 
+                type: number
+              url: 
+                type: string
+        default:
+          description: other error
