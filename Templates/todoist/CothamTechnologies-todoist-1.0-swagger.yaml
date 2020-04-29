@@ -257,6 +257,10 @@ paths:
                     date: 
                       type: string
                       format: date
+                    datetime: 
+                      type: string
+                    timezone:
+                      type: string
                 url: 
                   type: string
         default:
