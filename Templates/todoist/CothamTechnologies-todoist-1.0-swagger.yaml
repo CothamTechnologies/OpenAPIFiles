@@ -168,7 +168,7 @@ paths:
               priority: 
                 type: number
       responses:
-        200:
+        204:
           description: success
           schema:
             type: object
