@@ -163,6 +163,8 @@ paths:
                 type: string
               due_date: 
                 type: string
+              datetime: 
+                type: string
               due_lang: 
                 type: string
               priority: 
