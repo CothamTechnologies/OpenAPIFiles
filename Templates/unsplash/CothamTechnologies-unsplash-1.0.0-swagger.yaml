@@ -1,6 +1,5 @@
 swagger: '2.0'
 
-
 info:
   version: "1.0.0"
   title: Unsplash
@@ -13,11 +12,145 @@ schemes:
 
 paths:
   
+  /photos/random:
+    get:
+      description: Get Random Photo.
+      parameters:
+        - name: client_id
+          type: string
+          in: query
+        - name: orientation
+          type: string
+          in: query
+          required: false
+          description: |
+            Filter by photo orientation. (Valid values: landscape, portrait, squarish)
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties: 
+              id: 
+                type: string
+              created_at: 
+                type: string
+                format: date-time
+              updated_at: 
+                type: string
+                format: date-time
+              promoted_at: 
+                type: string
+                format: date-time
+              width: 
+                type: number
+              height: 
+                type: number
+              color: 
+                type: string
+              description: 
+                type: string
+                format: nullable
+              alt_description: 
+                type: string
+              urls: 
+                type: object
+                properties: 
+                  raw: 
+                    type: string
+                  full: 
+                    type: string
+                  regular: 
+                    type: string
+                  small: 
+                    type: string
+                  thumb: 
+                    type: string
+              links: 
+                type: object
+                properties: 
+                  self: 
+                    type: string
+                  html: 
+                    type: string
+                  download: 
+                    type: string
+                  download_location: 
+                    type: string
+              likes: 
+                type: number
+              liked_by_user: 
+                type: boolean
+              user: 
+                type: object
+                properties: 
+                  id: 
+                    type: string
+                  updated_at: 
+                    type: string
+                    format: date-time
+                  username: 
+                    type: string
+                  name: 
+                    type: string
+                  first_name: 
+                    type: string
+                  last_name: 
+                    type: string
+                  twitter_username: 
+                    type: string
+                    format: nullable
+                  portfolio_url: 
+                    type: string
+                    format: nullable
+                  bio: 
+                    type: string
+                  location: 
+                    type: string
+                    format: nullable
+                  links: 
+                    type: object
+                    properties: 
+                      self: 
+                        type: string
+                      html: 
+                        type: string
+                      photos: 
+                        type: string
+                      likes: 
+                        type: string
+                      portfolio: 
+                        type: string
+                      following: 
+                        type: string
+                      followers: 
+                        type: string
+                  profile_image: 
+                    type: object
+                    properties: 
+                      small: 
+                        type: string
+                      medium: 
+                        type: string
+                      large: 
+                        type: string
+                  instagram_username: 
+                    type: string
+                  total_collections: 
+                    type: number
+                  total_likes: 
+                    type: number
+                  total_photos: 
+                    type: number
+                  accepted_tos: 
+                    type: boolean
+        default:
+          description: error
 
   /photos:
     get:
-      description:
-        Get a single page from the list of all photos.
+      description: Get list of all photos.
       parameters:
         - name: client_id
           type: string
@@ -40,9 +173,9 @@ paths:
           required: false
           description: |
             How to sort the photos. Optional. (Valid values: latest, oldest, popular; default: latest)
-      # Expected responses for this operation:
+      
       responses:
-       "200":
+        200:
           description: Success
           schema:
             type: array
@@ -162,3 +295,5 @@ paths:
                       type: number
                     accepted_tos: 
                       type: boolean
+        default:
+          description: error
