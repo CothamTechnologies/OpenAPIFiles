@@ -148,7 +148,7 @@ paths:
           in: query
         - name: id
           type: string
-          in: query
+          in: path
           required: true
 
       
