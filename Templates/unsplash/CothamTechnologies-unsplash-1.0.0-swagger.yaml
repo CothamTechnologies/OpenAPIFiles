@@ -12,6 +12,195 @@ schemes:
 
 paths:
   
+  /collections/featured:
+    get:
+      description: list featured collections
+      parameters:
+        - name: client_id
+          type: string
+          in: query
+        - name: page
+          type: integer
+          in: query
+          required: false
+          description: |
+            Page number to retrieve. (Optional, default: 1)
+        - name: per_page
+          type: integer
+          in: query
+          required: false
+          description: |
+            Number of items per page. (Optional; default: 10)
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                id: 
+                  type: number
+                title: 
+                  type: string
+                description: 
+                  type: string
+                published_at: 
+                  type: string
+                  format: date-time
+                updated_at: 
+                  type: string
+                  format: date-time
+                total_photos: 
+                  type: number
+                private: 
+                  type: boolean
+                share_key: 
+                  type: string
+                cover_photo: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    width: 
+                      type: number
+                    height: 
+                      type: number
+                    color: 
+                      type: string
+                    likes: 
+                      type: number
+                    liked_by_user: 
+                      type: boolean
+                    description: 
+                      type: string
+                    user: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        username: 
+                          type: string
+                        name: 
+                          type: string
+                        portfolio_url: 
+                          type: string
+                        bio: 
+                          type: string
+                        location: 
+                          type: string
+                        total_likes: 
+                          type: number
+                        total_photos: 
+                          type: number
+                        total_collections: 
+                          type: number
+                        profile_image: 
+                          type: object
+                          properties: 
+                            small: 
+                              type: string
+                            medium: 
+                              type: string
+                            large: 
+                              type: string
+                        links: 
+                          type: object
+                          properties: 
+                            self: 
+                              type: string
+                            html: 
+                              type: string
+                            photos: 
+                              type: string
+                            likes: 
+                              type: string
+                            portfolio: 
+                              type: string
+                    urls: 
+                      type: object
+                      properties: 
+                        raw: 
+                          type: string
+                        full: 
+                          type: string
+                        regular: 
+                          type: string
+                        small: 
+                          type: string
+                        thumb: 
+                          type: string
+                    links: 
+                      type: object
+                      properties: 
+                        self: 
+                          type: string
+                        html: 
+                          type: string
+                        download: 
+                          type: string
+                user: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    updated_at: 
+                      type: string
+                      format: date-time
+                    username: 
+                      type: string
+                    name: 
+                      type: string
+                    portfolio_url: 
+                      type: string
+                    bio: 
+                      type: string
+                    location: 
+                      type: string
+                    total_likes: 
+                      type: number
+                    total_photos: 
+                      type: number
+                    total_collections: 
+                      type: number
+                    profile_image: 
+                      type: object
+                      properties: 
+                        small: 
+                          type: string
+                        medium: 
+                          type: string
+                        large: 
+                          type: string
+                    links: 
+                      type: object
+                      properties: 
+                        self: 
+                          type: string
+                        html: 
+                          type: string
+                        photos: 
+                          type: string
+                        likes: 
+                          type: string
+                        portfolio: 
+                          type: string
+                links: 
+                  type: object
+                  properties: 
+                    self: 
+                      type: string
+                    html: 
+                      type: string
+                    photos: 
+                      type: string
+                    related: 
+                      type: string
+
+        default:
+          description: error
+  
   /collections/{id}/photos:
     get:
       description: list collection photos
