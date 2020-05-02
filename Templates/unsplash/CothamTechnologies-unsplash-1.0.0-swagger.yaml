@@ -19,6 +19,10 @@ paths:
         - name: client_id
           type: string
           in: query
+        - name: query
+          type: string
+          in: query
+          required: true
         - name: page
           type: integer
           in: query
