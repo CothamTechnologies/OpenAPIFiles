@@ -243,8 +243,7 @@ paths:
             properties:
               body:
                 type: string
-            example:
-              body: Me too
+
       responses:
         201:
           description: ''
