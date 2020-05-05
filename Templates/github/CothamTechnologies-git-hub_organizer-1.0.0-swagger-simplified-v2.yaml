@@ -20,7 +20,16 @@ security:
 paths:
   
   /repos/{owner}/{repo}/issues/{number}/comments:
-    parameters:
+    post:
+      description: POST_repos-owner-repo-issues-number-comments
+      summary: Create Comment
+      tags:
+        - Repos
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
       - name: owner
         in: path
         required: true
@@ -32,22 +41,15 @@ paths:
       - name: number
         in: path
         required: true
-        type: string
-    post:
-      description: POST_repos-owner-repo-issues-number-comments
-      summary: Create Comment
-      tags:
-        - Repos
-      parameters:
-        - name: body
-          in: body
-          schema:
-            type: object
-            properties:
-              body:
-                type: string
-            example:
-              body: Me too
+        type: string      
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            body:
+              type: string
+            
       responses:
         '201':
           description: ''
@@ -125,6 +127,21 @@ paths:
     get:
       description: GET_repos-owner-repo-issues-number-comments
       summary: Get Issue Comments
+      produces:
+        - application/json
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        type: string
+      - name: repo
+        in: path
+        required: true
+        type: string
+      - name: number
+        in: path
+        required: true
+        type: string
       tags:
         - Repos
       responses:
@@ -205,7 +222,110 @@ paths:
                       type: string
   
   /repos/{owner}/{repo}/issues:
-    parameters:
+    post:
+      description: POST_repos-owner-repo-issues-number-comments
+      summary: Create Comment
+      tags:
+        - Repos
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          type: string
+        - name: repo
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              body:
+                type: string
+            example:
+              body: Me too
+      responses:
+        201:
+          description: ''
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              url:
+                type: string
+              html_url:
+                type: string
+              body:
+                type: string
+              user:
+                type: object
+                properties:
+                  login:
+                    type: string
+                  id:
+                    type: integer
+                  avatar_url:
+                    type: string
+                  gravatar_id:
+                    type: string
+                  url:
+                    type: string
+                  html_url:
+                    type: string
+                  followers_url:
+                    type: string
+                  following_url:
+                    type: string
+                  gists_url:
+                    type: string
+                  starred_url:
+                    type: string
+                  subscriptions_url:
+                    type: string
+                  organizations_url:
+                    type: string
+                  repos_url:
+                    type: string
+                  events_url:
+                    type: string
+                  received_events_url:
+                    type: string
+                  type:
+                    type: string
+                  site_admin:
+                    type: boolean
+              created_at:
+                type: string
+              updated_at:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    resource:
+                      type: string
+                    field:
+                      type: string
+                    code:
+                      type: string
+    get:
+      description: GET_repos-owner-repo-issues
+      summary: Get Repo Issues
+      tags:
+        - Repos
+      produces:
+        - application/json
+      parameters:
       - name: owner
         in: path
         required: true
@@ -214,11 +334,7 @@ paths:
         in: path
         required: true
         type: string
-    get:
-      description: GET_repos-owner-repo-issues
-      summary: Get Repo Issues
-      tags:
-        - Repos
+      
       responses:
         200:
           description: ''
@@ -448,6 +564,16 @@ paths:
       summary: Get Repos
       tags:
         - User
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        type: string
+      - name: repo
+        in: path
+        required: true
+        type: string
+
       produces:
         - application/json
       responses:
