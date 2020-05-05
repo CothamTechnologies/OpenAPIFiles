@@ -102,36 +102,8 @@ paths:
                 type: string
               updated_at:
                 type: string
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -155,8 +127,8 @@ paths:
       tags:
         - Repos
       responses:
-        '200':
-          description: ''
+        200:
+          description: success
           schema:
             type: array
             items:
@@ -211,36 +183,9 @@ paths:
                   type: string
                 updated_at:
                   type: string
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -274,7 +219,7 @@ paths:
       tags:
         - Repos
       responses:
-        '200':
+        200:
           description: ''
           schema:
             type: array
@@ -477,36 +422,8 @@ paths:
                   type: string
                 updated_at:
                   type: string
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -787,36 +704,8 @@ paths:
                     type: string
                   site_admin:
                     type: boolean
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -872,7 +761,7 @@ paths:
                 items:
                   type: string
       responses:
-        '200':
+        200:
           description: ''
           schema:
             type: object
@@ -1110,36 +999,8 @@ paths:
                     type: string
                   site_admin:
                     type: boolean
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -1187,7 +1048,7 @@ paths:
             example:
               body: Me too
       responses:
-        '200':
+        200:
           description: ''
           schema:
             type: object
@@ -1241,36 +1102,8 @@ paths:
                 type: string
               updated_at:
                 type: string
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -1296,36 +1129,8 @@ paths:
       responses:
         '204':
           description: Deleted
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
@@ -1350,7 +1155,7 @@ paths:
       tags:
         - User
       responses:
-        '200':
+        200:
           description: ''
           schema:
             type: array
@@ -1537,36 +1342,8 @@ paths:
                       type: boolean
                     pull:
                       type: boolean
-        '400':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-          
-        '401':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '403':
-          description: ''
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-              documentation_url:
-                type: string
-
-        '422':
-          description: ''
+        default:
+          description: Error
           schema:
             type: object
             properties:
