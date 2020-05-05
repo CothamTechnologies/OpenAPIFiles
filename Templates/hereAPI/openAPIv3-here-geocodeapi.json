@@ -1,0 +1,1441 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Geocoding and Search API v1",
+      "version": "1.0",
+      "description": "This document describes the Geocoding and Search API.",
+      "x-document-meta-data": {
+        "copyright": "© 2020 HERE Europe B.V.",
+        "document-id": "9df6c3e5-ec4a-47b0-8bfd-2d7a3a785fcd",
+        "date-created": "2020-04-30T13:50:51+00:00"
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": [
+  
+        ]
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "parameters": {
+        "atBrowseRevgeocode": {
+          "name": "at",
+          "description": "Specify the center of the search context expressed as coordinates.\n\n_CAUTION: In the near future the “at” parameter must not be used in conjunction with an in=circle or in=bbox\n and will be rejected with a 400 response.\n Until then the “at” parameter value will be overwritten with the in=circle or in=bbox position._\n\nFormat: `{latitude},{longitude}`\n\nType: `{decimal},{decimal}`\n\nExample: `13.1,-43.1`\n",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "name": "id",
+          "description": "Location ID, which is the ID of a result item eg. of a Discover request",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "qAutosuggest": {
+          "name": "q",
+          "description": "Enter a free-text query\n\nExamples:\n * `res`, `rest`, `resta`, `restau`, ...\n * `berlin+bran`, `berlin+brand`, `berlin+branden`, ...\n * `New+Yok+Giants`\n",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "qDiscover": {
+          "name": "q",
+          "description": "Enter a free-text query\n\nExamples:\n * `125, Berliner, berlin`\n * `Beacon, Boston, Hospital`\n * `Schnurrbart German Pub and Restaurant, Hong Kong`\n",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "atDiscoverAutosuggest": {
+          "name": "at",
+          "description": "Specify the center of the search context expressed as coordinates\n\nFormat: `{latitude},{longitude}`\n\nType: `{decimal},{decimal}`\n\nExample: `13.1,-43.1`\n\n * Parameters \"at\", \"in=circle\" and \"in=bbox\" are mutually exclusive. Only one of them is allowed.\n\n * Parameters \"in=countryCode\" and \"at\" are mutually inclusive. \"in=countryCode\" is authorized only when an \"at\" is provided along with it.\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "atGeocode": {
+          "name": "at",
+          "description": "Specify the center of the search context expressed as coordinates.\n\n_CAUTION: In the near future the “at” parameter must not be used in conjunction with an in=circle or in=bbox\n and will be rejected with a 400 response.\n Until then the “at” parameter value will be overwritten with the in=circle or in=bbox position._\n\nFormat: `{latitude},{longitude}`\n\nType: `{decimal},{decimal}`\n\nExample: `13.1,-43.1`\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "name": "categories",
+          "description": "Category filter consisting of a comma-separated list of category-Ids for Categories defined in the HERE Places Category System, described\nin the Appendix to the HERE Search Developer Guide. Places with any assigned categories that match any of the requested categories are\nincluded in the response.\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "inDiscoverAutosuggest": {
+          "name": "in",
+          "description": "Search within a geographic area. This is a hard filter. Results will be returned if they are located within the specified area.\n\n A geographic area can be\n * a country (or multiple countries), provided as comma-separated ISO 3166-1 alpha-3 country codes\n\n   Format: `countryCode:{countryCode}[,{countryCode}]*`\n\n   Examples:\n    * `countryCode:USA`\n    * `countryCode:CAN,MEX,USA`\n\n * a circular area, provided as latitude, longitude, and radius (in meters)\n\n   Format: `circle:{latitude},{longitude};r={radius}`\n\n   Type: `circle:{decimal},{decimal};r={integer}`\n\n   Example: `circle:13.1,-43.1;r=10000`\n\n * a bounding box, provided as _west longitude_, _south latitude_, _east longitude_, _north latitude_\n\n   Format: `bbox:{west longitude},{south latitude},{east longitude},{north latitude}`\n\n   Example: `bbox:13.08836,52.33812,13.761,52.6755`\n\n * Parameters \"at\", \"in=circle\" and \"in=bbox\" are mutually exclusive. Only one of them is allowed.\n\n * Parameters \"in=countryCode\" and \"at\" are mutually inclusive. \"in=countryCode\" is authorized only when an \"at\" is provided along with it.\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "inGeocode": {
+          "name": "in",
+          "description": "Search within a geographic area. This is a hard filter. Results will be returned if they are located within the specified area.\n\n A geographic area can be\n * a country (or multiple countries), provided as comma-separated ISO 3166-1 alpha-3 country codes\n\n   Format: `countryCode:{countryCode}[,{countryCode}]*`\n\n   Examples:\n    * `countryCode:USA`\n    * `countryCode:CAN,MEX,USA`\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "description": "Maximum number of results to be returned.",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "name": {
+          "name": "name",
+          "description": "Full-text filter on POI names/titles. Results with a partial match on the name parameter are included in the response.",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "qGeocode": {
+          "name": "q",
+          "description": "Enter a free-text query\n\nExamples:\n * `125, Berliner, berlin`\n * `Beacon, Boston, Hospital`\n * `Schnurrbart German Pub and Restaurant, Hong Kong`\n\n_Note: Either `q` or `qq`-parameter is required on this endpoint. Both parameters can be provided in the same request._\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "qq": {
+          "name": "qq",
+          "description": "Enter a qualified query. A qualified query is similar to a free-text query, but in a structured manner.\n It can take multiple _sub-parameters_, separated by semicolon, allowing to specify different aspects of a query.\n\nCurrently supported _sub-parameters_ are `country`, `state`, `county`, `city`, `district`, `street`,\n `houseNumber`, and `postalCode`.\n\nFormat: `{sub-parameter}={string}[;{sub-parameter}={string}]*`\n\nExamples:\n * `city=Berlin;country=Germany;street=Friedrichstr;houseNumber=20`\n * `city=Berlin;country=Germany`\n * `postalCode=10969`\n\n_Note: Either `q` or `qq`-parameter is required on this endpoint. Both parameters can be provided in the same request._\n",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "lang": {
+          "name": "lang",
+          "description": "Select the language to be used for result rendering from a list of BCP47 compliant Language Codes.",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "schemas": {
+        "OpenSearchGeocodeResponse": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GeocodeResultItem"
+                  }
+                ]
+              },
+              "description": "The results are presented as a JSON list of candidates in ranked order (most-likely to least-likely) based on the matched location criteria."
+            }
+          }
+        },
+        "GeocodeResultItem": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The localized display name of this result item."
+            },
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the result item. This ID can be used for a Look Up by ID search as well."
+            },
+            "resultType": {
+              "type": "string",
+              "enum": [
+                "houseNumber",
+                "addressBlock",
+                "street",
+                "locality",
+                "administrativeArea",
+                "place"
+              ]
+            },
+            "houseNumberType": {
+              "type": "string",
+              "enum": [
+                "PA",
+                "interpolated"
+              ]
+            },
+            "addressBlockType": {
+              "type": "string",
+              "enum": [
+                "block",
+                "subblock"
+              ]
+            },
+            "localityType": {
+              "type": "string",
+              "enum": [
+                "postalCode",
+                "subdistrict",
+                "district",
+                "city"
+              ]
+            },
+            "administrativeAreaType": {
+              "type": "string",
+              "enum": [
+                "county",
+                "state",
+                "country"
+              ]
+            },
+            "address": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Address"
+                }
+              ],
+              "description": "Postal address of the result item."
+            },
+            "position": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DisplayResponseCoordinate"
+                }
+              ],
+              "description": "The coordinates (latitude, longitude) of a pin on a map corresponding to the searched place."
+            },
+            "access": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AccessResponseCoordinate"
+                  }
+                ]
+              },
+              "description": "Coordinates of the place you are navigating to (for example, driving or walking). This is a point on a road or in a parking lot."
+            },
+            "distance": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The distance from the search center to this result item in meters. For example: \"172039\""
+            },
+            "mapView": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MapView"
+                }
+              ],
+              "description": "Provides the geo coordinates of the map bounding box containing the results."
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of categories assigned to this place."
+            },
+            "foodTypes": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of food types assigned to this place."
+            },
+            "houseNumberFallback": {
+              "type": "boolean",
+              "description": "If true, the House Number matched is a fallback to the closest Address Range or Point Address."
+            }
+          }
+        },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Requested address. For example: \"Schulstraße 4, 32547 Bad Oeynhausen, Germany\""
+            },
+            "countryCode": {
+              "type": "string",
+              "description": "A three-letter country code. For example: \"DEU\""
+            },
+            "countryName": {
+              "type": "string",
+              "description": "The localised country name. For example: \"Deutschland\""
+            },
+            "state": {
+              "type": "string",
+              "description": "A code/abbreviation for the state division of a country. For example: \"North Rhine-Westphalia\""
+            },
+            "county": {
+              "type": "string",
+              "description": "A division of a state; typically, a secondary-level administrative division of a country or equivalent."
+            },
+            "city": {
+              "type": "string",
+              "description": "The name of the primary locality of the place. For example: \"Bad Oyenhausen\""
+            },
+            "district": {
+              "type": "string",
+              "description": "A division of city; typically an administrative unit within a larger city or a customary name of a city's neighborhood. For example: \"Bad Oyenhausen\""
+            },
+            "subdistrict": {
+              "type": "string",
+              "description": "A subdivision of a district. For example: \"Minden-Lübbecke\""
+            },
+            "street": {
+              "type": "string",
+              "description": "Name of street. For example: \"Schulstrasse\""
+            },
+            "block": {
+              "type": "string",
+              "description": "Name of block."
+            },
+            "subblock": {
+              "type": "string",
+              "description": "Name of sub-block."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "An alphanumeric string included in a postal address to facilitate mail sorting, such as post code, postcode, or ZIP code. For example: \"32547\""
+            },
+            "houseNumber": {
+              "type": "string",
+              "description": "House number. For example: \"4\""
+            }
+          }
+        },
+        "DisplayResponseCoordinate": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number",
+              "format": "double",
+              "description": "Latitude of the address. For example: \"52.19404\""
+            },
+            "lng": {
+              "type": "number",
+              "format": "double",
+              "description": "Longitude of the address. For example: \"8.80135\""
+            }
+          }
+        },
+        "AccessResponseCoordinate": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number",
+              "format": "double",
+              "description": "Latitude of the address. For example: \"52.19404\""
+            },
+            "lng": {
+              "type": "number",
+              "format": "double",
+              "description": "Longitude of the address. For example: \"8.80135\""
+            }
+          }
+        },
+        "MapView": {
+          "type": "object",
+          "properties": {
+            "west": {
+              "type": "number",
+              "format": "double",
+              "description": "Longitude of the western-side of the box. For example: \"8.80068\""
+            },
+            "south": {
+              "type": "number",
+              "format": "double",
+              "description": "Latitude of the southern-side of the box. For example: \"52.19333\""
+            },
+            "east": {
+              "type": "number",
+              "format": "double",
+              "description": "Longitude of the eastern-side of the box. For example: \"8.8167\""
+            },
+            "north": {
+              "type": "number",
+              "format": "double",
+              "description": "Latitude of the northern-side of the box. For example: \"52.19555\""
+            }
+          }
+        },
+        "Category": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Identifier number for an associated category. For example: \"900-9300-0000\""
+            }
+          }
+        },
+        "ErrorResponse": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The HTTP status code"
+            },
+            "title": {
+              "type": "string",
+              "description": "Human-readable error description"
+            },
+            "code": {
+              "type": "string",
+              "description": "Error code"
+            },
+            "cause": {
+              "type": "string",
+              "description": "Human-readable explanation for the error"
+            },
+            "action": {
+              "type": "string",
+              "description": "Human-readable action for the user"
+            },
+            "correlationId": {
+              "type": "string",
+              "description": "Auto-generated ID univocally identifying this request"
+            },
+            "requestId": {
+              "type": "string",
+              "description": "Request identifier provided by the user"
+            }
+          }
+        },
+        "OpenSearchSearchResponse": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/OneboxSearchResultItem"
+                  }
+                ]
+              },
+              "description": "The results are presented as a JSON list of candidates in ranked order (most-likely to least-likely) based on the matched location criteria."
+            }
+          }
+        },
+        "OneboxSearchResultItem": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The localized display name of this result item."
+            },
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the result item. This ID can be used for a Look Up by ID search as well."
+            },
+            "resultType": {
+              "type": "string",
+              "enum": [
+                "houseNumber",
+                "addressBlock",
+                "street",
+                "locality",
+                "administrativeArea",
+                "place"
+              ]
+            },
+            "houseNumberType": {
+              "type": "string",
+              "enum": [
+                "PA",
+                "interpolated"
+              ]
+            },
+            "addressBlockType": {
+              "type": "string",
+              "enum": [
+                "block",
+                "subblock"
+              ]
+            },
+            "localityType": {
+              "type": "string",
+              "enum": [
+                "postalCode",
+                "subdistrict",
+                "district",
+                "city"
+              ]
+            },
+            "administrativeAreaType": {
+              "type": "string",
+              "enum": [
+                "county",
+                "state",
+                "country"
+              ]
+            },
+            "address": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Address"
+                }
+              ],
+              "description": "Postal address of the result item."
+            },
+            "position": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DisplayResponseCoordinate"
+                }
+              ],
+              "description": "The coordinates (latitude, longitude) of a pin on a map corresponding to the searched place."
+            },
+            "access": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AccessResponseCoordinate"
+                  }
+                ]
+              },
+              "description": "Coordinates of the place you are navigating to (for example, driving or walking). This is a point on a road or in a parking lot."
+            },
+            "distance": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The distance from the search center to this result item in meters. For example: \"172039\""
+            },
+            "mapView": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MapView"
+                }
+              ],
+              "description": "Provides the geo coordinates of the map bounding box containing the results."
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of categories assigned to this place."
+            },
+            "foodTypes": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of food types assigned to this place."
+            },
+            "houseNumberFallback": {
+              "type": "boolean",
+              "description": "If true, the House Number matched is a fallback to the closest Address Range or Point Address."
+            }
+          }
+        },
+        "OpenSearchAutosuggestResponse": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AutosuggestEntityResultItem"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AutosuggestQueryResultItem"
+                  }
+                ]
+              },
+              "description": "The results are presented as a JSON list of candidates in ranked order (most-likely to least-likely) based on the matched location criteria."
+            }
+          }
+        },
+        "AutosuggestEntityResultItem": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The localized display name of this result item."
+            },
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the result item. This ID can be used for a Look Up by ID search as well."
+            },
+            "ontologyId": {
+              "type": "string",
+              "description": "Related ontology ID"
+            },
+            "resultType": {
+              "type": "string",
+              "enum": [
+                "houseNumber",
+                "addressBlock",
+                "street",
+                "locality",
+                "administrativeArea",
+                "place"
+              ]
+            },
+            "houseNumberType": {
+              "type": "string",
+              "enum": [
+                "PA",
+                "interpolated"
+              ]
+            },
+            "addressBlockType": {
+              "type": "string",
+              "enum": [
+                "block",
+                "subblock"
+              ]
+            },
+            "localityType": {
+              "type": "string",
+              "enum": [
+                "postalCode",
+                "subdistrict",
+                "district",
+                "city"
+              ]
+            },
+            "administrativeAreaType": {
+              "type": "string",
+              "enum": [
+                "county",
+                "state",
+                "country"
+              ]
+            },
+            "position": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DisplayResponseCoordinate"
+                }
+              ],
+              "description": "The coordinates (latitude, longitude) of a pin on a map corresponding to the searched place."
+            },
+            "distance": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The distance from the search center to this result item in meters. For example: \"172039\""
+            },
+            "mapView": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MapView"
+                }
+              ],
+              "description": "Provides the geo coordinates of the map bounding box containing the results."
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of categories assigned to this place."
+            },
+            "foodTypes": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of food types assigned to this place."
+            },
+            "highlights": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/HighlightingInformation"
+                }
+              ]
+            }
+          }
+        },
+        "HighlightingInformation": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Range"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "end": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "AutosuggestQueryResultItem": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The localized display name of this result item."
+            },
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the result item. This ID can be used for a Look Up by ID search as well."
+            },
+            "resultType": {
+              "type": "string",
+              "enum": [
+                "chainQuery",
+                "categoryQuery"
+              ]
+            },
+            "href": {
+              "type": "string"
+            },
+            "highlights": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/QueryHighlightingInformation"
+                }
+              ]
+            }
+          }
+        },
+        "QueryHighlightingInformation": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Range"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OpenSearchBrowseResponse": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BrowseResultItem"
+                  }
+                ]
+              },
+              "description": "The results are presented as a JSON list of candidates in ranked order (most-likely to least-likely) based on the matched location criteria."
+            }
+          }
+        },
+        "BrowseResultItem": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The localized display name of this result item."
+            },
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the result item. This ID can be used for a Look Up by ID search as well."
+            },
+            "resultType": {
+              "type": "string",
+              "enum": [
+                "houseNumber",
+                "addressBlock",
+                "street",
+                "locality",
+                "administrativeArea",
+                "place"
+              ]
+            },
+            "houseNumberType": {
+              "type": "string",
+              "enum": [
+                "PA",
+                "interpolated"
+              ]
+            },
+            "addressBlockType": {
+              "type": "string",
+              "enum": [
+                "block",
+                "subblock"
+              ]
+            },
+            "localityType": {
+              "type": "string",
+              "enum": [
+                "postalCode",
+                "subdistrict",
+                "district",
+                "city"
+              ]
+            },
+            "administrativeAreaType": {
+              "type": "string",
+              "enum": [
+                "county",
+                "state",
+                "country"
+              ]
+            },
+            "houseNumberFallback": {
+              "type": "boolean",
+              "description": "If true, the House Number matched is a fallback to the closest Address Range or Point Address."
+            },
+            "address": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Address"
+                }
+              ],
+              "description": "Postal address of the result item."
+            },
+            "position": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DisplayResponseCoordinate"
+                }
+              ],
+              "description": "The coordinates (latitude, longitude) of a pin on a map corresponding to the searched place."
+            },
+            "access": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AccessResponseCoordinate"
+                  }
+                ]
+              },
+              "description": "Coordinates of the place you are navigating to (for example, driving or walking). This is a point on a road or in a parking lot."
+            },
+            "distance": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The distance from the search center to this result item in meters. For example: \"172039\""
+            },
+            "mapView": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MapView"
+                }
+              ],
+              "description": "Provides the geo coordinates of the map bounding box containing the results."
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of categories assigned to this place."
+            },
+            "foodTypes": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of food types assigned to this place."
+            },
+            "additionalAttributes": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ByodJson"
+                }
+              ],
+              "description": "Additional attributes are added for BYOD use cases. Can hold arbitrary data."
+            }
+          }
+        },
+        "ByodJson": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "OpenSearchReverseGeocodeResponse": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GeocodeResultItem"
+                  }
+                ]
+              },
+              "description": "The results are presented as a JSON list of candidates in ranked order (most-likely to least-likely) based on the matched location criteria."
+            }
+          }
+        },
+        "LookupResponse": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The localized display name of this result item."
+            },
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the result item. This ID can be used for a Look Up by ID search as well."
+            },
+            "resultType": {
+              "type": "string",
+              "enum": [
+                "houseNumber",
+                "addressBlock",
+                "street",
+                "locality",
+                "administrativeArea",
+                "place"
+              ]
+            },
+            "houseNumberType": {
+              "type": "string",
+              "enum": [
+                "PA",
+                "interpolated"
+              ]
+            },
+            "addressBlockType": {
+              "type": "string",
+              "enum": [
+                "block",
+                "subblock"
+              ]
+            },
+            "localityType": {
+              "type": "string",
+              "enum": [
+                "postalCode",
+                "subdistrict",
+                "district",
+                "city"
+              ]
+            },
+            "administrativeAreaType": {
+              "type": "string",
+              "enum": [
+                "county",
+                "state",
+                "country"
+              ]
+            },
+            "houseNumberFallback": {
+              "type": "boolean",
+              "description": "If true, the House Number matched is a fallback to the closest Address Range or Point Address."
+            },
+            "address": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Address"
+                }
+              ],
+              "description": "Postal address of the result item."
+            },
+            "position": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DisplayResponseCoordinate"
+                }
+              ],
+              "description": "The coordinates (latitude, longitude) of a pin on a map corresponding to the searched place."
+            },
+            "access": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AccessResponseCoordinate"
+                  }
+                ]
+              },
+              "description": "Coordinates of the place you are navigating to (for example, driving or walking). This is a point on a road or in a parking lot."
+            },
+            "mapView": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MapView"
+                }
+              ],
+              "description": "Provides the geo coordinates of the map bounding box containing the results."
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of categories assigned to this place."
+            },
+            "foodTypes": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "description": "The list of food types assigned to this place."
+            },
+            "additionalAttributes": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ByodJson"
+                }
+              ],
+              "description": "Additional attributes are added for BYOD use cases. Can hold arbitrary data."
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "/geocode": {
+        "servers": [
+          {
+            "url": "https://geocode.search.hereapi.com/v1"
+          }
+        ],
+        "get": {
+          "summary": "Geocode",
+          "description": "This endpoint processes text address input, matching it to a map data index and returning a set of addresses with their geographic coordinates. Address input can be partial or full, un-structured or structured.",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/atGeocode"
+            },
+            {
+              "$ref": "#/components/parameters/inGeocode"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            },
+            {
+              "$ref": "#/components/parameters/qGeocode"
+            },
+            {
+              "$ref": "#/components/parameters/qq"
+            },
+            {
+              "$ref": "#/components/parameters/lang"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The search results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OpenSearchGeocodeResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Client error: request failed validation.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Temporary server error.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/discover": {
+        "servers": [
+          {
+            "url": "https://discover.search.hereapi.com/v1"
+          }
+        ],
+        "get": {
+          "summary": "Discover",
+          "description": "This endpoint processes a free-form text query for an address or place, and returns results in order of relevance.",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/qDiscover"
+            },
+            {
+              "$ref": "#/components/parameters/atDiscoverAutosuggest"
+            },
+            {
+              "$ref": "#/components/parameters/inDiscoverAutosuggest"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            },
+            {
+              "$ref": "#/components/parameters/lang"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The search results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OpenSearchSearchResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Client error: request failed validation.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Temporary server error.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/autosuggest": {
+        "servers": [
+          {
+            "url": "https://autosuggest.search.hereapi.com/v1"
+          }
+        ],
+        "get": {
+          "summary": "Autosuggest",
+          "description": "BETA: This endpoint suggests address or place candidates based on an incomplete or misspelled query,\n from which the user selects the best query to submit.\n\n_NOTE: The response may contain **experimental** elements not documented here.\n Any undocumented element is **subject to removal** at any time._\n",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/qAutosuggest"
+            },
+            {
+              "$ref": "#/components/parameters/atDiscoverAutosuggest"
+            },
+            {
+              "$ref": "#/components/parameters/inDiscoverAutosuggest"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            },
+            {
+              "$ref": "#/components/parameters/lang"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The search results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OpenSearchAutosuggestResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Client error: request failed validation.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Temporary server error.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/browse": {
+        "servers": [
+          {
+            "url": "https://browse.search.hereapi.com/v1"
+          }
+        ],
+        "get": {
+          "summary": "Browse",
+          "description": "This endpoint provides search results for places based on different filters, such as categories or name, ranked by distance from a given search center.\nThe only mandatory elements exposed in the response are id and position. The other elements shown in the response samples section are only dataset attributes suggestions.\n",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/atBrowseRevgeocode"
+            },
+            {
+              "$ref": "#/components/parameters/categories"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            },
+            {
+              "$ref": "#/components/parameters/name"
+            },
+            {
+              "$ref": "#/components/parameters/lang"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The search results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OpenSearchBrowseResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Client error: request failed validation.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Temporary server error.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/revgeocode": {
+        "servers": [
+          {
+            "url": "https://revgeocode.search.hereapi.com/v1"
+          }
+        ],
+        "get": {
+          "summary": "Reverse Geocode",
+          "description": "This endpoint returns the nearest address to geo coordinates specified in the request.",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/atBrowseRevgeocode"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            },
+            {
+              "$ref": "#/components/parameters/lang"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The search results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OpenSearchReverseGeocodeResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Client error: request failed validation.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Temporary server error.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/lookup": {
+        "servers": [
+          {
+            "url": "https://lookup.search.hereapi.com/v1"
+          }
+        ],
+        "get": {
+          "summary": "Lookup By ID",
+          "description": "This endpoint looks up a known place by the HERE ID included in the request.",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/id"
+            },
+            {
+              "$ref": "#/components/parameters/lang"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The search results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LookupResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Client error: request failed validation.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Requested id could not be found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Temporary server error.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
