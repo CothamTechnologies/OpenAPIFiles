@@ -1,0 +1,43 @@
+swagger: '2.0'
+
+info:
+  title: Geocoding and Search API v1 - Reverse Only
+  version: '1.0'
+  description: CT Demo Sped for Reverse Geocode ONLY
+
+host: revgeocode.search.hereapi.com
+basePath: /v1
+schemes:
+  - https
+
+paths:
+  /revgeocode:
+    get:
+      summary: Reverse Geocode
+      description: >-
+        This endpoint returns the nearest address to geo coordinates specified
+        in the request.
+      produces:
+        - application/json
+      parameters:
+        - name: at
+          in: query
+          required: true
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+        - name: lang
+          in: query
+          required: true
+          type: string
+        
+      responses:
+        200:
+          description: The search results
+
+        default: 
+          description: Error
+
+        
