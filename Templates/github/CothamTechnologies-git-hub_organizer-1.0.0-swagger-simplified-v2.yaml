@@ -127,6 +127,8 @@ paths:
     get:
       description: GET_repos-owner-repo-issues-number-comments
       summary: Get Issue Comments
+      tags:
+        - Repos
       produces:
         - application/json
       parameters:
@@ -142,8 +144,7 @@ paths:
         in: path
         required: true
         type: string
-      tags:
-        - Repos
+      
       responses:
         200:
           description: success
