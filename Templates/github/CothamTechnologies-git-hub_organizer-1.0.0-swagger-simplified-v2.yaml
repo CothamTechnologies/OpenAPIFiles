@@ -1,10 +1,9 @@
 swagger: '2.0'
 info:
-  version: "1.0.0"
+  version: '1.0.0'
   title: GitHub FloPro Demo
-  description: >-
-    Manage repo issues and comments in your GitHub account. Manage repo issues
-    and comments in your GitHub account.
+  description: GitHub FloPro Demo
+
 host: api.github.com
 basePath:
 
@@ -19,6 +18,430 @@ security:
   - basicAuth: []
 
 paths:
+  
+  /repos/{owner}/{repo}/issues/{number}/comments:
+    parameters:
+      - name: owner
+        in: path
+        required: true
+        type: string
+      - name: repo
+        in: path
+        required: true
+        type: string
+      - name: number
+        in: path
+        required: true
+        type: string
+    post:
+      description: POST_repos-owner-repo-issues-number-comments
+      summary: Create Comment
+      tags:
+        - Repos
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              body:
+                type: string
+            example:
+              body: Me too
+      responses:
+        '201':
+          description: ''
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              url:
+                type: string
+              html_url:
+                type: string
+              body:
+                type: string
+              user:
+                type: object
+                properties:
+                  login:
+                    type: string
+                  id:
+                    type: integer
+                  avatar_url:
+                    type: string
+                  gravatar_id:
+                    type: string
+                  url:
+                    type: string
+                  html_url:
+                    type: string
+                  followers_url:
+                    type: string
+                  following_url:
+                    type: string
+                  gists_url:
+                    type: string
+                  starred_url:
+                    type: string
+                  subscriptions_url:
+                    type: string
+                  organizations_url:
+                    type: string
+                  repos_url:
+                    type: string
+                  events_url:
+                    type: string
+                  received_events_url:
+                    type: string
+                  type:
+                    type: string
+                  site_admin:
+                    type: boolean
+              created_at:
+                type: string
+              updated_at:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    resource:
+                      type: string
+                    field:
+                      type: string
+                    code:
+                      type: string
+
+    get:
+      description: GET_repos-owner-repo-issues-number-comments
+      summary: Get Issue Comments
+      tags:
+        - Repos
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                url:
+                  type: string
+                html_url:
+                  type: string
+                body:
+                  type: string
+                user:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    id:
+                      type: integer
+                    avatar_url:
+                      type: string
+                    gravatar_id:
+                      type: string
+                    url:
+                      type: string
+                    html_url:
+                      type: string
+                    followers_url:
+                      type: string
+                    following_url:
+                      type: string
+                    gists_url:
+                      type: string
+                    starred_url:
+                      type: string
+                    subscriptions_url:
+                      type: string
+                    organizations_url:
+                      type: string
+                    repos_url:
+                      type: string
+                    events_url:
+                      type: string
+                    received_events_url:
+                      type: string
+                    type:
+                      type: string
+                    site_admin:
+                      type: boolean
+                created_at:
+                  type: string
+                updated_at:
+                  type: string
+        
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    resource:
+                      type: string
+                    field:
+                      type: string
+                    code:
+                      type: string
+  
+  /repos/{owner}/{repo}/issues:
+    parameters:
+      - name: owner
+        in: path
+        required: true
+        type: string
+      - name: repo
+        in: path
+        required: true
+        type: string
+    get:
+      description: GET_repos-owner-repo-issues
+      summary: Get Repo Issues
+      tags:
+        - Repos
+      responses:
+        200:
+          description: ''
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                url:
+                  type: string
+                repository_url:
+                  type: string
+                labels_url:
+                  type: string
+                comments_url:
+                  type: string
+                events_url:
+                  type: string
+                html_url:
+                  type: string
+                number:
+                  type: integer
+                state:
+                  type: string
+                title:
+                  type: string
+                body:
+                  type: string
+                user:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    id:
+                      type: integer
+                    avatar_url:
+                      type: string
+                    gravatar_id:
+                      type: string
+                    url:
+                      type: string
+                    html_url:
+                      type: string
+                    followers_url:
+                      type: string
+                    following_url:
+                      type: string
+                    gists_url:
+                      type: string
+                    starred_url:
+                      type: string
+                    subscriptions_url:
+                      type: string
+                    organizations_url:
+                      type: string
+                    repos_url:
+                      type: string
+                    events_url:
+                      type: string
+                    received_events_url:
+                      type: string
+                    type:
+                      type: string
+                    site_admin:
+                      type: boolean
+                labels:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                      name:
+                        type: string
+                      color:
+                        type: string
+                assignee:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    id:
+                      type: integer
+                    avatar_url:
+                      type: string
+                    gravatar_id:
+                      type: string
+                    url:
+                      type: string
+                    html_url:
+                      type: string
+                    followers_url:
+                      type: string
+                    following_url:
+                      type: string
+                    gists_url:
+                      type: string
+                    starred_url:
+                      type: string
+                    subscriptions_url:
+                      type: string
+                    organizations_url:
+                      type: string
+                    repos_url:
+                      type: string
+                    events_url:
+                      type: string
+                    received_events_url:
+                      type: string
+                    type:
+                      type: string
+                    site_admin:
+                      type: boolean
+                milestone:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    html_url:
+                      type: string
+                    labels_url:
+                      type: string
+                    id:
+                      type: integer
+                    number:
+                      type: integer
+                    state:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    creator:
+                      type: object
+                      properties:
+                        login:
+                          type: string
+                        id:
+                          type: integer
+                        avatar_url:
+                          type: string
+                        gravatar_id:
+                          type: string
+                        url:
+                          type: string
+                        html_url:
+                          type: string
+                        followers_url:
+                          type: string
+                        following_url:
+                          type: string
+                        gists_url:
+                          type: string
+                        starred_url:
+                          type: string
+                        subscriptions_url:
+                          type: string
+                        organizations_url:
+                          type: string
+                        repos_url:
+                          type: string
+                        events_url:
+                          type: string
+                        received_events_url:
+                          type: string
+                        type:
+                          type: string
+                        site_admin:
+                          type: boolean
+                    open_issues:
+                      type: integer
+                    closed_issues:
+                      type: integer
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                    closed_at:
+                      type: string
+                    due_on:
+                      type: string
+                locked:
+                  type: boolean
+                comments:
+                  type: integer
+                pull_request:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    html_url:
+                      type: string
+                    diff_url:
+                      type: string
+                    patch_url:
+                      type: string
+                closed_at:
+                  type: string
+                created_at:
+                  type: string
+                updated_at:
+                  type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    resource:
+                      type: string
+                    field:
+                      type: string
+                    code:
+                      type: string
+  
   /user/repos:
     get:
       description: GET_user-repos

@@ -18,7 +18,7 @@ security:
   - basicAuth: []
 
 paths:
-  '/repos/{owner}/{repo}/issues/{number}/comments':
+  /repos/{owner}/{repo}/issues/{number}/comments:
     parameters:
       - name: owner
         in: path
@@ -203,7 +203,7 @@ paths:
                     code:
                       type: string
 
-  '/repos/{owner}/{repo}/issues':
+  /repos/{owner}/{repo}/issues:
     parameters:
       - name: owner
         in: path
@@ -723,7 +723,7 @@ paths:
                     code:
                       type: string
 
-  '/repos/{owner}/{repo}/issues/{number}':
+  /repos/{owner}/{repo}/issues/{number}:
     parameters:
       - name: owner
         in: path
@@ -1018,7 +1018,7 @@ paths:
                     code:
                       type: string
 
-  '/repos/{owner}/{repo}/issues/comments/{id}':
+  /repos/{owner}/{repo}/issues/comments/{id}:
     parameters:
       - name: owner
         in: path
