@@ -224,29 +224,31 @@ paths:
   
   /repos/{owner}/{repo}/issues:
     post:
-      description: POST_repos-owner-repo-issues-number-comments
-      summary: Create Comment
+      description: POST_repos-owner-repo-issues
+      summary: Create Issue
       tags:
         - Repos
       parameters:
-        - name: owner
-          in: path
-          required: true
-          type: string
-        - name: repo
-          in: path
-          required: true
-          type: string
         - name: body
           in: body
           schema:
             type: object
             properties:
+              title:
+                type: string
               body:
                 type: string
-
+              milestone:
+                type: integer
+              labels:
+                type: array
+                items:
+                  type: string
+            required:
+              - title
+              - body
       responses:
-        201:
+        '201':
           description: ''
           schema:
             type: object
@@ -255,7 +257,21 @@ paths:
                 type: integer
               url:
                 type: string
+              repository_url:
+                type: string
+              labels_url:
+                type: string
+              comments_url:
+                type: string
+              events_url:
+                type: string
               html_url:
+                type: string
+              number:
+                type: integer
+              state:
+                type: string
+              title:
                 type: string
               body:
                 type: string
@@ -296,10 +312,180 @@ paths:
                     type: string
                   site_admin:
                     type: boolean
+              labels:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    name:
+                      type: string
+                    color:
+                      type: string
+              assignee:
+                type: object
+                properties:
+                  login:
+                    type: string
+                  id:
+                    type: integer
+                  avatar_url:
+                    type: string
+                  gravatar_id:
+                    type: string
+                  url:
+                    type: string
+                  html_url:
+                    type: string
+                  followers_url:
+                    type: string
+                  following_url:
+                    type: string
+                  gists_url:
+                    type: string
+                  starred_url:
+                    type: string
+                  subscriptions_url:
+                    type: string
+                  organizations_url:
+                    type: string
+                  repos_url:
+                    type: string
+                  events_url:
+                    type: string
+                  received_events_url:
+                    type: string
+                  type:
+                    type: string
+                  site_admin:
+                    type: boolean
+              milestone:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  html_url:
+                    type: string
+                  labels_url:
+                    type: string
+                  id:
+                    type: integer
+                  number:
+                    type: integer
+                  state:
+                    type: string
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  creator:
+                    type: object
+                    properties:
+                      login:
+                        type: string
+                      id:
+                        type: integer
+                      avatar_url:
+                        type: string
+                      gravatar_id:
+                        type: string
+                      url:
+                        type: string
+                      html_url:
+                        type: string
+                      followers_url:
+                        type: string
+                      following_url:
+                        type: string
+                      gists_url:
+                        type: string
+                      starred_url:
+                        type: string
+                      subscriptions_url:
+                        type: string
+                      organizations_url:
+                        type: string
+                      repos_url:
+                        type: string
+                      events_url:
+                        type: string
+                      received_events_url:
+                        type: string
+                      type:
+                        type: string
+                      site_admin:
+                        type: boolean
+                  open_issues:
+                    type: integer
+                  closed_issues:
+                    type: integer
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  closed_at:
+                    type: string
+                  due_on:
+                    type: string
+              locked:
+                type: boolean
+              comments:
+                type: integer
+              pull_request:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  html_url:
+                    type: string
+                  diff_url:
+                    type: string
+                  patch_url:
+                    type: string
+              closed_at:
+                type: string
               created_at:
                 type: string
               updated_at:
                 type: string
+              closed_by:
+                type: object
+                properties:
+                  login:
+                    type: string
+                  id:
+                    type: integer
+                  avatar_url:
+                    type: string
+                  gravatar_id:
+                    type: string
+                  url:
+                    type: string
+                  html_url:
+                    type: string
+                  followers_url:
+                    type: string
+                  following_url:
+                    type: string
+                  gists_url:
+                    type: string
+                  starred_url:
+                    type: string
+                  subscriptions_url:
+                    type: string
+                  organizations_url:
+                    type: string
+                  repos_url:
+                    type: string
+                  events_url:
+                    type: string
+                  received_events_url:
+                    type: string
+                  type:
+                    type: string
+                  site_admin:
+                    type: boolean
         default:
           description: Error
           schema:
