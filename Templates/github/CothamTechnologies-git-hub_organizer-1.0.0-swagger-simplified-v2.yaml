@@ -229,6 +229,14 @@ paths:
       tags:
         - Repos
       parameters:
+        - name: owner
+          in: path
+          required: true
+          type: string
+        - name: repo
+          in: path
+          required: true
+          type: string
         - name: body
           in: body
           schema:
