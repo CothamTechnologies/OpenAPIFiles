@@ -161,5 +161,6 @@ paths:
                                             type: number
                                           TimeRecorded:
                                             type: string
-                                    
+        default:
+          description: error                            
                               
