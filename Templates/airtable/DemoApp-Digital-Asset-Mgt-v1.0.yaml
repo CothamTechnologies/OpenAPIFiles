@@ -14,8 +14,8 @@ paths:
 
   /{id}/Digital Assets:
     get:
-      summary: list Apps
-      description: list Apps
+      summary: List Digital Assets
+      description: List Digital Assets
       tags:
         - App Admin
       produces:
