@@ -12,7 +12,7 @@ schemes:
 
 paths:
 
-  /{id}/Digital%20Assets:
+  /{id}/DigitalAssets:
     get:
       summary: List Digital Assets
       description: List Digital Assets
