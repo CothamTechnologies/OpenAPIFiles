@@ -12,7 +12,131 @@ schemes:
 
 paths:
 
-  /{id}/DigitalAssets:
+  /{baseid}/DigitalAssets/{id}:
+    get:
+      summary: Get Single Digital Asset
+      description: Get Single Digital Asset
+      tags:
+        - Assets
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: path
+          name: id
+          description: Id
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              fields: 
+                type: object
+                properties: 
+                  Name: 
+                    type: string
+                  Attachments: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        url: 
+                          type: string
+                        filename: 
+                          type: string
+                        size: 
+                          type: number
+                        type: 
+                          type: string
+                        thumbnails: 
+                          type: object
+                          properties: 
+                            small: 
+                              type: object
+                              properties: 
+                                url: 
+                                  type: string
+                                width: 
+                                  type: number
+                                height: 
+                                  type: number
+                            large: 
+                              type: object
+                              properties: 
+                                url: 
+                                  type: string
+                                width: 
+                                  type: number
+                                height: 
+                                  type: number
+                            full: 
+                              type: object
+                              properties: 
+                                url: 
+                                  type: string
+                                width: 
+                                  type: number
+                                height: 
+                                  type: number
+                  Market: 
+                    type: array
+                    items: 
+                      type: string
+                  Format: 
+                    type: string
+                  Orientation: 
+                    type: string
+                  Size: 
+                    type: string
+                  Date Updated: 
+                    type: string
+                    format: date
+                  Sub File Type: 
+                    type: string
+                  Language: 
+                    type: string
+                  Usage Restrictions: 
+                    type: string
+                  Industry: 
+                    type: array
+                    items: 
+                      type: string
+                  Department: 
+                    type: string
+                  Topic: 
+                    type: string
+                  Status: 
+                    type: string
+                  Product: 
+                    type: array
+                    items: 
+                      type: string
+                  Hex Code: 
+                    type: string
+                  Date Added: 
+                    type: string
+                    format: date
+              createdTime: 
+                type: string
+
+  
+  /{baseid}/DigitalAssets:
     get:
       summary: List Digital Assets
       description: List Digital Assets
@@ -22,7 +146,7 @@ paths:
         - application/json
       parameters:
         - in: path
-          name: id
+          name: baseid
           description: baseId
           type: string
           required: true
