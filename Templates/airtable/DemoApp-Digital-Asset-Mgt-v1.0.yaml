@@ -1,0 +1,167 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'Air Table Digital Asset Management'
+  description: 'Air Table Digital Asset Management Demo App'
+
+host: api.airtable.com
+basePath: /v0
+
+schemes:
+  - https
+
+paths:
+
+  /{id}/Digital Assets:
+    get:
+      summary: list Apps
+      description: list Apps
+      tags:
+        - App Admin
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+        - in: query
+          name: maxRecords
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Name: 
+                          type: string
+                        Attachments: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              id: 
+                                type: string
+                              url: 
+                                type: string
+                              filename: 
+                                type: string
+                              size: 
+                                type: number
+                              type: 
+                                type: string
+                              thumbnails: 
+                                type: object
+                                properties: 
+                                  small: 
+                                    type: object
+                                    properties: 
+                                      url: 
+                                        type: string
+                                      width: 
+                                        type: number
+                                      height: 
+                                        type: number
+                                  large: 
+                                    type: object
+                                    properties: 
+                                      url: 
+                                        type: string
+                                      width: 
+                                        type: number
+                                      height: 
+                                        type: number
+                                  full: 
+                                    type: object
+                                    properties: 
+                                      url: 
+                                        type: string
+                                      width: 
+                                        type: number
+                                      height: 
+                                        type: number
+                        Market: 
+                          type: array
+                          items: 
+                            type: string
+                        Format: 
+                          type: string
+                        Orientation: 
+                          type: string
+                        Size: 
+                          type: string
+                        Date Updated: 
+                          type: string
+                          format: date
+                        Sub File Type: 
+                          type: string
+                        Language: 
+                          type: string
+                        Usage Restrictions: 
+                          type: string
+                        Industry: 
+                          type: array
+                          items: 
+                            type: string
+                        Department: 
+                          type: string
+                        Topic: 
+                          type: string
+                        Status: 
+                          type: string
+                        Product: 
+                          type: array
+                          items: 
+                            type: string
+                        Hex Code: 
+                          type: string
+                        Date Added: 
+                          type: string
+                          format: date
+                    createdTime: 
+                      type: string
+              offset: 
+                type: string
+
+
+  
