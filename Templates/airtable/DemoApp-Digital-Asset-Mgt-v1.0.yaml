@@ -12,12 +12,12 @@ schemes:
 
 paths:
 
-  /{id}/Digital Assets:
+  /{id}/Digital%20Assets:
     get:
       summary: List Digital Assets
       description: List Digital Assets
       tags:
-        - App Admin
+        - Assets
       produces:
         - application/json
       parameters:
