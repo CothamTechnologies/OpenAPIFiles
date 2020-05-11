@@ -110,4 +110,4 @@ paths:
                     country_code: 
                       type: string
         default:
-          description: error
+          description: error response
