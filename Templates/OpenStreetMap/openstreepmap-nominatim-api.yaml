@@ -11,6 +11,90 @@ schemes:
   
 paths:
   
+  /reverse:
+    get:
+      description: search API
+      produces:
+        - application/json
+      parameters:
+        - name: lat
+          in: query
+          type: string
+        - name: lon
+          in: query
+          type: string
+        - name: format
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: addressdetails
+          in: query
+          type: boolean
+        - name: extratags
+          in: query
+          type: boolean
+        - name: namedetails
+          in: query
+          type: boolean
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              place_id: 
+                type: string
+              licence: 
+                type: string
+              osm_type: 
+                type: string
+              osm_id: 
+                type: string
+              lat: 
+                type: string
+              lon: 
+                type: string
+              place_rank: 
+                type: string
+              category: 
+                type: string
+              type: 
+                type: string
+              importance: 
+                type: string
+              addresstype: 
+                type: string
+              display_name: 
+                type: string
+              name: 
+                type: string
+              address: 
+                type: object
+                properties: 
+                  road: 
+                    type: string
+                  village: 
+                    type: string
+                  state_district: 
+                    type: string
+                  state: 
+                    type: string
+                  postcode: 
+                    type: string
+                  country: 
+                    type: string
+                  country_code: 
+                    type: string
+              boundingbox: 
+                type: array
+                items: 
+                  type: string
+        default:
+          description: error response
+  
   /search:
     get:
       description: search API
