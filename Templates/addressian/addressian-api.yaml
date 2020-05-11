@@ -1,0 +1,47 @@
+swagger: '2.0'
+info:
+  description: addressian api
+  version: '0.1'
+  title: addressian api
+  
+host: api-full.addressian.co.uk
+basePath: 
+
+schemes:
+  - https
+  
+paths:
+  
+  /address/{query}:
+    get:
+      description: search addresses
+      produces:
+        - application/json
+      parameters:
+        - name: x-api-key
+          in: header
+          type: string
+          required: true
+        - name: query
+          in: path
+          type: string
+          required: true
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                address: 
+                  type: array
+                  items: 
+                    type: string
+                county: 
+                  type: string
+                postcode: 
+                  type: string
+                citytown: 
+                  type: string
