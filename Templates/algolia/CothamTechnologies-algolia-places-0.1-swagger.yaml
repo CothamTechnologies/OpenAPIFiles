@@ -201,6 +201,7 @@ paths:
   
   /places/query:
     post:
+      description: Search
       consumes:
         - application/json
       produces:
