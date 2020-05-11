@@ -1,0 +1,717 @@
+swagger: '2.0'
+info:
+  description: algolia places
+  version: '0.1'
+  title: algolia places
+  
+host: places-dsn.algolia.net
+basePath: /1
+
+schemes:
+  - https
+  
+paths:
+  
+  /places/reverse:
+    get:
+      description: Reverse Geocode
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: X-Algolia-Application-Id
+          in: header
+          type: string
+        - name: X-Algolia-API-Key
+          in: header
+          type: string
+        - name: aroundLatLng
+          in: query
+          type: string
+        - name: hitsPerPage
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              hits: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    country: 
+                      type: string
+                    is_country: 
+                      type: boolean
+                    city: 
+                      type: array
+                      items: 
+                        type: string
+                    is_highway: 
+                      type: boolean
+                    importance: 
+                      type: number
+                    _tags: 
+                      type: array
+                      items: 
+                        type: string
+                    postcode: 
+                      type: array
+                      items: 
+                        type: string
+                    county: 
+                      type: array
+                      items: 
+                        type: string
+                    population: 
+                      type: number
+                    country_code: 
+                      type: string
+                    is_city: 
+                      type: boolean
+                    is_popular: 
+                      type: boolean
+                    administrative: 
+                      type: array
+                      items: 
+                        type: string
+                    admin_level: 
+                      type: number
+                    is_suburb: 
+                      type: boolean
+                    locale_names: 
+                      type: array
+                      items: 
+                        type: string
+                    _geoloc: 
+                      type: object
+                      properties: 
+                        lat: 
+                          type: number
+                        lng: 
+                          type: number
+                    objectID: 
+                      type: string
+                    _highlightResult: 
+                      type: object
+                      properties: 
+                        country: 
+                          type: object
+                          properties: 
+                            value: 
+                              type: string
+                            matchLevel: 
+                              type: string
+                        city: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        importance: 
+                          type: object
+                          properties: 
+                            value: 
+                              type: string
+                            matchLevel: 
+                              type: string
+                        _tags: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        postcode: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        county: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        population: 
+                          type: object
+                          properties: 
+                            value: 
+                              type: string
+                            matchLevel: 
+                              type: string
+                        country_code: 
+                          type: object
+                          properties: 
+                            value: 
+                              type: string
+                            matchLevel: 
+                              type: string
+                        administrative: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        admin_level: 
+                          type: object
+                          properties: 
+                            value: 
+                              type: string
+                            matchLevel: 
+                              type: string
+                        locale_names: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+              nbHits: 
+                type: number
+              processingTimeMS: 
+                type: number
+              params: 
+                type: string
+  
+  /places/query:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: X-Algolia-Application-Id
+          in: header
+          type: string
+        - name: X-Algolia-API-Key
+          in: header
+          type: string
+        - name: type
+          in: query
+          type: string
+        - name: restrictSearchableAttributes
+          in: query
+          type: string
+        - name: hitsPerPage
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: object 
+            properties:
+              query:
+                type: string
+          
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              hits: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    country: 
+                      type: object
+                      properties: 
+                        de: 
+                          type: string
+                        ru: 
+                          type: string
+                        pt: 
+                          type: string
+                        it: 
+                          type: string
+                        hu: 
+                          type: string
+                        es: 
+                          type: string
+                        zh: 
+                          type: string
+                        ar: 
+                          type: string
+                        default: 
+                          type: string
+                        ja: 
+                          type: string
+                        pl: 
+                          type: string
+                        ro: 
+                          type: string
+                        nl: 
+                          type: string
+                    is_country: 
+                      type: boolean
+                    city: 
+                      type: object
+                      properties: 
+                        de: 
+                          type: array
+                          items: 
+                            type: string
+                        ru: 
+                          type: array
+                          items: 
+                            type: string
+                        pt: 
+                          type: array
+                          items: 
+                            type: string
+                        en: 
+                          type: array
+                          items: 
+                            type: string
+                        it: 
+                          type: array
+                          items: 
+                            type: string
+                        hu: 
+                          type: array
+                          items: 
+                            type: string
+                        es: 
+                          type: array
+                          items: 
+                            type: string
+                        zh: 
+                          type: array
+                          items: 
+                            type: string
+                        ar: 
+                          type: array
+                          items: 
+                            type: string
+                        default: 
+                          type: array
+                          items: 
+                            type: string
+                        ja: 
+                          type: array
+                          items: 
+                            type: string
+                        pl: 
+                          type: array
+                          items: 
+                            type: string
+                        ro: 
+                          type: array
+                          items: 
+                            type: string
+                        nl: 
+                          type: array
+                          items: 
+                            type: string
+                    is_highway: 
+                      type: boolean
+                    importance: 
+                      type: number
+                    _tags: 
+                      type: array
+                      items: 
+                        type: string
+                    postcode: 
+                      type: array
+                      items: 
+                        type: string
+                    county: 
+                      type: object
+                      properties: 
+                        default: 
+                          type: array
+                          items: 
+                            type: string
+                    population: 
+                      type: number
+                    country_code: 
+                      type: string
+                    is_city: 
+                      type: boolean
+                    is_popular: 
+                      type: boolean
+                    administrative: 
+                      type: array
+                      items: 
+                        type: string
+                    admin_level: 
+                      type: number
+                    district: 
+                      type: string
+                    is_suburb: 
+                      type: boolean
+                    locale_names: 
+                      type: object
+                      properties: 
+                        default: 
+                          type: array
+                          items: 
+                            type: string
+                    _geoloc: 
+                      type: object
+                      properties: 
+                        lat: 
+                          type: number
+                        lng: 
+                          type: number
+                    objectID: 
+                      type: string
+                    _highlightResult: 
+                      type: object
+                      properties: 
+                        country: 
+                          type: object
+                          properties: 
+                            de: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            ru: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            pt: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            it: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            hu: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            es: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            zh: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            ar: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            default: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            ja: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            pl: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            ro: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                            nl: 
+                              type: object
+                              properties: 
+                                value: 
+                                  type: string
+                                matchLevel: 
+                                  type: string
+                        city: 
+                          type: object
+                          properties: 
+                            de: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                            ru: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            pt: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                            en: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                            it: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            hu: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            es: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                            zh: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            ar: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            default: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                            ja: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            pl: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                            ro: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                            nl: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                        postcode: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        county: 
+                          type: object
+                          properties: 
+                            default: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+                        administrative: 
+                          type: array
+                          items: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: string
+                              matchLevel: 
+                                type: string
+                        locale_names: 
+                          type: object
+                          properties: 
+                            default: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  value: 
+                                    type: string
+                                  matchLevel: 
+                                    type: string
+                                  fullyHighlighted: 
+                                    type: boolean
+                                  matchedWords: 
+                                    type: array
+                                    items: 
+                                      type: string
+              nbHits: 
+                type: number
+              processingTimeMS: 
+                type: number
+              query: 
+                type: string
+              params: 
+                type: string
+              degradedQuery: 
+                type: boolean
+          
+        default:
+          description: error
