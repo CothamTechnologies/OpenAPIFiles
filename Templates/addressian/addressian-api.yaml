@@ -5,7 +5,7 @@ info:
   title: addressian api
   
 host: api-full.addressian.co.uk
-basePath: 
+
 
 schemes:
   - https
