@@ -225,6 +225,21 @@ paths:
         - name: language
           in: query
           type: string
+        - name: countries
+          in: query
+          type: string
+        - name: aroundLatLng
+          in: query
+          type: string
+        - name: aroundLatLngViaIP
+          in: query
+          type: string
+        - name: aroundRadius
+          in: query
+          type: string
+        - name: getRankingInfo
+          in: query
+          type: string
         - in: body
           name: body
           schema:
