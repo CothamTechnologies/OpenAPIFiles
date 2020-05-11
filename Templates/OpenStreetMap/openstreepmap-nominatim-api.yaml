@@ -13,7 +13,7 @@ paths:
   
   /reverse:
     get:
-      description: search API
+      description: reverse geo
       produces:
         - application/json
       parameters:
