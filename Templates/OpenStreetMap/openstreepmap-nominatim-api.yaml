@@ -1,0 +1,113 @@
+swagger: '2.0'
+info:
+  description: Open Street Map
+  version: '0.1'
+  title: Open Street Map
+  
+host: nominatim.openstreetmap.org
+
+schemes:
+  - https
+  
+paths:
+  
+  /search:
+    get:
+      description: search API
+      produces:
+        - application/json
+      parameters:
+        - name: q
+          in: query
+          type: string
+        - name: street
+          in: query
+          type: string
+        - name: city
+          in: query
+          type: string
+        - name: county
+          in: query
+          type: string
+        - name: state
+          in: query
+          type: string
+        - name: country
+          in: query
+          type: string
+        - name: postalcode
+          in: query
+          type: string
+        - name: format
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: addressdetails
+          in: query
+          type: boolean
+        - name: extratags
+          in: query
+          type: boolean
+        - name: namedetails
+          in: query
+          type: boolean
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                place_id: 
+                  type: number
+                licence: 
+                  type: string
+                osm_type: 
+                  type: string
+                osm_id: 
+                  type: number
+                boundingbox: 
+                  type: array
+                  items: 
+                    type: string
+                lat: 
+                  type: string
+                lon: 
+                  type: string
+                display_name: 
+                  type: string
+                class: 
+                  type: string
+                type: 
+                  type: string
+                importance: 
+                  type: number
+                icon: 
+                  type: string
+                address: 
+                  type: object
+                  properties: 
+                    bakery: 
+                      type: string
+                    road: 
+                      type: string
+                    suburb: 
+                      type: string
+                    town: 
+                      type: string
+                    county: 
+                      type: string
+                    state: 
+                      type: string
+                    postcode: 
+                      type: string
+                    country: 
+                      type: string
+                    country_code: 
+                      type: string
+        default:
+          description: error
