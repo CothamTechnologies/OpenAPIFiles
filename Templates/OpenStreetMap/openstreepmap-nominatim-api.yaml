@@ -11,7 +11,7 @@ schemes:
   
 paths:
   
-  /search:
+  /search/:
     get:
       description: search API
       produces:
