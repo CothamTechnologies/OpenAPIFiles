@@ -1,0 +1,77 @@
+# FloPro Swagger Template for Kumulos JSON RPC API Interface
+swagger: "2.0"
+info:
+  version: "0.2"
+  title: "ELKUMULOS"
+  description: "ELKUMULOS"
+
+host: api.kumulos.com
+basePath: /b2.2/{yourKumulosAPIKey}
+
+x-flopro-kumulosrpc: true
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# Applied Basic Authentication to all endpoints. 
+# User Name is your API Key. Password is App Secret.
+security:
+  - basicAuth: []
+
+paths:
+  /yourMethodTitle.json/:
+    post:
+      summary: Your Method Summary
+      description: Your Method Decsription
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[yourParameterName1]
+          type: string
+          description: your Parameter Name 1
+          required: true
+        - in: formData
+          name: params[yourParameterName2]
+          type: string
+          description: your Parameter Name 2
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is 1 its is a success. Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:                
+                  exampleFieldName:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Any other response code. Failed Server Response.
