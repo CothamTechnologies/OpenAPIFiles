@@ -1,9 +1,9 @@
 # FloPro Swagger Template for Kumulos JSON RPC API Interface
-swagger: "2.0"
+swagger: '2.0'
 info:
-  version: "0.2"
-  title: "ELKUMULOS"
-  description: "ELKUMULOS"
+  version: '1.0'
+  title: Your API Title
+  description: Your API Description
 
 host: api.kumulos.com
 basePath: /b2.2/{yourKumulosAPIKey}
