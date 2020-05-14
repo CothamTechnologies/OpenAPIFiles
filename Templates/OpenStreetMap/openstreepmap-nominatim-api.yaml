@@ -88,6 +88,10 @@ paths:
                     type: string
                   country_code: 
                     type: string
+                  suburb:
+                    type: string
+                  town:
+                    type: string
               boundingbox: 
                 type: array
                 items: 
