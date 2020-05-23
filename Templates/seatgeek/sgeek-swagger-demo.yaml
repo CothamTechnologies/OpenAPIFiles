@@ -159,10 +159,6 @@ paths:
         - application/json
       parameters:
         - in: query
-          name: per_page
-          type: string
-          description: return per page
-        - in: query
           name: q
           type: string
           description: query string

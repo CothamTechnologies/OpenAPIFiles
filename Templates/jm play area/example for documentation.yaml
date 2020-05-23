@@ -1,11 +1,11 @@
-# FloPro Swagger Template for Kumulos RESTful Data API Interface
+
 swagger: '2.0'
 info:
   version: '1.0'
   title: Users API
   description: Users API to allow Create, Read, Update and Delete Functions
 
-host: api.kumulos.com 
+host: api.server.com 
 basePath: /v1/data
 schemes:
   - https
@@ -32,17 +32,6 @@ paths:
           name: page 
           type: integer
           description: The desired page default 1
-          required: false
-        - in: query
-          name: numberPerPage
-          type: integer
-          description: The desired number of records per page default 50, max 1000
-          required: false
-          maximum: 1000
-        - in: query
-          name: sortBy
-          type: string
-          description: Field name to sort by, prefix - to reverse sort direction
           required: false
           
       responses:
