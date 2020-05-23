@@ -1,0 +1,265 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Advanced Thing List
+  description: The service retrieves list of things along with their location and customer details, based on thing types, property set types, and the event type specified in the request header. The service retrieves metadata and data for property set types common across specified thing types along with the aggregate of events for the specified event type.
+
+host: sandbox.api.sap.com:443
+basePath: /iotae/advancedthinglist
+
+schemes:
+- https
+
+
+paths:
+  /v1/Things:
+    get:
+      summary: Retrieves list of things
+      description: With this method, you can retrieve list of things for the specified property set types and thing types.
+      produces:
+      - application/json
+      parameters:
+      - name: APIKey
+        in: header
+        type: string
+      - name: sap-iot-thingtype
+        in: header
+        required: false
+        description: 'Thing types separated by comma '
+        type: string
+      - name: sap-iot-pst
+        in: header
+        required: false
+        description: 'Property set types separated by comma '
+        type: string
+      - name: sap-iot-eventtype
+        in: header
+        required: false
+        description: Name of the event Type
+        type: string
+      - name: $top
+        in: query
+        required: false
+        description: Number of records to include in the result set.
+        type: integer
+      - name: $skip
+        in: query
+        required: false
+        description: Number of the first n records to be excluded from the result set.
+        type: integer
+      - name: $inlinecount
+        in: query
+        required: false
+        type: string
+      - name: $count
+        in: query
+        required: false
+        description: Total number of things available based on the current user's authorizations; permissible values are true and false. If this is used in conjunction with the $top and $skip parameters, the result contains the total count of things available.
+        type: boolean
+      - name: $orderby
+        in: query
+        required: false
+        description: Field name to be used for sorting the result set in ascending order; all thing entity fields are valid. To sort the result set, use asc for the ascending order and desc for the descending order.
+        type: string
+      - name: $select
+        in: query
+        required: false
+        description: Select condition for the thing entity fields to be included in the result set.
+        type: string
+      - name: $filter
+        in: query
+        required: false
+        description: Filter condition to be applied; all thing entity fields are valid. Multiple filters are supported using the and separator. You can use the string functions such as substringof, startswith, and endswith to search data using $filter.
+        type: string
+      - name: sap-appiot-es
+        in: query
+        required: false
+        description: Predefined query parameter used to filter events based on the event status. The only supported field is status. As the status field is not included in the metadata, you can use this parameter to filter events based on status.
+        type: string
+      - name: $expand
+        in: query
+        required: false
+        description: Expand related entities
+        type: string
+      responses:
+        '200':
+          description: Thing list retrieved successfully.
+          schema:
+            type: object
+            title: Wrapper
+            properties:
+              d:
+                type: object
+                title: Collection of Thing
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ThingId:
+                          type: string
+                          description: Thing unique ID
+                        ISOCode:
+                          type: string
+                          description: Thing Language code
+                        ThingDescription:
+                          type: string
+                          description: Thing description
+                        ThingName:
+                          type: string
+                          description: Thing name
+                        ThingExternalId:
+                          type: string
+                          description: Thing external id
+                        ThingType:
+                          type: string
+                          description: Thing Type ID associated with the Thing
+                        ObjectGroup:
+                          type: string
+                          description: Object group used to create the Thing
+                        BusinessPartnerName:
+                          type: string
+                          description: Business partner name associated for the Thing
+                        BPLandlinePhoneNumber:
+                          type: string
+                          description: Landline phone number of Business partner
+                        BPMobilePhoneNumber:
+                          type: string
+                          description: Mobile phone number of Business partner
+                        ThingCustomerId:
+                          type: string
+                          description: Business partner ID associated for the Thing
+                        ThingRegionDescription:
+                          type: string
+                          description: Region where Thing is located
+                        ThingCountryDescription:
+                          type: string
+                          description: Country where the Thing is located
+                        ThingCountryId:
+                          type: string
+                          description: Country code where the Thing is located
+                        ThingCommunicationData:
+                          type: string
+                          description: Thing address details
+                        ThingLocationId:
+                          type: string
+                          description: Thing location ID
+                        Latitude:
+                          type: number
+                          description: Latitude coordinates
+                        Longitude:
+                          type: number
+                          description: Longitude coordinates
+                        AlternateId:
+                          type: string
+                          description: Thing AlternateId
+        default:
+          description: error
+  
+  /v1/Things('{thingID}'):
+    get:
+      summary: Retrieves property set data and events for a thing
+      description: With this method, you retrieve details of the specified thing that has a usage of the specified property set type. The result set includes details of the specified thing along with its property set data and aggregate of events. You can also retrieve the details of the hierarchy to which the thing belongs.
+      produces:
+      - application/json
+      parameters:
+      - name: APIKey
+        in: header
+        type: string
+      - name: thingID
+        in: path
+        required: true
+        description: Unique identifier of a thing, for example, `0079945DCD0A46EA959FC0ADCF435365`
+        type: string
+      - name: sap-iot-thingtype
+        in: header
+        required: false
+        description: 'Thing types separated by comma '
+        type: string
+      - name: sap-iot-pst
+        in: header
+        required: false
+        description: 'Property set types separated by comma '
+        type: string
+      - name: sap-iot-eventtype
+        in: header
+        required: false
+        description: Name of the event type Note Only one event type is supported.
+        type: string
+      - name: $expand
+        in: query
+        description: Expand related entities
+        type: string
+        required: false
+      responses:
+        '200':
+          description: Data retrieved successfully
+          schema:
+            type: object
+            title: Thing
+            properties:
+              d:
+                type: object
+                properties:
+                  ThingId:
+                    type: string
+                    description: Thing unique ID
+                  ISOCode:
+                    type: string
+                    description: Thing Language code
+                  ThingDescription:
+                    type: string
+                    description: Thing description
+                  ThingName:
+                    type: string
+                    description: Thing name
+                  ThingExternalId:
+                    type: string
+                    description: Thing external id
+                  ThingType:
+                    type: string
+                    description: Thing Type ID associated with the Thing
+                  ObjectGroup:
+                    type: string
+                    description: Object group used to create the Thing
+                  BusinessPartnerName:
+                    type: string
+                    description: Business partner name associated for the Thing
+                  BPLandlinePhoneNumber:
+                    type: string
+                    description: Landline phone number of Business partner
+                  BPMobilePhoneNumber:
+                    type: string
+                    description: Mobile phone number of Business partner
+                  ThingCustomerId:
+                    type: string
+                    description: Business partner ID associated for the Thing
+                  ThingRegionDescription:
+                    type: string
+                    description: Region where Thing is located
+                  ThingCountryDescription:
+                    type: string
+                    description: Country where the Thing is located
+                  ThingCountryId:
+                    type: string
+                    description: Country code where the Thing is located
+                  ThingCommunicationData:
+                    type: string
+                    description: Thing address details
+                  ThingLocationId:
+                    type: string
+                    description: Thing location ID
+                  Latitude:
+                    type: number
+                    description: Latitude coordinates
+                  Longitude:
+                    type: number
+                    description: Longitude coordinates
+                  AlternateId:
+                    type: string
+                    description: Thing AlternateId
+
+        default:
+          description: error
+

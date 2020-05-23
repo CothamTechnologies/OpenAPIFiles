@@ -27,6 +27,9 @@ paths:
       produces:
         - application/json
       parameters:
+      - name: APIKey
+        in: header
+        type: string
       - name: $top
         in: query
         type: integer
