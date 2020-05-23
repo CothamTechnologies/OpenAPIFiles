@@ -86,11 +86,9 @@ paths:
           description: Thing list retrieved successfully.
           schema:
             type: object
-            title: Wrapper
             properties:
               d:
                 type: object
-                title: Collection of Thing
                 properties:
                   results:
                     type: array
@@ -197,7 +195,6 @@ paths:
           description: Data retrieved successfully
           schema:
             type: object
-            title: Thing
             properties:
               d:
                 type: object
