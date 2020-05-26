@@ -1,0 +1,1762 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Thing
+  description: |-
+    A thing is an instance of a thing type. Thing type and thing have a one-to-many relationship, that is, one thing type may be referenced by many things, while each thing is defined by exactly one thing type. For example, you can create a thing of a specific car model ABCXSeries of thing type Automobiles and specify values for the attributes defined in the Automobiles thing type. You can use the thing services to create, delete, and retrieve things, and reading data such as properties, time series and so on.
+
+    The operations under Thing Metadata are deprecated. Please find the enhanced version of these operations at [Thing Configuration OData](/api/ThingConfiguration/resource) under ThingTypes and PropertySetTypes.
+tags:
+- name: Onboarding Things
+- name: Thing Metadata
+- name: Thing Data
+- name: Reference Property
+securityDefinitions:
+  OAuth2:
+    type: oauth2
+    flow: application
+    tokenUrl: https://{tenant}.authentication.eu10.hana.ondemand.com/oauth/token
+security:
+- OAuth2: []
+x-servers:
+- url: https://{appname}.cfapps.{host}
+  description: Thing REST API endopoint
+  templates:
+    appname:
+      default: appiot-mds
+      description: The application name
+    host:
+      enum:
+      - eu10.hana.ondemand.com
+      default: eu10.hana.ondemand.com
+      description: SAP IOT AE host
+    tenant:
+      description: ' To use this REST API,you need to get OAuth client credentials
+        (client ID and secret) from SAP Cloud Platform. After that, you need to pass
+        the obtained client credentials to the tenant-specific token endpoint to obtain
+        an access token.'
+      enum:
+      - sap-iotaehandson2
+      default: sap-iotaehandson2
+externalDocs:
+  description: For more information refer business documentation.
+  url: https://help.sap.com/viewer/080fabc6cae6423fb45fca7752adb61e/latest/en-US/a26d4b5eee55437799f450421cfb00fa.html
+host: sandbox.api.sap.com:443
+schemes:
+- https
+x-sap-shortText: This service allows modelling of objects created using the configuration service
+basePath: /iotae/mds
+paths:
+  /Things:
+    post:
+      tags:
+      - Onboarding Things
+      summary: Creates a thing
+      description: With this method, you can create a thing instance. Thing type and thing have a one-to-many relationship, that is, one thing type may be referenced by many things, while each thing is defined by exactly one thing type. The thing type has to be fully qualified name that is prefixed with the package name. For example, core.automobiles:ABCXSeries. When you assign an object group to a thing, you are allowed to carry out the functions based on the capabilities defined in the object group.
+      parameters:
+      - name: payload
+        in: body
+        description: Payload for a thing
+        required: true
+        schema:
+          type: object
+          properties:
+            _externalId:
+              type: string
+            _name:
+              type: string
+            _description:
+              type: object
+              properties:
+                en:
+                  type: string
+            _thingType:
+              type: array
+              items:
+                default: sap.iotaehandson.cafedemo.eversys:E2M
+            _location:
+              type: string
+              default: 143CDCC9FEBE451AAD7E8E4C74CCADB1
+            _customer:
+              type: string
+              default: 5B3189A7BB444949ADA7EFA8179F9640
+            _objectGroup:
+              default: 65FE3054668047429CB3514F6883C0F1
+      responses:
+        '201':
+          description: Thing created successfully
+          schema:
+            type: object
+            properties:
+              _externalId:
+                type: string
+                description: 'Thing identifier(not unique) from an external system.You
+                  can create multiple things with same externalID '
+              _name:
+                type: string
+                description: Descriptive name of the thing
+              _description:
+                type: object
+                properties:
+                  en:
+                    type: string
+                    description: Description of a thing in the specified language as defined in ISO Language Codes. The ISO code for the language is used here
+              _thingType:
+                type: array
+                items:
+                  type: string
+                  description: Array of thing types for a thing. It must correspond to one of the thing types found in a package. Currently, only one element is supported
+              _location:
+                type: string
+                description: Identifier for a Thing Location.
+                default: 143CDCC9FEBE451AAD7E8E4C74CCADB1
+              _customer:
+                type: string
+                description: Identifier for a Business Partner.
+                default: 5B3189A7BB444949ADA7EFA8179F9640
+              _objectGroup:
+                type: string
+                description: Object group ID for which the Thing has to be assigned to
+                default: 65FE3054668047429CB3514F6883C0F16
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+    get:
+      tags:
+      - Onboarding Things
+      summary: Retrieves all things
+      description: With this method, you can retrieve things for which you have access authorization.
+      parameters:
+      - name: $top
+        in: query
+        description: Number of records to include in the result set.
+        required: false
+        type: integer
+      - name: $skip
+        in: query
+        description: Number of the first n records to be excluded from the result set.
+        required: false
+        type: integer
+      - name: $count
+        in: query
+        description: Total number of thing objects available based on the current user's authorizations; permissible values are true and false.
+        required: false
+        type: boolean
+      - name: $orderby
+        in: query
+        description: Field name to be used for sorting the result set in ascending order; valid fields are _id, _name and _externalId.
+        required: false
+        type: string
+      - name: $filter
+        in: query
+        description: Filter condition to be applied; valid fields are _id, _name, _externalId, _thingType. The filter operators supported are eq, lt, gt, le, ge, and ne.
+        required: false
+        type: string
+      - name: $select
+        in: query
+        description: Select condition for the data fields to be included in the result set; valid fields are _id, _name, _externalId, _thingType, _location, and _customer.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      description: Unique thing identifier generated by the system while creating a thing
+                    _externalId:
+                      type: string
+                      description: Thing identifier(which is not unique) from an external system. You can create multiple things with same external id.
+                    _name:
+                      type: string
+                      description: Descriptive name of the Thing
+                    _description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                          description: Description of a thing in the specified language as defined in ISO Language Codes.The ISO Code for the language is used here
+                    _thingType:
+                      type: array
+                      items:
+                        type: string
+                        description: Array of thing types for a thing. It must correspond to one of the thing types found in a package. Currently only one element is supported
+                    _location:
+                      type: string
+                      description: Identifier for a Thing Location
+                    _customer:
+                      type: string
+                      description: Identifier for a Business Partner
+                    _objectGroup:
+                      type: string
+                      description: Object Group ID for which the Thing has to be assigned to
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /Things('{id}'):
+    get:
+      tags:
+      - Onboarding Things
+      summary: Retrieves a thing
+      description: With this method, you can retrieve generic fields and the thing type associated with the specified thing.
+      parameters:
+      - name: id
+        in: path
+        description: Internal identified of a thing, for example, `0079945DCD0A46EA959FC0ADCF435365`
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+                description: Unique thing identifier generated by the system while creating a thing
+              _externalId:
+                type: string
+                description: Thing identifier(which is not unique) from an external system. You can create multiple things with same external id.
+              _name:
+                type: string
+                description: Descriptive name of the Thing
+              _description:
+                type: object
+                properties:
+                  en:
+                    type: string
+                description: Description of a thing in the specified language as defined in ISO Language Codes.The ISO Code for the language is used here
+              _thingType:
+                type: array
+                items:
+                  type: string
+                  description: Array of thing types for a Thing. It must correspond to one of the thing types found in a package. Currently only one element is supported
+              _location:
+                type: string
+                description: Identifier for a Thing Location
+              _customer:
+                type: string
+                description: Identifier for a Business Partner
+              _objectGroup:
+                type: string
+                description: Object Group ID for which the Thing has to be assigned to
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+    post:
+      tags:
+      - Onboarding Things
+      summary: Updates thing attributes
+      description: With this method, you can update attributes such as external ID, name, or object group of a thing.
+      parameters:
+      - name: id
+        in: path
+        description: thing ID
+        required: true
+        type: string
+      - name: payload
+        in: body
+        description: Payload for a thing
+        required: true
+        schema:
+          type: object
+          properties:
+            _externalId:
+              type: string
+            _name:
+              type: string
+            _description:
+              type: object
+              properties:
+                en:
+                  type: string
+            _thingType:
+              type: array
+              items:
+                default: sap.iotaehandson.cafedemo.eversys:E2M
+            _location:
+              type: string
+              default: 143CDCC9FEBE451AAD7E8E4C74CCADB1
+            _customer:
+              type: string
+              default: 5B3189A7BB444949ADA7EFA8179F9640
+            _objectGroup:
+              default: 65FE3054668047429CB3514F6883C0F1
+      responses:
+        '200':
+          description: Thing updated successfully
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+      - Onboarding Things
+      summary: Deletes a thing  instance
+      description: With this method, you can delete a thing instance.
+      parameters:
+      - name: id
+        in: path
+        description: thing ID
+        required: true
+        type: string
+      responses:
+        '204':
+          description: Thing deleted successfully
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  /ThingsByAlternateId('{alternateThingID}')/{thingTypeName}/{propertySetID}:
+    put:
+      summary: Creates thing data using alternate thing ID
+      description: With this method, you can create data for the property sets of a thing that belongs to a specific thing type. You must provide the alternate thing ID in the request URL. This service supports data creation for the property sets of data categories MasterData and Parameters.
+      tags:
+      - Thing Data
+      parameters:
+      - name: alternateThingID
+        in: path
+        required: true
+        description: Alternate thing identifier unique within a specific tenant.
+        type: string
+      - name: thingTypeName
+        in: path
+        required: true
+        description: Name of a thing type.
+        type: string
+      - name: propertySetID
+        in: path
+        required: true
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type
+        type: string
+      - name: payload
+        in: body
+        description: Payload for a thing
+        required: true
+        schema:
+          type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: object
+                properties:
+                  _time:
+                    type: string
+      responses:
+        '200':
+          description: Data of category MasterData or Parameters for the specified thing created successfully
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /Things('{thingID}')/Configuration:
+    get:
+      tags:
+      - Onboarding Things
+      summary: Retrieves metadata of a thing
+      description: With this method, you can retrieve the configuration details of a thing type to which the specified thing belongs.
+      parameters:
+      - name: thingID
+        in: path
+        description: Internal identifier for a thing. For example, `0079945DCD0A46EA959FC0ADCF435365`
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              thingTypes:
+                type: array
+                description: Array of thingTypes for a Thing
+                items:
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the thing type. Only the following characters are supported-Uppercase and lowercase alphabets a through z and A through Z, -Numeric digits 0 through 9 ,Punctuation marks hyphen (-), underscore (_), colon (:), and full-stop (.)
+                    description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                    propertyTypes:
+                      type: array
+                      description: Array of property sets that belong to the thing type
+                      items:
+                        properties:
+                          id:
+                            type: string
+                            description: Unique identifier of the property type (that belongs to the propertySetType) defined in a thing type
+                          description:
+                            type: object
+                            properties:
+                              en:
+                                type: string
+                          propertySetType:
+                            type: string
+                            description: Name of the property set type referred
+              propertySetTypes:
+                type: array
+                description: Property set type is a group of attributes that are used to describe things.Property set types are assigned to thing types to describe a thing.
+                items:
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the property set type
+                    description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                    dataCategory:
+                      type: string
+                      description: Data category of the property set type
+                    propertyTypes:
+                      type: array
+                      description: The property type defines the properties of a thing. The properties have a specific data type assigned.
+                      items:
+                        title: value
+                        properties:
+                          id:
+                            type: string
+                            description: Name of the property
+                          description:
+                            type: object
+                            properties:
+                              en:
+                                type: string
+                          type:
+                            type: string
+                            description: Datatype used by the property type. Please refer to the section Value Data Types for Property Types in the business documnetation for the complete data type list.
+                          length:
+                            type: string
+                            description: Storage length for the property type specified as an integer value
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  /Configuration/ThingTypes:
+    get:
+      deprecated: true
+      tags:
+      - Thing Metadata
+      summary: Read details of ThingTypes
+      description: |
+        This thing configuration service is used to read the details of all the
+        existing thing types.
+
+        For more information refer the Business Documentation.
+      parameters:
+      - name: $top
+        in: query
+        description: Number of records to include in the result set
+        required: false
+        type: integer
+      - name: $skip
+        in: query
+        description: Number of the first n records to be excluded from the result set
+        required: false
+        type: integer
+      - name: $count
+        in: query
+        description: Total number of thingType objects available based on the current user's authorizations; permissible values are true and false
+        required: false
+        type: boolean
+      - name: $orderby
+        in: query
+        description: Field name to be used for sorting the result set in ascending order; valid fields are name. To sort the result set, use asc for the ascending order and desc for the descending order.
+        required: false
+        type: string
+      - name: $filter
+        in: query
+        description: Filter condition to be applied; the only valid field is name. The filter operators supported are eq, lt, gt, le, ge, and ne. Multiple filters are supported using the AND separator. You can use the string functions such as substringof, startswith, and endswith to search data using $filter. Valid field is description.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Details of one or more thing types are retrieved successfully
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the thing type
+                    description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                    propertyTypes:
+                      type: array
+                      description: Array of property sets that belong to the thing type
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Unique identifier of the property type (that belongs to the propertySetType) defined in a thing type
+                          description:
+                            type: object
+                            properties:
+                              en:
+                                type: string
+                          propertySetType:
+                            type: string
+                            description: Name of the property set type referred
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /Configuration/ThingTypes('{thingTypeName}'):
+    get:
+      deprecated: true
+      tags:
+      - Thing Metadata
+      summary: Read details of all ThingTypes
+      description: |
+        This thing configuration service is used to read the details of all the
+        existing thing types.
+
+        For more information refer the Business Documentation.
+      parameters:
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type. eg. `com.iotaedemo.drillingmachine2:CordlessDrill`
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Details of a specific thing type is retrieved successfully
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the thing type
+              description:
+                type: object
+                properties:
+                  en:
+                    type: string
+              propertyTypes:
+                type: array
+                description: Array of property sets that belong to the thing type
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: |
+                        Unique identifier of the property type (that belongs to
+                        the propertySetType) defined in a thing type
+                    description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                    propertySetType:
+                      type: string
+                      description: Name of the property set type referred
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+  /Configuration/ThingTypes('{thingTypeName}')/PropertySetTypes:
+    get:
+      deprecated: true
+      tags:
+      - Thing Metadata
+      summary: Read details of PropertySetTypes
+      description: |
+        This service is used to read the details of all the property set types that are assigned to a specific thing type.
+
+        For more information refer the Business Documentation.
+      parameters:
+      - name: thingTypeName
+        in: path
+        description: Name of thing type. eg. `com.iotaedemo.drillingmachine2:CordlessDrill`
+        required: true
+        type: string
+      responses:
+        '200':
+          description: |
+            Details of a specific property set type are retrieved successfully
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the property set type
+              description:
+                type: object
+                properties:
+                  en:
+                    type: string
+              propertyTypes:
+                type: array
+                description: |
+                  The property type defines the properties of a thing. The
+                  properties have a specific data type assigned. You can
+                  group the properties under a property set type. For
+                  example, the colour and model of the car, pressure and
+                  rotation speed of the wheel, or capacity and
+                  transmission of an engine are some of the property types
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Name of the property
+                    description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                    propertySetType:
+                      type: string
+  /Configuration/PropertySetTypes:
+    get:
+      deprecated: true
+      tags:
+      - Thing Metadata
+      summary: Read details of all PropertySetTypes
+      description: |
+        This service is used to read the details of all existing property set
+        types.
+
+        For more information refer the Business Documentation.
+      parameters:
+      - name: $top
+        in: query
+        description: Number of records to include in the result set
+        required: false
+        type: integer
+      - name: $skip
+        in: query
+        description: Number of the first n records to be excluded from the result set
+        required: false
+        type: integer
+      - name: $count
+        in: query
+        description: |
+          Total number of property set type objects available based on the
+          current user's authorizations; permissible values are true and false
+        required: false
+        type: boolean
+      - name: $orderby
+        in: query
+        description: |
+          Field name to be used for sorting the result set in ascending order;
+          valid fields are name and dataCategory. To sort the result set, use
+          asc for the ascending order and desc for the descending order.
+        required: false
+        type: string
+      - name: $filter
+        in: query
+        description: |
+          Filter condition to be applied; valid fields supported are name and
+          dataCategory. The filter operators supported are eq, lt, gt, le, ge,
+          and ne. You can use the string functions such as substringof,
+          startswith, and endswith to search data using $filter. Valid field
+          is description.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: |
+            Details of one or more property set types are retrieved
+            successfully.
+          schema:
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the property set type
+                    description:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                    dataCategory:
+                      type: string
+                      description: Data category of the property set type
+                    propertyTypes:
+                      type: array
+                      description: |
+                        The property type defines the properties of a thing. The
+                        properties have a specific data type assigned. You can
+                        group the properties under a property set type. For
+                        example, the colour and model of the car, pressure and
+                        rotation speed of the wheel, or capacity and
+                        transmission of an engine are some of the property types
+                      items:
+                        type: object
+                        properties:
+                          value:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Name of the property
+                              description:
+                                type: object
+                                properties:
+                                  en:
+                                    type: string
+                              type:
+                                type: string
+                                description: |
+                                  Datatype used by the property type.Please
+                                  refer to the section Value Data Types for
+                                  Property Types in the business documnetation
+                                  for the complete data type list.
+                              length:
+                                type: string
+                                description: |
+                                  Storage length for the property type specified
+                                  as an integer value
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /Configuration/PropertySetTypes('{propertySetTypeName}'):
+    get:
+      deprecated: true
+      tags:
+      - Thing Metadata
+      summary: Read details of specified PropertySetTypes
+      description: |
+        This service is used to read the details of the specified property set
+        type.
+
+        For more information refer the Business Documentation.
+      parameters:
+      - name: propertySetTypeName
+        in: path
+        description: Name of the property set type. eg. `com.iotaedemo.drillingmachine2:Battery`
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Details of a specific property set type are retrieved successfully
+          schema:
+            type: object
+            description: |
+              Property set type is a group of attributes that are used to
+
+              describe things. Property set types enable groups of property
+              types to be
+
+              assigned to a thing. Property set types are assigned to thing
+              types to
+
+              describe a thing. Property set type can be assigned to one of the
+              available
+
+              data categories such as MasterData, TimeSeriesData, DerivedData,
+              and
+
+              Parameters. For example, Car, Wheel, and Engine are valid property
+
+              set types. The colour and model of the car, pressure and rotation
+
+              speed of the wheel, and capacity and transmission of an engine are
+              some of
+
+              the property types that you can define for the corresponding
+              property set type.
+            properties:
+              name:
+                type: string
+                description: Name of the property set type
+              description:
+                type: object
+                properties:
+                  en:
+                    type: string
+              dataCategory:
+                type: string
+                description: Data category of the property set type
+              propertyTypes:
+                type: array
+                description: |
+                  The property type defines the properties of a thing. The
+
+                  properties have a specific data type assigned. You can group
+                  the
+
+                  properties under a property set type. For example, the colour
+                  and model of the car pressure and rotation speed of the wheel,
+                  or capacity and
+
+                  transmission of an engine are some of the property types.
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Name of the property
+                        description:
+                          type: object
+                          properties:
+                            en:
+                              type: string
+                        type:
+                          type: string
+                          description: |
+                            Datatype used by the property type. Please refer to
+                            the
+                        length:
+                          type: string
+                          description: |
+                            Storage length for the property type specified as an
+                            integer value
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+  /Things('{thingID}')/{thingTypeName}/{propertySetID}:
+    put:
+      tags:
+      - Thing Data
+      summary: Creates data for a thing
+      description: With this method, you can create data for the property sets of a thing that belongs to a specific thing type.
+      parameters:
+      - name: thingID
+        in: path
+        description: Internal identifier for a thing. For example, `0079945DCD0A46EA959FC0ADCF435365`
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type. For example, `sap.iotaehandson2.computeriotdevice:generic_computer`
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: |-
+          Unique identifier of the property type (that belongs to the property
+          set type) defined in a thing type. For example, `resource_sensors_2`
+        required: true
+        type: string
+      - name: payload
+        in: body
+        description: Payload for creating Thing Data
+        required: true
+        schema:
+          type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: object
+                properties:
+                  _time:
+                    type: string
+                    format: date-time
+                    default: '2017-04-30T12:12:35.397Z'
+                  stringType:
+                    type: string
+                  numericType:
+                    type: number
+                  numericFlexibleType:
+                    type: number
+                    format: float
+                  booleanType:
+                    type: boolean
+                  thingIDType:
+                    type: string
+                  bpIDType:
+                    type: string
+                  timestampType:
+                    type: string
+                    format: date-time
+                    default: '2017-04-30T12:12:35.397Z'
+                  dateTimeType:
+                    type: string
+                    format: date-time
+                    default: '2017-04-30T12:12:35.000Z'
+                  dateType:
+                    type: string
+                    format: datetime
+                    default: '2017-04-30T00:00:00.000Z'
+                  jsonType:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                  byteArrayType:
+                    type: string
+                    format: byte
+      responses:
+        '200':
+          description: |
+            Data for the property sets of a thing successfully created and id is
+            available in response header.
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+    get:
+      tags:
+      - Thing Data
+      summary: Retrieves thing data
+      description: With this method, you can retrieve the values of property sets of a thing that belongs to a specific thing type.
+      parameters:
+      - name: thingID
+        in: path
+        description: Internal identifier for a thing.
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: |
+          Unique identifier of the property type (that belongs to the property
+          set type) defined in a thing type.
+        required: true
+        type: string
+      - name: $top
+        in: query
+        description: Number of records to include in the result set.
+        required: false
+        type: integer
+      - name: $orderby
+        in: query
+        description: |
+          Field name to be used for sorting the result set in ascending order;
+          only valid field is _time. To sort the result set, use asc for the
+          ascending order and desc for the descending order.
+        required: false
+        type: string
+      - name: $select
+        in: query
+        description: |
+          Select condition for the data fields to be included in the result
+          set; valid fields are _time and all the property types.
+        required: false
+        type: string
+      - name: $filter
+        in: query
+        description: |
+          Filter condition to be applied; all the fields in the result set are
+          valid. Multiple filters are supported using the and separator.
+        required: false
+        type: string
+      - name: $skip
+        in: query
+        description: Number of the first n records to be excluded from the result set
+        required: false
+        type: integer
+      - name: $count
+        in: query
+        description: |
+          Total number of timeseries objects available based on the current
+          user's Authorization; permisible values are true or false
+        required: false
+        type: boolean
+      - name: timerange
+        in: query
+        description: |
+          Total time for which the thing data will be displayed. For example-
+          timerange=10M or timerange=2015-08-01T09:00:00Z-2015-10-01T09:00:00Z
+        required: false
+        type: string
+        format: date-time
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    propertyName:
+                      type: string
+                    _time:
+                      type: string
+                      format: date-time
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+      - Thing Data
+      summary: Deletes thing data
+      description: With this method, you can delete the data for the specified thing and property set type correpsonding to the time range provided.
+      parameters:
+      - name: thingID
+        in: path
+        description: Internal identifier for a thing.
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: |
+          Unique identifier of the property type (that belongs to the property
+          set type) defined in a thing type.
+        required: true
+        type: string
+      - name: timerange
+        in: query
+        description: |
+          Time from which the thing data are retrieved to be deleted. Example
+          - timerange=2015-08-01T06:00:00Z-2015-08-02T09:00:00Z or
+          timerange=10M
+        required: false
+        type: string
+        format: date-time
+      responses:
+        '204':
+          description: Data deleted successfully
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  /Snapshot(thingId='{thingID}',fromTime='{fromTime}',dataCategory='{dataCategory}'):
+    get:
+      tags:
+      - Thing Data
+      summary: Retrieves snapshot data of a thing
+      description: With this method, you can retrieve the latest value of properties for the specified thing ID. The service uses fromTime to define the time range to retrieve the latest non-null value. If you specify a valid time value for fromTime, the service retrieves the latest non-null value for a time range between the current time and the specified fromTime. If you do not specify a value or specify an empty value for fromTime, the service scans through the data available from the current time until it finds a non-null value. If the data is not available, the service returns null. The service does not support data category ReferencePropertyData.
+      parameters:
+      - name: thingID
+        in: path
+        description: |
+          Unique thing identifier for which you want to retrieve the snapshot
+          details.
+        required: true
+        type: string
+      - name: fromTime
+        in: path
+        description: "Time from which the snapshot details are retrieved for a non-null\n\
+          value of a property. The value for fromTime must correspond to UTC\ntimestamp.\
+          \ \n"
+        required: true
+        type: string
+        format: date-time
+      - name: dataCategory
+        in: path
+        description: "Filters the snapshot details based on data category enumeration\n\
+          values such as MasterData, DerivedData, TimeSeriesData,\nand Parameters.\
+          \ \n"
+        required: true
+        type: string
+      - name: $select
+        in: query
+        description: |-
+          Retrieve latest value only for specific properties.
+          Should be of the format 'propertySetID/propertyID'
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+                description: Internal identifier for a thing
+              _thingType:
+                type: array
+                items:
+                  type: string
+                description: Array of thing types
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /v2/Snapshot(thingId='{thingID}',fromTime='{fromTime}',toTime='{toTime}',dataCategory='{dataCategory}'):
+    get:
+      tags:
+      - Thing Data
+      summary: Retrieves snapshot data of a thing within the specified time range
+      description: With this method, you can retrieve the latest value of properties for the specified thing ID. The service uses fromTime and toTime, to define the time range to retrieve the latest non-null value. If fromTime and toTime are not specified, the service retrieves the first non-null value of properties. If the data is not available, the service returns null.
+      parameters:
+      - name: thingID
+        in: path
+        description: |
+          Unique thing identifier for which you want to retrieve the snapshot
+          details.
+        required: true
+        type: string
+      - name: fromTime
+        in: path
+        description: "Time from which the snapshot details are retrieved for a non-null\n\
+          value of a property. The value for fromTime must correspond to UTC\ntimestamp.\
+          \ \n"
+        required: true
+        type: string
+        format: date-time
+      - name: toTime
+        in: path
+        description: "Time up to which the snapshot details are retrieved for a non-null\n\
+          value of a property. The value for toTime must correspond to UTC\ntimestamp.\
+          \ \n"
+        required: true
+        type: string
+        format: date-time
+      - name: dataCategory
+        in: path
+        description: "Filters the snapshot details based on data category enumeration\n\
+          values such as MasterData, DerivedData, TimeSeriesData, Parameters,\nand\
+          \ ReferencePropertyData. \n"
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+                description: Internal identifier for a thing
+              _thingType:
+                type: array
+                items:
+                  type: string
+                description: Array of thing types
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  ? /Things('{thingID}')/{thingTypeName}/{propertySetID}?timerange={fromTime}-{toTime}&$apply=sap.lineChart(divisions={numberOfDivisions},property={propertyID})
+  : get:
+      tags:
+      - Thing Data
+      summary: Retrieves time series data for a specific property type
+      description: With this method, you can retrieve time series data for a specific property type of a thing by applying the M4 algorithm. This algorithm is used to aggregate the time series data for n number of divisions. Divisions correspond to the number of intervals into which the given time range needs to be divided. For each interval, the service returns unique minimum value, maximum value, first occurring value, and last occurring value, if they exist. Hence, there would be a maximum of four values per division returned. This service only supports property set types of data categories TimeSeriesData and DerivedData.
+      parameters:
+      - name: thingID
+        in: path
+        description: Internal identifier for a thing.
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: |
+          Unique identifier of the property type (that belongs to the property
+          set type) defined in a thing type.
+        required: true
+        type: string
+      - name: fromTime
+        in: path
+        description: Time from which the aggregates are calculated for a property type.
+        required: true
+        type: string
+        format: date-time
+      - name: toTime
+        in: path
+        description: Time up to which the aggregates are calculated for a property type.
+        required: true
+        type: string
+        format: date-time
+      - name: numberOfDivisions
+        in: path
+        description: |
+          Divisions correspond to the number of intervals into which the given
+          time range needs to be divided.
+        required: true
+        type: integer
+      - name: propertyID
+        in: path
+        description: property ID
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Data retrieved successfully
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    propertyName:
+                      type: string
+                    _time:
+                      type: string
+                      format: date-time
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /Things/PropertySet/{propertySetTypeName}:
+    get:
+      tags:
+      - Thing Data
+      summary: Return the things with the most recent property data
+      description: |
+        This service is used to return the things with the most recent property
+        data for the specified property set type. This service only retrieves property set type data
+        of data categories MasterData and Parameters.
+
+        For more information refer the Business Documentation.
+      parameters:
+      - name: propertySetTypeName
+        in: path
+        description: Name of the property set type. eg. `com.iotaedemo.drillingmachine2:Battery`
+        required: true
+        type: string
+      - name: $count
+        in: query
+        description: |-
+          Total number of thing objects available for the specified
+          property set type based on the current user's authorizations;
+          permissible values are true and false.
+          The following results apply, if this parameter is used in conjunction with the other query parameters:
+
+          If you use this with the $top and $skip parameters,
+          the result contains the total count of thing objects available for
+          the specified property set type
+
+          If you use this with $filter parameter, the result
+          contains the total number of thing objects
+          available for the specified property set type based on the defined filter condition.
+        required: false
+        type: boolean
+      - name: $orderby
+        in: query
+        description: |
+          Field name to be used for sorting the result set in
+          ascending order; the only valid field is _time. This is
+          required only if property set type is time-dependent.
+          To sort the result set, use asc for the ascending
+          order and desc for the descending order.
+        required: false
+        type: string
+      - name: $filter
+        in: query
+        description: |-
+          Filter condition to be applied; valid fields are _thingId, _time
+          and all properties. The filter operators
+          supported are eq, lt, gt, le, ge, and ne.
+        required: false
+        type: string
+      - name: $top
+        in: query
+        description: Number of records to include in the result set.
+        required: false
+        type: integer
+      - name: $skip
+        in: query
+        description: Number of the first n records to be excluded from the result set
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      description: Combination of Thing Identifier and property set type name
+                    _thingId:
+                      type: string
+                      description: Unique Thing identifier
+                    propertyName:
+                      type: string
+                    _time:
+                      type: string
+                      format: date-time
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  ? /Things('{ID}')/{thingTypeName}/M4/'{propertySetID1},{propertyTypeID1}&{propertySetID1},{propertyTypeID2}&{propertySetID2},{propertyTypeID2}'?timerange={fromTime}-{toTime}&$apply=sap.lineChart(divisions={noDivisions})
+  : get:
+      summary: Retrieves time series data for multiple properties of a thing applying M4 algorithm
+      description: With this method, you can read the time series data for multiple properties of the specified thing by applying the M4 algorithm. This algorithm is used to aggregate the time series data for n number of divisions. Divisions correspond to the number of intervals into which the given time range needs to be divided. For each interval, the service returns unique minimum value, maximum value, first occurring value, and last occurring value, if they exist. Hence, there would be a maximum of four values per division returned. This service only supports property set types of data categories TimeSeriesData and DerivedData.
+      tags:
+      - Thing Data
+      parameters:
+      - name: ID
+        in: path
+        required: true
+        description: You can specify unique thing identifier generated by the system while creating a thing or the alternate thing identifier which is unique only within a specific tenant.
+        type: string
+      - name: thingTypeName
+        in: path
+        required: true
+        description: Name of the thing type.
+        type: string
+      - name: propertySetID1
+        in: path
+        required: true
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type
+        type: string
+      - name: propertySetID2
+        in: path
+        required: true
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type
+        type: string
+      - name: propertyTypeID1
+        in: path
+        required: true
+        description: Unique identifier of the property set type
+        type: string
+      - name: propertyTypeID2
+        in: path
+        required: true
+        description: Unique identifier of the property set type
+        type: string
+      - name: fromTime
+        in: path
+        required: true
+        description: Time from which the aggregates are calculated for a property type
+        type: string
+        format: date-time
+      - name: toTime
+        in: path
+        required: true
+        description: Time up to which the aggregates are calculated for a property type
+        type: string
+        format: date-time
+      - name: noDivisions
+        in: path
+        required: true
+        description: Number of divisions
+        type: integer
+      - name: Accept-Encoding
+        in: header
+        required: false
+        description: Retrieve compressed response Only if you specify the value gzip or gzip,deflate for this parameter, the system returns the compressed response with an additional response header CONTENT-ENCODING with value gzip. If you specify an invalid value or do not use this header parameter, the system returns the uncompressed response.
+        type: string
+      responses:
+        '200':
+          description: Data retrieved successfully
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '500':
+          description: Internal server error
+  /Things('{thingID}')/ReferenceProperties/{thingTypeName}/{propertySetID}:
+    put:
+      tags:
+      - Reference Property
+      summary: Creates data for reference properties
+      description: With this method, you can create data for reference properties of a specific property set that is assigned to a thing type.
+      parameters:
+      - name: Accept-Language
+        in: header
+        required: false
+        description: Language
+        type: string
+      - name: sap-iot-strong-validations
+        in: header
+        required: true
+        description: Validate the payload.
+        type: string
+      - name: thingID
+        in: path
+        description: Unique thing identifier generated by the system while creating a thing or alternate thing identifier which is unique only within a specific tenant.
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: payload
+        in: body
+        description: Payload for thing referenceProperty creation
+        required: true
+        schema:
+          type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: object
+                properties:
+                  _time:
+                    type: string
+                    format: date-time
+                additionalProperties: {}
+      responses:
+        '200':
+          description: Reference data created successfully.
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+    get:
+      tags:
+      - Reference Property
+      summary: Retrieves data of reference properties of a specific property set.
+      description: With this method, you can read data of reference properties of a specific property set.
+      parameters:
+      - name: thingID
+        in: path
+        description: Unique thing identifier generated by the system while creating a thing or alternate thing identifier which is unique only within a specific tenant. For example, `0079945DCD0A46EA959FC0ADCF435365`
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type. For example, `sap.iotaehandson2.computeriotdevice:generic_computer`
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type. For example, `resource_sensors_2`
+        required: true
+        type: string
+      - name: $orderby
+        in: query
+        description: Field name to be used for sorting the result set in ascending order; valid fields are id (property type ID) and _time. To sort the result set, use asc for the ascending order and desc for the descending order.
+        required: false
+        type: string
+      - name: $select
+        in: query
+        description: Select condition to be applied; valid fields are id (property type ID) and _time.
+        required: false
+        type: string
+      - name: $filter
+        in: query
+        description: Filter condition to be applied; valid fields are id (property type ID) and _time.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Reference data retrieved successfully.
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _time:
+                      type: string
+                      format: date-time
+                  additionalProperties: {}
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  /Things/ReferenceProperties/{thingTypeName}/{propertySetID}:
+    put:
+      tags:
+      - Reference Property
+      summary: Creates reference properties data for multiple things
+      description: With this method, you can create data for reference properties of a specific property set for multiple things that belongs to a thing type.
+      parameters:
+      - name: Accept-Language
+        in: header
+        required: false
+        description: Language
+        type: string
+      - name: sap-iot-strong-validations
+        in: header
+        required: true
+        description: Validate the payload.
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: payload
+        in: body
+        description: Payload for thing referenceProperty creation
+        required: true
+        schema:
+          type: object
+          properties:
+            things:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+            value:
+              type: array
+              items:
+                type: object
+                properties:
+                  _time:
+                    type: string
+                    format: date-time
+                additionalProperties: {}
+      responses:
+        '200':
+          description: Reference data created successfully.
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  ? /Things('{thingID}')/{thingTypeName}/ReferenceProperties/'{propertySetID1},{propertyTypeID1}&{propertySetID1},{propertyTypeID2}&{propertySetID2},{propertyTypeID2}'?timerange={fromTime}-{toTime}
+  : get:
+      tags:
+      - Reference Property
+      summary: Retrieves reference properties data for a list of property sets
+      description: With this method, you can retrieve reference properties data for a list of property sets. By default, the service retrieves data available for the last one hour. You can use timerange property to retrieve data for a specific time range. The time value for the timerange property in the request URL must correspond to UTC timestamp.
+      parameters:
+      - name: thingID
+        in: path
+        description: Unique thing identifier generated by the system while creating a thing or alternate thing identifier which is unique only within a specific tenant.
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID1
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: propertySetID2
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: propertyTypeID1
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: propertyTypeID2
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: fromTime
+        in: path
+        description: "Time from which the reference properties data for a list of\
+          \ property sets is read. The value for fromTime must correspond to UTC\n\
+          timestamp. \n"
+        required: true
+        type: string
+        format: date-time
+      - name: toTime
+        in: path
+        description: "Time till which the reference properties data for a list of\
+          \ property sets is read. The value for toTime must correspond to UTC\ntimestamp.\
+          \ \n"
+        required: true
+        type: string
+        format: date-time
+      responses:
+        '200':
+          description: Reference data retrieved successfully.
+          schema:
+            type: object
+            properties:
+              values:
+                type: object
+        '400':
+          description: Bad request (for example - header field missing, wrong filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+  /Things('{thingID}')/ReferenceProperties/{thingTypeName}/{propertySetID}?$filter=_time eq {timeStamp}:
+    delete:
+      tags:
+      - Reference Property
+      summary: Deletes reference property data
+      description: With this method, you can delete data for reference properties of a specific property set that is assigned to a thing type. The _time property is mandatory for deleting reference properties data. If you do not specify _time, the system displays an error message.
+      parameters:
+      - name: thingID
+        in: path
+        description: Unique thing identifier generated by the system while creating a thing or alternate thing identifier which is unique only within a specific tenant.
+        required: true
+        type: string
+      - name: thingTypeName
+        in: path
+        description: Name of the thing type.
+        required: true
+        type: string
+      - name: propertySetID
+        in: path
+        description: Unique identifier of the property type (that belongs to the property set type) defined in a thing type.
+        required: true
+        type: string
+      - name: timeStamp
+        in: path
+        description: Time stamp for the properties.
+        required: true
+        type: string
+        format: date-time
+      responses:
+        '204':
+          description: Reference data deleted successfully
+        '400':
+          description: |
+            Bad request (for example - header field missing, wrong
+            filter,validation failed)
+        '403':
+          description: Forbidden (insufficient authorization)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+consumes:
+- application/json
+produces:
+- application/json

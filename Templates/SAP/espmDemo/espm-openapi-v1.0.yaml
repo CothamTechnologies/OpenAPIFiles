@@ -1,0 +1,104 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: SAP ESPM Demo
+  description: SAP ESPM Demo for SAP Cloud Platform (Foundary)
+
+host: 86c49573trial-dev-floprodemobasic.cfapps.us10.hana.ondemand.com
+basePath: /SampleServices/ESPM.svc/v2
+
+schemes:
+- https
+
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+security:
+  - basicAuth: []
+
+paths:
+  /Customers:
+    get:
+      summary: List Customers
+      description: List Customers
+      produces:
+      - application/json
+      parameters:
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: list of customers
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                        Address: 
+                          type: object
+                          properties: 
+                            City: 
+                              type: string
+                            Country: 
+                              type: string
+                            HouseNumber: 
+                              type: string
+                            PostalCode: 
+                              type: string
+                            Street: 
+                              type: string
+                        City: 
+                          type: string
+                        Country: 
+                          type: string
+                        CustomerId: 
+                          type: string
+                        DateOfBirth: 
+                          type: string
+                        EmailAddress: 
+                          type: string
+                        FirstName: 
+                          type: string
+                        HouseNumber: 
+                          type: string
+                        LastName: 
+                          type: string
+                        PhoneNumber: 
+                          type: string
+                        PostalCode: 
+                          type: string
+                        SalesOrders: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        Street: 
+                          type: string
+                        UpdatedTimestamp: 
+                          type: string
+                          format: nullable
+
+
+
+        default:
+          description: unexpected response
