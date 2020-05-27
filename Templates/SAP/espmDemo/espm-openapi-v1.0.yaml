@@ -19,6 +19,66 @@ security:
 
 paths:
 
+  /Products('{productID}')/StockDetails:
+    get:
+      summary: Product Stock Details
+      description: Product Stock Details
+      produces:
+      - application/json
+      parameters:
+      - name: productID
+        in: path
+        required: true
+        description: format json or XML
+        type: string
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: Sales Order Items Customer Details
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  __metadata: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      uri: 
+                        type: string
+                  LotSize: 
+                    type: string
+                  MinStock: 
+                    type: string
+                  ProductDetails: 
+                    type: object
+                    properties: 
+                      __deferred: 
+                        type: object
+                        properties: 
+                          uri: 
+                            type: string
+                  ProductId: 
+                    type: string
+                  Quantity: 
+                    type: string
+                  QuantityLessMin: 
+                    type: boolean
+                  UpdatedTimestamp: 
+                    type: string
+                    format: nullable
+
+
+
+        default:
+          description: unexpected response
+
   /SalesOrderHeaders('{orderID}')/CustomerDetails:
     get:
       summary: List Sales Order Customer Details
