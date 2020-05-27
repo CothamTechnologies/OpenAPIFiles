@@ -18,6 +18,400 @@ security:
   - basicAuth: []
 
 paths:
+
+  /SalesOrderHeaders('{orderID}')/CustomerDetails:
+    get:
+      summary: List Sales Order Customer Details
+      description: List Sales Order Customer Details
+      produces:
+      - application/json
+      parameters:
+      - name: orderID
+        in: path
+        required: true
+        description: format json or XML
+        type: string
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: Sales Order Items Customer Details
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  __metadata: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      uri: 
+                        type: string
+                  Address: 
+                    type: object
+                    properties: 
+                      City: 
+                        type: string
+                      Country: 
+                        type: string
+                      HouseNumber: 
+                        type: string
+                      PostalCode: 
+                        type: string
+                      Street: 
+                        type: string
+                  City: 
+                    type: string
+                  Country: 
+                    type: string
+                  CustomerId: 
+                    type: string
+                  DateOfBirth: 
+                    type: string
+                  EmailAddress: 
+                    type: string
+                  FirstName: 
+                    type: string
+                  HouseNumber: 
+                    type: string
+                  LastName: 
+                    type: string
+                  PhoneNumber: 
+                    type: string
+                  PostalCode: 
+                    type: string
+                  SalesOrders: 
+                    type: object
+                    properties: 
+                      __deferred: 
+                        type: object
+                        properties: 
+                          uri: 
+                            type: string
+                  Street: 
+                    type: string
+                  UpdatedTimestamp: 
+                    type: string
+                    format: nullable
+
+
+
+        default:
+          description: unexpected response
+
+  /SalesOrderHeaders('{orderID}')/items:
+    get:
+      summary: List Sales Order Items
+      description: List Sales Order Items
+      produces:
+      - application/json
+      parameters:
+      - name: orderID
+        in: path
+        required: true
+        description: format json or XML
+        type: string
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: List of Sales Order Items
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                        CurrencyCode: 
+                          type: string
+                        DeliveryDate: 
+                          type: string
+                          format: nullable
+                        GrossAmount: 
+                          type: string
+                        Header: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        ItemNumber: 
+                          type: number
+                        NetAmount: 
+                          type: string
+                        ProductDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        ProductId: 
+                          type: string
+                        Quantity: 
+                          type: string
+                        QuantityUnit: 
+                          type: string
+                        SalesOrderId: 
+                          type: string
+                        TaxAmount: 
+                          type: string
+
+
+        default:
+          description: unexpected response
+
+  /SalesOrderHeaders:
+    get:
+      summary: List Sales Order Headers
+      description: List Sales Order Headers
+      produces:
+      - application/json
+      parameters:
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: List of Sales Order Headers
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                        CreatedAt: 
+                          type: string
+                        CurrencyCode: 
+                          type: string
+                        CustomerDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        CustomerId: 
+                          type: string
+                        GrossAmount: 
+                          type: string
+                        Items: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        LifeCycleStatus: 
+                          type: string
+                        LifeCycleStatusName: 
+                          type: string
+                        NetAmount: 
+                          type: string
+                        SalesOrderId: 
+                          type: string
+                        TaxAmount: 
+                          type: string
+
+        default:
+          description: unexpected response
+
+  /Stock:
+    get:
+      summary: List Stock
+      description: List Stock
+      produces:
+      - application/json
+      parameters:
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: list of Stock
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                        LotSize: 
+                          type: string
+                        MinStock: 
+                          type: string
+                        ProductDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        ProductId: 
+                          type: string
+                        Quantity: 
+                          type: string
+                        QuantityLessMin: 
+                          type: boolean
+                        UpdatedTimestamp: 
+                          type: string
+                          format: nullable
+
+
+
+        default:
+          description: unexpected response
+
+  /Products:
+    get:
+      summary: List Products
+      description: List Products
+      produces:
+      - application/json
+      parameters:
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: list of products
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            content_type: 
+                              type: string
+                            edit_media: 
+                              type: string
+                            id: 
+                              type: string
+                            media_src: 
+                              type: string
+                            uri: 
+                              type: string
+                        Category: 
+                          type: string
+                        CategoryName: 
+                          type: string
+                        CurrencyCode: 
+                          type: string
+                        DimensionDepth: 
+                          type: string
+                        DimensionHeight: 
+                          type: string
+                        DimensionUnit: 
+                          type: string
+                        DimensionWidth: 
+                          type: string
+                        LongDescription: 
+                          type: string
+                        Name: 
+                          type: string
+                        PictureUrl: 
+                          type: string
+                        Price: 
+                          type: string
+                        ProductId: 
+                          type: string
+                        QuantityUnit: 
+                          type: string
+                        ShortDescription: 
+                          type: string
+                        StockDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        SupplierDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        SupplierId: 
+                          type: string
+                        UpdatedTimestamp: 
+                          type: string
+                          format: nullable
+                        Weight: 
+                          type: string
+                        WeightUnit: 
+                          type: string
+
+
+        default:
+          description: unexpected response
+
   /Customers:
     get:
       summary: List Customers
