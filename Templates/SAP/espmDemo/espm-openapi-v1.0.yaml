@@ -19,7 +19,7 @@ security:
 
 paths:
 
-  /?format=json:
+  /hello:
     get:
       summary: Get oData Service Endpoint
       description: Get oData Service Endpoint
