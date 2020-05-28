@@ -19,6 +19,29 @@ security:
 
 paths:
 
+  /:
+    get:
+      summary: Get oData Service Endpoint
+      description: Get oData Service Endpoint
+      produces:
+      - application/json
+      parameters:
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: List of oData Services
+          schema:
+            type: object
+            properties:
+              @odata.context:
+                type: string
+        default:
+          description: unexpected response
+
   /Products('{productID}')/StockDetails:
     get:
       summary: Product Stock Details
