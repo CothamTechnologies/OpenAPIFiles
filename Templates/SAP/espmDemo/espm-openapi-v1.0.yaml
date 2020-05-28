@@ -19,7 +19,7 @@ security:
 
 paths:
 
-  /hello:
+  /:
     get:
       summary: Get oData Service Endpoint
       description: Get oData Service Endpoint
@@ -39,6 +39,17 @@ paths:
             properties:
               odata.context:
                 type: string
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    kind:
+                      type: string
+                    name:
+                      type: string
+                    url:
+                      type: string
         default:
           description: unexpected response
 
