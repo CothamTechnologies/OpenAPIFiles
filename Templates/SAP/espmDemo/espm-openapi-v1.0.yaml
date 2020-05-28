@@ -19,6 +19,81 @@ security:
 
 paths:
 
+  /Customers('{customerID')/SalesOrders:
+    get:
+      summary: List SOs for Customer
+      description: List Sales Orders for a Customer
+      produces:
+      - application/json
+      parameters:
+      - name: customerID
+        in: path
+        required: true
+        description: ID of Customer
+        type: string
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: list of sales Orders
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                        CreatedAt: 
+                          type: string
+                        CurrencyCode: 
+                          type: string
+                        CustomerDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        CustomerId: 
+                          type: string
+                        GrossAmount: 
+                          type: string
+                        Items: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        LifeCycleStatus: 
+                          type: string
+                        LifeCycleStatusName: 
+                          type: string
+                        NetAmount: 
+                          type: string
+                        SalesOrderId: 
+                          type: string
+                        TaxAmount: 
+                          type: string
+        default:
+          description: unexpected response
+  
   /:
     get:
       summary: Get oData Service Endpoint
@@ -63,7 +138,7 @@ paths:
       - name: productID
         in: path
         required: true
-        description: format json or XML
+        description: Product ID
         type: string
       - name: $format
         in: query
