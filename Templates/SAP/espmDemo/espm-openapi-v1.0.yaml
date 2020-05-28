@@ -37,7 +37,7 @@ paths:
           schema:
             type: object
             properties:
-              @odata.context:
+              odata.context:
                 type: string
         default:
           description: unexpected response
