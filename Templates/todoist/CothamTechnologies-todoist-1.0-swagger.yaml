@@ -163,7 +163,7 @@ paths:
                 type: string
               due_date: 
                 type: string
-              datetime: 
+              due_datetime: 
                 type: string
               due_lang: 
                 type: string
