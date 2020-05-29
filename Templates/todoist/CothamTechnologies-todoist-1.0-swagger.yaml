@@ -159,8 +159,7 @@ paths:
             properties:
               content: 
                 type: string
-              priority: 
-                type: number
+
       responses:
         204:
           description: success
