@@ -159,13 +159,7 @@ paths:
             properties:
               content: 
                 type: string
-              due_string: 
-                type: string
-              due_date: 
-                type: string
               due_datetime: 
-                type: string
-              due_lang: 
                 type: string
               priority: 
                 type: number
