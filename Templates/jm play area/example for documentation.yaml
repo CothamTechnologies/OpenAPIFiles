@@ -1,0 +1,218 @@
+
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Users API
+  description: Users API to allow Create, Read, Update and Delete Functions
+
+host: api.server.com 
+basePath: /v1/data
+schemes:
+  - https
+
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# Applied Basic Authentication to all endpoints. You Only need to set the username to the REST API Key. 
+# Note: There is no need to specify a password.
+
+security:
+  - basicAuth: []
+
+paths:
+  /1_27_users/:
+    get:
+      summary: List Users
+      description: Get all user table records
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page 
+          type: integer
+          description: The desired page default 1
+          required: false
+          
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                username:
+                  type: string
+                userID:
+                  type: integer
+                timeCreated:
+                  type: string
+                  format: date-time
+                timeUpdated:
+                  type: string
+                  format: date-time
+
+        default:
+          description: This applies to all responses that are not 200
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+    post:
+      summary: Create User 
+      description: Create User in Kumulos Data Table
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:         
+        - in: body
+          name: body
+          description: User Data to Create
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              
+           
+      responses:
+        201:
+          description: Success Response
+            
+        default:
+          description: This applies to all responses that are not 201
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  
+  /1_27_users/{id}:
+    get:
+      summary: Get User
+      description: Return single user record from Table
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: user table record id
+          required: true
+
+      responses:
+        200:
+          description: Success
+          schema:           
+            type: object
+            properties:
+              username:
+                type: string
+              userID:
+                  type: integer
+              timeCreated:
+                type: string
+                format: date-time
+              timeUpdated:
+                type: string
+                format: date-time
+              
+        default:
+          description: This applies to all responses that are not 200
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+    
+    delete:
+      summary: Delete User
+      description: Delete single User record from Table
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: user table record id
+          required: true
+
+      responses:
+        204:
+          description: Success
+          
+        default:
+          description: This applies to all responses that are not 204
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+          
+    put:
+      summary: Update User
+      description: Update single user record in Table
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: table user record id
+          required: true
+        - in: body
+          name: body
+          description: User Data to Update
+          schema:
+            type: object
+            properties:
+              username:
+                type: string             
+          required: true
+           
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              userID:
+                  type: integer
+              timeCreated:
+                type: string
+                format: string
+              timeUpdated:
+                type: string
+                format: string
+
+        default:
+          description: This applies to all responses that are not 200
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string

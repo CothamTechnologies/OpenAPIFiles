@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  title: Sales Order (A2X)
+  version: '1'
+  description: SAP S4 Hana Cloud Demo - Sales Orders 
+
+
+
+host: sandbox.api.sap.com
+basePath: /s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV
+schemes:
+- https
+
+securityDefinitions:
+  basicAuthentication:
+    type: basic
+
+security:
+- basicAuthentication: []
+
+
+paths:
+  /A_SalesOrder:
+    get:
+      summary: Get entities from A_SalesOrder
+      description: Get entities from A_SalesOrder
+      produces:
+        - application/json
+      parameters:
+      - name: APIKey
+        in: header
+        type: string
+      - name: $top
+        in: query
+        type: integer
+      - name: $inlinecount
+        in: query
+        type: string
+      - name: $skip
+        in: query
+        type: integer
+
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            type: object
+            properties:
+              d:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        SalesOrder:
+                          type: string
+                        SalesOrderType:
+                          type: string
+                        SalesOrganization:
+                          type: string
+
+        default:
+          description: Error
+    
+    
