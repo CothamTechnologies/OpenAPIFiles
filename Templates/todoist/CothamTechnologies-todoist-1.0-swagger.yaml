@@ -159,6 +159,10 @@ paths:
             properties:
               content: 
                 type: string
+              priority:
+                type: number
+              due_datetime:
+                type: string
 
       responses:
         204:
