@@ -159,16 +159,11 @@ paths:
             properties:
               content: 
                 type: string
-              due_string: 
-                type: string
-              due_date: 
-                type: string
-              datetime: 
-                type: string
-              due_lang: 
-                type: string
-              priority: 
+              priority:
                 type: number
+              due_datetime:
+                type: string
+
       responses:
         204:
           description: success
