@@ -1,0 +1,121 @@
+swagger: '2.0'
+info:
+  description: Get information about countries via a RESTful API https://restcountries.eu/
+  version: '1.0'
+  title: REST COUNTRIES
+  
+host: restcountries.eu
+basePath: /rest/v2
+
+schemes:
+  - https
+  
+paths:
+  
+  /all:
+    get:
+      summary: Get All Countries
+      description: Get All Countries
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
