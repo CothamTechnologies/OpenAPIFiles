@@ -12,6 +12,800 @@ schemes:
   
 paths:
   
+  /regionalbloc/{regionalbloc}:
+    get:
+      summary: Search by regional bloc
+      description: Search by regional bloc eg EU, EFTA, CARICOM, PA, AU, USAN, EEU, AL, ASEAN, CAIS, CEFTA, NAFTA, SAARC
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: region
+          in: path
+          type: string
+          description: region
+          required: true
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+  
+  /region/{region}:
+    get:
+      summary: Search by region
+      description: Search by region Africa, Americas, Asia, Europe, Oceania
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: region
+          in: path
+          type: string
+          description: region
+          required: true
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+  
+  /callingcode/{callingcode}:
+    get:
+      summary: Search by calling code
+      description: Search by calling code
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: callingcode
+          in: path
+          type: string
+          description: calling code
+          required: true
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+
+  /capital/{capital}:
+    get:
+      summary: Search by capital city
+      description: Search by capital city
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: capital
+          in: path
+          type: string
+          description: capital name
+          required: true
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+  
+  /currency/{currency}:
+    get:
+      summary: Search by curreny code
+      description: Search by ISO 4217 currency code
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: currency
+          in: path
+          type: string
+          description: currency code
+          required: true
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+  
+  /alpha:
+    get:
+      summary: Search by country code
+      description: Search by ISO 3166-1 2-letter or 3-letter country code
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: codes
+          in: query
+          type: string
+          description: string of codes eg col;no;ee
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+  
+  /name/{name}:
+    get:
+      summary: Search by name 
+      description: Search Countries by name includes partial name
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          type: string
+          description: string of name / partial name
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: string of field names eg name;capital;currencies 
+        - name: fullText
+          in: query
+          type: string
+          description: search by full name, set to true 
+
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                name: 
+                  type: string
+                alpha2Code: 
+                  type: string
+                alpha3Code: 
+                  type: string
+                capital: 
+                  type: string
+                region: 
+                  type: string
+                subregion: 
+                  type: string
+                population: 
+                  type: number
+                demonym: 
+                  type: string
+                area: 
+                  type: number
+                gini: 
+                  type: number
+                nativeName: 
+                  type: string
+                numericCode: 
+                  type: string
+                currencies: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      code: 
+                        type: string
+                      name: 
+                        type: string
+                      symbol: 
+                        type: string
+                languages: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      iso639_1: 
+                        type: string
+                      iso639_2: 
+                        type: string
+                      name: 
+                        type: string
+                      nativeName: 
+                        type: string
+                translations: 
+                  type: object
+                  properties: 
+                    de: 
+                      type: string
+                    es: 
+                      type: string
+                    fr: 
+                      type: string
+                    ja: 
+                      type: string
+                    it: 
+                      type: string
+                    br: 
+                      type: string
+                    pt: 
+                      type: string
+                    nl: 
+                      type: string
+                    hr: 
+                      type: string
+                    fa: 
+                      type: string
+                flag: 
+                  type: string
+                regionalBlocs: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      acronym: 
+                        type: string
+                      name: 
+                        type: string
+                cioc: 
+                  type: string
+
+        default:
+          description: unexpected response
+  
   /all:
     get:
       summary: Get All Countries
