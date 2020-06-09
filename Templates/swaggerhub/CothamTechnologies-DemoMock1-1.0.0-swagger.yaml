@@ -858,6 +858,8 @@ paths:
                 type: string
               username:
                 type: string
+              startingScriptURL:
+                type: string
 
         default:
           description: server error
