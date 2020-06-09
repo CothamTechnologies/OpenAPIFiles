@@ -11,6 +11,52 @@ schemes:
 
 paths:
   
+  /getRefData:
+    get:
+      summary: SR Get Ref data
+      description: SR Get Ref data
+      tags:
+        - Service Robotics
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              pwordtype:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+              privilages:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+              hotdrinks:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+             
+        default:
+          description: server error
+  
   /getleads:
     get:
       summary: SR get leads
@@ -39,7 +85,15 @@ paths:
                   properties:
                     id: 
                       type: string
-                    name:
+                    firstName:
+                      type: string
+                    surName:
+                      type: string
+                    address:
+                      type: string
+                    telephone:
+                      type: string
+                    email:
                       type: string
                     status: 
                       type: string
