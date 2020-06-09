@@ -114,6 +114,8 @@ paths:
                             type: string
                           qStatus:
                             type: string
+                          required:
+                            type: string
                     siteVisit:
                       type: array
                       items:
@@ -127,6 +129,8 @@ paths:
                             type: string
                           qStatus:
                             type: string
+                          required:
+                            type: string
                     info:
                       type: array
                       items:
@@ -139,6 +143,8 @@ paths:
                           type:
                             type: string
                           qStatus:
+                            type: string
+                          required:
                             type: string
 
                  
