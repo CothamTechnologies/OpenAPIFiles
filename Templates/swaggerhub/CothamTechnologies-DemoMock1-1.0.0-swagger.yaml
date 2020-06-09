@@ -97,6 +97,8 @@ paths:
                       type: string
                     status: 
                       type: string
+                    introStatus:
+                      type: string
                     suitability:
                       type: array
                       items:
