@@ -11,6 +11,76 @@ schemes:
 
 paths:
   
+  /getleads:
+    get:
+      summary: SR get leads
+      description: SR get leads
+      tags:
+        - Service Robotics
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              leads:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: 
+                      type: string
+                    name:
+                      type: string
+                    status: 
+                      type: string
+                    suitability:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          question:
+                            type: string
+                          answer:
+                            type: string
+                          type:
+                            type: string
+                    siteVisit:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          question:
+                            type: string
+                          answer:
+                            type: string
+                          type:
+                            type: string
+                    info:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          question:
+                            type: string
+                          answer:
+                            type: string
+                          type:
+                            type: string
+
+                 
+        default:
+          description: server error
+
   /gettasks:
     get:
       summary: Get tasks
