@@ -99,6 +99,8 @@ paths:
                       type: string
                     introStatus:
                       type: string
+                    consentSignature:
+                      type: string
                     suitability:
                       type: array
                       items:
