@@ -108,6 +108,8 @@ paths:
                             type: string
                           type:
                             type: string
+                          qStatus:
+                            type: string
                     siteVisit:
                       type: array
                       items:
@@ -119,6 +121,8 @@ paths:
                             type: string
                           type:
                             type: string
+                          qStatus:
+                            type: string
                     info:
                       type: array
                       items:
@@ -129,6 +133,8 @@ paths:
                           answer:
                             type: string
                           type:
+                            type: string
+                          qStatus:
                             type: string
 
                  
