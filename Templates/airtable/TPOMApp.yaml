@@ -73,6 +73,8 @@ paths:
                       properties: 
                         ImageURL1: 
                           type: string
+                        ImageURL2: 
+                          type: string
                         Practical Description: 
                           type: string
                         audioURL1: 
