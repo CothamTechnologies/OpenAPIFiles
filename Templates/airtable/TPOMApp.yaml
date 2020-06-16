@@ -79,9 +79,15 @@ paths:
                           type: string
                         audioURL1: 
                           type: string
+                        audioURL2: 
+                          type: string
                         Name: 
                           type: string
                         Description: 
+                          type: string
+                        Audio1Name:
+                          type: string
+                        Audio2Name:
                           type: string
                     createdTime: 
                       type: string
