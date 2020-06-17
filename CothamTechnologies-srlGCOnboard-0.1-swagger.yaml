@@ -36,6 +36,8 @@ paths:
             properties:
               message:
                 type: string
+              body:
+                type: string
 
   /users/login:
     post:
