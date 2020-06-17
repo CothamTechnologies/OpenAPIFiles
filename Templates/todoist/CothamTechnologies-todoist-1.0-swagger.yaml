@@ -289,16 +289,10 @@ paths:
                 type: string
               due_datetime: 
                 type: string
-              due_lang: 
-                type: string
               priority: 
                 type: number
-              parent: 
-                type: number
-              project_id: 
-                type: number
-              section_id: 
-                type: number
+              
+                
       responses:
         200:
           description: success
