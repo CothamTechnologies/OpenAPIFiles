@@ -19,6 +19,81 @@ security:
 
 paths:
 
+  /Customers('{customerID')/SalesOrders:
+    get:
+      summary: List SOs for Customer
+      description: List Sales Orders for a Customer
+      produces:
+      - application/json
+      parameters:
+      - name: customerID
+        in: path
+        required: true
+        description: ID of Customer
+        type: string
+      - name: $format
+        in: query
+        required: false
+        description: format json or XML
+        type: string
+      responses:
+        '200':
+          description: list of sales Orders
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                        CreatedAt: 
+                          type: string
+                        CurrencyCode: 
+                          type: string
+                        CustomerDetails: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        CustomerId: 
+                          type: string
+                        GrossAmount: 
+                          type: string
+                        Items: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        LifeCycleStatus: 
+                          type: string
+                        LifeCycleStatusName: 
+                          type: string
+                        NetAmount: 
+                          type: string
+                        SalesOrderId: 
+                          type: string
+                        TaxAmount: 
+                          type: string
+        default:
+          description: unexpected response
+  
   /:
     get:
       summary: Get oData Service Endpoint
@@ -63,7 +138,7 @@ paths:
       - name: productID
         in: path
         required: true
-        description: format json or XML
+        description: Product ID
         type: string
       - name: $format
         in: query
@@ -361,6 +436,40 @@ paths:
         required: false
         description: format json or XML
         type: string
+      - name: $top
+        in: query
+        required: false
+        description: Number of records to include in the result set.
+        type: integer
+      - name: $skip
+        in: query
+        required: false
+        description: Number of the first n records to be excluded from the result set.
+        type: integer
+      - name: $inlinecount
+        in: query
+        required: false
+        type: string
+      - name: $count
+        in: query
+        required: false
+        description: Total number of things available based on the current user's authorizations; permissible values are true and false. If this is used in conjunction with the $top and $skip parameters, the result contains the total count of things available.
+        type: boolean
+      - name: $orderby
+        in: query
+        required: false
+        description: Field name to be used for sorting the result set in ascending order; all thing entity fields are valid. To sort the result set, use asc for the ascending order and desc for the descending order.
+        type: string
+      - name: $select
+        in: query
+        required: false
+        description: Select condition for the thing entity fields to be included in the result set.
+        type: string
+      - name: $filter
+        in: query
+        required: false
+        description: Filter condition to be applied; all thing entity fields are valid. Multiple filters are supported using the and separator. You can use the string functions such as substringof, startswith, and endswith to search data using $filter.
+        type: string
       responses:
         '200':
           description: list of Stock
@@ -420,6 +529,40 @@ paths:
         in: query
         required: false
         description: format json or XML
+        type: string
+      - name: $top
+        in: query
+        required: false
+        description: Number of records to include in the result set.
+        type: integer
+      - name: $skip
+        in: query
+        required: false
+        description: Number of the first n records to be excluded from the result set.
+        type: integer
+      - name: $inlinecount
+        in: query
+        required: false
+        type: string
+      - name: $count
+        in: query
+        required: false
+        description: Total number of things available based on the current user's authorizations; permissible values are true and false. If this is used in conjunction with the $top and $skip parameters, the result contains the total count of things available.
+        type: boolean
+      - name: $orderby
+        in: query
+        required: false
+        description: Field name to be used for sorting the result set in ascending order; all thing entity fields are valid. To sort the result set, use asc for the ascending order and desc for the descending order.
+        type: string
+      - name: $select
+        in: query
+        required: false
+        description: Select condition for the thing entity fields to be included in the result set.
+        type: string
+      - name: $filter
+        in: query
+        required: false
+        description: Filter condition to be applied; all thing entity fields are valid. Multiple filters are supported using the and separator. You can use the string functions such as substringof, startswith, and endswith to search data using $filter.
         type: string
       responses:
         '200':
@@ -517,6 +660,40 @@ paths:
         in: query
         required: false
         description: format json or XML
+        type: string
+      - name: $top
+        in: query
+        required: false
+        description: Number of records to include in the result set.
+        type: integer
+      - name: $skip
+        in: query
+        required: false
+        description: Number of the first n records to be excluded from the result set.
+        type: integer
+      - name: $inlinecount
+        in: query
+        required: false
+        type: string
+      - name: $count
+        in: query
+        required: false
+        description: Total number of things available based on the current user's authorizations; permissible values are true and false. If this is used in conjunction with the $top and $skip parameters, the result contains the total count of things available.
+        type: boolean
+      - name: $orderby
+        in: query
+        required: false
+        description: Field name to be used for sorting the result set in ascending order; all thing entity fields are valid. To sort the result set, use asc for the ascending order and desc for the descending order.
+        type: string
+      - name: $select
+        in: query
+        required: false
+        description: Select condition for the thing entity fields to be included in the result set.
+        type: string
+      - name: $filter
+        in: query
+        required: false
+        description: Filter condition to be applied; all thing entity fields are valid. Multiple filters are supported using the and separator. You can use the string functions such as substringof, startswith, and endswith to search data using $filter.
         type: string
       responses:
         '200':
