@@ -73,6 +73,8 @@ paths:
                       properties: 
                         mediaType: 
                           type: string
+                        mediaTime: 
+                          type: string
                         mediaURL: 
                           type: string
                         Sort: 
