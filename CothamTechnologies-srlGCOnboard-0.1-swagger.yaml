@@ -1,0 +1,209 @@
+swagger: "2.0"
+info:
+  version: "0.1"
+  title: "GC Onboard"
+  description: "GC Onboarding app API"
+
+host: "g0uaj60i54.execute-api.eu-west-2.amazonaws.com"
+basePath: "/development"
+
+schemes:
+  - "https"
+paths:
+  /ping:
+    get:
+      summary: Tests API status
+      description: Is your JWT valid?
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /users/login:
+    post:
+      summary: Login
+      description: Allows user to login
+      tags:
+        - 0. User management
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: email
+          type: string
+          description: email (required if password provided)
+        - in: query
+          name: password
+          type: string
+          description: password (required if email provided)
+        - in: query
+          name: refresh_token
+          type: string
+          description: Refresh token for renewing access token (required if email and password not provided)
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              AccessToken:
+                type: string
+              RefreshToken:
+                type: string
+              IdToken:
+                type: string
+              TokenType:
+                type: string
+              ExpiresIn:
+                type: integer
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+  /users/forgot:
+    post:
+      summary: Forgot password
+      description: Triggers email to user with confirmation code
+      tags:
+        - 0. User management
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: email
+          type: string
+          description: email
+          required: true
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              CodeDeliveryDetails:
+                type: object
+                properties:
+                  Destination:
+                    type: string
+                  DeliveryMedium:
+                    type: string
+                  AttributeName:
+                    type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+  /users/forgotconfirm:
+    post:
+      summary: Password change confirmation
+      description: Triggers password change
+      tags:
+        - 0. User management
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: email
+          type: string
+          description: email
+          required: true
+        - in: query
+          name: confirmationCode
+          type: string
+          description: confirmationCode previously sent
+          required: true
+        - in: query
+          name: password
+          type: string
+          description: new password for this user
+          required: true
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+  /users:
+    post:
+      summary: Signup
+      description: Allows user to signup for an account
+      tags:
+        - 0. User management
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: email
+          type: string
+          description: email
+          required: true
+        - in: query
+          name: password
+          type: string
+          description: password
+          required: true
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
