@@ -14,8 +14,8 @@ paths:
   
   /{baseid}/Media:
     get:
-      summary: List Days
-      description: List Days
+      summary: List Media
+      description: List Media
       produces:
         - application/json
       parameters:
