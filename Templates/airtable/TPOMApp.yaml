@@ -89,6 +89,16 @@ paths:
                           type: string
                         Audio2Name:
                           type: string
+                        audio1Time:
+                          type: string
+                        audio2Time:
+                          type: string
+                        Sort:
+                          type: string
+                        additionalInfoURL:
+                          type: string
+                        additionalInfoType:
+                          type: string
                     createdTime: 
                       type: string
               offset: 
