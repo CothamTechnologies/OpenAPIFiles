@@ -47,7 +47,7 @@ paths:
         - "application/json"
       parameters:
         - in: query
-          name: email
+          name: userEmail
           type: string
           description: email (required if password provided)
         - in: query
@@ -96,7 +96,7 @@ paths:
         - "application/json"
       parameters:
         - in: query
-          name: email
+          name: userEmail
           type: string
           description: email
           required: true
@@ -137,7 +137,7 @@ paths:
         - "application/json"
       parameters:
         - in: query
-          name: email
+          name: userEmail
           type: string
           description: email
           required: true
@@ -179,7 +179,7 @@ paths:
         - "application/json"
       parameters:
         - in: query
-          name: email
+          name: userEmail
           type: string
           description: email
           required: true
