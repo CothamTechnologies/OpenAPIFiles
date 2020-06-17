@@ -12,6 +12,80 @@ schemes:
 
 paths:
   
+  /{baseid}/Media:
+    get:
+      summary: List Days
+      description: List Days
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+        - in: query
+          name: maxRecords
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        mediaType: 
+                          type: string
+                        mediaURL: 
+                          type: string
+                        Sort: 
+                          type: number
+                        Name: 
+                          type: string
+                    createdTime: 
+                      type: string
+              offset: 
+                type: string
+        default:
+          description: error
+  
   /{baseid}/Days:
     get:
       summary: List Days
