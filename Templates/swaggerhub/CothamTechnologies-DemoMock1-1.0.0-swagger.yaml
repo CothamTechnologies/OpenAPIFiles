@@ -101,12 +101,16 @@ paths:
                       type: string
                     consentSignature:
                       type: string
-                    suitability:
+                    suitabilityCriteria:
                       type: array
                       items:
                         type: object
                         properties:
-                          question:
+                          name:
+                            type: string
+                          id:
+                            type: string
+                          description:
                             type: string
                           answer:
                             type: string
@@ -116,6 +120,21 @@ paths:
                             type: string
                           required:
                             type: string
+                          answerTime:
+                            type: string
+                          answerLat:
+                            type: string
+                          answerLong:
+                            type: string
+                          possible_values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: string
+                                description:
+                                  type: string
                     siteVisit:
                       type: array
                       items:
