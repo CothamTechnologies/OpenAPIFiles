@@ -95,10 +95,64 @@ paths:
                       type: string
                     email:
                       type: string
-                    status: 
-                      type: string
-                    introStatus:
-                      type: string
+                    leadStatusTracking:
+                      type: object
+                      properties:
+                        introStatus:
+                          type: object
+                          properties:
+                            status: 
+                              type: string
+                            completedTime:
+                              type: string
+                            completedLat:
+                              type: string
+                            completedLong:
+                              type: string
+                        suitabilityStatus:
+                          type: object
+                          properties:
+                            status: 
+                              type: string
+                            completedTime:
+                              type: string
+                            completedLat:
+                              type: string
+                            completedLong:
+                              type: string
+                        siteSurveyStatus:
+                          type: object
+                          properties:
+                            status: 
+                              type: string
+                            completedTime:
+                              type: string
+                            completedLat:
+                              type: string
+                            completedLong:
+                              type: string
+                        profileStatus:
+                          type: object
+                          properties:
+                            status: 
+                              type: string
+                            completedTime:
+                              type: string
+                            completedLat:
+                              type: string
+                            completedLong:
+                              type: string
+                        consentStatus:
+                          type: object
+                          properties:
+                            status: 
+                              type: string
+                            completedTime:
+                              type: string
+                            completedLat:
+                              type: string
+                            completedLong:
+                              type: string
                     consentSignature:
                       type: string
                     suitabilityCriteria:
