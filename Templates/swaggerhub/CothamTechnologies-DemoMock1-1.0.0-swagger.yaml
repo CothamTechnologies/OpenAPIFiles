@@ -153,6 +153,17 @@ paths:
                               type: string
                             completedLong:
                               type: string
+                        overallStatus:
+                          type: object
+                          properties:
+                            status: 
+                              type: string
+                            completedTime:
+                              type: string
+                            completedLat:
+                              type: string
+                            completedLong:
+                              type: string
                     consentSignature:
                       type: string
                     suitabilityCriteria:
