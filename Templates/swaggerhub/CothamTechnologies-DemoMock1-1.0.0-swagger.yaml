@@ -205,6 +205,8 @@ paths:
                       items:
                         type: object
                         properties:
+                          id:
+                            type: string
                           question:
                             type: string
                           answer:
@@ -227,6 +229,8 @@ paths:
                                   items:
                                     type: object
                                     properties:
+                                      id:
+                                        type: string
                                       question:
                                         type: string
                                       answer:
