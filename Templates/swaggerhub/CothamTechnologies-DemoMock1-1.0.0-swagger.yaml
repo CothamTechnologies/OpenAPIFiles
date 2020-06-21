@@ -200,7 +200,7 @@ paths:
                                   type: string
                                 description:
                                   type: string
-                    siteVisit:
+                    siteSurvey:
                       type: array
                       items:
                         type: object
@@ -215,6 +215,28 @@ paths:
                             type: string
                           required:
                             type: string
+                          roomWifiAnalysis:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                roomName:
+                                  type: string
+                                roomQuestions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      question:
+                                        type: string
+                                      answer:
+                                        type: string
+                                      type:
+                                        type: string
+                                      qStatus:
+                                        type: string
+                                      required:
+                                        type: string
                     info:
                       type: array
                       items:
