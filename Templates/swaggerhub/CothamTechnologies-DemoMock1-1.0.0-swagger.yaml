@@ -241,7 +241,7 @@ paths:
                                         type: string
                                       required:
                                         type: string
-                    info:
+                    profile:
                       type: array
                       items:
                         type: object
