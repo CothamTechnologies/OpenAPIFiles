@@ -201,6 +201,8 @@ paths:
                             items:
                               type: object
                               properties:
+                                id:
+                                  type: string
                                 roomName:
                                   type: string
                                 roomStatus:
