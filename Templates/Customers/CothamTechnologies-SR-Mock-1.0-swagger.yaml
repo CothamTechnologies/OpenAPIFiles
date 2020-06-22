@@ -231,16 +231,29 @@ paths:
                         properties:
                           id:
                             type: string
-                          question:
+                          categoryName:
                             type: string
-                          answer:
+                          categoryStatus:
                             type: string
-                          type:
-                            type: string
-                          qStatus:
-                            type: string
-                          required:
-                            type: string
+                          categoryQuestions:
+                            type: array
+                            items:
+                              type: object
+                              properties: 
+                                id:
+                                  type: string
+                                question:
+                                  type: string
+                                answer:
+                                  type: string
+                                type:
+                                  type: string
+                                qStatus:
+                                  type: string
+                                required:
+                                  type: string
+
+
                               
             example:
               leads:
