@@ -196,12 +196,14 @@ paths:
                             type: string
                           required:
                             type: string
-                          roomWifiAnalysis:
+                    roomWifiAnalysis:
                             type: array
                             items:
                               type: object
                               properties:
                                 roomName:
+                                  type: string
+                                roomStatus:
                                   type: string
                                 roomQuestions:
                                   type: array
@@ -219,7 +221,7 @@ paths:
                                       qStatus:
                                         type: string
                                       required:
-                                        type: string
+                                        type: string     
                     profile:
                       type: array
                       items:
