@@ -54,8 +54,6 @@ paths:
     get:
       summary: SR get leads
       description: SR get leads
-      tags:
-        - Service Robotics
       produces:
       - application/json
       parameters:
@@ -247,6 +245,6 @@ paths:
                                   type: string
                                 required:
                                   type: string
-                                  
+
         default:
           description: server error
