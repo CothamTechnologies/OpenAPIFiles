@@ -1,8 +1,9 @@
 swagger: '2.0'
 info:
-  version: '1.0'
-  title: 'SR Mock'
-  description: 'SR Mock'
+  description: SR Mock
+  version: 1.0.0
+  title: SR Mock
+
 
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
