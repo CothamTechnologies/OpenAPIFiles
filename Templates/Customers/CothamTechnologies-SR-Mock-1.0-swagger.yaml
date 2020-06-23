@@ -80,7 +80,19 @@ paths:
                       type: string
                     surName:
                       type: string
-                    address:
+                    addressFull:
+                      type: string
+                    addressLine1:
+                      type: string
+                    addressLine2:
+                      type: string
+                    addressCityTown:
+                      type: string
+                    addressCounty:
+                      type: string
+                    addressPostcode:
+                      type: string
+                    addressCountry:
                       type: string
                     telephone:
                       type: string
@@ -136,6 +148,8 @@ paths:
                       type: string
                     consentSignature:
                       type: string
+                    appointmentDateTime:
+                      type: string
                     suitabilityCriteria:
                       type: array
                       items:
@@ -187,6 +201,15 @@ paths:
                             type: string
                           required:
                             type: string
+                          possible_values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: string
+                                description:
+                                  type: string
 
                     roomWifiAnalysis:
                             type: array
