@@ -13,7 +13,7 @@ schemes:
 
 paths:
 
-  /getReferenceData:
+  /referenceData:
     get:
       summary: SR Get Ref data
       description: SR Get Ref data
