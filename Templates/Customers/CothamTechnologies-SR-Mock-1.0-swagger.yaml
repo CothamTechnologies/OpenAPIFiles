@@ -13,6 +13,94 @@ schemes:
 
 paths:
 
+  /getReferenceData:
+    get:
+      summary: SR Get Ref data
+      description: SR Get Ref data
+      tags:
+        - Service Robotics
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              privileges:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    description: 
+                      type: string
+              hotdrinks:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    description: 
+                      type: string
+              yesNo:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              maritalStatus:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              languages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              sports:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              colours:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              
+        default:
+          description: server error
+  
   /login:
     get:
       summary: login
@@ -201,15 +289,6 @@ paths:
                             type: string
                           required:
                             type: string
-                          possible_values:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                value:
-                                  type: string
-                                description:
-                                  type: string
 
                     roomWifiAnalysis:
                             type: array
@@ -238,16 +317,7 @@ paths:
                                       qStatus:
                                         type: string
                                       required:
-                                        type: string 
-                                      possible_values:
-                                        type: array
-                                        items:
-                                          type: object
-                                          properties:
-                                            value:
-                                              type: string
-                                            description:
-                                              type: string                
+                                        type: string           
                                 
                     profile:
                       type: array
@@ -277,15 +347,7 @@ paths:
                                   type: string
                                 required:
                                   type: string
-                                possible_values:
-                                  type: array
-                                  items:
-                                    type: object
-                                    properties:
-                                      value:
-                                        type: string
-                                      description:
-                                        type: string
+
 
         default:
           description: server error
