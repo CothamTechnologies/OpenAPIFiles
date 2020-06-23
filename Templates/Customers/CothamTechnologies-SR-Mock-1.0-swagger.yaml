@@ -238,7 +238,16 @@ paths:
                                       qStatus:
                                         type: string
                                       required:
-                                        type: string                 
+                                        type: string 
+                                      possible_values:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            value:
+                                              type: string
+                                            description:
+                                              type: string                
                                 
                     profile:
                       type: array
@@ -268,6 +277,15 @@ paths:
                                   type: string
                                 required:
                                   type: string
+                                possible_values:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      value:
+                                        type: string
+                                      description:
+                                        type: string
 
         default:
           description: server error
