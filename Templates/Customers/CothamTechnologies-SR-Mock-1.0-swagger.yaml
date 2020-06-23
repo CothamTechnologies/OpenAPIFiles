@@ -97,6 +97,33 @@ paths:
                         type: string
                       description: 
                         type: string
+              entertainment:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              shops:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
+              support:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      description: 
+                        type: string
               
         default:
           description: server error
@@ -329,6 +356,8 @@ paths:
                           categoryName:
                             type: string
                           categoryStatus:
+                            type: string
+                          categoryType:
                             type: string
                           categoryQuestions:
                             type: array
