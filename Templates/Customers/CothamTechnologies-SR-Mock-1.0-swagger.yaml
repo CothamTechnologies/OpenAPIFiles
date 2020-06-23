@@ -193,7 +193,7 @@ paths:
                       type: string
                     firstName:
                       type: string
-                    surName:
+                    surname:
                       type: string
                     addressFull:
                       type: string
@@ -312,6 +312,8 @@ paths:
                             type: string
                           type:
                             type: string
+                          lookupList:
+                            type: string
                           qStatus:
                             type: string
                           required:
@@ -340,6 +342,8 @@ paths:
                                       answer:
                                         type: string
                                       type:
+                                        type: string
+                                      lookupList:
                                         type: string
                                       qStatus:
                                         type: string
@@ -371,6 +375,8 @@ paths:
                                 answer:
                                   type: string
                                 type:
+                                  type: string
+                                lookupList:
                                   type: string
                                 qStatus:
                                   type: string
