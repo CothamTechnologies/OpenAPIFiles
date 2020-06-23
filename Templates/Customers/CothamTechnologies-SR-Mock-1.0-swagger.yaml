@@ -363,6 +363,36 @@ paths:
                             type: string
                           categoryType:
                             type: string
+                          categoryAddData:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id: 
+                                  type: string
+                                catAddName: 
+                                  type: string
+                                catAddStatus: 
+                                  type: string
+                                catAddQuestions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      question: 
+                                        type: string
+                                      id: 
+                                        type: string
+                                      answer: 
+                                        type: string
+                                      type: 
+                                        type: string
+                                      lookupList: 
+                                        type: string
+                                      qStatus: 
+                                        type: string
+                                      required: 
+                                        type: string
                           categoryQuestions:
                             type: array
                             items:
