@@ -243,6 +243,8 @@ paths:
                       type: string
                     consentSignature:
                       type: string
+                    consentName:
+                      type: string
                     appointmentDateTime:
                       type: string
                     suitabilityCriteria:
