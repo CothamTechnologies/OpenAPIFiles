@@ -120,6 +120,14 @@ paths:
                         type: string
               introText:
                 type: string
+
+              regularity:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
               
         default:
           description: server error
