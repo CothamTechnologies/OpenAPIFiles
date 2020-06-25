@@ -104,6 +104,22 @@ paths:
                     properties:
                       description: 
                         type: string
+              gender:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              relationship:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              introText:
+                type: string
               
         default:
           description: server error
