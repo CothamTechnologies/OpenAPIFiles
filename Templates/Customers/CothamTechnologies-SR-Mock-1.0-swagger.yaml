@@ -261,6 +261,10 @@ paths:
                       type: string
                     telephone:
                       type: string
+                    telephone2:
+                      type: string
+                    telephone3:
+                      type: string
                     email:
                       type: string
                     introStatus: 
