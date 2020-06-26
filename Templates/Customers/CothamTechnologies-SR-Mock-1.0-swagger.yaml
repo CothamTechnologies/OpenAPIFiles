@@ -317,6 +317,10 @@ paths:
                       type: string
                     appointmentDateTime:
                       type: string
+                    consentPhoto:
+                      type: string
+                    userPhoto:
+                      type: string
                     suitabilityCriteria:
                       type: array
                       items:
@@ -329,6 +333,8 @@ paths:
                           description:
                             type: string
                           answer:
+                            type: string
+                          answerNotes:
                             type: string
                           type:
                             type: string
@@ -362,6 +368,8 @@ paths:
                             type: string
                           answer:
                             type: string
+                          answerNotes:
+                            type: string
                           type:
                             type: string
                           lookupList:
@@ -391,6 +399,10 @@ paths:
                                       question:
                                         type: string
                                       answer:
+                                        type: string
+                                      answerNotes:
+                                        type: string
+                                      answerPhoto:
                                         type: string
                                       type:
                                         type: string
@@ -436,6 +448,8 @@ paths:
                                         type: string
                                       answer: 
                                         type: string
+                                      answerNotes:
+                                        type: string
                                       type: 
                                         type: string
                                       lookupList: 
@@ -463,6 +477,8 @@ paths:
                                 question:
                                   type: string
                                 answer:
+                                  type: string
+                                answerNotes:
                                   type: string
                                 type:
                                   type: string
