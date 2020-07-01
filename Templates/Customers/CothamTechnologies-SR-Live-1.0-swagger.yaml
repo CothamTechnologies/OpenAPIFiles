@@ -1,0 +1,537 @@
+swagger: '2.0'
+info:
+  description: SR Onboarding
+  version: 1.0.0
+  title: SR Onboarding
+
+host: virtserver.swaggerhub.com
+basePath: /CothamTechnologies/SR-Mock/1.0
+schemes:
+ - https
+
+paths:
+
+  /referenceData:
+    get:
+      summary: SR Get Ref data
+      description: SR Get Ref data
+      tags:
+        - Service Robotics
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              privileges:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+              hotdrinks:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+              yesNo:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              maritalStatus:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              languages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              sports:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              colours:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              entertainment:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              shops:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              support:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              gender:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              relationship:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              introText:
+                type: string
+
+              regularity:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+
+              eyewear:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+                        
+              hearingAid:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+                        
+              dental:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              
+              painCommunication:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              medicalConditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+              reminderTypes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description: 
+                        type: string
+
+              geographicIsolation:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+                      
+              livingConditions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+                      
+              accessibility:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+              
+        default:
+          description: server error
+  
+  /login:
+    get:
+      summary: login
+      description: login
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: email
+        type: string
+        description: email
+        required: true
+      - in: query
+        name: password
+        type: string
+        description: password
+        required: true 
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              expiry:
+                type: string
+              username:
+                type: string
+              startingScriptURL:
+                type: string
+
+                
+        default:
+          description: server error
+  
+  /getleads:
+    get:
+      summary: SR get leads
+      description: SR get leads
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+              leads:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: 
+                      type: string
+                    firstName:
+                      type: string
+                    surname:
+                      type: string
+                    addressFull:
+                      type: string
+                    addressLine1:
+                      type: string
+                    addressLine2:
+                      type: string
+                    addressCityTown:
+                      type: string
+                    addressCounty:
+                      type: string
+                    addressPostcode:
+                      type: string
+                    addressCountry:
+                      type: string
+                    telephone:
+                      type: string
+                    telephone2:
+                      type: string
+                    telephone3:
+                      type: string
+                    email:
+                      type: string
+                    introStatus: 
+                      type: string
+                    introCompletedTime:
+                      type: string
+                    introCompletedLat:
+                      type: string
+                    introCompletedLong:
+                      type: string
+                    suitabilityStatus: 
+                      type: string
+                    suitabilityCompletedTime:
+                      type: string
+                    suitabilityCompletedLat:
+                      type: string
+                    suitabilityCompletedLong:
+                      type: string
+                    siteSurveyStatus: 
+                      type: string
+                    siteSurveyCompletedTime:
+                      type: string
+                    siteSurveyCompletedLat:
+                      type: string
+                    siteSurveyCompletedLong:
+                      type: string
+                    profileStatus: 
+                      type: string
+                    profileCompletedTime:
+                      type: string
+                    profileCompletedLat:
+                      type: string
+                    profileCompletedLong:
+                      type: string
+                    consentStatus: 
+                      type: string
+                    consentCompletedTime:
+                      type: string
+                    consentCompletedLat:
+                      type: string
+                    consentCompletedLong:
+                      type: string
+                    leadStatus: 
+                      type: string
+                    leadCompletedTime:
+                      type: string
+                    leadCompletedLat:
+                      type: string
+                    leadCompletedLong:
+                      type: string
+                    consentSignature:
+                      type: string
+                    consentName:
+                      type: string
+                    appointmentDateTime:
+                      type: string
+                    consentPhoto:
+                      type: string
+                    userPhoto:
+                      type: string
+                    suitabilityCriteria:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          id:
+                            type: string
+                          description:
+                            type: string
+                          answer:
+                            type: string
+                          answerNotes:
+                            type: string
+                          type:
+                            type: string
+                          qStatus:
+                            type: string
+                          required:
+                            type: string
+                          answerTime:
+                            type: string
+                          answerLat:
+                            type: string
+                          answerLong:
+                            type: string
+                          possible_values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                value:
+                                  type: string
+                                description:
+                                  type: string
+                    siteSurvey:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          question:
+                            type: string
+                          answer:
+                            type: string
+                          answerNotes:
+                            type: string
+                          type:
+                            type: string
+                          lookupList:
+                            type: string
+                          qStatus:
+                            type: string
+                          required:
+                            type: string
+                          categoryType:
+                            type: string
+                          index:
+                            type: integer
+                          categoryAddData:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                catAddName:
+                                  type: string
+                                catAddStatus:
+                                  type: string
+                                catAddQuestions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      question:
+                                        type: string
+                                      answer:
+                                        type: string
+                                      answerNotes:
+                                        type: string
+                                      answerPhoto:
+                                        type: string
+                                      type:
+                                        type: string
+                                      lookupList:
+                                        type: string
+                                      qStatus:
+                                        type: string
+                                      required:
+                                        type: string
+                                
+                    profile:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          index:
+                            type: integer
+                          categoryName:
+                            type: string
+                          categoryStatus:
+                            type: string
+                          categoryType:
+                            type: string
+                          categoryAddData:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id: 
+                                  type: string
+                                catAddName: 
+                                  type: string
+                                catAddStatus: 
+                                  type: string
+                                catAddQuestions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      question: 
+                                        type: string
+                                      id: 
+                                        type: string
+                                      answer: 
+                                        type: string
+                                      answerNotes:
+                                        type: string
+                                      type: 
+                                        type: string
+                                      lookupList: 
+                                        type: string
+                                      qStatus: 
+                                        type: string
+                                      required: 
+                                        type: string
+                                      multiPossibleValues:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            description:
+                                              type: string
+                                            selected:
+                                              type: string
+                          categoryQuestions:
+                            type: array
+                            items:
+                              type: object
+                              properties: 
+                                id:
+                                  type: string
+                                question:
+                                  type: string
+                                answer:
+                                  type: string
+                                answerNotes:
+                                  type: string
+                                type:
+                                  type: string
+                                lookupList:
+                                  type: string
+                                qStatus:
+                                  type: string
+                                required:
+                                  type: string
+                                multiPossibleValues:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            description:
+                                              type: string
+                                            selected:
+                                              type: string
+
+
+        default:
+          description: server error
