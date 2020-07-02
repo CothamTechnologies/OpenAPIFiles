@@ -363,7 +363,87 @@ paths:
         default:
           description: server error
 
-  /getleads:
+  /leads:
+    post:
+      summary: SR create lead
+      description: SR create lead
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: query
+          name: firstName
+          type: string
+          description: First name
+          required: true
+        - in: query
+          name: surname
+          type: string
+          description: Surname
+          required: true
+        - in: query
+          name: telephone
+          type: string
+          description: Telephone number
+          required: true
+        - in: query
+          name: email
+          type: string
+          description: Email address
+          required: false
+        - in: query
+          name: addressLine1
+          type: string
+          description: First line of address
+          required: true
+        - in: query
+          name: addressLine2
+          type: string
+          description: Second line of address
+          required: false
+        - in: query
+          name: addressCityTown
+          type: string
+          description: Town or city name
+          required: true
+        - in: query
+          name: addressCounty
+          type: string
+          description: Name of county
+          required: false
+        - in: query
+          name: addressPostcode
+          type: string
+          description: Postcode
+          required: true
+        - in: query
+          name: addressCountry
+          type: string
+          description: Name of country
+          required: false
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
     get:
       summary: SR get leads
       description: SR get leads
