@@ -10,6 +10,57 @@ schemes:
   - https
 
 paths:
+  /leads/{leadId}/question/{qId}:
+    put:
+      summary: Answers a question
+      description: Answers a question
+      produces:
+        - "application/json"
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: formData
+          name: answer
+          type: string
+          description: The answer to the question
+        - in: formData
+          name: answerDateTime
+          type: string
+          description: When the question was answered
+        - in: formData
+          name: answerLat
+          type: string
+          description: Position when the question was answered
+        - in: formData
+          name: answerLong
+          type: string
+          description: Position when the question was answered
+        - in: formData
+          name: qStatus
+          type: string
+          description: The staqtus of the question
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              body:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
   /users/login:
     post:
       summary: Login
