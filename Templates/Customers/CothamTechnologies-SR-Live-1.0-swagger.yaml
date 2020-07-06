@@ -374,52 +374,52 @@ paths:
           name: Authorization
           description: Bearer token
           type: string
-        - in: query
+        - in: formData
           name: firstName
           type: string
           description: First name
           required: true
-        - in: query
+        - in: formData
           name: surname
           type: string
           description: Surname
           required: true
-        - in: query
+        - in: formData
           name: telephone
           type: string
           description: Telephone number
           required: true
-        - in: query
+        - in: formData
           name: email
           type: string
           description: Email address
           required: false
-        - in: query
+        - in: formData
           name: addressLine1
           type: string
           description: First line of address
           required: true
-        - in: query
+        - in: formData
           name: addressLine2
           type: string
           description: Second line of address
           required: false
-        - in: query
+        - in: formData
           name: addressCityTown
           type: string
           description: Town or city name
           required: true
-        - in: query
+        - in: formData
           name: addressCounty
           type: string
           description: Name of county
           required: false
-        - in: query
+        - in: formData
           name: addressPostcode
           type: string
           description: Postcode
           required: true
-        - in: query
+        - in: formData
           name: addressCountry
           type: string
           description: Name of country
