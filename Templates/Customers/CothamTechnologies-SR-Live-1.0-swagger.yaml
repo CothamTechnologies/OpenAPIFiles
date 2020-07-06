@@ -390,6 +390,26 @@ paths:
           description: Telephone number
           required: true
         - in: formData
+          name: telephone2
+          type: string
+          description: Second telephone number
+          required: false
+        - in: formData
+          name: telephone3
+          type: string
+          description: Third telephone number
+          required: false
+        - in: formData
+          name: appointmentDateTime
+          type: string
+          description: Appointment details
+          required: false
+        - in: formData
+          name: userPhoto
+          type: string
+          description: Photo of client
+          required: false
+        - in: formData
           name: email
           type: string
           description: Email address
