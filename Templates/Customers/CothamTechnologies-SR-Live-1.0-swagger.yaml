@@ -613,6 +613,10 @@ paths:
                             type: string
                           categoryType:
                             type: string
+                          categoryName:
+                            type: string
+                          categoryStatus:
+                            type: string
                           index:
                             type: integer
                           categoryAddData:
