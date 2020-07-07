@@ -52,7 +52,24 @@ paths:
         - in: formData
           name: qStatus
           type: string
-          description: The staqtus of the question
+          description: The status of the question
+        - in: formData
+          name: answerNotes
+          type: string
+          description: Answer Notes 
+        - in: formData
+          name: answerPhoto
+          type: string
+          description: Answer Photo
+        - in: formData
+          name: categoryStatus
+          type: string
+          description: Catgeory Status for profile category status update
+        - in: formData
+          name: catAddStatus
+          type: string
+          description: Catgeory Add Status for profile Add function status update
+
 
       responses:
         200:
