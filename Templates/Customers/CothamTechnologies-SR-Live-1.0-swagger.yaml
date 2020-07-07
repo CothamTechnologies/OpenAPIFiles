@@ -49,6 +49,18 @@ paths:
           name: CompletedLong
           type: string
           description: Position when the section was completed
+        - in: formData
+          name: consentName
+          type: string
+          description: Consent Name
+        - in: formData
+          name: consentSignature
+          type: string
+          description: Consent Signature
+        - in: formData
+          name: consentPhoto
+          type: string
+          description: Consent Photo
 
       responses:
         200:
