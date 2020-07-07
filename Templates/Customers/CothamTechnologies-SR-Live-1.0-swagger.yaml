@@ -69,6 +69,14 @@ paths:
           name: catAddStatus
           type: string
           description: Catgeory Add Status for profile Add function status update
+        - in: formData
+          name: catAddName
+          type: string
+          description: Name of Add category
+        - in: formData
+          name: catId
+          type: string
+          description: Id of Add category
 
 
       responses:
