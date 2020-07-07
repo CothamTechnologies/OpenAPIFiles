@@ -77,6 +77,10 @@ paths:
           name: catId
           type: string
           description: Id of Add category
+        - in: formData
+          name: multiPossibleValues
+          type: string
+          description: array of value with selected entries
 
 
       responses:
