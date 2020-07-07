@@ -12,8 +12,8 @@ schemes:
 paths:
   /leads/{leadId}/section/{sectionName}:
     put:
-      summary: Answers a question
-      description: Answers a question
+      summary: Updates a section
+      description: Updates a section
       produces:
         - "application/json"
       consumes:
