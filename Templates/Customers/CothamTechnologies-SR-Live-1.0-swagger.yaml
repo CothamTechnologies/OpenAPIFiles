@@ -10,6 +10,65 @@ schemes:
   - https
 
 paths:
+  /leads/{leadId}/section/{sectionName}:
+    put:
+      summary: Answers a question
+      description: Answers a question
+      produces:
+        - "application/json"
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: path
+          name: leadId
+          description: Lead IdToken
+          type: string
+          required: true
+        - in: path
+          name: sectionName
+          description: Section status to update
+          type: string
+          required: true
+        - in: formData
+          name: Status
+          type: string
+          description: Section status
+        - in: formData
+          name: CompletedTime
+          type: string
+          description: Time of completion if applicable
+        - in: formData
+          name: CompletedLat
+          type: string
+          description: Position when the section was completed
+        - in: formData
+          name: CompletedLong
+          type: string
+          description: Position when the section was completed
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              body:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
   /leads/{leadId}/question/{qId}:
     put:
       summary: Answers a question
@@ -56,7 +115,7 @@ paths:
         - in: formData
           name: answerNotes
           type: string
-          description: Answer Notes 
+          description: Answer Notes
         - in: formData
           name: answerPhoto
           type: string
@@ -77,7 +136,6 @@ paths:
           name: catId
           type: string
           description: Id of Add category
-
 
       responses:
         200:
