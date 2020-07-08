@@ -50,15 +50,15 @@ paths:
           type: string
           description: Position when the section was completed
         - in: formData
-          name: consentName
+          name: Name
           type: string
           description: Consent Name
         - in: formData
-          name: consentSignature
+          name: Signature
           type: string
           description: Consent Signature
         - in: formData
-          name: consentPhoto
+          name: Photo
           type: string
           description: Consent Photo
 
