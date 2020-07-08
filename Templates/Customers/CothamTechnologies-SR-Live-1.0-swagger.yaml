@@ -367,6 +367,13 @@ paths:
           schema:
             type: object
             properties:
+              intro:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
               privileges:
                 type: array
                 items:
