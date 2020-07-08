@@ -525,7 +525,115 @@ paths:
         default:
           description: server error
 
-  /leads:
+  /leads/{leadId}:
+    put:
+      summary: SR update lead
+      description: SR update lead
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+        - in: path
+          name: leadId
+          type: string
+          description: Lead ID
+          required: true
+        - in: formData
+          name: firstName
+          type: string
+          description: First name
+          required: true
+        - in: formData
+          name: surname
+          type: string
+          description: Surname
+          required: true
+        - in: formData
+          name: telephone
+          type: string
+          description: Telephone number
+          required: true
+        - in: formData
+          name: telephone2
+          type: string
+          description: Second telephone number
+          required: false
+        - in: formData
+          name: telephone3
+          type: string
+          description: Third telephone number
+          required: false
+        - in: formData
+          name: appointmentDateTime
+          type: string
+          description: Appointment details
+          required: false
+        - in: formData
+          name: userPhoto
+          type: string
+          description: Photo of client
+          required: false
+        - in: formData
+          name: email
+          type: string
+          description: Email address
+          required: false
+        - in: formData
+          name: addressLine1
+          type: string
+          description: First line of address
+          required: true
+        - in: formData
+          name: addressLine2
+          type: string
+          description: Second line of address
+          required: false
+        - in: formData
+          name: addressCityTown
+          type: string
+          description: Town or city name
+          required: true
+        - in: formData
+          name: addressCounty
+          type: string
+          description: Name of county
+          required: false
+        - in: formData
+          name: addressPostcode
+          type: string
+          description: Postcode
+          required: true
+        - in: formData
+          name: addressCountry
+          type: string
+          description: Name of country
+          required: false
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+  
+  /leads:   
     post:
       summary: SR create lead
       description: SR create lead
