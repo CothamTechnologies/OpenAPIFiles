@@ -310,8 +310,8 @@ paths:
 
   /users:
     get:
-      summary: Signup
-      description: Allows user to signup for an account
+      summary: Get User Info
+      description: Get User Info
       tags:
         - 0. User management
       produces:
