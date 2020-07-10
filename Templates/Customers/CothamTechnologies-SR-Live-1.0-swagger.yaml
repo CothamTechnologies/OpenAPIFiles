@@ -309,6 +309,47 @@ paths:
                 type: string
 
   /users:
+    get:
+      summary: Signup
+      description: Allows user to signup for an account
+      tags:
+        - 0. User management
+      produces:
+        - "application/json"
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties:
+              Username:
+                type: string
+              UserAttributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Name:
+                      type: string
+                    Value:
+                      type: string
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
     post:
       summary: Signup
       description: Allows user to signup for an account
