@@ -56,6 +56,11 @@ paths:
           description: select feilds to retunr eg fields=kind,items(title, characteristics/length)
           type: string
           required: false
+        - in: query
+          name: langRestrict
+          description: two-letter ISO-639-1 code, such as "en" or "fr"
+          type: string
+          required: false
         
       responses:
         400:

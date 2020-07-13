@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
-  version: '1.0'
+  version: '2.0'
   title: 'Google Firestore Def for Demo Books App'
   description: ''
 host: firestore.googleapis.com
-basePath: /v1/projects/fir-favourite-books/databases/(default)
+basePath: /v1/projects
 schemes: 
   - https
 
