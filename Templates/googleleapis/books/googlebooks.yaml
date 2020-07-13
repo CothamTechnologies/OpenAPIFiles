@@ -28,12 +28,15 @@ paths:
           schema:
             type: object
             properties:
-              code:
-                type: string
-              message:
-                type: string
-              status:
-                type: string
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  status:
+                    type: string
 
         200:
           description: OK
@@ -182,10 +185,13 @@ paths:
           schema:
             type: object
             properties:
-              code:
-                type: string
-              message:
-                type: string
-              status:
-                type: string
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  status:
+                    type: string
    
