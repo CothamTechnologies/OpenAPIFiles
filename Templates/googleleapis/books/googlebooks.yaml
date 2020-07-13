@@ -21,6 +21,36 @@ paths:
           description: ISBN
           type: string
           required: true
+        - in: query
+          name: maxResults
+          description: max is 40 default 10 
+          type: integer
+          required: false
+        - in: query
+          name: startIndex
+          description: all (default), books, magazines 
+          type: integer
+          required: false
+        - in: query
+          name: printType
+          description: The position in the collection at which to start. The index of the first item is 0.
+          type: string
+          required: false
+        - in: query
+          name: filter
+          description: partial, full, free-ebooks, paid-ebooks, ebooks
+          type: string
+          required: false
+        - in: query
+          name: projection
+          description: full, lite
+          type: string
+          required: false
+        - in: query
+          name: orderBy
+          description: newest, relevance
+          type: string
+          required: false
         
       responses:
         400:
