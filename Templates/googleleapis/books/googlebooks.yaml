@@ -51,6 +51,11 @@ paths:
           description: newest, relevance
           type: string
           required: false
+        - in: query
+          name: fields
+          description: select feilds to retunr eg fields=kind,items(title, characteristics/length)
+          type: string
+          required: false
         
       responses:
         400:
