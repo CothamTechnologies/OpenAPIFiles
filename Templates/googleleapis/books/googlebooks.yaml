@@ -11,7 +11,7 @@ schemes:
 paths:
   /volumes:
     get:
-      summary: ISBN Lookup
+      summary: Search Google Books
       description: ISBN Lookup
       produces: 
         - application/json
@@ -30,129 +30,141 @@ paths:
           schema:
             type: object
             properties:
-              kind:
+              kind: 
                 type: string
-              totalItems:
+              totalItems: 
                 type: number
-              items:
+              items: 
                 type: array
-                items:
+                items: 
                   type: object
-                  properties:
-                    kind:
+                  properties: 
+                    kind: 
                       type: string
-                    id:
+                    id: 
                       type: string
-                    etag:
+                    etag: 
                       type: string
-                    selfLink:
+                    selfLink: 
                       type: string
-                    volumeInfo:
+                    volumeInfo: 
                       type: object
-                      properties:
-                        title:
+                      properties: 
+                        title: 
                           type: string
-                        authors:
+                        authors: 
                           type: array
-                          items:
+                          items: 
                             type: string
-                        publisher:
+                        publisher: 
                           type: string
-                        publishedDate:
+                        publishedDate: 
                           type: string
-                        description:
+                          format: date
+                        description: 
                           type: string
-                        industryIdentifiers:
+                        industryIdentifiers: 
                           type: array
-                          items:
-                            properties:
-                              type:
-                                type: string
-                              identifier:
-                                type: string
+                          items: 
                             type: object
-                        readingModes:
+                            properties: 
+                              type: 
+                                type: string
+                              identifier: 
+                                type: string
+                        readingModes: 
                           type: object
-                          properties:
-                            text:
+                          properties: 
+                            text: 
                               type: boolean
-                            image:
+                            image: 
                               type: boolean
-                        pageCount:
+                        pageCount: 
                           type: number
-                        printType:
+                        printType: 
                           type: string
-                        categories:
+                        categories: 
                           type: array
-                          items:
+                          items: 
                             type: string
-                        averageRating:
+                        averageRating: 
                           type: number
-                        ratingsCount:
+                        ratingsCount: 
                           type: number
-                        maturityRating:
+                        maturityRating: 
                           type: string
-                        allowAnonLogging:
+                        allowAnonLogging: 
                           type: boolean
-                        contentVersion:
+                        contentVersion: 
                           type: string
-                        imageLinks:
+                        panelizationSummary: 
                           type: object
-                          properties:
-                            smallThumbnail:
-                              type: string
-                            thumbnail:
-                              type: string
-                        language:
-                          type: string
-                        previewLink:
-                          type: string
-                        infoLink:
-                          type: string
-                        canonicalVolumeLink:
-                          type: string
-                    saleInfo:
-                      type: object
-                      properties:
-                        country:
-                          type: string
-                        saleability:
-                          type: string
-                        isEbook:
-                          type: boolean
-                    accessInfo:
-                      type: object
-                      properties:
-                        country:
-                          type: string
-                        viewability:
-                          type: string
-                        embeddable:
-                          type: boolean
-                        publicDomain:
-                          type: boolean
-                        textToSpeechPermission:
-                          type: string
-                        epub:
-                          type: object
-                          properties:
-                            isAvailable:
+                          properties: 
+                            containsEpubBubbles: 
                               type: boolean
-                        pdf:
-                          type: object
-                          properties:
-                            isAvailable:
+                            containsImageBubbles: 
                               type: boolean
-                        webReaderLink:
+                        imageLinks: 
+                          type: object
+                          properties: 
+                            smallThumbnail: 
+                              type: string
+                            thumbnail: 
+                              type: string
+                        language: 
                           type: string
-                        accessViewStatus:
+                        previewLink: 
                           type: string
-                        quoteSharingAllowed:
-                          type: boolean
-                    searchInfo:
+                        infoLink: 
+                          type: string
+                        canonicalVolumeLink: 
+                          type: string
+                    saleInfo: 
                       type: object
-                      properties:
-                        textSnippet:
+                      properties: 
+                        country: 
+                          type: string
+                        saleability: 
+                          type: string
+                        isEbook: 
+                          type: boolean
+                    accessInfo: 
+                      type: object
+                      properties: 
+                        country: 
+                          type: string
+                        viewability: 
+                          type: string
+                        embeddable: 
+                          type: boolean
+                        publicDomain: 
+                          type: boolean
+                        textToSpeechPermission: 
+                          type: string
+                        epub: 
+                          type: object
+                          properties: 
+                            isAvailable: 
+                              type: boolean
+                            acsTokenLink: 
+                              type: string
+                        pdf: 
+                          type: object
+                          properties: 
+                            isAvailable: 
+                              type: boolean
+                            acsTokenLink: 
+                              type: string
+                        webReaderLink: 
+                          type: string
+                        accessViewStatus: 
+                          type: string
+                        quoteSharingAllowed: 
+                          type: boolean
+                    searchInfo: 
+                      type: object
+                      properties: 
+                        textSnippet: 
                           type: string
                           
         default:
