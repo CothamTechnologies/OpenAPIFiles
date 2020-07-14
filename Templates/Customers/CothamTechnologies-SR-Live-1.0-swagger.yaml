@@ -569,6 +569,13 @@ paths:
                   properties:
                     description:
                       type: string
+              gadl:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
 
         default:
           description: server error
