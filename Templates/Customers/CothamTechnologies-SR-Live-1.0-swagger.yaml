@@ -680,8 +680,8 @@ paths:
                 type: string
               code:
                 type: string
-  
-  /leads:   
+
+  /leads:
     post:
       summary: SR create lead
       description: SR create lead
@@ -930,6 +930,44 @@ paths:
                                   type: string
                                 description:
                                   type: string
+                          categoryName:
+                            type: string
+                          categoryStatus:
+                            type: string
+                          categoryType:
+                            type: string
+                          subCategory:
+                            type: string
+                          categoryQuestions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                question:
+                                  type: string
+                                answer:
+                                  type: string
+                                answerNotes:
+                                  type: string
+                                type:
+                                  type: string
+                                lookupList:
+                                  type: string
+                                qStatus:
+                                  type: string
+                                required:
+                                  type: string
+                                multiPossibleValues:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      description:
+                                        type: string
+                                      selected:
+                                        type: string
                     siteSurvey:
                       type: array
                       items:
