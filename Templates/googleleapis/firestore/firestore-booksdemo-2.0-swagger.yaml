@@ -10,6 +10,71 @@ schemes:
 
 
 paths:
+
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
+    get:
+      summary: list users books
+      description: list users books
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: projectID
+          description: firebase app project projectID
+          type: string
+          required: true
+        - in: path
+          name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              documents: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        status: 
+                          type: object
+                          properties: 
+                            stringValue: 
+                              type: string
+                        title: 
+                          type: object
+                          properties: 
+                            stringValue: 
+                              type: string
+                    createTime: 
+                      type: string
+                    updateTime: 
+                      type: string
+        default:
+          description: unexpected response  
+
+
   /{projectID}/databases/(default)/documents:runQuery:
     post:
       summary: run Query on Collection
