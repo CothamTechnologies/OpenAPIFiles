@@ -43,6 +43,10 @@ paths:
           schema:
             type: object
             properties:
+              kind:
+                type: string
+              displayName:
+                type: string
               localId:
                 type: string
               email:
