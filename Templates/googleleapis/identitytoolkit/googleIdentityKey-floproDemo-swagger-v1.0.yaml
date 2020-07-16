@@ -11,6 +11,77 @@ basePath: /v1
 
 paths:
 
+  /accounts:signUp:
+    post:
+      summary: Sign Up with Email and Password
+      description: Sign Up with Email and Password
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: key
+          description: Web API Key from Firebase Project Console
+          type: string
+          required: true
+          
+        - in: body
+          name: body
+          schema:
+            type: object 
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+              returnSecureToken:
+                type: boolean
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              kind:
+                type: string
+              displayName:
+                type: string
+              localId:
+                type: string
+              email:
+                type: string
+              idToken:
+                type: string
+              registered:
+                type: boolean
+              refreshToken:
+                type: string
+              expiresIn:
+                type: string
+        default:
+          description: SignUp Failed
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  message:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      properties:
+                        message:
+                          type: string
+                        domain:
+                          type: string
+                        reason:
+                          type: string
+
   /accounts:signInWithPassword:
     post:
       summary: Sign In with Email and Password
