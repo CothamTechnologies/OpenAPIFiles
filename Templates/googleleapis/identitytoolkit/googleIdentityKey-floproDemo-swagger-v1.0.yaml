@@ -5,8 +5,8 @@ info:
   description: ''
 schemes:
   - https
-host: www.googleapis.com
-basePath: /identitytoolkit/v1
+host: identitytoolkit.googleapis.com
+basePath: /v1
 
 
 paths:
