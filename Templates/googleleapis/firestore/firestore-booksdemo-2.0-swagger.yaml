@@ -11,6 +11,47 @@ schemes:
 
 paths:
 
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}/{documentId}:
+    delete:
+      summary: delete book
+      description: delete book
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: projectID
+          description: firebase app project projectID
+          type: string
+          required: true
+        - in: path
+          name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
+          type: string
+          required: true
+        - in: path
+          name: documentId
+          type: string
+          required: true
+      responses:
+        '204':
+          description: OK
+          
+        default:
+          description: unexpected response  
+
   /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
     get:
       summary: list users books
