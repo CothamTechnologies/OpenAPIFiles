@@ -31,6 +31,14 @@ paths:
             properties:
               idToken:
                 type: string
+              
+
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
               users:
                 type: array
                 items:
@@ -66,29 +74,6 @@ paths:
                       type: string
                     customAuth:
                       type: string
-
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: object
-            properties:
-              email:
-                type: string
-              localId:
-                type: string
-              passwordHash:
-                type: string
-              idToken:
-                type: string
-              refreshToken:
-                type: string
-              expiresIn:
-                type: string
-              displayName:
-                type: string
-              photoUrl:
-                type: string
 
         default:
           description: unexpected response
