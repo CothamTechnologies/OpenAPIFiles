@@ -296,6 +296,8 @@ paths:
               requestType:
                 type: string
                 description: The kind of OOB code to return. Should be "PASSWORD_RESET" or "VERIFY_EMAIL".
+              idToken:
+                type: string
  
       responses:
         '200':
