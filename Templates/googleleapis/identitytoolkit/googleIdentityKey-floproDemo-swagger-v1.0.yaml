@@ -8,9 +8,7 @@ schemes:
 host: identitytoolkit.googleapis.com
 basePath: /v1
 
-
 paths:
-
   /accounts:lookup:
     post:
       summary: get user data
@@ -206,7 +204,7 @@ paths:
                         reason:
                           type: string
 
-   /accounts:resetPassword:
+  /accounts:resetPassword:
     post:
       summary: Verify or Confirm password reset code
       description: Verify or Confirm password reset code
