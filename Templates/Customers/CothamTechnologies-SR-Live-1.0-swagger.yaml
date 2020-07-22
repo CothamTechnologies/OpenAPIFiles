@@ -408,6 +408,20 @@ paths:
           schema:
             type: object
             properties:
+              isp:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+              cellular:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
               intro:
                 type: array
                 items:
