@@ -597,6 +597,13 @@ paths:
                   properties:
                     description:
                       type: string
+              priority:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
 
         default:
           description: server error
