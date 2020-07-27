@@ -604,6 +604,13 @@ paths:
                   properties:
                     description:
                       type: string
+              frequency:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
 
         default:
           description: server error
