@@ -9,6 +9,36 @@ schemes:
   - https
 
 paths:
+
+  /WhoAmI:
+    get:
+      summary: Who Am I
+      description: User Details
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              BusinessUnitId: 
+                type: string
+              UserId: 
+                type: string
+              OrganizationId: 
+                type: string
+        default:
+          description: error
+                
+
   /accounts:
     post:
       summary: create account
@@ -44,8 +74,9 @@ paths:
                 type: string
               address1_country:
                 type: string
-        
-        
+              _ownerid_value:
+                type: string
+            
       responses:
         '204':
           description: OK
