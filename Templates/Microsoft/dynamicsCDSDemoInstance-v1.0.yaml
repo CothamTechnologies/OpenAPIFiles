@@ -10,6 +10,47 @@ schemes:
 
 paths:
   /accounts:
+    post:
+      summary: create account
+      description: create account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              emailaddress1:
+                type: string
+              telephone1:
+                type: string
+              websiteurl:
+                type: string
+              address1_line1:
+                type: string
+              address1_city:
+                type: string
+              address1_postalcode:
+                type: string
+              address1_country:
+                type: string
+        
+        
+      responses:
+        '204':
+          description: OK
+        default:
+          description: OK
     get:
       summary: list accounts
       description: list accounts
