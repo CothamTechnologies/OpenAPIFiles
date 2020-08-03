@@ -10,6 +10,131 @@ schemes:
 
 paths:
 
+  /crde5_orderitems:
+    get:
+      summary: Get TAPI Order Items
+      description: Get TAPI Order Items
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: Prefer
+          type: string
+          description: prefer
+          required: false
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $apply
+          type: string
+          description: $apply
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    _owningbusinessunit_value: 
+                      type: string
+                    _owninguser_value: 
+                      type: string
+                    statecode: 
+                      type: number
+                    crde5_orderitemid: 
+                      type: string
+                    statuscode: 
+                      type: number
+                    _createdby_value: 
+                      type: string
+                    crde5_description: 
+                      type: string
+                    _ownerid_value: 
+                      type: string
+                    modifiedon: 
+                      type: string
+                      format: date-time
+                    crde5_itemno: 
+                      type: string
+                    _modifiedby_value: 
+                      type: string
+                    versionnumber: 
+                      type: number
+                    crde5_quantity: 
+                      type: string
+                    crde5_price: 
+                      type: string
+                    createdon: 
+                      type: string
+                      format: date-time
+                    _modifiedonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    overriddencreatedon: 
+                      type: string
+                      format: nullable
+                    _createdonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    utcconversiontimezonecode: 
+                      type: string
+                      format: nullable
+                    timezoneruleversionnumber: 
+                      type: string
+                      format: nullable
+                    _owningteam_value: 
+                      type: string
+                      format: nullable
+                    importsequencenumber: 
+                      type: string
+                      format: nullable
+
+
   /crde5_tapicolors:
     get:
       summary: Get TAPI Colors
