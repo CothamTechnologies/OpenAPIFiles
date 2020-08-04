@@ -109,6 +109,8 @@ paths:
                       type: string
                     crde5_price: 
                       type: string
+                    crde5_totalprice:
+                      type: string
                     createdon: 
                       type: string
                       format: date-time
