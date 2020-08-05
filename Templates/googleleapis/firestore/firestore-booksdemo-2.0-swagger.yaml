@@ -10,15 +10,14 @@ schemes:
 
 
 paths:
-  /{projectID}/databases/(default)/documents:runQuery:
-    post:
-      summary: run Query on Collection
-      description: run Query on Collection
+
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}/{documentId}:
+    delete:
+      summary: delete book
+      description: delete book
       tags: 
         - documents
       produces:
-        - application/json
-      consumes:
         - application/json
       parameters:
         - in: header
@@ -30,48 +29,95 @@ paths:
           description: firebase app project projectID
           type: string
           required: true
-        - in: body
-          name: body
-          schema:
-            type: object
-            properties:
-              structuredQuery:
-                type: object
-                properties:
-                  where:
-                    type: object
-                    properties:
-                      fieldFilter:
-                        type: object
-                        properties:
-                          field:
-                            type: object
-                            properties:
-                              fieldPath:
-                                type: string
-                          op:
-                            type: string
-                          value:
-                            type: object
-                            properties:
-                              stringValue:
-                                type: string
-                  from:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        collectionId:
-                          type: string
-                    
+        - in: path
+          name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
+          type: string
+          required: true
+        - in: path
+          name: documentId
+          type: string
+          required: true
+      responses:
+        '204':
+          description: OK
+          
+        default:
+          description: unexpected response  
+
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
+    get:
+      summary: list users books
+      description: list users books
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: projectID
+          description: firebase app project projectID
+          type: string
+          required: true
+        - in: path
+          name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
+          type: string
+          required: true
       responses:
         '200':
           description: OK
+          schema:
+            type: object
+            properties:
+              documents: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        status: 
+                          type: object
+                          properties: 
+                            stringValue: 
+                              type: string
+                        title: 
+                          type: object
+                          properties: 
+                            stringValue: 
+                              type: string
+                    createTime: 
+                      type: string
+                    updateTime: 
+                      type: string
+        default:
+          description: unexpected response  
 
-  /{projectID}/databases/(default)/documents/{collectionId}:
     post:
-      summary: create entry in collection
-      description: create entry in collection
+      summary: add book entry
+      description: add book entry
       tags: 
         - documents
       produces:
@@ -90,6 +136,14 @@ paths:
           required: true
         - in: path
           name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
           type: string
           required: true
         - in: body
@@ -100,68 +154,42 @@ paths:
               fields:
                 type: object
                 properties:
-                  userid:
+                  status:
                     type: object
                     properties:
                       stringValue:
                         type: string
-                  bookname:
+                  title:
                     type: object
                     properties:
                       stringValue:
                         type: string
-      responses:
-        '200':
-          description: OK
-    
-    get:
-      summary: list entries in collection
-      description: list entries in collection
-      tags: 
-        - documents
-      produces:
-        - application/json
-      parameters:
-        - in: header
-          name: Authorization
-          description: bearer token
-          type: string
-        - in: path
-          name: projectID
-          description: firebase app project projectID
-          type: string
-          required: true
-        - in: path
-          name: collectionId
-          type: string
-          required: true
       responses:
         '200':
           description: OK
           schema:
             type: object
             properties:
-              documents:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    fields:
-                      type: object
-                      properties:
-                        bookname:
-                          type: object
-                          properties:
-                            stringValue:
-                              type: string
-                        userid:
-                          type: object
-                          properties:
-                            stringValue:
-                              type: string
-                    createTime:
-                      type: string
-                    updateTime:
-                      type: string
+              name: 
+                type: string
+              fields: 
+                type: object
+                properties: 
+                  status: 
+                    type: object
+                    properties: 
+                      stringValue: 
+                        type: string
+                  title: 
+                    type: object
+                    properties: 
+                      stringValue: 
+                        type: string
+              createTime: 
+                type: string
+              updateTime: 
+                type: string
+
+        default:
+          description: unexpected response  
+    

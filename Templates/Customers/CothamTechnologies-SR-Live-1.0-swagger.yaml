@@ -408,6 +408,20 @@ paths:
           schema:
             type: object
             properties:
+              isp:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+              cellular:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
               intro:
                 type: array
                 items:
@@ -570,6 +584,27 @@ paths:
                     description:
                       type: string
               gadl:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+              animals:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+              priority:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+              frequency:
                 type: array
                 items:
                   type: object

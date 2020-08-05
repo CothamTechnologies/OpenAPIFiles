@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  title: Power Platform CDS Demo - Authentication s2S
+  description: Power Platform CDS Demo - Authentication s2S
+  version: '1.0.0'
+host: login.microsoftonline.com
+schemes:
+  - https
+
+paths:
+  /{tenantID}/oauth2/v2.0/token:
+    post:
+      summary: S2S Login
+      description: S2S Login
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenantID
+          type: string
+          description: tenantID
+          required: true
+        - in: formData
+          name: client_id
+          type: string
+          description: client_id
+          required: true
+        - in: formData
+          name: client_secret
+          type: string
+          description: client_secret
+          required: true
+        - in: formData
+          name: scope
+          type: string
+          description: scope
+          required: true
+        - in: formData
+          name: grant_type
+          type: string
+          description: grant_type
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              expires_in:
+                type: string
+              ext_expires_in:
+                type: string
+              access_token:
+                type: string
+                  

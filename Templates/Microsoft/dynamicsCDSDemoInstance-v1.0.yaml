@@ -1,0 +1,1454 @@
+swagger: '2.0'
+info:
+  title: Power Platform CDS Demo 
+  description: Power Platform CDS Demo 
+  version: '1.0.0'
+host: orgf3cfd067.crm11.dynamics.com
+basePath: /api/data/v9.1
+schemes:
+  - https
+
+paths:
+
+  /crde5_orderitems:
+    get:
+      summary: Get TAPI Order Items
+      description: Get TAPI Order Items
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: Prefer
+          type: string
+          description: prefer
+          required: false
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $apply
+          type: string
+          description: $apply
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    _owningbusinessunit_value: 
+                      type: string
+                    _owninguser_value: 
+                      type: string
+                    statecode: 
+                      type: number
+                    crde5_orderitemid: 
+                      type: string
+                    statuscode: 
+                      type: number
+                    _createdby_value: 
+                      type: string
+                    crde5_description: 
+                      type: string
+                    _ownerid_value: 
+                      type: string
+                    modifiedon: 
+                      type: string
+                      format: date-time
+                    crde5_itemno: 
+                      type: string
+                    _modifiedby_value: 
+                      type: string
+                    versionnumber: 
+                      type: number
+                    crde5_quantity: 
+                      type: string
+                    crde5_price: 
+                      type: string
+                    crde5_totalprice:
+                      type: string
+                    createdon: 
+                      type: string
+                      format: date-time
+                    _modifiedonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    overriddencreatedon: 
+                      type: string
+                      format: nullable
+                    _createdonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    utcconversiontimezonecode: 
+                      type: string
+                      format: nullable
+                    timezoneruleversionnumber: 
+                      type: string
+                      format: nullable
+                    _owningteam_value: 
+                      type: string
+                      format: nullable
+                    importsequencenumber: 
+                      type: string
+                      format: nullable
+
+
+  /crde5_tapicolors:
+    get:
+      summary: Get TAPI Colors
+      description: Get TAPI Colors
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: Prefer
+          type: string
+          description: prefer
+          required: false
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $apply
+          type: string
+          description: $apply
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    _owningbusinessunit_value: 
+                      type: string
+                    modifiedon: 
+                      type: string
+                      format: date-time
+                    statecode: 
+                      type: number
+                    statuscode: 
+                      type: number
+                    crde5_name: 
+                      type: string
+                    _createdby_value: 
+                      type: string
+                    crde5_tapicolorid: 
+                      type: string
+                    crde5_colorimage_timestamp: 
+                      type: number
+                    crde5_colorimage_url: 
+                      type: string
+                    crde5_colorimage: 
+                      type: string
+                    _owninguser_value: 
+                      type: string
+                    _modifiedby_value: 
+                      type: string
+                    versionnumber: 
+                      type: number
+                    crde5_colorimageid: 
+                      type: string
+                    createdon: 
+                      type: string
+                      format: date-time
+                    _ownerid_value: 
+                      type: string
+                    utcconversiontimezonecode: 
+                      type: string
+                      format: nullable
+                    importsequencenumber: 
+                      type: string
+                      format: nullable
+                    timezoneruleversionnumber: 
+                      type: string
+                      format: nullable
+                    _owningteam_value: 
+                      type: string
+                      format: nullable
+                    _modifiedonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    overriddencreatedon: 
+                      type: string
+                      format: nullable
+                    _createdonbehalfby_value: 
+                      type: string
+                      format: nullable
+
+  /crde5_tapiproducts:
+    get:
+      summary: Get TAPI Products
+      description: Get TAPI Products
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: Prefer
+          type: string
+          description: prefer
+          required: false
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $apply
+          type: string
+          description: $apply
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    crde5_offerprice: 
+                      type: string
+                    _owningbusinessunit_value: 
+                      type: string
+                    crde5_image: 
+                      type: string
+                    crde5_tapiproductid: 
+                      type: string
+                    _owninguser_value: 
+                      type: string
+                    crde5_image_timestamp: 
+                      type: number
+                    crde5_category: 
+                      type: string
+                    statuscode: 
+                      type: number
+                    crde5_name: 
+                      type: string
+                    crde5_offerdescription: 
+                      type: string
+                    crde5_imageid: 
+                      type: string
+                    crde5_description: 
+                      type: string
+                    _ownerid_value: 
+                      type: string
+                    modifiedon: 
+                      type: string
+                      format: date-time
+                    crde5_listprice: 
+                      type: string
+                    _modifiedby_value: 
+                      type: string
+                    versionnumber: 
+                      type: number
+                    crde5_image_url: 
+                      type: string
+                    crde5_fittingprice: 
+                      type: string
+                    createdon: 
+                      type: string
+                      format: date-time
+                    statecode: 
+                      type: number
+                    _createdby_value: 
+                      type: string
+                    importsequencenumber: 
+                      type: string
+                      format: nullable
+                    timezoneruleversionnumber: 
+                      type: string
+                      format: nullable
+                    _modifiedonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    _owningteam_value: 
+                      type: string
+                      format: nullable
+                    overriddencreatedon: 
+                      type: string
+                      format: nullable
+                    _createdonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    utcconversiontimezonecode: 
+                      type: string
+                      format: nullable
+
+          
+
+  /WhoAmI:
+    get:
+      summary: Who Am I
+      description: User Details
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              BusinessUnitId: 
+                type: string
+              UserId: 
+                type: string
+              OrganizationId: 
+                type: string
+        default:
+          description: error
+                
+
+  /accounts:
+    post:
+      summary: create account
+      description: create account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              emailaddress1:
+                type: string
+              telephone1:
+                type: string
+              websiteurl:
+                type: string
+              address1_line1:
+                type: string
+              address1_city:
+                type: string
+              address1_postalcode:
+                type: string
+              address1_country:
+                type: string
+              ownerid@odata.bind:
+                type: string
+            
+      responses:
+        '204':
+          description: OK
+        default:
+          description: OK
+    get:
+      summary: list accounts
+      description: list accounts
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: Prefer
+          type: string
+          description: prefer
+          required: false
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $apply
+          type: string
+          description: $apply
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    crde5_testfile_name: 
+                      type: string
+                      format: nullable
+                    overriddencreatedon: 
+                      type: string
+                      format: nullable
+                    accountid: 
+                      type: string
+                    accountnumber: 
+                      type: string
+                    address1_postofficebox: 
+                      type: string
+                      format: nullable
+                    address1_name: 
+                      type: string
+                      format: nullable
+                    address1_telephone3: 
+                      type: string
+                      format: nullable
+                    address2_county: 
+                      type: string
+                      format: nullable
+                    createdon: 
+                      type: string
+                      format: date-time
+                    donotfax: 
+                      type: boolean
+                    numberofemployees: 
+                      type: number
+                    address1_line2: 
+                      type: string
+                      format: nullable
+                    timespentbymeonemailandmeetings: 
+                      type: string
+                      format: nullable
+                    address1_county: 
+                      type: string
+                      format: nullable
+                    address2_longitude: 
+                      type: string
+                      format: nullable
+                    ownershipcode: 
+                      type: string
+                      format: nullable
+                    timezoneruleversionnumber: 
+                      type: string
+                      format: nullable
+                    address1_telephone1: 
+                      type: string
+                      format: nullable
+                    primarysatoriid: 
+                      type: string
+                      format: nullable
+                    _masterid_value: 
+                      type: string
+                      format: nullable
+                    address2_latitude: 
+                      type: string
+                      format: nullable
+                    address2_fax: 
+                      type: string
+                      format: nullable
+                    aging60_base: 
+                      type: string
+                      format: nullable
+                    telephone1: 
+                      type: string
+                    aging90: 
+                      type: string
+                      format: nullable
+                    accountcategorycode: 
+                      type: string
+                      format: nullable
+                    industrycode: 
+                      type: string
+                      format: nullable
+                    address1_postalcode: 
+                      type: string
+                    processid: 
+                      type: string
+                      format: nullable
+                    address1_latitude: 
+                      type: string
+                      format: nullable
+                    _transactioncurrencyid_value: 
+                      type: string
+                    tickersymbol: 
+                      type: string
+                      format: nullable
+                    address2_shippingmethodcode: 
+                      type: number
+                    _ownerid_value: 
+                      type: string
+                    customersizecode: 
+                      type: number
+                    address2_name: 
+                      type: string
+                      format: nullable
+                    statecode: 
+                      type: number
+                    address1_line3: 
+                      type: string
+                      format: nullable
+                    accountratingcode: 
+                      type: number
+                    _owningbusinessunit_value: 
+                      type: string
+                    importsequencenumber: 
+                      type: number
+                    paymenttermscode: 
+                      type: string
+                      format: nullable
+                    fax: 
+                      type: string
+                      format: nullable
+                    businesstypecode: 
+                      type: number
+                    emailaddress3: 
+                      type: string
+                      format: nullable
+                    address2_utcoffset: 
+                      type: string
+                      format: nullable
+                    donotphone: 
+                      type: boolean
+                    exchangerate: 
+                      type: number
+                    _modifiedonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    entityimage: 
+                      type: string
+                    ftpsiteurl: 
+                      type: string
+                      format: nullable
+                    shippingmethodcode: 
+                      type: number
+                    address2_city: 
+                      type: string
+                      format: nullable
+                    revenue: 
+                      type: number
+                    _owningteam_value: 
+                      type: string
+                      format: nullable
+                    marketingonly: 
+                      type: boolean
+                    participatesinworkflow: 
+                      type: boolean
+                    address2_addressid: 
+                      type: string
+                    marketcap: 
+                      type: string
+                      format: nullable
+                    statuscode: 
+                      type: number
+                    address2_addresstypecode: 
+                      type: number
+                    donotbulkemail: 
+                      type: boolean
+                    aging30: 
+                      type: string
+                      format: nullable
+                    entityimage_url: 
+                      type: string
+                    sharesoutstanding: 
+                      type: string
+                      format: nullable
+                    address1_stateorprovince: 
+                      type: string
+                    _owninguser_value: 
+                      type: string
+                    aging60: 
+                      type: string
+                      format: nullable
+                    stageid: 
+                      type: string
+                      format: nullable
+                    versionnumber: 
+                      type: number
+                    preferredappointmenttimecode: 
+                      type: string
+                      format: nullable
+                    address2_composite: 
+                      type: string
+                      format: nullable
+                    aging90_base: 
+                      type: string
+                      format: nullable
+                    address1_upszone: 
+                      type: string
+                      format: nullable
+                    merged: 
+                      type: boolean
+                    address1_city: 
+                      type: string
+                    description: 
+                      type: string
+                      format: nullable
+                    onholdtime: 
+                      type: string
+                      format: nullable
+                    crde5_testfile: 
+                      type: string
+                      format: nullable
+                    marketcap_base: 
+                      type: string
+                      format: nullable
+                    address2_stateorprovince: 
+                      type: string
+                      format: nullable
+                    yominame: 
+                      type: string
+                      format: nullable
+                    address2_telephone3: 
+                      type: string
+                      format: nullable
+                    donotpostalmail: 
+                      type: boolean
+                    donotemail: 
+                      type: boolean
+                    address1_composite: 
+                      type: string
+                    _slainvokedid_value: 
+                      type: string
+                      format: nullable
+                    address1_primarycontactname: 
+                      type: string
+                      format: nullable
+                    emailaddress1: 
+                      type: string
+                    _slaid_value: 
+                      type: string
+                      format: nullable
+                    traversedpath: 
+                      type: string
+                      format: nullable
+                    donotsendmm: 
+                      type: boolean
+                    stockexchange: 
+                      type: string
+                      format: nullable
+                    _createdonbehalfby_value: 
+                      type: string
+                      format: nullable
+                    _modifiedbyexternalparty_value: 
+                      type: string
+                      format: nullable
+                    address2_telephone1: 
+                      type: string
+                      format: nullable
+                    address2_line3: 
+                      type: string
+                      format: nullable
+                    address2_postalcode: 
+                      type: string
+                      format: nullable
+                    _modifiedby_value: 
+                      type: string
+                    address1_shippingmethodcode: 
+                      type: string
+                      format: nullable
+                    _createdby_value: 
+                      type: string
+                    entityimage_timestamp: 
+                      type: number
+                    address2_primarycontactname: 
+                      type: string
+                      format: nullable
+                    address1_country: 
+                      type: string
+                    primarytwitterid: 
+                      type: string
+                      format: nullable
+                    customertypecode: 
+                      type: string
+                      format: nullable
+                    address2_line1: 
+                      type: string
+                      format: nullable
+                    name: 
+                      type: string
+                    address2_postofficebox: 
+                      type: string
+                      format: nullable
+                    territorycode: 
+                      type: number
+                    _primarycontactid_value: 
+                      type: string
+                    address1_freighttermscode: 
+                      type: string
+                      format: nullable
+                    address1_longitude: 
+                      type: string
+                      format: nullable
+                    telephone2: 
+                      type: string
+                      format: nullable
+                    address1_addresstypecode: 
+                      type: string
+                      format: nullable
+                    donotbulkpostalmail: 
+                      type: boolean
+                    lastusedincampaign: 
+                      type: string
+                      format: nullable
+                    _preferredsystemuserid_value: 
+                      type: string
+                      format: nullable
+                    creditlimit_base: 
+                      type: string
+                      format: nullable
+                    telephone3: 
+                      type: string
+                      format: nullable
+                    address1_addressid: 
+                      type: string
+                    preferredappointmentdaycode: 
+                      type: string
+                      format: nullable
+                    websiteurl: 
+                      type: string
+                    accountclassificationcode: 
+                      type: number
+                    utcconversiontimezonecode: 
+                      type: string
+                      format: nullable
+                    _createdbyexternalparty_value: 
+                      type: string
+                      format: nullable
+                    sic: 
+                      type: string
+                      format: nullable
+                    creditlimit: 
+                      type: string
+                      format: nullable
+                    lastonholdtime: 
+                      type: string
+                      format: nullable
+                    address2_line2: 
+                      type: string
+                      format: nullable
+                    address1_line1: 
+                      type: string
+                    address1_telephone2: 
+                      type: string
+                      format: nullable
+                    aging30_base: 
+                      type: string
+                      format: nullable
+                    followemail: 
+                      type: boolean
+                    modifiedon: 
+                      type: string
+                      format: date-time
+                    entityimageid: 
+                      type: string
+                    address1_fax: 
+                      type: string
+                      format: nullable
+                    address2_upszone: 
+                      type: string
+                      format: nullable
+                    address2_country: 
+                      type: string
+                      format: nullable
+                    creditonhold: 
+                      type: boolean
+                    address2_freighttermscode: 
+                      type: number
+                    address1_utcoffset: 
+                      type: string
+                      format: nullable
+                    emailaddress2: 
+                      type: string
+                      format: nullable
+                    _parentaccountid_value: 
+                      type: string
+                      format: nullable
+                    preferredcontactmethodcode: 
+                      type: number
+                    revenue_base: 
+                      type: number
+                    address2_telephone2: 
+                      type: string
+                      format: nullable
+                    primarycontactid: 
+                      type: object
+                      properties: 
+                        spousesname: 
+                          type: string
+                        emailaddress3: 
+                          type: string
+                          format: nullable
+                        address3_telephone3: 
+                          type: string
+                          format: nullable
+                        mobilephone: 
+                          type: string
+                          format: nullable
+                        address3_shippingmethodcode: 
+                          type: string
+                          format: nullable
+                        address3_postalcode: 
+                          type: string
+                          format: nullable
+                        versionnumber: 
+                          type: number
+                        annualincome: 
+                          type: string
+                          format: nullable
+                        fax: 
+                          type: string
+                          format: nullable
+                        telephone3: 
+                          type: string
+                          format: nullable
+                        preferredappointmentdaycode: 
+                          type: string
+                          format: nullable
+                        address3_city: 
+                          type: string
+                          format: nullable
+                        lastonholdtime: 
+                          type: string
+                          format: nullable
+                        address2_stateorprovince: 
+                          type: string
+                          format: nullable
+                        _createdby_value: 
+                          type: string
+                        address2_line1: 
+                          type: string
+                          format: nullable
+                        lastusedincampaign: 
+                          type: string
+                          format: nullable
+                        address3_freighttermscode: 
+                          type: string
+                          format: nullable
+                        address3_telephone2: 
+                          type: string
+                          format: nullable
+                        pager: 
+                          type: string
+                          format: nullable
+                        employeeid: 
+                          type: string
+                          format: nullable
+                        territorycode: 
+                          type: number
+                        _parentcustomerid_value: 
+                          type: string
+                        managername: 
+                          type: string
+                          format: nullable
+                        birthdate: 
+                          type: string
+                          format: date
+                        address1_name: 
+                          type: string
+                          format: nullable
+                        department: 
+                          type: string
+                          format: nullable
+                        address3_country: 
+                          type: string
+                          format: nullable
+                        address2_telephone1: 
+                          type: string
+                          format: nullable
+                        address2_latitude: 
+                          type: string
+                          format: nullable
+                        _owningteam_value: 
+                          type: string
+                          format: nullable
+                        timezoneruleversionnumber: 
+                          type: number
+                        address2_postalcode: 
+                          type: string
+                          format: nullable
+                        entityimage_timestamp: 
+                          type: string
+                          format: nullable
+                        _owninguser_value: 
+                          type: string
+                        merged: 
+                          type: boolean
+                        _masterid_value: 
+                          type: string
+                          format: nullable
+                        _createdonbehalfby_value: 
+                          type: string
+                          format: nullable
+                        address3_postofficebox: 
+                          type: string
+                          format: nullable
+                        customertypecode: 
+                          type: number
+                        business2: 
+                          type: string
+                          format: nullable
+                        address3_county: 
+                          type: string
+                          format: nullable
+                        address1_latitude: 
+                          type: string
+                          format: nullable
+                        address1_freighttermscode: 
+                          type: string
+                          format: nullable
+                        traversedpath: 
+                          type: string
+                          format: nullable
+                        address3_addresstypecode: 
+                          type: string
+                          format: nullable
+                        address1_longitude: 
+                          type: string
+                          format: nullable
+                        address1_addresstypecode: 
+                          type: string
+                          format: nullable
+                        address2_primarycontactname: 
+                          type: string
+                          format: nullable
+                        statuscode: 
+                          type: number
+                        yomifullname: 
+                          type: string
+                        aging90_base: 
+                          type: string
+                          format: nullable
+                        _accountid_value: 
+                          type: string
+                          format: nullable
+                        address3_primarycontactname: 
+                          type: string
+                          format: nullable
+                        familystatuscode: 
+                          type: number
+                        home2: 
+                          type: string
+                          format: nullable
+                        address3_addressid: 
+                          type: string
+                        leadsourcecode: 
+                          type: number
+                        address2_shippingmethodcode: 
+                          type: number
+                        statecode: 
+                          type: number
+                        address2_freighttermscode: 
+                          type: number
+                        address1_composite: 
+                          type: string
+                        telephone2: 
+                          type: string
+                          format: nullable
+                        yomimiddlename: 
+                          type: string
+                          format: nullable
+                        _modifiedonbehalfby_value: 
+                          type: string
+                          format: nullable
+                        address2_addresstypecode: 
+                          type: number
+                        educationcode: 
+                          type: number
+                        address1_telephone3: 
+                          type: string
+                          format: nullable
+                        followemail: 
+                          type: boolean
+                        importsequencenumber: 
+                          type: number
+                        gendercode: 
+                          type: number
+                        jobtitle: 
+                          type: string
+                        utcconversiontimezonecode: 
+                          type: string
+                          format: nullable
+                        aging60_base: 
+                          type: string
+                          format: nullable
+                        address3_line1: 
+                          type: string
+                          format: nullable
+                        address1_county: 
+                          type: string
+                          format: nullable
+                        _owningbusinessunit_value: 
+                          type: string
+                        _createdbyexternalparty_value: 
+                          type: string
+                          format: nullable
+                        entityimageid: 
+                          type: string
+                          format: nullable
+                        processid: 
+                          type: string
+                          format: nullable
+                        address1_telephone2: 
+                          type: string
+                          format: nullable
+                        description: 
+                          type: string
+                          format: nullable
+                        address1_fax: 
+                          type: string
+                          format: nullable
+                        marketingonly: 
+                          type: boolean
+                        address2_country: 
+                          type: string
+                          format: nullable
+                        address3_line2: 
+                          type: string
+                          format: nullable
+                        address1_addressid: 
+                          type: string
+                        address2_composite: 
+                          type: string
+                          format: nullable
+                        donotpostalmail: 
+                          type: boolean
+                        address2_utcoffset: 
+                          type: string
+                          format: nullable
+                        aging30_base: 
+                          type: string
+                          format: nullable
+                        callback: 
+                          type: string
+                          format: nullable
+                        emailaddress2: 
+                          type: string
+                          format: nullable
+                        address2_line3: 
+                          type: string
+                          format: nullable
+                        managerphone: 
+                          type: string
+                          format: nullable
+                        websiteurl: 
+                          type: string
+                          format: nullable
+                        exchangerate: 
+                          type: number
+                        firstname: 
+                          type: string
+                        address1_telephone1: 
+                          type: string
+                          format: nullable
+                        address3_composite: 
+                          type: string
+                          format: nullable
+                        address3_fax: 
+                          type: string
+                          format: nullable
+                        childrensnames: 
+                          type: string
+                          format: nullable
+                        preferredcontactmethodcode: 
+                          type: number
+                        numberofchildren: 
+                          type: string
+                          format: nullable
+                        subscriptionid: 
+                          type: string
+                          format: nullable
+                        address2_postofficebox: 
+                          type: string
+                          format: nullable
+                        aging90: 
+                          type: string
+                          format: nullable
+                        donotbulkpostalmail: 
+                          type: boolean
+                        emailaddress1: 
+                          type: string
+                        donotbulkemail: 
+                          type: boolean
+                        customersizecode: 
+                          type: number
+                        address1_city: 
+                          type: string
+                        preferredappointmenttimecode: 
+                          type: number
+                        address3_latitude: 
+                          type: string
+                          format: nullable
+                        assistantphone: 
+                          type: string
+                          format: nullable
+                        _transactioncurrencyid_value: 
+                          type: string
+                        entityimage: 
+                          type: string
+                          format: nullable
+                        _modifiedbyexternalparty_value: 
+                          type: string
+                          format: nullable
+                        paymenttermscode: 
+                          type: string
+                          format: nullable
+                        address3_name: 
+                          type: string
+                          format: nullable
+                        fullname: 
+                          type: string
+                        address1_shippingmethodcode: 
+                          type: string
+                          format: nullable
+                        _modifiedby_value: 
+                          type: string
+                        ftpsiteurl: 
+                          type: string
+                          format: nullable
+                        _preferredsystemuserid_value: 
+                          type: string
+                          format: nullable
+                        address2_telephone2: 
+                          type: string
+                          format: nullable
+                        _slainvokedid_value: 
+                          type: string
+                          format: nullable
+                        address3_utcoffset: 
+                          type: string
+                          format: nullable
+                        address3_telephone1: 
+                          type: string
+                          format: nullable
+                        nickname: 
+                          type: string
+                          format: nullable
+                        address1_postofficebox: 
+                          type: string
+                          format: nullable
+                        assistantname: 
+                          type: string
+                          format: nullable
+                        address2_line2: 
+                          type: string
+                          format: nullable
+                        aging60: 
+                          type: string
+                          format: nullable
+                        modifiedon: 
+                          type: string
+                          format: date-time
+                        externaluseridentifier: 
+                          type: string
+                          format: nullable
+                        address2_name: 
+                          type: string
+                          format: nullable
+                        stageid: 
+                          type: string
+                          format: nullable
+                        creditonhold: 
+                          type: boolean
+                        address3_longitude: 
+                          type: string
+                          format: nullable
+                        onholdtime: 
+                          type: string
+                          format: nullable
+                        address2_telephone3: 
+                          type: string
+                          format: nullable
+                        donotfax: 
+                          type: boolean
+                        donotphone: 
+                          type: boolean
+                        address3_upszone: 
+                          type: string
+                          format: nullable
+                        contactid: 
+                          type: string
+                        aging30: 
+                          type: string
+                          format: nullable
+                        address2_upszone: 
+                          type: string
+                          format: nullable
+                        address1_upszone: 
+                          type: string
+                          format: nullable
+                        creditlimit: 
+                          type: string
+                          format: nullable
+                        accountrolecode: 
+                          type: string
+                          format: nullable
+                        salutation: 
+                          type: string
+                          format: nullable
+                        suffix: 
+                          type: string
+                          format: nullable
+                        address1_primarycontactname: 
+                          type: string
+                          format: nullable
+                        address1_utcoffset: 
+                          type: string
+                          format: nullable
+                        governmentid: 
+                          type: string
+                          format: nullable
+                        donotsendmm: 
+                          type: boolean
+                        annualincome_base: 
+                          type: string
+                          format: nullable
+                        address1_country: 
+                          type: string
+                        address3_stateorprovince: 
+                          type: string
+                          format: nullable
+                        lastname: 
+                          type: string
+                        address2_city: 
+                          type: string
+                          format: nullable
+                        donotemail: 
+                          type: boolean
+                        company: 
+                          type: string
+                          format: nullable
+                        address1_line2: 
+                          type: string
+                          format: nullable
+                        address2_longitude: 
+                          type: string
+                          format: nullable
+                        address1_stateorprovince: 
+                          type: string
+                        yomifirstname: 
+                          type: string
+                          format: nullable
+                        telephone1: 
+                          type: string
+                        address1_line1: 
+                          type: string
+                        address2_addressid: 
+                          type: string
+                        isbackofficecustomer: 
+                          type: boolean
+                        creditlimit_base: 
+                          type: string
+                          format: nullable
+                        address2_county: 
+                          type: string
+                          format: nullable
+                        shippingmethodcode: 
+                          type: number
+                        anniversary: 
+                          type: string
+                          format: date
+                        _ownerid_value: 
+                          type: string
+                        _parentcontactid_value: 
+                          type: string
+                          format: nullable
+                        haschildrencode: 
+                          type: number
+                        address2_fax: 
+                          type: string
+                          format: nullable
+                        yomilastname: 
+                          type: string
+                          format: nullable
+                        createdon: 
+                          type: string
+                          format: date-time
+                        entityimage_url: 
+                          type: string
+                          format: nullable
+                        address1_line3: 
+                          type: string
+                          format: nullable
+                        _slaid_value: 
+                          type: string
+                          format: nullable
+                        middlename: 
+                          type: string
+                          format: nullable
+                        address1_postalcode: 
+                          type: string
+                        address3_line3: 
+                          type: string
+                          format: nullable
+                        overriddencreatedon: 
+                          type: string
+                          format: nullable
+                        timespentbymeonemailandmeetings: 
+                          type: string
+                          format: nullable
+                        participatesinworkflow: 
+                          type: boolean
+
+        default:
+          description: OK
+
+                  
