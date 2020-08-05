@@ -160,6 +160,11 @@ paths:
           type: string
           description: customerNo
           required: true
+        - in: formData
+          name: params[maxCollectionPaymentAmount]
+          type: integer
+          description: maxCollectionPaymentAmount
+          required: true
 
       responses:
         200:
@@ -174,6 +179,9 @@ paths:
               payload:
                 type: object
                 properties:
+                  maxPaymentExceeded:
+                    description: The total payment amount has exceeded this client's maximum
+                    type: boolean
                   total:
                     description: The total cost of the items in the collection
                     type: number
@@ -2778,6 +2786,8 @@ paths:
                     type: string
                   companyName:
                     type: string
+                  maxCollectionPaymentAmount:
+                    type: integer
                   fullName:
                     type: string
                   IsError:
