@@ -10,10 +10,10 @@ schemes:
 
 paths:
 
-  /sites/cothamdemo.sharepoint.com:/sites/FloproDemo:
+  /sites
     get:
-      summary: Get Site
-      description: Get Site
+      summary: Get Sites
+      description: Get Sites
       produces:
         - application/json
       parameters:
@@ -60,28 +60,40 @@ paths:
           schema:
             type: object
             properties:
-              createdDateTime: 
-                type: string
-              description: 
-                type: string
-              id: 
-                type: string
-              lastModifiedDateTime: 
-                type: string
-                format: date-time
-              name: 
-                type: string
-              webUrl: 
-                type: string
-              displayName: 
-                type: string
-              siteCollection: 
-                type: object
-                properties: 
-                  hostname: 
-                    type: string
-
-              
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                    name: 
+                      type: string
+                    displayName: 
+                      type: string
+                    webUrl: 
+                      type: string
+                    sharepointIds: 
+                      type: object
+                      properties: 
+                        siteId: 
+                          type: string
+                        siteUrl: 
+                          type: string
+                        tenantId: 
+                          type: string
+                        webId: 
+                          type: string
+                    siteCollection: 
+                      type: object
+                      properties: 
+                        hostname: 
+                          type: string   
 
         default:
           description: error
