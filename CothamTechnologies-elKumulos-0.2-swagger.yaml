@@ -2058,7 +2058,7 @@ paths:
           description: permissionToEnterUnit
           required: true
         - in: formData
-          name: photos
+          name: params[photos]
           type: string
           description: imageData
           required: false
