@@ -10,7 +10,7 @@ schemes:
 
 paths:
 
-  /sites
+  /sites:
     get:
       summary: Get Sites
       description: Get Sites
