@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  title: Office 365 graph API Demo 
+  description: Office 365 graph API Demo 
+  version: '1.0.0'
+host: graph.microsoft.com
+basePath: /v1.0
+schemes:
+  - https
+
+paths:
+
+  /sites/cothamdemo.sharepoint.com:/sites/FloproDemo:
+    get:
+      summary: Get Site
+      description: Get Site
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              createdDateTime: 
+                type: string
+              description: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              displayName: 
+                type: string
+              siteCollection: 
+                type: object
+                properties: 
+                  hostname: 
+                    type: string
+
+              
+
+        default:
+          description: error
+
+                  

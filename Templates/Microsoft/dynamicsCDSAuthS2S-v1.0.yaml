@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: Power Platform CDS Demo - Authentication s2S
-  description: Power Platform CDS Demo - Authentication s2S
+  title: Power Platform CDS Demo - Authentication s2S 
+  description: Power Platform CDS Demo - Authentication s2S 0 also office365 graph access
   version: '1.0.0'
 host: login.microsoftonline.com
 schemes:
