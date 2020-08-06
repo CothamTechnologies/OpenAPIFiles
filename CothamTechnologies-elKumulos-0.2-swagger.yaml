@@ -1894,7 +1894,7 @@ paths:
           name: params[jwt]
           type: string
           description: jwt
-          required: true
+          required: false
 
       responses:
         200:
