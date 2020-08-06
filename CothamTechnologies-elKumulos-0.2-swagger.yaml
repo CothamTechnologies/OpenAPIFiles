@@ -160,6 +160,11 @@ paths:
           type: string
           description: customerNo
           required: true
+        - in: formData
+          name: params[maxCollectionPaymentAmount]
+          type: integer
+          description: maxCollectionPaymentAmount
+          required: true
 
       responses:
         200:
@@ -174,6 +179,9 @@ paths:
               payload:
                 type: object
                 properties:
+                  maxPaymentExceeded:
+                    description: The total payment amount has exceeded this client's maximum
+                    type: boolean
                   total:
                     description: The total cost of the items in the collection
                     type: number
@@ -468,12 +476,14 @@ paths:
           required: true
         - in: formData
           name: params[toPayAmount]
-          type: double
+          type: number
+          format: double
           description: toPayAmount
           required: true
         - in: formData
           name: params[invoiceAmount]
-          type: double
+          type: number
+          format: double
           description: invoiceAmount
           required: true
         - in: formData
@@ -1871,6 +1881,44 @@ paths:
         default:
           description: Failed Server Response
 
+  /owGetFakeArray.json/:
+    post:
+      summary: Get fake array
+      description: Get fake array to be used for photos later
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: false
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    imageData:
+                      type: string
+                    description:
+                      type: string
+
+        default:
+          description: Failed Server Response
+
   /owGetJobs.json/:
     post:
       summary: Get Jobs
@@ -1958,6 +2006,19 @@ paths:
                                 CancelledDate:
                                   type: string
                                   format: date-time
+                                photoCount:
+                                  type: integer
+                                photos:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      jobPhotoID:
+                                        type: string
+                                      description:
+                                        type: string
+                                      imageData:
+                                        type: string
 
         default:
           description: Failed Server Response
@@ -1996,6 +2057,11 @@ paths:
           type: boolean
           description: permissionToEnterUnit
           required: true
+        - in: formData
+          name: photos
+          type: string
+          description: imageData
+          required: false
 
       responses:
         200:
@@ -2778,6 +2844,8 @@ paths:
                     type: string
                   companyName:
                     type: string
+                  maxCollectionPaymentAmount:
+                    type: integer
                   fullName:
                     type: string
                   IsError:
@@ -2923,7 +2991,7 @@ paths:
                           DocumentName:
                             type: string
                           Base64PDF:
-                            type: text
+                            type: string
 
         default:
           description: Failed Server Response
@@ -2993,7 +3061,7 @@ paths:
                           DocumentName:
                             type: string
                           Base64PDF:
-                            type: text
+                            type: string
 
         default:
           description: Failed Server Response
@@ -3056,7 +3124,7 @@ paths:
                           DocumentName:
                             type: string
                           Base64PDF:
-                            type: text
+                            type: string
 
         default:
           description: Failed Server Response
@@ -3196,7 +3264,7 @@ paths:
           required: true
         - in: formData
           name: params[customerNo]
-          type: true
+          type: string
           description: customerNo
           required: true
 
