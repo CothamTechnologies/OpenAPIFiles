@@ -476,12 +476,14 @@ paths:
           required: true
         - in: formData
           name: params[toPayAmount]
-          type: double
+          type: number
+          format: double
           description: toPayAmount
           required: true
         - in: formData
           name: params[invoiceAmount]
-          type: double
+          type: number
+          format: double
           description: invoiceAmount
           required: true
         - in: formData
@@ -1966,6 +1968,19 @@ paths:
                                 CancelledDate:
                                   type: string
                                   format: date-time
+                                photoCount:
+                                  type: integer
+                                photos:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      jobPhotoID:
+                                        type: string
+                                      description:
+                                        type: string
+                                      imageData:
+                                        type: string
 
         default:
           description: Failed Server Response
@@ -2004,6 +2019,11 @@ paths:
           type: boolean
           description: permissionToEnterUnit
           required: true
+        - in: formData
+          name: photos
+          type: string
+          description: imageData
+          required: false
 
       responses:
         200:
@@ -2933,7 +2953,7 @@ paths:
                           DocumentName:
                             type: string
                           Base64PDF:
-                            type: text
+                            type: string
 
         default:
           description: Failed Server Response
@@ -3003,7 +3023,7 @@ paths:
                           DocumentName:
                             type: string
                           Base64PDF:
-                            type: text
+                            type: string
 
         default:
           description: Failed Server Response
@@ -3066,7 +3086,7 @@ paths:
                           DocumentName:
                             type: string
                           Base64PDF:
-                            type: text
+                            type: string
 
         default:
           description: Failed Server Response
@@ -3206,7 +3226,7 @@ paths:
           required: true
         - in: formData
           name: params[customerNo]
-          type: true
+          type: string
           description: customerNo
           required: true
 
