@@ -1881,6 +1881,37 @@ paths:
         default:
           description: Failed Server Response
 
+  /owGetFakeArray.json/:
+    post:
+      summary: Get fake array
+      description: Get fake array to be used for photos later
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                imageData:
+                  type: string
+                description:
+                  type: string
+
+        default:
+          description: Failed Server Response
+
   /owGetJobs.json/:
     post:
       summary: Get Jobs
