@@ -12,8 +12,8 @@ paths:
 
   /sites/{siteID}/lists/{listID}/items:
     get:
-      summary: Get Site Lists
-      description: Get Site Lists
+      summary: Get Site List Items
+      description: Get Site Items
       produces:
         - application/json
       parameters:
