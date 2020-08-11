@@ -513,6 +513,13 @@ paths:
                   properties:
                     description:
                       type: string
+              emergencyContacts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
               regularity:
                 type: array
                 items:
