@@ -520,6 +520,13 @@ paths:
                   properties:
                     description:
                       type: string
+              bbCaps:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
               regularity:
                 type: array
                 items:
