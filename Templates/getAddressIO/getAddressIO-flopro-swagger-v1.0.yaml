@@ -3,11 +3,7 @@ info:
   version: v1
   title: api.getaddres.io
   description: A simple API for finding postal addresses
-  termsOfService: https://getaddress.io/terms
-  contact:
-    name: Support
-    url: https://getaddress.io
-    email: support@getaddress.io
+  
 host: api.getaddress.io
 schemes:
   - https
