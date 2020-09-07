@@ -65,6 +65,25 @@ paths:
       responses:
         200:
           description: Succesfully returned a list of companies
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    systemVersion: 
+                      type: string
+                    name: 
+                      type: string
+                    displayName: 
+                      type: string
+                    businessProfileId: 
+                      type: string
+
         default:
           description: error
           
@@ -99,6 +118,20 @@ paths:
       responses:
         200:
           description: Succesfully returned the requested company
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              systemVersion: 
+                type: string
+              name: 
+                type: string
+              displayName: 
+                type: string
+              businessProfileId: 
+                type: string
+
         default:
           description: error
           
@@ -177,5 +210,77 @@ paths:
       responses:
         200:
           description: Succesfully returned a list of items
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    number: 
+                      type: string
+                    displayName: 
+                      type: string
+                    type: 
+                      type: string
+                    itemCategoryId: 
+                      type: string
+                    itemCategoryCode: 
+                      type: string
+                    blocked: 
+                      type: boolean
+                    baseUnitOfMeasureId: 
+                      type: string
+                    gtin: 
+                      type: string
+                    inventory: 
+                      type: number
+                    unitPrice: 
+                      type: number
+                    priceIncludesTax: 
+                      type: boolean
+                    unitCost: 
+                      type: number
+                    taxGroupId: 
+                      type: string
+                    taxGroupCode: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                    baseUnitOfMeasure: 
+                      type: object
+                      properties: 
+                        code: 
+                          type: string
+                        displayName: 
+                          type: string
+                        symbol: 
+                          type: string
+                          format: nullable
+                        unitConversion: 
+                          type: string
+                          format: nullable
+                    picture: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          id: 
+                            type: string
+                          width: 
+                            type: number
+                          height: 
+                            type: number
+                          contentType: 
+                            type: string
+                          content@odata.mediaEditLink: 
+                            type: string
+                          content@odata.mediaReadLink: 
+                            type: string
+
+
         default:
           description: error
