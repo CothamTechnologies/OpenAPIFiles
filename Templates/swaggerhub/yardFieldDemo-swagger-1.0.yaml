@@ -1,0 +1,198 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: YardFieldDemo
+  description: ''
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /CothamTechnologies/YardFieldDemo/1.0
+schemes:
+ - https
+ 
+
+paths:
+  
+  /getOrderMaterials:
+    get:
+      summary: getOrderMaterials
+      description: getOrderMaterials
+      tags:
+        - Yard Pick
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              materials:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    material: 
+                      type: string
+                    status: 
+                      type: string
+                    quantityRequired:
+                      type: string
+                    pickingType:
+                      type: 
+                        string
+
+        default:
+          description: server error
+  
+  /getOrderMaterialBins:
+    get:
+      summary: getOrderMaterialBins
+      description: getOrderMaterialBins
+      tags:
+        - Yard Pick
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              materials:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bin: 
+                      type: string
+                    containerType: 
+                      type: string
+                    material: 
+                      type: string
+                    quantity: 
+                      type: string
+                    workflow: 
+                      type: string
+                    status: 
+                      type: string
+
+
+        default:
+          description: server error
+          
+  /getOrders:
+    get:
+      summary: get orders
+      description: get orders
+      tags:
+        - Yard Pick
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              orders:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    orderNumber: 
+                      type: string
+
+
+        default:
+          description: server error
+  
+  /getOrderTypes:
+    get:
+      summary: Pick Order Types
+      description: Pick Order Types
+      tags:
+        - Yard Pick
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              orderTypes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    orderType: 
+                      type: string
+
+
+        default:
+          description: server error
+ 
+  /login:
+    get:
+      summary: login
+      description: login
+      tags:
+        - General
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: email
+        type: string
+        description: email
+        required: true
+      - in: query
+        name: password
+        type: string
+        description: password
+        required: true 
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              expiry:
+                type: string
+              username:
+                type: string
+ 
+        default:
+          description: server error
