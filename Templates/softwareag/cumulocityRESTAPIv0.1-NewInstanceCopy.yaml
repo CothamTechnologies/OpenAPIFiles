@@ -4,7 +4,7 @@ info:
     https://cumulocity.com/guides/reference/rest-implementation/
   version: "0.1"
   title: Cumulocity REST API
-host: cotham.eu-latest.cumulocity.com
+host: cothamtechnologies.cumulocity.com
 
 schemes:
 - https
