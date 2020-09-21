@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Dad Jokes demo
+  description: Dad Jokes demo
+
+host: icanhazdadjoke.com
+
+
+paths:
+
+  /search:
+    get:
+      summary: Search for dad jokes
+      description: Search for dad jokes
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: User-Agent
+        type: string
+        description: user agent
+      - in: query
+        name: page
+        type: string
+        description: which page of results to fetch default 1
+      - in: query
+        name: limit
+        type: string
+        description: number of results to return per page default:20 max:30
+      - in: query
+        name: term
+        type: string
+        description: search term to use default:list all jokes
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              current_page: 
+                type: number
+              limit: 
+                type: number
+              next_page: 
+                type: number
+              previous_page: 
+                type: number
+              results: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    joke: 
+                      type: string
+              search_term: 
+                type: string
+              status: 
+                type: number
+              total_jokes: 
+                type: number
+              total_pages: 
+                type: number
+                
+        default:
+          description: Error
+  
+  /:
+    get:
+      summary: Get Random Joke
+      description: Get Random Joke
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: User-Agent
+        type: string
+        description: user agent
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              joke: 
+                type: string
+              status: 
+                type: string
+                
+        default:
+          description: Error

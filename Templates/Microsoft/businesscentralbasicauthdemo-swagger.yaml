@@ -1,0 +1,286 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Dynamics 365 Business Central
+  description: Business Central Standard APIs - Basic Auth Only
+
+host: api.businesscentral.dynamics.com
+basePath: /v2.0/1df13415-97f2-43d9-b846-0e50fc90e73a/sandbox/api/v1.0
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+security:
+  - basicAuth: []
+
+paths:
+  /companies:
+    get:
+      description: Returns a list of companies
+      summary: listCompanies
+      tags:
+        - company
+      produces:
+        - application/json
+      parameters:
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - systemVersion
+              - name
+              - displayName
+              - businessProfileId
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of companies
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    systemVersion: 
+                      type: string
+                    name: 
+                      type: string
+                    displayName: 
+                      type: string
+                    businessProfileId: 
+                      type: string
+
+        default:
+          description: error
+          
+      
+  /companies({company_id}):
+    get:
+      description: Retrieve the properties and relationships of an object of type company
+        for Dynamics 365 Business Central.
+      summary: getCompany
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - systemVersion
+              - name
+              - displayName
+              - businessProfileId
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned the requested company
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              systemVersion: 
+                type: string
+              name: 
+                type: string
+              displayName: 
+                type: string
+              businessProfileId: 
+                type: string
+
+        default:
+          description: error
+          
+  /companies({company_id})/items:
+    get:
+      description: Returns a list of items
+      summary: listItems
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - picture
+              - defaultDimensions
+              - itemCategory
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - displayName
+              - type
+              - itemCategoryId
+              - itemCategoryCode
+              - blocked
+              - baseUnitOfMeasureId
+              - baseUnitOfMeasure
+              - gtin
+              - inventory
+              - unitPrice
+              - priceIncludesTax
+              - unitCost
+              - taxGroupId
+              - taxGroupCode
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of items
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    number: 
+                      type: string
+                    displayName: 
+                      type: string
+                    type: 
+                      type: string
+                    itemCategoryId: 
+                      type: string
+                    itemCategoryCode: 
+                      type: string
+                    blocked: 
+                      type: boolean
+                    baseUnitOfMeasureId: 
+                      type: string
+                    gtin: 
+                      type: string
+                    inventory: 
+                      type: number
+                    unitPrice: 
+                      type: number
+                    priceIncludesTax: 
+                      type: boolean
+                    unitCost: 
+                      type: number
+                    taxGroupId: 
+                      type: string
+                    taxGroupCode: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                    baseUnitOfMeasure: 
+                      type: object
+                      properties: 
+                        code: 
+                          type: string
+                        displayName: 
+                          type: string
+                        symbol: 
+                          type: string
+                          format: nullable
+                        unitConversion: 
+                          type: string
+                          format: nullable
+                    picture: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          id: 
+                            type: string
+                          width: 
+                            type: number
+                          height: 
+                            type: number
+                          contentType: 
+                            type: string
+                          content@odata.mediaEditLink: 
+                            type: string
+                          content@odata.mediaReadLink: 
+                            type: string
+
+
+        default:
+          description: error

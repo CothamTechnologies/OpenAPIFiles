@@ -1,0 +1,6181 @@
+swagger: "2.0"
+info:
+  description: Cumulocity REST API for FloPro Integration. This API has been converted from the official Cumulocity Postman Collection.
+    https://cumulocity.com/guides/reference/rest-implementation/
+  version: "0.1"
+  title: Cumulocity REST API
+host: cothamtechnologies.cumulocity.com
+
+schemes:
+- https
+security:
+- auth: []
+paths:
+  /platform:
+    get:
+      tags:
+      - Cumulocity API Overview
+      summary: Get the Platform resource
+      description: >-
+        #### For a detailed description of the API please check out the [REST implementation
+        Reference Guide](http://cumulocity.com/guides/reference/rest-implementation/)
+      produces:
+      - application/vnd.com.nsn.cumulocity.platformApi+json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Platform'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /alarm:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Alarms
+      summary: Get the AlarmAPI resource
+      description: Get the AlarmAPI resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AlarmAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /alarm/alarms:
+    get:
+      tags:
+      - Alarms
+      summary: Get an alarm collection
+      description: Get an alarm collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: resolved
+          description: resolved={resolved}
+          type: string
+        - in: query
+          name: severity
+          description: severity={severity}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: withAssets
+          description: withAssets={withAssets}
+          type: string
+        - in: query
+          name: withDevices
+          description: withDevices={withDevices}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AlarmCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Alarms
+      summary: Create a new Alarm
+      description: Create a new Alarm
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Alarm
+        description: The Alarm to create
+        required: true
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+            time:
+              type: string
+            text:
+              type: string
+            source:
+                type: object
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
+            status:
+              type: string
+            severity:
+              type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Alarm'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Alarms
+      summary: Bulk update of alarm collection
+      description: Bulk update of alarm collection. The PUT method allows for updating alarms collections. Currently only the status of alarms can be changed.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: status
+        description: Comma separated alarm statuses, for example ACTIVE,CLEARED.
+        type: string
+      - in: query
+        name: source
+        description: Source device id.
+        type: string
+      - in: query
+        name: resolved
+        description: When set to true only resolved alarms will be updated (the one with status CLEARED), false means alarms with status ACTIVE or ACKNOWLEDGED.
+        type: boolean
+      - in: query
+        name: severity
+        description: Alarm severity, for example MINOR.
+        type: string
+      - in: query
+        name: dateFrom
+        description: Start date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        type: string
+      - in: query
+        name: dateTo
+        description: End date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        type: string
+      - in: body
+        name: Status
+        description: The status to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+      responses:
+        200:
+          description: Updated
+        202:
+          description: Process continuing in background
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Alarms
+      summary: Delete an alarm collection
+      description: Delete an alarm collection Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: status
+          description: Comma separated alarm statuses, for example ACTIVE,CLEARED.
+          type: string
+        - in: query
+          name: source
+          description: Source device id.
+          type: string
+        - in: query
+          name: withSourceAssets
+          description: When set to true also alarms for related source assets will be removed. When this parameter is provided also source must be defined.
+          type: boolean
+        - in: query
+          name: withSourceDevices
+          description: When set to true also alarms for related source devices will be removed. When this parameter is provided also source must be defined.
+          type: boolean
+        - in: query
+          name: resolved
+          description: When set to true only resolved alarms will be removed (the one with status CLEARED), false means alarms with status ACTIVE or ACKNOWLEDGED.
+          type: boolean
+        - in: query
+          name: severity
+          description: Alarm severity, for example MINOR.
+          type: string
+        - in: query
+          name: dateFrom
+          description: Start date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: End date or date and time of alarm occurrence. Example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: Alarm type.
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /alarm/alarms/{alarmId}:
+    get:
+      tags:
+      - Alarms
+      summary: Get an Alarm 
+      description: Get an Alarm
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: alarmId
+          description: Alarm id.
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Alarm'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Alarms
+      summary: Update an Alarm
+      description: Update an Alarm - Only text, status, severity and custom properties can be modified. Non-modifiable fields will be ignored when provided in request.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: alarmId
+        description: Alarm id.
+        required: true
+        type: string
+      - in: body
+        name: Alarm
+        description: The alarm properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            text:
+              type: string
+            status:
+              type: string
+            severity:
+              type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Alarm'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application:
+    get:
+      tags:
+      - Applications
+      - Cumulocity API Overview
+      summary: Get the ApplicationAPI resource
+      description: Get the ApplicationAPI resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications:
+    get:
+      tags:
+      - Applications
+      summary: Get an application collection
+      description: Get an application collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Applications
+      summary: Create a new application
+      description: Create a new application
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Application
+        description: The Application to create
+        required: true
+        schema:
+          type: object
+          properties:
+            key:
+              type: string
+              description: Shared secret of application
+            name:
+              type: string
+              description: Name of application
+            type:
+              type: string
+              description: Type of application. Possible values are EXTERNAL, HOSTED, MICROSERVICE
+            contextPath:
+              type: string
+              description: contextPath of the hosted application
+            resourcesUrl:
+              type: string
+              description: URL to application base directory hosted on an external server (Mandatory when application type is HOSTED)
+            externalUrl:
+              type: string
+              description: URL to the external application (Mandatory when application type is EXTERNAL)
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{applicationId}/clone:
+    post:
+      tags:
+      - Applications
+      summary: Copy an application
+      description: Copy an application. The properties are copied to the newly created application. For name, key and context path a “clone” prefix is added in order to be unique. If the target application is hosted and has an active version, the new application will have the active version with the same content.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: applicationId
+        description: The id of the application which will be cloned
+        required: true
+        type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{applicationId}:
+    put:
+      tags:
+      - Applications
+      summary: Update an application
+      description: Update an application
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: applicationId
+        description: Application id.
+        required: true
+        type: string
+      - in: body
+        name: Application
+        description: The application properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            key:
+              type: string
+              description: Shared secret of application
+            name:
+              type: string
+              description: Name of application
+            contextPath:
+              type: string
+              description: contextPath of the hosted application
+            resourcesUrl:
+              type: string
+              description: URL to application base directory hosted on an external server (Mandatory when application type is HOSTED)
+            externalUrl:
+              type: string
+              description: URL to the external application (Mandatory when application type is EXTERNAL)
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Applications
+      summary: Get an application 
+      description: Get an application 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: applicationId
+          description: Application id.
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Applications
+      summary: Delete an application 
+      description: Delete an application 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: applicationId
+          description: Application id.
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{microservice-applicationId}/bootstrapUser:
+    get:
+      tags:
+      - Applications
+      summary: Get bootstrap user
+      description: Get bootstrap user
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: microservice-applicationId
+          description: Microservice application id.
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationUser'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/currentApplication:
+    get:
+      tags:
+      - Applications
+      summary: Get current application 
+      description: Get current application Required authentication with bootstrap user
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Applications
+      summary: Update current application
+      description: Update current application Required authentication with bootstrap user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Application
+        description: The application properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            availability:
+              type: string
+            id:
+              type: string
+            key:
+              type: string
+              description: Shared secret of application
+            name:
+              type: string
+              description: Name of application
+            owner:
+              type: object
+              properties:
+                self:
+                  type: string
+                tenant:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+            self:
+              type: string
+            type:
+              type: string
+            contextPath:
+              type: string
+              description: contextPath of the hosted application
+            resourcesUrl:
+              type: string
+              description: URL to application base directory hosted on an external server (Mandatory when application type is HOSTED)
+            externalUrl:
+              type: string
+              description: URL to the external application (Mandatory when application type is EXTERNAL)
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/currentApplication/subscriptions:
+    get:
+      tags:
+      - Applications
+      summary: Get current application subscriptions
+      description: Get current application subscriptions Required authentication with bootstrap user
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationSubscriptionCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /application/applications/{applicationId}/binaries:
+    post:
+      tags:
+      - Applications
+      summary: Upload application binary
+      description: Upload application binary
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: applicationId
+        description: Application id
+        required: true
+        type: string
+      - in: formData
+        name: ApplicationZIP
+        type: file
+        description: The application folder to upload
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Application'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /audit:
+    get:
+      tags:
+      - Auditing
+      - Cumulocity API Overview
+      summary: Get the AuditAPI resource
+      description: Get the AuditAPI resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuditAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /audit/auditRecords:
+    post:
+      tags:
+      - Auditing
+      summary: Create a new audit record
+      description: Create a new audit record
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Audit Record
+        description: The Audit Record to create
+        required: true
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Identifies the type of this audit record
+            time:
+              type: string
+              description: Time of the audit record
+            text:
+              type: string
+              description: Text description of the audit record
+            source:
+              type: object
+              description: An optional ManagedObject that the audit record originated from, as object containing properties “id” and “self”
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+            user:
+              type: string
+              description: The user responsible for the audited action
+            application:
+              type: string
+              description: The application used to carry out the audited action
+            activity:
+              type: string
+              description: The activity that was carried out
+            severity:
+              type: string
+              description: The severity of action. Can be critical, major, minor, warning or information
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/AuditRecord'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Auditing
+      summary: Get audit records
+      description: Get audit records
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: user
+          description: user={user}
+          type: string
+        - in: query
+          name: application
+          description: application={application}
+          type: string
+        - in: query
+          name: revert
+          description: revert={revert}
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuditRecordCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Auditing
+      summary: Delete a collection of audit records
+      description: Delete a collection of audit records Important This method has been deprecated and will be removed completely with the July 2020 release (10.6.6). With Cumulocity IoT >= 10.6.6 the deletion of audit logs will no longer be permitted. All DELETE requests to the audit API will return the error 405 Method not allowed. Note that retention rules still apply to audit logs and will delete audit log records older than the specified retention time.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: user
+          description: user={user}
+          type: string
+        - in: query
+          name: application
+          description: application={application}
+          type: string
+      responses:
+        204:
+          description: No content
+        405:
+          description: Not allowed
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /audit/auditRecords/{recordId}:
+    get:
+      tags:
+      - Auditing
+      summary: Get an audit record
+      description: Get an audit record
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: recordId
+          description: Record id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuditRecord'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/binaries:
+    get:
+      tags:
+      - Binaries
+      summary: Get a binaries collection
+      description: Get a binaries collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Binaries
+      summary: Upload a new binary
+      description: Upload a new binary
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: object
+        description: A JSON object containing information about the file
+        type: string
+      - in: formData
+        name: filesize
+        description: The size of the binary in bytes
+        type: integer
+      - in: formData
+        name: file
+        type: file
+        description: The binary file which will be uploaded
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/binaries/{binaryId}:
+    get:
+      tags:
+      - Binaries
+      summary: Download a binary
+      description: Download a binary
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: binaryId
+          description: Binary id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Binaries
+      summary: Replace a binary
+      description: Replace a binary
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: binaryId
+        description: Binary id
+        required: true
+        type: string
+      - in: formData
+        name: Binary
+        description: The binary to update
+        required: true
+        type: file
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Binaries
+      summary: Delete a binary
+      description: Delete a binary
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: binaryId
+          description: Binary id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Device control
+      summary: Get the Device Control API resource
+      description: Get the Device Control API resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/DeviceControlAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/operations:
+    post:
+      tags:
+      - Device control
+      summary: Create an Operation
+      description: Create an Operation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Operation
+        description: The Operation to create
+        required: true
+        schema:
+          type: object
+          properties:
+            deviceId:
+              type: string
+              description: Identifies the target device on which this operation should be performed
+            #temporary
+            com_cumulocity_model_WebCamDevice:
+              type: object
+              properties:
+                name:
+                  type: string
+                parameters:
+                  type: object
+                  properties:
+                    duration:
+                      type: string
+                    quality:
+                      type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Operation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device control
+      summary: Get a collection of operations
+      description: Get a collection of operations
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: agentId
+          description: agentId={agentId}
+          type: string
+        - in: query
+          name: deviceId
+          description: deviceId={deviceId}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/OperationCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Device control
+      summary: Delete a collection of operations
+      description: Delete a collection of operations
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: status
+          description: status={status}
+          type: string
+        - in: query
+          name: agentId
+          description: agentId={agentId}
+          type: string
+        - in: query
+          name: deviceId
+          description: deviceId={deviceId}
+          type: string
+      responses:
+        204:
+          description: No content
+        405:
+          description: Not allowed
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/operations/{operationId}:
+    get:
+      tags:
+      - Device control
+      summary: Get an Operation
+      description: Get an Operation
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: operationId
+          description: Operation id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Operation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Device control
+      summary: Update an Operation
+      description: Update an Operation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: operationId
+        description: Operation id
+        required: true
+        type: string
+      - in: body
+        name: Operation
+        description: The operation properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              description: Operation status, can be one of SUCCESSFUL, FAILED, EXECUTING or PENDING
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Operation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/bulkoperations:
+    get:
+      tags:
+      - Device control
+      summary: Get a collection of bulk operations
+      description: Get a collection of bulk operations
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: withDeleted
+          type: boolean
+          description: withDeleted = {withDeleted}
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/BulkOperationCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Device control
+      summary: Create a Bulk Operation
+      description: Create a Bulk Operation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Bulk Operation
+        description: The Bulk Operation to create
+        required: true
+        schema:
+          type: object
+          properties:
+            startDate:
+              type: string
+              description: Time when operations should be created
+            creationRamp:
+              type: string
+              description: Delay between every operation creation
+            operationPrototype:
+              description: Operation to be executed for every device in a group
+              type: object
+              properties:
+                description:
+                  type: string
+                c8y_Command:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                c8y_Restart:
+                  type: object
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/BulkOperation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/bulkoperations/{bulkOperationId}:
+    put:
+      tags:
+      - Device control
+      summary: Update a Bulk Operation
+      description: Update a Bulk Operation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: bulkOperationId
+        description: Bulk Operation id
+        required: true
+        type: string
+      - in: body
+        name: Bulk Operation
+        description: The bulk operation properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            creationRamp:
+              type: string
+              description: Delay between every operation creation
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/BulkOperation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device control
+      summary: Get a Bulk Operation  
+      description: Get a Bulk Operation 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: bulkOperationId
+          description: Bulk Operation id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/BulkOperation'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Device control
+      summary: Delete a Bulk Operation 
+      description: Delete a Bulk Operation 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: bulkOperationId
+          description: Bulk Operation id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/newDeviceRequests:
+    post:
+      tags:
+      - Device credentials
+      summary: Create a new device request
+      description: Create a new device request
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: NewDeviceRequest
+        description: The request to create
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Id of the device that has to be registered
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/NewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device credentials
+      summary: Return all new device requests
+      description: Return all new device requests
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/NewDeviceRequestCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/newDeviceRequests/{requestId}:
+    put:
+      tags:
+      - Device credentials
+      summary: Update a new device request
+      description: Update a new device request
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: requestId
+        description: Request id
+        required: true
+        type: string
+      - in: body
+        name: NewDeviceRequest
+        description: The request properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              description: Status of registration, can be WAITING_FOR_CONNECTION, PENDING_ACCEPTANCE, ACCEPTED
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/NewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Device credentials
+      summary: Return all new device requests
+      description: Return all new device requests
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: requestId
+          description: Request id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/NewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Device credentials
+      summary: Delete a new device request
+      description: Delete a new device request
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: requestId
+          description: Request id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/deviceCredentials:
+    post:
+      tags:
+      - Device credentials
+      summary: Create a device credentials request
+      description: Create a device credentials request
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: DeviceCredentials
+        description: The credentials request to create
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Id of the device 
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/DeviceCredentials'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /devicecontrol/bulkNewDeviceRequests:
+    post:
+      tags:
+      - Device credentials
+      summary: Create a bulk device credentials request
+      description: Create a bulk device credentials request
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: formData
+        name: file
+        description: A CSV-formatted file containing, for each line, device credentials and device representation
+        type: string
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/BulkNewDeviceRequest'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /event:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Events
+      summary: Get the EventAPI resource
+      description: Get the EventAPI resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/EventAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /event/events:
+    get:
+      tags:
+      - Events
+      summary: Get an event collection
+      description: Get an event collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/EventCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Events
+      summary: Create a new event
+      description: Create a new event
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Event
+        description: The Event to create
+        required: true
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              description: Identifies the type of this event
+            time:
+              type: string
+              description: Time of the event
+            text:
+              type: string
+              description: Text description of the event
+            source:
+                type: object
+                description: The ManagedObject that the event originated from, as object containing properties “id”, “self”, “name”, and “type"
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
+            c8y_Position:
+              type: object
+              description: Custom property to update device location
+              properties:
+                lng:
+                  type: number
+                lat:
+                  type: number
+                alt:
+                  type: number
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Events
+      summary: Delete an event collection
+      description: Delete an event collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /event/events/{eventId}:
+    get:
+      tags:
+      - Events
+      summary: Get an event 
+      description: Get an event 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: eventId
+          description: event id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Events
+      summary: Update an event
+      description: Update an event
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: eventId
+        description: Event id
+        required: true
+        type: string
+      - in: body
+        name: Event
+        description: The event properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            text:
+              type: string
+              description: Text description of the event
+            c8y_Position:
+              type: object
+              description: Custom property to update device location
+              properties:
+                lng:
+                  type: number
+                lat:
+                  type: number
+                alt:
+                  type: number
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+        tags:
+        - Events
+        summary: Delete an event 
+        description: Delete an event 
+        produces:
+        - application/json
+        parameters:
+          - in: path
+            name: eventId
+            description: Event id
+            required: true
+            type: string
+        responses:
+          204:
+            description: No content
+          default:
+            description: Other Error
+            schema:
+              $ref: '#/definitions/GenericError'
+  /event/events/{eventId}/binaries:
+    post: 
+      tags:
+      - Events
+      summary: Upload a binary for an event
+      description: Upload a binary for an event
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: eventId
+        description: Event id
+        required: true
+        type: string
+      - in: formData
+        name: file
+        type: file
+        description: The binary file which will be uploaded
+        required: true
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Events
+      summary: Download a binary for an event
+      description: Download a binary for an event
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: eventId
+          description: Event id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Events
+      summary: Replace a binary for an event
+      description: Replace a binary for an event
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: eventId
+        description: Event id
+        required: true
+        type: string
+      - in: formData
+        name: file
+        description: The binary to update
+        required: true
+        type: file
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Events
+      summary: Delete a binary for an event
+      description: Delete a binary for an event
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: eventId
+          description: Event id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /identity:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Identity
+      summary: Get the Identity API resource
+      description: Get the Identity API resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/IdentityAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /identity/globalIds/{deviceId}/externalIds:
+    get:
+      tags:
+      - Identity
+      summary: Get an External ID collection for a device
+      description: Get an External ID collection for a device
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ExternalIDCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Identity
+      summary: Create an External ID for a device
+      description: Create an External ID for a device
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        type: string
+        required: true
+      - in: body
+        name: ExternalID
+        description: The External ID to create
+        required: true
+        schema:
+          type: object
+          properties:
+            externalId:
+              type: string
+              description: The identifier used in the external system that Cumulocity interfaces with
+            type:
+              type: string
+              description: The type of the external identifier as string, e.g., “com_cumulocity_model_idtype_SerialNumber”.
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ExternalID'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /identity/externalIds/{externalIdType}/{externalId}:
+    get:
+      tags:
+      - Identity
+      summary: Get an External ID for a device
+      description: Get an External ID for a device
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: externalIdType
+          description: Type of external id
+          type: string
+          required: true
+        - in: path
+          name: externalId
+          description: External id
+          type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ExternalID'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Identity
+      summary: Delete an External ID for a device
+      description: Delete an External ID for a device
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: externalIdType
+          description: Type of external id
+          type: string
+          required: true
+        - in: path
+          name: externalId
+          description: External id
+          type: string
+          required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Inventory
+      summary: Get the Inventory API resource
+      description: Get the Inventory API resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/InventoryAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects:
+    get:
+      tags:
+      - Inventory
+      summary: Get a ManagedObject collection
+      description: Get a ManagedObject collection Important If you query /inventory/managedObjects?type=c8y_Firmware&query=$filter=(name+eq+'Controller 1') the type queryParam is ignored. Instead url/inventory/managedObjects?query=$filter=(type+eq+c8y_Firmware+and+c8y_Filter.type+eq+'Controller 1') has to be queried.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: withGroups
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: fragmentType
+          description: fragmentType={fragmentType}
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: text
+          description: text={text}
+          type: string
+        - in: query
+          name: ids
+          description: ids={ids}
+          type: string
+        - in: query
+          name: query
+          description: Query language is applied to all managed objects.
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      tags:
+      - Inventory
+      summary: Create a new ManagedObject
+      description: Create a new ManagedObject
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: ManagedObject
+        description: The ManagedObject to create
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Human-readable name that is used for representing the object in user interfaces
+            type:
+              type: string
+              description: The most specific type of the managed object as fully qualified Java-style type name, dots replaced by underscores
+            creationDate:
+              type: string
+              description: The time when the object has been created
+            com_cumulocity_model_BinarySwitch:
+              type: object
+              description: Custom property to create a binary switch
+              properties:
+                state:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a ManagedObject
+      description: Get a ManagedObject
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Inventory
+      summary: Update a ManagedObject
+      description: Update a ManagedObject
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: body
+        name: ManagedObject
+        description: The object properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Human-readable name that is used for representing the object in user interfaces
+            type:
+              type: string
+              description: The most specific type of the managed object as fully qualified Java-style type name, dots replaced by underscores
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObject'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+        tags:
+        - Inventory
+        summary: Delete a ManagedObject
+        description: Delete a ManagedObject
+        produces:
+        - application/json
+        parameters:
+          - in: path
+            name: deviceId
+            description: Device id
+            required: true
+            type: string
+        responses:
+          204:
+            description: No content
+          default:
+            description: Other Error
+            schema:
+              $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/supportedMeasurements:
+    get:
+      tags:
+      - Inventory
+      summary: Get supported measurements of a ManagedObject
+      description: Get supported measurements of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/SupportedMeasurements'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/supportedSeries:
+    get:
+      tags:
+      - Inventory
+      summary: Get supported series of a ManagedObject
+      description: Get supported series of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/SupportedSeries'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childDevices:
+    post:
+      tags:
+      - Inventory
+      summary: Add a managed object reference to the collection of child devices
+      description: Add a managed object reference to the collection of child devices
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: body
+        name: ManagedObjectReference
+        description: The managed object reference to create
+        required: true
+        schema:
+          type: object
+          properties:
+            managedObject:
+              type: object
+              description: The ManagedObject being referenced
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Inventory
+      summary: Get child devices of a ManagedObject
+      description: Get child devices of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childDevices/{referenceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a child device reference of a ManagedObject
+      description: Get a child device reference of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Inventory
+      summary: Delete a child device reference of a ManagedObject
+      description: Delete a child device reference of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childAssets:
+    post:
+      tags:
+      - Inventory
+      summary: Add a managed object reference to the collection of child assets
+      description: Add a managed object reference to the collection of child assets
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: body
+        name: ManagedObjectReference
+        description: The managed object reference to create
+        required: true
+        schema:
+          type: object
+          properties:
+            managedObject:
+              type: object
+              description: The ManagedObject being referenced
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      tags:
+      - Inventory
+      summary: Get child assets of a ManagedObject
+      description: Get child assets of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: deviceId
+          description: Device id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /inventory/managedObjects/{deviceId}/childAssets/{referenceId}:
+    get:
+      tags:
+      - Inventory
+      summary: Get a child asset reference of a ManagedObject
+      description: Get a child asset reference of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ManagedObjectReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Inventory
+      summary: Delete a child asset reference of a ManagedObject
+      description: Delete a child asset reference of a ManagedObject
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: deviceId
+        description: Device id
+        required: true
+        type: string
+      - in: path
+        name: referenceId
+        description: Reference id
+        required: true
+        type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/loginOptions:
+    get:
+      tags:
+      - Login
+      summary: Get login options
+      description: Get login options
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginOptions'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/oauth:
+    post:
+      summary: Login with OAuth
+      description: Login with OAuth
+      tags:
+        - Login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: query
+        name: grant_type
+        description: Grant type
+        required: true
+        type: string
+      - in: query
+        name: code
+        description: OAuth code
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Measurements
+      summary: Get the Measurement API resource
+      description: Get the Measurement API resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement/measurements:
+    get:
+      summary: Get a collection of measurements
+      description: Get a collection of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+        - text/csv
+        - application/vnd.ms-excel
+        - application/json-stream
+      parameters:        
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      summary: Create a new measurement
+      description: Create a new measurement
+      tags:
+        - Measurements
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Measurement
+        description: The measurement to create
+        required: true
+        schema:
+          type: object
+          properties:
+            time:
+              type: string
+              description: Time of the measurement
+            type:
+              type: string
+              description: The most specific type of this entire measurement
+            source:
+              type: object
+              description: The ManagedObject which is the source of this measurement, as object containing the properties “id” and “self”
+              properties:
+                id:
+                  type: string
+                self:
+                  type: string
+            com_cumulocity_model_energy_measurement_SinglePhaseElectricityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                A+:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+                A-:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_TemperatureMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                T:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_MotionMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                motionDetected:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+                speed:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_AccelerationMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                acceleration:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_LightMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                e:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_HumidityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                h:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_MoistureMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                moisture:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_DistanceMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                distance:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_SinglePhaseElectricityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                A+:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_ThreePhaseElectricityMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                A+:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_CurrentMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                current:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_VoltageMeasurement:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                voltage:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+            c8y_Position:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                alt:
+                  type: number
+                lng:
+                  type: number
+                lat:
+                  type: number
+                trackingProtocol:
+                  type: string
+                reportReason:
+                  type: string
+            c8y_SignalStrength:
+              type: object
+              description: Custom fragment to create a measurement
+              properties:
+                rssi:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unit:
+                      type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Measurement'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      description: Delete a measurement collection
+      summary: Delete a measurement collection
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: type
+          description: type={type}
+          type: string
+        - in: query
+          name: source
+          description: source={source}
+          type: string
+        - in: query
+          name: valueFragmentType
+          description: valueFragmentType={valueFragmentType}
+          type: string
+        - in: query
+          name: valueFragmentSeries
+          description: valueFragmentSeries={valueFragmentSeries}
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement/measurements/{measurementId}:
+    get:
+      description: Get a measurement
+      summary: Get a measurement
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - name: measurementId
+          in: path
+          required: true
+          type: string
+          description: Measurement id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Measurement'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      description: Delete a measurement
+      summary: Delete a measurement
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - name: measurementId
+          in: path
+          required: true
+          type: string
+          description: Measurement id
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /measurement/measurements/series:
+    get:
+      description: Retrieve a series of measurements
+      summary: Retrieve a series of measurements
+      tags:
+        - Measurements
+      produces:
+        - application/json
+      parameters:
+        - name: source
+          in: query
+          required: true
+          type: string
+          description: Source device id
+        - name: dateFrom
+          in: query
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - name: dateTo
+          in: query
+          required: true
+          type: string
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+        - name: aggregationType
+          in: query
+          required: false
+          type: string
+          description: Possible values can be DAILY, HOURLY, MINUTELY
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MeasurementSeries'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /cep/realtime:
+    post:
+      tags:
+      - Real-time notifications
+      description: Send requests
+      summary: Send requests
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Requests
+        description: The requests to send
+        required: true
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of message, required to match response message
+              channel:
+                type: string
+                description: Name of channel, required value
+              ext:
+                type: object
+                description: (HANSHAKE) Authentication object passed to handshake. (only over websockets)
+                properties:
+                  com.cumulocity.authn:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                      tfa:
+                        type: string
+                      xsrfToken:
+                        type: string
+                  systemOfUnits:
+                    type: string
+              version:
+                type: string
+                description: (HANDSHAKE) Bayeux protocol version used by client
+              minimumVersion:
+                type: string
+                description: (HANDSHAKE) Minimum server-side Bayeux protocol version required by client
+              supportedConnectionTypes:
+                type: array
+                description: (HANDSHAKE) List of connection types supported by client
+                items:
+                  type: string
+              clientId:
+                type: string
+                description: Unique ID of client received during handshake
+              subscription:
+                type: string
+                description: Name of channel to subscribe/unsubscribe to
+              connectionType:
+                type: string
+                description: Selected connection type
+              advice:
+                type: object
+                description: Configuration parameters for connect message
+                properties:
+                  timeout:
+                    type: integer
+                  interval:
+                    type: integer
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Responses'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /retention/retentions:
+    get:
+      tags:
+      - Retention rules
+      summary: Get a RetentionRule collection
+      description: Get a RetentionRule collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RetentionRuleCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: Create a new RetentionRule
+      summary: Create a new RetentionRule
+      tags:
+        - Retention rules
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: RetentionRule
+        description: The retention rule to create
+        required: true
+        schema:
+          type: object
+          properties:
+            dataType:
+              type: string
+              description: RetentionRule will be applied to this type of documents, possible values [ALARM, AUDIT, EVENT, MEASUREMENT, OPERATION, *].
+            fragmentType:
+              type: string
+              description: RetentionRule will be applied to documents with fragmentType
+            type:
+              type: string
+              description: RetentionRule will be applied to documents with type
+            source:
+              type: string
+              description: RetentionRule will be applied to documnets with source
+            maximumAge:
+              type: string
+              description: Maximum age of document in days
+            editable:
+              type: boolean
+              description: Whether the rule is editable. Can be updated only by management tenant
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RetentionRule'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /retention/retentions/{retentionRuleId}:
+    get:
+      tags:
+      - Retention rules
+      summary: Get a RetentionRule
+      description: Get a RetentionRule
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: retentionRuleId
+          description: Retention rule id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RetentionRule'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Retention rules
+      summary: Update a RetentionRule
+      description: Update a RetentionRule
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: retentionRuleId
+        description: Retention rule id
+        required: true
+        type: string
+      - in: body
+        name: RetentionRule
+        description: The retention rule properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            dataType:
+              type: string
+              description: RetentionRule will be applied to this type of documents, possible values [ALARM, AUDIT, EVENT, MEASUREMENT, OPERATION, *].
+            fragmentType:
+              type: string
+              description: RetentionRule will be applied to documents with fragmentType
+            type:
+              type: string
+              description: RetentionRule will be applied to documents with type
+            source:
+              type: string
+              description: RetentionRule will be applied to documnets with source
+            maximumAge:
+              type: string
+              description: Maximum age of document in days
+            editable:
+              type: boolean
+              description: Whether the rule is editable. Can be updated only by management tenant
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RetentionRule'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Retention rules
+      summary: Delete a RetentionRule
+      description: Delete a RetentionRule
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: retentionRuleId
+          description: Retention rule id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /s:
+    post:
+      description: Register Request Templates
+      summary: Register Request Templates
+      tags:
+        - SmartREST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+        - text/csv
+      parameters:
+        - name: X-Id
+          in: header
+          required: true
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: Request body
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+  /tenant:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Tenants
+      summary: Get the Tenant API resource
+      description: Get the Tenant API resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants:
+    get:
+      tags:
+      - Tenants
+      summary: Get a tenant collection
+      description: Get a tenant collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: Create a new tenant
+      summary: Create a new tenant
+      tags:
+        - Tenants
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Tenant
+        description: The tenant to create
+        required: true
+        schema:
+          type: object
+          properties:
+            company:
+              type: string
+              description: Company name
+            domain:
+              type: string
+              description: Domain name to be used for the tenant
+            id:
+              type: string
+              description: The tenant ID. Will be auto-generated if not present
+            adminName:
+              type: string
+              description: Username of the tenant administrator
+            adminPass:
+              type: string
+              description: Password of the tenant administrator
+            adminEmail:
+              type: string
+              description: Email address of the administrator
+            contactName:
+              type: string
+              description: A contact name, for example an administrator, of the tenant
+            contact_phone:
+              type: string
+              description: Phone number of the contant. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Tenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants/{tenantId}:
+    get:
+      tags:
+      - Tenants
+      summary: Get a tenant 
+      description: Get a tenant 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: tenantId
+          description: Tenant id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Tenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Tenants
+      summary: Update a tenant
+      description: Update a tenant
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: tenantId
+        description: Tenant id
+        required: true
+        type: string
+      - in: body
+        name: Application
+        description: The tenant properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            company:
+              type: string
+              description: Company name
+            domain:
+              type: string
+              description: Domain name to be used for the tenant
+            adminName:
+              type: string
+              description: Username of the tenant administrator
+            adminPass:
+              type: string
+              description: Password of the tenant administrator
+            adminEmail:
+              type: string
+              description: Email address of the administrator
+            contactName:
+              type: string
+              description: A contact name, for example an administrator, of the tenant
+            contact_phone:
+              type: string
+              description: Phone number of the contant. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Tenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Tenants
+      summary: Delete a tenant
+      description: Delete a tenant Important Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant.
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: tenantId
+          description: Tenant id
+          required: true
+          type: string
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/currentTenant:
+    get:
+      tags:
+      - Tenants
+      summary: Get current tenant
+      description: Get current tenant
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CurrentTenant'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants/{tenantId}/applications:
+    get:
+      description: Get all applications of a tenant
+      summary: Get all applications of a tenant
+      tags:
+        - Tenants
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenantId
+          description: Tenant id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: Add application to a tenant
+      summary: Add application to a tenant
+      tags:
+        - Tenants
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenantId
+        description: Tenant id
+        type: string
+        required: true
+      - in: body
+        name: ApplicationReference
+        description: The application to add
+        required: true
+        schema:
+          type: object
+          properties:
+            application:
+              type: object
+              description: A reference to the application resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/ApplicationReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/tenants/{tenantId}/applications/{applicationId}:
+    delete:
+      tags:
+      - Tenants
+      summary: Remove application from tenant
+      description: Remove application from tenant
+      produces:
+      - application/json
+      parameters:
+      - name: tenantId
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - in: path
+        name: applicationId
+        description: Application id
+        type: string
+        required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options:
+    get:
+      tags:
+      - Tenants
+      summary: Get a option collection
+      description: Get a option collection
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/OptionCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: Create a new option
+      summary: Create a new option
+      tags:
+        - Tenants
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: Option
+        description: The option to create
+        required: true
+        schema:
+          type: object
+          properties:
+            category:
+              type: string
+              description: Category of option
+            key:
+              type: string
+              description: Key of option
+            value:
+              type: string
+              description: Value of option
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options/{category}/{key}:
+    get:
+      tags:
+      - Tenants
+      summary: Get a option 
+      description: Get a option 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: category
+          description: Option category
+          required: true
+          type: string
+        - in: path
+          name: key
+          description: Option key
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Tenants
+      summary: Update a option
+      description: Update a option
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: category
+        description: Option category
+        required: true
+        type: string
+      - in: path
+        name: key
+        description: Option key
+        required: true
+        type: string
+      - in: body
+        name: Option
+        description: The option properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            category:
+              type: string
+              description: Category of option
+            key:
+              type: string
+              description: Key of option
+            value:
+              type: string
+              description: Value of option
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options/{category}/{key}/editable:
+    put:
+      tags:
+      - Tenants
+      summary: Define option editability
+      description: Define option editability
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: category
+        description: Option category
+        required: true
+        type: string
+      - in: path
+        name: key
+        description: Option key
+        required: true
+        type: string
+      - in: body
+        name: OptionEditability
+        description: The property to update
+        required: true
+        schema:
+          type: object
+          properties:
+            editable:
+              type: string
+              description: Editability of option
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/options/{category}:
+    get:
+      tags:
+      - Tenants
+      summary: Get multiple options in a category
+      description:  Get multiple options in a category
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: category
+          description: Option category
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/MultipleOptions'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Tenants
+      summary: Update multiple options in a category
+      description: Update multiple options in a category
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: category
+        description: Option category
+        required: true
+        type: string
+      - in: body
+        name: MultipleOptions
+        description: The option properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            key1:
+              type: string
+              description: Key of option
+            key2:
+              type: string
+              description: Key of option 
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/system/options:
+    get:
+      tags:
+      - Tenants
+      summary: Get system options
+      description: Get system options
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/OptionCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/system/options/{category}/{key}:
+    get:
+      tags:
+      - Tenants
+      summary: Get a system option 
+      description: Get a system option 
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: category
+          description: Option category
+          required: true
+          type: string
+        - in: path
+          name: key
+          description: Option key
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Option'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/statistics:
+    get:
+      tags:
+      - Tenants
+      summary: Get usage statistics collection for a tenant
+      description: Get usage statistics collection for a tenant
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantUsageStatisticsCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/statistics/allTenantsSummary:
+    get:
+      tags:
+      - Tenants
+      summary: Get a summary of all tenant usage statistics
+      description: Get a summary of all tenant usage statistics
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AllTenantsUsageStatisticsSummary'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /tenant/statistics/summary:
+    get:
+      tags:
+      - Tenants
+      summary: Get a summary of usage statistics for the current tenant
+      description: Get a summary of usage statistics for the current tenant
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: dateFrom
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+        - in: query
+          name: dateTo
+          description: example formats 2019-04-20 or 2019-04-20T08:30:00.000Z
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantUsageStatisticsSummary'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user:
+    get:
+      tags:
+      - Cumulocity API Overview
+      - Users
+      summary: Get the User API resource
+      description: Get the User API resource
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserAPI'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users:
+    get:
+      description: Get a user collection
+      summary: Get a user collection
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+        - in: query
+          name: username 
+          description: prefix or full username
+          type: string
+        - in: query
+          name: groups 
+          description: numeric group identifiers separated by commas
+          type: string
+        - in: query
+          name: owner 
+          description: exact username
+          type: string
+        - in: query
+          name: onlyDevices 
+          description: If set to true, result will contain only users created during bootstrap process (starting with "device_")
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: Create a new user
+      summary: Create a new user
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: body
+        name: User
+        description: The user to create
+        required: true
+        schema:
+          type: object
+          properties:
+            userName:
+              type: string
+              description: User name, unique for a given domain. Max 1000 characters. Whitespaces, slashes, special characters not allowed
+            password:
+              type: string
+              description: User password. Min 6, max 32 characters. Only Latin1 chars allowed
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            phone:
+              type: string
+              description: User phone number. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+            email:
+              type: string
+              description: User email address
+            enabled:
+              type: boolean
+            sendPasswordResetEmail:
+              type: boolean
+            devicePermissions:
+              type: object
+              description: List of device permissions
+              properties:
+                devicePermission:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userId}:
+    get:
+      description: Get a user
+      summary: Get a user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: userId
+          in: path
+          required: true
+          type: string
+          description: User id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Users
+      summary: Update a user
+      description: Update a user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: userId
+        in: path
+        required: true
+        type: string
+        description: User id
+      - in: body
+        name: User
+        description: The user properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            password:
+              type: string
+              description: User password. Min 6, max 32 characters. Only Latin1 chars allowed
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            phone:
+              type: string
+              description: User phone number. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+            email:
+              type: string
+              description: User email address
+            enabled:
+              type: boolean
+            sendPasswordResetEmail:
+              type: boolean
+            devicePermissions:
+              type: object
+              description: List of device permissions
+              properties:
+                devicePermission:
+                  type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Users
+      summary: Delete a user
+      description: Delete a user
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: userId
+        in: path
+        required: true
+        type: string
+        description: User id
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/userByName/{userName}:
+    get:
+      description: Get a user by his/her name
+      summary: Get a user by his/her name
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: userName
+          in: path
+          required: true
+          type: string
+          description: User name
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/currentUser:
+    get:
+      description: Get the current user
+      summary: Get the current user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Users
+      summary: Update the current user
+      description: Update the current user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: User
+        description: The user properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            password:
+              type: string
+              description: User password. Min 6, max 32 characters. Only Latin1 chars allowed
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            phone:
+              type: string
+              description: User phone number. Format is +[country code][number], has to be a valid MSISDN
+            customProperties:
+              type: object
+              description: Keeps a list of custom properties
+              properties:
+                customProperty:
+                  type: string
+            email:
+              type: string
+              description: User email address
+            enabled:
+              type: boolean
+            sendPasswordResetEmail:
+              type: boolean
+            devicePermissions:
+              type: object
+              description: List of device permissions
+              properties:
+                devicePermission:
+                  type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/users:
+    post:
+      description: Add user to a group
+      summary: Add user to a group
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: path
+        name: groupId
+        description: Group id
+        type: string
+        required: true
+      - in: body
+        name: UserReference
+        description: The user to add
+        required: true
+        schema:
+          type: object
+          properties:
+            user:
+              type: object
+              description: A reference to the user resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/UserReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      description: Get all users of a group
+      summary: Get all users of a group
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: groupId
+          in: path
+          required: true
+          type: string
+          description: Group id
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/users/{userName}:
+    delete:
+      tags:
+      - Users
+      summary: Remove user from a group
+      description: Remove user from a group
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      - name: userName
+        in: path
+        required: true
+        type: string
+        description: User name
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups:
+    get:
+      description: List all groups
+      summary: List all groups
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GroupCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    post:
+      description: Create a group
+      summary: Create a group
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: body
+        name: Group
+        description: The group to add
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Descriptive name of the group
+            devicePermissions:
+              type: object
+              description: List of device permissions
+              properties:
+                devicePermission:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}:
+    get:
+      description: Show group details
+      summary: Show group details
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - name: groupId
+          in: path
+          required: true
+          type: string
+          description: Group id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    delete:
+      tags:
+      - Users
+      summary: Remove a group
+      description: Remove a group
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    put:
+      tags:
+      - Users
+      summary: Update a group
+      description: Update a group
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      - in: body
+        name: Group
+        description: The group properties to update
+        required: true
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Descriptive name of the group
+            devicePermissions:
+              type: object
+              description: List of device permissions
+              properties:
+                devicePermission:
+                  type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groupByName/{groupName}:
+    get:
+      description: Get a group by its name
+      summary: Get a group by its name
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          type: string
+          description: Tenant id
+        - name: groupName
+          in: path
+          required: true
+          type: string
+          description: Group name
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userName}/groups:
+    get:
+      description: Get all groups of a user
+      summary: Get all groups of a user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: path
+          name: userName
+          description: User name
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GroupReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/roles:
+    get:
+      description: Get all available roles
+      summary: Get all available roles
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters: 
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userName}/roles:
+    post:
+      description: Assign Role to user
+      summary: Assign Role to user
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: path
+        name: userName
+        description: userName
+        type: string
+        required: true
+      - in: body
+        name: RoleReference
+        description: The role to add
+        required: true
+        schema:
+          type: object
+          properties:
+            role:
+              type: object
+              description: A reference to the role resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RoleReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      description: Get all roles of a user
+      summary: Get all roles of a user
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: path
+          name: userName
+          description: User name
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/roles:
+    post:
+      description: Assign Role to group
+      summary: Assign Role to group
+      tags:
+        - Users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: tenant
+        description: Tenant id
+        type: string
+        required: true
+      - in: path
+        name: groupId
+        description: groupId
+        type: string
+        required: true
+      - in: body
+        name: RoleReference
+        description: The role to add
+        required: true
+        schema:
+          type: object
+          properties:
+            role:
+              type: object
+              description: A reference to the role resource
+              properties:
+                self:
+                  type: string
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RoleReference'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+    get:
+      description: Get all roles of a group
+      summary: Get all roles of a group
+      tags:
+        - Users
+      produces:
+        - application/json
+      parameters:  
+        - in: path
+          name: tenant
+          description: Tenant id
+          type: string
+          required: true
+        - in: path
+          name: groupId
+          description: Group id
+          type: string
+          required: true
+        - in: query
+          name: pageSize
+          description: Default 5, Max 2000
+          type: integer
+        - in: query
+          name: currentPage
+          type: integer
+        - in: query
+          name: withTotalPages
+          type: boolean
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleReferenceCollection'
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/users/{userName}/roles/{roleName}:
+    delete:
+      tags:
+      - Users
+      summary: Unassign role from user
+      description: Unassign role from user
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: userName
+        in: path
+        required: true
+        type: string
+        description: User name
+      - in: path
+        name: roleName
+        description: Role name
+        type: string
+        required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /user/{tenant}/groups/{groupId}/roles/{roleName}:
+    delete:
+      tags:
+      - Users
+      summary: Unassign role from group
+      description: Unassign role from group
+      produces:
+      - application/json
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        type: string
+        description: Tenant id
+      - name: groupId
+        in: path
+        required: true
+        type: string
+        description: Group id
+      - in: path
+        name: roleName
+        description: Role name
+        type: string
+        required: true
+      responses:
+        204:
+          description: No content
+        default:
+          description: Other Error
+          schema:
+            $ref: '#/definitions/GenericError'
+securityDefinitions:
+  auth:
+    type: basic
+definitions:
+  Platform:
+    type: object
+    properties:
+      self:
+        type: string
+      inventory:
+        $ref: '#/definitions/InventoryAPI'
+      identity:
+        $ref: '#/definitions/IdentityAPI'
+      event:
+        $ref: '#/definitions/EventAPI'
+      measurement:
+        $ref: '#/definitions/MeasurementAPI'
+      audit:
+        $ref: '#/definitions/AuditAPI'
+      alarm:
+        $ref: '#/definitions/AlarmAPI'
+      user:
+        $ref: '#/definitions/UserAPI'
+      deviceControl:
+        $ref: '#/definitions/DeviceControlAPI'
+      tenant:
+          $ref: '#/definitions/TenantAPI'
+  GenericError:
+    type: object
+    properties:
+      error:
+        type: string
+      info:
+        type: string
+      message:
+        type: string
+  AlarmAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      alarms:
+        type: string
+      alarmsForStatus:
+        type: string
+      alarmsForSource:
+        type: string
+      alarmsForSourceAndStatus:
+        type: string
+      alarmsForTime:
+        type: string
+      alarmsForStatusAndTime:
+        type: string
+      alarmsForSourceAndTime:
+        type: string
+      alarmsForSourceAndStatusAndTime:
+        type: string
+      alarmsForSourceWithAssetsAndWithDevices:
+        type: string
+      alarmsForSeverity:
+        type: string
+      alarmsForResolved:
+        type: string
+  Alarm:
+    type: object
+    properties:
+      self:
+        type: integer
+      id:
+        type: string
+      time:
+        type: string
+      type:
+        type: string
+      creationTime:
+        type: integer
+      text:
+        type: string
+      status:
+        type: string
+      severity:
+        type: string
+      count:
+        type: integer
+      firstOccurrenceTime:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+  AlarmCollection:
+    type: object
+    properties:
+      next:
+        type: string
+      prev:
+        type: string
+      self:
+        type: integer
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      alarms:
+        type: array
+        items:
+          $ref: '#/definitions/Alarm'
+  ApplicationAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      applicationById:
+        type: string
+      applications:
+        type: string
+      applicationsByName:
+        type: string
+      applicationsByTenant:
+        type: string
+      applicationsByOwner:
+        type: string
+  Application:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      key:
+        type: string
+      type:
+        type: string
+      availability:
+        type: string
+      owner:
+        $ref: '#/definitions/TenantReference'
+      contextPath:
+        type: string
+      resourcesUrl:
+        type: string
+      resourcesUsername:
+        type: string
+      resourcesPassword:
+        type: string
+      externalUrl:
+        type: string
+  ApplicationCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      applications:
+        type: array
+        items:
+          $ref: '#/definitions/Application'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ApplicationSubscriptionCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicationUser'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ApplicationUser:
+    type: object
+    properties:
+      tenant:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+  AuditAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      auditRecords:
+        type: string
+      auditRecordsForType:
+        type: string
+      auditRecordsForUser:
+        type: string
+      auditRecordsForApplication:
+        type: string
+      auditRecordsForUserAndType:
+        type: string
+      auditRecordsForUserAndApplication:
+        type: string
+      auditRecordsForTypeAndApplication:
+        type: string
+      auditRecordsForTypeAndUserAndApplication:
+        type: string
+  AuditRecord:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      creationTime:
+        type: string
+      type:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+      user:
+        type: string
+      application:
+        type: string
+      activity:
+        type: string
+      severity:
+        type: string
+      changes:
+        type: array
+        items:
+          type: string
+  AuditRecordCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      auditRecords:
+        type: array
+        items:
+          $ref: '#/definitions/AuditRecord'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ManagedObjectCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      managedObjects:
+        type: array
+        items:
+          $ref: '#/definitions/ManagedObject'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  DeviceControlAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      operations:
+        type: string
+      operationsByStatus:
+        type: string
+      operationsByAgentId:
+        type: string
+      operationsByAgentIdAndStatus:
+        type: string
+      operationsByDeviceId:
+        type: string
+      operationsByDeviceIdAndStatus:
+        type: string
+  OperationCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      operations:
+        type: array
+        items:
+          $ref: '#/definitions/Operation'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Operation:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      creationTime:
+        type: string
+      deviceID:
+        type: string
+      deviceExternalIDs:
+        $ref: '#/definitions/ExternalIDCollection'
+      bulkOperationId:
+        type: string
+      status:
+        type: string
+      failureReason:
+        type: string
+  IdentityAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      externalId:
+        type: string
+      externalIdsOfGlobalId:
+        type: string
+  ExternalIDCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      externalIds:
+        type: array
+        items:
+          $ref: '#/definitions/ExternalID'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ExternalID:
+    type: object
+    properties:
+      externalId:
+        type: string
+      self:
+        type: string
+      type:
+        type: string
+      managedObject:
+        $ref: '#/definitions/ManagedObject'
+  BulkOperation:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      groupId:
+        type: string
+      failedParentId:
+        type: string
+      startDate:
+        type: string
+      creationRamp:
+        type: number
+      operationPrototype:
+        $ref: '#/definitions/OperationRepresentation'
+      status:
+        type: string
+      progress:
+        $ref: '#/definitions/BulkOperationProgressRepresentation'
+  OperationRepresentation:
+    type: object
+    properties:
+      description:
+        type: string
+      c8y_Command:
+        type: object
+        properties:
+          text:
+            type: string
+      c8y_Restart:
+        type: object
+  BulkOperationProgressRepresentation:
+    type: object
+    properties:
+      pending:
+        type: integer
+      failed:
+        type: integer
+      executing:
+        type: integer
+      successful:
+        type: integer
+      all:
+        type: integer
+  BulkOperationCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      bulkOperations:
+        type: array
+        items:
+          $ref: '#/definitions/BulkOperation'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  NewDeviceRequest:
+    type: object
+    properties:
+      id:
+        type: string
+      status:
+        type: string
+      self:
+        type: string
+  NewDeviceRequestCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      newDeviceRequests:
+        type: array
+        items:
+          $ref: '#/definitions/NewDeviceRequest'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  DeviceCredentials:
+    type: object
+    properties:
+      id:
+        type: string
+      tenantId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+      self:
+        type: string
+  BulkNewDeviceRequest:
+    type: object
+    properties:
+      numberOfAll:
+        type: integer
+      numberOfCreated:
+        type: integer
+      numberOfFailed:
+        type: integer
+      numberOfSuccessful:
+        type: integer
+      credentialUpdatedList:
+        type: object
+        properties:
+          bulkNewDeviceStatus:
+            type: string
+          deviceId:
+            type: string
+      failedCreationList:
+        type: object
+        properties:
+          bulkNewDeviceStatus:
+            type: string
+          deviceId:
+            type: string
+          failureReason:
+            type: string
+          line:
+            type: string
+  EventAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      events:
+        $ref: '#/definitions/EventCollection'
+      eventsForType:
+        type: string
+      eventsForSource:
+        type: string
+      eventsForSourceAndType:
+        type: string
+      eventsForTime:
+        type: string
+      eventsForFragmentType:
+        type: string
+      eventsForSourceAndTime:
+        type: string
+      eventsForSourceAndFragmentType:
+        type: string
+      eventsForDateAndFragmentType:
+        type: string
+      eventsForFragmentTypeAndType:
+        type: string
+      eventsForTimeAndType:
+        type: string
+      eventsForSourceAndDateAndFragmentType:
+        type: string
+      eventsForSourceAndDateAndFragmentTypeAndType:
+        type: string
+      eventsForSourceAndFragmentTypeAndType:
+        type: string
+      eventsForSourceAndTimeAndType:
+        type: string
+      eventsForDateAndFragmentTypeAndType:
+        type: string
+  EventCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Event:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      creationTime:
+        type: string
+      type:
+        type: string
+      time:
+        type: string
+      text:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+  InventoryAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      managedObjects:
+        $ref: '#/definitions/ManagedObjectCollection'
+      managedObjectsForType:
+        type: string
+      managedObjectsForFragmentType:
+        type: string
+      managedObjectsForListOfIds:
+        type: string
+      managedObjectsForText:
+        type: string
+  LoginOption:
+    type: object
+    properties:
+      self:
+        type: string
+      type:
+        type: string
+      buttonName:
+        type: string
+      grantType:
+        type: string
+      initRequest:
+        type: string
+  LoginOptions:
+    type: object
+    properties:
+      self:
+        type: string
+      loginOptions:
+        $ref: '#/definitions/LoginOption'
+  MeasurementAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      measurements:
+        $ref: '#/definitions/MeasurementCollection'
+      measurementsForDate:
+        type: string
+      measurementsForDateAndType:
+        type: string
+      measurementsForDateAndValueFragmentType:
+        type: string
+      measurementsForDateAndValueFragmentTypeAndType:
+        type: string
+      measurementsForDateAndValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForDateAndValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+      measurementsForSource:
+        type: string
+      measurementsForSourceAndDate:
+        type: string
+      measurementsForSourceAndDateAndType:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentType:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentTypeAndType:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForSourceAndDateAndValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+      measurementsForSourceAndType:
+        type: string
+      measurementsForSourceAndValueFragmentType:
+        type: string
+      measurementsForSourceAndValueFragmentTypeAndType:
+        type: string
+      measurementsForSourceAndValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForSourceAndValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+      measurementsForType:
+        type: string
+      measurementsForValueFragmentType:
+        type: string
+      measurementsForValueFragmentTypeAndType:
+        type: string
+      measurementsForValueFragmentTypeAndValueFragmentSeries:
+        type: string
+      measurementsForValueFragmentTypeAndValueFragmentSeriesAndType:
+        type: string
+  MeasurementCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      measurements:
+        type: array
+        items:
+          $ref: '#/definitions/Measurement'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Measurement:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      time:
+        type: string
+      type:
+        type: string
+      source:
+        $ref: '#/definitions/ManagedObject'
+  MeasurementSeries:
+    type: object
+    properties:
+      values:
+        $ref: '#/definitions/MeasurementSeries_values'
+      series:
+        $ref: '#/definitions/MeasurementSeries_series'
+      truncated:
+        type: boolean
+  MeasurementSeries_values:
+    type: object
+    properties:
+      date:
+        type: array
+        items:
+          $ref: '#/definitions/MeasurementSeries_values_item'
+  MeasurementSeries_values_item:
+    type: object
+    properties:
+      min: 
+        type: number
+      max:
+        type: number
+  MeasurementSeries_series:
+    type: array
+    items:
+      $ref: '#/definitions/MeasurementSeries_series_item'
+  MeasurementSeries_series_item:
+    type: object
+    properties:
+      unit:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+  UserAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      userByName:
+        type: string
+      users:
+        type: string
+      currentUser:
+        type: string
+      groupByName:
+        type: string
+      groups:
+        type: string
+      roles:
+        type: string
+  UserCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      userName:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      phone:
+        type: string
+      email:
+        type: string
+      enabled:
+        type: boolean
+      customProperties:
+        $ref: '#/definitions/CustomProperties'
+      groups:
+        $ref: '#/definitions/GroupReferenceCollection'
+      roles:
+        $ref: '#/definitions/RoleReferenceCollection'
+      devicePermissions:
+        $ref: '#/definitions/DevicePermissions'
+  CustomProperties:
+    type: object
+    properties:
+      customProperty:
+        type: string
+  DevicePermissions:
+    type: object
+    properties:
+      devicePermission:
+        type: string
+  UserReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/UserReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  UserReference:
+    type: object
+    properties:
+      self:
+        type: string
+      user:
+          $ref: '#/definitions/User'
+  GroupReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      groups:
+        type: array
+        items:
+          $ref: '#/definitions/GroupReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  GroupReference:
+    type: object
+    properties:
+      self:
+        type: string
+      group:
+        $ref: '#/definitions/Group'
+  GroupCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      groups:
+        type: array
+        items:
+          $ref: '#/definitions/Group'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Group:
+    type: object
+    properties:
+      id:
+        type: string
+      self:
+        type: string
+      name:
+        type: string
+      roles:
+        $ref: '#/definitions/RoleReferenceCollection'
+      devicePermissions:
+        $ref: '#/definitions/DevicePermissions'
+  RoleReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/RoleReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  RoleReference:
+    type: object
+    properties:
+      self:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  RoleCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      roles:
+        type: array
+        items:
+          $ref: '#/definitions/Role'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Role:
+    type: object
+    properties:
+      id: 
+        type: string
+      name:
+        type: string
+  ManagedObjectReference:
+    type: object
+    properties:
+      self:
+        type: string
+      managedObject:
+        $ref: '#/definitions/ManagedObject'
+  ManagedObjectReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/ManagedObjectReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  TenantAPI:
+    type: object
+    properties:
+      self:
+        type: string
+      tenants:
+        $ref: '#/definitions/TenantCollection'
+      tenantApplicationsForId:
+        type: string
+      options:
+          $ref: '#/definitions/OptionCollection'
+      tenantForId:
+        type: string
+      tenantOptionForCategoryAndKey:
+        type: string
+      tenantOptionForCategory:
+        type: string
+      tenantApplications:
+        type: string
+  TenantReference:
+    type: object
+    properties:
+      self:
+        type: string
+      tenant:
+        $ref: '#/definitions/Tenant'
+  Tenant:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      adminName:
+        type: string
+      adminEmail:
+        type: string
+      allowCreateTenants:
+        type: boolean
+      storageLimitPerDevice:
+        type: number
+      adminPassword:
+        type: string
+      sendPasswordResetEmail:
+        type: boolean
+      domain:
+        type: string
+      company:
+        type: string
+      contactName:
+        type: string
+      contactPhone:
+        type: string
+      applications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+      ownedApplications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+      customProperties:
+        $ref: '#/definitions/CustomProperties'
+      parent:
+        type: string
+  TenantCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      tenants:
+        type: array
+        items:
+          $ref: '#/definitions/Tenant'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  CurrentTenant:
+    type: object
+    properties:
+      name:
+        type: string
+      domainName:
+        type: string
+      allowCreateTenants:
+        type: boolean
+      customProperties:
+        $ref: '#/definitions/CustomProperties'
+      applications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+      ownedApplications:
+        $ref: '#/definitions/ApplicationReferenceCollection'
+  ApplicationReferenceCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicationReference'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  ApplicationReference:
+    type: object
+    properties:
+      self:
+        type: string
+      tenant:
+        $ref: '#/definitions/Application'
+  OptionCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      options:
+        type: array
+        items:
+          $ref: '#/definitions/Option'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Option:
+    type: object
+    properties:
+      self:
+        type: string
+      category:
+        type: string
+      key:
+        type: string
+      value:
+        type: string
+  MultipleOptions:
+    type: object
+    properties:
+      key1:
+        type: string
+      key2:
+        type: string
+  UsageStatistics:
+    type: object
+    properties:
+      day:
+        type: string
+      deviceCount:
+        type: number
+      deviceEndpointCount:
+        type: number
+      deviceRequestCount:
+        type: number
+      deviceWithChildrenCount:
+        type: number
+      requestCount:
+        type: number
+      storageSize:
+        type: number
+      subscribedApplications:
+        type: array
+        items:
+          type: string
+  TenantUsageStatistics:
+    type: object
+    properties:
+      tenantId:
+        type: string
+      deviceCount:
+        type: number
+      deviceEndpointCount:
+        type: number
+      deviceRequestCount:
+        type: number
+      deviceWithChildrenCount:
+        type: number
+      requestCount:
+        type: number
+      storageSize:
+        type: number
+      subscribedApplications:
+        type: array
+        items:
+          type: string
+  TenantUsageStatisticsCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      usageStatistics:
+        type: array
+        items:
+          $ref: '#/definitions/UsageStatistics'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  AllTenantsUsageStatisticsSummary:
+    type: array
+    items:
+      $ref: '#/definitions/TenantUsageStatistics'
+  TenantUsageStatisticsSummary:
+    type: object
+    properties:
+      day:
+        type: string
+      deviceCount:
+        type: number
+      deviceEndpointCount:
+        type: number
+      deviceRequestCount:
+        type: number
+      deviceWithChildrenCount:
+        type: number
+      requestCount:
+        type: number
+      storageSize:
+        type: number
+      subscribedApplications:
+        type: array
+        items:
+          type: string
+      resources:
+        $ref: '#/definitions/Resources'
+      inventoriesUpdatedCount:
+        type: number
+      eventsUpdatedCount:
+        type: number
+      eventsCreatedCount:
+        type: number
+      alarmsCreatedCount:
+        type: number
+      alarmsUpdatedCount:
+        type: number
+      inventoriesCreatedCount:
+        type: number
+      measurementsCreatedCount:
+        type: number
+      totalResourceCreateAndUpdateCount:
+        type: number
+      self:
+        type: string
+  Resources:
+    type: object
+    properties:
+      cpu: 
+        type: number
+      memory:
+        type: number
+      usedBy:
+        type: array
+        items:
+          type: string
+  ManagedObject:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+  SupportedMeasurements:
+    type: object
+    properties:
+      c8y_SupportedMeasurements:
+        type: array
+        items:
+          type: string
+  SupportedSeries:
+    type: object
+    properties:
+      c8y_SupportedSeries:
+        type: array
+        items:
+          type: string
+  PagingStatistics:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      currentPage:
+        type: integer
+      pageSize:
+        type: integer
+  RetentionRule:
+    type: object
+    properties:
+      self:
+        type: string
+      id:
+        type: string
+      dataType:
+        type: string
+      fragmentType:
+        type: string
+      type:
+        type: string
+      source:
+        type: string
+      maximumAge:
+        type: integer
+      editable:
+        type: boolean
+  RetentionRuleCollection:
+    type: object
+    properties:
+      self:
+        type: string
+      retentionRules:
+        type: array
+        items:
+          $ref: '#/definitions/RetentionRule'
+      statistics:
+        $ref: '#/definitions/PagingStatistics'
+      prev:
+        type: string
+      next:
+        type: string
+  Responses:
+    type: array
+    items:
+      $ref: '#/definitions/Response'
+  Response:
+    type: object
+    properties:
+      id:
+        type: integer
+      channel:
+        type: string
+      version:
+        type: string
+      minimumVersion:
+        type: string
+      supportedConnectionTypes:
+        type: array
+        items:
+          type: string
+      subscription:
+        type: string
+      data:
+        type: object
+        properties:
+          property:
+            type: string
+      clientId:
+        type: string
+      successful:
+        type: boolean
+      error:
+        type: string
