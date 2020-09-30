@@ -1,0 +1,126 @@
+swagger: "2.0"
+info:
+  description: Asset Tracking POC 
+  version: 1.0.0
+  title: Asset Tracking POC 
+
+host: wtfhbndxp3.execute-api.eu-west-2.amazonaws.com
+basePath: /development
+schemes:
+  - https
+
+paths:
+  /GetAssetTree:
+    get:
+      summary: Get Asset Tree
+      description: Get Asset Tree
+      tags:
+        - Devices
+      produces:
+        - "application/json"
+      parameters:
+        - in: header
+          name: Authorization
+          description: Bearer token
+          type: string
+
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                NodeID: 
+                  type: string
+                DeviceModel: 
+                  type: string
+                NodeName: 
+                  type: string
+                NodeType: 
+                  type: string
+                ModelID: 
+                  type: string
+                children: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      NodeID: 
+                        type: string
+                      DeviceModel: 
+                        type: string
+                      NodeName: 
+                        type: string
+                      NodeType: 
+                        type: string
+                      ModelID: 
+                        type: string
+                      children: 
+                        type: array
+                        items: 
+                          type: object
+                          properties: 
+                            NodeID: 
+                              type: string
+                            DeviceModel: 
+                              type: string
+                            NodeLocation: 
+                              type: object
+                              properties: 
+                                latitude: 
+                                  type: number
+                                longitude: 
+                                  type: number
+                                elevation: 
+                                  type: number
+                            NodeName: 
+                              type: string
+                            NodeType: 
+                              type: string
+                            ModelID: 
+                              type: string
+                            children: 
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  NodeID: 
+                                    type: string
+                                  DeviceModel: 
+                                    type: string
+                                  NodeLocation: 
+                                    type: object
+                                    properties: 
+                                      latitude: 
+                                        type: number
+                                      longitude: 
+                                        type: number
+                                      elevation: 
+                                        type: number
+                                  NodeName: 
+                                    type: string
+                                  NodeType: 
+                                    type: string
+                                  ModelID: 
+                                    type: string
+                            childrenCount: 
+                              type: number
+                      childrenCount: 
+                        type: number
+                childrenCount: 
+                  type: number
+              
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
+    

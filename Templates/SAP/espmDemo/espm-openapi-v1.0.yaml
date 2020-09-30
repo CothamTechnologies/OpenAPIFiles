@@ -4,7 +4,7 @@ info:
   title: SAP ESPM Demo
   description: SAP ESPM Demo for SAP Cloud Platform (Foundary)
 
-host: 86c49573trial-dev-floprodemobasic.cfapps.us10.hana.ondemand.com
+host: 9e998630trial-dev-floprodemo.cfapps.eu10.hana.ondemand.com
 basePath: /SampleServices/ESPM.svc/v2
 
 schemes:
