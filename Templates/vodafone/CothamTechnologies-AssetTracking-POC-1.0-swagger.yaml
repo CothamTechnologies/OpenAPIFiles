@@ -11,6 +11,82 @@ schemes:
 
 paths:
 
+  /GetDeviceModels:
+    get:
+      summary: GetDeviceModels
+      description: GetDeviceModels
+      tags:
+        - Devices
+      produces:
+        - "application/json"
+      parameters:
+        - in: header
+          name: token
+          type: string
+          description: bearer token
+          required: false
+        
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties: 
+              fieldDefinitions: 
+                type: object
+                properties: 
+                  DeviceModel: 
+                    type: object
+                    properties: 
+                      name: 
+                        type: string
+                      description: 
+                        type: string
+                      baseType: 
+                        type: string
+                      ordinal: 
+                        type: number
+                      aspects: 
+                        type: object
+                        properties: 
+                          isPrimaryKey: 
+                            type: boolean
+                  ModelID: 
+                    type: object
+                    properties: 
+                      name: 
+                        type: string
+                      description: 
+                        type: string
+                      baseType: 
+                        type: string
+                      ordinal: 
+                        type: number
+                      aspects: 
+                        type: object
+                        properties: 
+                          isPrimaryKey: 
+                            type: boolean
+          rows: 
+            type: array
+            items: 
+              type: object
+              properties: 
+                DeviceModel: 
+                  type: string
+                ModelID: 
+                  type: string  
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
   /GetDeviceAlarms:
     get:
       summary: GetDeviceAlarms
@@ -19,30 +95,28 @@ paths:
         - Devices
       produces:
         - "application/json"
-      consumes:
-        - application/x-www-form-urlencoded
       parameters:
-        - in: formData
+        - in: query
           name: NodeID
           type: string
           description: STRING (as per NodeID on GetAssetTree)
           required: true
-        - in: formData
+        - in: query
           name: StartDate
           type: string
           description: STRING Date ISO Format YYYY-MM-DDTHH:MM:SSZ
           required: true
-        - in: formData
+        - in: query
           name: EndDate
           type: string
           description: STRING Date ISO Format YYYY-MM-DDTHH:MM:SSZ
           required: true
-        - in: formData
+        - in: query
           name: SkipClosedAlerts"
           type: boolean
           description: BOOLEAN
           required: false
-        - in: formData
+        - in: query
           name: OldestFirst
           type: boolean
           description: BOOLEAN
@@ -93,25 +167,23 @@ paths:
         - Devices
       produces:
         - "application/json"
-      consumes:
-        - application/x-www-form-urlencoded
       parameters:
-        - in: formData
+        - in: query
           name: NodeID
           type: string
           description: STRING (as per NodeID on GetAssetTree)
           required: true
-        - in: formData
+        - in: query
           name: StartDate
           type: string
           description: STRING Date ISO Format YYYY-MM-DDTHH:MM:SSZ
           required: true
-        - in: formData
+        - in: query
           name: EndDate
           type: string
           description: STRING Date ISO Format YYYY-MM-DDTHH:MM:SSZ
-          required: true
-        - in: formData
+          required: false
+        - in: query
           name: OldestFirst
           type: boolean
           description: BOOLEAN
