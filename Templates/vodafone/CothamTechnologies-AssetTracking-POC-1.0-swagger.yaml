@@ -216,6 +216,16 @@ paths:
                   type: string
                 battery: 
                   type: number
+                speed: 
+                  type: number
+                temperature: 
+                  type: number
+                BatteryVoltage: 
+                  type: string
+                CurrentMeasuredTemperature: 
+                  type: string
+                MessageCounter: 
+                  type: number
                 timestamp: 
                   type: number
                 Location: 
