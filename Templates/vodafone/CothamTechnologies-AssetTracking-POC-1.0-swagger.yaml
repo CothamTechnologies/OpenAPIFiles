@@ -156,7 +156,9 @@ paths:
                 id: 
                   type: string
                 timestamp: 
-                  type: number  
+                  type: number
+                timestampString: 
+                  type: string 
 
         default:
           description: "error object"
