@@ -32,50 +32,53 @@ paths:
           schema:
             type: object
             properties: 
-              fieldDefinitions: 
+              dataShape: 
                 type: object
                 properties: 
-                  DeviceModel: 
+                  fieldDefinitions: 
                     type: object
                     properties: 
-                      name: 
-                        type: string
-                      description: 
-                        type: string
-                      baseType: 
-                        type: string
-                      ordinal: 
-                        type: number
-                      aspects: 
+                      DeviceModel: 
                         type: object
                         properties: 
-                          isPrimaryKey: 
-                            type: boolean
-                  ModelID: 
-                    type: object
-                    properties: 
-                      name: 
-                        type: string
-                      description: 
-                        type: string
-                      baseType: 
-                        type: string
-                      ordinal: 
-                        type: number
-                      aspects: 
+                          name: 
+                            type: string
+                          description: 
+                            type: string
+                          baseType: 
+                            type: string
+                          ordinal: 
+                            type: number
+                          aspects: 
+                            type: object
+                            properties: 
+                              isPrimaryKey: 
+                                type: boolean
+                      ModelID: 
                         type: object
                         properties: 
-                          isPrimaryKey: 
-                            type: boolean
-          rows: 
-            type: array
-            items: 
-              type: object
-              properties: 
-                DeviceModel: 
-                  type: string
-                ModelID: 
-                  type: string  
+                          name: 
+                            type: string
+                          description: 
+                            type: string
+                          baseType: 
+                            type: string
+                          ordinal: 
+                            type: number
+                          aspects: 
+                            type: object
+                            properties: 
+                              isPrimaryKey: 
+                                type: boolean
+              rows: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    DeviceModel: 
+                      type: string
+                    ModelID: 
+                      type: string  
 
         default:
           description: "error object"
@@ -132,9 +135,15 @@ paths:
               properties: 
                 AcknowledgedBy: 
                   type: string
+                ClosedBy: 
+                  type: string
                 Priority: 
                   type: string
                 AcknowledgedAt: 
+                  type: number
+                AlarmCounter: 
+                  type: number
+                ClosedAt: 
                   type: number
                 DurationOfAlert: 
                   type: number
