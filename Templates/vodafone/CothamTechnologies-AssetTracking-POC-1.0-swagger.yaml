@@ -129,36 +129,55 @@ paths:
         200:
           description: "200 response"
           schema:
-            type: array
-            items:
-              type: object
-              properties: 
-                AcknowledgedBy: 
-                  type: string
-                ClosedBy: 
-                  type: string
-                Priority: 
-                  type: string
-                AcknowledgedAt: 
-                  type: number
-                AlarmCounter: 
-                  type: number
-                ClosedAt: 
-                  type: number
-                DurationOfAlert: 
-                  type: number
-                AlertType: 
-                  type: string
-                FiredAt: 
-                  type: number
-                NodeID: 
-                  type: string
-                id: 
-                  type: string
-                timestamp: 
-                  type: number
-                timestampString: 
-                  type: string 
+            type: object
+            properties:
+              count: 
+                type: number
+              P1Count: 
+                type: number
+              P2Count: 
+                type: number
+              P3Count: 
+                type: number
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    AcknowledgedBy: 
+                      type: string
+                    ClosedBy: 
+                      type: string
+                    Priority: 
+                      type: string
+                    AcknowledgedAt: 
+                      type: number
+                    AlarmCounter: 
+                      type: number
+                    ClosedAt: 
+                      type: number
+                    DurationOfAlert: 
+                      type: number
+                    AlertType: 
+                      type: string
+                    FiredAt: 
+                      type: number
+                    NodeID: 
+                      type: string
+                    id: 
+                      type: string
+                    timestamp: 
+                      type: number
+                    timestampString: 
+                      type: string 
+                    FiredAtString: 
+                      type: string
+                    LastTimeRaisedString: 
+                      type: string
+                    AcknowledgedAtString: 
+                      type: string
+                    ClosedAtString: 
+                      type: string
 
         default:
           description: "error object"
@@ -204,50 +223,55 @@ paths:
         200:
           description: "200 response"
           schema:
-            type: array
-            items:
-              type: object
-              properties: 
-                distance: 
-                  type: number
-                GeofenceName: 
-                  type: string
-                GeofenceID: 
-                  type: string
-                battery: 
-                  type: number
-                speed: 
-                  type: number
-                temperature: 
-                  type: number
-                BatteryVoltage: 
-                  type: string
-                CurrentMeasuredTemperature: 
-                  type: string
-                MessageCounter: 
-                  type: number
-                timestamp: 
-                  type: number
-                Location: 
+            type: object
+            properties:
+              count: 
+                type: number
+              rows:
+                type: array
+                items:
                   type: object
                   properties: 
+                    distance: 
+                      type: number
+                    GeofenceName: 
+                      type: string
+                    GeofenceID: 
+                      type: string
+                    battery: 
+                      type: number
+                    speed: 
+                      type: number
+                    temperature: 
+                      type: number
+                    BatteryVoltage: 
+                      type: string
+                    CurrentMeasuredTemperature: 
+                      type: string
+                    MessageCounter: 
+                      type: number
+                    timestamp: 
+                      type: number
+                    Location: 
+                      type: object
+                      properties: 
+                        latitude: 
+                          type: number
+                        longitude: 
+                          type: number
+                        elevation: 
+                          type: number
                     latitude: 
                       type: number
                     longitude: 
                       type: number
                     elevation: 
                       type: number
-                latitude: 
-                  type: number
-                longitude: 
-                  type: number
-                elevation: 
-                  type: number
-                detail: 
-                  type: string
-                timestampString: 
-                  type: string
-              
+                    detail: 
+                      type: string
+                    timestampString: 
+                      type: string
+                  
 
         default:
           description: "error object"
