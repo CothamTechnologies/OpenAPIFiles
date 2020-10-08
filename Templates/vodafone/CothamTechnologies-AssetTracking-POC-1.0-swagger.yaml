@@ -248,6 +248,8 @@ paths:
                       type: string
                     CurrentMeasuredTemperature: 
                       type: string
+                    gsm_signal_strength: 
+                      type: string
                     MessageCounter: 
                       type: number
                     timestamp: 
