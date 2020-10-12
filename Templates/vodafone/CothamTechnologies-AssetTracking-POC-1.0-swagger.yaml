@@ -283,35 +283,35 @@ paths:
                       type: string
                     timestampString: 
                       type: string
-                    latest_distance: 
-                      type: number
-                    latest_GeofenceName: 
-                      type: string
-                    latest_GeofenceID: 
-                      type: string
-                    latest_battery: 
-                      type: number
-                    latest_timestamp: 
-                      type: number
-                    latest_Location: 
-                      type: object
-                      properties: 
-                        latitude: 
-                          type: number
-                        longitude: 
-                          type: number
-                        elevation: 
-                          type: number
-                    latest_latitude: 
-                      type: number
-                    latest_longitude: 
-                      type: number
-                    latest_elevation: 
-                      type: number
-                    latest_detail: 
-                      type: string
-                    latest_timestampString: 
-                      type: string
+              latest_distance: 
+                type: number
+              latest_GeofenceName: 
+                type: string
+              latest_GeofenceID: 
+                type: string
+              latest_battery: 
+                type: number
+              latest_timestamp: 
+                type: number
+              latest_Location: 
+                type: object
+                properties: 
+                  latitude: 
+                    type: number
+                  longitude: 
+                    type: number
+                  elevation: 
+                    type: number
+              latest_latitude: 
+                type: number
+              latest_longitude: 
+                type: number
+              latest_elevation: 
+                type: number
+              latest_detail: 
+                type: string
+              latest_timestampString: 
+                type: string
                   
 
         default:
