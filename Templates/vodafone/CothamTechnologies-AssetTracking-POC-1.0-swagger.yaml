@@ -342,83 +342,86 @@ paths:
         200:
           description: "200 response"
           schema:
-            type: array
-            items:
-              type: object
-              properties: 
-                NodeID: 
-                  type: string
-                DeviceModel: 
-                  type: string
-                NodeName: 
-                  type: string
-                NodeType: 
-                  type: string
-                ModelID: 
-                  type: string
-                children: 
-                  type: array
-                  items: 
-                    type: object
-                    properties: 
-                      NodeID: 
-                        type: string
-                      DeviceModel: 
-                        type: string
-                      NodeName: 
-                        type: string
-                      NodeType: 
-                        type: string
-                      ModelID: 
-                        type: string
-                      children: 
-                        type: array
-                        items: 
-                          type: object
-                          properties: 
-                            NodeID: 
-                              type: string
-                            DeviceModel: 
-                              type: string
-                            NodeName: 
-                              type: string
-                            NodeType: 
-                              type: string
-                            ModelID: 
-                              type: string
-                            latitude: 
-                              type: number
-                            longitude: 
-                              type: number
-                            elevation: 
-                              type: number
-                            children: 
-                              type: array
-                              items: 
-                                type: object
-                                properties: 
-                                  NodeID: 
-                                    type: string
-                                  DeviceModel: 
-                                    type: string
-                                  NodeName: 
-                                    type: string
-                                  NodeType: 
-                                    type: string
-                                  ModelID: 
-                                    type: string
-                                  latitude: 
-                                    type: number
-                                  longitude: 
-                                    type: number
-                                  elevation: 
-                                    type: number
-                            childrenCount: 
-                              type: number
-                      childrenCount: 
-                        type: number
-                childrenCount: 
-                  type: number
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    NodeID: 
+                      type: string
+                    DeviceModel: 
+                      type: string
+                    NodeName: 
+                      type: string
+                    NodeType: 
+                      type: string
+                    ModelID: 
+                      type: string
+                    children: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          NodeID: 
+                            type: string
+                          DeviceModel: 
+                            type: string
+                          NodeName: 
+                            type: string
+                          NodeType: 
+                            type: string
+                          ModelID: 
+                            type: string
+                          children: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                NodeID: 
+                                  type: string
+                                DeviceModel: 
+                                  type: string
+                                NodeName: 
+                                  type: string
+                                NodeType: 
+                                  type: string
+                                ModelID: 
+                                  type: string
+                                latitude: 
+                                  type: number
+                                longitude: 
+                                  type: number
+                                elevation: 
+                                  type: number
+                                children: 
+                                  type: array
+                                  items: 
+                                    type: object
+                                    properties: 
+                                      NodeID: 
+                                        type: string
+                                      DeviceModel: 
+                                        type: string
+                                      NodeName: 
+                                        type: string
+                                      NodeType: 
+                                        type: string
+                                      ModelID: 
+                                        type: string
+                                      latitude: 
+                                        type: number
+                                      longitude: 
+                                        type: number
+                                      elevation: 
+                                        type: number
+                                childrenCount: 
+                                  type: number
+                          childrenCount: 
+                            type: number
+                    childrenCount: 
+                      type: number
               
 
         default:
