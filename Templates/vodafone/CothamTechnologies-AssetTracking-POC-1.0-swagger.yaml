@@ -312,6 +312,12 @@ paths:
                 type: string
               latest_timestampString: 
                 type: string
+              latest_speed: 
+                type: number
+              latest_temperature: 
+                type: string
+              latest_gsm_signal_strength: 
+                type: string
                   
 
         default:
