@@ -11,6 +11,47 @@ schemes:
 
 paths:
 
+  /GetPerformanceFigures:
+    get:
+      summary: GetPerformanceFigures
+      description: GetPerformanceFigures
+      tags:
+        - Devices
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: NodeID
+          type: string
+          description: STRING (as per NodeID on GetAssetTree)
+          required: true
+        
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties: 
+              alarmsData:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    Priority:
+                      type: string
+                    Count:
+                      type: number
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
   /GetDeviceModels:
     get:
       summary: GetDeviceModels
