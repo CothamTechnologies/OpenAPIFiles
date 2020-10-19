@@ -11,6 +11,207 @@ schemes:
 
 paths:
   
+  /GetPickSpecification:
+    get:
+      summary: Yard GetPickSpecification
+      description: Yard GetPickSpecification
+      tags:
+        - TEGOS 
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              count: 
+                type: number
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    PickNo: 
+                      type: string
+                    MaterialCode: 
+                      type: string
+                    MaterialName:
+                      type: string
+                    Quantity: 
+                      type: string
+                    PickingType:
+                      type: string
+                    OrderNo: 
+                      type: string
+                    OrderLineNo: 
+                      type: string
+                    User:
+                      type: string
+                    Location: 
+                      type: string
+                    OrderType:
+                      type: string
+                    WasteEntryNo: 
+                      type: string
+                    Bin: 
+                      type: string
+                    ContainerType:
+                      type: string
+                    ContainerNo: 
+                      type: string
+                    LotNo:
+                      type: string
+                    UOM: 
+                      type: string
+                    Workflow:
+                      type: string
+                    PickingStatus: 
+                      type: string
+                    Decant: 
+                      type: string
+                    pickedWeight: 
+                      type: string
+                    pickedContainer: 
+                      type: string
+                    decantedContainer: 
+                      type: string
+
+
+        default:
+          description: server error
+  
+  /getMaterialsForPick:
+    get:
+      summary: Yard getMaterialsForPick
+      description: Yard getMaterialsForPick
+      tags:
+        - TEGOS 
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              count: 
+                type: number
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    MaterialCode: 
+                      type: string
+                    MaterialName:
+                      type: string
+                    Quantity: 
+                      type: string
+                    PickingType:
+                      type: string
+                    OrderNo: 
+                      type: string
+                    User:
+                      type: string
+                    Location: 
+                      type: string
+                    OrderType:
+                      type: string
+
+        default:
+          description: server error
+  
+  /getOrderOrdersPick:
+    get:
+      summary: Yard getOrderOrdersPick
+      description: Yard getOrderOrdersPick
+      tags:
+        - TEGOS 
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              count: 
+                type: number
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    OrderNo: 
+                      type: string
+                    User:
+                      type: string
+                    Location: 
+                      type: string
+                    OrderType:
+                      type: string
+
+        default:
+          description: server error
+  
+  /getOrderTypes:
+    get:
+      summary: Yard getOrderTypes
+      description: Yard getOrderTypes
+      tags:
+        - TEGOS 
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              count: 
+                type: number
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: 
+                      type: string
+                    description:
+                      type: string
+      
+        default:
+          description: server error
+  
   /getMODData:
     get:
       summary: get all data MOD 
