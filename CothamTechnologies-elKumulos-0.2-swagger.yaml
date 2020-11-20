@@ -1043,8 +1043,8 @@ paths:
 
   /owGetTransactionMax.json/:
     post:
-      summary: Get Dashboard
-      description: Get Dashboard
+      summary: Get Transaction Max Amount
+      description: Get Transaction Max Amount
       tags:
         - 1. Elite Owner App
       consumes:
