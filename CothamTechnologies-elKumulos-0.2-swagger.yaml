@@ -1068,12 +1068,28 @@ paths:
 
       responses:
         200:
-          description: Response
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
           schema:
             type: object
             properties:
-              MaxTransactionTotal:
+              responseCode:
                 type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+                  MaxTransactionTotal:
+                    type: integer
+
+        default:
+          description: Failed Server Response
 
   /owGetDashboard.json/:
     post:
