@@ -11,6 +11,47 @@ schemes:
 
 paths:
 
+  /GetPerformanceFigures:
+    get:
+      summary: GetPerformanceFigures
+      description: GetPerformanceFigures
+      tags:
+        - Devices
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: NodeID
+          type: string
+          description: STRING (as per NodeID on GetAssetTree)
+          required: true
+        
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            type: object
+            properties: 
+              alarmsData:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    Priority:
+                      type: string
+                    Count:
+                      type: number
+
+        default:
+          description: "error object"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: string
+
   /GetDeviceModels:
     get:
       summary: GetDeviceModels
@@ -218,6 +259,16 @@ paths:
           type: boolean
           description: BOOLEAN
           required: false
+        - in: query
+          name: last7
+          type: boolean
+          description: last7
+          required: false
+        - in: query
+          name: last24
+          type: boolean
+          description: last24
+          required: false
 
       responses:
         200:
@@ -273,6 +324,41 @@ paths:
                       type: string
                     timestampString: 
                       type: string
+              latest_distance: 
+                type: number
+              latest_GeofenceName: 
+                type: string
+              latest_GeofenceID: 
+                type: string
+              latest_battery: 
+                type: number
+              latest_timestamp: 
+                type: number
+              latest_Location: 
+                type: object
+                properties: 
+                  latitude: 
+                    type: number
+                  longitude: 
+                    type: number
+                  elevation: 
+                    type: number
+              latest_latitude: 
+                type: number
+              latest_longitude: 
+                type: number
+              latest_elevation: 
+                type: number
+              latest_detail: 
+                type: string
+              latest_timestampString: 
+                type: string
+              latest_speed: 
+                type: number
+              latest_temperature: 
+                type: string
+              latest_gsm_signal_strength: 
+                type: string
                   
 
         default:
@@ -303,83 +389,86 @@ paths:
         200:
           description: "200 response"
           schema:
-            type: array
-            items:
-              type: object
-              properties: 
-                NodeID: 
-                  type: string
-                DeviceModel: 
-                  type: string
-                NodeName: 
-                  type: string
-                NodeType: 
-                  type: string
-                ModelID: 
-                  type: string
-                children: 
-                  type: array
-                  items: 
-                    type: object
-                    properties: 
-                      NodeID: 
-                        type: string
-                      DeviceModel: 
-                        type: string
-                      NodeName: 
-                        type: string
-                      NodeType: 
-                        type: string
-                      ModelID: 
-                        type: string
-                      children: 
-                        type: array
-                        items: 
-                          type: object
-                          properties: 
-                            NodeID: 
-                              type: string
-                            DeviceModel: 
-                              type: string
-                            NodeName: 
-                              type: string
-                            NodeType: 
-                              type: string
-                            ModelID: 
-                              type: string
-                            latitude: 
-                              type: number
-                            longitude: 
-                              type: number
-                            elevation: 
-                              type: number
-                            children: 
-                              type: array
-                              items: 
-                                type: object
-                                properties: 
-                                  NodeID: 
-                                    type: string
-                                  DeviceModel: 
-                                    type: string
-                                  NodeName: 
-                                    type: string
-                                  NodeType: 
-                                    type: string
-                                  ModelID: 
-                                    type: string
-                                  latitude: 
-                                    type: number
-                                  longitude: 
-                                    type: number
-                                  elevation: 
-                                    type: number
-                            childrenCount: 
-                              type: number
-                      childrenCount: 
-                        type: number
-                childrenCount: 
-                  type: number
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    NodeID: 
+                      type: string
+                    DeviceModel: 
+                      type: string
+                    NodeName: 
+                      type: string
+                    NodeType: 
+                      type: string
+                    ModelID: 
+                      type: string
+                    children: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          NodeID: 
+                            type: string
+                          DeviceModel: 
+                            type: string
+                          NodeName: 
+                            type: string
+                          NodeType: 
+                            type: string
+                          ModelID: 
+                            type: string
+                          children: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                NodeID: 
+                                  type: string
+                                DeviceModel: 
+                                  type: string
+                                NodeName: 
+                                  type: string
+                                NodeType: 
+                                  type: string
+                                ModelID: 
+                                  type: string
+                                latitude: 
+                                  type: number
+                                longitude: 
+                                  type: number
+                                elevation: 
+                                  type: number
+                                children: 
+                                  type: array
+                                  items: 
+                                    type: object
+                                    properties: 
+                                      NodeID: 
+                                        type: string
+                                      DeviceModel: 
+                                        type: string
+                                      NodeName: 
+                                        type: string
+                                      NodeType: 
+                                        type: string
+                                      ModelID: 
+                                        type: string
+                                      latitude: 
+                                        type: number
+                                      longitude: 
+                                        type: number
+                                      elevation: 
+                                        type: number
+                                childrenCount: 
+                                  type: number
+                          childrenCount: 
+                            type: number
+                    childrenCount: 
+                      type: number
               
 
         default:
