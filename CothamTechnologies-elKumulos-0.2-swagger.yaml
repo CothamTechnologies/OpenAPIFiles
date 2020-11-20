@@ -1041,6 +1041,40 @@ paths:
         default:
           description: Failed Server Response
 
+  /owGetTransactionMax.json/:
+    post:
+      summary: Get Dashboard
+      description: Get Dashboard
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Response
+          schema:
+            type: object
+            properties:
+              MaxTransactionTotal:
+                type: integer
+
   /owGetDashboard.json/:
     post:
       summary: Get Dashboard
