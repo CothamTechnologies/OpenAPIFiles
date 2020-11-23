@@ -2056,7 +2056,7 @@ paths:
                                 CancelledDate:
                                   type: string
                                   format: date-time
-                                photoCount:
+                                NoOfPictures:
                                   type: integer
                                 photos:
                                   type: array
@@ -3884,6 +3884,213 @@ paths:
               requestProcessingTime:
                 type: number
                 format: double
+
+        default:
+          description: Failed Server Response
+
+  /owGetJobPictures.json/:
+    post:
+      summary: Get Job Pictures
+      description: Get Jobs Pictures
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[jobNo]
+          type: boolean
+          description: jobNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  getJobPictures_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+                          JobPictureCount:
+                            type: integer
+                          JobPictures:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                Picture:
+                                  type: string
+                                Description:
+                                  type: string
+                                LineNo:
+                                  type: integer
+                                SortIndex:
+                                  type: integer
+
+        default:
+          description: Failed Server Response
+
+  /owAddJobPicture.json/:
+    post:
+      summary: Add a picture to a job
+      description: Add a picture to a job
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[jobNo]
+          type: boolean
+          description: jobNo
+          required: true
+        - in: formData
+          name: params[description]
+          type: string
+          description: description
+          required: true
+        - in: formData
+          name: params[picture]
+          type: string
+          description: picture
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  addJobPicture_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
+
+        default:
+          description: Failed Server Response
+
+  /owDeleteJobPicture.json/:
+    post:
+      summary: Remove a picture from a job
+      description: Remove a picture from a job
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[jobNo]
+          type: boolean
+          description: jobNo
+          required: true
+        - in: formData
+          name: params[lineNo]
+          type: string
+          description: lineNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  deleteJobPicture_Result:
+                    type: object
+                    properties:
+                      return_value:
+                        type: object
+                        properties:
+                          IsError:
+                            type: boolean
+                          ErrorCode:
+                            type: string
+                          ErrorMessage:
+                            type: string
 
         default:
           description: Failed Server Response
