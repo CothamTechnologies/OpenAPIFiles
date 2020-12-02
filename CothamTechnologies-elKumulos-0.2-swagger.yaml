@@ -1019,6 +1019,8 @@ paths:
                             type: boolean
                           IsAllowCreateLead:
                             type: boolean
+                          MaximumTransactionAmount:
+                            type: integer
 
               sessionToken:
                 type: string
