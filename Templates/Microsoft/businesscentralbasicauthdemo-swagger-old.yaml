@@ -2,10 +2,10 @@ swagger: "2.0"
 info:
   version: 1.0.0
   title: Dynamics 365 Business Central
-  description: Business Central Standard APIs - Basic Auth Only- jmagin@cothamdemo.onmicrosoft.com - JMAGIN
+  description: Business Central Standard APIs - Basic Auth Only
 
 host: api.businesscentral.dynamics.com
-basePath: /v2.0/59cf0ccd-ab8b-4151-9215-656649bf2c56/Production/ODataV4
+basePath: /v2.0/1df13415-97f2-43d9-b846-0e50fc90e73a/sandbox/api/v1.0
 
 schemes:
   - https
