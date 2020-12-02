@@ -3914,7 +3914,7 @@ paths:
           required: true
         - in: formData
           name: params[jobNo]
-          type: boolean
+          type: string
           description: jobNo
           required: true
 
@@ -3988,7 +3988,7 @@ paths:
           required: true
         - in: formData
           name: params[jobNo]
-          type: boolean
+          type: string
           description: jobNo
           required: true
         - in: formData
@@ -4057,7 +4057,7 @@ paths:
           required: true
         - in: formData
           name: params[jobNo]
-          type: boolean
+          type: string
           description: jobNo
           required: true
         - in: formData
