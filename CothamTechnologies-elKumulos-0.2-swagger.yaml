@@ -195,6 +195,8 @@ paths:
                   invoiceCount:
                     description: The total number of individual items in the basket
                     type: integer
+                  tooMuch:
+                    type: boolean
                   contents:
                     type: array
                     items:
@@ -228,8 +230,6 @@ paths:
                         remainingAmountDisplay:
                           type: string
                         paid:
-                          type: boolean
-                        tooMuch:
                           type: boolean
 
               sessionToken:
@@ -309,6 +309,8 @@ paths:
                   lineCount:
                     description: The total number of line items in the basket
                     type: integer
+                  tooMuch:
+                    type: boolean
                   contents:
                     type: array
                     items:
@@ -340,8 +342,6 @@ paths:
                           type: string
                           description: Currency prefixed line total for display
                         paid:
-                          type: boolean
-                        tooMuch:
                           type: boolean
 
               sessionToken:
