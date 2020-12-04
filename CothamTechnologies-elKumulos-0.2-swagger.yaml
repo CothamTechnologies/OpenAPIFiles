@@ -161,9 +161,9 @@ paths:
           description: customerNo
           required: true
         - in: formData
-          name: params[maxCollectionPaymentAmount]
+          name: params[maxAmount]
           type: integer
-          description: maxCollectionPaymentAmount
+          description: maxAmount
           required: true
 
       responses:
@@ -229,6 +229,8 @@ paths:
                           type: string
                         paid:
                           type: boolean
+                        tooMuch:
+                          type: boolean
 
               sessionToken:
                 type: string
@@ -274,6 +276,11 @@ paths:
           name: params[customerNo]
           type: string
           description: customerNo
+          required: true
+        - in: formData
+          name: params[maxAmount]
+          type: integer
+          description: maxAmount
           required: true
 
       responses:
@@ -333,6 +340,8 @@ paths:
                           type: string
                           description: Currency prefixed line total for display
                         paid:
+                          type: boolean
+                        tooMuch:
                           type: boolean
 
               sessionToken:
