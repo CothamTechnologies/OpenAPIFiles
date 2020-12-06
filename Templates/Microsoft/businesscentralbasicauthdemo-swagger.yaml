@@ -264,22 +264,20 @@ paths:
                           type: string
                           format: nullable
                     picture: 
-                      type: array
-                      items: 
-                        type: object
-                        properties: 
-                          id: 
-                            type: string
-                          width: 
-                            type: number
-                          height: 
-                            type: number
-                          contentType: 
-                            type: string
-                          content@odata.mediaEditLink: 
-                            type: string
-                          content@odata.mediaReadLink: 
-                            type: string
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        width: 
+                          type: number
+                        height: 
+                          type: number
+                        contentType: 
+                          type: string
+                        content@odata.mediaEditLink: 
+                          type: string
+                        content@odata.mediaReadLink: 
+                          type: string
 
 
         default:
