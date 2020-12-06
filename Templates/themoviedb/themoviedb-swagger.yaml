@@ -12,8 +12,9 @@ schemes:
 securityDefinitions:
   ApiKeyAuth:
     type: apiKey
-    in: header
     name: Authorization
+    in: header
+    
 
 security:
   - ApiKeyAuth: []
@@ -28,6 +29,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: bearer token
+          required: true
         - name: media_type
           in: path
           type: string
