@@ -274,9 +274,9 @@ paths:
                           type: number
                         contentType: 
                           type: string
-                        content@odata.mediaEditLink: 
+                        pictureContent@odata.mediaEditLink: 
                           type: string
-                        content@odata.mediaReadLink: 
+                        pictureContent@odata.mediaReadLink: 
                           type: string
 
 
