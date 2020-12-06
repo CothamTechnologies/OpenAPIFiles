@@ -2,10 +2,10 @@ swagger: "2.0"
 info:
   version: 1.0.0
   title: Dynamics 365 Business Central
-  description: Business Central Standard APIs - Basic Auth Only- jmagin@cothamdemo.onmicrosoft.com - JMAGIN
+  description: Business Central Standard APIs - Basic Auth Only
 
 host: api.businesscentral.dynamics.com
-basePath: /v2.0/59cf0ccd-ab8b-4151-9215-656649bf2c56/Production/ODataV4
+basePath: /v2.0/1df13415-97f2-43d9-b846-0e50fc90e73a/Production/api/v2.0
 
 schemes:
   - https
@@ -17,9 +17,78 @@ security:
   - basicAuth: []
 
 paths:
-  
+  /companies:
+    get:
+      description: Returns a list of companies
+      summary: listCompanies
+      tags:
+        - company
+      produces:
+        - application/json
+      parameters:
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - systemVersion
+              - name
+              - displayName
+              - businessProfileId
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of companies
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    systemVersion: 
+                      type: string
+                    name: 
+                      type: string
+                    displayName: 
+                      type: string
+                    businessProfileId: 
+                      type: string
+
+        default:
+          description: error
+          
       
-  /company({company_id}):
+  /companies({company_id}):
     get:
       description: Retrieve the properties and relationships of an object of type company
         for Dynamics 365 Business Central.
@@ -66,7 +135,7 @@ paths:
         default:
           description: error
           
-  /company({company_id})/items:
+  /companies({company_id})/items:
     get:
       description: Returns a list of items
       summary: listItems
