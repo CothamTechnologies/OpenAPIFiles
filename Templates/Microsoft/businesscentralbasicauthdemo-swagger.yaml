@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   version: 1.0.0
   title: Dynamics 365 Business Central
-  description: Business Central Standard APIs - Basic Auth Only
+  description: Business Central Standard APIs - Basic Auth Only.
 
 host: api.businesscentral.dynamics.com
 basePath: /v2.0/1df13415-97f2-43d9-b846-0e50fc90e73a/Production/api/v2.0
@@ -49,6 +49,12 @@ paths:
           required: false
           type: string
           description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
         - name: $select
           in: query
           required: false
@@ -68,6 +74,8 @@ paths:
           schema:
             type: object
             properties:
+              @odata.count:
+                type: number
               value: 
                 type: array
                 items: 
@@ -102,6 +110,12 @@ paths:
           type: string
           format: uuid
           description: id for company
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
         - name: $select
           in: query
           required: false
@@ -171,6 +185,12 @@ paths:
           required: false
           type: string
           description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
         - name: $expand
           in: query
           required: false
@@ -213,6 +233,8 @@ paths:
           schema:
             type: object
             properties:
+              @odata.count:
+                type: number
               value: 
                 type: array
                 items: 
