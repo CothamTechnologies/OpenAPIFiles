@@ -776,8 +776,6 @@ paths:
                 items: 
                   type: object
                   properties: 
-                    '@odata.etag': 
-                      type: string
                     id: 
                       type: string
                     number: 
