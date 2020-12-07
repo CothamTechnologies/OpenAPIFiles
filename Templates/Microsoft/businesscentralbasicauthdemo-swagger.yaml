@@ -74,6 +74,8 @@ paths:
           schema:
             type: object
             properties:
+              '@odata.count':
+                type: number
               value: 
                 type: array
                 items: 
@@ -231,6 +233,8 @@ paths:
           schema:
             type: object
             properties:
+              '@odata.count':
+                type: number
               value: 
                 type: array
                 items: 
