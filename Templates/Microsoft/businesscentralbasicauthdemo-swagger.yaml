@@ -678,7 +678,7 @@ paths:
       responses:
         "201":
           description: A new customer has been succesfully created
-          schema:
+          
   
   /companies({company_id})/items:
     get:
