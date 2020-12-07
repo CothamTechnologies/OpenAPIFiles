@@ -149,6 +149,537 @@ paths:
         default:
           description: error
           
+  /companies({company_id})/salesOrders:
+    get:
+      description: Returns a list of salesOrders
+      summary: listSalesOrders
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - salesOrderLines
+              - customer
+              - currency
+              - paymentTerm
+              - shipmentMethod
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - externalDocumentNumber
+              - orderDate
+              - customerId
+              - contactId
+              - customerNumber
+              - customerName
+              - billToName
+              - billToCustomerId
+              - billToCustomerNumber
+              - shipToName
+              - shipToContact
+              - sellingPostalAddress
+              - billingPostalAddress
+              - shippingPostalAddress
+              - currencyId
+              - currencyCode
+              - pricesIncludeTax
+              - paymentTermsId
+              - shipmentMethodId
+              - salesperson
+              - partialShipping
+              - requestedDeliveryDate
+              - discountAmount
+              - discountAppliedBeforeTax
+              - totalAmountExcludingTax
+              - totalTaxAmount
+              - totalAmountIncludingTax
+              - fullyShipped
+              - status
+              - lastModifiedDateTime
+              - phoneNumber
+              - email
+          description: Selected properties to be retrieved
+      responses:
+        "200":
+          description: Succesfully returned a list of salesOrders
+          schema:
+            type: object
+            properties:
+              '@odata.count': 
+                type: number
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    '@odata.etag': 
+                      type: string
+                    id: 
+                      type: string
+                    number: 
+                      type: string
+                    externalDocumentNumber: 
+                      type: string
+                    orderDate: 
+                      type: string
+                      format: date
+                    postingDate: 
+                      type: string
+                      format: date
+                    customerId: 
+                      type: string
+                    customerNumber: 
+                      type: string
+                    customerName: 
+                      type: string
+                    billToName: 
+                      type: string
+                    billToCustomerId: 
+                      type: string
+                    billToCustomerNumber: 
+                      type: string
+                    shipToName: 
+                      type: string
+                    shipToContact: 
+                      type: string
+                    sellToAddressLine1: 
+                      type: string
+                    sellToAddressLine2: 
+                      type: string
+                    sellToCity: 
+                      type: string
+                    sellToCountry: 
+                      type: string
+                    sellToState: 
+                      type: string
+                    sellToPostCode: 
+                      type: string
+                    billToAddressLine1: 
+                      type: string
+                    billToAddressLine2: 
+                      type: string
+                    billToCity: 
+                      type: string
+                    billToCountry: 
+                      type: string
+                    billToState: 
+                      type: string
+                    billToPostCode: 
+                      type: string
+                    shipToAddressLine1: 
+                      type: string
+                    shipToAddressLine2: 
+                      type: string
+                    shipToCity: 
+                      type: string
+                    shipToCountry: 
+                      type: string
+                    shipToState: 
+                      type: string
+                    shipToPostCode: 
+                      type: string
+                    currencyId: 
+                      type: string
+                    currencyCode: 
+                      type: string
+                    pricesIncludeTax: 
+                      type: boolean
+                    paymentTermsId: 
+                      type: string
+                    shipmentMethodId: 
+                      type: string
+                    salesperson: 
+                      type: string
+                    partialShipping: 
+                      type: boolean
+                    requestedDeliveryDate: 
+                      type: string
+                      format: date
+                    discountAmount: 
+                      type: number
+                    discountAppliedBeforeTax: 
+                      type: boolean
+                    totalAmountExcludingTax: 
+                      type: number
+                    totalTaxAmount: 
+                      type: number
+                    totalAmountIncludingTax: 
+                      type: number
+                    fullyShipped: 
+                      type: boolean
+                    status: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                    phoneNumber: 
+                      type: string
+                    email: 
+                      type: string
+  
+  /companies({company_id})/customers:
+    get:
+      description: Returns a list of customers
+      summary: listCustomers
+      tags:
+        - customer
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - customerFinancialDetails
+              - picture
+              - defaultDimensions
+              - currency
+              - paymentTerm
+              - shipmentMethod
+              - paymentMethod
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - displayName
+              - type
+              - address
+              - phoneNumber
+              - email
+              - website
+              - taxLiable
+              - taxAreaId
+              - taxAreaDisplayName
+              - taxRegistrationNumber
+              - currencyId
+              - currencyCode
+              - paymentTermsId
+              - shipmentMethodId
+              - paymentMethodId
+              - blocked
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        "200":
+          description: Succesfully returned a list of customers
+          schema:
+            type: object
+            properties:
+              '@odata.count': 
+                type: number
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    '@odata.etag': 
+                      type: string
+                    No: 
+                      type: string
+                    Name: 
+                      type: string
+                    Name_2: 
+                      type: string
+                    Responsibility_Center: 
+                      type: string
+                    Location_Code: 
+                      type: string
+                    Post_Code: 
+                      type: string
+                    Country_Region_Code: 
+                      type: string
+                    Phone_No: 
+                      type: string
+                    IC_Partner_Code: 
+                      type: string
+                    Contact: 
+                      type: string
+                    Salesperson_Code: 
+                      type: string
+                    Customer_Posting_Group: 
+                      type: string
+                    Gen_Bus_Posting_Group: 
+                      type: string
+                    VAT_Bus_Posting_Group: 
+                      type: string
+                    Customer_Price_Group: 
+                      type: string
+                    Customer_Disc_Group: 
+                      type: string
+                    Payment_Terms_Code: 
+                      type: string
+                    Reminder_Terms_Code: 
+                      type: string
+                    Fin_Charge_Terms_Code: 
+                      type: string
+                    Currency_Code: 
+                      type: string
+                    Language_Code: 
+                      type: string
+                    Search_Name: 
+                      type: string
+                    Credit_Limit_LCY: 
+                      type: number
+                    Blocked: 
+                      type: string
+                    Privacy_Blocked: 
+                      type: boolean
+                    Last_Date_Modified: 
+                      type: string
+                      format: date
+                    Application_Method: 
+                      type: string
+                    Combine_Shipments: 
+                      type: boolean
+                    Reserve: 
+                      type: string
+                    Ship_to_Code: 
+                      type: string
+                    Shipping_Advice: 
+                      type: string
+                    Shipping_Agent_Code: 
+                      type: string
+                    Base_Calendar_Code: 
+                      type: string
+                    Balance_LCY: 
+                      type: number
+                    Balance_Due_LCY: 
+                      type: number
+                    Sales_LCY: 
+                      type: number
+                    Payments_LCY: 
+                      type: number
+                    Global_Dimension_1_Filter: 
+                      type: string
+                    Global_Dimension_2_Filter: 
+                      type: string
+                    Currency_Filter: 
+                      type: string
+                    Date_Filter: 
+                      type: string
+    
+    post:
+      description: Creates an object of type customer in Dynamics 365 Business Central
+      summary: postCustomer
+      tags:
+        - customer
+      operationId: postCustomer
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: application/json
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central customer entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 20
+              displayName:
+                description: The displayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 100
+              type:
+                description: The type property for the Dynamics 365 Business Central customer entity
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              country:
+                type: string
+              postalCode:
+                type: string
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              website:
+                description: The website property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              taxLiable:
+                description: The taxLiable property for the Dynamics 365 Business Central customer
+                  entity
+                type: boolean
+              taxAreaId:
+                description: The taxAreaId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              taxAreaDisplayName:
+                description: The taxAreaDisplayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              taxRegistrationNumber:
+                description: The taxRegistrationNumber property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                maxLength: 20
+              currencyId:
+                description: The currencyId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              currencyCode:
+                description: The currencyCode property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              paymentTermsId:
+                description: The paymentTermsId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              shipmentMethodId:
+                description: The shipmentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              paymentMethodId:
+                description: The paymentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              blocked:
+                description: The blocked property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+              lastModifiedDateTime:
+                description: The lastModifiedDateTime property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                format: date-time
+      responses:
+        "201":
+          description: A new customer has been succesfully created
+          schema:
+  
   /companies({company_id})/items:
     get:
       description: Returns a list of items
@@ -162,6 +693,11 @@ paths:
           type: string
           format: uuid
           description: id for company
+        - name: Authorization
+          in: header
+          required: false
+          type: string
+          description: eg Basic xxxxx
         - name: $top
           in: query
           required: false
@@ -240,6 +776,8 @@ paths:
                 items: 
                   type: object
                   properties: 
+                    '@odata.etag': 
+                      type: string
                     id: 
                       type: string
                     number: 
