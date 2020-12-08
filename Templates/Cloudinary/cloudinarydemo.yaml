@@ -13,10 +13,10 @@ paths:
 
   /{resourcetype}/upload:
     post:
-      summary: video upload
-      description: video upload
+      summary: resource upload
+      description: resource upload
       tags:
-        - video
+        - upload
       produces:
         - application/json
       consumes:
