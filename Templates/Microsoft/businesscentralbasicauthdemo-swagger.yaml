@@ -249,7 +249,7 @@ paths:
               - email
           description: Selected properties to be retrieved
       responses:
-        "200":
+        200:
           description: Succesfully returned a list of salesOrders
           schema:
             type: object
@@ -450,7 +450,7 @@ paths:
               - lastModifiedDateTime
           description: Selected properties to be retrieved
       responses:
-        "200":
+        200:
           description: Succesfully returned a list of customers
           schema:
             type: object
@@ -672,7 +672,7 @@ paths:
                 type: string
                 format: date-time
       responses:
-        "201":
+        201:
           description: A new customer has been succesfully created
           
   
