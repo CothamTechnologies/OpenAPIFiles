@@ -11,7 +11,7 @@ schemes:
   
 paths:
 
-  /video/upload:
+  /{resourcetype}/upload:
     post:
       summary: video upload
       description: video upload
@@ -30,6 +30,11 @@ paths:
           name: upload_preset
           type: string
           description: upload preset key
+        - in: path
+          name: resourcetype
+          type: string
+          required: true
+          description: eg image or video
           
       responses:
         200:
