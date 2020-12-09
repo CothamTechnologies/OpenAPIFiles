@@ -462,89 +462,31 @@ paths:
                 items: 
                   type: object
                   properties: 
-                    No: 
+                    id: 
                       type: string
-                    Name: 
+                    displayName: 
                       type: string
-                    Name_2: 
+                    email: 
                       type: string
-                    Responsibility_Center: 
+                    number: 
                       type: string
-                    Location_Code: 
+                    addressLine1: 
                       type: string
-                    Post_Code: 
+                    addressLine2: 
                       type: string
-                    Country_Region_Code: 
+                    blocked: 
                       type: string
-                    Phone_No: 
+                    PhoneNumber: 
                       type: string
-                    IC_Partner_Code: 
+                    city: 
                       type: string
-                    Contact: 
+                    country: 
                       type: string
-                    Salesperson_Code: 
+                    postalCode: 
                       type: string
-                    Customer_Posting_Group: 
+                    type: 
                       type: string
-                    Gen_Bus_Posting_Group: 
-                      type: string
-                    VAT_Bus_Posting_Group: 
-                      type: string
-                    Customer_Price_Group: 
-                      type: string
-                    Customer_Disc_Group: 
-                      type: string
-                    Payment_Terms_Code: 
-                      type: string
-                    Reminder_Terms_Code: 
-                      type: string
-                    Fin_Charge_Terms_Code: 
-                      type: string
-                    Currency_Code: 
-                      type: string
-                    Language_Code: 
-                      type: string
-                    Search_Name: 
-                      type: string
-                    Credit_Limit_LCY: 
-                      type: number
-                    Blocked: 
-                      type: string
-                    Privacy_Blocked: 
-                      type: boolean
-                    Last_Date_Modified: 
-                      type: string
-                      format: date
-                    Application_Method: 
-                      type: string
-                    Combine_Shipments: 
-                      type: boolean
-                    Reserve: 
-                      type: string
-                    Ship_to_Code: 
-                      type: string
-                    Shipping_Advice: 
-                      type: string
-                    Shipping_Agent_Code: 
-                      type: string
-                    Base_Calendar_Code: 
-                      type: string
-                    Balance_LCY: 
-                      type: number
-                    Balance_Due_LCY: 
-                      type: number
-                    Sales_LCY: 
-                      type: number
-                    Payments_LCY: 
-                      type: number
-                    Global_Dimension_1_Filter: 
-                      type: string
-                    Global_Dimension_2_Filter: 
-                      type: string
-                    Currency_Filter: 
-                      type: string
-                    Date_Filter: 
-                      type: string
+                    
     
     post:
       description: Creates an object of type customer in Dynamics 365 Business Central
