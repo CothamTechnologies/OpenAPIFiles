@@ -387,45 +387,12 @@ paths:
           schema:
             type: object
             properties:
-              id:
-                description: The id property for the Dynamics 365 Business Central salesOrder entity
-                type: string
-                format: uuid
-              number:
-                description: The number property for the Dynamics 365 Business Central salesOrder
-                  entity
-                type: string
-                maxLength: 20
-              externalDocumentNumber:
-                description: The externalDocumentNumber property for the Dynamics 365 Business
-                  Central salesOrder entity
-                type: string
-                maxLength: 35
-              orderDate:
-                description: The orderDate property for the Dynamics 365 Business Central
-                  salesOrder entity
-                type: string
-                format: date-time
-              customerId:
-                description: The customerId property for the Dynamics 365 Business Central
-                  salesOrder entity
-                type: string
-                format: uuid
-              contactId:
-                description: The contactId property for the Dynamics 365 Business Central
-                  salesOrder entity
-                type: string
-                maxLength: 250
               customerNumber:
                 description: The customerNumber property for the Dynamics 365 Business Central
                   salesOrder entity
                 type: string
                 maxLength: 20
-              customerName:
-                description: The customerName property for the Dynamics 365 Business Central
-                  salesOrder entity
-                type: string
-                maxLength: 100
+
       responses:
         "201":
           description: A new salesOrder has been succesfully created
