@@ -1124,23 +1124,11 @@ paths:
           schema:
             type: object
             properties:
-              id:
-                description: The id property for the Dynamics 365 Business Central customer entity
-                type: string
-                format: uuid
-              number:
-                description: The number property for the Dynamics 365 Business Central customer
-                  entity
-                type: string
-                maxLength: 20
               displayName:
                 description: The displayName property for the Dynamics 365 Business Central
                   customer entity
                 type: string
                 maxLength: 100
-              type:
-                description: The type property for the Dynamics 365 Business Central customer entity
-                type: string
               addressLine1:
                 type: string
               addressLine2:
@@ -1163,62 +1151,7 @@ paths:
                   entity
                 type: string
                 maxLength: 80
-              website:
-                description: The website property for the Dynamics 365 Business Central customer
-                  entity
-                type: string
-                maxLength: 80
-              taxLiable:
-                description: The taxLiable property for the Dynamics 365 Business Central customer
-                  entity
-                type: boolean
-              taxAreaId:
-                description: The taxAreaId property for the Dynamics 365 Business Central customer
-                  entity
-                type: string
-                format: uuid
-              taxAreaDisplayName:
-                description: The taxAreaDisplayName property for the Dynamics 365 Business Central
-                  customer entity
-                type: string
-              taxRegistrationNumber:
-                description: The taxRegistrationNumber property for the Dynamics 365 Business
-                  Central customer entity
-                type: string
-                maxLength: 20
-              currencyId:
-                description: The currencyId property for the Dynamics 365 Business Central customer
-                  entity
-                type: string
-                format: uuid
-              currencyCode:
-                description: The currencyCode property for the Dynamics 365 Business Central
-                  customer entity
-                type: string
-              paymentTermsId:
-                description: The paymentTermsId property for the Dynamics 365 Business Central
-                  customer entity
-                type: string
-                format: uuid
-              shipmentMethodId:
-                description: The shipmentMethodId property for the Dynamics 365 Business Central
-                  customer entity
-                type: string
-                format: uuid
-              paymentMethodId:
-                description: The paymentMethodId property for the Dynamics 365 Business Central
-                  customer entity
-                type: string
-                format: uuid
-              blocked:
-                description: The blocked property for the Dynamics 365 Business Central customer
-                  entity
-                type: string
-              lastModifiedDateTime:
-                description: The lastModifiedDateTime property for the Dynamics 365 Business
-                  Central customer entity
-                type: string
-                format: date-time
+
       responses:
         201:
           description: A new customer has been succesfully created
