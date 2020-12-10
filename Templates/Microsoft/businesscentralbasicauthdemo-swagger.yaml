@@ -609,6 +609,90 @@ paths:
                   salesOrder entity
                 type: string
                 maxLength: 100
+              currencyId:
+                description: The currencyId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              currencyCode:
+                description: The currencyCode property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+              pricesIncludeTax:
+                description: The pricesIncludeTax property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: boolean
+              paymentTermsId:
+                description: The paymentTermsId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              shipmentMethodId:
+                description: The shipmentMethodId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              salesperson:
+                description: The salesperson property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+              partialShipping:
+                description: The partialShipping property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: boolean
+              requestedDeliveryDate:
+                description: The requestedDeliveryDate property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                format: date-time
+              discountAmount:
+                description: The discountAmount property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: number
+                format: double
+              discountAppliedBeforeTax:
+                description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: boolean
+              totalAmountExcludingTax:
+                description: The totalAmountExcludingTax property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: number
+                format: double
+              totalTaxAmount:
+                description: The totalTaxAmount property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: number
+                format: double
+              totalAmountIncludingTax:
+                description: The totalAmountIncludingTax property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: number
+                format: double
+              fullyShipped:
+                description: The fullyShipped property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: boolean
+              status:
+                description: The status property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+              lastModifiedDateTime:
+                description: The lastModifiedDateTime property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                format: date-time
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+                maxLength: 80
               salesOrderLines:
                 type: array
                 items:
