@@ -1,0 +1,296 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Dynamics 365 Business Central
+  description: Business Central Odata v4 web services - Basic Auth Only.
+
+host: api.businesscentral.dynamics.com
+basePath: /v2.0/1df13415-97f2-43d9-b846-0e50fc90e73a/Production/ODataV4
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+security:
+  - basicAuth: []
+
+paths:
+
+  /Company({company_id})/TopCustomerOverview:
+    get:
+      description: TopCustomerOverview
+      summary: TopCustomerOverview
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $select
+          in: query
+          required: false
+          type: string
+          description: Selected properties to be retrieved
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+      responses:
+        200:
+          description: Succesfully returned the requested dashboard
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    Name: 
+                      type: string
+                    No: 
+                      type: string
+                    Country_Region_Code: 
+                      type: string
+                    City: 
+                      type: string
+                    Global_Dimension_1_Code: 
+                      type: string
+                    Global_Dimension_2_Code: 
+                      type: string
+                    Salesperson_Code: 
+                      type: string
+                    Sales_LCY: 
+                      type: number
+                    Profit_LCY: 
+                      type: number
+                    SalesPersonName: 
+                      type: string
+                    CountryRegionName: 
+                      type: string
+                    AuxiliaryIndex1: 
+                      type: string
+                    AuxiliaryIndex2: 
+                      type: string
+
+
+        default:
+          description: error
+ 
+  /Company({company_id})/SalesDashboard:
+    get:
+      description: Dashboard by Customer
+      summary: get dashboards
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $select
+          in: query
+          required: false
+          type: string
+          description: Selected properties to be retrieved
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+      responses:
+        200:
+          description: Succesfully returned the requested dashboard
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    Entry_No: 
+                      type: number
+                    Document_No: 
+                      type: string
+                    Posting_Date: 
+                      type: string
+                      format: date
+                    Entry_Type: 
+                      type: string
+                    Quantity: 
+                      type: number
+                    Dimension_Set_ID: 
+                      type: number
+                    Sales_Amount_Actual: 
+                      type: number
+                    Sales_Amount_Expected: 
+                      type: number
+                    Cost_Amount_Actual: 
+                      type: number
+                    Cost_Amount_Expected: 
+                      type: number
+                    CountryRegionName: 
+                      type: string
+                    CustomerName: 
+                      type: string
+                    Customer_Posting_Group: 
+                      type: string
+                    Customer_Disc_Group: 
+                      type: string
+                    City: 
+                      type: string
+                    Description: 
+                      type: string
+                    SalesPersonName: 
+                      type: string
+                    AuxiliaryIndex1: 
+                      type: string
+                    AuxiliaryIndex2: 
+                      type: string
+                    AuxiliaryIndex3: 
+                      type: string
+                    AuxiliaryIndex4: 
+                      type: string
+
+        default:
+          description: error
+
+  /Company({company_id})/user:
+    get:
+      description: Retrieve the properties and relationships of an object of type user
+        for Dynamics 365 Business Central.
+      summary: get users
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - userName
+              - displayName
+              - userSecurityId
+              - state
+              - expiryDate
+          description: Selected properties to be retrieved
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+      responses:
+        200:
+          description: Succesfully returned the requested user
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userSecurityId: 
+                      type: string
+                    userName: 
+                      type: string
+                    displayName: 
+                      type: string
+                    state: 
+                      type: string
+                    expiryDate: 
+                      type: string
+
+        default:
+          description: error
+          
+ 

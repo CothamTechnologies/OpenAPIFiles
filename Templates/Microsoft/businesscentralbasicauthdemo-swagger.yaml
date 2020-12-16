@@ -1094,6 +1094,8 @@ paths:
                       type: string
                     type: 
                       type: string
+                    state: 
+                      type: string
                     
     
     post:
@@ -1155,6 +1157,36 @@ paths:
       responses:
         201:
           description: A new customer has been succesfully created
+          schema:
+            type: object 
+            properties:
+              id: 
+                type: string
+              displayName: 
+                type: string
+              email: 
+                type: string
+              number: 
+                type: string
+              addressLine1: 
+                type: string
+              addressLine2: 
+                type: string
+              blocked: 
+                type: string
+              PhoneNumber: 
+                type: string
+              city: 
+                type: string
+              country: 
+                type: string
+              postalCode: 
+                type: string
+              type: 
+                type: string
+              state: 
+                type: string
+
           
   /companies({company_id})/customers({customer_id}):
     get:
@@ -1309,6 +1341,146 @@ paths:
                   Central customer entity
                 type: string
                 format: date-time
+
+    patch:
+      description: Update the properties and relationships of an object of type customer
+        for Dynamics 365 Business Central.
+      summary: getCustomer
+      tags:
+        - customer
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: customer_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for customer
+        - name: If-Match
+          in: header
+          type: string
+          required: true
+          description: Required. When this request header is included and the eTag provided does not match the current tag on the customers, the customers will not be updated.
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              displayName:
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              postalCode:
+                type: string
+              phoneNumber:
+                type: string
+              email:
+                type: string
+        
+      responses:
+        200:
+          description: Succesfully updated the requested customer
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central customer entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 20
+              displayName:
+                description: The displayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 100
+              type:
+                description: The type property for the Dynamics 365 Business Central customer entity
+                type: string
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              website:
+                description: The website property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              taxLiable:
+                description: The taxLiable property for the Dynamics 365 Business Central customer
+                  entity
+                type: boolean
+              taxAreaId:
+                description: The taxAreaId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              taxAreaDisplayName:
+                description: The taxAreaDisplayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              taxRegistrationNumber:
+                description: The taxRegistrationNumber property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                maxLength: 20
+              currencyId:
+                description: The currencyId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              currencyCode:
+                description: The currencyCode property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              paymentTermsId:
+                description: The paymentTermsId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              shipmentMethodId:
+                description: The shipmentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              paymentMethodId:
+                description: The paymentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              blocked:
+                description: The blocked property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+              lastModifiedDateTime:
+                description: The lastModifiedDateTime property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                format: date-time               
 
   /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines:
     get:
