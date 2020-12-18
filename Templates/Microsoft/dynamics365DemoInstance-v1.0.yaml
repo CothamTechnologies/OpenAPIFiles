@@ -10,10 +10,10 @@ schemes:
 
 paths:
 
-  /me:
+  /users:
     get:
-      summary: get my profile
-      description: get my profile
+      summary: get users
+      description: get users
       produces:
         - application/json
       parameters:
@@ -60,29 +60,34 @@ paths:
           schema:
             type: object
             properties:
-              displayName: 
-                type: string
-              givenName: 
-                type: string
-              jobTitle: 
-                type: string
-                format: nullable
-              mail: 
-                type: string
-              mobilePhone: 
-                type: string
-                format: nullable
-              officeLocation: 
-                type: string
-                format: nullable
-              preferredLanguage: 
-                type: string
-              surname: 
-                type: string
-              userPrincipalName: 
-                type: string
-              id: 
-                type: string
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    displayName: 
+                      type: string
+                    givenName: 
+                      type: string
+                    jobTitle: 
+                      type: string
+                      format: nullable
+                    mail: 
+                      type: string
+                    mobilePhone: 
+                      type: string
+                      format: nullable
+                    officeLocation: 
+                      type: string
+                      format: nullable
+                    preferredLanguage: 
+                      type: string
+                    surname: 
+                      type: string
+                    userPrincipalName: 
+                      type: string
+                    id: 
+                      type: string
 
 
         default:
