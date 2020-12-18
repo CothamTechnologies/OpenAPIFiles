@@ -10,7 +10,7 @@ schemes:
 
 paths:
 
-  /users:
+  /users{user_id}:
     get:
       summary: get users
       description: get users
@@ -21,6 +21,11 @@ paths:
           name: Authorization
           type: string
           description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
           required: true
         - in: query
           name: $select
