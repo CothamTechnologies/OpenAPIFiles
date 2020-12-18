@@ -12,8 +12,8 @@ paths:
 
   /users{user_id}:
     get:
-      summary: get users
-      description: get users
+      summary: get user
+      description: get user
       produces:
         - application/json
       parameters:
