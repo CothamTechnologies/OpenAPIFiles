@@ -18,6 +18,11 @@ paths:
         - application/json
       parameters:
         - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
           name: prefer
           type: string
           description: Timezone eg outlook.timezone="Eastern Standard Time"
