@@ -65,34 +65,29 @@ paths:
           schema:
             type: object
             properties:
-              value:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    displayName: 
-                      type: string
-                    givenName: 
-                      type: string
-                    jobTitle: 
-                      type: string
-                      format: nullable
-                    mail: 
-                      type: string
-                    mobilePhone: 
-                      type: string
-                      format: nullable
-                    officeLocation: 
-                      type: string
-                      format: nullable
-                    preferredLanguage: 
-                      type: string
-                    surname: 
-                      type: string
-                    userPrincipalName: 
-                      type: string
-                    id: 
-                      type: string
+              displayName: 
+                type: string
+              givenName: 
+                type: string
+              jobTitle: 
+                type: string
+                format: nullable
+              mail: 
+                type: string
+              mobilePhone: 
+                type: string
+                format: nullable
+              officeLocation: 
+                type: string
+                format: nullable
+              preferredLanguage: 
+                type: string
+              surname: 
+                type: string
+              userPrincipalName: 
+                type: string
+              id: 
+                type: string
 
 
         default:
