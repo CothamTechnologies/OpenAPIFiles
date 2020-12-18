@@ -10,6 +10,161 @@ schemes:
 
 paths:
 
+  /users/{user_id}/contacts:
+    get:
+      summary: all user contacts
+      description: all user contacts
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
+                    changeKey: 
+                      type: string
+                    parentFolderId: 
+                      type: string
+                    birthday: 
+                      type: string
+                      format: nullable
+                    fileAs: 
+                      type: string
+                    displayName: 
+                      type: string
+                    givenName: 
+                      type: string
+                    initials: 
+                      type: string
+                      format: nullable
+                    middleName: 
+                      type: string
+                      format: nullable
+                    nickName: 
+                      type: string
+                      format: nullable
+                    surname: 
+                      type: string
+                    title: 
+                      type: string
+                      format: nullable
+                    yomiGivenName: 
+                      type: string
+                      format: nullable
+                    yomiSurname: 
+                      type: string
+                      format: nullable
+                    yomiCompanyName: 
+                      type: string
+                      format: nullable
+                    generation: 
+                      type: string
+                      format: nullable
+                    imAddresses: 
+                      type: array
+                      items: 
+                    jobTitle: 
+                      type: string
+                      format: nullable
+                    companyName: 
+                      type: string
+                    department: 
+                      type: string
+                      format: nullable
+                    officeLocation: 
+                      type: string
+                      format: nullable
+                    profession: 
+                      type: string
+                      format: nullable
+                    businessHomePage: 
+                      type: string
+                      format: nullable
+                    assistantName: 
+                      type: string
+                      format: nullable
+                    manager: 
+                      type: string
+                      format: nullable
+                    mobilePhone: 
+                      type: string
+                    spouseName: 
+                      type: string
+                      format: nullable
+                    personalNotes: 
+                      type: string 
+                    emailAddresses: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          name: 
+                            type: string
+                          address: 
+                            type: string
+
+
+
+        default:
+          description: error
+
   /users/{user_id}:
     get:
       summary: get user
