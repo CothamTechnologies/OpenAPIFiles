@@ -10,6 +10,84 @@ schemes:
 
 paths:
 
+  /me:
+    get:
+      summary: get my profile
+      description: get my profile
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              displayName: 
+                type: string
+              givenName: 
+                type: string
+              jobTitle: 
+                type: string
+                format: nullable
+              mail: 
+                type: string
+              mobilePhone: 
+                type: string
+                format: nullable
+              officeLocation: 
+                type: string
+                format: nullable
+              preferredLanguage: 
+                type: string
+              surname: 
+                type: string
+              userPrincipalName: 
+                type: string
+              id: 
+                type: string
+
+
+        default:
+          description: error
+
   /me/events:
     get:
       summary: all events in my calendar
