@@ -10,7 +10,7 @@ schemes:
 
 paths:
 
-  /users{user_id}:
+  /users/{user_id}:
     get:
       summary: get user
       description: get user
@@ -98,7 +98,7 @@ paths:
         default:
           description: error
 
-  /users{user_id}/events:
+  /users/{user_id}/events:
     get:
       summary: all events in users calendar
       description: all events in users calendar
