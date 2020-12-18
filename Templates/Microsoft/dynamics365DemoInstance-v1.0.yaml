@@ -10,6 +10,151 @@ schemes:
 
 paths:
 
+  /me/events:
+    get:
+      summary: all events in my calendar
+      description: all events in my calendar
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    body: 
+                      type: object
+                      properties: 
+                        contentType: 
+                          type: string
+                        content: 
+                          type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    location: 
+                      type: object
+                      properties: 
+                        displayName: 
+                          type: string
+                        locationType: 
+                          type: string
+                        uniqueId: 
+                          type: string
+                        uniqueIdType: 
+                          type: string
+                    locations: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          displayName: 
+                            type: string
+                          locationType: 
+                            type: string
+                          uniqueIdType: 
+                            type: string
+                    attendees: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          type: 
+                            type: string
+                          status: 
+                            type: object
+                            properties: 
+                              response: 
+                                type: string
+                              time: 
+                                type: string
+                          emailAddress: 
+                            type: object
+                            properties: 
+                              name: 
+                                type: string
+                              address: 
+                                type: string
+                    organizer: 
+                      type: object
+                      properties: 
+                        emailAddress: 
+                          type: object
+                          properties: 
+                            name: 
+                              type: string
+                            address: 
+                              type: string
+
+
+        default:
+          description: error
+  
   /sites/{siteID}/lists/{listID}/items:
     get:
       summary: Get Site List Items
