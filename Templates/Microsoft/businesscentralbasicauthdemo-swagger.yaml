@@ -462,7 +462,7 @@ paths:
                 type: string
                 maxLength: 100
 
-  /companies({company_id})/salesOrder/({salesOrder_id})/pdfDocument:
+  /companies({company_id})/salesOrder({salesOrder_id})/pdfDocument:
     get:
       description: Retrieve the pdf of an object of type salesOrder for Dynamics 365 Business Central.
       summary: getSalesOrderPDF
