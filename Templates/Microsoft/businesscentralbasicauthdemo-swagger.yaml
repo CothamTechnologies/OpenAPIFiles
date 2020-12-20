@@ -462,6 +462,43 @@ paths:
                 type: string
                 maxLength: 100
 
+  /companies({company_id})/salesOrders({salesOrder_id})/pdfDocument:
+    get:
+      description: Retrieve the pdf of an object of type salesOrder for Dynamics 365 Business Central.
+      summary: getSalesOrder
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        
+      responses:
+        200:
+          description: Succesfully returned the requested salesOrder pdf
+          schema:
+            type: object
+            properties: 
+              id: 
+                type: string
+              parentId: 
+                type: string
+              parentType: 
+                type: string
+              pdfDocumentContent@odata.mediaReadLink: 
+                type: string
+  
   /companies({company_id})/salesOrders({salesOrder_id}):
     get:
       description: Retrieve the properties and relationships of an object of type
