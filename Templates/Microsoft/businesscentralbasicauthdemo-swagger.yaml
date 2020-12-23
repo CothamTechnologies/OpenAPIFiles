@@ -18,7 +18,7 @@ security:
 
 paths:
 
-  "/companies({company_id})/itemCategories":
+  /companies({company_id})/itemCategories:
     get:
       description: Returns a list of itemCategories
       summary: listItemCategories
