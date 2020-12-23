@@ -299,36 +299,34 @@ paths:
                       type: string
                       format: date-time
                     picture:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            description: The id property for the Dynamics 365 Business Central picture entity
-                            type: string
-                            format: uuid
-                          width:
-                            description: The width property for the Dynamics 365 Business Central picture entity
-                            type: integer
-                            format: int32
-                          height:
-                            description: The height property for the Dynamics 365 Business Central picture
-                              entity
-                            type: integer
-                            format: int32
-                          contentType:
-                            description: The contentType property for the Dynamics 365 Business Central picture
-                              entity
-                            type: string
-                            maxLength: 100
-                          content@odata.mediaEditLink:
-                            description: The content@odata.mediaEditLink property for the Dynamics 365 Business
-                              Central picture entity
-                            type: string
-                          content@odata.mediaReadLink:
-                            description: The content@odata.mediaReadLink property for the Dynamics 365 Business
-                              Central picture entity
-                            type: string
+                      type: object
+                      properties:
+                        id:
+                          description: The id property for the Dynamics 365 Business Central picture entity
+                          type: string
+                          format: uuid
+                        width:
+                          description: The width property for the Dynamics 365 Business Central picture entity
+                          type: integer
+                          format: int32
+                        height:
+                          description: The height property for the Dynamics 365 Business Central picture
+                            entity
+                          type: integer
+                          format: int32
+                        contentType:
+                          description: The contentType property for the Dynamics 365 Business Central picture
+                            entity
+                          type: string
+                          maxLength: 100
+                        content@odata.mediaEditLink:
+                          description: The content@odata.mediaEditLink property for the Dynamics 365 Business
+                            Central picture entity
+                          type: string
+                        content@odata.mediaReadLink:
+                          description: The content@odata.mediaReadLink property for the Dynamics 365 Business
+                            Central picture entity
+                          type: string
                     
 
   /companies:
