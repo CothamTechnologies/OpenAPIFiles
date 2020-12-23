@@ -18,6 +18,90 @@ security:
 
 paths:
 
+  "/companies({company_id})/itemCategories":
+    get:
+      description: Returns a list of itemCategories
+      summary: listItemCategories
+      tags:
+        - itemCategory
+      operationId: listItemCategories
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - code
+              - displayName
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        "200":
+          description: Succesfully returned a list of itemCategories
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: The id property for the Dynamics 365 Business Central itemCategory
+                        entity
+                      type: string
+                      format: uuid
+                    code:
+                      description: The code property for the Dynamics 365 Business Central itemCategory
+                        entity
+                      type: string
+                      maxLength: 20
+                    displayName:
+                      description: The displayName property for the Dynamics 365 Business Central
+                        itemCategory entity
+                      type: string
+                      maxLength: 100
+                    lastModifiedDateTime:
+                      description: The lastModifiedDateTime property for the Dynamics 365 Business
+                        Central itemCategory entity
+                      type: string
+                      format: date-time
+
   /companies({company_id})/employees:
     get:
       description: Returns a list of employees
