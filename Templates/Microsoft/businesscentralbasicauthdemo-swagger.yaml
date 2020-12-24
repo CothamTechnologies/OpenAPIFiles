@@ -319,11 +319,11 @@ paths:
                             entity
                           type: string
                           maxLength: 100
-                        content@odata.mediaEditLink:
+                        pictureContent@odata.mediaEditLink:
                           description: The content@odata.mediaEditLink property for the Dynamics 365 Business
                             Central picture entity
                           type: string
-                        content@odata.mediaReadLink:
+                        pictureContent@odata.mediaReadLink:
                           description: The content@odata.mediaReadLink property for the Dynamics 365 Business
                             Central picture entity
                           type: string
