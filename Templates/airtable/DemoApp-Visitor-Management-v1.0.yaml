@@ -12,6 +12,447 @@ schemes:
 
 paths:
 
+  /{baseid}/Employees/{id}:
+    get:
+      summary: Get Single Employee Record
+      description: Get Single Employees Record
+      tags:
+        - Employees
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: path
+          name: id
+          description: Id
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              fields: 
+                type: object
+                properties: 
+                  Email: 
+                    type: string
+                  Name: 
+                    type: string
+                  Visitors: 
+                    type: array
+                    items: 
+                      type: string
+                  Phone Number: 
+                    type: string
+                  Count of Visitors: 
+                    type: number
+              createdTime: 
+                type: string
+        
+        default:
+          description: error
+
+    put:
+      summary: PUT - Update Employees Record
+      description: PUT - Update Employees Record
+      tags:
+        - Employees
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: path
+          name: id
+          description: Id
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Name: 
+                          type: string
+                        Email: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Email: 
+                          type: string
+                        Name: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+                        Count of Visitors: 
+                          type: number
+                    createdTime: 
+                      type: string
+
+        
+        default:
+          description: error
+
+    patch:
+      summary: PATCH - Update Employees Record
+      description: PATCH - Update Employees Record
+      tags:
+        - Employees
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: path
+          name: id
+          description: Id
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Name: 
+                          type: string
+                        Email: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Email: 
+                          type: string
+                        Name: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+                        Count of Visitors: 
+                          type: number
+                    createdTime: 
+                      type: string
+
+        default:
+          description: error
+
+    delete:
+      summary: Delete Employees Record
+      description: Delete Employees Record
+      tags:
+        - Employees
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: path
+          name: id
+          description: Id
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: formData
+          name: records[]
+          type: string
+          description: id of record for deletion
+          required: true
+        
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    deleted: 
+                      type: boolean
+
+        default:
+          description: error
+
+  /{baseid}/Employees:
+    post:
+      summary: Create Employees Record
+      description: Create Employees Record
+      tags:
+        - Employees
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    fields: 
+                      type: object
+                      properties: 
+                        Name: 
+                          type: string
+                        Email: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Email: 
+                          type: string
+                        Name: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+                        Count of Visitors: 
+                          type: number
+                    createdTime: 
+                      type: string
+
+        default:
+          description: error
+
+    get:
+      summary: List Employees Records
+      description: List Employees Records
+      tags:
+        - Employees
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: baseid
+          description: baseId
+          type: string
+          required: true
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+          required: false
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+          required: false
+        - in: query
+          name: view
+          type: string
+          description: select a view
+          required: false
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+          required: false
+        - in: query
+          name: maxRecords
+          type: string
+          description: select fields
+          required: false
+      
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              records: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    fields: 
+                      type: object
+                      properties: 
+                        Email: 
+                          type: string
+                        Name: 
+                          type: string
+                        Visitors: 
+                          type: array
+                          items: 
+                            type: string
+                        Phone Number: 
+                          type: string
+                        Count of Visitors: 
+                          type: number
+                    createdTime: 
+                      type: string
+              offset: 
+                type: string
+
+        default:
+          description: error
+          
+
+
+
+
+
+
   /{baseid}/Visitors/{id}:
     get:
       summary: Get Single Visit Record
@@ -352,7 +793,7 @@ paths:
                           type: string
 
       responses:
-        201:
+        200:
           description: OK
           schema:
             type: object
