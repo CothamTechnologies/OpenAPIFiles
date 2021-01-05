@@ -197,13 +197,74 @@ paths:
                 items: 
                   type: object
                   properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    eTag: 
+                      type: string
+                    id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
                     name: 
+                      type: string
+                    webUrl: 
+                      type: string
+                    cTag: 
                       type: string
                     size: 
                       type: number
+                    createdBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    lastModifiedBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    parentReference: 
+                      type: object
+                      properties: 
+                        driveId: 
+                          type: string
+                        driveType: 
+                          type: string
+                        id: 
+                          type: string
+                        path: 
+                          type: string
+                    fileSystemInfo: 
+                      type: object
+                      properties: 
+                        createdDateTime: 
+                          type: string
+                          format: date-time
+                        lastModifiedDateTime: 
+                          type: string
+                          format: date-time
+                    folder: 
+                      type: object
+                      properties: 
+                        childCount: 
+                          type: number
 
-              "@odata.nextLink": 
-                type: string
 
         default:
           description: error
@@ -278,13 +339,74 @@ paths:
                 items: 
                   type: object
                   properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    eTag: 
+                      type: string
+                    id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
                     name: 
+                      type: string
+                    webUrl: 
+                      type: string
+                    cTag: 
                       type: string
                     size: 
                       type: number
+                    createdBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    lastModifiedBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    parentReference: 
+                      type: object
+                      properties: 
+                        driveId: 
+                          type: string
+                        driveType: 
+                          type: string
+                        id: 
+                          type: string
+                        path: 
+                          type: string
+                    fileSystemInfo: 
+                      type: object
+                      properties: 
+                        createdDateTime: 
+                          type: string
+                          format: date-time
+                        lastModifiedDateTime: 
+                          type: string
+                          format: date-time
+                    folder: 
+                      type: object
+                      properties: 
+                        childCount: 
+                          type: number
 
-              "@odata.nextLink": 
-                type: string
 
         default:
           description: error
@@ -354,22 +476,68 @@ paths:
                 items: 
                   type: object
                   properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    description: 
+                      type: string
                     id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
+                    name: 
+                      type: string
+                    webUrl: 
                       type: string
                     driveType: 
                       type: string
-                    name: 
-                      type: string
+                    createdBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            displayName: 
+                              type: string
+                    lastModifiedBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
                     owner: 
                       type: object
                       properties: 
                         user: 
                           type: object
                           properties: 
+                            email: 
+                              type: string
                             id: 
                               type: string
                             displayName: 
                               type: string
+                    quota: 
+                      type: object
+                      properties: 
+                        deleted: 
+                          type: number
+                        remaining: 
+                          type: number
+                        state: 
+                          type: string
+                        total: 
+                          type: number
+                        used: 
+                          type: number
+
 
         default:
           description: error
