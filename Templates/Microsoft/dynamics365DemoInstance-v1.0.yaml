@@ -29,6 +29,11 @@ paths:
           type: string
           description: user id
           required: true
+        - in: path
+          name: filename
+          type: string
+          description: filename
+          required: true
         - in: body
           name: body
           schema:
@@ -36,17 +41,160 @@ paths:
             format: binary
 
       responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
+                type: string
+              size: 
+                type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
         '201':
           description: OK
           schema:
             type: object
             properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
               id: 
                 type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
               name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
                 type: string
               size: 
                 type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
 
         default:
           description: error
@@ -75,6 +223,11 @@ paths:
           type: string
           description: parent item id
           required: true
+        - in: path
+          name: filename
+          type: string
+          description: filename
+          required: true
         - in: body
           name: body
           schema:
@@ -82,17 +235,160 @@ paths:
             format: binary
 
       responses:
-        '201':
-          description: OK
+        '200':
+          description: OK updated
           schema:
             type: object
             properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
               id: 
                 type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
               name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
                 type: string
               size: 
                 type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
+        '201':
+          description: OK Created
+          schema:
+            type: object
+            properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
+                type: string
+              size: 
+                type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
 
         default:
           description: error
