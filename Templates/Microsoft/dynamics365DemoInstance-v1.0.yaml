@@ -511,6 +511,11 @@ paths:
                       type: string
                     cTag: 
                       type: string
+                    file:
+                      type: object
+                      properties:
+                        mimeType:
+                          type: string
                     size: 
                       type: number
                     createdBy: 
@@ -674,6 +679,11 @@ paths:
                       type: string
                     cTag: 
                       type: string
+                    file:
+                      type: object
+                      properties:
+                        mimeType:
+                          type: string
                     size: 
                       type: number
                     createdBy: 
