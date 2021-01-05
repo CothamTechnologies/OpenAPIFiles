@@ -562,8 +562,30 @@ paths:
                       properties: 
                         childCount: 
                           type: number
-
-
+                    thumbnails: 
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          large:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                          medium:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                          small:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                    "@microsoft.graph.downloadUrl":
+                      type: string
         default:
           description: error
 
