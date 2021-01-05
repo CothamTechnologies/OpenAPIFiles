@@ -10,6 +10,370 @@ schemes:
 
 paths:
 
+  /users/{user_id}/drive/root:/{filename}:/content:
+    put:
+      summary: Upload File to Root
+      description: Upload File to Root
+      produces:
+        - application/json
+      consumes:
+        - text/plain
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: string
+            format: binary
+
+      responses:
+        '201':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              name: 
+                type: string
+              size: 
+                type: number
+
+        default:
+          description: error
+
+  /users/{user_id}/drive/items/{parent_id}:/{filename}:/content:
+    put:
+      summary: Upload File
+      description: Upload File
+      produces:
+        - application/json
+      consumes:
+        - text/plain
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: parent_id
+          type: string
+          description: parent item id
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: string
+            format: binary
+
+      responses:
+        '201':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              name: 
+                type: string
+              size: 
+                type: number
+
+        default:
+          description: error
+  
+  /users/{user_id}/drive/items/{item_id}/content:
+    get:
+      summary: Download File
+      description: Download File
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: item_id
+          type: string
+          description: drive item id
+          required: true
+        - in: query
+          name: format
+          type: string
+          description: format eg pdf supported for csv, doc, docx, odp, ods, odt, pot, potm, potx, pps, ppsx, ppsxm, ppt, pptm, pptx, rtf, xls, xlsx
+          required: false
+
+      responses:
+        '200':
+          description: OK
+
+        default:
+          description: error
+
+  /drives/{drive_id}/root/children:
+    get:
+      summary: list root drive item children
+      description: list root drive item children
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: drive_id
+          type: string
+          description: drive id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand eg thumbnails
+          required: false
+        - in: query
+          name: $skipToken
+          type: string
+          description: $skipToken
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    size: 
+                      type: number
+
+              "@odata.nextLink": 
+                type: string
+
+        default:
+          description: error
+
+  /drives/{drive_id}/items/{item_id}/children:
+    get:
+      summary: list drive item children
+      description: list drive item children
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: drive_id
+          type: string
+          description: drive id
+          required: true
+        - in: path
+          name: item_id
+          type: string
+          description: drive item id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand eg thumbnails
+          required: false
+        - in: query
+          name: $skipToken
+          type: string
+          description: $skipToken
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    size: 
+                      type: number
+
+              "@odata.nextLink": 
+                type: string
+
+        default:
+          description: error
+
+  /users/{user_id}/drives:
+    get:
+      summary: List users drives
+      description: List users drives
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        - in: query
+          name: $skipToken
+          type: string
+          description: $skipToken
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    driveType: 
+                      type: string
+                    name: 
+                      type: string
+                    owner: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+
+        default:
+          description: error
+
   /users/{user_id}/contacts:
     get:
       summary: all user contacts

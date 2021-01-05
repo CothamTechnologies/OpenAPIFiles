@@ -25,7 +25,8 @@ paths:
         - in: formData
           name: file
           type: file
-          description: The video to upload
+          description: The file to upload
+          x-ct-mimetype: image/png
         - in: formData
           name: upload_preset
           type: string
