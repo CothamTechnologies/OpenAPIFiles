@@ -52,13 +52,9 @@ paths:
                   Name: 
                     type: string
                   Visitors: 
-                    type: array
-                    items: 
-                      type: string
+                    type: string
                   Phone Number: 
                     type: string
-                  Count of Visitors: 
-                    type: number
               createdTime: 
                 type: string
         
@@ -111,9 +107,7 @@ paths:
                         Email: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
 
@@ -138,13 +132,9 @@ paths:
                         Name: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
-                        Count of Visitors: 
-                          type: number
                     createdTime: 
                       type: string
 
@@ -198,9 +188,7 @@ paths:
                         Email: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
 
@@ -225,13 +213,9 @@ paths:
                         Name: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
-                        Count of Visitors: 
-                          type: number
                     createdTime: 
                       type: string
 
@@ -327,9 +311,7 @@ paths:
                         Email: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
 
@@ -354,13 +336,9 @@ paths:
                         Name: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
-                        Count of Visitors: 
-                          type: number
                     createdTime: 
                       type: string
 
@@ -432,13 +410,9 @@ paths:
                         Name: 
                           type: string
                         Visitors: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Phone Number: 
                           type: string
-                        Count of Visitors: 
-                          type: number
                     createdTime: 
                       type: string
               offset: 
@@ -489,9 +463,7 @@ paths:
                 type: object
                 properties: 
                   Visiting: 
-                    type: array
-                    items: 
-                      type: string
+                    type: string
                   Last Name: 
                     type: string
                   Company: 
@@ -551,10 +523,8 @@ paths:
                     fields: 
                       type: object
                       properties: 
-                        Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                        Visitors: 
+                          type: string
                         Company: 
                           type: string
                         Reason for visit: 
@@ -581,9 +551,7 @@ paths:
                       type: object
                       properties: 
                         Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Last Name: 
                           type: string
                         Company: 
@@ -645,9 +613,7 @@ paths:
                       type: object
                       properties: 
                         Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Company: 
                           type: string
                         Reason for visit: 
@@ -674,9 +640,7 @@ paths:
                       type: object
                       properties: 
                         Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Last Name: 
                           type: string
                         Company: 
@@ -780,9 +744,7 @@ paths:
                       type: object
                       properties: 
                         Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Company: 
                           type: string
                         Reason for visit: 
@@ -809,9 +771,7 @@ paths:
                       type: object
                       properties: 
                         Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Last Name: 
                           type: string
                         Company: 
@@ -890,9 +850,7 @@ paths:
                       type: object
                       properties: 
                         Visiting: 
-                          type: array
-                          items: 
-                            type: string
+                          type: string
                         Last Name: 
                           type: string
                         Company: 
