@@ -10,6 +10,119 @@ schemes:
 
 paths:
 
+  /users/{user_id}/calendars/{calendar_id}/events{event_id}/instances:
+    get:
+      summary: event instances in specific calendar
+      description: event instances in specific calendar
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: calendar_id
+          type: string
+          description: calendar id
+          required: true
+        - in: path
+          name: event_id
+          type: string
+          description: event id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        - in: query
+          name: startDateTime
+          type: string
+          description: startDateTime
+          required: false
+        - in: query
+          name: endDateTime
+          type: string
+          description: endDateTime
+          required: false
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+
+        default:
+          description: error
+
   /users/{user_id}/calendar/calendarView:
     get:
       summary: users Calendar View  
@@ -200,6 +313,11 @@ paths:
           name: user_id
           type: string
           description: user id
+          required: true
+        - in: path
+          name: calendar_id
+          type: string
+          description: calendar id
           required: true
         - in: query
           name: $select
