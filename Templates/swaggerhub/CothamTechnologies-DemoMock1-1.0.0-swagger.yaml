@@ -10,6 +10,42 @@ schemes:
  - https
 
 paths:
+
+  /getAllTrainers:
+    get:
+      summary: getAllTrainers
+      description: getAllTrainers
+      tags:
+        - Learnlight
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    imageURL:
+                      type: string
+
+        default:
+          description: server error
   
   /getRecentArticles:
     get:
