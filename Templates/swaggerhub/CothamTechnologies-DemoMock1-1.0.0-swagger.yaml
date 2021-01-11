@@ -43,6 +43,8 @@ paths:
                       type: string
                     imageURL:
                       type: string
+                    languages:
+                      type: string
 
         default:
           description: server error
