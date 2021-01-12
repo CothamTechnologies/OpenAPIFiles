@@ -11,6 +11,50 @@ schemes:
 
 paths:
 
+  /getHomeSceneData:
+    get:
+      summary: getHomeSceneData
+      description: getHomeSceneData
+      tags:
+        - Learnlight
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cellType:
+                      type: string
+                    Heading:
+                      type: string
+                    SubHeading1:
+                      type: string
+                    SubHeading2:
+                      type: string
+                    text:
+                      type: string
+                    imageURL1:
+                      type: string
+                    imageURL2:
+                      type: string
+               
+        default:
+          description: server error
+
   /getAllTrainers:
     get:
       summary: getAllTrainers
