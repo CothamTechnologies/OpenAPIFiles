@@ -11,6 +11,52 @@ schemes:
 
 paths:
 
+  /getSessionDetails:
+    get:
+      summary: getSessionDetails
+      description: getSessionDetails
+      tags:
+        - Learnlight
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cellType:
+                      type: string
+                    Heading:
+                      type: string
+                    SubHeading1:
+                      type: string
+                    SubHeading2:
+                      type: string
+                    text:
+                      type: string
+                    imageURL1:
+                      type: string
+                    imageURL2:
+                      type: string
+                    status:
+                      type: string
+
+        default:
+          description: server error
+
   /getHomeSceneData:
     get:
       summary: getHomeSceneData
@@ -88,6 +134,8 @@ paths:
                     imageURL:
                       type: string
                     languages:
+                      type: string
+                    reviewsText:
                       type: string
 
         default:
