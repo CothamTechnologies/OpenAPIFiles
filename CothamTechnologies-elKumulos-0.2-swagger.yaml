@@ -3718,9 +3718,9 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
-          name: params[dummy]
+          name: params[backendIdentifier]
           type: string
-          description: dummy
+          description: backendIdentifier
           required: false
 
       responses:
