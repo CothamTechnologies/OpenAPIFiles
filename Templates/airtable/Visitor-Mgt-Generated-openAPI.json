@@ -1,0 +1,696 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Airtable API for Visitor Management"
+  },
+  "servers": [
+    {
+      "url": "https://api.airtable.com/v0/appCYhrPGq2G18Rqa"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "AirtableThumbnail": {
+        "required": [
+          "url",
+          "width",
+          "height"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          }
+        }
+      },
+      "AirtableThumbnails": {
+        "required": [
+          "large",
+          "small"
+        ],
+        "properties": {
+          "large": {
+            "$ref": "#/components/schemas/AirtableThumbnail"
+          },
+          "small": {
+            "$ref": "#/components/schemas/AirtableThumbnail"
+          }
+        }
+      },
+      "AirtableAttachment": {
+        "required": [
+          "id",
+          "size",
+          "url",
+          "type",
+          "filename"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "thumbnails": {
+            "$ref": "#/components/schemas/AirtableThumbnails"
+          }
+        }
+      },
+      "AirtableDeleted": {
+        "required": [
+          "id",
+          "deleted"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ReadVisitorsFields": {
+        "properties": {
+          "Full Name": {
+            "type": "string"
+          },
+          "Visiting": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Date/Time of Visit": {
+            "type": "string"
+          },
+          "Company": {
+            "type": "string"
+          },
+          "Reason for visit": {
+            "type": "string"
+          },
+          "First Name": {
+            "type": "string"
+          },
+          "Last Name": {
+            "type": "string"
+          }
+        }
+      },
+      "WriteVisitorsFields": {
+        "properties": {
+          "Visiting": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Company": {
+            "type": "string"
+          },
+          "Reason for visit": {
+            "type": "string"
+          },
+          "First Name": {
+            "type": "string"
+          },
+          "Last Name": {
+            "type": "string"
+          }
+        }
+      },
+      "ReadVisitors": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdTime": {
+            "type": "string"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/ReadVisitorsFields"
+          }
+        }
+      },
+      "ReadVisitorsRequestBody": {
+        "properties": {
+          "fields": {
+            "$ref": "#/components/schemas/ReadVisitorsFields"
+          }
+        }
+      },
+      "WriteVisitorsRequestBody": {
+        "properties": {
+          "fields": {
+            "$ref": "#/components/schemas/WriteVisitorsFields"
+          }
+        }
+      },
+      "ReadEmployeesFields": {
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Email": {
+            "type": "string"
+          },
+          "Visitors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Phone Number": {
+            "type": "string"
+          },
+          "Count of Visitors": {
+            "type": "integer"
+          }
+        }
+      },
+      "WriteEmployeesFields": {
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Email": {
+            "type": "string"
+          },
+          "Visitors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Phone Number": {
+            "type": "string"
+          }
+        }
+      },
+      "ReadEmployees": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdTime": {
+            "type": "string"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/ReadEmployeesFields"
+          }
+        }
+      },
+      "ReadEmployeesRequestBody": {
+        "properties": {
+          "fields": {
+            "$ref": "#/components/schemas/ReadEmployeesFields"
+          }
+        }
+      },
+      "WriteEmployeesRequestBody": {
+        "properties": {
+          "fields": {
+            "$ref": "#/components/schemas/WriteEmployeesFields"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/Visitors": {
+      "get": {
+        "operationId": "listVisitors",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filterByFormula",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxRecords",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cellFormat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userLocale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List Objects Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadVisitors"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createVisitors",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteVisitorsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadVisitors"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Visitors/{id}": {
+      "get": {
+        "operationId": "retrieveVisitors",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadVisitors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateVisitors",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadVisitorsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadVisitors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteVisitors",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AirtableDeleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employees": {
+      "get": {
+        "operationId": "listEmployees",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filterByFormula",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxRecords",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cellFormat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userLocale",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List Objects Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadEmployees"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEmployees",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteEmployeesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadEmployees"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employees/{id}": {
+      "get": {
+        "operationId": "retrieveEmployees",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadEmployees"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateEmployees",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadEmployeesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadEmployees"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteEmployees",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Object Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AirtableDeleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

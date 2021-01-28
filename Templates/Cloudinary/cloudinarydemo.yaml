@@ -11,12 +11,12 @@ schemes:
   
 paths:
 
-  /video/upload:
+  /{resourcetype}/upload:
     post:
-      summary: video upload
-      description: video upload
+      summary: resource upload
+      description: resource upload
       tags:
-        - video
+        - upload
       produces:
         - application/json
       consumes:
@@ -25,11 +25,17 @@ paths:
         - in: formData
           name: file
           type: file
-          description: The video to upload
+          description: The file to upload
+          x-ct-mimetype: image/png
         - in: formData
           name: upload_preset
           type: string
           description: upload preset key
+        - in: path
+          name: resourcetype
+          type: string
+          required: true
+          description: eg image or video
           
       responses:
         200:

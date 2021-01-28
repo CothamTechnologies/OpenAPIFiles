@@ -10,6 +10,1858 @@ schemes:
 
 paths:
 
+  /users/{user_id}/calendars/{calendar_id}/events{event_id}/instances:
+    get:
+      summary: event instances in specific calendar
+      description: event instances in specific calendar
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: calendar_id
+          type: string
+          description: calendar id
+          required: true
+        - in: path
+          name: event_id
+          type: string
+          description: event id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        - in: query
+          name: startDateTime
+          type: string
+          description: startDateTime
+          required: false
+        - in: query
+          name: endDateTime
+          type: string
+          description: endDateTime
+          required: false
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+
+        default:
+          description: error
+
+  /users/{user_id}/calendar/calendarView:
+    get:
+      summary: users Calendar View  
+      description: users Calendar View  
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        - in: query
+          name: startDateTime
+          type: string
+          description: startDateTime
+          required: false
+        - in: query
+          name: endDateTime
+          type: string
+          description: endDateTime
+          required: false
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    body: 
+                      type: object
+                      properties: 
+                        contentType: 
+                          type: string
+                        content: 
+                          type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    location: 
+                      type: object
+                      properties: 
+                        displayName: 
+                          type: string
+                        locationType: 
+                          type: string
+                        uniqueId: 
+                          type: string
+                        uniqueIdType: 
+                          type: string
+                    locations: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          displayName: 
+                            type: string
+                          locationType: 
+                            type: string
+                          uniqueIdType: 
+                            type: string
+                    attendees: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          type: 
+                            type: string
+                          status: 
+                            type: object
+                            properties: 
+                              response: 
+                                type: string
+                              time: 
+                                type: string
+                          emailAddress: 
+                            type: object
+                            properties: 
+                              name: 
+                                type: string
+                              address: 
+                                type: string
+                    organizer: 
+                      type: object
+                      properties: 
+                        emailAddress: 
+                          type: object
+                          properties: 
+                            name: 
+                              type: string
+                            address: 
+                              type: string
+
+
+        default:
+          description: error
+
+  /users/{user_id}/calendars/{calendar_id}/calendarView:
+    get:
+      summary: calendar view in specific calendar
+      description: calendar view  in specific calendar
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: calendar_id
+          type: string
+          description: calendar id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        - in: query
+          name: startDateTime
+          type: string
+          description: startDateTime
+          required: false
+        - in: query
+          name: endDateTime
+          type: string
+          description: endDateTime
+          required: false
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    body: 
+                      type: object
+                      properties: 
+                        contentType: 
+                          type: string
+                        content: 
+                          type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    location: 
+                      type: object
+                      properties: 
+                        displayName: 
+                          type: string
+                        locationType: 
+                          type: string
+                        uniqueId: 
+                          type: string
+                        uniqueIdType: 
+                          type: string
+                    locations: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          displayName: 
+                            type: string
+                          locationType: 
+                            type: string
+                          uniqueIdType: 
+                            type: string
+                    attendees: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          type: 
+                            type: string
+                          status: 
+                            type: object
+                            properties: 
+                              response: 
+                                type: string
+                              time: 
+                                type: string
+                          emailAddress: 
+                            type: object
+                            properties: 
+                              name: 
+                                type: string
+                              address: 
+                                type: string
+                    organizer: 
+                      type: object
+                      properties: 
+                        emailAddress: 
+                          type: object
+                          properties: 
+                            name: 
+                              type: string
+                            address: 
+                              type: string
+
+
+        default:
+          description: error
+
+  /users/{user_id}/calendars/{calendar_id}/events:
+    get:
+      summary: all events in specific calendar
+      description: all events in specific calendar
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    body: 
+                      type: object
+                      properties: 
+                        contentType: 
+                          type: string
+                        content: 
+                          type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    location: 
+                      type: object
+                      properties: 
+                        displayName: 
+                          type: string
+                        locationType: 
+                          type: string
+                        uniqueId: 
+                          type: string
+                        uniqueIdType: 
+                          type: string
+                    locations: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          displayName: 
+                            type: string
+                          locationType: 
+                            type: string
+                          uniqueIdType: 
+                            type: string
+                    attendees: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          type: 
+                            type: string
+                          status: 
+                            type: object
+                            properties: 
+                              response: 
+                                type: string
+                              time: 
+                                type: string
+                          emailAddress: 
+                            type: object
+                            properties: 
+                              name: 
+                                type: string
+                              address: 
+                                type: string
+                    organizer: 
+                      type: object
+                      properties: 
+                        emailAddress: 
+                          type: object
+                          properties: 
+                            name: 
+                              type: string
+                            address: 
+                              type: string
+
+
+        default:
+          description: error
+  
+  /users/{user_id}/drive/root:/{filename}:/content:
+    put:
+      summary: Upload File to Root
+      description: Upload File to Root
+      produces:
+        - application/json
+      consumes:
+        - text/plain
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: filename
+          type: string
+          description: filename
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              text: 
+                type: string
+
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
+                type: string
+              size: 
+                type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
+        '201':
+          description: OK
+          schema:
+            type: object
+            properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
+                type: string
+              size: 
+                type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
+
+        default:
+          description: error
+
+  /users/{user_id}/drive/items/{parent_id}:/{filename}:/content:
+    put:
+      summary: Upload File
+      description: Upload File
+      produces:
+        - application/json
+      consumes:
+        - text/plain
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: parent_id
+          type: string
+          description: parent item id
+          required: true
+        - in: path
+          name: filename
+          type: string
+          description: filename
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: string
+            format: binary
+
+      responses:
+        '200':
+          description: OK updated
+          schema:
+            type: object
+            properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
+                type: string
+              size: 
+                type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
+        '201':
+          description: OK Created
+          schema:
+            type: object
+            properties:
+              "@odata.context": 
+                type: string
+              "@microsoft.graph.downloadUrl": 
+                type: string
+              createdDateTime: 
+                type: string
+                format: date-time
+              eTag: 
+                type: string
+              id: 
+                type: string
+              lastModifiedDateTime: 
+                type: string
+                format: date-time
+              name: 
+                type: string
+              webUrl: 
+                type: string
+              cTag: 
+                type: string
+              size: 
+                type: number
+              createdBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              lastModifiedBy: 
+                type: object
+                properties: 
+                  application: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      displayName: 
+                        type: string
+              parentReference: 
+                type: object
+                properties: 
+                  driveId: 
+                    type: string
+                  driveType: 
+                    type: string
+                  id: 
+                    type: string
+                  path: 
+                    type: string
+              file: 
+                type: object
+                properties: 
+                  mimeType: 
+                    type: string
+                  hashes: 
+                    type: object
+                    properties: 
+                      quickXorHash: 
+                        type: string
+              fileSystemInfo: 
+                type: object
+                properties: 
+                  createdDateTime: 
+                    type: string
+                    format: date-time
+                  lastModifiedDateTime: 
+                    type: string
+                    format: date-time
+
+        default:
+          description: error
+  
+  /users/{user_id}/drive/items/{item_id}/content:
+    get:
+      summary: Download File
+      description: Download File
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: path
+          name: item_id
+          type: string
+          description: drive item id
+          required: true
+        - in: query
+          name: format
+          type: string
+          description: format eg pdf supported for csv, doc, docx, odp, ods, odt, pot, potm, potx, pps, ppsx, ppsxm, ppt, pptm, pptx, rtf, xls, xlsx
+          required: false
+
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+            format: binary
+
+        default:
+          description: error
+
+  /drives/{drive_id}/root/children:
+    get:
+      summary: list root drive item children
+      description: list root drive item children
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: drive_id
+          type: string
+          description: drive id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand eg thumbnails
+          required: false
+        - in: query
+          name: $skipToken
+          type: string
+          description: $skipToken
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    eTag: 
+                      type: string
+                    id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
+                    name: 
+                      type: string
+                    webUrl: 
+                      type: string
+                    cTag: 
+                      type: string
+                    file:
+                      type: object
+                      properties:
+                        mimeType:
+                          type: string
+                    size: 
+                      type: number
+                    createdBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    lastModifiedBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    parentReference: 
+                      type: object
+                      properties: 
+                        driveId: 
+                          type: string
+                        driveType: 
+                          type: string
+                        id: 
+                          type: string
+                        path: 
+                          type: string
+                    fileSystemInfo: 
+                      type: object
+                      properties: 
+                        createdDateTime: 
+                          type: string
+                          format: date-time
+                        lastModifiedDateTime: 
+                          type: string
+                          format: date-time
+                    folder: 
+                      type: object
+                      properties: 
+                        childCount: 
+                          type: number
+                    thumbnails: 
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          large:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                          medium:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                          small:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                    
+        default:
+          description: error
+
+  /drives/{drive_id}/items/{item_id}/children:
+    get:
+      summary: list drive item children
+      description: list drive item children
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: drive_id
+          type: string
+          description: drive id
+          required: true
+        - in: path
+          name: item_id
+          type: string
+          description: drive item id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand eg thumbnails
+          required: false
+        - in: query
+          name: $skipToken
+          type: string
+          description: $skipToken
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    eTag: 
+                      type: string
+                    id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
+                    name: 
+                      type: string
+                    webUrl: 
+                      type: string
+                    cTag: 
+                      type: string
+                    file:
+                      type: object
+                      properties:
+                        mimeType:
+                          type: string
+                    size: 
+                      type: number
+                    createdBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    lastModifiedBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    parentReference: 
+                      type: object
+                      properties: 
+                        driveId: 
+                          type: string
+                        driveType: 
+                          type: string
+                        id: 
+                          type: string
+                        path: 
+                          type: string
+                    fileSystemInfo: 
+                      type: object
+                      properties: 
+                        createdDateTime: 
+                          type: string
+                          format: date-time
+                        lastModifiedDateTime: 
+                          type: string
+                          format: date-time
+                    folder: 
+                      type: object
+                      properties: 
+                        childCount: 
+                          type: number
+                    thumbnails: 
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          large:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                          medium:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                          small:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+
+
+        default:
+          description: error
+
+  /users/{user_id}/drives:
+    get:
+      summary: List users drives
+      description: List users drives
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+        - in: query
+          name: $skipToken
+          type: string
+          description: $skipToken
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    createdDateTime: 
+                      type: string
+                      format: date-time
+                    description: 
+                      type: string
+                    id: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                      format: date-time
+                    name: 
+                      type: string
+                    webUrl: 
+                      type: string
+                    driveType: 
+                      type: string
+                    createdBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            displayName: 
+                              type: string
+                    lastModifiedBy: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    owner: 
+                      type: object
+                      properties: 
+                        user: 
+                          type: object
+                          properties: 
+                            email: 
+                              type: string
+                            id: 
+                              type: string
+                            displayName: 
+                              type: string
+                    quota: 
+                      type: object
+                      properties: 
+                        deleted: 
+                          type: number
+                        remaining: 
+                          type: number
+                        state: 
+                          type: string
+                        total: 
+                          type: number
+                        used: 
+                          type: number
+
+
+        default:
+          description: error
+
+  /users/{user_id}/contacts:
+    get:
+      summary: all user contacts
+      description: all user contacts
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    createdDateTime: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                    changeKey: 
+                      type: string
+                    parentFolderId: 
+                      type: string
+                    birthday: 
+                      type: string
+                    fileAs: 
+                      type: string
+                    displayName: 
+                      type: string
+                    givenName: 
+                      type: string
+                    initials: 
+                      type: string
+                    middleName: 
+                      type: string
+                    nickName: 
+                      type: string
+                    surname: 
+                      type: string
+                    title: 
+                      type: string
+                    generation: 
+                      type: string
+                    jobTitle: 
+                      type: string
+                    companyName: 
+                      type: string
+                    department: 
+                      type: string
+                    officeLocation: 
+                      type: string
+                    profession: 
+                      type: string
+                    businessHomePage: 
+                      type: string
+                    assistantName: 
+                      type: string
+                    manager: 
+                      type: string
+                    mobilePhone: 
+                      type: string
+                    spouseName: 
+                      type: string
+                    personalNotes: 
+                      type: string 
+                    emailAddresses: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          name: 
+                            type: string
+                          address: 
+                            type: string
+
+
+
+        default:
+          description: error
+
+  /users/{user_id}:
+    get:
+      summary: get user
+      description: get user
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              displayName: 
+                type: string
+              givenName: 
+                type: string
+              jobTitle: 
+                type: string
+                format: nullable
+              mail: 
+                type: string
+              mobilePhone: 
+                type: string
+                format: nullable
+              officeLocation: 
+                type: string
+                format: nullable
+              preferredLanguage: 
+                type: string
+              surname: 
+                type: string
+              userPrincipalName: 
+                type: string
+              id: 
+                type: string
+
+
+        default:
+          description: error
+
+  /users/{user_id}/events:
+    get:
+      summary: all events in users calendar
+      description: all events in users calendar
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer Token
+          required: true
+        - in: header
+          name: prefer
+          type: string
+          description: Timezone eg outlook.timezone="Eastern Standard Time"
+          required: false
+        - in: header
+          name: prefer
+          type: string
+          description: eg outlook.body-content-type = "text" or "html" default html
+          required: false
+        - in: path
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: $select
+          type: string
+          description: $select
+          required: false
+        - in: query
+          name: $filter
+          type: string
+          description: $filter
+          required: false
+        - in: query
+          name: $orderby
+          type: string
+          description: $orderby
+          required: false
+        - in: query
+          name: $top
+          type: string
+          description: $top
+          required: false
+        - in: query
+          name: $count
+          type: string
+          description: $count
+          required: false
+        - in: query
+          name: $expand
+          type: string
+          description: $expand
+          required: false
+
+        
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    subject: 
+                      type: string
+                    bodyPreview: 
+                      type: string
+                    body: 
+                      type: object
+                      properties: 
+                        contentType: 
+                          type: string
+                        content: 
+                          type: string
+                    start: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    end: 
+                      type: object
+                      properties: 
+                        dateTime: 
+                          type: string
+                        timeZone: 
+                          type: string
+                    location: 
+                      type: object
+                      properties: 
+                        displayName: 
+                          type: string
+                        locationType: 
+                          type: string
+                        uniqueId: 
+                          type: string
+                        uniqueIdType: 
+                          type: string
+                    locations: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          displayName: 
+                            type: string
+                          locationType: 
+                            type: string
+                          uniqueIdType: 
+                            type: string
+                    attendees: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          type: 
+                            type: string
+                          status: 
+                            type: object
+                            properties: 
+                              response: 
+                                type: string
+                              time: 
+                                type: string
+                          emailAddress: 
+                            type: object
+                            properties: 
+                              name: 
+                                type: string
+                              address: 
+                                type: string
+                    organizer: 
+                      type: object
+                      properties: 
+                        emailAddress: 
+                          type: object
+                          properties: 
+                            name: 
+                              type: string
+                            address: 
+                              type: string
+
+
+        default:
+          description: error
+  
   /sites/{siteID}/lists/{listID}/items:
     get:
       summary: Get Site List Items

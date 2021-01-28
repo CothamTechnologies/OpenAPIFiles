@@ -1,0 +1,103 @@
+swagger: "2.0"
+info:
+  version: 3.0
+  title: The Movie DB API
+  description: The Movie DB API - Bearer Token
+
+host: api.themoviedb.org
+basePath: /3
+
+schemes:
+  - https
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  //trending/{media_type}/{time_window}:
+    get:
+      description: Get the daily or weekly trending items
+      summary: Get the daily or weekly trending items
+      tags:
+        - Trending
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          description: bearer token
+          required: true
+        - name: media_type
+          in: path
+          type: string
+          description: all, movie, tv, person
+          required: true
+        - name: time_window
+          in: path
+          type: string
+          description: day, week
+          required: true
+          
+      responses:
+        200:
+          description: Succesful
+          schema:
+            type: object
+            properties:
+              page: 
+                type: number
+              results: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    adult: 
+                      type: boolean
+                    backdrop_path: 
+                      type: string
+                    genre_ids: 
+                      type: array
+                      items: 
+                        type: number
+                    original_language: 
+                      type: string
+                    original_title: 
+                      type: string
+                    poster_path: 
+                      type: string
+                    id: 
+                      type: number
+                    video: 
+                      type: boolean
+                    title: 
+                      type: string
+                    vote_count: 
+                      type: number
+                    overview: 
+                      type: string
+                    release_date: 
+                      type: string
+                      format: date
+                    vote_average: 
+                      type: number
+                    popularity: 
+                      type: number
+                    media_type: 
+                      type: string
+              total_pages: 
+                type: number
+              total_results: 
+                type: number
+
+        default:
+          description: error
+          
+      
+  

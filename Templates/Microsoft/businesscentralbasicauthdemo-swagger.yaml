@@ -2,10 +2,10 @@ swagger: "2.0"
 info:
   version: 1.0.0
   title: Dynamics 365 Business Central
-  description: Business Central Standard APIs - Basic Auth Only- jmagin@cothamdemo.onmicrosoft.com - JMAGIN
+  description: Business Central Standard APIs - Basic Auth Only.
 
 host: api.businesscentral.dynamics.com
-basePath: /v2.0/59cf0ccd-ab8b-4151-9215-656649bf2c56/Production/ODataV4
+basePath: /v2.0/1df13415-97f2-43d9-b846-0e50fc90e73a/Production/api/v2.0
 
 schemes:
   - https
@@ -17,9 +17,398 @@ security:
   - basicAuth: []
 
 paths:
-  
+
+  /companies({company_id})/itemCategories:
+    get:
+      description: Returns a list of itemCategories
+      summary: listItemCategories
+      tags:
+        - itemCategory
+      operationId: listItemCategories
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - code
+              - displayName
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        "200":
+          description: Succesfully returned a list of itemCategories
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: The id property for the Dynamics 365 Business Central itemCategory
+                        entity
+                      type: string
+                      format: uuid
+                    code:
+                      description: The code property for the Dynamics 365 Business Central itemCategory
+                        entity
+                      type: string
+                      maxLength: 20
+                    displayName:
+                      description: The displayName property for the Dynamics 365 Business Central
+                        itemCategory entity
+                      type: string
+                      maxLength: 100
+                    lastModifiedDateTime:
+                      description: The lastModifiedDateTime property for the Dynamics 365 Business
+                        Central itemCategory entity
+                      type: string
+                      format: date-time
+
+  /companies({company_id})/employees:
+    get:
+      description: Returns a list of employees
+      summary: listEmployees
+      tags:
+        - employee
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - picture
+              - defaultDimensions
+              - timeRegistrationEntries
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - displayName
+              - givenName
+              - middleName
+              - surname
+              - jobTitle
+              - address
+              - phoneNumber
+              - mobilePhone
+              - email
+              - personalEmail
+              - employmentDate
+              - terminationDate
+              - status
+              - birthDate
+              - statisticsGroupCode
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        "200":
+          description: Succesfully returned a list of employees
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: The id property for the Dynamics 365 Business Central employee entity
+                      type: string
+                      format: uuid
+                    number:
+                      description: The number property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      maxLength: 20
+                    displayName:
+                      description: The displayName property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                    givenName:
+                      description: The givenName property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      maxLength: 30
+                    middleName:
+                      description: The middleName property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      maxLength: 30
+                    surname:
+                      description: The surname property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      maxLength: 30
+                    jobTitle:
+                      description: The jobTitle property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      maxLength: 30
+                    address:
+                      type: object
+                      properties:
+                        street:
+                          description: The street property for the Dynamics 365 Business Central
+                            postaladdresstype entity
+                          type: string
+                          maxLength: 152
+                        city:
+                          description: The city property for the Dynamics 365 Business Central
+                            postaladdresstype entity
+                          type: string
+                          maxLength: 30
+                        state:
+                          description: The state property for the Dynamics 365 Business Central
+                            postaladdresstype entity
+                          type: string
+                          maxLength: 30
+                        countryLetterCode:
+                          description: The countryLetterCode property for the Dynamics 365 Business Central
+                            postaladdresstype entity
+                          type: string
+                          maxLength: 10
+                        postalCode:
+                          description: The postalCode property for the Dynamics 365 Business Central
+                            postaladdresstype entity
+                          type: string
+                          maxLength: 20
+                    phoneNumber:
+                      description: The phoneNumber property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                      maxLength: 30
+                    mobilePhone:
+                      description: The mobilePhone property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                      maxLength: 30
+                    email:
+                      description: The email property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      maxLength: 80
+                    personalEmail:
+                      description: The personalEmail property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                      maxLength: 80
+                    employmentDate:
+                      description: The employmentDate property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                      format: date-time
+                    terminationDate:
+                      description: The terminationDate property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                      format: date-time
+                    status:
+                      description: The status property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                    birthDate:
+                      description: The birthDate property for the Dynamics 365 Business Central employee
+                        entity
+                      type: string
+                      format: date-time
+                    statisticsGroupCode:
+                      description: The statisticsGroupCode property for the Dynamics 365 Business Central
+                        employee entity
+                      type: string
+                      maxLength: 10
+                    lastModifiedDateTime:
+                      description: The lastModifiedDateTime property for the Dynamics 365 Business
+                        Central employee entity
+                      type: string
+                      format: date-time
+                    picture:
+                      type: object
+                      properties:
+                        id:
+                          description: The id property for the Dynamics 365 Business Central picture entity
+                          type: string
+                          format: uuid
+                        width:
+                          description: The width property for the Dynamics 365 Business Central picture entity
+                          type: integer
+                          format: int32
+                        height:
+                          description: The height property for the Dynamics 365 Business Central picture
+                            entity
+                          type: integer
+                          format: int32
+                        contentType:
+                          description: The contentType property for the Dynamics 365 Business Central picture
+                            entity
+                          type: string
+                          maxLength: 100
+                        pictureContent@odata.mediaEditLink:
+                          description: The content@odata.mediaEditLink property for the Dynamics 365 Business
+                            Central picture entity
+                          type: string
+                        pictureContent@odata.mediaReadLink:
+                          description: The content@odata.mediaReadLink property for the Dynamics 365 Business
+                            Central picture entity
+                          type: string
+                    
+
+  /companies:
+    get:
+      description: Returns a list of companies
+      summary: listCompanies
+      tags:
+        - company
+      produces:
+        - application/json
+      parameters:
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - systemVersion
+              - name
+              - displayName
+              - businessProfileId
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of companies
+          schema:
+            type: object
+            properties:
+              '@odata.count':
+                type: number
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    systemVersion: 
+                      type: string
+                    name: 
+                      type: string
+                    displayName: 
+                      type: string
+                    businessProfileId: 
+                      type: string
+
+        default:
+          description: error
+          
       
-  /company({company_id}):
+  /companies({company_id}):
     get:
       description: Retrieve the properties and relationships of an object of type company
         for Dynamics 365 Business Central.
@@ -33,6 +422,12 @@ paths:
           type: string
           format: uuid
           description: id for company
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
         - name: $select
           in: query
           required: false
@@ -66,10 +461,12 @@ paths:
         default:
           description: error
           
-  /company({company_id})/items:
+  /companies({company_id})/salesOrders:
     get:
-      description: Returns a list of items
-      summary: listItems
+      description: Returns a list of salesOrders
+      summary: listSalesOrders
+      tags:
+        - salesOrder
       produces:
         - application/json
       parameters:
@@ -102,6 +499,2240 @@ paths:
           required: false
           type: string
           description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - salesOrderLines
+              - customer
+              - currency
+              - paymentTerm
+              - shipmentMethod
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - externalDocumentNumber
+              - orderDate
+              - customerId
+              - contactId
+              - customerNumber
+              - customerName
+              - billToName
+              - billToCustomerId
+              - billToCustomerNumber
+              - shipToName
+              - shipToContact
+              - sellingPostalAddress
+              - billingPostalAddress
+              - shippingPostalAddress
+              - currencyId
+              - currencyCode
+              - pricesIncludeTax
+              - paymentTermsId
+              - shipmentMethodId
+              - salesperson
+              - partialShipping
+              - requestedDeliveryDate
+              - discountAmount
+              - discountAppliedBeforeTax
+              - totalAmountExcludingTax
+              - totalTaxAmount
+              - totalAmountIncludingTax
+              - fullyShipped
+              - status
+              - lastModifiedDateTime
+              - phoneNumber
+              - email
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of salesOrders
+          schema:
+            type: object
+            properties:
+              '@odata.count': 
+                type: number
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    number: 
+                      type: string
+                    externalDocumentNumber: 
+                      type: string
+                    orderDate: 
+                      type: string
+                      format: date
+                    postingDate: 
+                      type: string
+                      format: date
+                    customerId: 
+                      type: string
+                    customerNumber: 
+                      type: string
+                    customerName: 
+                      type: string
+                    billToName: 
+                      type: string
+                    billToCustomerId: 
+                      type: string
+                    billToCustomerNumber: 
+                      type: string
+                    shipToName: 
+                      type: string
+                    shipToContact: 
+                      type: string
+                    sellToAddressLine1: 
+                      type: string
+                    sellToAddressLine2: 
+                      type: string
+                    sellToCity: 
+                      type: string
+                    sellToCountry: 
+                      type: string
+                    sellToState: 
+                      type: string
+                    sellToPostCode: 
+                      type: string
+                    billToAddressLine1: 
+                      type: string
+                    billToAddressLine2: 
+                      type: string
+                    billToCity: 
+                      type: string
+                    billToCountry: 
+                      type: string
+                    billToState: 
+                      type: string
+                    billToPostCode: 
+                      type: string
+                    shipToAddressLine1: 
+                      type: string
+                    shipToAddressLine2: 
+                      type: string
+                    shipToCity: 
+                      type: string
+                    shipToCountry: 
+                      type: string
+                    shipToState: 
+                      type: string
+                    shipToPostCode: 
+                      type: string
+                    currencyId: 
+                      type: string
+                    currencyCode: 
+                      type: string
+                    pricesIncludeTax: 
+                      type: boolean
+                    paymentTermsId: 
+                      type: string
+                    shipmentMethodId: 
+                      type: string
+                    salesperson: 
+                      type: string
+                    partialShipping: 
+                      type: boolean
+                    requestedDeliveryDate: 
+                      type: string
+                      format: date
+                    discountAmount: 
+                      type: number
+                    discountAppliedBeforeTax: 
+                      type: boolean
+                    totalAmountExcludingTax: 
+                      type: number
+                    totalTaxAmount: 
+                      type: number
+                    totalAmountIncludingTax: 
+                      type: number
+                    fullyShipped: 
+                      type: boolean
+                    status: 
+                      type: string
+                    lastModifiedDateTime: 
+                      type: string
+                    phoneNumber: 
+                      type: string
+                    email: 
+                      type: string
+    post:
+      description: Creates an object of type salesOrder in Dynamics 365 Business Central
+      summary: postSalesOrder
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              customerNumber:
+                description: The customerNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+
+      responses:
+        201:
+          description: A new salesOrder has been succesfully created
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central salesOrder entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+                maxLength: 20
+              externalDocumentNumber:
+                description: The externalDocumentNumber property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                maxLength: 35
+              orderDate:
+                description: The orderDate property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: date-time
+              customerId:
+                description: The customerId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              contactId:
+                description: The contactId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 250
+              customerNumber:
+                description: The customerNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+              customerName:
+                description: The customerName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              billToName:
+                description: The billToName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              billToCustomerId:
+                description: The billToCustomerId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              billToCustomerNumber:
+                description: The billToCustomerNumber property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                maxLength: 20
+              shipToName:
+                description: The shipToName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              shipToContact:
+                description: The shipToContact property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+
+  /companies({company_id})/salesOrders({salesOrder_id})/pdfDocument:
+    get:
+      description: Retrieve the pdf of an object of type salesOrder for Dynamics 365 Business Central.
+      summary: getSalesOrderPDF
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        
+      responses:
+        200:
+          description: Succesfully returned the requested salesOrder pdf
+          schema:
+            type: object
+            properties: 
+              id: 
+                type: string
+              parentId: 
+                type: string
+              parentType: 
+                type: string
+              pdfDocumentContent@odata.mediaReadLink: 
+                type: string
+  
+  /companies({company_id})/salesOrders({salesOrder_id}):
+    get:
+      description: Retrieve the properties and relationships of an object of type
+        salesOrder for Dynamics 365 Business Central.
+      summary: getSalesOrder
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - salesOrderLines
+              - customer
+              - currency
+              - paymentTerm
+              - shipmentMethod
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - externalDocumentNumber
+              - orderDate
+              - customerId
+              - contactId
+              - customerNumber
+              - customerName
+              - billToName
+              - billToCustomerId
+              - billToCustomerNumber
+              - shipToName
+              - shipToContact
+              - sellingPostalAddress
+              - billingPostalAddress
+              - shippingPostalAddress
+              - currencyId
+              - currencyCode
+              - pricesIncludeTax
+              - paymentTermsId
+              - shipmentMethodId
+              - salesperson
+              - partialShipping
+              - requestedDeliveryDate
+              - discountAmount
+              - discountAppliedBeforeTax
+              - totalAmountExcludingTax
+              - totalTaxAmount
+              - totalAmountIncludingTax
+              - fullyShipped
+              - status
+              - lastModifiedDateTime
+              - phoneNumber
+              - email
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned the requested salesOrder
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central salesOrder entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+                maxLength: 20
+              externalDocumentNumber:
+                description: The externalDocumentNumber property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                maxLength: 35
+              orderDate:
+                description: The orderDate property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: date-time
+              customerId:
+                description: The customerId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              contactId:
+                description: The contactId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 250
+              customerNumber:
+                description: The customerNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+              customerName:
+                description: The customerName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              billToName:
+                description: The billToName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              billToCustomerId:
+                description: The billToCustomerId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              billToCustomerNumber:
+                description: The billToCustomerNumber property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                maxLength: 20
+              shipToName:
+                description: The shipToName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              shipToContact:
+                description: The shipToContact property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              currencyId:
+                description: The currencyId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              currencyCode:
+                description: The currencyCode property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+              pricesIncludeTax:
+                description: The pricesIncludeTax property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: boolean
+              paymentTermsId:
+                description: The paymentTermsId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              shipmentMethodId:
+                description: The shipmentMethodId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              salesperson:
+                description: The salesperson property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+              partialShipping:
+                description: The partialShipping property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: boolean
+              requestedDeliveryDate:
+                description: The requestedDeliveryDate property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                format: date-time
+              discountAmount:
+                description: The discountAmount property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: number
+                format: double
+              discountAppliedBeforeTax:
+                description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: boolean
+              totalAmountExcludingTax:
+                description: The totalAmountExcludingTax property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: number
+                format: double
+              totalTaxAmount:
+                description: The totalTaxAmount property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: number
+                format: double
+              totalAmountIncludingTax:
+                description: The totalAmountIncludingTax property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: number
+                format: double
+              fullyShipped:
+                description: The fullyShipped property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: boolean
+              status:
+                description: The status property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+              lastModifiedDateTime:
+                description: The lastModifiedDateTime property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                format: date-time
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+                maxLength: 80
+              salesOrderLines:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: The id property for the Dynamics 365 Business Central salesOrderLine
+                        entity
+                      type: string
+                      maxLength: 50
+                    documentId:
+                      description: The documentId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    sequence:
+                      description: The sequence property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: integer
+                      format: int32
+                    itemId:
+                      description: The itemId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    accountId:
+                      description: The accountId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    lineType:
+                      description: The lineType property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                    description:
+                      description: The description property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      maxLength: 100
+                    unitOfMeasureId:
+                      description: The unitOfMeasureId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    quantity:
+                      description: The quantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    unitPrice:
+                      description: The unitPrice property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    discountAmount:
+                      description: The discountAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    discountPercent:
+                      description: The discountPercent property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    discountAppliedBeforeTax:
+                      description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                        Central salesOrderLine entity
+                      type: boolean
+                    amountExcludingTax:
+                      description: The amountExcludingTax property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    taxCode:
+                      description: The taxCode property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      maxLength: 50
+                    taxPercent:
+                      description: The taxPercent property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    totalTaxAmount:
+                      description: The totalTaxAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    amountIncludingTax:
+                      description: The amountIncludingTax property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    invoiceDiscountAllocation:
+                      description: The invoiceDiscountAllocation property for the Dynamics 365 Business
+                        Central salesOrderLine entity
+                      type: number
+                      format: double
+                    netAmount:
+                      description: The netAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    netTaxAmount:
+                      description: The netTaxAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    netAmountIncludingTax:
+                      description: The netAmountIncludingTax property for the Dynamics 365 Business
+                        Central salesOrderLine entity
+                      type: number
+                      format: double
+                    shipmentDate:
+                      description: The shipmentDate property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: date-time
+                    shippedQuantity:
+                      description: The shippedQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    invoicedQuantity:
+                      description: The invoicedQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    invoiceQuantity:
+                      description: The invoiceQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    shipQuantity:
+                      description: The shipQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+    delete:
+      description: Deletes an object of type salesOrder in Dynamics 365 Business Central
+      summary: deleteSalesOrder
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+      responses:
+        204:
+          description: Succesfully deleted the specified salesOrder
+    patch:
+      description: Updates an object of type salesOrder in Dynamics 365 Business Central
+      summary: patchSalesOrder
+      tags:
+        - salesOrder
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: application/json
+        - name: If-Match
+          in: header
+          required: true
+          type: string
+          description: Required. When this request header is included and the eTag provided
+            does not match the current tag on the entity, this will not be
+            updated.
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              customerNumber:
+                description: The customerNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+      responses:
+        200:
+          description: Succesfully updated the specifiedsalesOrder
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central salesOrder entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central salesOrder
+                  entity
+                type: string
+                maxLength: 20
+              externalDocumentNumber:
+                description: The externalDocumentNumber property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                maxLength: 35
+              orderDate:
+                description: The orderDate property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: date-time
+              customerId:
+                description: The customerId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              contactId:
+                description: The contactId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 250
+              customerNumber:
+                description: The customerNumber property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 20
+              customerName:
+                description: The customerName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              billToName:
+                description: The billToName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              billToCustomerId:
+                description: The billToCustomerId property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                format: uuid
+              billToCustomerNumber:
+                description: The billToCustomerNumber property for the Dynamics 365 Business
+                  Central salesOrder entity
+                type: string
+                maxLength: 20
+              shipToName:
+                description: The shipToName property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+              shipToContact:
+                description: The shipToContact property for the Dynamics 365 Business Central
+                  salesOrder entity
+                type: string
+                maxLength: 100
+
+  /companies({company_id})/customers:
+    get:
+      description: Returns a list of customers
+      summary: listCustomers
+      tags:
+        - customer
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - customerFinancialDetails
+              - picture
+              - defaultDimensions
+              - currency
+              - paymentTerm
+              - shipmentMethod
+              - paymentMethod
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - displayName
+              - type
+              - address
+              - phoneNumber
+              - email
+              - website
+              - taxLiable
+              - taxAreaId
+              - taxAreaDisplayName
+              - taxRegistrationNumber
+              - currencyId
+              - currencyCode
+              - paymentTermsId
+              - shipmentMethodId
+              - paymentMethodId
+              - blocked
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of customers
+          schema:
+            type: object
+            properties:
+              '@odata.count': 
+                type: number
+              value: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    displayName: 
+                      type: string
+                    email: 
+                      type: string
+                    number: 
+                      type: string
+                    addressLine1: 
+                      type: string
+                    addressLine2: 
+                      type: string
+                    blocked: 
+                      type: string
+                    PhoneNumber: 
+                      type: string
+                    city: 
+                      type: string
+                    country: 
+                      type: string
+                    postalCode: 
+                      type: string
+                    type: 
+                      type: string
+                    state: 
+                      type: string
+                    
+    
+    post:
+      description: Creates an object of type customer in Dynamics 365 Business Central
+      summary: postCustomer
+      tags:
+        - customer
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: application/json
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              displayName:
+                description: The displayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 100
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              country:
+                type: string
+              postalCode:
+                type: string
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+
+      responses:
+        201:
+          description: A new customer has been succesfully created
+          schema:
+            type: object 
+            properties:
+              id: 
+                type: string
+              displayName: 
+                type: string
+              email: 
+                type: string
+              number: 
+                type: string
+              addressLine1: 
+                type: string
+              addressLine2: 
+                type: string
+              blocked: 
+                type: string
+              PhoneNumber: 
+                type: string
+              city: 
+                type: string
+              country: 
+                type: string
+              postalCode: 
+                type: string
+              type: 
+                type: string
+              state: 
+                type: string
+
+          
+  /companies({company_id})/customers({customer_id}):
+    get:
+      description: Retrieve the properties and relationships of an object of type customer
+        for Dynamics 365 Business Central.
+      summary: getCustomer
+      tags:
+        - customer
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: customer_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for customer
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - customerFinancialDetails
+              - picture
+              - defaultDimensions
+              - currency
+              - paymentTerm
+              - shipmentMethod
+              - paymentMethod
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - number
+              - displayName
+              - type
+              - address
+              - phoneNumber
+              - email
+              - website
+              - taxLiable
+              - taxAreaId
+              - taxAreaDisplayName
+              - taxRegistrationNumber
+              - currencyId
+              - currencyCode
+              - paymentTermsId
+              - shipmentMethodId
+              - paymentMethodId
+              - blocked
+              - lastModifiedDateTime
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned the requested customer
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central customer entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 20
+              displayName:
+                description: The displayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 100
+              type:
+                description: The type property for the Dynamics 365 Business Central customer entity
+                type: string
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              website:
+                description: The website property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              taxLiable:
+                description: The taxLiable property for the Dynamics 365 Business Central customer
+                  entity
+                type: boolean
+              taxAreaId:
+                description: The taxAreaId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              taxAreaDisplayName:
+                description: The taxAreaDisplayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              taxRegistrationNumber:
+                description: The taxRegistrationNumber property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                maxLength: 20
+              currencyId:
+                description: The currencyId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              currencyCode:
+                description: The currencyCode property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              paymentTermsId:
+                description: The paymentTermsId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              shipmentMethodId:
+                description: The shipmentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              paymentMethodId:
+                description: The paymentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              blocked:
+                description: The blocked property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+              lastModifiedDateTime:
+                description: The lastModifiedDateTime property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                format: date-time
+
+    patch:
+      description: Update the properties and relationships of an object of type customer
+        for Dynamics 365 Business Central.
+      summary: getCustomer
+      tags:
+        - customer
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: customer_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for customer
+        - name: If-Match
+          in: header
+          type: string
+          required: true
+          description: Required. When this request header is included and the eTag provided does not match the current tag on the customers, the customers will not be updated.
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              displayName:
+                type: string
+              addressLine1:
+                type: string
+              addressLine2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              postalCode:
+                type: string
+              phoneNumber:
+                type: string
+              email:
+                type: string
+        
+      responses:
+        200:
+          description: Succesfully updated the requested customer
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central customer entity
+                type: string
+                format: uuid
+              number:
+                description: The number property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 20
+              displayName:
+                description: The displayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 100
+              type:
+                description: The type property for the Dynamics 365 Business Central customer entity
+                type: string
+              phoneNumber:
+                description: The phoneNumber property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                maxLength: 30
+              email:
+                description: The email property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              website:
+                description: The website property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                maxLength: 80
+              taxLiable:
+                description: The taxLiable property for the Dynamics 365 Business Central customer
+                  entity
+                type: boolean
+              taxAreaId:
+                description: The taxAreaId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              taxAreaDisplayName:
+                description: The taxAreaDisplayName property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              taxRegistrationNumber:
+                description: The taxRegistrationNumber property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                maxLength: 20
+              currencyId:
+                description: The currencyId property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+                format: uuid
+              currencyCode:
+                description: The currencyCode property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+              paymentTermsId:
+                description: The paymentTermsId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              shipmentMethodId:
+                description: The shipmentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              paymentMethodId:
+                description: The paymentMethodId property for the Dynamics 365 Business Central
+                  customer entity
+                type: string
+                format: uuid
+              blocked:
+                description: The blocked property for the Dynamics 365 Business Central customer
+                  entity
+                type: string
+              lastModifiedDateTime:
+                description: The lastModifiedDateTime property for the Dynamics 365 Business
+                  Central customer entity
+                type: string
+                format: date-time               
+
+  /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines:
+    get:
+      description: Returns a list of salesOrderLines
+      summary: listSalesOrderLinesForSalesOrder
+      tags:
+        - salesOrderLine
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - item
+              - account
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - documentId
+              - sequence
+              - itemId
+              - accountId
+              - lineType
+              - lineDetails
+              - description
+              - unitOfMeasureId
+              - unitOfMeasure
+              - quantity
+              - unitPrice
+              - discountAmount
+              - discountPercent
+              - discountAppliedBeforeTax
+              - amountExcludingTax
+              - taxCode
+              - taxPercent
+              - totalTaxAmount
+              - amountIncludingTax
+              - invoiceDiscountAllocation
+              - netAmount
+              - netTaxAmount
+              - netAmountIncludingTax
+              - shipmentDate
+              - shippedQuantity
+              - invoicedQuantity
+              - invoiceQuantity
+              - shipQuantity
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned a list of salesOrderLines
+          schema:
+            type: object
+            properties:
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: The id property for the Dynamics 365 Business Central salesOrderLine
+                        entity
+                      type: string
+                      maxLength: 50
+                    documentId:
+                      description: The documentId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    sequence:
+                      description: The sequence property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: integer
+                      format: int32
+                    itemId:
+                      description: The itemId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    accountId:
+                      description: The accountId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    lineType:
+                      description: The lineType property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                    description:
+                      description: The description property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      maxLength: 100
+                    unitOfMeasureId:
+                      description: The unitOfMeasureId property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: uuid
+                    quantity:
+                      description: The quantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    unitPrice:
+                      description: The unitPrice property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    discountAmount:
+                      description: The discountAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    discountPercent:
+                      description: The discountPercent property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    discountAppliedBeforeTax:
+                      description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                        Central salesOrderLine entity
+                      type: boolean
+                    amountExcludingTax:
+                      description: The amountExcludingTax property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    taxCode:
+                      description: The taxCode property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      maxLength: 50
+                    taxPercent:
+                      description: The taxPercent property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    totalTaxAmount:
+                      description: The totalTaxAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    amountIncludingTax:
+                      description: The amountIncludingTax property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    invoiceDiscountAllocation:
+                      description: The invoiceDiscountAllocation property for the Dynamics 365 Business
+                        Central salesOrderLine entity
+                      type: number
+                      format: double
+                    netAmount:
+                      description: The netAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    netTaxAmount:
+                      description: The netTaxAmount property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    netAmountIncludingTax:
+                      description: The netAmountIncludingTax property for the Dynamics 365 Business
+                        Central salesOrderLine entity
+                      type: number
+                      format: double
+                    shipmentDate:
+                      description: The shipmentDate property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: string
+                      format: date-time
+                    shippedQuantity:
+                      description: The shippedQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    invoicedQuantity:
+                      description: The invoicedQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    invoiceQuantity:
+                      description: The invoiceQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+                    shipQuantity:
+                      description: The shipQuantity property for the Dynamics 365 Business Central
+                        salesOrderLine entity
+                      type: number
+                      format: double
+          
+    post:
+      description: Creates an object of type salesOrderLine in Dynamics 365 Business Central
+      summary: postSalesOrderLineForSalesOrder
+      tags:
+        - salesOrderLine
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: application/json
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              itemId:
+                description: The itemId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              quantity:
+                description: The quantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              
+      responses:
+        201:
+          description: A new salesOrderLine has been succesfully created
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central salesOrderLine
+                  entity
+                type: string
+                maxLength: 50
+              documentId:
+                description: The documentId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              sequence:
+                description: The sequence property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: integer
+                format: int32
+              itemId:
+                description: The itemId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              accountId:
+                description: The accountId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              lineType:
+                description: The lineType property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+              description:
+                description: The description property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                maxLength: 100
+              unitOfMeasureId:
+                description: The unitOfMeasureId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              quantity:
+                description: The quantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              unitPrice:
+                description: The unitPrice property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountAmount:
+                description: The discountAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountPercent:
+                description: The discountPercent property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountAppliedBeforeTax:
+                description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: boolean
+              amountExcludingTax:
+                description: The amountExcludingTax property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              taxCode:
+                description: The taxCode property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                maxLength: 50
+              taxPercent:
+                description: The taxPercent property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              totalTaxAmount:
+                description: The totalTaxAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              amountIncludingTax:
+                description: The amountIncludingTax property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoiceDiscountAllocation:
+                description: The invoiceDiscountAllocation property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: number
+                format: double
+              netAmount:
+                description: The netAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              netTaxAmount:
+                description: The netTaxAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              netAmountIncludingTax:
+                description: The netAmountIncludingTax property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: number
+                format: double
+              shipmentDate:
+                description: The shipmentDate property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: date-time
+              shippedQuantity:
+                description: The shippedQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoicedQuantity:
+                description: The invoicedQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoiceQuantity:
+                description: The invoiceQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              shipQuantity:
+                description: The shipQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+
+  /companies({company_id})/salesOrders({salesOrder_id})/salesOrderLines('{salesOrderLine_id}'):
+    get:
+      description: Retrieve the properties and relationships of an object of type
+        salesOrderLine for Dynamics 365 Business Central.
+      summary: getSalesOrderLineForSalesOrder
+      tags:
+        - salesOrderLine
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: salesOrderLine_id
+          in: path
+          required: true
+          type: string
+          description: id for salesOrderLine
+        - name: $expand
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - item
+              - account
+          description: Entities to expand
+        - name: $select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - id
+              - documentId
+              - sequence
+              - itemId
+              - accountId
+              - lineType
+              - lineDetails
+              - description
+              - unitOfMeasureId
+              - unitOfMeasure
+              - quantity
+              - unitPrice
+              - discountAmount
+              - discountPercent
+              - discountAppliedBeforeTax
+              - amountExcludingTax
+              - taxCode
+              - taxPercent
+              - totalTaxAmount
+              - amountIncludingTax
+              - invoiceDiscountAllocation
+              - netAmount
+              - netTaxAmount
+              - netAmountIncludingTax
+              - shipmentDate
+              - shippedQuantity
+              - invoicedQuantity
+              - invoiceQuantity
+              - shipQuantity
+          description: Selected properties to be retrieved
+      responses:
+        200:
+          description: Succesfully returned the requested salesOrderLine
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central salesOrderLine
+                  entity
+                type: string
+                maxLength: 50
+              documentId:
+                description: The documentId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              sequence:
+                description: The sequence property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: integer
+                format: int32
+              itemId:
+                description: The itemId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              accountId:
+                description: The accountId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              lineType:
+                description: The lineType property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+              description:
+                description: The description property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                maxLength: 100
+              unitOfMeasureId:
+                description: The unitOfMeasureId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              quantity:
+                description: The quantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              unitPrice:
+                description: The unitPrice property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountAmount:
+                description: The discountAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountPercent:
+                description: The discountPercent property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountAppliedBeforeTax:
+                description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: boolean
+              amountExcludingTax:
+                description: The amountExcludingTax property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              taxCode:
+                description: The taxCode property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                maxLength: 50
+              taxPercent:
+                description: The taxPercent property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              totalTaxAmount:
+                description: The totalTaxAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              amountIncludingTax:
+                description: The amountIncludingTax property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoiceDiscountAllocation:
+                description: The invoiceDiscountAllocation property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: number
+                format: double
+              netAmount:
+                description: The netAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              netTaxAmount:
+                description: The netTaxAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              netAmountIncludingTax:
+                description: The netAmountIncludingTax property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: number
+                format: double
+              shipmentDate:
+                description: The shipmentDate property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: date-time
+              shippedQuantity:
+                description: The shippedQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoicedQuantity:
+                description: The invoicedQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoiceQuantity:
+                description: The invoiceQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              shipQuantity:
+                description: The shipQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+
+    delete:
+      description: Deletes an object of type salesOrderLine in Dynamics 365 Business Central
+      summary: deleteSalesOrderLineForSalesOrder
+      tags:
+        - salesOrderLine
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: salesOrderLine_id
+          in: path
+          required: true
+          type: string
+          description: id for salesOrderLine
+      responses:
+        204:
+          description: Succesfully deleted the specified salesOrderLine
+
+    patch:
+      description: Updates an object of type salesOrderLine in Dynamics 365 Business Central
+      summary: patchSalesOrderLineForSalesOrder
+      tags:
+        - salesOrderLine
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: salesOrder_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for salesOrder
+        - name: salesOrderLine_id
+          in: path
+          required: true
+          type: string
+          description: id for salesOrderLine
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: application/json
+        - name: If-Match
+          in: header
+          required: true
+          type: string
+          description: Required. When this request header is included and the eTag provided
+            does not match the current tag on the entity, this will not be
+            updated.
+        - name: body
+          in: body
+          required: true
+          description: ""
+          schema:
+            type: object
+            properties:
+              quantity:
+                description: The quantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+      responses:
+        200:
+          description: Succesfully updated the specifiedsalesOrderLine
+          schema:
+            type: object
+            properties:
+              id:
+                description: The id property for the Dynamics 365 Business Central salesOrderLine
+                  entity
+                type: string
+                maxLength: 50
+              documentId:
+                description: The documentId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              sequence:
+                description: The sequence property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: integer
+                format: int32
+              itemId:
+                description: The itemId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              accountId:
+                description: The accountId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              lineType:
+                description: The lineType property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+              description:
+                description: The description property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                maxLength: 100
+              unitOfMeasureId:
+                description: The unitOfMeasureId property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: uuid
+              quantity:
+                description: The quantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              unitPrice:
+                description: The unitPrice property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountAmount:
+                description: The discountAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountPercent:
+                description: The discountPercent property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              discountAppliedBeforeTax:
+                description: The discountAppliedBeforeTax property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: boolean
+              amountExcludingTax:
+                description: The amountExcludingTax property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              taxCode:
+                description: The taxCode property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                maxLength: 50
+              taxPercent:
+                description: The taxPercent property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              totalTaxAmount:
+                description: The totalTaxAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              amountIncludingTax:
+                description: The amountIncludingTax property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoiceDiscountAllocation:
+                description: The invoiceDiscountAllocation property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: number
+                format: double
+              netAmount:
+                description: The netAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              netTaxAmount:
+                description: The netTaxAmount property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              netAmountIncludingTax:
+                description: The netAmountIncludingTax property for the Dynamics 365 Business
+                  Central salesOrderLine entity
+                type: number
+                format: double
+              shipmentDate:
+                description: The shipmentDate property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: string
+                format: date-time
+              shippedQuantity:
+                description: The shippedQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoicedQuantity:
+                description: The invoicedQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              invoiceQuantity:
+                description: The invoiceQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+              shipQuantity:
+                description: The shipQuantity property for the Dynamics 365 Business Central
+                  salesOrderLine entity
+                type: number
+                format: double
+
+  /companies({company_id})/items:
+    get:
+      description: Returns a list of items
+      summary: listItems
+      produces:
+        - application/json
+      parameters:
+        - name: company_id
+          in: path
+          required: true
+          type: string
+          format: uuid
+          description: id for company
+        - name: Authorization
+          in: header
+          required: false
+          type: string
+          description: eg Basic xxxxx
+        - name: $top
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the top of the list
+        - name: $skip
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to skip from the list
+        - name: $limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Number of items to return from the list
+        - name: $filter
+          in: query
+          required: false
+          type: string
+          description: Filtering expression
+        - name: $count
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Set to true
         - name: $expand
           in: query
           required: false
@@ -144,6 +2775,8 @@ paths:
           schema:
             type: object
             properties:
+              '@odata.count':
+                type: number
               value: 
                 type: array
                 items: 
@@ -195,22 +2828,20 @@ paths:
                           type: string
                           format: nullable
                     picture: 
-                      type: array
-                      items: 
-                        type: object
-                        properties: 
-                          id: 
-                            type: string
-                          width: 
-                            type: number
-                          height: 
-                            type: number
-                          contentType: 
-                            type: string
-                          content@odata.mediaEditLink: 
-                            type: string
-                          content@odata.mediaReadLink: 
-                            type: string
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        width: 
+                          type: number
+                        height: 
+                          type: number
+                        contentType: 
+                          type: string
+                        pictureContent@odata.mediaEditLink: 
+                          type: string
+                        pictureContent@odata.mediaReadLink: 
+                          type: string
 
 
         default:
