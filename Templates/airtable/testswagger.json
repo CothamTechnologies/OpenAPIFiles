@@ -5,7 +5,7 @@
         "description": "Airtable API definition for base 20-WB ",
         "version": "1.0"
     },
-    "host": "https://api.airtable.com",
+    "host": "api.airtable.com",
     "basePath": "/v0/app8trvKbDHKACey0",
     "schemes": [
         "https"
@@ -100,36 +100,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Artists"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Artists"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -177,36 +176,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Artists"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Artists"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -254,36 +252,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Artists"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Artists"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -423,34 +420,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Artists"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Artists"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -484,34 +480,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Artists"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Artists"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -667,36 +662,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Venues"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Venues"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -744,36 +738,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Venues"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Venues"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -821,36 +814,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Venues"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Venues"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -990,34 +982,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Venues"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Venues"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1051,34 +1042,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Venues"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Venues"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1234,36 +1224,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Events"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Events"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1311,36 +1300,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Events"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Events"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1388,36 +1376,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Events"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Events"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1557,34 +1544,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Events"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Events"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1618,34 +1604,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Events"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Events"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1801,36 +1786,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Diary"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Diary"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1878,36 +1862,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Diary"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Diary"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1955,36 +1938,35 @@
                 "consumes": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "records": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "fields": {
-                                            "$ref": "#/definitions/Diary"
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "records": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "fields": {
+                                                "$ref": "#/definitions/Diary"
+                                            }
                                         }
                                     }
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
                                 }
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -2124,34 +2106,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Diary"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Diary"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -2185,34 +2166,33 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": {
-                    "0": {
+                "parameters": [
+                    {
                         "in": "path",
                         "name": "record_id",
                         "type": "string",
                         "required": true
                     },
-                    "1": {
+                    {
                         "name": "body",
                         "in": "body",
-                        "schema": []
-                    },
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "fields": {
-                                "$ref": "#/definitions/Diary"
-                            },
-                            "typecast": {
-                                "type": "boolean",
-                                "default": false
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "fields": {
+                                    "$ref": "#/definitions/Diary"
+                                },
+                                "typecast": {
+                                    "type": "boolean",
+                                    "default": false
+                                }
                             }
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
