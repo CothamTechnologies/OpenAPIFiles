@@ -11,6 +11,42 @@ schemes:
 
 paths:
 
+  /getFlashCards:
+    get:
+      summary: getFlashCards
+      description: getFlashCards
+      tags:
+        - Learnlight
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    questionHeading:
+                      type: string
+                    questionText:
+                      type: string
+                    AnswerText:
+                      type: string
+           
+        default:
+          description: server error
+
   /getSessionDetails:
     get:
       summary: getSessionDetails
