@@ -1,0 +1,283 @@
+swagger: '2.0'
+info:
+  version: '1'
+  title: Process Order (Version 2)
+  description: ' In addition to create, read, and update, you can also release process
+    orders and operations. This service enables you to convert planned orders to process
+    orders, schedule process order operations, and set further statuses for the order
+    such as technically completed, closed, or discarded by MES. In addition, you can
+    set the deletion flag, deletion indicator, and delivery completed indicator.'
+    
+host: sandbox.api.sap.com
+basePath: /sap/opu/odata/sap/API_PROCESS_ORDER_2_SRV
+
+schemes:
+- https
+
+
+paths:
+  /A_ProcessOrder_2:
+    get:
+      summary: Reads information on the header data of process orders.
+      description: Reads information available on the header data of existing process
+        orders. You can use the standard OData system query options to refine your
+        request.
+      tags:
+      - Process Order
+      produces:
+      - application/json
+      parameters:
+      - name: APIKey
+        in: header
+        type: string
+      - name: $top
+        in: query
+        required: false
+        description: Number of records to include in the result set.
+        type: integer
+      - name: $skip
+        in: query
+        required: false
+        description: Number of the first n records to be excluded from the result set.
+        type: integer
+      - name: $inlinecount
+        in: query
+        required: false
+        type: string
+      - name: $count
+        in: query
+        required: false
+        description: Total number of things available based on the current user's authorizations; permissible values are true and false. If this is used in conjunction with the $top and $skip parameters, the result contains the total count of things available.
+        type: boolean
+      - name: $orderby
+        in: query
+        required: false
+        description: Field name to be used for sorting the result set in ascending order; all thing entity fields are valid. To sort the result set, use asc for the ascending order and desc for the descending order.
+        type: string
+      - name: $select
+        in: query
+        required: false
+        description: Select condition for the thing entity fields to be included in the result set.
+        type: string
+      - name: $filter
+        in: query
+        required: false
+        description: Filter condition to be applied; all thing entity fields are valid. Multiple filters are supported using the and separator. You can use the string functions such as substringof, startswith, and endswith to search data using $filter.
+        type: string
+      - name: $expand
+        in: query
+        required: false
+        description: Expand related entities
+        type: string
+      responses:
+        '200':
+          description: Retrieved entities
+          schema:
+            type: object
+            properties:
+              d: 
+                type: object
+                properties: 
+                  __count: 
+                    type: string
+                  results: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        __metadata: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            uri: 
+                              type: string
+                            type: 
+                              type: string
+                            etag: 
+                              type: string
+                        ManufacturingOrder: 
+                          type: string
+                        ManufacturingOrderCategory: 
+                          type: string
+                        ManufacturingOrderType: 
+                          type: string
+                        ManufacturingOrderImportance: 
+                          type: string
+                        OrderIsCreated: 
+                          type: string
+                        OrderIsReleased: 
+                          type: string
+                        OrderIsPrinted: 
+                          type: string
+                        OrderIsConfirmed: 
+                          type: string
+                        OrderIsPartiallyConfirmed: 
+                          type: string
+                        OrderIsDelivered: 
+                          type: string
+                        OrderIsDeleted: 
+                          type: string
+                        OrderIsPreCosted: 
+                          type: string
+                        SettlementRuleIsCreated: 
+                          type: string
+                        OrderIsPartiallyReleased: 
+                          type: string
+                        OrderIsLocked: 
+                          type: string
+                        OrderIsTechnicallyCompleted: 
+                          type: string
+                        OrderIsClosed: 
+                          type: string
+                        OrderIsPartiallyDelivered: 
+                          type: string
+                        OrderIsMarkedForDeletion: 
+                          type: string
+                        SettlementRuleIsCrtedManually: 
+                          type: string
+                        OrderIsScheduled: 
+                          type: string
+                        OrderHasGeneratedOperations: 
+                          type: string
+                        OrderIsToBeHandledInBatches: 
+                          type: string
+                        MaterialAvailyIsNotChecked: 
+                          type: string
+                        MfgOrderCreationDate: 
+                          type: string
+                        MfgOrderCreationTime: 
+                          type: string
+                        LastChangeDateTime: 
+                          type: string
+                        Material: 
+                          type: string
+                        StorageLocation: 
+                          type: string
+                        GoodsRecipientName: 
+                          type: string
+                        UnloadingPointName: 
+                          type: string
+                        InventoryUsabilityCode: 
+                          type: string
+                        MaterialGoodsReceiptDuration: 
+                          type: string
+                        QuantityDistributionKey: 
+                          type: string
+                        StockSegment: 
+                          type: string
+                        OrderInternalBillOfOperations: 
+                          type: string
+                        ProductionPlant: 
+                          type: string
+                        Plant: 
+                          type: string
+                        MRPArea: 
+                          type: string
+                        MRPController: 
+                          type: string
+                        ProductionSupervisor: 
+                          type: string
+                        ProductionVersion: 
+                          type: string
+                        PlannedOrder: 
+                          type: string
+                        SalesOrder: 
+                          type: string
+                        SalesOrderItem: 
+                          type: string
+                        BasicSchedulingType: 
+                          type: string
+                        ManufacturingObject: 
+                          type: string
+                        ProductConfiguration: 
+                          type: string
+                        OrderSequenceNumber: 
+                          type: string
+                        BusinessArea: 
+                          type: string
+                        CompanyCode: 
+                          type: string
+                        ProfitCenter: 
+                          type: string
+                        ActualCostsCostingVariant: 
+                          type: string
+                        PlannedCostsCostingVariant: 
+                          type: string
+                        FunctionalArea: 
+                          type: string
+                        MfgOrderPlannedStartDate: 
+                          type: string
+                        MfgOrderPlannedStartTime: 
+                          type: string
+                        MfgOrderPlannedEndDate: 
+                          type: string
+                        MfgOrderPlannedEndTime: 
+                          type: string
+                        MfgOrderScheduledStartDate: 
+                          type: string
+                        MfgOrderScheduledStartTime: 
+                          type: string
+                        MfgOrderScheduledEndDate: 
+                          type: string
+                        MfgOrderScheduledEndTime: 
+                          type: string
+                        MfgOrderActualReleaseDate: 
+                          type: string
+                        ProductionUnit: 
+                          type: string
+                        TotalQuantity: 
+                          type: string
+                        MfgOrderPlannedScrapQty: 
+                          type: string
+                        MfgOrderConfirmedYieldQty: 
+                          type: string
+                        CustomerName: 
+                          type: string
+                        WBSElementExternalID: 
+                          type: string
+                        OrderLongText: 
+                          type: string
+                        to_ProcessOrderComponent: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        to_ProcessOrderItem: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        to_ProcessOrderOperation: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        to_ProcessOrderStatus: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+                        to_ProcessProdnRsceTools: 
+                          type: object
+                          properties: 
+                            __deferred: 
+                              type: object
+                              properties: 
+                                uri: 
+                                  type: string
+
+        default:
+          description: error
