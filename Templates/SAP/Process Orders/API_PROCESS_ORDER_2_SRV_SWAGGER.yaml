@@ -7,8 +7,8 @@ info:
     orders, schedule process order operations, and set further statuses for the order
     such as technically completed, closed, or discarded by MES. In addition, you can
     set the deletion flag, deletion indicator, and delivery completed indicator.'
-    
-host: sandbox.api.sap.com
+
+host: sandbox.api.sap.com:443
 basePath: /sap/opu/odata/sap/API_PROCESS_ORDER_2_SRV
 
 schemes:
