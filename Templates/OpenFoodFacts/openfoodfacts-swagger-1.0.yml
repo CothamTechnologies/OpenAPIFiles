@@ -1,0 +1,1502 @@
+swagger: "2.0"
+info:
+  version: 1.0
+  title: Open Food Facts
+  description: Open Food Facts
+
+host: world.openfoodfacts.org
+basePath: /api/v0
+
+schemes:
+  - https
+
+paths:
+  /product/{barcode}.json:
+    get:
+      description: get food facts
+      summary: get food facts
+      tags:
+        - Food Facts
+      produces:
+        - application/json
+      parameters:
+        - name: barcode
+          in: path
+          type: string
+          description: barcode
+          required: true
+        
+      responses:
+        200:
+          description: Succesful
+          schema:
+            type: object
+            properties:
+              status: 
+                type: number
+              status_verbose: 
+                type: string
+              product: 
+                type: object
+                properties: 
+                  manufacturing_places: 
+                    type: string
+                  last_modified_t: 
+                    type: number
+                  last_modified_by: 
+                    type: string
+                  categories_imported: 
+                    type: string
+                  ecoscore_grade: 
+                    type: string
+                  nucleotides_tags: 
+                    type: string
+                  no_nutrition_data: 
+                    type: string
+                  image_thumb_url: 
+                    type: string
+                  rev: 
+                    type: number
+                  last_image_t: 
+                    type: number
+                  lang_debug_tags: 
+                    type: string
+                  pnns_groups_2: 
+                    type: string
+                  product_name_en_debug_tags: 
+                    type: string
+                  pnns_groups_1_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  categories: 
+                    type: string
+                  pnns_groups_2_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  product_name: 
+                    type: string
+                  quantity_debug_tags: 
+                    type: string
+                  lc: 
+                    type: string
+                  nutrition_grade_fr: 
+                    type: string
+                  image_nutrition_thumb_url: 
+                    type: string
+                  cities_tags: 
+                    type: string
+                  purchase_places_tags: 
+                    type: string
+                  informers: 
+                    type: array
+                    items: 
+                      type: string
+                  vitamins_prev_tags: 
+                    type: string
+                  serving_size_debug_tags: 
+                    type: string
+                  languages_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  image_front_small_url: 
+                    type: string
+                  states_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_text_en_imported: 
+                    type: string
+                  nutriscore_score: 
+                    type: number
+                  traces_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  sources: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        images: 
+                          type: string
+                        import_t: 
+                          type: number
+                        url: 
+                          type: string
+                        fields: 
+                          type: array
+                          items: 
+                            type: string
+                  categories_properties: 
+                    type: object
+                    properties:  
+                  states_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  countries: 
+                    type: string
+                  origins: 
+                    type: string
+                  brands: 
+                    type: string
+                  stores_tags: 
+                    type: string
+                  minerals_tags: 
+                    type: string
+                  brand_owner_imported: 
+                    type: string
+                  origins_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  data_quality_warnings_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  expiration_date: 
+                    type: string
+                  categories_lc: 
+                    type: string
+                  known_ingredients_n: 
+                    type: number
+                  languages: 
+                    type: object
+                    properties: 
+                      en:english: 
+                        type: number
+                  image_small_url: 
+                    type: string
+                  stores_debug_tags: 
+                    type: string
+                  expiration_date_debug_tags: 
+                    type: string
+                  vitamins_tags: 
+                    type: string
+                  entry_dates_tags: 
+                    type: array
+                    items: 
+                      type: string
+                      format: date
+                  traces_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  image_front_url: 
+                    type: string
+                  unknown_nutrients_tags: 
+                    type: string
+                  unique_scans_n: 
+                    type: number
+                  additives_n: 
+                    type: number
+                  max_imgid: 
+                    type: string
+                  image_ingredients_small_url: 
+                    type: string
+                  emb_codes_orig: 
+                    type: string
+                  correctors: 
+                    type: array
+                    items: 
+                      type: string
+                  images: 
+                    type: object
+                    properties: 
+                      1: 
+                        type: object
+                        properties: 
+                          uploaded_t: 
+                            type: number
+                          uploader: 
+                            type: string
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                      2: 
+                        type: object
+                        properties: 
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                          uploaded_t: 
+                            type: number
+                          uploader: 
+                            type: string
+                      3: 
+                        type: object
+                        properties: 
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                          uploader: 
+                            type: string
+                          uploaded_t: 
+                            type: number
+                      4: 
+                        type: object
+                        properties: 
+                          uploaded_t: 
+                            type: number
+                          uploader: 
+                            type: string
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                      5: 
+                        type: object
+                        properties: 
+                          uploader: 
+                            type: string
+                          uploaded_t: 
+                            type: number
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                      ingredients_en: 
+                        type: object
+                        properties: 
+                          imgid: 
+                            type: string
+                          normalize: 
+                            type: string
+                          white_magic: 
+                            type: string
+                            format: nullable
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              200: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                          geometry: 
+                            type: string
+                          rev: 
+                            type: string
+                      nutrition_en: 
+                        type: object
+                        properties: 
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              200: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                          geometry: 
+                            type: string
+                          rev: 
+                            type: string
+                          imgid: 
+                            type: string
+                          normalize: 
+                            type: string
+                          white_magic: 
+                            type: string
+                            format: nullable
+                      ingredients: 
+                        type: object
+                        properties: 
+                          imgid: 
+                            type: string
+                          normalize: 
+                            type: string
+                          white_magic: 
+                            type: string
+                            format: nullable
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              200: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                          geometry: 
+                            type: string
+                          rev: 
+                            type: string
+                      front_en: 
+                        type: object
+                        properties: 
+                          normalize: 
+                            type: string
+                            format: nullable
+                          imgid: 
+                            type: string
+                          white_magic: 
+                            type: string
+                            format: nullable
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              200: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                          geometry: 
+                            type: string
+                          rev: 
+                            type: string
+                      nutrition: 
+                        type: object
+                        properties: 
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              200: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                          geometry: 
+                            type: string
+                          rev: 
+                            type: string
+                          imgid: 
+                            type: string
+                          normalize: 
+                            type: string
+                          white_magic: 
+                            type: string
+                            format: nullable
+                      front: 
+                        type: object
+                        properties: 
+                          normalize: 
+                            type: string
+                            format: nullable
+                          imgid: 
+                            type: string
+                          white_magic: 
+                            type: string
+                            format: nullable
+                          sizes: 
+                            type: object
+                            properties: 
+                              100: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              200: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                              400: 
+                                type: object
+                                properties: 
+                                  w: 
+                                    type: number
+                                  h: 
+                                    type: number
+                              full: 
+                                type: object
+                                properties: 
+                                  h: 
+                                    type: number
+                                  w: 
+                                    type: number
+                          geometry: 
+                            type: string
+                          rev: 
+                            type: string
+                  nutrition_data_prepared_per: 
+                    type: string
+                  ingredients_text: 
+                    type: string
+                  ingredients_that_may_be_from_palm_oil_n: 
+                    type: number
+                  ingredients_original_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  compared_to_category: 
+                    type: string
+                  nutrition_grades: 
+                    type: string
+                  nutrition_data_prepared_per_imported: 
+                    type: string
+                  _keywords: 
+                    type: array
+                    items: 
+                      type: string
+                  origins_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  last_editor: 
+                    type: string
+                  complete: 
+                    type: number
+                  categories_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  countries_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  nutriscore_score_opposite: 
+                    type: number
+                  categories_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  ciqual_food_name_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  debug_param_sorted_langs: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_text_with_allergens: 
+                    type: string
+                  packaging_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  link_debug_tags: 
+                    type: string
+                  serving_size: 
+                    type: string
+                  languages_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  countries_lc: 
+                    type: string
+                  pnns_groups_1: 
+                    type: string
+                  generic_name_en: 
+                    type: string
+                  packaging_debug_tags: 
+                    type: string
+                  states: 
+                    type: string
+                  brands_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  scans_n: 
+                    type: number
+                  ingredients_text_en_debug_tags: 
+                    type: string
+                  ecoscore_data: 
+                    type: object
+                    properties: 
+                      agribalyse: 
+                        type: object
+                        properties: 
+                          warning: 
+                            type: string
+                      status: 
+                        type: string
+                      missing: 
+                        type: object
+                        properties: 
+                          agb_category: 
+                            type: number
+                          packagings: 
+                            type: number
+                      missing_agribalyse_match_warning: 
+                        type: number
+                      adjustments: 
+                        type: object
+                        properties: 
+                          origins_of_ingredients: 
+                            type: object
+                            properties: 
+                              aggregated_origins: 
+                                type: array
+                                items: 
+                                  type: object
+                                  properties: 
+                                    origin: 
+                                      type: string
+                                    percent: 
+                                      type: number
+                              origins_from_origins_field: 
+                                type: array
+                                items: 
+                                  type: string
+                              epi_value: 
+                                type: number
+                              transportation_value: 
+                                type: number
+                              epi_score: 
+                                type: number
+                              transportation_score: 
+                                type: number
+                              value: 
+                                type: number
+                          threatened_species: 
+                            type: object
+                            properties:  
+                          production_system: 
+                            type: object
+                            properties:  
+                          packaging: 
+                            type: object
+                            properties: 
+                              value: 
+                                type: number
+                              non_recyclable_and_non_biodegradable_materials: 
+                                type: number
+                              score: 
+                                type: number
+                              packagings: 
+                                type: array
+                                items: 
+                                  type: object
+                                  properties: 
+                                    non_recyclable_and_non_biodegradable: 
+                                      type: string
+                                    ecoscore_material_score: 
+                                      type: number
+                                    material: 
+                                      type: string
+                                    shape: 
+                                      type: string
+                                    ecoscore_shape_ratio: 
+                                      type: number
+                              warning: 
+                                type: string
+                  ecoscore_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  labels: 
+                    type: string
+                  nutrition_data: 
+                    type: string
+                  packagings: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        shape: 
+                          type: string
+                        material: 
+                          type: string
+                  correctors_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  photographers: 
+                    type: array
+                    items: 
+                      type: string
+                  quantity: 
+                    type: string
+                  photographers_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  nutrient_levels_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  amino_acids_tags: 
+                    type: string
+                  serving_quantity: 
+                    type: number
+                  serving_size_imported: 
+                    type: string
+                  completed_t: 
+                    type: number
+                  fruits-vegetables-nuts_100g_estimate: 
+                    type: number
+                  ingredients_from_palm_oil_tags: 
+                    type: string
+                  minerals_prev_tags: 
+                    type: string
+                  creator: 
+                    type: string
+                  additives_old_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  allergens_tags: 
+                    type: string
+                  nutriscore_grade: 
+                    type: string
+                  emb_codes_debug_tags: 
+                    type: string
+                  allergens: 
+                    type: string
+                  lang: 
+                    type: string
+                  traces_from_user: 
+                    type: string
+                  nova_group_debug: 
+                    type: string
+                  emb_codes_20141016: 
+                    type: string
+                  ingredients_text_en: 
+                    type: string
+                  image_url: 
+                    type: string
+                  link: 
+                    type: string
+                  additives_old_n: 
+                    type: number
+                  additives_original_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  categories_properties_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  popularity_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_ids_debug: 
+                    type: array
+                    items: 
+                      type: string
+                  manufacturing_places_debug_tags: 
+                    type: string
+                  checkers_tags: 
+                    type: string
+                  nutrition_data_prepared: 
+                    type: string
+                  editors_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  labels_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  nucleotides_prev_tags: 
+                    type: string
+                  nutrition_score_beverage: 
+                    type: number
+                  image_nutrition_small_url: 
+                    type: string
+                  data_sources_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  product_name_en: 
+                    type: string
+                  selected_images: 
+                    type: object
+                    properties: 
+                      ingredients: 
+                        type: object
+                        properties: 
+                          display: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                          thumb: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                          small: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                      front: 
+                        type: object
+                        properties: 
+                          display: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                          thumb: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                          small: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                      nutrition: 
+                        type: object
+                        properties: 
+                          display: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                          thumb: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                          small: 
+                            type: object
+                            properties: 
+                              en: 
+                                type: string
+                  data_quality_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  allergens_hierarchy: 
+                    type: string
+                  countries_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_from_palm_oil_n: 
+                    type: number
+                  nutrition_data_per: 
+                    type: string
+                  image_ingredients_thumb_url: 
+                    type: string
+                  nutrition_score_warning_fruits_vegetables_nuts_estimate_from_ingredients: 
+                    type: number
+                  checkers: 
+                    type: string
+                  image_ingredients_url: 
+                    type: string
+                  amino_acids_prev_tags: 
+                    type: string
+                  packaging: 
+                    type: string
+                  purchase_places_debug_tags: 
+                    type: string
+                  code: 
+                    type: string
+                  manufacturing_places_tags: 
+                    type: string
+                  other_nutritional_substances_tags: 
+                    type: string
+                  traces: 
+                    type: string
+                  countries_imported: 
+                    type: string
+                  sources_fields: 
+                    type: object
+                    properties: 
+                      org-database-usda: 
+                        type: object
+                        properties: 
+                          available_date: 
+                            type: string
+                            format: date-time
+                          publication_date: 
+                            type: string
+                            format: date-time
+                          fdc_id: 
+                            type: string
+                          modified_date: 
+                            type: string
+                            format: date-time
+                          fdc_category: 
+                            type: string
+                          fdc_data_source: 
+                            type: string
+                  additives_prev_original_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  nutrition_data_per_imported: 
+                    type: string
+                  ingredients_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  nova_groups_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  origins_old: 
+                    type: string
+                  nutrition_grades_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_n: 
+                    type: number
+                  product_name_en_imported: 
+                    type: string
+                  ingredients_percent_analysis: 
+                    type: number
+                  ingredients_text_debug: 
+                    type: string
+                  traces_from_ingredients: 
+                    type: string
+                  update_key: 
+                    type: string
+                  product_quantity: 
+                    type: number
+                  ingredients: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        text: 
+                          type: string
+                        rank: 
+                          type: number
+                        id: 
+                          type: string
+                        percent_max: 
+                          type: number
+                        has_sub_ingredients: 
+                          type: string
+                        percent_min: 
+                          type: number
+                        percent_estimate: 
+                          type: number
+                  data_quality_errors_tags: 
+                    type: string
+                  labels_prev_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  categories_old: 
+                    type: string
+                  new_additives_n: 
+                    type: number
+                  brand_owner: 
+                    type: string
+                  nutriments: 
+                    type: object
+                    properties: 
+                      energy_100g: 
+                        type: number
+                      cholesterol_unit: 
+                        type: string
+                      carbohydrates: 
+                        type: number
+                      fiber: 
+                        type: number
+                      energy_unit: 
+                        type: string
+                      salt_value: 
+                        type: number
+                      carbohydrates_serving: 
+                        type: number
+                      trans-fat_unit: 
+                        type: string
+                      iron_serving: 
+                        type: number
+                      calcium_value: 
+                        type: number
+                      calcium_serving: 
+                        type: number
+                      calcium_100g: 
+                        type: number
+                      vitamin-a_unit: 
+                        type: string
+                      energy_value: 
+                        type: number
+                      energy-kcal_100g: 
+                        type: number
+                      vitamin-a_value: 
+                        type: number
+                      nutrition-score-fr_100g: 
+                        type: number
+                      nova-group_serving: 
+                        type: number
+                      vitamin-c_value: 
+                        type: number
+                      calcium_unit: 
+                        type: string
+                      fat: 
+                        type: number
+                      cholesterol_value: 
+                        type: number
+                      fat_100g: 
+                        type: number
+                      fiber_unit: 
+                        type: string
+                      vitamin-c_serving: 
+                        type: number
+                      sugars_serving: 
+                        type: number
+                      vitamin-a_100g: 
+                        type: number
+                      proteins_value: 
+                        type: number
+                      proteins_100g: 
+                        type: number
+                      iron_value: 
+                        type: number
+                      vitamin-c_100g: 
+                        type: number
+                      fat_unit: 
+                        type: string
+                      sodium_100g: 
+                        type: number
+                      vitamin-a_serving: 
+                        type: number
+                      salt_serving: 
+                        type: number
+                      salt_100g: 
+                        type: number
+                      nutrition-score-fr: 
+                        type: number
+                      salt: 
+                        type: number
+                      saturated-fat_serving: 
+                        type: number
+                      trans-fat_value: 
+                        type: number
+                      sugars_value: 
+                        type: number
+                      sodium_unit: 
+                        type: string
+                      iron_unit: 
+                        type: string
+                      vitamin-c: 
+                        type: number
+                      fiber_100g: 
+                        type: number
+                      carbohydrates_unit: 
+                        type: string
+                      fiber_serving: 
+                        type: number
+                      vitamin-a: 
+                        type: number
+                      saturated-fat: 
+                        type: number
+                      sodium: 
+                        type: number
+                      nova-group: 
+                        type: number
+                      sodium_serving: 
+                        type: number
+                      fiber_value: 
+                        type: number
+                      energy-kcal_unit: 
+                        type: string
+                      fat_value: 
+                        type: number
+                      cholesterol_100g: 
+                        type: number
+                      sugars: 
+                        type: number
+                      energy-kcal_serving: 
+                        type: number
+                      calcium: 
+                        type: number
+                      cholesterol_serving: 
+                        type: number
+                      trans-fat_100g: 
+                        type: number
+                      vitamin-c_unit: 
+                        type: string
+                      salt_unit: 
+                        type: string
+                      trans-fat_serving: 
+                        type: number
+                      nova-group_100g: 
+                        type: number
+                      trans-fat: 
+                        type: number
+                      iron_100g: 
+                        type: number
+                      energy-kcal: 
+                        type: number
+                      proteins_unit: 
+                        type: string
+                      carbohydrates_value: 
+                        type: number
+                      saturated-fat_value: 
+                        type: number
+                      cholesterol: 
+                        type: number
+                      fat_serving: 
+                        type: number
+                      sugars_100g: 
+                        type: number
+                      energy-kcal_value: 
+                        type: number
+                      carbohydrates_100g: 
+                        type: number
+                      sodium_value: 
+                        type: number
+                      saturated-fat_100g: 
+                        type: number
+                      fruits-vegetables-nuts-estimate-from-ingredients_100g: 
+                        type: number
+                      iron: 
+                        type: number
+                      energy: 
+                        type: number
+                      sugars_unit: 
+                        type: string
+                      proteins: 
+                        type: number
+                      proteins_serving: 
+                        type: number
+                      saturated-fat_unit: 
+                        type: string
+                      energy_serving: 
+                        type: number
+                  languages_codes: 
+                    type: object
+                    properties: 
+                      en: 
+                        type: number
+                  ingredients_debug: 
+                    type: array
+                    items: 
+                      type: string
+                  additives_debug_tags: 
+                    type: string
+                  labels_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  data_sources_imported: 
+                    type: string
+                  category_properties: 
+                    type: object
+                    properties:  
+                  countries_debug_tags: 
+                    type: string
+                  additives_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_that_may_be_from_palm_oil_tags: 
+                    type: string
+                  allergens_from_ingredients: 
+                    type: string
+                  generic_name: 
+                    type: string
+                  stores: 
+                    type: string
+                  _id: 
+                    type: string
+                  traces_debug_tags: 
+                    type: string
+                  data_quality_bugs_tags: 
+                    type: string
+                  last_image_dates_tags: 
+                    type: array
+                    items: 
+                      type: string
+                      format: date
+                  origins_lc: 
+                    type: string
+                  ingredients_n_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  lc_imported: 
+                    type: string
+                  data_quality_info_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_analysis_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  misc_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  created_t: 
+                    type: number
+                  completeness: 
+                    type: number
+                  allergens_from_user: 
+                    type: string
+                  informers_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  nutrition_data_prepared_per_debug_tags: 
+                    type: string
+                  labels_prev_hierarchy: 
+                    type: array
+                    items: 
+                      type: string
+                  nutriscore_data: 
+                    type: object
+                    properties: 
+                      is_cheese: 
+                        type: number
+                      saturated_fat_ratio_value: 
+                        type: number
+                      grade: 
+                        type: string
+                      sugars_value: 
+                        type: number
+                      sodium_value: 
+                        type: number
+                      is_water: 
+                        type: number
+                      energy: 
+                        type: number
+                      proteins: 
+                        type: number
+                      sodium_points: 
+                        type: number
+                      fruits_vegetables_nuts_colza_walnut_olive_oils_value: 
+                        type: number
+                      sodium: 
+                        type: number
+                      fruits_vegetables_nuts_colza_walnut_olive_oils: 
+                        type: number
+                      proteins_points: 
+                        type: number
+                      saturated_fat_points: 
+                        type: number
+                      sugars_points: 
+                        type: number
+                      saturated_fat: 
+                        type: number
+                      sugars: 
+                        type: number
+                      saturated_fat_ratio: 
+                        type: number
+                      fiber_value: 
+                        type: number
+                      fiber: 
+                        type: number
+                      saturated_fat_ratio_points: 
+                        type: number
+                      positive_points: 
+                        type: number
+                      negative_points: 
+                        type: number
+                      saturated_fat_value: 
+                        type: number
+                      fiber_points: 
+                        type: number
+                      is_fat: 
+                        type: number
+                      fruits_vegetables_nuts_colza_walnut_olive_oils_points: 
+                        type: number
+                      energy_value: 
+                        type: number
+                      is_beverage: 
+                        type: number
+                      energy_points: 
+                        type: number
+                      proteins_value: 
+                        type: number
+                      score: 
+                        type: number
+                  labels_lc: 
+                    type: string
+                  id: 
+                    type: string
+                  image_front_thumb_url: 
+                    type: string
+                  unknown_ingredients_n: 
+                    type: number
+                  nova_group: 
+                    type: number
+                  image_nutrition_url: 
+                    type: string
+                  nutrition_score_warning_fruits_vegetables_nuts_estimate_from_ingredients_value: 
+                    type: number
+                  additives_tags_n: 
+                    type: string
+                    format: nullable
+                  last_edit_dates_tags: 
+                    type: array
+                    items: 
+                      type: string
+                      format: date
+                  data_sources: 
+                    type: string
+                  purchase_places: 
+                    type: string
+                  nutrition_data_per_debug_tags: 
+                    type: string
+                  nova_groups: 
+                    type: string
+                  codes_tags: 
+                    type: array
+                    items: 
+                      type: string
+                  nutrient_levels: 
+                    type: object
+                    properties: 
+                      saturated-fat: 
+                        type: string
+                      sugars: 
+                        type: string
+                      fat: 
+                        type: string
+                      salt: 
+                        type: string
+                  brands_debug_tags: 
+                    type: string
+                  interface_version_modified: 
+                    type: string
+                  emb_codes_tags: 
+                    type: string
+                  editors: 
+                    type: array
+                    items: 
+                      type: string
+                  ingredients_text_with_allergens_en: 
+                    type: string
+                  interface_version_created: 
+                    type: string
+                  popularity_key: 
+                    type: number
+                  generic_name_en_debug_tags: 
+                    type: string
+                  sortkey: 
+                    type: number
+                  emb_codes: 
+                    type: string
+                  ingredients_from_or_that_may_be_from_palm_oil_n: 
+                    type: number
+              code: 
+                type: string
+
+        default:
+          description: error
