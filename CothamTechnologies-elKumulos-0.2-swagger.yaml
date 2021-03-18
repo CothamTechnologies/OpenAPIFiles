@@ -2932,6 +2932,8 @@ paths:
                           type: string
                         Description:
                           type: string
+                        Plot_No:
+                          type: string
                   customerSettings:
                     type: object
                     properties:
