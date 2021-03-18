@@ -1,0 +1,450 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'dhealthdemo'
+  description: 'dhealthdemo'
+host: api.kumulos.com 
+basePath: /b2.2/58f128a7-3f4e-449b-81b7-64def90bfda7
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+# To apply Basic auth to the whole API:
+security:
+  - basicAuth: []
+paths:
+
+  /dhAddLocation.json/:
+    post:
+      summary: dhAddLocation
+      description: dhAddLocation
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[building]
+          type: string
+          description: building
+          required: true
+        - in: formData
+          name: params[department]
+          type: string
+          description: department
+          required: true
+        - in: formData
+          name: params[floor]
+          type: string
+          description: floor
+          required: true
+        - in: formData
+          name: params[room]
+          type: string
+          description: room
+          required: true  
+        - in: formData
+          name: params[customerID]
+          type: string
+          description: customerID
+          required: true  
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+
+  /dhSaveInstall.json/:
+    post:
+      summary: dhSaveInstall
+      description: dhSaveInstall
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[surveyID]
+          type: string
+          description: surveyID
+          required: true
+        - in: formData
+          name: params[installArray]
+          type: string
+          description: installArray
+          
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+  
+  /dhSaveSurvey.json/:
+    post:
+      summary: dhSaveSurvey
+      description: dhSaveSurvey
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[customerLocationID]
+          type: string
+          description: customerLocationID
+          required: true
+        - in: formData
+          name: params[productArray]
+          type: string
+          description: productArray
+          
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+
+  /dhGetCustomerLocationInstall.json/:
+    post:
+      summary: dhGetCustomerLocationInstall
+      description: dhGetCustomerLocationInstall
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[customerLocationID]
+          type: string
+          description: customerLocationID
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: 
+                      type: string
+                    description:
+                      type: string
+                    product: 
+                      type: string
+                    location:
+                      type: string
+                    dhSurveyID:
+                      type: string
+                    timeCreated: 
+                      type: string
+                    timeUpdated:
+                      type: string
+                    qty:
+                      type: string
+                    notes:
+                      type: string
+                    install:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          serialNo:
+                            type: string
+                          surveyRecord:
+                            type: string
+                          dhSurveyInstallID:
+                            type: string
+                          timeCreated: 
+                            type: string
+                          timeUpdated:
+                            type: string
+                          newSerialNo:
+                            type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+
+  /dhGetCustomerLocationSurvey.json/:
+    post:
+      summary: dhGetCustomerLocationSurvey
+      description: dhGetCustomerLocationSurvey
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[customerLocationID]
+          type: string
+          description: customerLocationID
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: 
+                      type: string
+                    description:
+                      type: string
+                    image: 
+                      type: string
+                      format: byte
+                    dhProductID:
+                      type: string
+                    timeCreated: 
+                      type: string
+                    timeUpdated:
+                      type: string
+                    qty:
+                      type: string
+                    notes:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+
+  /dhGetCustomerLocations.json/:
+    post:
+      summary: dhGetCustomerLocations
+      description: dhGetCustomerLocations
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[customerID]
+          type: string
+          description: customerID
+          required: true
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    building: 
+                      type: string
+                    department:
+                      type: string
+                    floor: 
+                      type: string
+                    customer:
+                      type: string
+                    dhCustomerLocationID:
+                      type: string
+                    timeCreated: 
+                      type: string
+                    timeUpdated:
+                      type: string
+                    room:
+                      type: string
+                    surveyDataExists:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double
+
+  /dhGetCustomers.json/:
+    post:
+      summary: dhGetCustomers
+      description: dhGetCustomers
+      tags:
+        - DH
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[dummy]
+          type: string
+          description: dummy
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description: 
+                      type: string
+                    dhCustomerID:
+                      type: string
+                    timeCreated: 
+                      type: string
+                    timeUpdated:
+                      type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer 
+              requestProcessingTime:
+                type: string
+                format: double

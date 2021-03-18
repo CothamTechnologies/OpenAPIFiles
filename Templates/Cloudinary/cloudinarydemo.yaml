@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: 'cloudinary'
-  description: 'cloudinary'
+  title: 'Cloudinary Upload API'
+  description: 'Cloudinary Upload API https://cloudinary.com/documentation/upload_images#uploading_with_a_direct_call_to_the_rest_api '
   
 host: api.cloudinary.com
 basePath: /v1_1/ddniayemy
@@ -25,17 +25,29 @@ paths:
         - in: formData
           name: file
           type: file
-          description: The file to upload
+          description: The file to upload. Can be the actual data (byte array buffer), the Data URI (Base64 encoded), a remote FTP, HTTP or HTTPS URL of an existing file, or a private storage bucket (S3 or Google Storage) URL of a whitelisted bucket.
           x-ct-mimetype: image/png
         - in: formData
           name: upload_preset
           type: string
-          description: upload preset key
+          description: The name of an unsigned upload preset that you defined for unsigned uploading to your Cloudinary account
         - in: path
           name: resourcetype
           type: string
           required: true
-          description: eg image or video
+          description: eg image or video or raw or auto
+        - in: formData
+          name: api_key
+          type: string
+          description: (Req. for Authenticated request). The unique API Key of your Cloudinary account. 
+        - in: formData
+          name: timestamp
+          type: string
+          description: (Req. for Authenticated request). Unix time in seconds of the current time (e.g., 1315060076).
+        - in: formData
+          name: signature
+          type: string
+          description: (Req. for Authenticated request). A signature of all request parameters including the 'timestamp' parameter but excluding the 'api_key', 'resource_type', 'cloud_name' and 'file' parameters, based on the API Secret of your Cloudinary account. The signature is valid for 1 hour. See Generating authentication signatures for more details.
           
       responses:
         200:

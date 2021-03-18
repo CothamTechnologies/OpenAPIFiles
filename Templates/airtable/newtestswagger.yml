@@ -1,0 +1,1555 @@
+swagger: "2.0"
+info:
+  title: 18-WB API
+  description: Airtable API definition for base 18-WB
+  version: "1.0"
+host: api.airtable.com
+basePath: /v0/appMRqzoh8hP79b1B
+schemes:
+  - https
+securityDefinitions:
+  apiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+  - apiKeyAuth: []
+paths:
+  /Artists:
+    get:
+      tags:
+        - Artists
+      summary: Get records
+      description: Get records for Artists
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: bearer token
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+        - in: query
+          name: view
+          type: string
+          description: select a view
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Artists"
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Artists
+      summary: Create new record(s)
+      description: Create new record(s) Artists
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: "#/definitions/Artists"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Artists"
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Artists
+      summary: Partially update existing record(s). Missing fields in request are not
+        modified
+      description: Partially update existing record(s) Artists
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Artists"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Artists"
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Artists
+      summary: Update existing record(s). Missing fields in the request are updated to
+        null/empty.
+      description: Partially update existing record(s) Artists
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Artists"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Artists"
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Artists
+      summary: Delete record
+      description: Delete record Artists
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: records[]
+          description: Record ID
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  "/Artists/{record_id}":
+    get:
+      tags:
+        - Artists
+      summary: Get record
+      description: Get record Artists
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Artists"
+        default:
+          description: error
+    patch:
+      tags:
+        - Artists
+      summary: Partially update existing record. Missing fields in request are not
+        modified
+      description: Partially update existing record Artists
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Artists"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Artists"
+        default:
+          description: error
+    put:
+      tags:
+        - Artists
+      summary: Update existing record. Missing fields in the request are updated to
+        null/empty.
+      description: Update existing record. Artists
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Artists"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Artists"
+        default:
+          description: error
+    delete:
+      tags:
+        - Artists
+      summary: Delete record
+      description: delete existing record. Artists
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  /Venues:
+    get:
+      tags:
+        - Venues
+      summary: Get records
+      description: Get records for Venues
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: bearer token
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+        - in: query
+          name: view
+          type: string
+          description: select a view
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Venues"
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Venues
+      summary: Create new record(s)
+      description: Create new record(s) Venues
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: "#/definitions/Venues"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Venues"
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Venues
+      summary: Partially update existing record(s). Missing fields in request are not
+        modified
+      description: Partially update existing record(s) Venues
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Venues"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Venues"
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Venues
+      summary: Update existing record(s). Missing fields in the request are updated to
+        null/empty.
+      description: Partially update existing record(s) Venues
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Venues"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Venues"
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Venues
+      summary: Delete record
+      description: Delete record Venues
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: records[]
+          description: Record ID
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  "/Venues/{record_id}":
+    get:
+      tags:
+        - Venues
+      summary: Get record
+      description: Get record Venues
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Venues"
+        default:
+          description: error
+    patch:
+      tags:
+        - Venues
+      summary: Partially update existing record. Missing fields in request are not
+        modified
+      description: Partially update existing record Venues
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Venues"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Venues"
+        default:
+          description: error
+    put:
+      tags:
+        - Venues
+      summary: Update existing record. Missing fields in the request are updated to
+        null/empty.
+      description: Update existing record. Venues
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Venues"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Venues"
+        default:
+          description: error
+    delete:
+      tags:
+        - Venues
+      summary: Delete record
+      description: delete existing record. Venues
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  /Events:
+    get:
+      tags:
+        - Events
+      summary: Get records
+      description: Get records for Events
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: bearer token
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+        - in: query
+          name: view
+          type: string
+          description: select a view
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Events"
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Events
+      summary: Create new record(s)
+      description: Create new record(s) Events
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: "#/definitions/Events"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Events"
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Events
+      summary: Partially update existing record(s). Missing fields in request are not
+        modified
+      description: Partially update existing record(s) Events
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Events"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Events"
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Events
+      summary: Update existing record(s). Missing fields in the request are updated to
+        null/empty.
+      description: Partially update existing record(s) Events
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Events"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Events"
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Events
+      summary: Delete record
+      description: Delete record Events
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: records[]
+          description: Record ID
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  "/Events/{record_id}":
+    get:
+      tags:
+        - Events
+      summary: Get record
+      description: Get record Events
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Events"
+        default:
+          description: error
+    patch:
+      tags:
+        - Events
+      summary: Partially update existing record. Missing fields in request are not
+        modified
+      description: Partially update existing record Events
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Events"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Events"
+        default:
+          description: error
+    put:
+      tags:
+        - Events
+      summary: Update existing record. Missing fields in the request are updated to
+        null/empty.
+      description: Update existing record. Events
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Events"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Events"
+        default:
+          description: error
+    delete:
+      tags:
+        - Events
+      summary: Delete record
+      description: delete existing record. Events
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  /Diary:
+    get:
+      tags:
+        - Diary
+      summary: Get records
+      description: Get records for Diary
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: bearer token
+        - in: query
+          name: filterByFormula
+          type: string
+          description: filter by formula
+        - in: query
+          name: sort
+          type: string
+          description: sort by field
+        - in: query
+          name: view
+          type: string
+          description: select a view
+        - in: query
+          name: fields
+          type: string
+          description: select fields
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Diary"
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Diary
+      summary: Create new record(s)
+      description: Create new record(s) Diary
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: "#/definitions/Diary"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Diary"
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Diary
+      summary: Partially update existing record(s). Missing fields in request are not
+        modified
+      description: Partially update existing record(s) Diary
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Diary"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Diary"
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Diary
+      summary: Update existing record(s). Missing fields in the request are updated to
+        null/empty.
+      description: Partially update existing record(s) Diary
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: "#/definitions/Diary"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: "#/definitions/Diary"
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Diary
+      summary: Delete record
+      description: Delete record Diary
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: records[]
+          description: Record ID
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  "/Diary/{record_id}":
+    get:
+      tags:
+        - Diary
+      summary: Get record
+      description: Get record Diary
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Diary"
+        default:
+          description: error
+    patch:
+      tags:
+        - Diary
+      summary: Partially update existing record. Missing fields in request are not
+        modified
+      description: Partially update existing record Diary
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Diary"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Diary"
+        default:
+          description: error
+    put:
+      tags:
+        - Diary
+      summary: Update existing record. Missing fields in the request are updated to
+        null/empty.
+      description: Update existing record. Diary
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: "#/definitions/Diary"
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: "#/definitions/Diary"
+        default:
+          description: error
+    delete:
+      tags:
+        - Diary
+      summary: Delete record
+      description: delete existing record. Diary
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+definitions:
+  Artists:
+    type: object
+    properties:
+      artistCode:
+        type: string
+      artistName:
+        type: string
+      artistBiog:
+        type: string
+      artistUrl:
+        type: string
+      artistimageLg:
+        type: string
+  Venues:
+    type: object
+    properties:
+      venueCode:
+        type: string
+      venueName:
+        type: string
+      venueAddress:
+        type: string
+      venuePostcode:
+        type: string
+      venuePhone:
+        type: string
+      venueTimes:
+        type: string
+      venueUrl:
+        type: string
+      venueLat:
+        type: string
+      venueLong:
+        type: string
+      venueImage:
+        type: string
+  Events:
+    type: object
+    properties:
+      eventCode:
+        type: string
+      eventStart:
+        type: string
+      eventEnd:
+        type: string
+      eventName:
+        type: string
+      artistCode:
+        type: string
+      venueCode:
+        type: string
+      dayCode:
+        type: string
+      eventDescription:
+        type: string
+      eventImage:
+        type: string
+  Diary:
+    type: object
+    properties:
+      Name:
+        type: string
+      dayCode:
+        type: string
+      Date:
+        type: string
+        format: date
+      imageURL:
+        type: string

@@ -1,0 +1,99 @@
+swagger: "2.0"
+info:
+  version: 1.0
+  title: Open Food Facts
+  description: Open Food Facts
+
+host: world.openfoodfacts.org
+basePath: /api/v0
+
+schemes:
+  - https
+
+paths:
+  /product/{barcode}.json:
+    get:
+      description: get food facts
+      summary: get food facts
+      tags:
+        - Food Facts
+      produces:
+        - application/json
+      parameters:
+        - name: barcode
+          in: path
+          type: string
+          description: barcode
+          required: true
+        
+      responses:
+        200:
+          description: Succesful
+          schema:
+            type: object
+            properties:
+              status: 
+                type: number
+              status_verbose: 
+                type: string
+              product: 
+                type: object
+                properties: 
+                  manufacturing_places: 
+                    type: string
+                  last_modified_t: 
+                    type: number
+                  last_modified_by: 
+                    type: string
+                  categories_imported: 
+                    type: string
+                  ecoscore_grade: 
+                    type: string
+                  nucleotides_tags: 
+                    type: string
+                  no_nutrition_data: 
+                    type: string
+                  image_thumb_url: 
+                    type: string
+                  rev: 
+                    type: number
+                  last_image_t: 
+                    type: number
+                  lang_debug_tags: 
+                    type: string
+                  pnns_groups_2: 
+                    type: string
+                  product_name_en_debug_tags: 
+                    type: string
+                  categories: 
+                    type: string
+                  product_name: 
+                    type: string
+                  quantity_debug_tags: 
+                    type: string
+                  lc: 
+                    type: string
+                  nutrition_grade_fr: 
+                    type: string
+                  image_nutrition_thumb_url: 
+                    type: string
+                  cities_tags: 
+                    type: string
+                  purchase_places_tags: 
+                    type: string
+                  vitamins_prev_tags: 
+                    type: string
+                  serving_size_debug_tags: 
+                    type: string
+                  image_front_small_url: 
+                    type: string
+                  ingredients_text_en_imported: 
+                    type: string
+                  nutriscore_score: 
+                    type: number
+                 
+              code: 
+                type: string
+
+        default:
+          description: error
