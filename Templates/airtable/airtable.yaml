@@ -1,0 +1,3035 @@
+swagger: '2.0'
+info:
+  title: 'Product catalog API'
+  description: 'Airtable API definition for base Product catalog'
+  version: '1.0'
+host: api.airtable.com
+basePath: /v0/app1BL9jQE2B3fmzq
+schemes:
+  - https
+securityDefinitions:
+  apiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+  -
+    apiKeyAuth: []
+paths:
+  /Furniture:
+    get:
+      tags:
+        - Furniture
+      summary: 'Get records'
+      description: 'Get records for Furniture'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Furniture
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Furniture'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Furniture
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Furniture'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Furniture
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Furniture'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Furniture'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Furniture
+      summary: 'Delete record'
+      description: 'Delete record Furniture'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Furniture/{record_id}':
+    get:
+      tags:
+        - Furniture
+      summary: 'Get record'
+      description: 'Get record Furniture'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Furniture'
+        default:
+          description: error
+    patch:
+      tags:
+        - Furniture
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Furniture'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Furniture'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Furniture'
+        default:
+          description: error
+    put:
+      tags:
+        - Furniture
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Furniture'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Furniture'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Furniture'
+        default:
+          description: error
+    delete:
+      tags:
+        - Furniture
+      summary: 'Delete record'
+      description: 'delete existing record. Furniture'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  /Vendors:
+    get:
+      tags:
+        - Vendors
+      summary: 'Get records'
+      description: 'Get records for Vendors'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Vendors
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Vendors'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Vendors
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Vendors'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Vendors
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Vendors'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendors'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Vendors
+      summary: 'Delete record'
+      description: 'Delete record Vendors'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Vendors/{record_id}':
+    get:
+      tags:
+        - Vendors
+      summary: 'Get record'
+      description: 'Get record Vendors'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Vendors'
+        default:
+          description: error
+    patch:
+      tags:
+        - Vendors
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Vendors'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Vendors'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Vendors'
+        default:
+          description: error
+    put:
+      tags:
+        - Vendors
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Vendors'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Vendors'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Vendors'
+        default:
+          description: error
+    delete:
+      tags:
+        - Vendors
+      summary: 'Delete record'
+      description: 'delete existing record. Vendors'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  /Clients:
+    get:
+      tags:
+        - Clients
+      summary: 'Get records'
+      description: 'Get records for Clients'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clients'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Clients
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Clients'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Clients'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clients'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Clients
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Clients'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Clients'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clients'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Clients
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Clients'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Clients'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clients'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Clients
+      summary: 'Delete record'
+      description: 'Delete record Clients'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Clients/{record_id}':
+    get:
+      tags:
+        - Clients
+      summary: 'Get record'
+      description: 'Get record Clients'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Clients'
+        default:
+          description: error
+    patch:
+      tags:
+        - Clients
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Clients'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Clients'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Clients'
+        default:
+          description: error
+    put:
+      tags:
+        - Clients
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Clients'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Clients'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Clients'
+        default:
+          description: error
+    delete:
+      tags:
+        - Clients
+      summary: 'Delete record'
+      description: 'delete existing record. Clients'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  '/Client orders':
+    get:
+      tags:
+        - 'Client orders'
+      summary: 'Get records'
+      description: 'Get records for Client orders'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - 'Client orders'
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Client orders'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - 'Client orders'
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Client orders'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - 'Client orders'
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Client orders'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Clientorders'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - 'Client orders'
+      summary: 'Delete record'
+      description: 'Delete record Client orders'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Client orders/{record_id}':
+    get:
+      tags:
+        - 'Client orders'
+      summary: 'Get record'
+      description: 'Get record Client orders'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Clientorders'
+        default:
+          description: error
+    patch:
+      tags:
+        - 'Client orders'
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Client orders'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Clientorders'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Clientorders'
+        default:
+          description: error
+    put:
+      tags:
+        - 'Client orders'
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Client orders'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Clientorders'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Clientorders'
+        default:
+          description: error
+    delete:
+      tags:
+        - 'Client orders'
+      summary: 'Delete record'
+      description: 'delete existing record. Client orders'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  '/Order line items':
+    get:
+      tags:
+        - 'Order line items'
+      summary: 'Get records'
+      description: 'Get records for Order line items'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - 'Order line items'
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Order line items'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - 'Order line items'
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Order line items'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - 'Order line items'
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Order line items'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Orderlineitems'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - 'Order line items'
+      summary: 'Delete record'
+      description: 'Delete record Order line items'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Order line items/{record_id}':
+    get:
+      tags:
+        - 'Order line items'
+      summary: 'Get record'
+      description: 'Get record Order line items'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Orderlineitems'
+        default:
+          description: error
+    patch:
+      tags:
+        - 'Order line items'
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Order line items'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Orderlineitems'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Orderlineitems'
+        default:
+          description: error
+    put:
+      tags:
+        - 'Order line items'
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Order line items'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Orderlineitems'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Orderlineitems'
+        default:
+          description: error
+    delete:
+      tags:
+        - 'Order line items'
+      summary: 'Delete record'
+      description: 'delete existing record. Order line items'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  /Designers:
+    get:
+      tags:
+        - Designers
+      summary: 'Get records'
+      description: 'Get records for Designers'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Designers'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - Designers
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Designers'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Designers'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Designers'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - Designers
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Designers'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Designers'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Designers'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - Designers
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Designers'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Designers'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Designers'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - Designers
+      summary: 'Delete record'
+      description: 'Delete record Designers'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Designers/{record_id}':
+    get:
+      tags:
+        - Designers
+      summary: 'Get record'
+      description: 'Get record Designers'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Designers'
+        default:
+          description: error
+    patch:
+      tags:
+        - Designers
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Designers'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Designers'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Designers'
+        default:
+          description: error
+    put:
+      tags:
+        - Designers
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Designers'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Designers'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Designers'
+        default:
+          description: error
+    delete:
+      tags:
+        - Designers
+      summary: 'Delete record'
+      description: 'delete existing record. Designers'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+  '/Vendor contacts':
+    get:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Get records'
+      description: 'Get records for Vendor contacts'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: header
+          name: Authorization
+          type: string
+          description: 'bearer token'
+        -
+          in: query
+          name: filterByFormula
+          type: string
+          description: 'filter by formula'
+        -
+          in: query
+          name: sort
+          type: string
+          description: 'sort by field'
+        -
+          in: query
+          name: view
+          type: string
+          description: 'select a view'
+        -
+          in: query
+          name: fields
+          type: string
+          description: 'select fields'
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              offset:
+                type: string
+        default:
+          description: error
+    post:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Create new record(s)'
+      description: 'Create new record(s) Vendor contacts'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              offset:
+                type: string
+        default:
+          description: error
+    patch:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Partially update existing record(s). Missing fields in request are not modified'
+      description: 'Partially update existing record(s) Vendor contacts'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              offset:
+                type: string
+        default:
+          description: error
+    put:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Update existing record(s). Missing fields in the request are updated to null/empty.'
+      description: 'Partially update existing record(s) Vendor contacts'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdTime:
+                      type: string
+                      format: date-time
+                    fields:
+                      $ref: '#/definitions/Vendorcontacts'
+              offset:
+                type: string
+        default:
+          description: error
+    delete:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Delete record'
+      description: 'Delete record Vendor contacts'
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        -
+          in: formData
+          name: 'records[]'
+          description: 'Record ID'
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                  required:
+                    - id
+                    - deleted
+        default:
+          description: error
+  '/Vendor contacts/{record_id}':
+    get:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Get record'
+      description: 'Get record Vendor contacts'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Vendorcontacts'
+        default:
+          description: error
+    patch:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Partially update existing record. Missing fields in request are not modified'
+      description: 'Partially update existing record Vendor contacts'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Vendorcontacts'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Vendorcontacts'
+        default:
+          description: error
+    put:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Update existing record. Missing fields in the request are updated to null/empty.'
+      description: 'Update existing record. Vendor contacts'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+        -
+          name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              fields:
+                $ref: '#/definitions/Vendorcontacts'
+              typecast:
+                type: boolean
+                default: false
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              createdTime:
+                type: string
+                format: date-time
+              fields:
+                $ref: '#/definitions/Vendorcontacts'
+        default:
+          description: error
+    delete:
+      tags:
+        - 'Vendor contacts'
+      summary: 'Delete record'
+      description: 'delete existing record. Vendor contacts'
+      produces:
+        - application/json
+      parameters:
+        -
+          in: path
+          name: record_id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+            required:
+              - id
+              - deleted
+        default:
+          description: error
+definitions:
+  Furniture:
+    type: object
+    properties:
+      Name:
+        type: string
+      Type:
+        type: string
+      Images:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            size:
+              type: integer
+            url:
+              type: string
+              format: url
+            filename:
+              type: string
+            thumbnails:
+              type: object
+              properties:
+                small:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                large:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+      Vendor:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'In stock':
+        type: boolean
+      'Unit cost':
+        type: integer
+      'Size (WxLxH)':
+        type: string
+      Materials:
+        type: array
+        items:
+          type: string
+      Color:
+        type: array
+        items:
+          type: string
+      Settings:
+        type: array
+        items:
+          type: string
+      Schematic:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            size:
+              type: integer
+            url:
+              type: string
+              format: url
+            filename:
+              type: string
+            thumbnails:
+              type: object
+              properties:
+                small:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                large:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+      Designer:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      Description:
+        type: string
+      Link:
+        type: string
+      Notes:
+        type: string
+      Orders:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Total units sold':
+        type: string
+      'Gross sales':
+        type: string
+  Vendors:
+    type: object
+    properties:
+      Name:
+        type: string
+      Logo:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            size:
+              type: integer
+            url:
+              type: string
+              format: url
+            filename:
+              type: string
+            thumbnails:
+              type: object
+              properties:
+                small:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                large:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+      Notes:
+        type: string
+      'Closest showroom':
+        type: string
+      'Phone number':
+        type: string
+      'Sales contact':
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Catalog link':
+        type: string
+      Furniture:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+  Clients:
+    type: object
+    properties:
+      Name:
+        type: string
+      'Photos of space':
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            size:
+              type: integer
+            url:
+              type: string
+              format: url
+            filename:
+              type: string
+            thumbnails:
+              type: object
+              properties:
+                small:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                large:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+      'Client orders':
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Billing address':
+        type: string
+  Clientorders:
+    type: object
+    properties:
+      Name:
+        type: string
+      Client:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Order no.':
+        type: integer
+      'Fulfill by':
+        type: string
+        format: date
+      Status:
+        type: string
+      'Order line items':
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Total order cost':
+        type: string
+      Invoice:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            size:
+              type: integer
+            url:
+              type: string
+              format: url
+            filename:
+              type: string
+            thumbnails:
+              type: object
+              properties:
+                small:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                large:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+      'Bill to':
+        type: string
+  Orderlineitems:
+    type: object
+    properties:
+      Name:
+        type: string
+      'Furniture item':
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Price per unit':
+        type: string
+      Quantity:
+        type: integer
+      'Total cost':
+        type: string
+      'Belongs to order':
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      Image:
+        type: string
+  Designers:
+    type: object
+    properties:
+      Name:
+        type: string
+      Photo:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            size:
+              type: integer
+            url:
+              type: string
+              format: url
+            filename:
+              type: string
+            thumbnails:
+              type: object
+              properties:
+                small:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+                large:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    width:
+                      type: integer
+                    height:
+                      type: integer
+      Bio:
+        type: string
+      Furniture:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+  Vendorcontacts:
+    type: object
+    properties:
+      Name:
+        type: string
+      Vendors:
+        type: array
+        items:
+          type: string
+          description: 'Record IDs that the current record links to'
+      'Phone number':
+        type: string
+      Email:
+        type: string
