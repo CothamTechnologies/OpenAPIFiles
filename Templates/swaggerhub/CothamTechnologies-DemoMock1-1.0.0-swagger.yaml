@@ -11,6 +11,43 @@ schemes:
 
 paths:
 
+/getAssignedInspections:
+    get:
+      summary: getAssignedInspections
+      description: getAssignedInspections for Alacrity example app
+      tags:
+        - Alacrity
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    heading:
+                      type: string
+                    description:
+                      type: string
+                    imageURL:
+                      type: string
+
+        default:
+          description: server error
+
+
   /getFlashCards:
     get:
       summary: getFlashCards
