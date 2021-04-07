@@ -11,7 +11,7 @@ schemes:
 
 paths:
 
-/getAssignedInspections:
+  /getAssignedInspections:
     get:
       summary: getAssignedInspections
       description: getAssignedInspections for Alacrity example app
