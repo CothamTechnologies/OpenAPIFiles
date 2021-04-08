@@ -37,11 +37,15 @@ paths:
                 items:
                   type: object
                   properties:
-                    heading:
+                    inspectionCode:
                       type: string
-                    description:
+                    exchangeName:
                       type: string
-                    imageURL:
+                    exchangeLat:
+                      type: string
+                    exchangeLong:
+                      type: string
+                    inspectionDate:
                       type: string
 
         default:
