@@ -66,40 +66,6 @@ paths:
                           rackId:
                             type: string
                             
-            example:
-              data:
-                - equipmentNames:
-                  - equipmentName: System X
-                    moduleTypes:
-                    - moduleType: Cards
-                    - moduleType: Shelves
-                    - moduleType: Rigs
-                  - equipmentName: Nortel DMS-100
-                    moduleTypes:
-                    - moduleType: Cards
-                    - moduleType: Shelves
-                  - equipmentName: Type 62
-                    moduleTypes:
-                    - moduleType: Patch Panel
-                - suites:
-                  - suiteId: A
-                  - suiteId: B
-                  - suiteId: C
-                  - suiteId: D
-                  - suiteId: E
-                  - suiteId: F
-                  - suiteId: G
-                  - suiteId: H
-                - racks:
-                  - rackId: 1
-                  - rackId: 2
-                  - rackId: 3
-                  - rackId: 4
-                  - rackId: 5
-                  - rackId: 6
-                  - rackId: 7
-                  - rackId: 8
-               
         default:
           description: server error
 
