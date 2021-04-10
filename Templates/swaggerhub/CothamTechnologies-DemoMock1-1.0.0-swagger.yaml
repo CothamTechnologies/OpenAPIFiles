@@ -65,6 +65,13 @@ paths:
                         properties:
                           rackId:
                             type: string
+                    locations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          location:
+                            type: string
                             
         default:
           description: server error
