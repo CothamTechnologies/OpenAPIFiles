@@ -47,6 +47,13 @@ paths:
                       type: string
                     inspectionDate:
                       type: string
+                    locationsInExchange:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          locationName:
+                            type: string
 
         default:
           description: server error
