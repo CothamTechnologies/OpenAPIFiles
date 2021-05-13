@@ -2921,6 +2921,8 @@ paths:
                     type: string
                   liveCustomerDescription:
                     type: string
+                  livePlotNo:
+                    type: string
                   CustomerCount:
                     type: integer
                   Customers:
@@ -2931,6 +2933,8 @@ paths:
                         No:
                           type: string
                         Description:
+                          type: string
+                        Plot_No:
                           type: string
                   customerSettings:
                     type: object

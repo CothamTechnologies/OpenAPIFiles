@@ -11,6 +11,132 @@ schemes:
 
 paths:
 
+  /getExchangeEquipmentInfo:
+    get:
+      summary: get exchange equipment info
+      description: get exchange equipement info (valid names, types, suite IDs, rack IDs) for Alacrity example app
+      tags:
+        - Alacrity
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    equipmentNames:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          equipmentName:
+                            type: string
+                          moduleTypes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                moduleType:
+                                  type: string
+                    suites:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          suiteId:
+                            type: string
+                    racks:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          rackId:
+                            type: string
+                    locations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          location:
+                            type: string
+                            
+        default:
+          description: server error
+
+  /getAssignedInspections:
+    get:
+      summary: getAssignedInspections
+      description: getAssignedInspections for Alacrity example app
+      tags:
+        - Alacrity
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        type: string
+        description: token.
+        required: false
+     
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    inspectionCode:
+                      type: string
+                    exchangeName:
+                      type: string
+                    exchangeLat:
+                      type: string
+                    exchangeLong:
+                      type: string
+                    inspectionDate:
+                      type: string
+                    locationsInExchange:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          locationName:
+                            type: string
+                          equipment:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                equipmentName:
+                                  type: string
+                                equipmentType:
+                                  type: string
+                                suite:
+                                  type: string
+                                rack:
+                                  type: string
+
+        default:
+          description: server error
+
+
   /getFlashCards:
     get:
       summary: getFlashCards
