@@ -1,0 +1,75 @@
+swagger: '2.0'
+
+info:
+  version: "0.1"
+  title: 'GraphQL Template for FloPro'
+  description: 'GraphQL Template for FloPro'
+
+host: graphqlzero.almansi.me
+
+schemes:
+  - https
+
+x-ct-graphql: true
+
+paths:
+
+  /api:
+    post:
+      summary: Get single post
+      description: get single post
+      tags:
+        - 1. Query
+      consumes:
+        - application/json
+      produces:
+        - application/json  
+      parameters:
+        - name: token
+          in: header
+          type: string
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+                default: 'query ($id: ID!){
+                            post(id: $id) {
+                              id
+                              title
+                              body
+                            }
+                          }'
+              variables:
+                type: object
+                properties:
+                  id:
+                    type: integer  
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      title:
+                        type: string 
+                      body:
+                        type: string
+                
+        default:
+          description: Failed Server Response
+
+  
