@@ -16,10 +16,10 @@ paths:
 
   /api:
     post:
-      summary: Get single post
-      description: get single post
+      summary: Update Single Post
+      description: Update Single Post
       tags:
-        - 1. Query
+        - 2. Mutation
       consumes:
         - application/json
       produces:
@@ -37,18 +37,22 @@ paths:
             properties:
               query:
                 type: string
-                default: 'query ($id: ID!){
-                            post(id: $id) {
-                              id
-                              title
-                              body
-                            }
-                          }'
+                default: 'mutation ( $id: ID!, $input: UpdatePostInput!) {
+                              updatePost(id: $id, input: $input) {
+                                id
+                                body
+                              }
+                            }'
               variables:
                 type: object
                 properties:
                   id:
                     type: integer  
+                  input: 
+                    type: object
+                    properties:
+                      body:
+                        type: string
 
       responses:
         200:
@@ -59,13 +63,11 @@ paths:
               data:
                 type: object
                 properties:
-                  post:
+                  updatePost:
                     type: object
                     properties:
                       id:
                         type: string
-                      title:
-                        type: string 
                       body:
                         type: string
                 
