@@ -4194,9 +4194,9 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
-          name: params[clientIdentifier]
+          name: params[backendIdentifier]
           type: string
-          description: clientIdentifier
+          description: backendIdentifier
           required: true
 
       responses:
