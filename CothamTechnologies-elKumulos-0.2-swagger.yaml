@@ -4186,7 +4186,7 @@ paths:
 
   /serviceCheck.json/:
     post:
-      summary: Checks to see if EP backend is up
+      summary: ServiceCheck
       description: Checks to see if EP backend is up (if it supports ServiceCheck functionality)
       tags:
         - 1. Elite Owner App
