@@ -4257,9 +4257,9 @@ paths:
           description: customerNo
           required: true
         - in: formData
-          name: params[bookNo]
+          name: params[bookingNo]
           type: string
-          description: bookNo
+          description: bookingNo
           required: true
 
       responses:
