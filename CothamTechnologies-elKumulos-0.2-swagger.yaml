@@ -4242,9 +4242,9 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
-          name: params[backendIdentifier]
+          name: params[clientIdentifier]
           type: string
-          description: backendIdentifier
+          description: clientIdentifier
           required: true
         - in: formData
           name: params[customerNo]
