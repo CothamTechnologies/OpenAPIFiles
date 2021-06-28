@@ -4242,6 +4242,11 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
           name: params[clientIdentifier]
           type: string
           description: clientIdentifier
