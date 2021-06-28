@@ -4247,11 +4247,6 @@ paths:
           description: backendIdentifier
           required: true
         - in: formData
-          name: params[accountNo]
-          type: string
-          description: accountNo
-          required: true
-        - in: formData
           name: params[customerNo]
           type: string
           description: customerNo
