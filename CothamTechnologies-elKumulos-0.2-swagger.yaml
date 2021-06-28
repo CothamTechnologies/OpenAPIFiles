@@ -4303,6 +4303,8 @@ paths:
                   BookingPrice:
                     type: number
                     format: double
+                  BookingPriceDisplay:
+                    type: string
                   OwnerBooking:
                     type: boolean
                   IsCancellable:
@@ -4411,6 +4413,8 @@ paths:
                         BookingPrice:
                           type: number
                           format: double
+                        BookingPriceDisplay:
+                          type: string
                         OwnerBooking:
                           type: boolean
                         SortIndex:
