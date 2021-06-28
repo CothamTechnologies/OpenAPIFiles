@@ -4275,44 +4275,146 @@ paths:
               payload:
                 type: object
                 properties:
-                  invokeRequest_Result:
-                    type: object
-                    properties:
-                      return_value:
-                        type: object
-                        properties:
-                          IsError:
-                            type: boolean
-                          ErrorCode:
-                            type: string
-                          ErrorMessage:
-                            type: string
-                          BookingNo:
-                            type: string
-                          Surname:
-                            type: string
-                          ArrivalData:
-                            type: string
-                            format: date-time
-                          NoofNights:
-                            type: integer
-                          DepartureDate:
-                            type: string
-                            format: date-time
-                          ConfirmedDate:
-                            type: string
-                            format: date-time
-                          NoofAdults:
-                            type: integer
-                          NoofChildren:
-                            type: integer
-                          BookingPrice:
-                            type: number
-                            format: double
-                          OwnerBooking:
-                            type: boolean
-                          IsCancellable:
-                            type: boolean
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+                  BookingNo:
+                    type: string
+                  Surname:
+                    type: string
+                  ArrivalDate:
+                    type: string
+                    format: date-time
+                  NoofNights:
+                    type: integer
+                  DepartureDate:
+                    type: string
+                    format: date-time
+                  ConfirmedDate:
+                    type: string
+                    format: date-time
+                  NoofAdults:
+                    type: integer
+                  NoofChildren:
+                    type: integer
+                  BookingPrice:
+                    type: number
+                    format: double
+                  OwnerBooking:
+                    type: boolean
+                  IsCancellable:
+                    type: boolean
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+  /owGetBookings.json/:
+    post:
+      summary: GetBookings
+      description: Get details of bookings in a date range
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[FromDate]
+          type: string
+          description: FromDate
+          required: false
+        - in: formData
+          name: params[ToDate]
+          type: string
+          description: ToDate
+          required: false
+        - in: formData
+          name: params[SummaryKey]
+          type: string
+          description: SummaryKey
+          required: false
+        - in: formData
+          name: params[OwnerBookingsOnly]
+          type: boolean
+          description: OwnerBookingsOnly
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+                  BookingCount:
+                    type: integer
+                  Bookings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        BookingNo:
+                          type: string
+                        Surname:
+                          type: integer
+                        ArrivalDate:
+                          type: string
+                          format: date-time
+                        NoofNights:
+                          type: integer
+                        BookingPrice:
+                          type: number
+                          format: double
+                        OwnerBooking:
+                          type: boolean
+                        SortIndex:
+                          type: integer
               sessionToken:
                 type: string
               requestedMethod:
