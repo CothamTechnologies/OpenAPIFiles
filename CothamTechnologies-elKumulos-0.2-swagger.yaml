@@ -4353,24 +4353,24 @@ paths:
           description: customerNo
           required: true
         - in: formData
-          name: params[FromDate]
+          name: params[fromDate]
           type: string
-          description: FromDate
+          description: fromDate
           required: false
         - in: formData
-          name: params[ToDate]
+          name: params[toDate]
           type: string
-          description: ToDate
+          description: toDate
           required: false
         - in: formData
-          name: params[SummaryKey]
+          name: params[summaryKey]
           type: string
-          description: SummaryKey
+          description: summaryKey
           required: false
         - in: formData
-          name: params[OwnerBookingsOnly]
+          name: params[ownerBookingsOnly]
           type: boolean
-          description: OwnerBookingsOnly
+          description: ownerBookingsOnly
           required: true
 
       responses:
