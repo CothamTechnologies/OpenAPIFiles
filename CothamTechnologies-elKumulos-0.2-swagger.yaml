@@ -4234,8 +4234,8 @@ paths:
 
   /owGetBooking.json/:
     post:
-      summary: ServiceCheck
-      description: Checks to see if EP backend is up (if it supports ServiceCheck functionality)
+      summary: GetBooking
+      description: Get details for an individual booking
       tags:
         - 1. Elite Owner App
       consumes:
