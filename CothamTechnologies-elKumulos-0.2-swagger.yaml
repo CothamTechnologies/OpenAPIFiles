@@ -4496,6 +4496,8 @@ paths:
                         BookingTotalPrice:
                           type: number
                           format: double
+                        BookingTotalPriceDisplay:
+                          type: string
               sessionToken:
                 type: string
               requestedMethod:
