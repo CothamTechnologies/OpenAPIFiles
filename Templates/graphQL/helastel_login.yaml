@@ -56,19 +56,22 @@ paths:
                   login:
                     type: object
                     properties:
-                      accessToken:
-                        type: string
-                      refreshToken:
-                        type: string
-                      expiresIn:
-                        type: string
-                      tokenType:
-                        type: string
-                      user:
+                      data:
                         type: object
                         properties:
-                          id:
+                          accessToken:
                             type: string
+                          refreshToken:
+                            type: string
+                          expiresIn:
+                            type: string
+                          tokenType:
+                            type: string
+                          user:
+                            type: object
+                            properties:
+                              id:
+                                type: string
 
         default:
           description: Failed Server Response
