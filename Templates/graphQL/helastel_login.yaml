@@ -1,0 +1,75 @@
+swagger: "2.0"
+
+info:
+  version: "0.1"
+  title: "GraphQL Template for Helastel"
+  description: "GraphQL Template for Helastel"
+
+host: stage.backend.intelastel.io
+basePath: /graphql
+
+schemes:
+  - http
+
+x-ct-graphql: true
+
+paths:
+  /api:
+    post:
+      summary: Login
+      description: Login
+      tags:
+        - 1. Mutation
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+              variables:
+                type: object
+                properties:
+                  input:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                      password:
+                        type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  login:
+                    type: object
+                    properties:
+                      accessToken:
+                        type: string
+                      refreshToken:
+                        type: string
+                      expiresIn:
+                        type: string
+                      tokenType:
+                        type: string
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+
+        default:
+          description: Failed Server Response
