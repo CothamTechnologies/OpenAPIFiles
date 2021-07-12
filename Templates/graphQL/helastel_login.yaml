@@ -86,6 +86,8 @@ paths:
                             properties:
                               id:
                                 type: string
+                              status:
+                                type: string
 
         default:
           description: Failed Server Response
