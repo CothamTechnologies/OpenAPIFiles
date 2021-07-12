@@ -33,6 +33,20 @@ paths:
             properties:
               query:
                 type: string
+                default: "mutation($input: LoginInput) {
+                  login(input: $input ){
+                  data {
+                  accessToken
+                  refreshToken
+                  expiresIn
+                  tokenType
+                  user {
+                  id
+                  status
+                  }
+                  }
+                  }
+                  }"
               variables:
                 type: object
                 properties:
