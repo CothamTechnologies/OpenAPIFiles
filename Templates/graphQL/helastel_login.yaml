@@ -6,7 +6,6 @@ info:
   description: "GraphQL Template for Helastel"
 
 host: stage.backend.intelastel.io
-basePath: /graphql
 
 schemes:
   - http
@@ -14,7 +13,7 @@ schemes:
 x-ct-graphql: true
 
 paths:
-  /api:
+  /graphql:
     post:
       summary: Login
       description: Login
