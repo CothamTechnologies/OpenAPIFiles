@@ -4525,8 +4525,8 @@ paths:
 
   /owGetBookingUnavailability.json/:
     post:
-      summary: GetBookingSummary
-      description: Get summary details of bookings per year
+      summary: Get Booking Unavailability
+      description: Get unavailable dates from today until the end of next year
       tags:
         - 1. Elite Owner App
       consumes:
