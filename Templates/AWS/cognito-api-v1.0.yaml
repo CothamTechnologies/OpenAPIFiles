@@ -64,28 +64,28 @@ paths:
           type: string
           description: Bearer client_id base64 encoded with colon at end ie no secret
         - in: formData
-          name: params[grant_type]
+          name: grant_type
           type: string
           description: Should be authorization_code 
           default: authorization_code 
           required: true
         - in: formData
-          name: params[client_id]
+          name: client_id
           type: string
           description: Must be a preregistered client in the user pool. The client must be enabled for Amazon Cognito federation.
           required: true
         - in: formData
-          name: params[redirect_uri]
+          name: redirect_uri
           type: string
           description: Must be the same redirect_uri that was used to get authorization_code in /oauth2/authorize.
           required: true
         - in: formData
-          name: params[code]
+          name: code
           type: string
           description: Required if grant_type is authorization_code.
           required: true
         - in: formData
-          name: params[refresh_token]
+          name: refresh_token
           type: string
           description: The token endpoint returns refresh_token only when the grant_type is authorization_code.
           required: false
