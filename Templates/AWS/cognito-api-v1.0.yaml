@@ -1,0 +1,106 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'AWS Cognito oAuth2 Endpoints'
+  description: 'AWS Cognito oAuth2 Endpoints'
+
+host: flopro123.auth.us-east-1.amazoncognito.com
+basePath: /oauth2
+schemes: 
+  - https
+  
+paths:
+
+  /userInfo:
+    get:
+      summary: get user info
+      description: get user info
+      tags: 
+        - get token 
+      produces:
+        - application/json
+      
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Bearer token
+          required: true
+        
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              sub:
+                type: string
+              name:
+                type: string
+              given_name:
+                type: string
+              family_name:
+                type: string
+              preferred_username:
+                type: string
+              email:
+                type: string
+        default:
+          description: server error
+
+  /token:
+    post:
+      summary: get token
+      description: get token
+      tags: 
+        - get token 
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+
+        - in: formData
+          name: grant_type
+          type: string
+          description: Should be authorization_code 
+          default: authorization_code 
+          required: true
+        - in: formData
+          name: client_id
+          type: string
+          description: Must be a preregistered client in the user pool. The client must be enabled for Amazon Cognito federation.
+          required: true
+        - in: formData
+          name: redirect_uri
+          type: string
+          description: Must be the same redirect_uri that was used to get authorization_code in /oauth2/authorize.
+          required: true
+        - in: formData
+          name: code
+          type: string
+          description: Required if grant_type is authorization_code.
+          required: true
+        - in: formData
+          name: refresh_token
+          type: string
+          description: The token endpoint returns refresh_token only when the grant_type is authorization_code.
+          required: false
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+              expires_in:
+                type: string
+              token_type:
+                type: string
+              refresh_token:
+                type: string
+              id_token:
+                type: string
+        default:
+          description: server error      
