@@ -5,10 +5,10 @@ info:
   title: "GraphQL Template for Helastel"
   description: "GraphQL Template for Helastel"
 
-host: stage.backend.intelastel.io
+host: intelastel.io
 
 schemes:
-  - http
+  - https
 
 x-ct-graphql: true
 
@@ -55,8 +55,10 @@ paths:
                     properties:
                       username:
                         type: string
+                        default: "pete@cothamtechnologies.com"
                       password:
                         type: string
+                        default: "YA^o38^eJR^Ev!x7"
 
       responses:
         200:
