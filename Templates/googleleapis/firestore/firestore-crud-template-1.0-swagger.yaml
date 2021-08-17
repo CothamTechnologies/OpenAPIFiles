@@ -53,16 +53,6 @@ paths:
               fields:
                 type: object
                 properties:
-                  timestampField:
-                    type: object
-                    properties:
-                      timestampValue:
-                        type: string
-                  bytesField:
-                    type: object
-                    properties:
-                      bytesValue:
-                        type: string
                   booleanField:
                     type: object
                     properties:
@@ -251,16 +241,6 @@ paths:
                     fields:
                       type: object
                       properties:
-                        timestampField:
-                          type: object
-                          properties:
-                            timestampValue:
-                              type: string
-                        bytesField:
-                          type: object
-                          properties:
-                            bytesValue:
-                              type: string
                         booleanField:
                           type: object
                           properties:
@@ -323,16 +303,6 @@ paths:
               fields:
                 type: object
                 properties:
-                  timestampField:
-                    type: object
-                    properties:
-                      timestampValue:
-                        type: string
-                  bytesField:
-                    type: object
-                    properties:
-                      bytesValue:
-                        type: string
                   booleanField:
                     type: object
                     properties:
