@@ -195,7 +195,7 @@ paths:
         default:
           description: unexpected response  
 
-  /{projectID}/databases/(default)/documents/{collectionId}/{userId}:
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/:
     get:
       summary: list users documents
       description: list users documents for a collection
@@ -324,7 +324,7 @@ paths:
                       integerValue:
                         type: string
       responses:
-        '200':
+        '201':
           description: OK
           schema:
             type: object
