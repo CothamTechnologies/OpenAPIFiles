@@ -195,7 +195,7 @@ paths:
         default:
           description: unexpected response  
 
-  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/:
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}:
     get:
       summary: list users documents
       description: list users documents for a collection
@@ -303,26 +303,12 @@ paths:
               fields:
                 type: object
                 properties:
-                  booleanField:
-                    type: object
-                    properties:
-                      booleanValue:
-                        type: string
-                  floatField:
-                    type: object
-                    properties:
-                      doubleValue:
-                        type: string
                   textField:
                     type: object
                     properties:
                       stringValue:
                         type: string
-                  integerField:
-                    type: object
-                    properties:
-                      integerValue:
-                        type: string
+
       responses:
         '201':
           description: OK
