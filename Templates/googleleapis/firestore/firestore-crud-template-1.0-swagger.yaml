@@ -11,7 +11,7 @@ schemes:
 
 paths:
 
-  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{documentId}:
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}/{documentId}:
 
     patch:
       summary: update users document
@@ -36,6 +36,10 @@ paths:
           required: true
         - in: path
           name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
           type: string
           required: true
         - in: path
@@ -104,6 +108,10 @@ paths:
           required: true
         - in: path
           name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
           type: string
           required: true
         - in: path
@@ -185,6 +193,10 @@ paths:
           type: string
           required: true
         - in: path
+          name: subcollectionId
+          type: string
+          required: true
+        - in: path
           name: documentId
           type: string
           required: true
@@ -195,7 +207,7 @@ paths:
         default:
           description: unexpected response  
 
-  /{projectID}/databases/(default)/documents/{collectionId}/{userId}:
+  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
     get:
       summary: list users documents
       description: list users documents for a collection
@@ -293,6 +305,10 @@ paths:
           required: true
         - in: path
           name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
           type: string
           required: true
         - in: body
