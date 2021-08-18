@@ -4,7 +4,7 @@ info:
   title: 'Google Firestore CRUD Template'
   description: ''
 host: firestore.googleapis.com
-basePath: /v1/projects
+basePath: /v1
 schemes: 
   - https
 
@@ -161,7 +161,7 @@ paths:
         default:
           description: unexpected response  
 
-  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
+  /projects/{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
     get:
       summary: list users documents
       description: list users documents for a collection
