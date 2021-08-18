@@ -34,6 +34,19 @@ paths:
           name: updateMask.fieldPaths
           type: string
           required: false
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              fields:
+                type: object
+                properties:
+                  textField:
+                    type: object
+                    properties:
+                      stringValue:
+                        type: string
       responses:
         '200':
           description: OK
