@@ -35,7 +35,7 @@ paths:
           type: string
           required: false
       responses:
-        '201':
+        '200':
           description: OK
           schema:
             type: object
@@ -155,7 +155,7 @@ paths:
           type: string
           required: true
       responses:
-        '204':
+        '200':
           description: OK
           
         default:
