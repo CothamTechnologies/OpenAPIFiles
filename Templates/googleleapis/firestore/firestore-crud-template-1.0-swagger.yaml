@@ -11,7 +11,7 @@ schemes:
 
 paths:
 
-  /{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}/{documentId}:
+  /{documentId}:
 
     patch:
       summary: update users document
@@ -24,22 +24,6 @@ paths:
         - in: header
           name: Authorization
           description: bearer token
-          type: string
-        - in: path
-          name: projectID
-          description: firebase app project projectID
-          type: string
-          required: true
-        - in: path
-          name: collectionId
-          type: string
-          required: true
-        - in: path
-          name: userId
-          type: string
-          required: true
-        - in: path
-          name: subcollectionId
           type: string
           required: true
         - in: path
@@ -101,23 +85,6 @@ paths:
           name: Authorization
           description: bearer token
           type: string
-        - in: path
-          name: projectID
-          description: firebase app project projectID
-          type: string
-          required: true
-        - in: path
-          name: collectionId
-          type: string
-          required: true
-        - in: path
-          name: userId
-          type: string
-          required: true
-        - in: path
-          name: subcollectionId
-          type: string
-          required: true
         - in: path
           name: documentId
           type: string
@@ -183,23 +150,6 @@ paths:
           name: Authorization
           description: bearer token
           type: string
-        - in: path
-          name: projectID
-          description: firebase app project projectID
-          type: string
-          required: true
-        - in: path
-          name: collectionId
-          type: string
-          required: true
-        - in: path
-          name: userId
-          type: string
-          required: true
-        - in: path
-          name: subcollectionId
-          type: string
-          required: true
         - in: path
           name: documentId
           type: string
