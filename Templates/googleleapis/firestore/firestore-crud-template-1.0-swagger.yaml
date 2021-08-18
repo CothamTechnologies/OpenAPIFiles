@@ -46,6 +46,10 @@ paths:
           name: documentId
           type: string
           required: true
+        - in: query
+          name: updateMask.fieldPaths
+          type: string
+          required: false
       responses:
         '201':
           description: OK
