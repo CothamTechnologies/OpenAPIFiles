@@ -1,0 +1,323 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Google Firestore CRUD Template'
+  description: ''
+host: firestore.googleapis.com
+basePath: /v1
+schemes: 
+  - https
+
+
+paths:
+
+  /{documentId}:
+
+    patch:
+      summary: update users document
+      description: update users document with id
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+          required: true
+        - in: path
+          name: documentId
+          type: string
+          required: true
+        - in: query
+          name: updateMask.fieldPaths
+          type: string
+          required: false
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              fields:
+                type: object
+                properties:
+                  textField:
+                    type: object
+                    properties:
+                      stringValue:
+                        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: 
+              name: 
+                type: string
+              fields:
+                type: object
+                properties:
+                  booleanField:
+                    type: object
+                    properties:
+                      booleanValue:
+                        type: string
+                  floatField:
+                    type: object
+                    properties:
+                      doubleValue:
+                        type: string
+                  textField:
+                    type: object
+                    properties:
+                      stringValue:
+                        type: string
+                  integerField:
+                    type: object
+                    properties:
+                      integerValue:
+                        type: string
+              createTime: 
+                type: string
+              updateTime: 
+                type: string
+          
+        default:
+          description: unexpected response 
+
+    get:
+      summary: get users document
+      description: getusers document with id
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: documentId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: 
+              name: 
+                type: string
+              fields:
+                type: object
+                properties:
+                  timestampField:
+                    type: object
+                    properties:
+                      timestampValue:
+                        type: string
+                  bytesField:
+                    type: object
+                    properties:
+                      bytesValue:
+                        type: string
+                  booleanField:
+                    type: object
+                    properties:
+                      booleanValue:
+                        type: string
+                  floatField:
+                    type: object
+                    properties:
+                      doubleValue:
+                        type: string
+                  textField:
+                    type: object
+                    properties:
+                      stringValue:
+                        type: string
+                  integerField:
+                    type: object
+                    properties:
+                      integerValue:
+                        type: string
+              createTime: 
+                type: string
+              updateTime: 
+                type: string
+          
+        default:
+          description: unexpected response  
+
+    delete:
+      summary: delete users document
+      description: delete users document from a collection
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: documentId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          
+        default:
+          description: unexpected response  
+
+  /projects/{projectID}/databases/(default)/documents/{collectionId}/{userId}/{subcollectionId}:
+    get:
+      summary: list users documents
+      description: list users documents for a collection
+      tags: 
+        - documents
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: projectID
+          description: firebase app project projectID
+          type: string
+          required: true
+        - in: path
+          name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              documents: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    fields:
+                      type: object
+                      properties:
+                        booleanField:
+                          type: object
+                          properties:
+                            booleanValue:
+                              type: string
+                        floatField:
+                          type: object
+                          properties:
+                            doubleValue:
+                              type: string
+                        textField:
+                          type: object
+                          properties:
+                            stringValue:
+                              type: string
+                        integerField:
+                          type: object
+                          properties:
+                            integerValue:
+                              type: string
+                    createTime: 
+                      type: string
+                    updateTime: 
+                      type: string
+        default:
+          description: unexpected response  
+
+    post:
+      summary: add users document 
+      description: add users document to a collection
+      tags: 
+        - documents
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - in: path
+          name: projectID
+          description: firebase app project projectID
+          type: string
+          required: true
+        - in: path
+          name: collectionId
+          type: string
+          required: true
+        - in: path
+          name: userId
+          type: string
+          required: true
+        - in: path
+          name: subcollectionId
+          type: string
+          required: true
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              fields:
+                type: object
+                properties:
+                  textField:
+                    type: object
+                    properties:
+                      stringValue:
+                        type: string
+
+      responses:
+        '201':
+          description: OK
+          schema:
+            type: object
+            properties:
+              name: 
+                type: string
+              fields: 
+                type: object
+                properties: 
+                  status: 
+                    type: object
+                    properties: 
+                      stringValue: 
+                        type: string
+                  title: 
+                    type: object
+                    properties: 
+                      stringValue: 
+                        type: string
+              createTime: 
+                type: string
+              updateTime: 
+                type: string
+
+        default:
+          description: unexpected response  
+    
