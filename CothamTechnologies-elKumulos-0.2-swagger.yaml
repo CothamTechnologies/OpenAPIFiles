@@ -4669,8 +4669,8 @@ paths:
 
   /owValidateMakeOwnerBooking.json/:
     post:
-      summary: GetBookings
-      description: Get details of bookings in a date range
+      summary: ValidateMakeOwnerBooking
+      description: ValidateMakeOwnerBooking
       tags:
         - 1. Elite Owner App
       consumes:
