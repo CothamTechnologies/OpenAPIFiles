@@ -2979,6 +2979,14 @@ paths:
                         type: boolean
                       IsAllowCreateLead:
                         type: boolean
+                      IsAllowMakeBookings:
+                        type: boolean
+                      IsAllowViewBookings:
+                        type: boolean
+                      IsAllowCancelBookings:
+                        type: boolean
+                      IsAllowPrintSubletBooking:
+                        type: boolean
 
               sessionToken:
                 type: string
