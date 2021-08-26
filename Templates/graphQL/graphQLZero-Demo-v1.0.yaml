@@ -191,9 +191,9 @@ paths:
                         type: object
                         properties: 
                           page:
-                            type: number
+                            type: integer
                           limit:
-                            type: number
+                            type: integer
 
       responses:
         200:
@@ -217,7 +217,7 @@ paths:
                     type: object
                     properties: 
                       totalCount:
-                        type: number
+                        type: integer
                         
                 
         default:
