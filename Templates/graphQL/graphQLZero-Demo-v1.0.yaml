@@ -26,9 +26,8 @@ paths:
         - name: dummyA
           in: path
           type: string
-          description: Hack for multiple endoints graphql - pass /
+          description: do not use - Hack for multiple endoints graphql 
           required: true
-          default: /
         - name: token
           in: header
           type: string
@@ -90,9 +89,8 @@ paths:
         - name: dummyB
           in: path
           type: string
-          description: Hack for multiple endoints graphql - pass /
+          description: do not use - Hack for multiple endoints graphql 
           required: true
-          default: /
         - name: token
           in: header
           type: string
@@ -142,4 +140,79 @@ paths:
         default:
           description: Failed Server Response
 
-  
+  /api{dummyC}:
+    post:
+      summary: List posts
+      description: List posts
+      tags:
+        - 1. Query
+      consumes:
+        - application/json
+      produces:
+        - application/json  
+      parameters:
+        - name: dummyC
+          in: path
+          type: string
+          description: do not use - Hack for multiple endoints graphql 
+          required: true
+        - name: token
+          in: header
+          type: string
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+                default: 'query {
+                            post(id: 1) {
+                              id
+                              title
+                              body
+                            }
+                          }'
+              variables:
+                type: object
+                properties:
+                  options:
+                    type: object
+                    properties: 
+                      paginate:
+                        type: object
+                        properties: 
+                          page:
+                            type: number
+                          limit:
+                            type: number
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              posts:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object 
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string 
+                  meta:
+                    type: object
+                    properties: 
+                      totalCount:
+                        type: number
+                        
+                
+        default:
+          description: Failed Server Response
