@@ -168,11 +168,17 @@ paths:
             properties:
               query:
                 type: string
-                default: 'query {
-                            post(id: 1) {
-                              id
-                              title
-                              body
+                default: 'query (
+                            $options: PageQueryOptions
+                          ) {
+                            posts(options: $options) {
+                              data {
+                                id
+                                title
+                              }
+                              meta {
+                                totalCount
+                              }
                             }
                           }'
               variables:
