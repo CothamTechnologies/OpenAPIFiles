@@ -2979,6 +2979,14 @@ paths:
                         type: boolean
                       IsAllowCreateLead:
                         type: boolean
+                      IsAllowMakeBookings:
+                        type: boolean
+                      IsAllowViewBookings:
+                        type: boolean
+                      IsAllowCancelBookings:
+                        type: boolean
+                      IsAllowPrintSubletBooking:
+                        type: boolean
 
               sessionToken:
                 type: string
@@ -4724,6 +4732,162 @@ paths:
                   IsConfirmRequried:
                     type: boolean
                   ConfirmationMessage:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+  /owMakeOwnerBooking.json/:
+    post:
+      summary: MakeOwnerBooking
+      description: MakeOwnerBooking
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[arrivalDate]
+          type: string
+          description: arrivalDate
+          required: true
+        - in: formData
+          name: params[departureDate]
+          type: string
+          description: departureDate
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+                  BookingNo:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
+
+  /owPrintSubletStatement.json/:
+    post:
+      summary: PrintSubletStatement
+      description: PrintSubletStatement
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+        - in: formData
+          name: params[toDate]
+          type: string
+          description: toDate
+          required: true
+        - in: formData
+          name: params[fromDate]
+          type: string
+          description: fromDate
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  IsError:
+                    type: boolean
+                  ErrorCode:
+                    type: string
+                  ErrorMessage:
+                    type: string
+                  DocumentName:
+                    type: string
+                  Base64PDF:
                     type: string
               sessionToken:
                 type: string
