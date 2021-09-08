@@ -4939,6 +4939,7 @@ paths:
           type: string
           description: currency
           required: true
+        - in: formData
           name: params[transactionType]
           type: string
           description: transactionType
