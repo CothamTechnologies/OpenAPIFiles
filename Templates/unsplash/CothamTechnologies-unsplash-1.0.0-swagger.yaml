@@ -12,10 +12,14 @@ schemes:
 
 paths:
   
-  /collections/featured:
+  /topics/{id}/photos:
     get:
-      description: list featured collections
+      description: list topicphotos
       parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
         - name: client_id
           type: string
           in: query
@@ -31,6 +35,18 @@ paths:
           required: false
           description: |
             Number of items per page. (Optional; default: 10)
+        - name: orientation
+          type: string
+          in: query
+          required: false
+          description: |
+            Filter by photo orientation. (Optional; Valid values: landscape, portrait, squarish)
+        - name: order_by
+          type: string
+          in: query
+          required: false
+          description: |
+            How to sort the topics. (Optional; Valid values: featured, latest, oldest, position; default: position)
       
       responses:
         200:
@@ -41,113 +57,30 @@ paths:
               type: object
               properties: 
                 id: 
-                  type: number
-                title: 
                   type: string
-                description: 
-                  type: string
-                published_at: 
+                created_at: 
                   type: string
                   format: date-time
                 updated_at: 
                   type: string
                   format: date-time
-                total_photos: 
+                width: 
                   type: number
-                private: 
-                  type: boolean
-                share_key: 
+                height: 
+                  type: number
+                color: 
                   type: string
-                cover_photo: 
-                  type: object
-                  properties: 
-                    id: 
-                      type: string
-                    width: 
-                      type: number
-                    height: 
-                      type: number
-                    color: 
-                      type: string
-                    likes: 
-                      type: number
-                    liked_by_user: 
-                      type: boolean
-                    description: 
-                      type: string
-                    user: 
-                      type: object
-                      properties: 
-                        id: 
-                          type: string
-                        username: 
-                          type: string
-                        name: 
-                          type: string
-                        portfolio_url: 
-                          type: string
-                        bio: 
-                          type: string
-                        location: 
-                          type: string
-                        total_likes: 
-                          type: number
-                        total_photos: 
-                          type: number
-                        total_collections: 
-                          type: number
-                        profile_image: 
-                          type: object
-                          properties: 
-                            small: 
-                              type: string
-                            medium: 
-                              type: string
-                            large: 
-                              type: string
-                        links: 
-                          type: object
-                          properties: 
-                            self: 
-                              type: string
-                            html: 
-                              type: string
-                            photos: 
-                              type: string
-                            likes: 
-                              type: string
-                            portfolio: 
-                              type: string
-                    urls: 
-                      type: object
-                      properties: 
-                        raw: 
-                          type: string
-                        full: 
-                          type: string
-                        regular: 
-                          type: string
-                        small: 
-                          type: string
-                        thumb: 
-                          type: string
-                    links: 
-                      type: object
-                      properties: 
-                        self: 
-                          type: string
-                        html: 
-                          type: string
-                        download: 
-                          type: string
+                likes: 
+                  type: number
+                liked_by_user: 
+                  type: boolean
+                description: 
+                  type: string
                 user: 
                   type: object
                   properties: 
                     id: 
                       type: string
-                    updated_at: 
-                      type: string
-                      format: date-time
                     username: 
                       type: string
                     name: 
@@ -164,6 +97,10 @@ paths:
                       type: number
                     total_collections: 
                       type: number
+                    instagram_username: 
+                      type: string
+                    twitter_username: 
+                      type: string
                     profile_image: 
                       type: object
                       properties: 
@@ -186,6 +123,121 @@ paths:
                           type: string
                         portfolio: 
                           type: string
+                current_user_collections: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: number
+                      title: 
+                        type: string
+                      published_at: 
+                        type: string
+                        format: date-time
+                      updated_at: 
+                        type: string
+                        format: date-time
+                      cover_photo: 
+                        type: string
+                        format: nullable
+                      user: 
+                        type: string
+                        format: nullable
+                urls: 
+                  type: object
+                  properties: 
+                    raw: 
+                      type: string
+                    full: 
+                      type: string
+                    regular: 
+                      type: string
+                    small: 
+                      type: string
+                    thumb: 
+                      type: string
+                links: 
+                  type: object
+                  properties: 
+                    self: 
+                      type: string
+                    html: 
+                      type: string
+                    download: 
+                      type: string
+                    download_location: 
+                      type: string
+
+
+        default:
+          description: error
+
+  /topics:
+    get:
+      description: list topics
+      parameters:
+        - name: ids
+          type: string
+          in: query
+          required: true
+        - name: client_id
+          type: string
+          in: query
+        - name: page
+          type: integer
+          in: query
+          required: false
+          description: |
+            Page number to retrieve. (Optional, default: 1)
+        - name: per_page
+          type: integer
+          in: query
+          required: false
+          description: |
+            Number of items per page. (Optional; default: 10)
+        - name: order_by
+          type: string
+          in: query
+          required: false
+          description: |
+            How to sort the topics. (Optional; Valid values: featured, latest, oldest, position; default: position)
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties: 
+                id: 
+                  type: string
+                slug: 
+                  type: string
+                title: 
+                  type: string
+                description: 
+                  type: string
+                published_at: 
+                  type: string
+                  format: date-time
+                updated_at: 
+                  type: string
+                  format: date-time
+                starts_at: 
+                  type: string
+                  format: date-time
+                ends_at: 
+                  type: string
+                  format: nullable
+                only_submissions_after: 
+                  type: string
+                  format: nullable
+                featured: 
+                  type: boolean
+                total_photos: 
+                  type: number
                 links: 
                   type: object
                   properties: 
@@ -195,11 +247,214 @@ paths:
                       type: string
                     photos: 
                       type: string
-                    related: 
+                status: 
+                  type: string
+                owners: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      id: 
+                        type: string
+                      updated_at: 
+                        type: string
+                        format: date-time
+                      username: 
+                        type: string
+                      name: 
+                        type: string
+                      first_name: 
+                        type: string
+                      last_name: 
+                        type: string
+                        format: nullable
+                      twitter_username: 
+                        type: string
+                      portfolio_url: 
+                        type: string
+                      bio: 
+                        type: string
+                      location: 
+                        type: string
+                      links: 
+                        type: object
+                        properties: 
+                          self: 
+                            type: string
+                          html: 
+                            type: string
+                          photos: 
+                            type: string
+                          likes: 
+                            type: string
+                          portfolio: 
+                            type: string
+                          following: 
+                            type: string
+                          followers: 
+                            type: string
+                      profile_image: 
+                        type: object
+                        properties: 
+                          small: 
+                            type: string
+                          medium: 
+                            type: string
+                          large: 
+                            type: string
+                      instagram_username: 
+                        type: string
+                      total_collections: 
+                        type: number
+                      total_likes: 
+                        type: number
+                      total_photos: 
+                        type: number
+                      accepted_tos: 
+                        type: boolean
+                cover_photo: 
+                  type: object
+                  properties: 
+                    id: 
                       type: string
+                    created_at: 
+                      type: string
+                      format: date-time
+                    updated_at: 
+                      type: string
+                      format: date-time
+                    promoted_at: 
+                      type: string
+                      format: nullable
+                    width: 
+                      type: number
+                    height: 
+                      type: number
+                    color: 
+                      type: string
+                    blur_hash: 
+                      type: string
+                    description: 
+                      type: string
+                    alt_description: 
+                      type: string
+                    urls: 
+                      type: object
+                      properties: 
+                        raw: 
+                          type: string
+                        full: 
+                          type: string
+                        regular: 
+                          type: string
+                        small: 
+                          type: string
+                        thumb: 
+                          type: string
+                    links: 
+                      type: object
+                      properties: 
+                        self: 
+                          type: string
+                        html: 
+                          type: string
+                        download: 
+                          type: string
+                        download_location: 
+                          type: string
+                    user: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        updated_at: 
+                          type: string
+                          format: date-time
+                        username: 
+                          type: string
+                        name: 
+                          type: string
+                        first_name: 
+                          type: string
+                        last_name: 
+                          type: string
+                          format: nullable
+                        twitter_username: 
+                          type: string
+                        portfolio_url: 
+                          type: string
+                        bio: 
+                          type: string
+                        location: 
+                          type: string
+                        links: 
+                          type: object
+                          properties: 
+                            self: 
+                              type: string
+                            html: 
+                              type: string
+                            photos: 
+                              type: string
+                            likes: 
+                              type: string
+                            portfolio: 
+                              type: string
+                            following: 
+                              type: string
+                            followers: 
+                              type: string
+                        profile_image: 
+                          type: object
+                          properties: 
+                            small: 
+                              type: string
+                            medium: 
+                              type: string
+                            large: 
+                              type: string
+                        instagram_username: 
+                          type: string
+                        total_collections: 
+                          type: number
+                        total_likes: 
+                          type: number
+                        total_photos: 
+                          type: number
+                        accepted_tos: 
+                          type: boolean
+                    preview_photos: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          id: 
+                            type: string
+                          created_at: 
+                            type: string
+                            format: date-time
+                          updated_at: 
+                            type: string
+                            format: date-time
+                          urls: 
+                            type: object
+                            properties: 
+                              raw: 
+                                type: string
+                              full: 
+                                type: string
+                              regular: 
+                                type: string
+                              small: 
+                                type: string
+                              thumb: 
+                                type: string
+
+
 
         default:
           description: error
+  
   
   /collections/{id}/photos:
     get:

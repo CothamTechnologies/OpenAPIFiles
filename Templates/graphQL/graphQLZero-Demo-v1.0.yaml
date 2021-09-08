@@ -1,0 +1,224 @@
+swagger: '2.0'
+
+info:
+  version: "1.0"
+  title: 'GraphQLZero Template for FloPro'
+  description: 'GraphQL Template for FloPro from https://graphqlzero.almansi.me'
+
+host: graphqlzero.almansi.me
+
+schemes:
+  - https
+
+paths:
+
+  /api{dummyA}:
+    post:
+      summary: Get single post
+      description: get single post
+      tags:
+        - 1. Query
+      consumes:
+        - application/json
+      produces:
+        - application/json  
+      parameters:
+        - name: dummyA
+          in: path
+          type: string
+          description: do not use - Hack for multiple endoints graphql 
+          required: true
+        - name: token
+          in: header
+          type: string
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+                default: 'query ($id: ID!){
+                            post(id: $id) {
+                              id
+                              title
+                              body
+                            }
+                          }'
+              variables:
+                type: object
+                properties:
+                  id:
+                    type: integer  
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      title:
+                        type: string 
+                      body:
+                        type: string
+                
+        default:
+          description: Failed Server Response
+
+  /api{dummyB}:
+    post:
+      summary: Update Single Post
+      description: Update Single Post
+      tags:
+        - 2. Mutation
+      consumes:
+        - application/json
+      produces:
+        - application/json  
+      parameters:
+        - name: dummyB
+          in: path
+          type: string
+          description: do not use - Hack for multiple endoints graphql 
+          required: true
+        - name: token
+          in: header
+          type: string
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+                default: 'mutation ( $id: ID!, $input: UpdatePostInput!) {
+                              updatePost(id: $id, input: $input) {
+                                id
+                                body
+                              }
+                            }'
+              variables:
+                type: object
+                properties:
+                  id:
+                    type: integer  
+                  input: 
+                    type: object
+                    properties:
+                      body:
+                        type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  updatePost:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      body:
+                        type: string
+                
+        default:
+          description: Failed Server Response
+
+  /api{dummyC}:
+    post:
+      summary: List posts
+      description: List posts
+      tags:
+        - 1. Query
+      consumes:
+        - application/json
+      produces:
+        - application/json  
+      parameters:
+        - name: dummyC
+          in: path
+          type: string
+          description: do not use - Hack for multiple endoints graphql 
+          required: true
+        - name: token
+          in: header
+          type: string
+        - in: body
+          name: body
+          description: graphQL Query JSON
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+                default: 'query (
+                            $options: PageQueryOptions
+                          ) {
+                            posts(options: $options) {
+                              data {
+                                id
+                                title
+                              }
+                              meta {
+                                totalCount
+                              }
+                            }
+                          }'
+              variables:
+                type: object
+                properties:
+                  options:
+                    type: object
+                    properties: 
+                      paginate:
+                        type: object
+                        properties: 
+                          page:
+                            type: integer
+                          limit:
+                            type: integer
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              posts:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object 
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string 
+                  meta:
+                    type: object
+                    properties: 
+                      totalCount:
+                        type: integer
+                        
+                
+        default:
+          description: Failed Server Response
