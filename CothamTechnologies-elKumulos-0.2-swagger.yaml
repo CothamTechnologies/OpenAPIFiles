@@ -4909,3 +4909,81 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /op_StartTransfer.json/:
+    post:
+      summary: Generate Open Payment request token
+      description: Creates request token and generates starting URL for payment journey
+      tags:
+        - 2. Open Payments Integration
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[clientIdentifier]
+          type: string
+          description: clientIdentifier
+          required: true
+        - in: formData
+          name: params[amount]
+          type: string
+          description: Amount to be charged
+          required: true
+        - in: formData
+          name: params[currency]
+          type: string
+          description: currency
+          required: true
+          name: params[transactionType]
+          type: string
+          description: transactionType
+          required: true
+        - in: formData
+          name: params[customerNo]
+          type: string
+          description: customerNo
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  refId:
+                    type: string
+                  url:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: string
+
+        default:
+          description: Failed Server Response
