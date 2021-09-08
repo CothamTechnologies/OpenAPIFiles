@@ -4967,7 +4967,7 @@ paths:
                     type: string
                   refId:
                     type: string
-                  url:
+                  redirect_url:
                     type: string
               sessionToken:
                 type: string
