@@ -59,6 +59,8 @@ paths:
                           type: string
                         ASSETNUM: 
                           type: string
+                        LOCATION: 
+                          type: string
                         PURCHASEPRICE: 
                           type: number
                         REPLACECOST: 
@@ -108,6 +110,8 @@ paths:
                         MOVEDBY: 
                           type: string
                         NEWSITE: 
+                          type: string
+                        NEWLOCATION: 
                           type: string
                         STATUS: 
                           type: string
