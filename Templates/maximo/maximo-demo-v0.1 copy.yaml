@@ -32,7 +32,33 @@ paths:
         - name: siteid
           type: string
           in: query
-        
+        - name: oslc.where
+          type: string
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.pageSize
+          type: string
+          in: query
+        - name: oslc.paging
+          type: string
+          in: query
+        - name: oslc.searchTerms
+          type: string
+          in: query
+        - name: opmodeor
+          type: string
+          in: query
+        - name: lean
+          type: string
+          in: query
+        - name: maxAuth
+          type: string
+          in: query
         
       
       responses:
@@ -117,13 +143,31 @@ paths:
         - name: assetnum
           type: string
           in: query
-        - name: location
+        - name: oslc.where
           type: string
           in: query
-        - name: newlocation
+        - name: oslc.select
           type: string
           in: query
-        - name: newsite
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.pageSize
+          type: string
+          in: query
+        - name: oslc.paging
+          type: string
+          in: query
+        - name: oslc.searchTerms
+          type: string
+          in: query
+        - name: opmodeor
+          type: string
+          in: query
+        - name: lean
+          type: string
+          in: query
+        - name: maxAuth
           type: string
           in: query
         
