@@ -13,6 +13,118 @@ schemes:
 
 paths:
 
+  /locations:
+    get:
+      description: get locations
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: _compact
+          type: string
+          in: query
+        - name: _format
+          type: string
+          in: query
+        - name: siteid
+          type: string
+          in: query
+        - name: location
+          type: string
+          in: query
+        
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties: 
+              LOCATIONSMboSet: 
+                type: object
+                properties: 
+                  rsStart: 
+                    type: number
+                  rsCount: 
+                    type: number
+                  LOCATIONS: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        rowstamp: 
+                          type: string
+                        LOCATION: 
+                          type: string
+                        DESCRIPTION: 
+                          type: string
+                        TYPE: 
+                          type: string
+                        CHANGEBY: 
+                          type: string
+                        CHANGEDATE: 
+                          type: string
+                          format: date-time
+                        DISABLED: 
+                          type: boolean
+                        SITEID: 
+                          type: string
+                        ORGID: 
+                          type: string
+                        ISDEFAULT: 
+                          type: boolean
+                        CHILDREN: 
+                          type: boolean
+                        STATUS: 
+                          type: string
+                        LOCATIONSID: 
+                          type: number
+                        HASCHILDREN: 
+                          type: boolean
+                        HASPARENT: 
+                          type: boolean
+                        OBJECTNAME: 
+                          type: string
+                        USEINPOPR: 
+                          type: boolean
+                        LANGCODE: 
+                          type: string
+                        ADDTOSTORESITEID: 
+                          type: string
+                        HASLD: 
+                          type: boolean
+                        AUTOWOGEN: 
+                          type: boolean
+                        STATUSIFACE: 
+                          type: boolean
+                        STATUSDATE: 
+                          type: string
+                          format: date-time
+                        ISREPAIRFACILITY: 
+                          type: boolean
+                        PLUSCLOOP: 
+                          type: boolean
+                        PLUSCPMEXTDATE: 
+                          type: boolean
+                        SHOWFROMDATE: 
+                          type: string
+                          format: date-time
+                        ASSIGNED: 
+                          type: boolean
+                        EXPECTEDLIFE: 
+                          type: number
+                        REPLACECOST: 
+                          type: number
+                        PLUSSISGIS: 
+                          type: boolean
+
+
+        default:
+          description: error
+
   /site:
     get:
       description: get sites
