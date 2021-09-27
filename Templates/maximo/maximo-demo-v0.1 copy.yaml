@@ -1,0 +1,328 @@
+swagger: '2.0'
+
+info:
+  version: "0.1"
+  title: Maximo Demo
+
+host: russ-mckay.dyndns.org
+basePath: /maxrest/rest/mbo
+
+schemes:
+  - http
+
+
+paths:
+
+  /site:
+    get:
+      description: get sites
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: _compact
+          type: string
+          in: query
+        - name: _format
+          type: string
+          in: query
+        - name: siteid
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.pageSize
+          type: string
+          in: query
+        - name: oslc.paging
+          type: string
+          in: query
+        - name: oslc.searchTerms
+          type: string
+          in: query
+        - name: opmodeor
+          type: string
+          in: query
+        - name: lean
+          type: string
+          in: query
+        - name: maxAuth
+          type: string
+          in: query
+        
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties: 
+              SITEMboSet: 
+                type: object
+                properties: 
+                  rsStart: 
+                    type: number
+                  rsCount: 
+                    type: number
+                  SITE: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        rowstamp: 
+                          type: string
+                        SITEID: 
+                          type: string
+                        DESCRIPTION: 
+                          type: string
+                        ENTERBY: 
+                          type: string
+                        ENTERDATE: 
+                          type: string
+                          format: date-time
+                        CHANGEBY: 
+                          type: string
+                        CHANGEDATE: 
+                          type: string
+                          format: date-time
+                        ORGID: 
+                          type: string
+                        ACTIVE: 
+                          type: boolean
+                        SITEUID: 
+                          type: number
+                        CONTACT: 
+                          type: string
+                        LANGCODE: 
+                          type: string
+                        HASLD: 
+                          type: boolean
+                        SYSTEMID: 
+                          type: string
+                        SYSTEMDESC: 
+                          type: string
+                        LOCATION: 
+                          type: string
+                        LOCATIONDESC: 
+                          type: string
+
+
+
+        default:
+          description: error
+  
+  /asset:
+    get:
+      description: get assets
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: _compact
+          type: string
+          in: query
+        - name: _format
+          type: string
+          in: query
+        - name: siteid
+          type: string
+          in: query
+        - name: assetnum
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.pageSize
+          type: string
+          in: query
+        - name: oslc.paging
+          type: string
+          in: query
+        - name: oslc.searchTerms
+          type: string
+          in: query
+        - name: opmodeor
+          type: string
+          in: query
+        - name: lean
+          type: string
+          in: query
+        - name: maxAuth
+          type: string
+          in: query
+        
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties: 
+              ASSETMboSet: 
+                type: object
+                properties: 
+                  rsStart: 
+                    type: number
+                  rsCount: 
+                    type: number
+                  ASSET: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        rowstamp: 
+                          type: string
+                        ASSETNUM: 
+                          type: string
+                        LOCATION: 
+                          type: string
+                        PURCHASEPRICE: 
+                          type: number
+                        REPLACECOST: 
+                          type: number
+                        INSTALLDATE: 
+                          type: string
+                          format: date-time
+                        TOTALCOST: 
+                          type: number
+                        YTDCOST: 
+                          type: number
+                        BUDGETCOST: 
+                          type: number
+                        ISRUNNING: 
+                          type: boolean
+                        UNCHARGEDCOST: 
+                          type: number
+                        TOTUNCHARGEDCOST: 
+                          type: number
+                        TOTDOWNTIME: 
+                          type: number
+                        STATUSDATE: 
+                          type: string
+                          format: date-time
+                        CHANGEDATE: 
+                          type: string
+                          format: date-time
+                        CHANGEBY: 
+                          type: string
+                        INVCOST: 
+                          type: number
+                        CHILDREN: 
+                          type: boolean
+                        DISABLED: 
+                          type: boolean
+                        SITEID: 
+                          type: string
+                        ORGID: 
+                          type: string
+                        AUTOWOGEN: 
+                          type: boolean
+                        ADDTOSTORE: 
+                          type: boolean
+                        MOVEDATE: 
+                          type: string
+                          format: date-time
+                        MOVEDBY: 
+                          type: string
+                        NEWSITE: 
+                          type: string
+                        NEWLOCATION: 
+                          type: string
+                        STATUS: 
+                          type: string
+                        MAINTHIERCHY: 
+                          type: boolean
+                        ASSETID: 
+                          type: number
+                        MOVED: 
+                          type: boolean
+                        NEWASSETNUM: 
+                          type: string
+                        ASSETUID: 
+                          type: number
+                        NEWSTATUS: 
+                          type: string
+                        HASCHILDREN: 
+                          type: boolean
+                        HASPARENT: 
+                          type: boolean
+                        OBJECTNAME: 
+                          type: string
+                        LANGCODE: 
+                          type: string
+                        REPLACEASSETSITE: 
+                          type: string
+                        HASLD: 
+                          type: boolean
+                        ISLINEAR: 
+                          type: boolean
+                        STATUSIFACE: 
+                          type: boolean
+                        ASOFDATE: 
+                          type: string
+                          format: date-time
+                        FROMMEASURE: 
+                          type: number
+                        TOMEASURE: 
+                          type: number
+                        ROLLTOALLCHILDREN: 
+                          type: boolean
+                        REMOVEFROMACTIVEROUTES: 
+                          type: boolean
+                        REMOVEFROMACTIVESP: 
+                          type: boolean
+                        CHANGEPMSTATUS: 
+                          type: boolean
+                        NEWORGID: 
+                          type: string
+                        RETURNEDTOVENDOR: 
+                          type: boolean
+                        RELATIONSHIPFILTERBY: 
+                          type: string
+                        TLOAMPARTITION: 
+                          type: boolean
+                        PLUSCISCONTAM: 
+                          type: boolean
+                        PLUSCISINHOUSECAL: 
+                          type: boolean
+                        PLUSCISMTE: 
+                          type: boolean
+                        PLUSCPMEXTDATE: 
+                          type: boolean
+                        PLUSCSOLUTION: 
+                          type: boolean
+                        ISCALIBRATION: 
+                          type: boolean
+                        TEMPLATEID: 
+                          type: string
+                        SHOWFROMDATE: 
+                          type: string
+                          format: date-time
+                        EXPECTEDLIFE: 
+                          type: number
+                        PLUSSISGIS: 
+                          type: boolean
+
+
+        default:
+          description: error
