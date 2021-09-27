@@ -1,8 +1,8 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  version: "0.2"
-  title: "ELKUMULOS"
-  description: "ELKUMULOS"
+  version: '0.2'
+  title: 'ELKUMULOS'
+  description: 'ELKUMULOS'
 
 host: api.kumulos.com
 basePath: /b2.2/5b95bd4f-1ea1-4e20-9222-26a19bd19bdd
@@ -4968,6 +4968,66 @@ paths:
                   refId:
                     type: string
                   redirect_url:
+                    type: string
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: time
+              requestReceivedTime:
+                type: string
+                format: time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: string
+
+        default:
+          description: Failed Server Response
+
+  /op_RegisterTransaction.json/:
+    post:
+      summary: Registers OP transfer ID
+      description: Aloows us to track a particular payment transfer
+      tags:
+        - 2. Open Payments Integration
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[jwt]
+          type: string
+          description: jwt
+          required: true
+        - in: formData
+          name: params[request_id]
+          type: string
+          description: request_id
+          required: true
+        - in: formData
+          name: params[transfer_id]
+          type: string
+          description: transfer_id
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  status:
                     type: string
               sessionToken:
                 type: string
