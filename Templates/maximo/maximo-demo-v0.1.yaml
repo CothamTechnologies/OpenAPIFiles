@@ -264,6 +264,8 @@ paths:
                           type: string
                         LOCATION: 
                           type: string
+                        DESCRIPTION: 
+                          type: string
                         PURCHASEPRICE: 
                           type: number
                         REPLACECOST: 
