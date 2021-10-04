@@ -5048,3 +5048,52 @@ paths:
 
         default:
           description: Failed Server Response
+
+  /op_EmptyBasketCollection.json/:
+    post:
+      summary: Empty a basket or collection
+      description: Empties the relevant collective based upon supplied transfer request ID
+      tags:
+        - 1. Elite Owner App
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: params[requestID]
+          type: string
+          description: requestID
+          required: true
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                description: The number of line items removed
+                type: integer
+              sessionToken:
+                type: string
+              requestedMethod:
+                type: string
+              requestedFormat:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              requestReceivedTime:
+                type: string
+                format: date-time
+              maxAllowedRequestTime:
+                type: integer
+              requestProcessingTime:
+                type: number
+                format: double
+
+        default:
+          description: Failed Server Response
