@@ -1,0 +1,218 @@
+# FloPro Swagger Template for Kumulos JSON RPC API Interface
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Swagger Generation 
+  description: Swagger Generation 
+
+host: api.kumulos.com
+basePath: /b2.2/58f128a7-3f4e-449b-81b7-64def90bfda7
+
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+security:
+  - basicAuth: []
+
+paths:
+
+  /swGetPathTemplate.json/:
+    post:
+      summary: swGetPathTemplate
+      description: swGetPathTemplate
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: header
+          name: dummy
+          type: string
+          description: dummy
+
+      responses:
+        200:
+          description: Success
+          schema: 
+            type: object
+            properties: 
+              responseCode: 
+                type: number
+              responseMessage: 
+                type: string
+              payload: 
+                type: object
+                properties: 
+                  path: 
+                    type: object
+                    properties: 
+                      pathFragment: 
+                        type: string
+                      method: 
+                        type: string
+                      methodEnum: 
+                        type: array
+                        items: 
+                          type: object
+                          properties: 
+                            option1: 
+                              type: string
+                      summary: 
+                        type: string
+                      description: 
+                        type: string
+                      produces: 
+                        type: string
+                      consumes: 
+                        type: string
+                      consumesEnum: 
+                        type: array
+                        items: 
+                          type: object
+                          properties: 
+                            option1: 
+                              type: string
+                      parameters: 
+                        type: object
+                        properties: 
+                          inPath: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                name: 
+                                  type: string
+                                value: 
+                                  type: string
+                          inQuery: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                name: 
+                                  type: string
+                                value: 
+                                  type: string
+                          inHeader: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                name: 
+                                  type: string
+                                value: 
+                                  type: string
+                          inForm: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                name: 
+                                  type: string
+                                value: 
+                                  type: string
+                          graphQLVariables: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                name: 
+                                  type: string
+                                value: 
+                                  type: string
+                          jsonBody: 
+                            type: string
+                          graphQLBody: 
+                            type: string
+              sessionToken: 
+                type: string
+              requestedMethod: 
+                type: string
+              requestedFormat: 
+                type: string
+              timestamp: 
+                type: number
+              requestReceivedTime: 
+                type: number
+              maxAllowedRequestTime: 
+                type: number
+              requestProcessingTime: 
+                type: number
+        default: 
+          description: Default Error Response
+
+  /swGetHeaderTemplate.json/:
+    post:
+      summary: swGetHeaderTemplate
+      description: swGetHeaderTemplate
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: header
+          name: dummy
+          type: string
+          description: dummy
+
+      responses:
+        200:
+          description: Success
+          schema: 
+            type: object
+            properties: 
+              responseCode: 
+                type: number
+              responseMessage: 
+                type: string
+              payload: 
+                type: object
+                properties: 
+                  swagger: 
+                    type: string
+                  info: 
+                    type: object
+                    properties: 
+                      version: 
+                        type: string
+                      title: 
+                        type: string
+                      description: 
+                        type: string
+                  host: 
+                    type: string
+                  basePath: 
+                    type: string
+                  scheme: 
+                    type: string
+                  schemesEnum: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        option1: 
+                          type: string
+                  securityType: 
+                    type: string
+                  securityEnum: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        option1: 
+                          type: string
+              sessionToken: 
+                type: string
+              requestedMethod: 
+                type: string
+              requestedFormat: 
+                type: string
+              timestamp: 
+                type: number
+              requestReceivedTime: 
+                type: number
+              maxAllowedRequestTime: 
+                type: number
+              requestProcessingTime: 
+                type: number
+        default: 
+          description: Default Error Response
