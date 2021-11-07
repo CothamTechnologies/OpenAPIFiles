@@ -73,7 +73,7 @@ paths:
                               type: string
                             securityType: 
                               type: string
-                            paths:
+                            pathList:
                               type: array
                               items: 
                                 type: object
