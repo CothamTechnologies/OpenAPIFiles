@@ -113,11 +113,11 @@ paths:
         - application/x-www-form-urlencoded
       parameters:
         - in: formData
-          name: param[name]
+          name: params[name]
           type: string
           description: name
         - in: formData
-          name: param[version]
+          name: params[version]
           type: string
           description: version
       responses: 
