@@ -19,6 +19,151 @@ security:
 
 paths:
 
+  /swGetConnections.json/:
+    post:
+      summary: swGetConnections
+      description: swGetConnections
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: header
+          name: dummy
+          type: string
+          description: dummy
+      responses:
+        200: 
+          description: Success
+          schema: 
+            type: object
+            properties: 
+              responseCode: 
+                type: number
+              responseMessage: 
+                type: string
+              payload: 
+                type: object
+                properties: 
+                  count: 
+                    type: number
+                  records: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        name: 
+                          type: string
+                        status: 
+                          type: string
+                        swaggerURL: 
+                          type: string
+                        data: 
+                          type: object
+                          properties: 
+                            connectionVersion: 
+                              type: string
+                            connectionName: 
+                              type: string
+                            connectionDescription: 
+                              type: string
+                            host: 
+                              type: string
+                            basePath: 
+                              type: string
+                            scheme: 
+                              type: string
+                            securityType: 
+                              type: string
+                            paths:
+                              type: array
+                              items: 
+                                type: object
+                                properties: 
+                                  pathFragment:
+                                    type: string
+                        version: 
+                          type: string
+                        swConnectionID: 
+                          type: string
+                        timeCreated: 
+                          type: string
+                        timeUpdated: 
+                          type: string
+              sessionToken: 
+                type: string
+              requestedMethod: 
+                type: string
+              requestedFormat: 
+                type: string
+              timestamp: 
+                type: number
+              requestReceivedTime: 
+                type: number
+              maxAllowedRequestTime: 
+                type: number
+              requestProcessingTime: 
+                type: number
+        default: 
+          description: Default Error Response
+
+  /swCreateConnection.json/:
+    post:
+      summary: swCreateConnection
+      description: swCreateConnection
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: formData
+          name: param[name]
+          type: string
+          description: name
+        - in: formData
+          name: param[version]
+          type: string
+          description: version
+      responses: 
+        200: 
+          description: Success
+          schema: 
+            type: object
+            properties: 
+              responseCode: 
+                type: number
+              responseMessage: 
+                type: string
+              payload: 
+                type: object
+                properties: 
+                  connectionVersion: 
+                    type: string
+                  connectionName: 
+                    type: string
+                  connectionDescription: 
+                    type: string
+                  host: 
+                    type: string
+                  basePath: 
+                    type: string
+                  scheme: 
+                    type: string
+                  securityType: 
+                    type: string
+              sessionToken: 
+                type: string
+              requestedMethod: 
+                type: string
+              requestedFormat: 
+                type: string
+              timestamp: 
+                type: number
+              requestReceivedTime: 
+                type: number
+              maxAllowedRequestTime: 
+                type: number
+              requestProcessingTime: 
+                type: number
+        default: 
+          description: Default Error Response
+
   /swGetPathTemplate.json/:
     post:
       summary: swGetPathTemplate
