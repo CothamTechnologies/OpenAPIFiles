@@ -1,0 +1,162 @@
+swagger: "2.0"
+info:
+  version: '1.0'
+  title: 'Backendless Users API'
+
+host: api.backendless.com
+
+basePath: 
+
+schemes:
+  - https
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+securityDefinitions:
+   userTokenHeader:
+     type: apiKey
+     in: header
+     name: user-token
+
+security:
+  - userTokenHeader: []
+
+paths:
+  
+  /{restKey}/users/register:
+    post:
+      summary: Register a new User
+      tags:
+        - UserService
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: restKey
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                blUserLocale:
+                  type: string
+                  default: 'en'
+
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+                email:
+                  type: string
+                created:
+                  type: string
+                  format: date-time
+                name:
+                  type: string
+                updated:
+                  type: string
+                  format: date-time
+                objectId:
+                  type: string
+                ownerId:
+                  type: string
+                blUserLocale:
+                  type: string
+                userStatus:
+                  type: string
+                socialAccount:
+                  type: string
+                lastLogin:
+                  type: string
+                  format: date-time
+        
+
+  /{restKey}/users/login:
+    post:
+      summary: User Login
+      tags:
+        - UserService
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: restKey
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              login:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              created:
+                type: string
+                format: date-time
+              name:
+                type: string
+              updated:
+                type: string
+                format: date-time
+              objectId:
+                type: string
+              ownerId:
+                type: string
+              blUserLocale:
+                type: string
+              userStatus:
+                type: string
+              socialAccount:
+                type: string
+              lastLogin:
+                type: string
+                format: date-time
+              user-token:
+                type: string
+        
+
+  /{restKey}/users/logout:
+    post:
+      summary: User Logout
+      tags:
+        - UserService
+      produces:
+        - application/json
+      parameters:
+        - name: restKey
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: ''
+        
+
+
