@@ -3,30 +3,16 @@ info:
   version: '1.0'
   title: 'Backendless Users API'
 
-host: api.backendless.com
+host: zanycent.backendless.app
 
-basePath: 
+basePath: /api
 
 schemes:
   - https
 
-consumes:
-  - application/json
-produces:
-  - application/json
-
-securityDefinitions:
-   userTokenHeader:
-     type: apiKey
-     in: header
-     name: user-token
-
-security:
-  - userTokenHeader: []
-
 paths:
   
-  /{restKey}/users/register:
+  /users/register:
     post:
       summary: Register a new User
       tags:
@@ -36,10 +22,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: restKey
-          in: path
-          type: string
-          required: true
         - name: body
           in: body
           schema:
@@ -86,7 +68,7 @@ paths:
                   format: date-time
         
 
-  /{restKey}/users/login:
+  /users/login:
     post:
       summary: User Login
       tags:
@@ -96,10 +78,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: restKey
-          in: path
-          type: string
-          required: true
         - name: body
           in: body
           schema:
@@ -142,7 +120,7 @@ paths:
                 type: string
         
 
-  /{restKey}/users/logout:
+  /users/logout:
     post:
       summary: User Logout
       tags:
@@ -150,10 +128,9 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: restKey
-          in: path
+        - name: user-token
+          in: header
           type: string
-          required: true
       responses:
         '200':
           description: ''
