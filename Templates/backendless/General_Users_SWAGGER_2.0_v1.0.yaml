@@ -3,7 +3,7 @@ info:
   version: '1.0'
   title: 'Backendless Users API'
 
-host: zanycent.backendless.app
+host: angelicrange.backendless.app
 
 basePath: /api
 
@@ -11,7 +11,6 @@ schemes:
   - https
 
 paths:
-  
   /users/register:
     post:
       summary: Register a new User
@@ -67,7 +66,6 @@ paths:
                   type: string
                   format: date-time
         
-
   /users/login:
     post:
       summary: User Login
