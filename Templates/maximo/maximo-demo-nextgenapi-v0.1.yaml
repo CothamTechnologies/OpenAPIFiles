@@ -1,0 +1,204 @@
+swagger: '2.0'
+
+info:
+  version: "0.1"
+  title: Maximo Next Gen API
+
+host: maximo-demo75.mro.com
+basePath: /maximo/api
+
+schemes:
+  - https
+
+
+paths:
+
+  /os/mxorganization:
+    get:
+      description: get org / sites
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: number
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: collectioncount
+          type: string
+          in: query
+        - name: oslc.pageSize
+          type: string
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: opmodeor
+          type: string
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: searchTerms
+          type: string
+          in: query
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    address_collectionref: 
+                      type: string
+                    address: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          localref: 
+                            type: string
+                          address3: 
+                            type: string
+                          address2: 
+                            type: string
+                          address1: 
+                            type: string
+                          changeby: 
+                            type: string
+                          description: 
+                            type: string
+                          changedate: 
+                            type: string
+                            format: date-time
+                          addresscode: 
+                            type: string
+                          addressid: 
+                            type: number
+                          _rowstamp: 
+                            type: string
+                          address5: 
+                            type: string
+                          href: 
+                            type: string
+                          address4: 
+                            type: string
+                    enterdate: 
+                      type: string
+                      format: date-time
+                    site_collectionref: 
+                      type: string
+                    active: 
+                      type: boolean
+                    description: 
+                      type: string
+                    dfltitemstatus_description: 
+                      type: string
+                    orgid: 
+                      type: string
+                    basecurrency1: 
+                      type: string
+                    clearingacct: 
+                      type: string
+                    companysetid: 
+                      type: string
+                    organizationid: 
+                      type: number
+                    _rowstamp: 
+                      type: string
+                    site: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          siteuid: 
+                            type: number
+                          localref: 
+                            type: string
+                          enterdate: 
+                            type: string
+                            format: date-time
+                          billtoshipto_collectionref: 
+                            type: string
+                          changeby: 
+                            type: string
+                          active: 
+                            type: boolean
+                          description: 
+                            type: string
+                          changedate: 
+                            type: string
+                            format: date-time
+                          _rowstamp: 
+                            type: string
+                          enterby: 
+                            type: string
+                          billtoshipto: 
+                            type: array
+                            items: 
+                              type: object
+                              properties: 
+                                _rowstamp: 
+                                  type: string
+                                localref: 
+                                  type: string
+                                shiptodefault: 
+                                  type: boolean
+                                billtocontact: 
+                                  type: string
+                                billtoshiptoid: 
+                                  type: number
+                                billtodefault: 
+                                  type: boolean
+                                href: 
+                                  type: string
+                                addresscode: 
+                                  type: string
+                          contact: 
+                            type: string
+                          siteid: 
+                            type: string
+                          href: 
+                            type: string
+                    enterby: 
+                      type: string
+                    dfltitemstatus: 
+                      type: string
+                    itemsetid: 
+                      type: string
+                    href: 
+                      type: string
+                    category: 
+                      type: string
+              href: 
+                type: string
+              responseInfo: 
+                type: object
+                properties: 
+                  href: 
+                    type: string
+                  totalCount: 
+                    type: number
+              
+
+
+        default:
+          description: error
+
+  
