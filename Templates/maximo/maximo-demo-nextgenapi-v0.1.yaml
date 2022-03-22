@@ -637,6 +637,8 @@ paths:
       description: create service request
       tags: 
         - service requests
+      consumes:
+        - application/json
       parameters:
         - name: _lid
           type: string
