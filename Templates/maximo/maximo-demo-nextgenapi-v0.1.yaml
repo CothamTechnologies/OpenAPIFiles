@@ -19,6 +19,10 @@ paths:
       tags: 
         - assets
       parameters:
+        - name: dummy2
+          type: string
+          in: path
+          required: true
         - name: _lid
           type: string
           in: query
