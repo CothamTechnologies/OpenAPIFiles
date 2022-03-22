@@ -633,6 +633,36 @@ paths:
           description: error
   
   /os/mxsr:
+    post:
+      description: create service request
+      tags: 
+        - service requests
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: 
+              reportedby:
+                type: string
+              description:
+                type: string
+      responses:
+        201:
+          description: Success
+        default:
+          description: error
+          
     get:
       description: get service requests
       tags: 
