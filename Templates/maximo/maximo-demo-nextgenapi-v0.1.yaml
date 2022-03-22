@@ -13,6 +13,79 @@ schemes:
 
 paths:
 
+  /os/mxasset/{dummy}:
+    get:
+      description: asset count aggregation
+      tags: 
+        - assets
+      parameters:
+        - name: dummy
+          type: string
+          in: path
+          required: true
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: collectioncount
+          type: integer
+          in: query
+        - name: oslc.pageSize
+          type: integer
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: opmodeor
+          type: integer
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: searchTerms
+          type: string
+          in: query
+        - name: stablepaging
+          type: integer
+          in: query
+        - name: gbcols
+          type: string
+          in: query
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                status_description: 
+                  type: string
+                count: 
+                  type: number
+                collectionref: 
+                  type: string
+                status: 
+                  type: string
+
+        default:
+          description: error
+
   /whoami:
     get: 
       description: get user data
