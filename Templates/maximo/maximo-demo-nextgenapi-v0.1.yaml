@@ -9,7 +9,7 @@ basePath: /maximo/api
 
 schemes:
   - https
-  
+
 
 paths:
 
@@ -220,6 +220,9 @@ paths:
           in: query
         - name: stablepaging
           type: integer
+          in: query
+        - name: gbcols
+          type: string
           in: query
       
       responses:
@@ -499,6 +502,9 @@ paths:
         - name: stablepaging
           type: integer
           in: query
+        - name: gbcols
+          type: string
+          in: query
       
       responses:
         200:
@@ -676,6 +682,9 @@ paths:
           in: query
         - name: stablepaging
           type: integer
+          in: query
+        - name: gbcols
+          type: string
           in: query
       
       responses:
@@ -926,6 +935,9 @@ paths:
           in: query
         - name: stablepaging
           type: integer
+          in: query
+        - name: gbcols
+          type: string
           in: query
       
       responses:
