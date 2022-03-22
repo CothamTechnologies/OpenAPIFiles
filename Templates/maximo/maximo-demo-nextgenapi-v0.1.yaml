@@ -9,13 +9,178 @@ basePath: /maximo/api
 
 schemes:
   - https
-
+  
 
 paths:
 
-  /os/mxorganization:
+  /whoami:
+    get: 
+      description: get user data
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          type: string
+          in: header
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              queryWithSite: 
+                type: boolean
+              country: 
+                type: string
+              personuid: 
+                type: number
+              defaultSiteDescription: 
+                type: string
+              canUseInactiveSites: 
+                type: boolean
+              defaultOrg: 
+                type: string
+              langcode: 
+                type: string
+              displayyes: 
+                type: string
+              href: 
+                type: string
+              defaultStoreroom: 
+                type: string
+              loginID: 
+                type: string
+              defaultRepairSite: 
+                type: string
+                format: nullable
+              defaultLcale: 
+                type: string
+              primaryphone: 
+                type: string
+                format: nullable
+              stateprovince: 
+                type: string
+              lastname: 
+                type: string
+              labor: 
+                type: object
+                properties: 
+                  laborcraftrate: 
+                    type: object
+                    properties: 
+                      skilllevel: 
+                        type: string
+                      craft: 
+                        type: string
+                      laborcode: 
+                        type: string
+                  laborcode: 
+                    type: string
+              loginUserName: 
+                type: string
+              defaultTimeZone: 
+                type: string
+              apicachekey: 
+                type: string
+              insertSite: 
+                type: string
+              botcinstall: 
+                type: boolean
+              defaultRepairFacility: 
+                type: string
+                format: nullable
+              personId: 
+                type: string
+              defaultApplication: 
+                type: string
+              primaryemail: 
+                type: string
+                format: nullable
+              baseLang: 
+                type: string
+              firstname: 
+                type: string
+              displayno: 
+                type: string
+              city: 
+                type: string
+              displayName: 
+                type: string
+              insertCompanySet: 
+                type: string
+                format: nullable
+              defaultStoreroomSite: 
+                type: string
+              title: 
+                type: string
+                format: nullable
+              baseCurrency: 
+                type: string
+              baseCalendar: 
+                type: string
+              defaultLanguage: 
+                type: string
+              postalcode: 
+                type: string
+              ibmId: 
+                type: string
+              personid: 
+                type: string
+              inactiveSites: 
+                type: boolean
+              defaultSite: 
+                type: string
+              customername: 
+                type: string
+                format: nullable
+              datetimeformat: 
+                type: string
+              email: 
+                type: string
+                format: nullable
+              isLocalSession: 
+                type: boolean
+              calendarType: 
+                type: string
+              timeformat: 
+                type: string
+              userName: 
+                type: string
+              insertItemSet: 
+                type: string
+                format: nullable
+              displayname: 
+                type: string
+              user: 
+                type: object
+                properties: 
+                  logouttracking: 
+                    type: object
+                    properties: 
+                      attemptdate: 
+                        type: string
+                        format: date-time
+                      attemptdate_localized: 
+                        type: string
+              insertOrg: 
+                type: string
+              dateformat: 
+                type: string
+
+        default:
+          description: error
+  
+  /os/mxwo:
     get:
-      description: get org / sites
+      description: get work orders
+      tags: 
+        - work orders
       parameters:
         - name: _lid
           type: string
@@ -24,16 +189,16 @@ paths:
           type: string
           in: query
         - name: lean
-          type: number
+          type: integer
           in: query
         - name: oslc.select
           type: string
           in: query
         - name: collectioncount
-          type: string
+          type: integer
           in: query
         - name: oslc.pageSize
-          type: string
+          type: integer
           in: query
         - name: oslc.orderBy
           type: string
@@ -42,7 +207,7 @@ paths:
           type: string
           in: query
         - name: opmodeor
-          type: string
+          type: integer
           in: query
         - name: savedQuery
           type: string
@@ -52,6 +217,715 @@ paths:
           in: query
         - name: searchTerms
           type: string
+          in: query
+        - name: stablepaging
+          type: integer
+          in: query
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    apptrequired: 
+                      type: boolean
+                    historyflag: 
+                      type: boolean
+                    aos: 
+                      type: boolean
+                    estservcost: 
+                      type: number
+                    pluscismobile: 
+                      type: boolean
+                    parentchgsstatus: 
+                      type: boolean
+                    assetlocpriority: 
+                      type: number
+                    lms: 
+                      type: boolean
+                    istask: 
+                      type: boolean
+                    href: 
+                      type: string
+                    estatapprmatcost: 
+                      type: number
+                    wopriority: 
+                      type: number
+                    pluscloop: 
+                      type: boolean
+                    actmatcost: 
+                      type: number
+                    actlabhrs: 
+                      type: number
+                    nestedjpinprocess: 
+                      type: boolean
+                    estatapprtoolcost: 
+                      type: number
+                    hasfollowupwork: 
+                      type: boolean
+                    route: 
+                      type: string
+                    phone: 
+                      type: string
+                    actservcost: 
+                      type: number
+                    flowactionassist: 
+                      type: boolean
+                    ignorediavail: 
+                      type: boolean
+                    reqasstdwntime: 
+                      type: boolean
+                    estmatcost: 
+                      type: number
+                    targcompdate: 
+                      type: string
+                      format: date-time
+                    status: 
+                      type: string
+                    estlabhrs: 
+                      type: number
+                    esttoolcost: 
+                      type: number
+                    reportedby: 
+                      type: string
+                    los: 
+                      type: boolean
+                    estoutlabcost: 
+                      type: number
+                    assetnum: 
+                      type: string
+                    disabled: 
+                      type: boolean
+                    outmatcost: 
+                      type: number
+                    estdur: 
+                      type: number
+                    changeby: 
+                      type: string
+                    interruptible: 
+                      type: boolean
+                    estlabcost: 
+                      type: number
+                    estatapprintlabhrs: 
+                      type: number
+                    statusdate: 
+                      type: string
+                      format: date-time
+                    wonum: 
+                      type: string
+                    downtime: 
+                      type: boolean
+                    workorderid: 
+                      type: number
+                    acttoolcost: 
+                      type: number
+                    actlabcost: 
+                      type: number
+                    actoutlabcost: 
+                      type: number
+                    estatapprlabhrs: 
+                      type: number
+                    estatapprservcost: 
+                      type: number
+                    estatapprlabcost: 
+                      type: number
+                    lastcopylinkdate: 
+                      type: string
+                      format: date-time
+                    faildate: 
+                      type: string
+                      format: date-time
+                    ignoresrmavail: 
+                      type: boolean
+                    outtoolcost: 
+                      type: number
+                    estatapproutlabhrs: 
+                      type: number
+                    _rowstamp: 
+                      type: string
+                    estatapprintlabcost: 
+                      type: number
+                    firstapprstatus: 
+                      type: string
+                    siteid: 
+                      type: string
+                    suspendflow: 
+                      type: boolean
+                    status_description: 
+                      type: string
+                    woisswap: 
+                      type: boolean
+                    actintlabhrs: 
+                      type: number
+                    woacceptscharges: 
+                      type: boolean
+                    repairlocflag: 
+                      type: boolean
+                    changedate: 
+                      type: string
+                      format: date-time
+                    calcpriority: 
+                      type: number
+                    chargestore: 
+                      type: boolean
+                    woclass_description: 
+                      type: string
+                    outlabcost: 
+                      type: number
+                    orgid: 
+                      type: string
+                    schedfinish: 
+                      type: string
+                      format: date-time
+                    woclass: 
+                      type: string
+                    actoutlabhrs: 
+                      type: number
+                    supervisor: 
+                      type: string
+                    inctasksinsched: 
+                      type: boolean
+                    targstartdate: 
+                      type: string
+                      format: date-time
+                    flowcontrolled: 
+                      type: boolean
+                    ams: 
+                      type: boolean
+                    reportdate: 
+                      type: string
+                      format: date-time
+                    description: 
+                      type: string
+                    estatapproutlabcost: 
+                      type: number
+                    newchildclass: 
+                      type: string
+                    djpapplied: 
+                      type: string
+                    estoutlabhrs: 
+                      type: number
+                    actintlabcost: 
+                      type: number
+                    classstructureid: 
+                      type: string
+                    worktype: 
+                      type: string
+                    estintlabhrs: 
+                      type: number
+                    glaccount: 
+                      type: string
+                    statusiface: 
+                      type: boolean
+                    milestone: 
+                      type: boolean
+                    wogroup: 
+                      type: string
+                    schedstart: 
+                      type: string
+                      format: date-time
+                    location: 
+                      type: string
+                    estintlabcost: 
+                      type: number
+                    haschildren: 
+                      type: boolean
+              href: 
+                type: string
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  href: 
+                    type: string
+                  pagenum: 
+                    type: number
+
+        default:
+          description: error
+  
+  /os/mxsr:
+    get:
+      description: get service requests
+      tags: 
+        - service requests
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: collectioncount
+          type: integer
+          in: query
+        - name: oslc.pageSize
+          type: integer
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: opmodeor
+          type: integer
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: searchTerms
+          type: string
+          in: query
+        - name: stablepaging
+          type: integer
+          in: query
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    affecteddate: 
+                      type: string
+                      format: date-time
+                    template: 
+                      type: boolean
+                    commodity: 
+                      type: string
+                    historyflag: 
+                      type: boolean
+                    actlabcost: 
+                      type: number
+                    createwomulti_description: 
+                      type: string
+                    reportedpriority_description: 
+                      type: string
+                    selfservsolaccess: 
+                      type: boolean
+                    ticketuid: 
+                      type: number
+                    commoditygroup: 
+                      type: string
+                    inheritstatus: 
+                      type: boolean
+                    reportdate: 
+                      type: string
+                      format: date-time
+                    class_description: 
+                      type: string
+                    description: 
+                      type: string
+                    internalpriority: 
+                      type: number
+                    reportedby: 
+                      type: string
+                    sitevisit: 
+                      type: boolean
+                    _rowstamp: 
+                      type: string
+                    reportedphone: 
+                      type: string
+                    actualstart: 
+                      type: string
+                      format: date-time
+                    siteid: 
+                      type: string
+                    assetsiteid: 
+                      type: string
+                    isknownerror: 
+                      type: boolean
+                    href: 
+                      type: string
+                    affectedperson: 
+                      type: string
+                    class: 
+                      type: string
+                    assetorgid: 
+                      type: string
+                    ticketid: 
+                      type: string
+                    affectedphone: 
+                      type: string
+                    owner: 
+                      type: string
+                    reportedpriority: 
+                      type: number
+                    status_description: 
+                      type: string
+                    description_longdescription: 
+                      type: string
+                    internalpriority_description: 
+                      type: string
+                    changeby: 
+                      type: string
+                    affectedemail: 
+                      type: string
+                    actualfinish: 
+                      type: string
+                      format: date-time
+                    changedate: 
+                      type: string
+                      format: date-time
+                    actlabhrs: 
+                      type: number
+                    orgid: 
+                      type: string
+                    relatedtoglobal: 
+                      type: boolean
+                    hasactivity: 
+                      type: boolean
+                    statusdate: 
+                      type: string
+                      format: date-time
+                    createwomulti: 
+                      type: string
+                    hassolution: 
+                      type: boolean
+                    reportedemail: 
+                      type: string
+                    isglobal: 
+                      type: boolean
+                    status: 
+                      type: string
+              href: 
+                type: string
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  href: 
+                    type: string
+                  pagenum: 
+                    type: number
+
+
+        default:
+          description: error
+  
+  /os/mxasset:
+    get:
+      description: get assets
+      tags: 
+        - assets
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: collectioncount
+          type: integer
+          in: query
+        - name: oslc.pageSize
+          type: integer
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: opmodeor
+          type: integer
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: searchTerms
+          type: string
+          in: query
+        - name: stablepaging
+          type: integer
+          in: query
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    ytdcost: 
+                      type: number
+                    installdate: 
+                      type: string
+                      format: date-time
+                    moved: 
+                      type: boolean
+                    pluscismte: 
+                      type: boolean
+                    pluscisinhousecal: 
+                      type: boolean
+                    rotsuspacct: 
+                      type: string
+                    totalcost: 
+                      type: number
+                    _rowstamp: 
+                      type: string
+                    totunchargedcost: 
+                      type: number
+                    children: 
+                      type: boolean
+                    tloampartition: 
+                      type: boolean
+                    siteid: 
+                      type: string
+                    unchargedcost: 
+                      type: number
+                    href: 
+                      type: string
+                    removefromactivesp: 
+                      type: boolean
+                    assetspec_collectionref: 
+                      type: string
+                    mainthierchy: 
+                      type: boolean
+                    status_description: 
+                      type: string
+                    returnedtovendor: 
+                      type: boolean
+                    changepmstatus: 
+                      type: boolean
+                    assetmeter: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          average: 
+                            type: number
+                          rolldownsource_description: 
+                            type: string
+                          lastreadingdate: 
+                            type: string
+                            format: date-time
+                          localref: 
+                            type: string
+                          linearassetmeterid: 
+                            type: number
+                          sinceinstall: 
+                            type: number
+                          lastreading: 
+                            type: string
+                          sincelastinspect: 
+                            type: number
+                          _rowstamp: 
+                            type: string
+                          href: 
+                            type: string
+                          readingtype_description: 
+                            type: string
+                          avgcalcmethod: 
+                            type: string
+                          changeby: 
+                            type: string
+                          active: 
+                            type: boolean
+                          changedate: 
+                            type: string
+                            format: date-time
+                          lastreadinginspctr: 
+                            type: string
+                          avgcalcmethod_description: 
+                            type: string
+                          orgid: 
+                            type: string
+                          sincelastrepair: 
+                            type: number
+                          assetmeterid: 
+                            type: number
+                          sequence: 
+                            type: number
+                          lifetodate: 
+                            type: number
+                          measureunitid: 
+                            type: string
+                          metername: 
+                            type: string
+                          sincelastoverhaul: 
+                            type: number
+                          readingtype: 
+                            type: string
+                          rolldownsource: 
+                            type: string
+                    changedate: 
+                      type: string
+                      format: date-time
+                    replacecost: 
+                      type: number
+                    priority: 
+                      type: number
+                    groupname: 
+                      type: string
+                    orgid: 
+                      type: string
+                    pluscsolution: 
+                      type: boolean
+                    removefromactiveroutes: 
+                      type: boolean
+                    rolltoallchildren: 
+                      type: boolean
+                    itemnum: 
+                      type: string
+                    itemsetid: 
+                      type: string
+                    assetopskd_collectionref: 
+                      type: string
+                    status: 
+                      type: string
+                    assetmeter_collectionref: 
+                      type: string
+                    islinear: 
+                      type: boolean
+                    iscalibration: 
+                      type: boolean
+                    description: 
+                      type: string
+                    assetusercust_collectionref: 
+                      type: string
+                    manufacturer: 
+                      type: string
+                    totdowntime: 
+                      type: number
+                    pluscpmextdate: 
+                      type: boolean
+                    vendor: 
+                      type: string
+                    assetnum: 
+                      type: string
+                    plusciscontam: 
+                      type: boolean
+                    disabled: 
+                      type: boolean
+                    changeby: 
+                      type: string
+                    invcost: 
+                      type: number
+                    newsite: 
+                      type: string
+                    purchaseprice: 
+                      type: number
+                    statusdate: 
+                      type: string
+                      format: date-time
+                    isrunning: 
+                      type: boolean
+                    budgetcost: 
+                      type: number
+                    assetid: 
+                      type: number
+                    assetmntskd_collectionref: 
+                      type: string
+                    location: 
+                      type: string
+                    autowogen: 
+                      type: boolean
+              href: 
+                type: string
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  href: 
+                    type: string
+                  pagenum: 
+                    type: number
+              
+
+        default:
+          description: error
+  
+  /os/mxorganization:
+    get:
+      description: get org / sites
+      tags: 
+        - organization/sites
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: collectioncount
+          type: integer
+          in: query
+        - name: oslc.pageSize
+          type: integer
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: opmodeor
+          type: integer
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: searchTerms
+          type: string
+          in: query
+        - name: stablepaging
+          type: integer
           in: query
       
       responses:
