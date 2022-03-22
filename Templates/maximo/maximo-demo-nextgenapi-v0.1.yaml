@@ -13,6 +13,102 @@ schemes:
 
 paths:
 
+  /os/mxasset/{dummy2}:
+    get:
+      description: get assets optimised schema
+      tags: 
+        - assets
+      parameters:
+        - name: _lid
+          type: string
+          in: query
+        - name: _lpwd
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: oslc.select
+          type: string
+          in: query
+        - name: collectioncount
+          type: integer
+          in: query
+        - name: oslc.pageSize
+          type: integer
+          in: query
+        - name: oslc.orderBy
+          type: string
+          in: query
+        - name: oslc.where
+          type: string
+          in: query
+        - name: opmodeor
+          type: integer
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: searchTerms
+          type: string
+          in: query
+        - name: stablepaging
+          type: integer
+          in: query
+        - name: gbcols
+          type: string
+          in: query
+      
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    siteid: 
+                      type: string
+                    status_description: 
+                      type: string                              
+                    status: 
+                      type: string
+                    description: 
+                      type: string
+                    statusdate: 
+                      type: string
+                      format: date-time                    
+                    assetid: 
+                      type: number                   
+                    location: 
+                      type: string
+              href: 
+                type: string
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  href: 
+                    type: string
+                  pagenum: 
+                    type: number
+                  totalCount: 
+                    type: number
+              
+
+        default:
+          description: error
+
   /os/mxasset/{dummy}:
     get:
       description: asset count aggregation
