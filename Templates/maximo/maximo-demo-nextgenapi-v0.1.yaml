@@ -526,6 +526,8 @@ paths:
                     type: string
                   pagenum: 
                     type: number
+                  totalCount: 
+                    type: number
 
         default:
           description: error
@@ -705,6 +707,8 @@ paths:
                   href: 
                     type: string
                   pagenum: 
+                    type: number
+                  totalCount: 
                     type: number
 
 
@@ -958,6 +962,8 @@ paths:
                   href: 
                     type: string
                   pagenum: 
+                    type: number
+                  totalCount: 
                     type: number
               
 
