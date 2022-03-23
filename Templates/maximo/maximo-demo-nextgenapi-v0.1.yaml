@@ -1082,6 +1082,9 @@ paths:
                       type: string
                     autowogen: 
                       type: boolean
+                    serialnum: 
+                      type: string
+                 
               href: 
                 type: string
               responseInfo: 
