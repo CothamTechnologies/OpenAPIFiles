@@ -1,0 +1,421 @@
+swagger: '2.0'
+
+info:
+  version: '0.1'
+  title: Maximo Next Gen API
+  description: 'Swagger version of maximo nextgen json/oslc api - without response schemas
+                Notes:  basepath can also be /oslc instead of /api'
+
+host: maximo.visualiseinfo.co.uk
+basePath: /maximo/api
+
+schemes:
+  - https
+
+paths:
+
+  /os/mxsr/{id}/doclinks:
+    post:
+      summary: Add Attachment
+      description: Add Attachment
+      tags: 
+        - service requests
+      consumes:
+        - application/json
+      parameters:
+        - name: slug
+          description: 'The name of the attachment file'
+          type: string
+          in: header
+        - name: encslug
+          description: 'If the attachment file name has non-ascii characters it can be provided in the header base64 
+                        encoded. It is suggested that you always base64 encode your file name using this property if you 
+                        believe you might have a mix of non-ascii characters'
+          type: string
+          in: header
+        - name: x-document-meta
+          description: 'Tied to the DOCTYPES domain that defines the supported attachment types'
+          type: string
+          in: header
+        - name: x-document-description
+          description: 'The description of the document'
+          type: string
+          in: header
+        - name: x-document-encdescription
+          description: 'If the description has non-ascii characters it can be provided in the header base64 encoded. 
+                        It is suggested that you always base64 encode your description using this property if you 
+                        believe you might have a mix of non-ascii characters'
+          type: string
+          in: header
+        - name: custom-encoding
+          description: '"base64" - This header facilitates testing using a browser client such as RESTClient 
+                        (for FF). Allows you to paste in a base64 encoded image into the Body of the tool 
+                        (otherwise you need to test with programmatic tool). You can use public tools to base64 
+                        encode your image file'
+          type: string
+          in: header
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: Body
+          description: 'You create an attachment using HTTP POST with binary content or base64 binary content. 
+                        There is no support for multi-part messages.'
+          in: body
+          required: true
+          schema:
+            type: string
+            x-flopro-raw-content: true
+          
+      responses:
+        201:
+          description: Success
+        default:
+          description: Default Error Response
+
+  /os/mxsr/{id}/{relation}:
+    get:
+      summary: get single service request
+      description: get single service request
+      tags: 
+        - service requests
+      consumes:
+        - application/json
+      parameters:
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: id
+          description: resource id
+          type: string
+          in: path
+          required: true
+        - name: relation
+          description: 'name of relational data for drill down - not required in flopro 
+                        so optional but must be set to required for valid swagger'
+          type: string
+          in: path
+          required: true
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+    post:
+      summary: update / delete service request
+      description: update / delete service request
+      tags: 
+        - service requests
+      consumes:
+        - application/json
+      parameters:
+        - name: x-method-override
+          description: 'the x-method-override request header and the value PATCH 
+                        instructs the server side to update the resource. Note DELETE will delete the resource'
+          type: string
+          in: header
+        - name: patchtype
+          description: 'e.g. MERGE - If you want to update a resource but do not want/not able to provide data 
+                        for all the child objects, you can do an HTTP POST and provide the x-method-override header 
+                        and the patchtype header to indicate that you want to patch, not replace.'
+          type: string
+          in: header
+        - name: properties
+          description: 'You can now use that location URI to fetch the new resource. 
+                        Rather than doing a GET to fetch the resource, you may want the response of the create 
+                        to contain the new resource. For that, you can add the request header properties. 
+                        The properties header follows the syntax of the oslc.select clause. 
+                        You can use that to fetch all properties, partial set of properties'
+          type: string
+          in: header
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: action
+          description: 'invoke action - use the rest API to get the set of allowed actions on that resource 
+                        as shown in the following query:
+                        GET /oslc/os/mxwo?oslc.where=wonum=”1001”&oslc,select=allowedactions'
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: Body
+          description: Schema will need to be modified to fit update fields required
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: 
+              reportedby:
+                type: string
+              description:
+                type: string
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+
+  /os/mxsr:        
+    get:
+      summary: get service requests
+      description: query service requests
+      tags: 
+        - service requests
+      parameters:
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: lean
+          description: 0 or 1 - should normally be set to 1
+          type: integer
+          in: query
+        - name: oslc.select
+          description: 'specifies the set of attributes to fetch from the object structures as well as the related objects.'
+          type: string
+          in: query
+        - name: collectioncount
+          description: 'You can enable totalCount and totalPages by including the query parameter collectioncount=1'
+          type: integer
+          in: query
+        - name: oslc.pageSize
+          description: 'specifies the resources for each page of a query'
+          type: integer
+          in: query
+        - name: oslc.orderBy
+          description: 'specifies how the results of a query are ordered'
+          type: string
+          in: query
+        - name: oslc.where
+          description: 'specifies the WHERE clause for filtering the result set of a query'
+          type: string
+          in: query
+        - name: opmodeor
+          type: integer
+          in: query
+        - name: savedQuery
+          type: string
+          in: query
+        - name: searchAttributes
+          type: string
+          in: query
+        - name: oslc.searchTerms
+          type: string
+          in: query
+        - name: stablepaging
+          description: e.g. stablepaging=true
+          type: string
+          in: query
+        - name: gbcols
+          type: string
+          in: query
+        - name: _dropnulls
+          description: 'To force the response to add null value attributes, use the query parameter _dropnulls=0.'
+          type: integer
+          in: query
+        - name: internalvalues
+          description: 'To get the internal values use the query parameter internalvalues with the value set to 1.'
+          type: integer
+          in: query
+        - name: attributesearch
+          description: 'searched for based on those attribute values. e.g. attributesearch=[SPEED:>=50]'
+          type: string
+          in: query
+      
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+  
+    post:
+      summary: create service request
+      description: create service request
+      tags: 
+        - service requests
+      consumes:
+        - application/json
+      parameters:
+        - name: properties
+          description: 'You can now use that location URI to fetch the new resource. 
+                        Rather than doing a GET to fetch the resource, you may want the response of the create 
+                        to contain the new resource. For that, you can add the request header properties. 
+                        The properties header follows the syntax of the oslc.select clause. 
+                        You can use that to fetch all properties, partial set of properties'
+          type: string
+          in: header
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: Body
+          description: Schema will need to be modified to fit fields required
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: 
+              reportedby:
+                type: string
+              description:
+                type: string
+      responses:
+        201:
+          description: Success
+        default:
+          description: Default Error Response
+
+  /systeminfo:
+    get: 
+      summary: get system information 
+      description: 'API provides the system information JSON for the deployed Maximo instance.'
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+  
+  /license:
+    get: 
+      summary: list of available license keys
+      description: 'API provides the list of available license keys for the various
+                    Maximo components in this deployment'
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+  
+  /apimeta:
+    get: 
+      summary: API Metadata
+      description: 'API provides the metadata for all the object structures that 
+                    are API eligible, that is the usewith value of reporting, integration and oslc.'
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+
+  /whoami:
+    get: 
+      summary: who ami i
+      description: get logged in user profile data
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          description: user:password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+        default:
+          description: Default Error Response
+  
+  
+  
