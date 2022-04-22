@@ -118,14 +118,6 @@ paths:
       consumes:
         - application/json
       parameters:
-        - name: properties
-          description: 'You can now use that location URI to fetch the new resource. 
-                        Rather than doing a GET to fetch the resource, you may want the response of the create 
-                        to contain the new resource. For that, you can add the request header properties. 
-                        The properties header follows the syntax of the oslc.select clause. 
-                        You can use that to fetch all properties, partial set of properties'
-          type: string
-          in: header
         - name: maxauth
           description: user password base64 encoded
           type: string
