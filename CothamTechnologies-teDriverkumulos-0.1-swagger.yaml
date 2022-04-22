@@ -1910,7 +1910,22 @@ paths:
                                             timeCreated:
                                               type: string
                                             timeUpdated:
-                                              type: string  
+                                              type: string
+                                      barcodes:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            drJobBarcodeID:
+                                              type: integer
+                                            serviceEntry:
+                                              type: integer
+                                            barcode:
+                                              type: string
+                                            timeCreated:
+                                              type: string
+                                            timeUpdated:
+                                              type: string                                      
                           photos: 
                             type: array
                             items:
