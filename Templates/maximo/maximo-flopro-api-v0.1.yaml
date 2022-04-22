@@ -194,7 +194,7 @@ paths:
         - service requests
       parameters:
         - name: maxauth
-          description: user:password base64 encoded
+          description: 'user:password base64 encoded'
           type: string
           in: header
         - name: _lid
