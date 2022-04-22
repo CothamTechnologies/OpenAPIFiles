@@ -55,7 +55,7 @@ paths:
           type: string
           in: header
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -91,7 +91,7 @@ paths:
         - application/json
       parameters:
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -149,7 +149,7 @@ paths:
           type: string
           in: header
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -299,7 +299,7 @@ paths:
           type: string
           in: header
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -338,7 +338,7 @@ paths:
         - root
       parameters:
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -364,7 +364,7 @@ paths:
         - root
       parameters:
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -390,7 +390,7 @@ paths:
         - root
       parameters:
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
@@ -421,7 +421,7 @@ paths:
         - root
       parameters:
         - name: maxauth
-          description: user:password base64 encoded
+          description: user password base64 encoded
           type: string
           in: header
         - name: _lid
