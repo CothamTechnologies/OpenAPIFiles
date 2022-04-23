@@ -510,7 +510,7 @@ paths:
 
         default:
           description: Default Error Response
-
+  
   /whoami:
     get: 
       summary: who ami i
