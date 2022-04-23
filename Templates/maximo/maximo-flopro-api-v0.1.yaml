@@ -248,6 +248,10 @@ paths:
       tags: 
         - service requests
       parameters:
+        - name: x-public-uri
+          description: uri for your public url 
+          type: string
+          in: header
         - name: maxauth
           description: 'user password base64 encoded'
           type: string
