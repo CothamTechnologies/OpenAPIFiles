@@ -105,6 +105,11 @@ paths:
         - name: lean
           type: integer
           in: query
+        - name: oslc.properties
+          description: 'Properties clause applied to a resource member query following the OSLC query syntax. 
+                        Allows for selecting a partial view (limited set of fields) of the member resource'
+          type: string
+          in: query
         - name: id
           description: resource id
           type: string
@@ -264,11 +269,6 @@ paths:
           description: 'specifies the set of attributes to fetch from the object structures as well as the related objects.'
           type: string
           in: query
-        - name: oslc.properties
-          description: 'Properties clause applied to a resource member query following the OSLC query syntax. 
-                        Allows for selecting a partial view (limited set of fields) of the member resource'
-          type: string
-          in: query
         - name: collectioncount
           description: 'You can enable totalCount and totalPages by including the query parameter collectioncount=1'
           type: integer
@@ -385,7 +385,7 @@ paths:
         default:
           description: Default Error Response
   
-  /apimeta/{resource}:
+  /apimeta:
     get: 
       summary: API Metadata
       description: 'API provides the metadata for all the object structures that 
@@ -414,6 +414,100 @@ paths:
       responses:
         200:
           description: Success
+          schema: 
+            type: array
+            items: 
+              type: object
+              properties: 
+                schema: 
+                  type: string
+                defaultPageSize: 
+                  type: number
+                useWith: 
+                  type: string
+                href: 
+                  type: string
+                osName: 
+                  type: string
+                authApp: 
+                  type: string
+                apidoc: 
+                  type: string
+
+        default:
+          description: Default Error Response
+
+  /apimeta/{resource}:
+    get: 
+      summary: API Metadata for Resource
+      description: 'API provides the metadata for all the object structures that 
+                    are API eligible, that is the usewith value of reporting, integration and oslc.'
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          description: user password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: resource
+          description: 'resource name e.g. mxasset - 
+                        will give saved queries for the resource if used'
+          type: string
+          in: path
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties: 
+              schema: 
+                type: string
+              defaultPageSize: 
+                type: number
+              useWith: 
+                type: string
+              queryCapability: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    ispublic: 
+                      type: boolean
+                    name: 
+                      type: string
+                    href: 
+                      type: string
+                    title: 
+                      type: string
+              href: 
+                type: string
+              creationFactory: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    name: 
+                      type: string
+                    href: 
+                      type: string
+              osName: 
+                type: string
+              title: 
+                type: string
+                format: nullable
+              authApp: 
+                type: string
+                format: nullable
+
         default:
           description: Default Error Response
 
