@@ -14,7 +14,7 @@ schemes:
 
 paths:
 
-  /os/mxsr/{id}/doclinks:
+  /os/mxapisr/{id}/doclinks:
     post:
       summary: Add Attachment
       description: Add Attachment
@@ -81,7 +81,7 @@ paths:
         default:
           description: Default Error Response
 
-  /os/mxsr/{id}/{relation}:
+  /os/mxapisr/{id}:
     get:
       summary: get single service request
       description: get single service request
@@ -90,6 +90,10 @@ paths:
       consumes:
         - application/json
       parameters:
+        - name: x-public-uri
+          description: uri for your public url 
+          type: string
+          in: header
         - name: maxauth
           description: user password base64 encoded
           type: string
@@ -115,15 +119,195 @@ paths:
           type: string
           in: path
           required: true
-        - name: relation
-          description: 'name of relational data for drill down - not required in flopro 
-                        so optional but must be set to required for valid swagger'
-          type: string
-          in: path
-          required: true
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties: 
+              affecteddate: 
+                type: string
+                format: date-time
+              historyflag: 
+                type: boolean
+              site_collectionref: 
+                type: string
+              actlabcost: 
+                type: number
+              createwomulti_description: 
+                type: string
+              ticketuid: 
+                type: number
+              internalpriority: 
+                type: number
+              sitevisit: 
+                type: boolean
+              _rowstamp: 
+                type: string
+              siteid: 
+                type: string
+              isknownerror: 
+                type: boolean
+              href: 
+                type: string
+              affectedperson: 
+                type: string
+              reportedbyname: 
+                type: string
+              affectedphone: 
+                type: string
+              reportedpriority: 
+                type: number
+              status_description: 
+                type: string
+              worklog_collectionref: 
+                type: string
+              tktemplate_collectionref: 
+                type: string
+              changedate: 
+                type: string
+                format: date-time
+              actlabhrs: 
+                type: number
+              orgid: 
+                type: string
+              createwomulti: 
+                type: string
+              reportedemail: 
+                type: string
+              status: 
+                type: string
+              template: 
+                type: boolean
+              commodity: 
+                type: string
+              reportedpriority_description: 
+                type: string
+              selfservsolaccess: 
+                type: boolean
+              commoditygroup: 
+                type: string
+              inheritstatus: 
+                type: boolean
+              reportdate: 
+                type: string
+                format: date-time
+              class_description: 
+                type: string
+              description: 
+                type: string
+              reportedby: 
+                type: string
+              classstructure_collectionref: 
+                type: string
+              reportedphone: 
+                type: string
+              relatedrecord_collectionref: 
+                type: string
+              assetsiteid: 
+                type: string
+              class: 
+                type: string
+              doclinks: 
+                type: object
+                properties: 
+                  href: 
+                    type: string
+              assetorgid: 
+                type: string
+              ticketid: 
+                type: string
+              owner: 
+                type: string
+              description_longdescription: 
+                type: string
+              internalpriority_description: 
+                type: string
+              ticketspec_collectionref: 
+                type: string
+              changeby: 
+                type: string
+              affectedemail: 
+                type: string
+              relatedtoglobal: 
+                type: boolean
+              hasactivity: 
+                type: boolean
+              statusdate: 
+                type: string
+                format: date-time
+              relatedrecord: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    relatedrecclass: 
+                      type: string
+                    _rowstamp: 
+                      type: string
+                    localref: 
+                      type: string
+                    relatedrecorgid: 
+                      type: string
+                    relatetype: 
+                      type: string
+                    recordkey: 
+                      type: string
+                    relatedreckey: 
+                      type: string
+                    relatedrecordid: 
+                      type: number
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
+                    relatedrecsiteid: 
+                      type: string
+                    orgid: 
+                      type: string
+              site: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    siteuid: 
+                      type: number
+                    localref: 
+                      type: string
+                    enterdate: 
+                      type: string
+                      format: date-time
+                    changeby: 
+                      type: string
+                    active: 
+                      type: boolean
+                    description: 
+                      type: string
+                    changedate: 
+                      type: string
+                      format: date-time
+                    orgid: 
+                      type: string
+                    langcode: 
+                      type: string
+                    _rowstamp: 
+                      type: string
+                    enterby: 
+                      type: string
+                    hasld: 
+                      type: boolean
+                    contact: 
+                      type: string
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
+              persongroup_collectionref: 
+                type: string
+              hassolution: 
+                type: boolean
+              isglobal: 
+                type: boolean
         default:
           description: Default Error Response
           
@@ -192,8 +376,7 @@ paths:
         default:
           description: Default Error Response
 
-  /os/mxsr:        
-
+  /os/mxapisr:        
     post:
       summary: create service request
       description: create service request
@@ -236,6 +419,10 @@ paths:
                 type: string
               description:
                 type: string
+              reportedpriority_description:
+                type: string
+              description_longdescription:
+                type: string
       responses:
         201:
           description: Success
@@ -269,6 +456,7 @@ paths:
                         with the “lean” JSON format, not the namespaced JSON format that is supported by default.'
           type: integer
           in: query
+          default: 1
         - name: oslc.select
           description: 'specifies the set of attributes to fetch from the object structures as well as the related objects.'
           type: string
@@ -314,6 +502,10 @@ paths:
           description: e.g. stablepaging=true
           type: string
           in: query
+        - name: paging
+          description: e.g. paging=true
+          type: string
+          in: query
         - name: gbcols
           type: string
           in: query
@@ -329,10 +521,74 @@ paths:
           description: 'searched for based on those attribute values. e.g. attributesearch=[SPEED:>=50]'
           type: string
           in: query
+        - name: action
+          description: action
+          type: string
+          in: query
       
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties: 
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    reportedpriority: 
+                      type: number
+                    worklog_collectionref: 
+                      type: string
+                    site_collectionref: 
+                      type: string
+                    reportedpriority_description: 
+                      type: string
+                    ticketspec_collectionref: 
+                      type: string
+                    tktemplate_collectionref: 
+                      type: string
+                    reportdate: 
+                      type: string
+                      format: date-time
+                    description: 
+                      type: string
+                    classstructure_collectionref: 
+                      type: string
+                    _rowstamp: 
+                      type: string
+                    persongroup_collectionref: 
+                      type: string
+                    siteid: 
+                      type: string
+                    relatedrecord_collectionref: 
+                      type: string
+                    href: 
+                      type: string
+                    reportedbyname: 
+                      type: string
+                    ticketid: 
+                      type: string
+              href: 
+                type: string
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  totalPages: 
+                    type: number
+                  href: 
+                    type: string
+                  totalCount: 
+                    type: number
+                  pagenum: 
+                    type: number
+
         default:
           description: Default Error Response
   
@@ -360,6 +616,81 @@ paths:
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties: 
+              rdf:about: 
+                type: string
+              appServer: 
+                type: string
+              database: 
+                type: object
+                properties: 
+                  dbProductName: 
+                    type: string
+                  dbVersion: 
+                    type: string
+                  dbMajorVersion: 
+                    type: number
+                  dbMinorVersion: 
+                    type: number
+              os: 
+                type: object
+                properties: 
+                  osName: 
+                    type: string
+                  osVersion: 
+                    type: string
+                  architecture: 
+                    type: string
+                  availableProcessors: 
+                    type: number
+              appVersion: 
+                type: object
+                properties: 
+                  rdfs:member: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        spi:versionKey: 
+                          type: string
+        default:
+          description: Default Error Response
+  
+  /login:
+    get: 
+      summary: login
+      description: login
+      tags:
+        - root
+      parameters:
+        - name: maxauth
+          description: user password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties: 
+              sessiontimeout: 
+                type: number
+              inactivetimeout: 
+                type: number
+              maxupg: 
+                type: string
+              appserversecurity: 
+                type: boolean
         default:
           description: Default Error Response
   
@@ -386,6 +717,18 @@ paths:
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties: 
+              rdf:about: 
+                type: string
+              rdfs:member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    spi:key: 
+                      type: string
         default:
           description: Default Error Response
   
@@ -537,6 +880,148 @@ paths:
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties:
+              queryWithSite: 
+                type: boolean
+              country: 
+                type: string
+              personuid: 
+                type: number
+              defaultSiteDescription: 
+                type: string
+              canUseInactiveSites: 
+                type: boolean
+              defaultOrg: 
+                type: string
+              langcode: 
+                type: string
+              displayyes: 
+                type: string
+              href: 
+                type: string
+              defaultStoreroom: 
+                type: string
+              loginID: 
+                type: string
+              defaultRepairSite: 
+                type: string
+                format: nullable
+              defaultLcale: 
+                type: string
+              primaryphone: 
+                type: string
+                format: nullable
+              stateprovince: 
+                type: string
+              lastname: 
+                type: string
+              labor: 
+                type: object
+                properties: 
+                  laborcraftrate: 
+                    type: object
+                    properties: 
+                      skilllevel: 
+                        type: string
+                      craft: 
+                        type: string
+                      laborcode: 
+                        type: string
+                  laborcode: 
+                    type: string
+              loginUserName: 
+                type: string
+              defaultTimeZone: 
+                type: string
+              apicachekey: 
+                type: string
+              insertSite: 
+                type: string
+              botcinstall: 
+                type: boolean
+              defaultRepairFacility: 
+                type: string
+                format: nullable
+              personId: 
+                type: string
+              defaultApplication: 
+                type: string
+              primaryemail: 
+                type: string
+                format: nullable
+              baseLang: 
+                type: string
+              firstname: 
+                type: string
+              displayno: 
+                type: string
+              city: 
+                type: string
+              displayName: 
+                type: string
+              insertCompanySet: 
+                type: string
+                format: nullable
+              defaultStoreroomSite: 
+                type: string
+              title: 
+                type: string
+                format: nullable
+              baseCurrency: 
+                type: string
+              baseCalendar: 
+                type: string
+              defaultLanguage: 
+                type: string
+              postalcode: 
+                type: string
+              ibmId: 
+                type: string
+              personid: 
+                type: string
+              inactiveSites: 
+                type: boolean
+              defaultSite: 
+                type: string
+              customername: 
+                type: string
+                format: nullable
+              datetimeformat: 
+                type: string
+              email: 
+                type: string
+                format: nullable
+              isLocalSession: 
+                type: boolean
+              calendarType: 
+                type: string
+              timeformat: 
+                type: string
+              userName: 
+                type: string
+              insertItemSet: 
+                type: string
+                format: nullable
+              displayname: 
+                type: string
+              user: 
+                type: object
+                properties: 
+                  logouttracking: 
+                    type: object
+                    properties: 
+                      attemptdate: 
+                        type: string
+                        format: date-time
+                      attemptdate_localized: 
+                        type: string
+              insertOrg: 
+                type: string
+              dateformat: 
+                type: string
+
         default:
           description: Default Error Response
   
