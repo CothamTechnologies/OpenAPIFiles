@@ -431,7 +431,13 @@ paths:
                 type: string
               reportedpriority_description:
                 type: string
+              reportedpriority:
+                type: string
               description_longdescription:
+                type: string
+              assetnum:
+                type: string
+              location: 
                 type: string
       responses:
         201:
