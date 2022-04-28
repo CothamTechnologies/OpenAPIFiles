@@ -745,6 +745,52 @@ paths:
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    newlocation: 
+                      type: string
+                    _rowstamp: 
+                      type: string
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
+                    orgid: 
+                      type: string
+                    status: 
+                      type: string
+                    serialnum: 
+                      type: string
+                    description: 
+                      type: string
+                    assetnum: 
+                      type: string
+                    location: 
+                      type: string
+
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  totalPages: 
+                    type: number
+                  href: 
+                    type: string
+                  totalCount: 
+                    type: number
+                  pagenum: 
+                    type: number
+
 
         default:
           description: Default Error Response  
@@ -867,7 +913,43 @@ paths:
       responses:
         200:
           description: Success
+          schema:
+            type: object
+            properties:
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    _rowstamp: 
+                      type: string
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
+                    orgid: 
+                      type: string
+                    description: 
+                      type: string
+                    location: 
+                      type: string
 
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  totalPages: 
+                    type: number
+                  href: 
+                    type: string
+                  totalCount: 
+                    type: number
+                  pagenum: 
+                    type: number
         default:
           description: Default Error Response  
 
