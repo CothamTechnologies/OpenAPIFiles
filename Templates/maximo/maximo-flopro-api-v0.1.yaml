@@ -376,9 +376,15 @@ paths:
           schema:
             type: object
             properties: 
-              reportedby:
-                type: string
               description:
+                type: string
+              reportedpriority:
+                type: string
+              description_longdescription:
+                type: string
+              assetnum:
+                type: string
+              location: 
                 type: string
       responses:
         204:
@@ -429,8 +435,6 @@ paths:
               reportedby:
                 type: string
               description:
-                type: string
-              reportedpriority_description:
                 type: string
               reportedpriority:
                 type: string
