@@ -551,7 +551,7 @@ paths:
           type: integer
           in: query
         - name: attributesearch
-          description: 'searched for based on those attribute values.'
+          description: 'searched for based on those attribute values. e.g. attributesearch=[SPEED:>=50]'
           type: string
           in: query
         - name: action
@@ -902,7 +902,7 @@ paths:
           type: integer
           in: query
         - name: attributesearch
-          description: 'searched for based on those attribute values. '
+          description: 'searched for based on those attribute values. e.g. attributesearch=[SPEED:>=50]'
           type: string
           in: query
         - name: action
