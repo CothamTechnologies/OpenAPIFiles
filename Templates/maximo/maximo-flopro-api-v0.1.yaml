@@ -493,7 +493,7 @@ paths:
           type: integer
           in: query
         - name: attributesearch
-          description: 'searched for based on those attribute values. e.g. attributesearch=[SPEED:>=50]'
+          description: 'searched for based on those attribute values. '
           type: string
           in: query
         - name: action
@@ -504,7 +504,40 @@ paths:
       responses:
         200:
           description: Success
-          
+          schema:
+            type: object
+            properties: 
+              member: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    reportedpriority: 
+                      type: number
+                    reportedpriority_description: 
+                      type: string
+                    reportdate: 
+                      type: string
+                      format: date-time
+                    description: 
+                      type: string
+                    description_longdescription: 
+                      type: string
+                    siteid: 
+                      type: string
+                    orgid: 
+                      type: string
+                    reportedbyname: 
+                      type: string
+                    ticketid: 
+                      type: string
+                    status_description: 
+                      type: string
+                    href: 
+                      type: string
+                    statusdate: 
+                      type: string
+                    
         default:
           description: Default Error Response
   
