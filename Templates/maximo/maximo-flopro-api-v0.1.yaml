@@ -525,6 +525,10 @@ paths:
                       type: string
                     siteid: 
                       type: string
+                    location: 
+                      type: string
+                    assetnum: 
+                      type: string
                     orgid: 
                       type: string
                     reportedbyname: 
@@ -548,6 +552,64 @@ paths:
                         description:
                           type: string
                     
+        default:
+          description: Default Error Response
+
+    post:
+      summary: create service request
+      description: create service request
+      tags: 
+        - service requests
+      consumes:
+        - application/json
+      parameters:
+        - name: properties
+          description: 'You can now use that location URI to fetch the new resource. 
+                        Rather than doing a GET to fetch the resource, you may want the response of the create 
+                        to contain the new resource. For that, you can add the request header properties. 
+                        The properties header follows the syntax of the oslc.select clause. 
+                        You can use that to fetch all properties, partial set of properties'
+          type: string
+          in: header
+        - name: maxauth
+          description: user password base64 encoded
+          type: string
+          in: header
+        - name: _lid
+          description: userid 
+          type: string
+          in: query
+        - name: _lpwd
+          description: password
+          type: string
+          in: query
+        - name: lean
+          type: integer
+          in: query
+        - name: Body
+          description: Schema will need to be modified to fit fields required
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: 
+              reportedby:
+                type: string
+              description:
+                type: string
+              reportedpriority_description:
+                type: string
+              reportedpriority:
+                type: string
+              description_longdescription:
+                type: string
+              assetnum:
+                type: string
+              location: 
+                type: string
+      responses:
+        201:
+          description: Success
         default:
           description: Default Error Response
   
