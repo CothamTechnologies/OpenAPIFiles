@@ -630,7 +630,7 @@ paths:
                     type: number
                   pagenum: 
                     type: number
-                          
+
         default:
           description: Default Error Response
 
@@ -1100,6 +1100,8 @@ paths:
                       type: string
                       format: date-time
                     problemcode_longdescription: 
+                      type: string
+                    fr1code_longdescription: 
                       type: string
                     fr2code_longdescription: 
                       type: string
