@@ -387,7 +387,6 @@ paths:
           description: Default Error Response
 
   /os/mxapisr:        
-    
     get:
       summary: get service requests
       description: query service requests
@@ -410,97 +409,7 @@ paths:
           description: password
           type: string
           in: query
-        - name: lean
-          description: '0 or 1 - should normally be set to 1 when set to 1 (true), this will instruct the api to work 
-                        with the “lean” JSON format, not the namespaced JSON format that is supported by default.'
-          type: integer
-          in: query
-          default: 1
-        - name: oslc.select
-          description: 'specifies the set of attributes to fetch from the object structures as well as the related objects.'
-          type: string
-          in: query
-        - name: collectioncount
-          description: 'You can enable totalCount and totalPages by including the query parameter collectioncount=1'
-          type: integer
-          in: query
-        - name: oslc.pageSize
-          description: 'specifies the resources for each page of a query'
-          type: integer
-          in: query
-        - name: oslc.orderBy
-          description: 'specifies how the results of a query are ordered'
-          type: string
-          in: query
-        - name: oslc.where
-          description: 'specifies the WHERE clause for filtering the result set of a query'
-          type: string
-          in: query
-        - name: opmodeor
-          description: 'When set to 1 (true), this will direct the oslc.where clause to use OR rather than AND when 
-                        the clause contains multiple conditions'
-          type: integer
-          in: query
-        - name: savedQuery
-          type: string
-          in: query
-        - name: searchAttributes
-          description: 'Identifies the resource field(s) to be searched using the values provided in the oslc.searchTerms.
-                         Example searchAttributes=description,status. Both parameters must be provided.'
-          type: string
-          in: query
-        - name: oslc.searchTerms
-          description: 'Record wide text search for values specified in this query parameter. 
-                        Example oslc.searchTerms=”pump”,”broken”. Values are evaluated as an "OR" condition 
-                        the field must have a value of either pump or broken, but does not have to have both. 
-                        The values provided will be used for searching against the fields identified in 
-                        the searchAttributes parameter. Both parameters must be provided.'
-          type: string
-          in: query
-        - name: stablepaging
-          description: e.g. stablepaging=true
-          type: string
-          in: query
-        - name: paging
-          description: e.g. paging=true
-          type: string
-          in: query
-        - name: gbcols
-          description: 'Define the attributes and aggregation function e.g. gbcols=siteid, min.budgetcost,max.budgetcost, avg.totalcost'
-          type: string
-          in: query
-        - name: gbfilter
-          description: 'Provide the ability to filter the aggregation result to a smaller set e.g. gbfilter=siteid="BEDFORD"'
-          type: string
-          in: query
-        - name: gbsortby
-          description: 'Provide the ability to sort the gbsortby=-siteid aggregation result '
-          type: string
-          in: query
-        - name: gbrelprop
-          description: 'Provide the ability to get the related property back'
-          type: string
-          in: query
-        - name: gbrange
-          description: 'Provide the ability to get the ranged aggregation result (only support count) gbrange=assethealth'
-          type: string
-          in: query
-        - name: _dropnulls
-          description: 'To force the response to add null value attributes, use the query parameter _dropnulls=0.'
-          type: integer
-          in: query
-        - name: internalvalues
-          description: 'To get the internal values use the query parameter internalvalues with the value set to 1.'
-          type: integer
-          in: query
-        - name: attributesearch
-          description: 'searched for based on those attribute values.'
-          type: string
-          in: query
-        - name: action
-          description: action
-          type: string
-          in: query
+        
       
       responses:
         200:
