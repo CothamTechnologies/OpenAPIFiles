@@ -642,6 +642,11 @@ paths:
       tags: 
         - service requests
       parameters:
+        - name: dummy
+          description: dummy do not map
+          type: string
+          in: path
+          required: true
         - name: x-public-uri
           description: uri for your public url 
           type: string
