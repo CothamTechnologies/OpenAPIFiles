@@ -525,8 +525,6 @@ paths:
                       type: string
                     siteid: 
                       type: string
-                    '$alias_this_attr$location': 
-                      type: string
                     assetnum: 
                       type: string
                     orgid: 
