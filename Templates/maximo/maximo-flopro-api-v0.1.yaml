@@ -537,6 +537,8 @@ paths:
                       type: string
                     status_description: 
                       type: string
+                    status: 
+                      type: string
                     href: 
                       type: string
                     statusdate: 
