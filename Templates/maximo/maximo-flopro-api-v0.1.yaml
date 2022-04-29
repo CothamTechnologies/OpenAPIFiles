@@ -3,7 +3,7 @@ swagger: '2.0'
 info:
   version: '0.1'
   title: Maximo Next Gen API
-  description: 'Swagger version of maximo nextgen json/oslc api - without response schemas
+  description: 'Swagger version of maximo nextgen json/oslc api - with baseline response schemas
                 Notes:  basepath can also be /oslc instead of /api'
 
 host: maximo.visualiseinfo.co.uk
@@ -614,7 +614,23 @@ paths:
                       properties: 
                         description:
                           type: string
-                    
+              responseInfo: 
+                type: object
+                properties: 
+                  nextPage: 
+                    type: object
+                    properties: 
+                      href: 
+                        type: string
+                  totalPages: 
+                    type: number
+                  href: 
+                    type: string
+                  totalCount: 
+                    type: number
+                  pagenum: 
+                    type: number
+                          
         default:
           description: Default Error Response
 
