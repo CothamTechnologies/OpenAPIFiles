@@ -537,6 +537,16 @@ paths:
                       type: string
                     statusdate: 
                       type: string
+                    asset:
+                      type: object
+                      properties: 
+                        description:
+                          type: string
+                    location:
+                      type: object
+                      properties: 
+                        description:
+                          type: string
                     
         default:
           description: Default Error Response

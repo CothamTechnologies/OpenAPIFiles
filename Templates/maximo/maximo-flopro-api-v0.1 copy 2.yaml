@@ -599,14 +599,13 @@ paths:
                       type: object
                       properties: 
                         description:
-                          type: object
+                          type: string
                     location:
                       type: object
                       properties: 
                         description:
-                          type: object
-              href: 
-                type: string
+                          type: string
+                
               responseInfo: 
                 type: object
                 properties: 
