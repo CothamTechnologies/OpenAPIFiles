@@ -917,7 +917,12 @@ paths:
                     assetnum: 
                       type: string
                     location: 
-                      type: string
+                      type: object
+                      properties: 
+                        location: 
+                          type: string
+                        description: 
+                          type: string
 
               responseInfo: 
                 type: object
