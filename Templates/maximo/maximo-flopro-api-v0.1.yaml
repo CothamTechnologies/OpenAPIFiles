@@ -1423,8 +1423,6 @@ paths:
                       type: number
                     format_description: 
                       type: string
-                    format: 
-                      type: string
                     reportappname: 
                       type: string
                     description: 
@@ -1456,8 +1454,6 @@ paths:
                       type: string
                     kpivalue: 
                       type: number
-                    selectstmt: 
-                      type: string
               href: 
                 type: string
               responseInfo: 
