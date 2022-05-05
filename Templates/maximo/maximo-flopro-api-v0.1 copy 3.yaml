@@ -125,45 +125,114 @@ paths:
           schema:
             type: object
             properties: 
+              affecteddate: 
+                type: string
+                format: date-time
+              historyflag: 
+                type: boolean
+              site_collectionref: 
+                type: string
+              actlabcost: 
+                type: number
+              createwomulti_description: 
+                type: string
+              ticketuid: 
+                type: number
+              internalpriority: 
+                type: number
+              sitevisit: 
+                type: boolean
+              _rowstamp: 
+                type: string
               siteid: 
                 type: string
+              isknownerror: 
+                type: boolean
               href: 
                 type: string
+              affectedperson: 
+                type: string
               reportedbyname: 
+                type: string
+              affectedphone: 
                 type: string
               reportedpriority: 
                 type: number
               status_description: 
                 type: string
+              worklog_collectionref: 
+                type: string
+              tktemplate_collectionref: 
+                type: string
               changedate: 
                 type: string
                 format: date-time
+              actlabhrs: 
+                type: number
               orgid: 
+                type: string
+              createwomulti: 
+                type: string
+              reportedemail: 
                 type: string
               status: 
                 type: string
+              template: 
+                type: boolean
+              commodity: 
+                type: string
               reportedpriority_description: 
                 type: string
+              selfservsolaccess: 
+                type: boolean
+              commoditygroup: 
+                type: string
+              inheritstatus: 
+                type: boolean
               reportdate: 
                 type: string
                 format: date-time
+              class_description: 
+                type: string
               description: 
                 type: string
               reportedby: 
                 type: string
+              classstructure_collectionref: 
+                type: string
+              reportedphone: 
+                type: string
+              relatedrecord_collectionref: 
+                type: string
               assetsiteid: 
+                type: string
+              class: 
                 type: string
               doclinks: 
                 type: object
                 properties: 
                   href: 
                     type: string
+              assetorgid: 
+                type: string
               ticketid: 
+                type: string
+              owner: 
                 type: string
               description_longdescription: 
                 type: string
+              internalpriority_description: 
+                type: string
+              ticketspec_collectionref: 
+                type: string
               changeby: 
                 type: string
+              affectedemail: 
+                type: string
+              relatedtoglobal: 
+                type: boolean
+              hasactivity: 
+                type: boolean
               statusdate: 
                 type: string
                 format: date-time
@@ -177,6 +246,78 @@ paths:
                 properties: 
                   description:
                     type: object
+              relatedrecord: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    relatedrecclass: 
+                      type: string
+                    _rowstamp: 
+                      type: string
+                    localref: 
+                      type: string
+                    relatedrecorgid: 
+                      type: string
+                    relatetype: 
+                      type: string
+                    recordkey: 
+                      type: string
+                    relatedreckey: 
+                      type: string
+                    relatedrecordid: 
+                      type: number
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
+                    relatedrecsiteid: 
+                      type: string
+                    orgid: 
+                      type: string
+              site: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    siteuid: 
+                      type: number
+                    localref: 
+                      type: string
+                    enterdate: 
+                      type: string
+                      format: date-time
+                    changeby: 
+                      type: string
+                    active: 
+                      type: boolean
+                    description: 
+                      type: string
+                    changedate: 
+                      type: string
+                      format: date-time
+                    orgid: 
+                      type: string
+                    langcode: 
+                      type: string
+                    _rowstamp: 
+                      type: string
+                    enterby: 
+                      type: string
+                    hasld: 
+                      type: boolean
+                    contact: 
+                      type: string
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
+              persongroup_collectionref: 
+                type: string
+              hassolution: 
+                type: boolean
+              isglobal: 
+                type: boolean
         default:
           description: Default Error Response
           
