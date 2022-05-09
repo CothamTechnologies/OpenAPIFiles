@@ -369,6 +369,11 @@ paths:
         - name: lean
           type: integer
           in: query
+        - name: id
+          description: resource id
+          type: string
+          in: path
+          required: true
         - name: Body
           description: Schema will need to be modified to fit update fields required
           in: body
