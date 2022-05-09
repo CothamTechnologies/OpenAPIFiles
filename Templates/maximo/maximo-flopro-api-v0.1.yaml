@@ -385,6 +385,10 @@ paths:
                 type: string
               reportedpriority:
                 type: string
+              location:
+                type: string
+              assetnum:
+                type: string
       responses:
         204:
           description: Success
