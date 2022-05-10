@@ -1,0 +1,184 @@
+swagger: '2.0'
+
+info:
+  version: '0.1'
+  title: M3O Universal Public API Interface
+  description: 'Explore, discover and consume public APIs as simple programmable building blocks'
+
+host: api.m3o.com
+basePath: /v1
+
+schemes:
+  - https
+
+securityDefinitions:  
+  
+  bearerToken:
+    type: apiKey
+    name: Authorization
+    in: header
+    x-bearer: true
+    
+security:  
+  - bearerToken: []
+
+paths:
+
+  /evchargers/Search:
+    post: 
+      summary: Search EV Chargers by location
+      description: Search by giving a coordinate and a max distance, or bounding box and optional filters
+      tags: 
+        - service requests
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              distance: 
+                type: number
+              location: 
+                type: object
+                properties: 
+                  latitude: 
+                    type: number
+                  longitude: 
+                    type: number
+              max_results: 
+                type: number
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              pois: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    data_provider_id: 
+                      type: string
+                    operator_id: 
+                      type: string
+                    usage_type_id: 
+                      type: string
+                    address: 
+                      type: object
+                      properties: 
+                        location: 
+                          type: object
+                          properties: 
+                            latitude: 
+                              type: number
+                            longitude: 
+                              type: number
+                        title: 
+                          type: string
+                        address_line_1: 
+                          type: string
+                        address_line_2: 
+                          type: string
+                        town: 
+                          type: string
+                        state_or_province: 
+                          type: string
+                        access_comments: 
+                          type: string
+                        postcode: 
+                          type: string
+                        country_id: 
+                          type: string
+                        country: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            title: 
+                              type: string
+                            iso_code: 
+                              type: string
+                            continent_code: 
+                              type: string
+                    connections: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          connection_type_id: 
+                            type: string
+                          reference: 
+                            type: string
+                          level: 
+                            type: string
+                          amps: 
+                            type: number
+                          voltage: 
+                            type: number
+                          power: 
+                            type: number
+                          current: 
+                            type: string
+                          connection_type: 
+                            type: object
+                            properties: 
+                              id: 
+                                type: string
+                              title: 
+                                type: string
+                              formal_name: 
+                                type: string
+                              is_discontinued: 
+                                type: boolean
+                              is_obsolete: 
+                                type: boolean
+                    num_points: 
+                      type: string
+                    cost: 
+                      type: string
+                    operator: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        title: 
+                          type: string
+                        website: 
+                          type: string
+                        comments: 
+                          type: string
+                        is_private_individual: 
+                          type: boolean
+                        contact_email: 
+                          type: string
+                        phone_primary: 
+                          type: string
+                        phone_secondary: 
+                          type: string
+                        fault_report_email: 
+                          type: string
+                    usage_type: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        title: 
+                          type: string
+                        is_pay_at_location: 
+                          type: boolean
+                        is_membership_required: 
+                          type: boolean
+                        is_access_key_required: 
+                          type: boolean
