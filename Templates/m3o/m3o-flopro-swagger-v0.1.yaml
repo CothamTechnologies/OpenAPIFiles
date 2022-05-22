@@ -73,14 +73,45 @@ paths:
       responses:
         200:
           description: Success
-          schema:
-            type: object
-            properties:
-              id: 
-                type: string
               
         default:
           description: default error response  
+
+  /db/Count:
+    post: 
+      summary: Count records in a table
+      description: Count records in a table
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              count: 
+                type: number
+              
+        default:
+          description: default error response
 
   /db/Truncate:
     post: 
@@ -109,11 +140,6 @@ paths:
       responses:
         200:
           description: Success
-          schema:
-            type: object
-            properties:
-              id: 
-                type: string
               
         default:
           description: default error response
@@ -231,11 +257,6 @@ paths:
       responses:
         200:
           description: Success
-          schema:
-            type: object
-            properties:
-              id: 
-                type: string
               
         default:
           description: default error response
