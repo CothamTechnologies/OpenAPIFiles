@@ -1,0 +1,69 @@
+swagger: '2.0'
+
+info:
+  version: '1.0'
+  title: pdfmonkey API 
+  description: 'generate pdf documents see  https://www.pdfmonkey.io'
+
+host: api.pdfmonkey.io
+basePath: /api/v1
+
+schemes:
+  - https
+
+paths:
+
+  /current_user:
+    get: 
+      summary: get current user
+      description: get current user details
+      tags: 
+        - user
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              current_user: 
+                type: object
+                properties: 
+                  id: 
+                    type: string
+                  auth_token: 
+                    type: string
+                  available_documents: 
+                    type: number
+                  created_at: 
+                    type: string
+                  current_plan: 
+                    type: string
+                  current_plan_interval: 
+                    type: string
+                  desired_name: 
+                    type: string
+                  email: 
+                    type: string
+                  lang: 
+                    type: string
+                  paying_customer: 
+                    type: boolean
+                  trial_ends_on: 
+                    type: string
+                    format: date
+                  updated_at: 
+                    type: string
+                  block_resources: 
+                    type: boolean
+                  share_links: 
+                    type: boolean
+        default:
+          description: Default Error Response
+        

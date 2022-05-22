@@ -11,25 +11,304 @@ basePath: /v1
 schemes:
   - https
 
-securityDefinitions:  
-  
-  bearerToken:
-    type: apiKey
-    name: Authorization
-    in: header
-    x-bearer: true
-    
-security:  
-  - bearerToken: []
-
 paths:
+
+  /db/Update:
+    post: 
+      summary: Update a record in the database. Include an "id" in the record to update.
+      description: Update a record in the database. Include an "id" in the record to update.
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              id: 
+                description: The id of the record. If not specified it is inferred from the 'id' field of the record
+                type: string
+              table: 
+                description: Optional table name. Defaults to 'default'
+                type: string
+              record: 
+                type: object
+                properties:  
+                  id: 
+                    type: string             
+                  field1Name:
+                    type: string
+                  field1Value:
+                    type: string
+                  field2Name:
+                    type: string
+                  field2Value:
+                    type: string
+                  field3Name:
+                    type: string
+                  field3Value:
+                    type: string
+                  field4Name:
+                    type: string
+                  field4Value:
+                    type: string
+                  field5Name:
+                    type: string
+                  field5Value:
+                    type: string
+                  field6Name:
+                    type: string
+                  field6Value:
+                    type: string
+                          
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              
+        default:
+          description: default error response  
+
+  /db/Truncate:
+    post: 
+      summary: Truncate the records in a table
+      description: Truncate the records in a table
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              
+        default:
+          description: default error response
+
+  /db/Read:
+    post: 
+      summary: Read data from a table. 
+      description: Read data from a table. Lookup can be by ID or via querying any field in the record.
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                description: Optional table name. Defaults to 'default'
+                type: string
+              query: 
+                description: "Examples: age >= 18, age >= 18 and verified == true Comparison operators: ==, !=, <, >, <=, >= Logical operator: and Dot access is supported, eg user.age == 11 Accessing list elements is not supported yet."
+                type: string
+              id: 
+                description: "Read by id. Equivalent to id == your-id"
+                type: string
+              limit: 
+                description: "Maximum number of records to return. Default limit is 25. Maximum limit is 1000. Anything higher will return an error."
+                type: string
+              offset: 
+                description: offset
+                type: number
+              order: 
+                description: "'asc' (default), 'desc'"
+                type: string
+              orderBy: 
+                description: field name to order by
+                type: string
+              
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    field1Name:
+                      type: string
+                    field1Value:
+                      type: string
+                    field2Name:
+                      type: string
+                    field2Value:
+                      type: string
+                    field3Name:
+                      type: string
+                    field3Value:
+                      type: string
+                    field4Name:
+                      type: string
+                    field4Value:
+                      type: string
+                    field5Name:
+                      type: string
+                    field5Value:
+                      type: string
+                    field6Name:
+                      type: string
+                    field6Value:
+                      type: string
+    
+        default:
+          description: default error response
+
+  /db/Delete:
+    post: 
+      summary: Delete a record in the database by id 
+      description: Delete a record in the database by id in the M3O DB Service
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              id: 
+                type: string
+              
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              
+        default:
+          description: default error response
+
+  /db/Create:
+    post: 
+      summary: Create a Record in the M3O DB Service
+      description: 'Create a record in the database. Optionally include an "id" field otherwise it is set automatically.'
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              record: 
+                type: object
+                properties:               
+                  field1Name:
+                    type: string
+                  field1Value:
+                    type: string
+                  field2Name:
+                    type: string
+                  field2Value:
+                    type: string
+                  field3Name:
+                    type: string
+                  field3Value:
+                    type: string
+                  field4Name:
+                    type: string
+                  field4Value:
+                    type: string
+                  field5Name:
+                    type: string
+                  field5Value:
+                    type: string
+                  field6Name:
+                    type: string
+                  field6Value:
+                    type: string
+                          
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              
+        default:
+          description: default error response   
 
   /evchargers/Search:
     post: 
       summary: Search EV Chargers by location
       description: Search by giving a coordinate and a max distance, or bounding box and optional filters
       tags: 
-        - service requests
+        - EV Chargers
       consumes:
         - application/json
       produces:
@@ -182,3 +461,5 @@ paths:
                           type: boolean
                         is_access_key_required: 
                           type: boolean
+        default:
+          description: default error response           
