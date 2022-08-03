@@ -1836,6 +1836,10 @@ paths:
                                   type: string
                                 serviceDescription:
                                   type: string
+                                serviceType:
+                                  type: string
+                                serviceTypeDescription:
+                                  type: string
                                 lineComment:
                                   type: string
                                 confirmedQty:
@@ -1888,6 +1892,8 @@ paths:
                                       entryLineComment:
                                         type: string
                                       entryChangeStatus:
+                                        type: string
+                                      operationalEntryType:
                                         type: string
                                       reasonCode:
                                         type: string
