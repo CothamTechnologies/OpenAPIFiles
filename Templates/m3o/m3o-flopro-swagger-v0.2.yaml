@@ -1,0 +1,486 @@
+swagger: '2.0'
+
+info:
+  version: '0.2'
+  title: M3O Universal Public API Interface
+  description: 'Explore, discover and consume public APIs as simple programmable building blocks'
+
+host: api.m3o.com
+basePath: /v1
+
+schemes:
+  - https
+
+paths:
+
+  /db/Update:
+    post: 
+      summary: Update a record in the database. Include an "id" in the record to update.
+      description: Update a record in the database. Include an "id" in the record to update.
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              id: 
+                description: The id of the record. If not specified it is inferred from the 'id' field of the record
+                type: string
+              table: 
+                description: Optional table name. Defaults to 'default'
+                type: string
+              record: 
+                type: object
+                properties:  
+                  id: 
+                    type: string             
+                  field1Name:
+                    type: string
+                  field1Value:
+                    type: string
+                  field2Name:
+                    type: string
+                  field2Value:
+                    type: string
+                  field3Name:
+                    type: string
+                  field3Value:
+                    type: string
+                  field4Name:
+                    type: string
+                  field4Value:
+                    type: string
+                  field5Name:
+                    type: string
+                  field5Value:
+                    type: string
+                  field6Name:
+                    type: string
+                  field6Value:
+                    type: string
+                          
+      responses:
+        200:
+          description: Success
+              
+        default:
+          description: default error response  
+
+  /db/Count:
+    post: 
+      summary: Count records in a table
+      description: Count records in a table
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              count: 
+                type: number
+              
+        default:
+          description: default error response
+
+  /db/Truncate:
+    post: 
+      summary: Truncate the records in a table
+      description: Truncate the records in a table
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              
+      responses:
+        200:
+          description: Success
+              
+        default:
+          description: default error response
+
+  /db/Read:
+    post: 
+      summary: Read data from a table. 
+      description: Read data from a table. Lookup can be by ID or via querying any field in the record.
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                description: Optional table name. Defaults to 'default'
+                type: string
+              query: 
+                description: "Examples: age >= 18, age >= 18 and verified == true Comparison operators: ==, !=, <, >, <=, >= Logical operator: and Dot access is supported, eg user.age == 11 Accessing list elements is not supported yet."
+                type: string
+              id: 
+                description: "Read by id. Equivalent to id == your-id"
+                type: string
+              limit: 
+                description: "Maximum number of records to return. Default limit is 25. Maximum limit is 1000. Anything higher will return an error."
+                type: string
+              offset: 
+                description: offset
+                type: number
+              order: 
+                description: "'asc' (default), 'desc'"
+                type: string
+              orderBy: 
+                description: field name to order by
+                type: string
+              
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    field1Name:
+                      type: string
+                    field1Value:
+                      type: string
+                    field2Name:
+                      type: string
+                    field2Value:
+                      type: string
+                    field3Name:
+                      type: string
+                    field3Value:
+                      type: string
+                    field4Name:
+                      type: string
+                    field4Value:
+                      type: string
+                    field5Name:
+                      type: string
+                    field5Value:
+                      type: string
+                    field6Name:
+                      type: string
+                    field6Value:
+                      type: string
+    
+        default:
+          description: default error response
+
+  /db/Delete:
+    post: 
+      summary: Delete a record in the database by id 
+      description: Delete a record in the database by id in the M3O DB Service
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              id: 
+                type: string
+              
+      responses:
+        200:
+          description: Success
+              
+        default:
+          description: default error response
+
+  /db/Create:
+    post: 
+      summary: Create a Record in the M3O DB Service
+      description: 'Create a record in the database. Optionally include an "id" field otherwise it is set automatically.'
+      tags: 
+        - M3O DB Service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              table: 
+                type: string
+              record: 
+                type: object
+                properties:               
+                  field1Name:
+                    type: string
+                  field1Value:
+                    type: string
+                  field2Name:
+                    type: string
+                  field2Value:
+                    type: string
+                  field3Name:
+                    type: string
+                  field3Value:
+                    type: string
+                  field4Name:
+                    type: string
+                  field4Value:
+                    type: string
+                  field5Name:
+                    type: string
+                  field5Value:
+                    type: string
+                  field6Name:
+                    type: string
+                  field6Value:
+                    type: string
+                          
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id: 
+                type: string
+              
+        default:
+          description: default error response   
+
+  /evchargers/Search:
+    post: 
+      summary: Search EV Chargers by location
+      description: Search by giving a coordinate and a max distance, or bounding box and optional filters
+      tags: 
+        - EV Chargers
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: bearer token
+          type: string
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              distance: 
+                type: number
+              location: 
+                type: object
+                properties: 
+                  latitude: 
+                    type: number
+                  longitude: 
+                    type: number
+              max_results: 
+                type: number
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              pois: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                    data_provider_id: 
+                      type: string
+                    operator_id: 
+                      type: string
+                    usage_type_id: 
+                      type: string
+                    address: 
+                      type: object
+                      properties: 
+                        location: 
+                          type: object
+                          properties: 
+                            latitude: 
+                              type: number
+                            longitude: 
+                              type: number
+                        title: 
+                          type: string
+                        address_line_1: 
+                          type: string
+                        address_line_2: 
+                          type: string
+                        town: 
+                          type: string
+                        state_or_province: 
+                          type: string
+                        access_comments: 
+                          type: string
+                        postcode: 
+                          type: string
+                        country_id: 
+                          type: string
+                        country: 
+                          type: object
+                          properties: 
+                            id: 
+                              type: string
+                            title: 
+                              type: string
+                            iso_code: 
+                              type: string
+                            continent_code: 
+                              type: string
+                    connections: 
+                      type: array
+                      items: 
+                        type: object
+                        properties: 
+                          connection_type_id: 
+                            type: string
+                          reference: 
+                            type: string
+                          level: 
+                            type: string
+                          amps: 
+                            type: number
+                          voltage: 
+                            type: number
+                          power: 
+                            type: number
+                          current: 
+                            type: string
+                          connection_type: 
+                            type: object
+                            properties: 
+                              id: 
+                                type: string
+                              title: 
+                                type: string
+                              formal_name: 
+                                type: string
+                              is_discontinued: 
+                                type: boolean
+                              is_obsolete: 
+                                type: boolean
+                    num_points: 
+                      type: string
+                    cost: 
+                      type: string
+                    operator: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        title: 
+                          type: string
+                        website: 
+                          type: string
+                        comments: 
+                          type: string
+                        is_private_individual: 
+                          type: boolean
+                        contact_email: 
+                          type: string
+                        phone_primary: 
+                          type: string
+                        phone_secondary: 
+                          type: string
+                        fault_report_email: 
+                          type: string
+                    usage_type: 
+                      type: object
+                      properties: 
+                        id: 
+                          type: string
+                        title: 
+                          type: string
+                        is_pay_at_location: 
+                          type: boolean
+                        is_membership_required: 
+                          type: boolean
+                        is_access_key_required: 
+                          type: boolean
+        default:
+          description: default error response           

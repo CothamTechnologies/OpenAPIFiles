@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  version: "1.0"
+  title: 'Visualise Info'
+  description: 'Authentication API for VIL Viewer'
+
+host: vil.visualiseinfo.co.uk
+basePath: /api/rest
+
+schemes:
+  - https
+
+paths:
+  /auth/map.php:
+    get:
+      summary: Get Authentication Token
+      description: Get Authentication Token
+      tags:
+        - Auth
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: _usr
+          type: string
+          description: username
+        - in: query
+          name: _pwd
+          type: string
+          description: password
+        - in: query
+          name: siteId
+          type: string
+          description: Site ID
+        - in: query
+          name: _tkn
+          type: string
+          description: 'token = username.reversepassword.siteID.GET followed 
+                        by base64 encoded todays date YYYYMMDD - then all base64 encoded'
+
+      responses:
+        200:
+          description: success response
+          schema:
+            type: object
+            properties:
+              code: 
+                type: number
+              desc:
+                type: string
+              secret: 
+                type: string
