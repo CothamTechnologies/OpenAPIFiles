@@ -40,7 +40,7 @@ paths:
 
       responses:
         200:
-          description: success response
+          description: success response.
           schema:
             type: object
             properties:
@@ -60,4 +60,4 @@ paths:
                         type: string
                       JWT:
                         type: string
-                        
+
