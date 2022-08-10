@@ -36,7 +36,7 @@ paths:
           name: _tkn
           type: string
           description: 'token = username.reversepassword.siteID.GET followed 
-                        by base64 encoded todays date YYYYMMDD - then all base64 encoded'
+                        by base64 encoded todays date YYYY-MM-DD - then all base64 encoded'
 
       responses:
         200:
