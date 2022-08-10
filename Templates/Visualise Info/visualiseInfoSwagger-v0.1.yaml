@@ -50,3 +50,14 @@ paths:
                 type: string
               secret: 
                 type: string
+              data:
+                type: object
+                properties: 
+                  LONDON:
+                    type: object
+                    properties: 
+                      IVSITEID:
+                        type: string
+                      JWT:
+                        type: string
+                        
