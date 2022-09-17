@@ -41,29 +41,41 @@ paths:
           schema:
             type: object
             properties:
-              responseCode:
-                type: integer
-              responseMessage:
-                type: string
-              payload:
-                type: integer
-              sessionToken:
-                type: string
-              requestedMethod:
-                type: string
-              requestedFormat:
-                type: string
-              timestamp:
-                type: string
-                format: date-time
-              requestReceivedTime:
-                type: string
-                format: date-time
-              maxAllowedRequestTime:
-                type: integer
-              requestProcessingTime:
-                type: number
-                format: double
+              photos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    camera:
+                      type: object
+                      properties:
+                        full_name:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                    earth_date:
+                      type: string
+                    id:
+                      type: string
+                    img_src:
+                      type: string
+                    rover:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        landing_date:
+                          type: string
+                        launch_date:
+                          type: string
+                        name:
+                          type: string
+                        status:
+                          type: string
+                    sol:
+                      type: string
 
         default:
           description: Failed Server Response
