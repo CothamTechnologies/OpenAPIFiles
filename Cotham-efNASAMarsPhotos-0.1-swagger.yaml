@@ -26,14 +26,14 @@ paths:
         - 1. NASA Mars Rover
       parameters:
         - in: query
-          name: apiKey
+          name: api_key
           type: string
-          description: apiKey
+          description: api key
           required: true
         - in: query
           name: sol
           type: string
-          description: clientIdentifier
+          description: sol
           required: true
       responses:
         200:
