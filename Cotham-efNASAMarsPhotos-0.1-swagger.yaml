@@ -33,7 +33,7 @@ paths:
         - in: query
           name: sol
           type: string
-          description: sol
+          description: sol (number) where Sol is a Martian day
           required: true
         - in: query
           name: earth_date
