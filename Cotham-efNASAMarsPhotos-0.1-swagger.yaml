@@ -5,7 +5,7 @@ info:
   description: 'NASA Curiousity Mars Rover'
 
 host: api.nasa.gov
-basePath: /mars-photos/api/v1/rovers/curiousity
+basePath: /mars-photos/api/v1/rovers/curiosity
 
 schemes:
   - https
