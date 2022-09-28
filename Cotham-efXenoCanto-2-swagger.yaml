@@ -4,7 +4,7 @@ info:
   title: 'Xeno Canto - Bird Sounds'
   description: 'Bird sounds from around the world'
 
-host: www.xenocanto.org
+host: www.xeno-canto.org
 basePath: /api/2
 
 schemes:
