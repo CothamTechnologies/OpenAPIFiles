@@ -1,11 +1,11 @@
 swagger: '2.0'
 info:
   version: '0.2'
-  title: 'NASA Curiousity Mars Rover'
-  description: 'NASA Curiousity Mars Rover'
+  title: 'Xeno Canto - Bird Sounds'
+  description: 'Bird sounds from around the world'
 
-host: api.nasa.gov
-basePath: /mars-photos/api/v1/rovers/curiosity
+host: www.xenocanto.org
+basePath: /api/2
 
 schemes:
   - https
@@ -18,68 +18,104 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /photos:
+  /recordings:
     get:
-      summary: Get Curiousity Mars Rover photos
-      description: Get Curiousity Mars Rover photos
+      summary: Get Bird Sound Recordings
+      description: Get bird sound recordings from around the world - use the query parameter to define your search
       tags:
-        - 1. NASA Mars Rover
+        - 1. Xeno Canto
       parameters:
         - in: query
-          name: api_key
+          name: query
           type: string
-          description: api key
+          description: query
           required: true
         - in: query
-          name: sol
+          name: page
           type: string
-          description: sol (number) where Sol is a Martian day
-          required: true
-        - in: query
-          name: earth_date
-          type: string
-          description: earth date
-          required: true
+          description: The page parameter is optional and is only needed if the results from a given search don't fit in a single page. If specified, page must be an integer between 1 and results.numPages (see results format below for details). For example, to retrieve the fifth page of Brazilian recordings, use the following URL - https://www.xeno-canto.org/api/2/recordings?query=cnt:brazil&page=5
+          required: false
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
           schema:
             type: object
             properties:
-              photos:
+              numRecordings:
+                type: string
+              numSpecies:
+                type: string
+              page:
+                type: integer
+              numPages:
+                type: integer
+              recordings:
                 type: array
                 items:
                   type: object
                   properties:
-                    camera:
-                      type: object
-                      properties:
-                        full_name:
-                          type: string
-                        id:
-                          type: string
-                        name:
-                          type: string
-                    earth_date:
-                      type: string
                     id:
                       type: string
-                    img_src:
+                    gen:
                       type: string
-                    rover:
+                    sp:
+                      type: string
+                    ssp:
+                      type: string
+                    en:
+                      type: string
+                    rec:
+                      type: string
+                    cnt:
+                      type: string
+                    loc:
+                      type: string
+                    lat:
+                      type: string
+                    lng:
+                      type: string
+                    alt:
+                      type: string
+                    type:
+                      type: string
+                    url:
+                      type: string
+                    file:
+                      type: string
+                    file-name:
+                      type: string
+                    sone:
                       type: object
                       properties:
-                        id:
+                        small:
                           type: string
-                        landing_date:
+                        med:
                           type: string
-                        launch_date:
+                        large:
                           type: string
-                        name:
+                        full:
                           type: string
-                        status:
-                          type: string
-                    sol:
+                    lic:
+                      type: string
+                    q:
+                      type: string
+                    length:
+                      type: string
+                    time:
+                      type: string
+                    date:
+                      type: string
+                    uploaded:
+                      type: string
+                    also:
+                      type: array
+                      items:
+                        type: string
+                    rmk:
+                      type: string
+                    bird-seen:
+                      type: string
+                    playback-used:
                       type: string
 
         default:
