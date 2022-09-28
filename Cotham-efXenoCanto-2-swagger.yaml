@@ -33,7 +33,7 @@ paths:
         - in: query
           name: page
           type: string
-          description: The page parameter is optional and is only needed if the results from a given search don't fit in a single page. If specified, page must be an integer between 1 and results.numPages (see results format below for details). For example, to retrieve the fifth page of Brazilian recordings, use the following URL - https://www.xeno-canto.org/api/2/recordings?query=cnt:brazil&page=5
+          description: The page parameter is optional and is only needed if the results from a given search don't fit in a single page. If specified, page must be an integer between 1 and results.numPages (see results format below for details).
           required: false
       responses:
         200:
