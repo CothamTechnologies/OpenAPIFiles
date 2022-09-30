@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: 'Position Stack Geocoding API'
-  description: 'Position Stack Geocoding (Forward and Reverse) API'
+  title: 'Open Meteo Weather API'
+  description: 'Open Meteo Weather API'
 
-host: api.positionstack.com
+host: api.open-meteo.com
 basePath: /v1
 
 schemes:
@@ -18,22 +18,27 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /forward:
+  /forecast:
     get:
-      summary: Position Stack Forward Geocoding API
-      description: Position Stack Forward Geocoding API
+      summary: Open Meteo Weather API
+      description: Open Meteo Weather API
       tags:
-        - 1. Position Stack Geocoding
+        - 1. Open Meteo Weather
       parameters:
         - in: query
-          name: access_key
+          name: latitude
           type: string
-          description: access_key
+          description: latitude
           required: true
         - in: query
-          name: query
+          name: longitude
           type: string
-          description: place information to forward geocode 
+          description: latitude
+          required: true
+        - in: query
+          name: hourly
+          type: string
+          description: hourly
           required: true
       responses:
         200:
@@ -41,47 +46,36 @@ paths:
           schema:
             type: object
             properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    latitude:
+              latitude:
+                type: string
+              longitude:
+                type: string
+              generationtime_ms:
+                type: string
+              utc_offset_seconds:
+                type: string
+              timezone:
+                type: string
+              timezone_abbreviation:
+                type: string
+              elevation:
+                type: string
+              hourly_units:
+                type: object
+                properties:
+                  time:
+                    type: string
+                  temperature:
+                    type: string
+                hourly:
+                  time:
+                    type: array
+                    items:
                       type: string
-                    longitude:
+                  temperature_2m:
+                    type: array
+                    items:
                       type: string
-                    type:
-                      type: string
-                    name:
-                      type: string
-                    number:
-                      type: string
-                    postal_code:
-                      type: string
-                    street:
-                      type: string
-                    confidence:
-                      type: string
-                    region:
-                      type: string
-                    region_code:
-                      type: string
-                    county:
-                      type: string
-                    locality:
-                      type: string
-                    administrative_area:
-                      type: string
-                    neighbourhood:
-                      type: string
-                    country:
-                      type: string
-                    country_code:
-                      type: string
-                    continent:
-                      type: string
-                    label:
-                      type: string 
 
         default:
           description: Failed Server Response
