@@ -8,7 +8,7 @@ host: api.positionstack.com
 basePath: /v1
 
 schemes:
-  - https
+  - http
 #securityDefinitions:
 #  basicAuth:
 #    type: basic
