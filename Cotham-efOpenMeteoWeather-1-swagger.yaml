@@ -1,0 +1,87 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Position Stack Geocoding API'
+  description: 'Position Stack Geocoding (Forward and Reverse) API'
+
+host: api.positionstack.com
+basePath: /v1
+
+schemes:
+  - http
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /forward:
+    get:
+      summary: Position Stack Forward Geocoding API
+      description: Position Stack Forward Geocoding API
+      tags:
+        - 1. Position Stack Geocoding
+      parameters:
+        - in: query
+          name: access_key
+          type: string
+          description: access_key
+          required: true
+        - in: query
+          name: query
+          type: string
+          description: place information to forward geocode 
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    latitude:
+                      type: string
+                    longitude:
+                      type: string
+                    type:
+                      type: string
+                    name:
+                      type: string
+                    number:
+                      type: string
+                    postal_code:
+                      type: string
+                    street:
+                      type: string
+                    confidence:
+                      type: string
+                    region:
+                      type: string
+                    region_code:
+                      type: string
+                    county:
+                      type: string
+                    locality:
+                      type: string
+                    administrative_area:
+                      type: string
+                    neighbourhood:
+                      type: string
+                    country:
+                      type: string
+                    country_code:
+                      type: string
+                    continent:
+                      type: string
+                    label:
+                      type: string 
+
+        default:
+          description: Failed Server Response
