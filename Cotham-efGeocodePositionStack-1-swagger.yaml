@@ -20,8 +20,8 @@ schemes:
 paths:
   /forward:
     get:
-      summary: Get Curiousity Mars Rover photos
-      description: Get Curiousity Mars Rover photos
+      summary: Position Stack Forward Geocoding API
+      description: Position Stack Forward Geocoding API
       tags:
         - 1. Position Stack Geocoding
       parameters:
