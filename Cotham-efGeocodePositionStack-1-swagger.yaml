@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: '0.2'
+  version: '1.0'
   title: 'Position Stack Geocoding API'
   description: 'Position Stack Geocoding (Forward and Reverse) API'
 
