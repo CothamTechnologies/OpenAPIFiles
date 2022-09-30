@@ -65,6 +65,20 @@ paths:
                 type: string
               elevation:
                 type: string
+              current_weather:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+                  time:
+                    type: string
+                  weathercode:
+                    type: string
+                  winddirection:
+                    type: string
+                  windspeed:
+                    type: string
+               
               hourly_units:
                 type: object
                 properties:
