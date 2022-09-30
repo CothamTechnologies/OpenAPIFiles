@@ -40,6 +40,11 @@ paths:
           type: float
           description: hourly
           required: true
+        - in: query
+          name: current_weather
+          type: boolean
+          description: current_weather
+          required: true
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
