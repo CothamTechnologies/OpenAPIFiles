@@ -223,27 +223,15 @@ paths:
                       type: string
                     assettagged: 
                       type: string
-                    location: 
-                      type: object
-                      properties: 
-                        description: 
-                          type: string
                     href: 
                       type: string
-                    asset: 
+                    assetnum: 
                       type: object
-                      properties: 
-                        status_description: 
-                          type: string
-                        assetnum: 
-                          type: string
-                        description: 
-                          type: string
-                        status: 
-                          type: string
                     status: 
                       type: string
                     wonum: 
+                      type: string
+                    location: 
                       type: string
               href: 
                 type: string
