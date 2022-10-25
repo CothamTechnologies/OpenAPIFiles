@@ -1,0 +1,100 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Open Meteo Weather API'
+  description: 'Open Meteo Weather API'
+
+host: api.open-meteo.com
+basePath: /v1
+
+schemes:
+  - http
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /forecast:
+    get:
+      summary: Open Meteo Weather API
+      description: Open Meteo Weather API
+      tags:
+        - 1. Open Meteo Weather
+      parameters:
+        - in: query
+          name: latitude
+          type: string
+          description: latitude
+          required: true
+        - in: query
+          name: longitude
+          type: float
+          description: latitude
+          required: true
+        - in: query
+          name: hourly
+          type: float
+          description: hourly
+          required: true
+        - in: query
+          name: current_weather
+          type: boolean
+          description: current_weather
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              latitude:
+                type: string
+              longitude:
+                type: string
+              generationtime_ms:
+                type: string
+              utc_offset_seconds:
+                type: string
+              timezone:
+                type: string
+              timezone_abbreviation:
+                type: string
+              elevation:
+                type: string
+              current_weather:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+                  time:
+                    type: string
+                  weathercode:
+                    type: string
+                  winddirection:
+                    type: string
+                  windspeed:
+                    type: string
+               
+              hourly_units:
+                type: object
+                properties:
+                  time:
+                    type: string
+                  temperature:
+                    type: string
+                hourly:
+                  time:
+                    type: array
+                    items:
+                      type: string
+                  temperature_2m:
+                    type: array
+                    items:
+                      type: string
+
+        default:
+          description: Failed Server Response

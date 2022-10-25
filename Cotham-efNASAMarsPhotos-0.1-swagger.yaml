@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  version: '0.2'
+  title: 'NASA Curiousity Mars Rover'
+  description: 'NASA Curiousity Mars Rover'
+
+host: api.nasa.gov
+basePath: /mars-photos/api/v1/rovers/curiosity
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /photos:
+    get:
+      summary: Get Curiousity Mars Rover photos
+      description: Get Curiousity Mars Rover photos
+      tags:
+        - 1. NASA Mars Rover
+      parameters:
+        - in: query
+          name: api_key
+          type: string
+          description: api key
+          required: true
+        - in: query
+          name: sol
+          type: string
+          description: sol (number) where Sol is a Martian day
+          required: true
+        - in: query
+          name: earth_date
+          type: string
+          description: earth date
+          required: true
+        - in: query
+          name: page
+          type: string
+          description: page - 25 items per page returned
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              photos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    camera:
+                      type: object
+                      properties:
+                        full_name:
+                          type: string
+                        id:
+                          type: string
+                        name:
+                          type: string
+                    earth_date:
+                      type: string
+                    id:
+                      type: string
+                    img_src:
+                      type: string
+                    rover:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        landing_date:
+                          type: string
+                        launch_date:
+                          type: string
+                        name:
+                          type: string
+                        status:
+                          type: string
+                    sol:
+                      type: string
+
+        default:
+          description: Failed Server Response

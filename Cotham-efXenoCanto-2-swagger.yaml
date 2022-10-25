@@ -1,0 +1,122 @@
+swagger: '2.0'
+info:
+  version: '0.2'
+  title: 'Xeno Canto - Bird Sounds'
+  description: 'Bird sounds from around the world'
+
+host: www.xeno-canto.org
+basePath: /api/2
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /recordings:
+    get:
+      summary: Get Bird Sound Recordings
+      description: Get bird sound recordings from around the world - use the query parameter to define your search
+      tags:
+        - 1. Xeno Canto
+      parameters:
+        - in: query
+          name: query
+          type: string
+          description: query
+          required: true
+        - in: query
+          name: page
+          type: string
+          description: The page parameter is optional and is only needed if the results from a given search don't fit in a single page. If specified, page must be an integer between 1 and results.numPages (see results format below for details).
+          required: false
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              numRecordings:
+                type: string
+              numSpecies:
+                type: string
+              page:
+                type: integer
+              numPages:
+                type: integer
+              recordings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    gen:
+                      type: string
+                    sp:
+                      type: string
+                    ssp:
+                      type: string
+                    en:
+                      type: string
+                    rec:
+                      type: string
+                    cnt:
+                      type: string
+                    loc:
+                      type: string
+                    lat:
+                      type: string
+                    lng:
+                      type: string
+                    alt:
+                      type: string
+                    type:
+                      type: string
+                    url:
+                      type: string
+                    file:
+                      type: string
+                    file-name:
+                      type: string
+                    sone:
+                      type: object
+                      properties:
+                        small:
+                          type: string
+                        med:
+                          type: string
+                        large:
+                          type: string
+                        full:
+                          type: string
+                    lic:
+                      type: string
+                    q:
+                      type: string
+                    length:
+                      type: string
+                    time:
+                      type: string
+                    date:
+                      type: string
+                    uploaded:
+                      type: string
+                    also:
+                      type: array
+                      items:
+                        type: string
+                    rmk:
+                      type: string
+                    bird-seen:
+                      type: string
+                    playback-used:
+                      type: string
+
+        default:
+          description: Failed Server Response
