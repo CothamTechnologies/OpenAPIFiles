@@ -226,7 +226,7 @@ paths:
                     href: 
                       type: string
                     assetnum: 
-                      type: object
+                      type: string
                     status: 
                       type: string
                     wonum: 
