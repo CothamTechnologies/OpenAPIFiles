@@ -140,34 +140,77 @@ paths:
           schema:
             type: object
             properties: 
-              site: 
-                type: object
-                properties: 
-                  description: 
-                    type: string
-                  siteid: 
-                    type: string
               address_collectionref: 
                 type: string
+              site: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    siteuid: 
+                      type: number
+                    systemid: 
+                      type: string
+                    localref: 
+                      type: string
+                    enterdate: 
+                      type: string
+                      format: date-time
+                    billtoshipto_collectionref: 
+                      type: string
+                    changeby: 
+                      type: string
+                    active: 
+                      type: boolean
+                    description: 
+                      type: string
+                    changedate: 
+                      type: string
+                      format: date-time
+                    _rowstamp: 
+                      type: string
+                    enterby: 
+                      type: string
+                    siteid: 
+                      type: string
+                    href: 
+                      type: string
               address: 
-                type: object
-                properties: 
-                  address3: 
-                    type: string
-                  address2: 
-                    type: string
-                  address1: 
-                    type: string
-                  address5: 
-                    type: string
-                  address4: 
-                    type: string
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    localref: 
+                      type: string
+                    address3: 
+                      type: string
+                    address2: 
+                      type: string
+                    address1: 
+                      type: string
+                    changeby: 
+                      type: string
+                    description: 
+                      type: string
+                    changedate: 
+                      type: string
+                      format: date-time
+                    addresscode: 
+                      type: string
+                    addressid: 
+                      type: number
+                    _rowstamp: 
+                      type: string
+                    address5: 
+                      type: string
+                    href: 
+                      type: string
+                    address4: 
+                      type: string
               site_collectionref: 
                 type: string
               href: 
                 type: string
-
-
 
         default:
           description: Default Error Response
