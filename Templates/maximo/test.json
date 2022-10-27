@@ -1,0 +1,108 @@
+{
+    "member": [
+        {
+            "_rowstamp": "239020",
+            "site": {
+                "siteid": "MCLEAN"
+            },
+            "address_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVOQQ--/address",
+            "address": {
+                "address3": "MA",
+                "address2": "Bedford",
+                "address1": "100 Crosby Drive",
+                "address5": "USA",
+                "address4": "01730"
+            },
+            "site_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVOQQ--/site",
+            "description": "EAGLE Inc. North America",
+            "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVOQQ--",
+            "orgid": "EAGLENA"
+        },
+        {
+            "_rowstamp": "239021",
+            "site": {
+                "siteid": "CHILEHDQ"
+            },
+            "address_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVTQQ--/address",
+            "address": {
+                "address3": "Santiago",
+                "address1": "100 El'Crosby Blvd.",
+                "address5": "Chile",
+                "address4": "87610"
+            },
+            "site_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVTQQ--/site",
+            "description": "Eagle South America, Inc.",
+            "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVTQQ--",
+            "orgid": "EAGLESA"
+        },
+        {
+            "_rowstamp": "239022",
+            "site": {
+                "siteid": "WOKING"
+            },
+            "address_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVVSw--/address",
+            "address": {
+                "address3": "Surey",
+                "address2": "Woking",
+                "address1": "100 Chertsey Road",
+                "address5": "UK",
+                "address4": "GU21 5BJ"
+            },
+            "site_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVVSw--/site",
+            "description": "European Headquarters of Eagle, Inc.",
+            "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_RUFHTEVVSw--",
+            "orgid": "EAGLEUK"
+        },
+        {
+            "_rowstamp": "563975",
+            "site": {
+                "siteid": "BOSTON"
+            },
+            "address_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_TEdUOTk5/address",
+            "address": {
+                "address3": "MASSACHUSETTS",
+                "address2": "BOSTON",
+                "address1": "123 LGT Street",
+                "address5": "USA",
+                "address4": "1460"
+            },
+            "site_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_TEdUOTk5/site",
+            "description": "Industrial Organization for Analytics",
+            "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_TEdUOTk5",
+            "orgid": "LGT999"
+        },
+        {
+            "_rowstamp": "9887711",
+            "site": {
+                "siteid": "SBX"
+            },
+            "address_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_VklM/address",
+            "address": {
+                "address3": "Hampshire",
+                "address2": "Winchester",
+                "address1": "Hursley Road",
+                "address5": "England",
+                "address4": "SO21"
+            },
+            "site_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_VklM/site",
+            "description": "Visualise Info Ltd",
+            "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_VklM",
+            "orgid": "VIL"
+        },
+        {
+            "_rowstamp": "9887696",
+            "site": {},
+            "address_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_REVW/address",
+            "address": {},
+            "site_collectionref": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_REVW/site",
+            "description": "Development Studio",
+            "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization/_REVW",
+            "orgid": "DEV"
+        }
+    ],
+    "href": "http://vi-winserver31.visualiseinfo.co.uk:80/maximo/oslc/os/mxapiorganization",
+    "responseInfo": {
+        "href": "http://maximo-vil.visualiseinfo.co.uk/maximo/api/os/mxapiorganization?lean=1&oslc.select=orgid,description,address.address1,%20address.address2,address.address3,address.address4,address.address5,site.siteid&collectioncount=1",
+        "totalCount": 6
+    }
+}
