@@ -14,7 +14,7 @@ schemes:
 
 paths:
 
-  /os/mxapiorganization/{id}/site:        
+  /os/mxapiorganization/{id}:        
     get:
       summary: get sites of org
       description: query sites of org
