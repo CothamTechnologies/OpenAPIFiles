@@ -1,11 +1,11 @@
 swagger: '2.0'
 info:
   version: '0.2'
-  title: 'NASA Curiousity Mars Rover'
-  description: 'NASA Curiousity Mars Rover'
+  title: 'Airtable Groceries List'
+  description: 'Airtable Groceries List'
 
-host: api.nasa.gov
-basePath: /mars-photos/api/v1/rovers/curiosity
+host: api.airtable.com
+basePath: /v0/appwEHI5Sf4k6reAh
 
 schemes:
   - https
@@ -18,32 +18,27 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /photos:
+  /Groceries:
     get:
-      summary: Get Curiousity Mars Rover photos
-      description: Get Curiousity Mars Rover photos
+      summary: Get Groceries List
+      description: Get Groceries List
       tags:
         - 1. NASA Mars Rover
       parameters:
-        - in: query
-          name: api_key
+        - in: header
+          name: Authorization
           type: string
-          description: api key
+          description: api key ('Bearer YOUR_API_KEY')
           required: true
         - in: query
-          name: sol
+          name: maxRecords
           type: string
-          description: sol (number) where Sol is a Martian day
+          description: maximum number of records to retrieve
           required: true
         - in: query
-          name: earth_date
+          name: view
           type: string
-          description: earth date
-          required: true
-        - in: query
-          name: page
-          type: string
-          description: page - 25 items per page returned
+          description: view type (e.g. 'List')
           required: true
       responses:
         200:
