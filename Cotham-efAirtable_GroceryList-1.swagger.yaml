@@ -23,7 +23,7 @@ paths:
       summary: Get Groceries List
       description: Get Groceries List
       tags:
-        - 1. NASA Mars Rover
+        - 1. Airtable Groceries List
       parameters:
         - in: header
           name: Authorization
