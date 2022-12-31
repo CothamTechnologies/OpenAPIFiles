@@ -58,7 +58,7 @@ paths:
                     fields:
                       type: object
                       properties:
-                        Items:
+                        Item:
                           type: string
                         Purchased:
                           type: boolean               
