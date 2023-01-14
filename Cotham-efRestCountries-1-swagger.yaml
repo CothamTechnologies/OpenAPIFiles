@@ -40,76 +40,93 @@ paths:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
           schema:
-            type: object
-            properties:
-              records:
-                type: array
-                items:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
                   type: object
                   properties:
-                    id:
+                    common:
                       type: string
-                    createdTime:
+                    official:
                       type: string
-                    fields:
+                    nativeName:
                       type: object
                       properties:
-                        Item:
-                          type: string
-                        Purchased:
-                          type: boolean               
-                        Quantity:
-                           type: string
-                        Image:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                              width:
-                                type: integer
-                              height:
-                                type: integer
-                              url:
-                                type: string
-                              filename:
-                                type: string
-                              size:
-                                type: integer
-                              type:
-                                type: string
-                              thumbnails:
-                                type: object
-                                properties:
-                                  small:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      width:
-                                        type: integer
-                                      height:
-                                        type: integer
-                                  large:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      width:
-                                        type: integer
-                                      height:
-                                        type: integer
-                                  full:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      width:
-                                        type: integer
-                                      height:
-                                        type: integer
-                         
+                        eng:
+                          type: object
+                          properties:
+                            official:
+                              type: string
+                            common:
+                              type: string
+                        fra:
+                          type: object
+                          properties:
+                            official:
+                              type: string
+                            common:
+                              type: string    
+                tld:
+                  type: array
+                  items:
+                    type: string
+                cca2:
+                  type: string
+                ccn3:
+                  type: string
+                cca3:
+                  type: string
+                cioc:
+                  type: string
+                independent:
+                  type: boolean
+                status:
+                  type: string
+                unMember:
+                  type: boolean
+                    
+                region:
+                  type: string
+                subregion:
+                  type: string
+                  
+                flag:
+                  type: string
+                maps:
+                  type: object
+                  properties:
+                    googleMaps:
+                      type: string
+                    openStreetMaps:
+                      type: string
+                population:
+                  type: integer
+                  
+                flags:
+                  type: object
+                  properties:
+                    png:
+                      type: string
+                    svg:
+                      type: string
+                coatOfArms:
+                  type: object
+                  properties:
+                    png:
+                      type: string
+                    svg:
+                      type: string
+                      
+                capitalInfo:
+                  type: object
+                  properties:
+                    latlng:
+                      type: array
+                      items:
+                        type: string
+                 
                   
         default:
           description: Failed Server Response
