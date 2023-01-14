@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '0.2'
   title: 'RestCountries - countries info'
-  description: 'RestCountries - countries info' https://restcountries.com/v3.1/name/France?fullText=true
+  description: 'RestCountries - countries info'
 
 host: restcountries.com
 basePath: /v3.1
