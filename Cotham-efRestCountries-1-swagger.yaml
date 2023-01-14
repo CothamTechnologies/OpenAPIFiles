@@ -33,7 +33,7 @@ paths:
         - in: query
           name: fullText
           type: string
-          description: whether full text is 
+          description: whether full text is set
           default: true
           required: true
       responses:
