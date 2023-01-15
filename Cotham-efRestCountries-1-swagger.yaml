@@ -119,6 +119,11 @@ paths:
                     svg:
                       type: string
                       
+                latlng:
+                      type: array
+                      items:
+                        type: string
+
                 capitalInfo:
                   type: object
                   properties:
