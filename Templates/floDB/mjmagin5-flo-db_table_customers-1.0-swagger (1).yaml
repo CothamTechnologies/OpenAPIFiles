@@ -1,0 +1,274 @@
+swagger: '2.0'
+info:
+  title: FloDB Table customers
+  version: '1.0'
+host: e4ne3a7yg6.execute-api.eu-west-2.amazonaws.com
+basePath: /dev
+schemes:
+  - https
+paths:
+  /flodb/59e8d1c0-16ad-404b-9a65-12ae78b101e0/customers-345f97e9-e3b0-4b9f-9dbc-d7f47d9f435e/all:
+    delete:
+      summary: Delete All Records from customers
+      description: Delete All Records from customers
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: x-api-key
+          type: string
+      responses:
+        '204':
+          description: Success
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+  /flodb/59e8d1c0-16ad-404b-9a65-12ae78b101e0/customers-345f97e9-e3b0-4b9f-9dbc-d7f47d9f435e/{recordId}:
+    get:
+      summary: Get Single Record from customers
+      description: Get Single Record from customers
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: x-api-key
+          type: string
+        - in: path
+          name: recordId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              payload:
+                type: object
+                properties:
+                  Item:
+                    type: object
+                    properties:
+                      recordId:
+                        type: string
+                      isoDateTimeUpdatedAt:
+                        type: string
+                      itemData:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          address:
+                            type: string
+                          telephone:
+                            type: string
+              result:
+                type: string
+              resultMessage:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+    put:
+      summary: Update customers Record
+      description: Update customers Record
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: x-api-key
+          type: string
+        - in: path
+          name: recordId
+          type: string
+          required: true
+        - name: request
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              address:
+                type: string
+              telephone:
+                type: string
+      responses:
+        '201':
+          description: Success
+          schema:
+            type: object
+            properties:
+              payload:
+                type: object
+              result:
+                type: string
+              resultMessage:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+    delete:
+      summary: Delete customers Record
+      description: Delete customers Record
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: x-api-key
+          type: string
+        - in: path
+          name: recordId
+          type: string
+          required: true
+      responses:
+        '204':
+          description: Success
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+  /flodb/59e8d1c0-16ad-404b-9a65-12ae78b101e0/customers-345f97e9-e3b0-4b9f-9dbc-d7f47d9f435e:
+    post:
+      summary: Create customers Record
+      description: Create customers Record
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: x-api-key
+          type: string
+        - name: request
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              address:
+                type: string
+              telephone:
+                type: string
+      responses:
+        '201':
+          description: Success
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
+    get:
+      summary: Query customers Records
+      description: Query customers Records
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: x-api-key
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            properties:
+              payload:
+                type: object
+                properties:
+                  Items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        recordId:
+                          type: string
+                        isoDateTimeUpdatedAt:
+                          type: string
+                        itemData:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            address:
+                              type: string
+                            telephone:
+                              type: string
+                  Count:
+                    type: number
+                  ScannedCount:
+                    type: number
+              result:
+                type: string
+              resultMessage:
+                type: string
+        default:
+          description: Error
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+              resultMessage:
+                type: string
