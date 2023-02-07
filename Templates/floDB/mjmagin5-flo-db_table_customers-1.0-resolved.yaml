@@ -1,0 +1,258 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: FloDB Table customers
+host: e4ne3a7yg6.execute-api.eu-west-2.amazonaws.com
+basePath: /dev
+schemes:
+- https
+paths:
+  /flodb/59e8d1c0-16ad-404b-9a65-12ae78b101e0/customers-de1d802b-d3ed-4bbd-8d68-b144dc10dadd/all:
+    delete:
+      summary: Delete All Records from customers
+      description: Delete All Records from customers
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: x-api-key
+        in: header
+        required: false
+        type: string
+      responses:
+        "204":
+          description: Success
+          schema:
+            $ref: '#/definitions/inline_response_204'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/inline_response_204'
+  /flodb/59e8d1c0-16ad-404b-9a65-12ae78b101e0/customers-de1d802b-d3ed-4bbd-8d68-b144dc10dadd/{recordId}:
+    get:
+      summary: Get Single Record from customers
+      description: Get Single Record from customers
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: x-api-key
+        in: header
+        required: false
+        type: string
+      - name: recordId
+        in: path
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/inline_response_200'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/inline_response_204'
+    put:
+      summary: Update customers Record
+      description: Update customers Record
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: x-api-key
+        in: header
+        required: false
+        type: string
+      - name: recordId
+        in: path
+        required: true
+        type: string
+      - in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request'
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: '#/definitions/inline_response_201'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/inline_response_204'
+    delete:
+      summary: Delete customers Record
+      description: Delete customers Record
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: x-api-key
+        in: header
+        required: false
+        type: string
+      - name: recordId
+        in: path
+        required: true
+        type: string
+      responses:
+        "204":
+          description: Success
+          schema:
+            $ref: '#/definitions/inline_response_204'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/inline_response_204'
+  /flodb/59e8d1c0-16ad-404b-9a65-12ae78b101e0/customers-de1d802b-d3ed-4bbd-8d68-b144dc10dadd:
+    get:
+      summary: Query customers Records
+      description: Query customers Records
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: x-api-key
+        in: header
+        required: false
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/inline_response_200_1'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/inline_response_204'
+    post:
+      summary: Create customers Record
+      description: Create customers Record
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: x-api-key
+        in: header
+        required: false
+        type: string
+      - in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request_1'
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: '#/definitions/inline_response_204'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/inline_response_204'
+definitions:
+  request:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      telephone:
+        type: string
+  inline_response_201:
+    type: object
+    properties:
+      payload:
+        type: object
+        properties: {}
+      result:
+        type: string
+      resultMessage:
+        type: string
+  inline_response_200_1_payload_Items:
+    type: object
+    properties:
+      recordId:
+        type: string
+      isoDateTimeUpdatedAt:
+        type: string
+      itemData:
+        $ref: '#/definitions/request'
+  inline_response_200_1:
+    type: object
+    properties:
+      payload:
+        $ref: '#/definitions/inline_response_200_1_payload'
+      result:
+        type: string
+      resultMessage:
+        type: string
+  inline_response_200:
+    type: object
+    properties:
+      payload:
+        $ref: '#/definitions/inline_response_200_payload'
+      result:
+        type: string
+      resultMessage:
+        type: string
+  inline_response_200_payload_Item_itemData:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      telephone:
+        type: string
+  inline_response_200_payload:
+    type: object
+    properties:
+      Item:
+        $ref: '#/definitions/inline_response_200_payload_Item'
+  inline_response_200_1_payload:
+    type: object
+    properties:
+      Items:
+        type: array
+        items:
+          $ref: '#/definitions/inline_response_200_1_payload_Items'
+      Count:
+        type: number
+      ScannedCount:
+        type: number
+  inline_response_204:
+    type: object
+    properties:
+      result:
+        type: string
+      resultMessage:
+        type: string
+  inline_response_200_payload_Item:
+    type: object
+    properties:
+      recordId:
+        type: string
+      isoDateTimeUpdatedAt:
+        type: string
+      itemData:
+        $ref: '#/definitions/inline_response_200_payload_Item_itemData'
+  request_1:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      telephone:
+        type: string
