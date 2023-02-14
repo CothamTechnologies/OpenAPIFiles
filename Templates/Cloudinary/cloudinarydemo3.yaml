@@ -95,3 +95,5 @@ paths:
                 type: string
               api_key: 
                 type: string
+              format: 
+                type: string
