@@ -5,7 +5,7 @@ info:
   description: 'Cloudinary Upload API https://cloudinary.com/documentation/upload_images#uploading_with_a_direct_call_to_the_rest_api '
   
 host: api.cloudinary.com
-basePath: /v1_1/ddniayemy
+basePath: /v1_1
 schemes: 
   - https
   
@@ -74,17 +74,11 @@ paths:
                 type: number
               height: 
                 type: number
-              format: 
-                type: string
               resource_type: 
                 type: string
               created_at: 
                 type: string
                 format: date-time
-              bytes: 
-                type: number
-              type: 
-                type: string
               etag: 
                 type: string
               placeholder: 
