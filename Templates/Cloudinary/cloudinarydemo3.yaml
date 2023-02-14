@@ -51,7 +51,18 @@ paths:
           name: signature
           type: string
           description: (Req. for Authenticated request). A signature of all request parameters including the 'timestamp' parameter but excluding the 'api_key', 'resource_type', 'cloud_name' and 'file' parameters, based on the API Secret of your Cloudinary account. The signature is valid for 1 hour. See Generating authentication signatures for more details.
-
+        - in: formData
+          name: folder
+          type: string
+          description: The full path of the folder where the uploaded asset will be stored
+        - in: formData
+          name: transformation
+          type: string
+          description: An incoming transformation to run on the uploaded asset before saving it in the cloud
+        - in: formData
+          name: format
+          type: string
+          description: An optional format to convert the uploaded asset to before saving in the cloud.
         
 
       responses:
