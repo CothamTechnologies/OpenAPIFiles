@@ -4,8 +4,8 @@ info:
   title: 'Cloudinary Upload API'
   description: 'Cloudinary Upload API https://cloudinary.com/documentation/upload_images#uploading_with_a_direct_call_to_the_rest_api '
   
-host: api.cloudinary.com/v1_1
-basePath: 
+host: api.cloudinary.com
+basePath: /v1_1
 schemes: 
   - https
   
@@ -15,13 +15,16 @@ paths:
     post:
       summary: resource upload
       description: resource upload
-      tags:
-        - upload
       produces:
         - application/json
       consumes:
         - multipart/form-data
       parameters:
+        - in: formData
+          name: file
+          type: file
+          description: The file to upload. Can be the actual data (byte array buffer), the Data URI (Base64 encoded), a remote FTP, HTTP or HTTPS URL of an existing file, or a private storage bucket (S3 or Google Storage) URL of a whitelisted bucket.
+          x-ct-mimetype: image/png
         - in: path
           name: cloudname
           type: string
@@ -32,11 +35,6 @@ paths:
           type: string
           required: true
           description: eg image or video or raw or auto
-        - in: formData
-          name: file
-          type: file
-          description: The file to upload. Can be the actual data (byte array buffer), the Data URI (Base64 encoded), a remote FTP, HTTP or HTTPS URL of an existing file, or a private storage bucket (S3 or Google Storage) URL of a whitelisted bucket.
-          x-ct-mimetype: image/png
         - in: formData
           name: upload_preset
           type: string
