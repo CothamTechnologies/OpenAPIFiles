@@ -1,0 +1,1447 @@
+x-generator: NSwag v13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))
+swagger: "2.0"
+info:
+  title: Tegos.WasteServices.Api.Host v1.0.0.0
+  description: "\nOpenApi Schema: <small><a href='v1/swagger.valid.yaml' target='_blank'>`swagger.valid.yaml`</a></small><br/><br/>\n⛔ This API can only be accessed by authorised users ⛔ Your IP (52.21.147.173) is being recorded on any action taken against this service.\n<br/>Use `/authenticate` operation to generate the `Bearer Jwt Token` and then authorise yourself on the page and you're ready to play around \U0001F680!\n<br/>If you need to generate your client side code from the `swagger` definition file shown above please visit the following link to learn more: `https://github.com/Azure/autorest`\n<br/><br/>  `Handcrafted with ❤️ Tegos Dev Team ` "
+  contact:
+    name: "Tegos Dev Team \U0001F680"
+    url: https://www.tegos.com/
+    email: tegos.support@tegos.co.uk
+  version: v1.0
+host: tegossl-apps-prod.azurewebsites.net
+schemes:
+- https
+- http
+produces:
+- text/plain
+- application/json
+- text/json
+paths:
+  
+  /drGetOpenTourDetails.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetOpenTourDetails
+      description: DrGetOpenTourDetails
+      operationId: DrGetOpenTourDetails
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        format: int32
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetOpenTourDetailsResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  
+definitions:
+  TokenResponse:
+    type: object
+    required:
+    - token
+    - refreshToken
+    - refreshTokenExpiryTime
+    properties:
+      token:
+        type: string
+      refreshToken:
+        type: string
+      refreshTokenExpiryTime:
+        type: string
+        format: date-time
+  HttpValidationProblemDetails:
+    allOf:
+    - $ref: '#/definitions/ProblemDetails'
+    - type: object
+      additionalProperties: {}
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+  ProblemDetails:
+    type: object
+    additionalProperties: {}
+    properties:
+      type:
+        type: string
+      title:
+        type: string
+      status:
+        type: integer
+        format: int32
+      detail:
+        type: string
+      instance:
+        type: string
+  ErrorResult:
+    type: object
+    required:
+    - statusCode
+    properties:
+      messages:
+        type: array
+        items:
+          type: string
+      source:
+        type: string
+      exception:
+        type: string
+      errorId:
+        type: string
+      supportMessage:
+        type: string
+      statusCode:
+        type: integer
+        format: int32
+  TokenRequest:
+    type: object
+    required:
+    - userId
+    - password
+    properties:
+      userId:
+        type: string
+        minLength: 1
+        x-nullable: false
+      password:
+        type: string
+        minLength: 1
+        x-nullable: false
+  RefreshTokenRequest:
+    type: object
+    required:
+    - token
+    - refreshToken
+    properties:
+      token:
+        type: string
+      refreshToken:
+        type: string
+  NullableIntOkResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfNullableInteger'
+    - type: object
+  OkResponseOfNullableInteger:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      properties:
+        payload:
+          type: integer
+          format: int32
+  BaseResponse:
+    type: object
+    x-abstract: true
+    required:
+    - responseMessage
+    - sessionToken
+    - requestedMethod
+    - requestedFormat
+    - timestamp
+    - requestReceivedTime
+    - requestProcessingTime
+    properties:
+      responseCode:
+        type: integer
+        format: int32
+      responseMessage:
+        type: string
+      sessionToken:
+        type: string
+      requestedMethod:
+        type: string
+      requestedFormat:
+        type: string
+      timestamp:
+        type: string
+      requestReceivedTime:
+        type: string
+      maxAllowedRequestTime:
+        type: integer
+        format: int32
+      requestProcessingTime:
+        type: string
+  DrCheckNewServerDataResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrCheckNewServerDataResponsePayload'
+    - type: object
+  OkResponseOfDrCheckNewServerDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrCheckNewServerDataResponsePayload'
+  DrCheckNewServerDataResponsePayload:
+    type: object
+    required:
+    - newDataAvailable
+    - tours
+    properties:
+      newDataAvailable:
+        type: string
+      tours:
+        type: array
+        items:
+          $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+  DrGetUserTourHeadersResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrTourHeadersResponseBasePayload'
+    - type: object
+      required:
+      - tourBackendId
+      - tourUserId
+      properties:
+        tourBackendId:
+          type: string
+        tourUserId:
+          type: string
+  DrTourHeadersResponseBasePayload:
+    type: object
+    required:
+    - driverEmail
+    - drTourId
+    - tourNo
+    - tourDescription
+    - tourScheduledDate
+    - tourVehicleReg
+    - tourStartMileage
+    - tourEndMileage
+    - timeCreated
+    - timeUpdated
+    - tourStatus
+    properties:
+      driverEmail:
+        type: string
+      drTourId:
+        type: string
+      tourNo:
+        type: string
+      tourDescription:
+        type: string
+      tourScheduledDate:
+        type: string
+      tourVehicleReg:
+        type: string
+      tourStartMileage:
+        type: string
+      tourEndMileage:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      tourStatus:
+        type: string
+  DrGetGoogleMapUrlResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrGetGoogleMapUrlResponsePayload'
+    - type: object
+  OkResponseOfDrGetGoogleMapUrlResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrGetGoogleMapUrlResponsePayload'
+  DrGetGoogleMapUrlResponsePayload:
+    type: object
+    required:
+    - mapUrl
+    properties:
+      mapUrl:
+        type: string
+  DrGetOpenTourDetailsResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetOpenTourDetailsResponsePayload'
+    - type: object
+  OkListResponseOfDrGetOpenTourDetailsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetOpenTourDetailsResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetOpenTourDetailsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetOpenTourDetailsResponsePayload'
+  DrGetOpenTourDetailsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+    - type: object
+      required:
+      - jobs
+      - vehicleChecks
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/definitions/DrOpenTourSummaryJobsData'
+        vehicleChecks:
+          type: array
+          items:
+            $ref: '#/definitions/DrUserVehicleChecksWithItemsResponsePayload'
+  DrOpenTourSummaryJobsData:
+    allOf:
+    - $ref: '#/definitions/DrSummaryJobData'
+    - type: object
+      required:
+      - serviceLines
+      - photos
+      properties:
+        serviceLines:
+          type: array
+          items:
+            $ref: '#/definitions/DrDescriptionServiceLine'
+        photos:
+          type: array
+          items:
+            $ref: '#/definitions/DrJobPhoto'
+  DrDescriptionServiceLine:
+    allOf:
+    - $ref: '#/definitions/DrServiceLineBase'
+    - type: object
+      required:
+      - materialDescription
+      - equipmentDescription
+      properties:
+        materialDescription:
+          type: string
+        equipmentDescription:
+          type: string
+  DrServiceLineBase:
+    type: object
+    required:
+    - orderLineNo
+    - serviceDescription
+    - lineComment
+    - confirmedQty
+    - job
+    - drServiceLineId
+    - timeCreated
+    - timeUpdated
+    - orderQty
+    properties:
+      orderLineNo:
+        type: string
+      serviceDescription:
+        type: string
+      lineComment:
+        type: string
+      confirmedQty:
+        type: string
+      job:
+        type: string
+      drServiceLineId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      orderQty:
+        type: string
+  DrJobPhoto:
+    type: object
+    required:
+    - photo
+    - timeCreated
+    - timeUpdated
+    properties:
+      drJobPhotoId:
+        type: integer
+        format: int32
+      job:
+        type: integer
+        format: int32
+      photo:
+        type: string
+        format: byte
+        pattern: /^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+  DrSummaryJobData:
+    type: object
+    required:
+    - sequenceNo
+    - orderNo
+    - jobStatus
+    - tour
+    - drJobId
+    - timeCreated
+    - timeUpdated
+    - customerName
+    - taskName
+    - taskAddress
+    - taskCity
+    - taskPostCode
+    - signatureName
+    - signature
+    - reasonCode
+    - driverNotes
+    properties:
+      sequenceNo:
+        type: string
+      orderNo:
+        type: string
+      jobStatus:
+        type: string
+      tour:
+        type: string
+      drJobId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      customerName:
+        type: string
+      taskName:
+        type: string
+      taskAddress:
+        type: string
+      taskCity:
+        type: string
+      taskPostCode:
+        type: string
+      signatureName:
+        type: string
+      signature:
+        type: string
+      reasonCode:
+        type: string
+      driverNotes:
+        type: string
+  DrUserVehicleChecksWithItemsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrUserVehicleChecksResponseBasePayload'
+    - type: object
+      required:
+      - tour
+      - vehicleCheckItems
+      properties:
+        tour:
+          type: string
+        vehicleCheckItems:
+          type: array
+          items:
+            $ref: '#/definitions/DrVehicleCheckItemsBaseResponse'
+  DrVehicleCheckItemsBaseResponse:
+    type: object
+    required:
+    - drVehicleCheckItemId
+    - timeCreated
+    - timeUpdated
+    - checkDescription
+    - checkAnswer
+    - checkComments
+    - vehicleCheck
+    - vehicleCheckItemPhotos
+    properties:
+      drVehicleCheckItemId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      checkDescription:
+        type: string
+      checkAnswer:
+        type: string
+      checkComments:
+        type: string
+      vehicleCheck:
+        type: string
+      vehicleCheckItemPhotos:
+        type: array
+        items:
+          $ref: '#/definitions/DrVehicleCheckDefectItemPhoto'
+  DrVehicleCheckDefectItemPhoto:
+    type: object
+    required:
+    - checkItemPhoto
+    - vehicleCheckItem
+    - drVehicleCheckItemPhotoId
+    - timeCreated
+    - timeUpdated
+    properties:
+      checkItemPhoto:
+        type: string
+      vehicleCheckItem:
+        type: string
+      drVehicleCheckItemPhotoId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+  DrUserVehicleChecksResponseBasePayload:
+    type: object
+    required:
+    - scheduledDate
+    - vehicleReg
+    - drVehicleCheckId
+    - timeCreated
+    - timeUpdated
+    - driverName
+    - driverSignature
+    - checkStatus
+    properties:
+      scheduledDate:
+        type: string
+      vehicleReg:
+        type: string
+      drVehicleCheckId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      driverName:
+        type: string
+      driverSignature:
+        type: string
+      checkStatus:
+        type: string
+  DrGetReasonCodesResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetReasonCodesResponsePayload'
+    - type: object
+  OkListResponseOfDrGetReasonCodesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetReasonCodesResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetReasonCodesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetReasonCodesResponsePayload'
+  DrGetReasonCodesResponsePayload:
+    type: object
+    required:
+    - code
+    - description
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+  DrGetSummaryDataResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetSummaryDataResponsePayload'
+    - type: object
+  OkListResponseOfDrGetSummaryDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetSummaryDataResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetSummaryDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetSummaryDataResponsePayload'
+  DrGetSummaryDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+    - type: object
+      required:
+      - tourBackendLastUpdate
+      - instanceId
+      - tourStartLocation
+      - tourEndLocation
+      - tourCount
+      - sodVc
+      - eodVc
+      - jobs
+      properties:
+        tourBackendLastUpdate:
+          type: string
+        instanceId:
+          type: string
+        tourStartLocation:
+          type: string
+        tourEndLocation:
+          type: string
+        tourCount:
+          type: string
+        totalJobs:
+          type: number
+          format: decimal
+        sodVc:
+          $ref: '#/definitions/DrVehicleCheck'
+        eodVc:
+          $ref: '#/definitions/DrVehicleCheck'
+        jobs:
+          type: array
+          items:
+            $ref: '#/definitions/DrSummarySummaryJobData'
+  DrVehicleCheck:
+    allOf:
+    - $ref: '#/definitions/DrUserVehicleChecksResponseBasePayload'
+    - type: object
+      required:
+      - instanceId
+      - vctype
+      - tourId
+      - vcItems
+      properties:
+        instanceId:
+          type: string
+        vctype:
+          type: string
+        tourId:
+          type: string
+        vcItems:
+          type: array
+          items:
+            $ref: '#/definitions/DrVehicleCheckDefectItem'
+  DrVehicleCheckDefectItem:
+    type: object
+    required:
+    - drVehicleCheckItemId
+    - timeCreated
+    - timeUpdated
+    - checkDescription
+    - checkComments
+    - vehicleCheck
+    - checkAnswer
+    - responseRequired
+    - lineNo
+    - checkValue
+    - templateNo
+    - classification
+    - checkRequirement
+    - defectNumber
+    - repairerName
+    - repairerSignature
+    - repairDateTime
+    - vehicleCheckItemPhotos
+    properties:
+      drVehicleCheckItemId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      checkDescription:
+        type: string
+      checkComments:
+        type: string
+      vehicleCheck:
+        type: string
+      checkAnswer:
+        type: string
+      responseRequired:
+        type: string
+      lineNo:
+        type: string
+      checkValue:
+        type: string
+      templateNo:
+        type: string
+      classification:
+        type: string
+      checkRequirement:
+        type: string
+      defectNumber:
+        type: string
+      repairerName:
+        type: string
+      repairerSignature:
+        type: string
+      repairDateTime:
+        type: string
+      vehicleCheckItemPhotos:
+        type: array
+        items:
+          $ref: '#/definitions/DrVehicleCheckDefectItemPhoto'
+  DrSummarySummaryJobData:
+    allOf:
+    - $ref: '#/definitions/DrSummaryJobData'
+    - type: object
+      required:
+      - taskAtCode
+      - combinedAddress
+      - latitude
+      - longitude
+      - serviceLines
+      - photos
+      - comments
+      - commentsAlerts
+      properties:
+        taskAtCode:
+          type: string
+        combinedAddress:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        serviceLines:
+          type: array
+          items:
+            $ref: '#/definitions/DrServiceLine'
+        photos:
+          type: array
+          items:
+            $ref: '#/definitions/DrJobPhotoDetail'
+        comments:
+          type: array
+          items:
+            $ref: '#/definitions/DrComment'
+        commentsAlerts:
+          type: array
+          items:
+            $ref: '#/definitions/DrComment'
+  DrServiceLine:
+    allOf:
+    - $ref: '#/definitions/DrServiceLineBase'
+    - type: object
+      required:
+      - serviceType
+      - serviceTypeDescription
+      - lineStatus
+      - lineChangeStatus
+      - entryLines
+      properties:
+        serviceType:
+          type: string
+        serviceTypeDescription:
+          type: string
+        lineStatus:
+          type: string
+        lineChangeStatus:
+          type: string
+        entryLines:
+          type: array
+          items:
+            $ref: '#/definitions/DrEntryLinesWithJobId'
+  DrEntryLinesWithJobId:
+    allOf:
+    - $ref: '#/definitions/DrEntryLines'
+    - type: object
+      properties:
+        job:
+          type: integer
+          format: int32
+  DrEntryLines:
+    type: object
+    required:
+    - entryType
+    - entryLineNo
+    - qtyRequiredFlag
+    - qtyTypeFlag
+    - entryDescription
+    - entryOrderQty
+    - entryUom
+    - entryConfirmedQty
+    - entryStatus
+    - drServiceEntryLineId
+    - timeCreated
+    - timeUpdated
+    - serviceLineId
+    - entryLineComment
+    - entryChangeStatus
+    - operationalEntryType
+    - reasonCode
+    - photos
+    - barcodes
+    properties:
+      entryType:
+        type: string
+      entryLineNo:
+        type: string
+      qtyRequiredFlag:
+        type: string
+      qtyTypeFlag:
+        type: string
+      entryDescription:
+        type: string
+      entryOrderQty:
+        type: string
+      entryUom:
+        type: string
+      entryConfirmedQty:
+        type: string
+      entryStatus:
+        type: string
+      drServiceEntryLineId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      serviceLineId:
+        type: string
+      entryLineComment:
+        type: string
+      entryChangeStatus:
+        type: string
+      operationalEntryType:
+        type: string
+      reasonCode:
+        type: string
+      photos:
+        type: array
+        items:
+          $ref: '#/definitions/DrJobPhotoDetail'
+      barcodes:
+        type: array
+        items:
+          $ref: '#/definitions/DrEntryLineBarcode'
+  DrJobPhotoDetail:
+    allOf:
+    - $ref: '#/definitions/DrJobPhoto'
+    - type: object
+      required:
+      - jobPhotoComment
+      properties:
+        jobPhotoComment:
+          type: string
+        serviceEntry:
+          type: integer
+          format: int32
+  DrEntryLineBarcode:
+    type: object
+    required:
+    - barcode
+    - timeCreated
+    - timeUpdated
+    properties:
+      drJobBarcodeId:
+        type: integer
+        format: int32
+      serviceEntry:
+        type: integer
+        format: int32
+      barcode:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+  DrComment:
+    type: object
+    required:
+    - comment
+    - commentLineNo
+    - driverAppAlert
+    properties:
+      comment:
+        type: string
+      commentLineNo:
+        type: string
+      driverAppAlert:
+        type: string
+  DrGetSupportInfoResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetSupportInfoResponsePayload'
+    - type: object
+  OkListResponseOfDrGetSupportInfoResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetSupportInfoResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetSupportInfoResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetSupportInfoResponsePayload'
+  DrGetSupportInfoResponsePayload:
+    type: object
+    required:
+    - userName
+    - companyName
+    - wasteEmployeeNo
+    - name
+    - address
+    - address2
+    - county
+    - city
+    - postCode
+    - countryRegionCode
+    - phoneNo
+    - eMail
+    - eMail2
+    - homePage
+    - auxiliaryIndex1
+    - auxiliaryIndex2
+    - auxiliaryIndex3
+    - auxiliaryIndex4
+    - auxiliaryIndex5
+    - userSecurityIdFilterOnly
+    properties:
+      userName:
+        type: string
+      companyName:
+        type: string
+      wasteEmployeeNo:
+        type: string
+      name:
+        type: string
+      address:
+        type: string
+      address2:
+        type: string
+      county:
+        type: string
+      city:
+        type: string
+      postCode:
+        type: string
+      countryRegionCode:
+        type: string
+      phoneNo:
+        type: string
+      eMail:
+        type: string
+      eMail2:
+        type: string
+      homePage:
+        type: string
+      auxiliaryIndex1:
+        type: string
+      auxiliaryIndex2:
+        type: string
+      auxiliaryIndex3:
+        type: string
+      auxiliaryIndex4:
+        type: string
+      auxiliaryIndex5:
+        type: string
+      userSecurityIdFilterOnly:
+        type: string
+  DrGetTourStatusResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrGetTourStatusResponsePayload'
+    - type: object
+  OkResponseOfDrGetTourStatusResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrGetTourStatusResponsePayload'
+  DrGetTourStatusResponsePayload:
+    type: object
+    required:
+    - tourStatus
+    properties:
+      tourStatus:
+        type: string
+  DrGetUserOpenTourDetailsResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetSummaryDataResponsePayload'
+    - type: object
+  DrGetUserTourHeadersResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetUserTourHeadersResponsePayload'
+    - type: object
+  OkListResponseOfDrGetUserTourHeadersResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetUserTourHeadersResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetUserTourHeadersResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+  DrUserVehicleChecksResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrUserVehicleChecksResponsePayload'
+    - type: object
+  OkListResponseOfDrUserVehicleChecksResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrUserVehicleChecksResponsePayload'
+    - type: object
+  OkResponseOfListOfDrUserVehicleChecksResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrUserVehicleChecksResponsePayload'
+  DrUserVehicleChecksResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrUserVehicleChecksResponseBasePayload'
+    - type: object
+      properties:
+        openCount:
+          type: integer
+          format: int32
+  DrGetVehicleCheckListResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetVehicleCheckListResponsePayload'
+    - type: object
+  OkListResponseOfDrGetVehicleCheckListResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetVehicleCheckListResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetVehicleCheckListResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetVehicleCheckListResponsePayload'
+  DrGetVehicleCheckListResponsePayload:
+    type: object
+    required:
+    - scheduledDate
+    - vehicleReg
+    - drVehicleCheckId
+    - timeCreated
+    - timeUpdated
+    - driverName
+    - driverSignature
+    - checkStatus
+    - vehicleCheckItems
+    properties:
+      scheduledDate:
+        type: string
+      vehicleReg:
+        type: string
+      drVehicleCheckId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      driverName:
+        type: string
+      driverSignature:
+        type: string
+      checkStatus:
+        type: string
+      vehicleCheckItems:
+        type: array
+        items:
+          $ref: '#/definitions/DrVehicleCheckItemsResponse'
+  DrVehicleCheckItemsResponse:
+    allOf:
+    - $ref: '#/definitions/DrVehicleCheckItemsBaseResponse'
+    - type: object
+      required:
+      - templateNo
+      - responseRequired
+      - checkValue
+      properties:
+        templateNo:
+          type: string
+        lineNo:
+          type: integer
+          format: int32
+        responseRequired:
+          type: string
+        checkValue:
+          type: string
+  DrGetVehiclesResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetVehiclesResponsePayload'
+    - type: object
+  OkListResponseOfDrGetVehiclesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetVehiclesResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetVehiclesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetVehiclesResponsePayload'
+  DrGetVehiclesResponsePayload:
+    type: object
+    required:
+    - licensePlateNumber
+    - vehicleNo
+    - description
+    - vehicleStatus
+    properties:
+      licensePlateNumber:
+        type: string
+      vehicleNo:
+        type: string
+      description:
+        type: string
+      vehicleStatus:
+        type: string
+  UmNotificationsResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrNotificationsResponsePayload'
+    - type: object
+  OkResponseOfDrNotificationsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrNotificationsResponsePayload'
+  DrNotificationsResponsePayload:
+    type: object
+    required:
+    - notifications
+    properties:
+      count:
+        type: integer
+        format: int32
+      notifications:
+        type: array
+        items:
+          $ref: '#/definitions/DrNotificationResponse'
+  DrNotificationResponse:
+    type: object
+    required:
+    - notificationDetail
+    - createdTime
+    - auxiliaryIndex1
+    - auxiliaryIndex2
+    - userSecurityIdFilterOnly
+    - enwisAppFilterOnly
+    - read
+    properties:
+      notificationDetail:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      createdTime:
+        type: string
+      createdDay:
+        type: integer
+        format: int32
+      createdMonth:
+        type: integer
+        format: int32
+      createdYear:
+        type: integer
+        format: int32
+      auxiliaryIndex1:
+        type: string
+      auxiliaryIndex2:
+        type: string
+      auxiliaryIndex3:
+        type: integer
+        format: int32
+      auxiliaryIndex4:
+        type: integer
+        format: int32
+      auxiliaryIndex5:
+        type: integer
+        format: int32
+      userSecurityIdFilterOnly:
+        type: string
+      enwisAppFilterOnly:
+        type: string
+      read:
+        type: string
+  UmSendUserPushNotificationResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrSendUserPushNotificationResponsePayload'
+    - type: object
+  OkResponseOfDrSendUserPushNotificationResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrSendUserPushNotificationResponsePayload'
+  DrSendUserPushNotificationResponsePayload:
+    type: object
+    required:
+    - filters
+    - title
+    - message
+    - data
+    properties:
+      appId:
+        type: integer
+        format: int32
+      source:
+        type: integer
+        format: int32
+      status:
+        type: integer
+        format: int32
+      filters:
+        type: string
+      title:
+        type: string
+      message:
+        type: string
+      data:
+        type: string
+      updatedAt:
+        type: string
+        format: date-time
+      createdAt:
+        type: string
+        format: date-time
+      id:
+        type: integer
+        format: int32
+  UmUpdateNotificationResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrUpdateNotificationResponsePayload'
+    - type: object
+  OkResponseOfDrUpdateNotificationResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrUpdateNotificationResponsePayload'
+  DrUpdateNotificationResponsePayload:
+    type: object
+    required:
+    - requestStatus
+    properties:
+      requestStatus:
+        type: string
+  UmLoginResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfUmLoginResponsePayload'
+    - type: object
+  OkResponseOfUmLoginResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/UmLoginResponsePayload'
+  UmLoginResponsePayload:
+    type: object
+    required:
+    - token
+    - expiresAt
+    - companyName
+    - name
+    - companyInfoName
+    - eMail
+    - firstName
+    - surname
+    - fullName
+    properties:
+      token:
+        type: string
+      expiresAt:
+        type: string
+      companyName:
+        type: string
+      name:
+        type: string
+      companyInfoName:
+        type: string
+      eMail:
+        type: string
+      firstName:
+        type: string
+      surname:
+        type: string
+      fullName:
+        type: string
+  UsersResponse:
+    type: array
+    items:
+      $ref: '#/definitions/UserResponse'
+  UserResponse:
+    allOf:
+    - $ref: '#/definitions/UserDetails'
+    - type: object
+  UserDetails:
+    type: object
+    required:
+    - userID
+    properties:
+      userID:
+        type: integer
+        format: int32
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      navUserName:
+        type: string
+      activationDate:
+        type: string
+        format: date-time
+      loginsCount:
+        type: integer
+        format: int32
+      lastLoginDate:
+        type: string
+        format: date-time
+      lastLoginAppID:
+        type: string
+      role:
+        type: string
+      userGUID:
+        type: string
+      jwtExpiryTime:
+        type: integer
+        format: int32
+      archivedFlag:
+        type: string
+      languageCode:
+        type: string
+      instanceID:
+        type: string
+      employeeWMR:
+        type: string
+      backend:
+        type: integer
+        format: int32
+  PaginationResponseOfUserResponse:
+    type: object
+    required:
+    - data
+    - currentPage
+    - totalPages
+    - totalCount
+    - pageSize
+    - hasPreviousPage
+    - hasNextPage
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/UserResponse'
+      currentPage:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalCount:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      hasPreviousPage:
+        type: boolean
+      hasNextPage:
+        type: boolean
+  GetUsersQuery:
+    allOf:
+    - $ref: '#/definitions/PagedRequest'
+    - type: object
+      properties:
+        includeInactive:
+          type: boolean
+        nameContains:
+          type: string
+        employeeWmrContains:
+          type: string
+        emailContains:
+          type: string
+        backend:
+          type: string
+  PagedRequest:
+    type: object
+    required:
+    - pageNumber
+    - pageSize
+    properties:
+      pageNumber:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+securityDefinitions:
+  Bearer:
+    type: basic
+    description: Provide your Bearer token to access this API
+  Basic:
+    type: basic
+    description: 'Provide header [Authentication: Basic BASE64] to access this API'
