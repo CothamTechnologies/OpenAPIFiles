@@ -1,0 +1,3583 @@
+x-generator: NSwag v13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))
+swagger: "2.0"
+info:
+  title: Tegos.WasteServices.Api.Host v1.0.0.0
+  description: "\nOpenApi Schema: <small><a href='v1/swagger.valid.yaml' target='_blank'>`swagger.valid.yaml`</a></small><br/><br/>\n⛔ This API can only be accessed by authorised users ⛔ Your IP (52.21.147.173) is being recorded on any action taken against this service.\n<br/>Use `/authenticate` operation to generate the `Bearer Jwt Token` and then authorise yourself on the page and you're ready to play around \U0001F680!\n<br/>If you need to generate your client side code from the `swagger` definition file shown above please visit the following link to learn more: `https://github.com/Azure/autorest`\n<br/><br/>  `Handcrafted with ❤️ Tegos Dev Team ` "
+  contact:
+    name: "Tegos Dev Team \U0001F680"
+    url: https://www.tegos.com/
+    email: tegos.support@tegos.co.uk
+  version: v1.0
+host: tegossl-apps-prod.azurewebsites.net
+schemes:
+- https
+- http
+produces:
+- text/plain
+- application/json
+- text/json
+paths:
+  /Authenticate:
+    post:
+      tags:
+      - Authenticate
+      summary: Request an access token using credentials.
+      operationId: GetToken
+      consumes:
+      - application/json
+      - text/json
+      - application/*+json
+      parameters:
+      - name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TokenRequest'
+        x-nullable: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+        default:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/ErrorResult'
+  /Authenticate/refresh:
+    post:
+      tags:
+      - Authenticate
+      summary: Request an access token using a refresh token.
+      operationId: Refresh
+      consumes:
+      - application/json
+      - text/json
+      - application/*+json
+      parameters:
+      - name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/RefreshTokenRequest'
+        x-nullable: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+        default:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/ErrorResult'
+  /drArrivedAtJob.json:
+    post:
+      tags:
+      - Driver
+      summary: DrArrivedAtJob
+      description: DrArrivedAtJob
+      operationId: DrArrivedAtJob
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[orderNo]
+        in: formData
+        description: OrderNo
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drCancelTour.json:
+    post:
+      tags:
+      - Driver
+      summary: DrCancelTour
+      description: DrCancelTour
+      operationId: DrCancelTour
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        format: int32
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drChangeVehicle.json:
+    post:
+      tags:
+      - Driver
+      summary: DrChangeVehicle
+      description: DrChangeVehicle
+      operationId: DrChangeVehicle
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[vehicleRegNo]
+        in: formData
+        description: VehicleRegNo
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drCheckNewServerData.json:
+    post:
+      tags:
+      - Driver
+      summary: DrCheckNewServerData
+      description: DrCheckNewServerData
+      operationId: DrCheckNewServerData
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: string
+        name: params[mobileUpdateArray]
+        in: formData
+        description: MobileUpdateArray
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrCheckNewServerDataResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drCompleteJob.json:
+    post:
+      tags:
+      - Driver
+      summary: DrCompleteJob
+      description: DrCompleteJob
+      operationId: DrCompleteJob
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[orderNo]
+        in: formData
+        required: true
+        description: OrderNo
+        x-nullable: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[serviceLinesArray]
+        in: formData
+        description: ServiceLinesArray
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[signature]
+        in: formData
+        description: Signature
+        format: byte
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[signatureName]
+        in: formData
+        description: SignatureName
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drEndTour.json:
+    post:
+      tags:
+      - Driver
+      summary: DrEndTour
+      description: DrEndTour
+      operationId: DrEndTour
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: integer
+        name: params[tourEndMileage]
+        in: formData
+        description: TourEndMileage
+        format: int32
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[tourEndLocation]
+        in: formData
+        description: TourEndLocation
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetGoogleMapURL.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetGoogleMapUrl
+      description: DrGetGoogleMapUrl
+      operationId: DrGetGoogleMapUrl
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: integer
+        name: params[jobId]
+        in: formData
+        description: JobId
+        format: int32
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetGoogleMapUrlResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetOpenTourDetails.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetOpenTourDetails
+      description: DrGetOpenTourDetails
+      operationId: DrGetOpenTourDetails
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        format: int32
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetOpenTourDetailsResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetReasonCodes.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetReasonCodes
+      description: DrGetReasonCodes
+      operationId: DrGetReasonCodes
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetReasonCodesResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetSummaryData.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetSummaryData
+      description: DrGetSummaryData
+      operationId: DrGetSummaryData
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetSummaryDataResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetSupportInfo.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetSupportInfo
+      description: DrGetSupportInfo
+      operationId: DrGetSupportInfo
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetSupportInfoResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetTourStatus.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetTourStatus
+      description: DrGetTourStatus
+      operationId: DrGetTourStatus
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        format: int32
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetTourStatusResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetUserOpenTourDetails.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetUserOpenTourDetails
+      description: DrGetUserOpenTourDetails
+      operationId: DrGetUserOpenTourDetails
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetUserOpenTourDetailsResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetUserTourDataAll.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetUserTourDataAll
+      description: DrGetUserTourDataAll
+      operationId: DrGetUserTourDataAll
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetOpenTourDetailsResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetUserTourHeaders.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetUserTourHeaders
+      description: DrGetUserTourHeaders
+      operationId: DrGetUserTourHeaders
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetUserTourHeadersResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetUserVehicleChecks.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetUserVehicleChecks
+      description: DrGetUserVehicleChecks
+      operationId: DrGetUserVehicleChecks
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrUserVehicleChecksResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetVehicleCheckList.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetVehicleCheckList
+      description: DrGetVehicleCheckList
+      operationId: DrGetVehicleCheckList
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: string
+        name: params[vehicleRegNo]
+        in: formData
+        required: true
+        description: VehicleRegNo
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetVehicleCheckListResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drGetVehicles.json:
+    post:
+      tags:
+      - Driver
+      summary: DrGetVehicles
+      description: DrGetVehicles
+      operationId: DrGetVehicles
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: string
+        name: params[licensePlateNumber]
+        in: formData
+        required: true
+        description: LicensePlateNumber
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/DrGetVehiclesResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drHoldTour.json:
+    post:
+      tags:
+      - Driver
+      summary: DrHoldTour
+      description: DrHoldTour
+      operationId: DrHoldTour
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        format: int32
+        x-nullable: true
+        required: false
+      - type: integer
+        name: params[tourStartMileage]
+        in: formData
+        description: TourStartMileage
+        format: int32
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[vehicleChecksData]
+        in: formData
+        description: VehicleChecksData
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drPauseTour.json:
+    post:
+      tags:
+      - Driver
+      summary: DrPauseTour
+      description: DrPauseTour
+      operationId: DrPauseTour
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        format: int32
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drRejectJob.json:
+    post:
+      tags:
+      - Driver
+      summary: DrRejectJob
+      description: DrRejectJob
+      operationId: DrRejectJob
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[orderNo]
+        in: formData
+        required: true
+        description: OrderNo
+        x-nullable: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[jobPhotosArray]
+        in: formData
+        description: JobPhotosArray
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[reasonCode]
+        in: formData
+        description: ReasonCode
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[driverNotes]
+        in: formData
+        description: DriverNotes
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drResumeTour.json:
+    post:
+      tags:
+      - Driver
+      summary: DrResumeTour
+      description: DrResumeTour
+      operationId: DrResumeTour
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drSaveVehicleCheck.json:
+    post:
+      tags:
+      - Driver
+      summary: DrSaveVehicleCheck
+      description: DrSaveVehicleCheck
+      operationId: DrSaveVehicleCheck
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: string
+        name: params[vehicleChecksData]
+        in: formData
+        description: VehicleChecksData
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[tourStatus]
+        in: formData
+        description: TourStatus
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drStartJob.json:
+    post:
+      tags:
+      - Driver
+      summary: DrStartJob
+      description: DrStartJob
+      operationId: DrStartJob
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[orderNo]
+        in: formData
+        description: OrderNo
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drStartTour.json:
+    post:
+      tags:
+      - Driver
+      summary: DrStartTour
+      description: DrStartTour
+      operationId: DrStartTour
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: integer
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        format: int32
+        x-nullable: false
+      - type: integer
+        name: params[tourStartMileage]
+        in: formData
+        description: TourStartMileage
+        format: int32
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[tourStartLocation]
+        in: formData
+        description: TourStartLocation
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drSubmitDefect.json:
+    post:
+      tags:
+      - Driver
+      summary: DrSubmitDefect
+      description: DrSubmitDefect
+      operationId: DrSubmitDefect
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: false
+      - type: string
+        name: params[photosArrayData]
+        in: formData
+        description: PhotosArrayData
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[localDateTimeStamp]
+        in: formData
+        description: LocalDateTimeStamp
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lng]
+        in: formData
+        description: Lng
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lat]
+        in: formData
+        description: Lat
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[tourId]
+        in: formData
+        description: TourId
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[vcType]
+        in: formData
+        description: VcType
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[vehicleReg]
+        in: formData
+        description: VehicleReg
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[tourNo]
+        in: formData
+        description: TourNo
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[defectNotes]
+        in: formData
+        description: DefectNotes
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[vehicleCheckId]
+        in: formData
+        description: VehicleCheckId
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[defectNumber]
+        in: formData
+        description: DefectNumber
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[checkStatus]
+        in: formData
+        description: CheckStatus
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /drUpdateTourStatus.json:
+    post:
+      tags:
+      - Driver
+      summary: DrUpdateTourStatus
+      description: DrUpdateTourStatus
+      operationId: DrUpdateTourStatus
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: integer
+        name: params[status]
+        in: formData
+        required: true
+        description: Status
+        format: int32
+        x-nullable: false
+      - type: string
+        name: params[tourNo]
+        in: formData
+        required: true
+        description: TourNo
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umChangePassword.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmChangePassword
+      description: UmChangePassword
+      operationId: UmChangePassword
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[email]
+        in: formData
+        required: true
+        description: Email
+        x-nullable: true
+      - type: string
+        name: params[password]
+        in: formData
+        required: true
+        description: Password
+        x-nullable: true
+      - type: string
+        name: params[changePasswordCode]
+        in: formData
+        required: true
+        description: ChangePasswordCode
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umCreateNavUser.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmCreateNavUser
+      description: UmCreateNavUser
+      operationId: UmCreateNavUser
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[email]
+        in: formData
+        required: true
+        description: Email
+        x-nullable: false
+      - type: string
+        name: params[backendIdentifier]
+        in: formData
+        required: true
+        description: BackendIdentifier
+        x-nullable: false
+      - type: string
+        name: params[firstName]
+        in: formData
+        description: FirstName
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[lastName]
+        in: formData
+        description: LastName
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[jwtExpiryTime]
+        in: formData
+        description: JwtExpiryTime
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        description: ClientIdentifier
+        x-nullable: true
+        required: false
+      - type: string
+        name: params[accountNo]
+        in: formData
+        description: AccountNo
+        x-nullable: true
+        required: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umForgottenPassword.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmForgottenPassword
+      description: UmForgottenPassword
+      operationId: UmForgottenPassword
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[email]
+        in: formData
+        required: true
+        description: Email
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umGetNotificationsNew.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmGetNotificationsNew
+      description: UmGetNotificationsNew
+      operationId: UmGetNotificationsNew
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/UmNotificationsResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umLogout.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmLogout
+      description: UmLogout
+      operationId: UmLogout
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: string
+        name: params[installId]
+        in: formData
+        required: true
+        description: InstallId
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umSendUserPushNotification.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmSendUserPushNotification
+      description: UmSendUserPushNotification
+      operationId: UmSendUserPushNotification
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[email]
+        in: formData
+        required: true
+        description: Email
+        x-nullable: true
+      - type: string
+        name: params[backendIdentifier]
+        in: formData
+        required: true
+        description: BackendIdentifier
+        x-nullable: true
+      - type: string
+        name: params[navUserName]
+        in: formData
+        required: true
+        description: NavUserName
+        x-nullable: true
+      - type: string
+        name: params[notificationTitle]
+        in: formData
+        required: true
+        description: NotificationTitle
+        x-nullable: true
+      - type: string
+        name: params[notificationMessage]
+        in: formData
+        required: true
+        description: NotificationMessage
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/UmSendUserPushNotificationResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umStoreInstallID.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmStoreInstallId
+      description: UmStoreInstallId
+      operationId: UmStoreInstallId
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: string
+        name: params[installId]
+        in: formData
+        required: true
+        description: InstallId
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umUpdateNotification.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmUpdateNotification
+      description: UmUpdateNotification
+      operationId: UmUpdateNotification
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[jwt]
+        in: formData
+        required: true
+        description: Jwt
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      - type: string
+        name: params[status]
+        in: formData
+        required: true
+        description: Status
+        x-nullable: true
+      - type: integer
+        name: params[entryNo]
+        in: formData
+        required: true
+        description: EntryNo
+        format: int32
+        x-nullable: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/UmUpdateNotificationResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umlogin.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmLogin
+      description: UmLogin
+      operationId: UmLogin
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[username]
+        in: formData
+        required: true
+        description: Username
+        x-nullable: true
+      - type: string
+        name: params[password]
+        in: formData
+        required: true
+        description: Password
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/UmLoginResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+  /umregisterEmailUser.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmRegisterEmailUser
+      description: UmRegisterEmailUser
+      operationId: UmRegisterEmailUser
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[email]
+        in: formData
+        required: true
+        description: Email
+        x-nullable: true
+      - type: string
+        name: params[password]
+        in: formData
+        required: true
+        description: Password
+        x-nullable: true
+      - type: string
+        name: params[activationCode]
+        in: formData
+        required: true
+        description: ActivationCode
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /umregisterUsername.json:
+    post:
+      tags:
+      - UserManagement
+      summary: UmRegisterUsername
+      description: UmRegisterUsername
+      operationId: UmRegisterUsername
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - type: string
+        name: params[username]
+        in: formData
+        required: true
+        description: Username
+        x-nullable: true
+      - type: string
+        name: params[password]
+        in: formData
+        required: true
+        description: Password
+        x-nullable: true
+      - type: string
+        name: params[activationCode]
+        in: formData
+        required: true
+        description: ActivationCode
+        x-nullable: true
+      - type: string
+        name: params[clientIdentifier]
+        in: formData
+        required: true
+        description: ClientIdentifier
+        x-nullable: true
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/NullableIntOkResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+      security:
+      - Bearer: []
+      - Basic: []
+  /Users:
+    get:
+      tags:
+      - Users
+      summary: Provides collection of all users
+      operationId: GetUsers
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/UsersResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+        default:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/ErrorResult'
+      security:
+      - Basic: []
+      - Bearer: []
+  /Users/search:
+    post:
+      tags:
+      - Users
+      summary: Provides facilities to search and paginate collection of users
+      operationId: GetPaged
+      consumes:
+      - application/json
+      - text/json
+      - application/*+json
+      parameters:
+      - name: query
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/GetUsersQuery'
+        x-nullable: false
+      responses:
+        200:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/PaginationResponseOfUserResponse'
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+        default:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/ErrorResult'
+      security:
+      - Basic: []
+      - Bearer: []
+  /Users/{id}/email:
+    put:
+      tags:
+      - Users
+      summary: Updates email property on the given user record.
+      operationId: UpdateEmail
+      consumes:
+      - application/json
+      - text/json
+      - application/*+json
+      parameters:
+      - type: integer
+        name: id
+        in: path
+        required: true
+        format: int32
+        x-nullable: false
+      - name: email
+        in: body
+        required: true
+        schema:
+          type: string
+        x-nullable: false
+      responses:
+        200:
+          description: ''
+        400:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/HttpValidationProblemDetails'
+        default:
+          x-nullable: false
+          description: ''
+          schema:
+            $ref: '#/definitions/ErrorResult'
+      security:
+      - Basic: []
+      - Bearer: []
+definitions:
+  TokenResponse:
+    type: object
+    required:
+    - token
+    - refreshToken
+    - refreshTokenExpiryTime
+    properties:
+      token:
+        type: string
+      refreshToken:
+        type: string
+      refreshTokenExpiryTime:
+        type: string
+        format: date-time
+  HttpValidationProblemDetails:
+    allOf:
+    - $ref: '#/definitions/ProblemDetails'
+    - type: object
+      additionalProperties: {}
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+  ProblemDetails:
+    type: object
+    additionalProperties: {}
+    properties:
+      type:
+        type: string
+      title:
+        type: string
+      status:
+        type: integer
+        format: int32
+      detail:
+        type: string
+      instance:
+        type: string
+  ErrorResult:
+    type: object
+    required:
+    - statusCode
+    properties:
+      messages:
+        type: array
+        items:
+          type: string
+      source:
+        type: string
+      exception:
+        type: string
+      errorId:
+        type: string
+      supportMessage:
+        type: string
+      statusCode:
+        type: integer
+        format: int32
+  TokenRequest:
+    type: object
+    required:
+    - userId
+    - password
+    properties:
+      userId:
+        type: string
+        minLength: 1
+        x-nullable: false
+      password:
+        type: string
+        minLength: 1
+        x-nullable: false
+  RefreshTokenRequest:
+    type: object
+    required:
+    - token
+    - refreshToken
+    properties:
+      token:
+        type: string
+      refreshToken:
+        type: string
+  NullableIntOkResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfNullableInteger'
+    - type: object
+  OkResponseOfNullableInteger:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      properties:
+        payload:
+          type: integer
+          format: int32
+  BaseResponse:
+    type: object
+    x-abstract: true
+    required:
+    - responseMessage
+    - sessionToken
+    - requestedMethod
+    - requestedFormat
+    - timestamp
+    - requestReceivedTime
+    - requestProcessingTime
+    properties:
+      responseCode:
+        type: integer
+        format: int32
+      responseMessage:
+        type: string
+      sessionToken:
+        type: string
+      requestedMethod:
+        type: string
+      requestedFormat:
+        type: string
+      timestamp:
+        type: string
+      requestReceivedTime:
+        type: string
+      maxAllowedRequestTime:
+        type: integer
+        format: int32
+      requestProcessingTime:
+        type: string
+  DrCheckNewServerDataResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrCheckNewServerDataResponsePayload'
+    - type: object
+  OkResponseOfDrCheckNewServerDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrCheckNewServerDataResponsePayload'
+  DrCheckNewServerDataResponsePayload:
+    type: object
+    required:
+    - newDataAvailable
+    - tours
+    properties:
+      newDataAvailable:
+        type: string
+      tours:
+        type: array
+        items:
+          $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+  DrGetUserTourHeadersResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrTourHeadersResponseBasePayload'
+    - type: object
+      required:
+      - tourBackendId
+      - tourUserId
+      properties:
+        tourBackendId:
+          type: string
+        tourUserId:
+          type: string
+  DrTourHeadersResponseBasePayload:
+    type: object
+    required:
+    - driverEmail
+    - drTourId
+    - tourNo
+    - tourDescription
+    - tourScheduledDate
+    - tourVehicleReg
+    - tourStartMileage
+    - tourEndMileage
+    - timeCreated
+    - timeUpdated
+    - tourStatus
+    properties:
+      driverEmail:
+        type: string
+      drTourId:
+        type: string
+      tourNo:
+        type: string
+      tourDescription:
+        type: string
+      tourScheduledDate:
+        type: string
+      tourVehicleReg:
+        type: string
+      tourStartMileage:
+        type: string
+      tourEndMileage:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      tourStatus:
+        type: string
+  DrGetGoogleMapUrlResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrGetGoogleMapUrlResponsePayload'
+    - type: object
+  OkResponseOfDrGetGoogleMapUrlResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrGetGoogleMapUrlResponsePayload'
+  DrGetGoogleMapUrlResponsePayload:
+    type: object
+    required:
+    - mapUrl
+    properties:
+      mapUrl:
+        type: string
+  DrGetOpenTourDetailsResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetOpenTourDetailsResponsePayload'
+    - type: object
+  OkListResponseOfDrGetOpenTourDetailsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetOpenTourDetailsResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetOpenTourDetailsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetOpenTourDetailsResponsePayload'
+  DrGetOpenTourDetailsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+    - type: object
+      required:
+      - jobs
+      - vehicleChecks
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/definitions/DrOpenTourSummaryJobsData'
+        vehicleChecks:
+          type: array
+          items:
+            $ref: '#/definitions/DrUserVehicleChecksWithItemsResponsePayload'
+  DrOpenTourSummaryJobsData:
+    allOf:
+    - $ref: '#/definitions/DrSummaryJobData'
+    - type: object
+      required:
+      - serviceLines
+      - photos
+      properties:
+        serviceLines:
+          type: array
+          items:
+            $ref: '#/definitions/DrDescriptionServiceLine'
+        photos:
+          type: array
+          items:
+            $ref: '#/definitions/DrJobPhoto'
+  DrDescriptionServiceLine:
+    allOf:
+    - $ref: '#/definitions/DrServiceLineBase'
+    - type: object
+      required:
+      - materialDescription
+      - equipmentDescription
+      properties:
+        materialDescription:
+          type: string
+        equipmentDescription:
+          type: string
+  DrServiceLineBase:
+    type: object
+    required:
+    - orderLineNo
+    - serviceDescription
+    - lineComment
+    - confirmedQty
+    - job
+    - drServiceLineId
+    - timeCreated
+    - timeUpdated
+    - orderQty
+    properties:
+      orderLineNo:
+        type: string
+      serviceDescription:
+        type: string
+      lineComment:
+        type: string
+      confirmedQty:
+        type: string
+      job:
+        type: string
+      drServiceLineId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      orderQty:
+        type: string
+  DrJobPhoto:
+    type: object
+    required:
+    - photo
+    - timeCreated
+    - timeUpdated
+    properties:
+      drJobPhotoId:
+        type: integer
+        format: int32
+      job:
+        type: integer
+        format: int32
+      photo:
+        type: string
+        format: byte
+        pattern: /^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+  DrSummaryJobData:
+    type: object
+    required:
+    - sequenceNo
+    - orderNo
+    - jobStatus
+    - tour
+    - drJobId
+    - timeCreated
+    - timeUpdated
+    - customerName
+    - taskName
+    - taskAddress
+    - taskCity
+    - taskPostCode
+    - signatureName
+    - signature
+    - reasonCode
+    - driverNotes
+    properties:
+      sequenceNo:
+        type: string
+      orderNo:
+        type: string
+      jobStatus:
+        type: string
+      tour:
+        type: string
+      drJobId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      customerName:
+        type: string
+      taskName:
+        type: string
+      taskAddress:
+        type: string
+      taskCity:
+        type: string
+      taskPostCode:
+        type: string
+      signatureName:
+        type: string
+      signature:
+        type: string
+      reasonCode:
+        type: string
+      driverNotes:
+        type: string
+  DrUserVehicleChecksWithItemsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrUserVehicleChecksResponseBasePayload'
+    - type: object
+      required:
+      - tour
+      - vehicleCheckItems
+      properties:
+        tour:
+          type: string
+        vehicleCheckItems:
+          type: array
+          items:
+            $ref: '#/definitions/DrVehicleCheckItemsBaseResponse'
+  DrVehicleCheckItemsBaseResponse:
+    type: object
+    required:
+    - drVehicleCheckItemId
+    - timeCreated
+    - timeUpdated
+    - checkDescription
+    - checkAnswer
+    - checkComments
+    - vehicleCheck
+    - vehicleCheckItemPhotos
+    properties:
+      drVehicleCheckItemId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      checkDescription:
+        type: string
+      checkAnswer:
+        type: string
+      checkComments:
+        type: string
+      vehicleCheck:
+        type: string
+      vehicleCheckItemPhotos:
+        type: array
+        items:
+          $ref: '#/definitions/DrVehicleCheckDefectItemPhoto'
+  DrVehicleCheckDefectItemPhoto:
+    type: object
+    required:
+    - checkItemPhoto
+    - vehicleCheckItem
+    - drVehicleCheckItemPhotoId
+    - timeCreated
+    - timeUpdated
+    properties:
+      checkItemPhoto:
+        type: string
+      vehicleCheckItem:
+        type: string
+      drVehicleCheckItemPhotoId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+  DrUserVehicleChecksResponseBasePayload:
+    type: object
+    required:
+    - scheduledDate
+    - vehicleReg
+    - drVehicleCheckId
+    - timeCreated
+    - timeUpdated
+    - driverName
+    - driverSignature
+    - checkStatus
+    properties:
+      scheduledDate:
+        type: string
+      vehicleReg:
+        type: string
+      drVehicleCheckId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      driverName:
+        type: string
+      driverSignature:
+        type: string
+      checkStatus:
+        type: string
+  DrGetReasonCodesResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetReasonCodesResponsePayload'
+    - type: object
+  OkListResponseOfDrGetReasonCodesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetReasonCodesResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetReasonCodesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetReasonCodesResponsePayload'
+  DrGetReasonCodesResponsePayload:
+    type: object
+    required:
+    - code
+    - description
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+  DrGetSummaryDataResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetSummaryDataResponsePayload'
+    - type: object
+  OkListResponseOfDrGetSummaryDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetSummaryDataResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetSummaryDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetSummaryDataResponsePayload'
+  DrGetSummaryDataResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+    - type: object
+      required:
+      - tourBackendLastUpdate
+      - instanceId
+      - tourStartLocation
+      - tourEndLocation
+      - tourCount
+      - sodVc
+      - eodVc
+      - jobs
+      properties:
+        tourBackendLastUpdate:
+          type: string
+        instanceId:
+          type: string
+        tourStartLocation:
+          type: string
+        tourEndLocation:
+          type: string
+        tourCount:
+          type: string
+        totalJobs:
+          type: number
+          format: decimal
+        sodVc:
+          $ref: '#/definitions/DrVehicleCheck'
+        eodVc:
+          $ref: '#/definitions/DrVehicleCheck'
+        jobs:
+          type: array
+          items:
+            $ref: '#/definitions/DrSummarySummaryJobData'
+  DrVehicleCheck:
+    allOf:
+    - $ref: '#/definitions/DrUserVehicleChecksResponseBasePayload'
+    - type: object
+      required:
+      - instanceId
+      - vctype
+      - tourId
+      - vcItems
+      properties:
+        instanceId:
+          type: string
+        vctype:
+          type: string
+        tourId:
+          type: string
+        vcItems:
+          type: array
+          items:
+            $ref: '#/definitions/DrVehicleCheckDefectItem'
+  DrVehicleCheckDefectItem:
+    type: object
+    required:
+    - drVehicleCheckItemId
+    - timeCreated
+    - timeUpdated
+    - checkDescription
+    - checkComments
+    - vehicleCheck
+    - checkAnswer
+    - responseRequired
+    - lineNo
+    - checkValue
+    - templateNo
+    - classification
+    - checkRequirement
+    - defectNumber
+    - repairerName
+    - repairerSignature
+    - repairDateTime
+    - vehicleCheckItemPhotos
+    properties:
+      drVehicleCheckItemId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      checkDescription:
+        type: string
+      checkComments:
+        type: string
+      vehicleCheck:
+        type: string
+      checkAnswer:
+        type: string
+      responseRequired:
+        type: string
+      lineNo:
+        type: string
+      checkValue:
+        type: string
+      templateNo:
+        type: string
+      classification:
+        type: string
+      checkRequirement:
+        type: string
+      defectNumber:
+        type: string
+      repairerName:
+        type: string
+      repairerSignature:
+        type: string
+      repairDateTime:
+        type: string
+      vehicleCheckItemPhotos:
+        type: array
+        items:
+          $ref: '#/definitions/DrVehicleCheckDefectItemPhoto'
+  DrSummarySummaryJobData:
+    allOf:
+    - $ref: '#/definitions/DrSummaryJobData'
+    - type: object
+      required:
+      - taskAtCode
+      - combinedAddress
+      - latitude
+      - longitude
+      - serviceLines
+      - photos
+      - comments
+      - commentsAlerts
+      properties:
+        taskAtCode:
+          type: string
+        combinedAddress:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        serviceLines:
+          type: array
+          items:
+            $ref: '#/definitions/DrServiceLine'
+        photos:
+          type: array
+          items:
+            $ref: '#/definitions/DrJobPhotoDetail'
+        comments:
+          type: array
+          items:
+            $ref: '#/definitions/DrComment'
+        commentsAlerts:
+          type: array
+          items:
+            $ref: '#/definitions/DrComment'
+  DrServiceLine:
+    allOf:
+    - $ref: '#/definitions/DrServiceLineBase'
+    - type: object
+      required:
+      - serviceType
+      - serviceTypeDescription
+      - lineStatus
+      - lineChangeStatus
+      - entryLines
+      properties:
+        serviceType:
+          type: string
+        serviceTypeDescription:
+          type: string
+        lineStatus:
+          type: string
+        lineChangeStatus:
+          type: string
+        entryLines:
+          type: array
+          items:
+            $ref: '#/definitions/DrEntryLinesWithJobId'
+  DrEntryLinesWithJobId:
+    allOf:
+    - $ref: '#/definitions/DrEntryLines'
+    - type: object
+      properties:
+        job:
+          type: integer
+          format: int32
+  DrEntryLines:
+    type: object
+    required:
+    - entryType
+    - entryLineNo
+    - qtyRequiredFlag
+    - qtyTypeFlag
+    - entryDescription
+    - entryOrderQty
+    - entryUom
+    - entryConfirmedQty
+    - entryStatus
+    - drServiceEntryLineId
+    - timeCreated
+    - timeUpdated
+    - serviceLineId
+    - entryLineComment
+    - entryChangeStatus
+    - operationalEntryType
+    - reasonCode
+    - photos
+    - barcodes
+    properties:
+      entryType:
+        type: string
+      entryLineNo:
+        type: string
+      qtyRequiredFlag:
+        type: string
+      qtyTypeFlag:
+        type: string
+      entryDescription:
+        type: string
+      entryOrderQty:
+        type: string
+      entryUom:
+        type: string
+      entryConfirmedQty:
+        type: string
+      entryStatus:
+        type: string
+      drServiceEntryLineId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      serviceLineId:
+        type: string
+      entryLineComment:
+        type: string
+      entryChangeStatus:
+        type: string
+      operationalEntryType:
+        type: string
+      reasonCode:
+        type: string
+      photos:
+        type: array
+        items:
+          $ref: '#/definitions/DrJobPhotoDetail'
+      barcodes:
+        type: array
+        items:
+          $ref: '#/definitions/DrEntryLineBarcode'
+  DrJobPhotoDetail:
+    allOf:
+    - $ref: '#/definitions/DrJobPhoto'
+    - type: object
+      required:
+      - jobPhotoComment
+      properties:
+        jobPhotoComment:
+          type: string
+        serviceEntry:
+          type: integer
+          format: int32
+  DrEntryLineBarcode:
+    type: object
+    required:
+    - barcode
+    - timeCreated
+    - timeUpdated
+    properties:
+      drJobBarcodeId:
+        type: integer
+        format: int32
+      serviceEntry:
+        type: integer
+        format: int32
+      barcode:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+  DrComment:
+    type: object
+    required:
+    - comment
+    - commentLineNo
+    - driverAppAlert
+    properties:
+      comment:
+        type: string
+      commentLineNo:
+        type: string
+      driverAppAlert:
+        type: string
+  DrGetSupportInfoResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetSupportInfoResponsePayload'
+    - type: object
+  OkListResponseOfDrGetSupportInfoResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetSupportInfoResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetSupportInfoResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetSupportInfoResponsePayload'
+  DrGetSupportInfoResponsePayload:
+    type: object
+    required:
+    - userName
+    - companyName
+    - wasteEmployeeNo
+    - name
+    - address
+    - address2
+    - county
+    - city
+    - postCode
+    - countryRegionCode
+    - phoneNo
+    - eMail
+    - eMail2
+    - homePage
+    - auxiliaryIndex1
+    - auxiliaryIndex2
+    - auxiliaryIndex3
+    - auxiliaryIndex4
+    - auxiliaryIndex5
+    - userSecurityIdFilterOnly
+    properties:
+      userName:
+        type: string
+      companyName:
+        type: string
+      wasteEmployeeNo:
+        type: string
+      name:
+        type: string
+      address:
+        type: string
+      address2:
+        type: string
+      county:
+        type: string
+      city:
+        type: string
+      postCode:
+        type: string
+      countryRegionCode:
+        type: string
+      phoneNo:
+        type: string
+      eMail:
+        type: string
+      eMail2:
+        type: string
+      homePage:
+        type: string
+      auxiliaryIndex1:
+        type: string
+      auxiliaryIndex2:
+        type: string
+      auxiliaryIndex3:
+        type: string
+      auxiliaryIndex4:
+        type: string
+      auxiliaryIndex5:
+        type: string
+      userSecurityIdFilterOnly:
+        type: string
+  DrGetTourStatusResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrGetTourStatusResponsePayload'
+    - type: object
+  OkResponseOfDrGetTourStatusResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrGetTourStatusResponsePayload'
+  DrGetTourStatusResponsePayload:
+    type: object
+    required:
+    - tourStatus
+    properties:
+      tourStatus:
+        type: string
+  DrGetUserOpenTourDetailsResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetSummaryDataResponsePayload'
+    - type: object
+  DrGetUserTourHeadersResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetUserTourHeadersResponsePayload'
+    - type: object
+  OkListResponseOfDrGetUserTourHeadersResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetUserTourHeadersResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetUserTourHeadersResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetUserTourHeadersResponsePayload'
+  DrUserVehicleChecksResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrUserVehicleChecksResponsePayload'
+    - type: object
+  OkListResponseOfDrUserVehicleChecksResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrUserVehicleChecksResponsePayload'
+    - type: object
+  OkResponseOfListOfDrUserVehicleChecksResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrUserVehicleChecksResponsePayload'
+  DrUserVehicleChecksResponsePayload:
+    allOf:
+    - $ref: '#/definitions/DrUserVehicleChecksResponseBasePayload'
+    - type: object
+      properties:
+        openCount:
+          type: integer
+          format: int32
+  DrGetVehicleCheckListResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetVehicleCheckListResponsePayload'
+    - type: object
+  OkListResponseOfDrGetVehicleCheckListResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetVehicleCheckListResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetVehicleCheckListResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetVehicleCheckListResponsePayload'
+  DrGetVehicleCheckListResponsePayload:
+    type: object
+    required:
+    - scheduledDate
+    - vehicleReg
+    - drVehicleCheckId
+    - timeCreated
+    - timeUpdated
+    - driverName
+    - driverSignature
+    - checkStatus
+    - vehicleCheckItems
+    properties:
+      scheduledDate:
+        type: string
+      vehicleReg:
+        type: string
+      drVehicleCheckId:
+        type: string
+      timeCreated:
+        type: string
+      timeUpdated:
+        type: string
+      driverName:
+        type: string
+      driverSignature:
+        type: string
+      checkStatus:
+        type: string
+      vehicleCheckItems:
+        type: array
+        items:
+          $ref: '#/definitions/DrVehicleCheckItemsResponse'
+  DrVehicleCheckItemsResponse:
+    allOf:
+    - $ref: '#/definitions/DrVehicleCheckItemsBaseResponse'
+    - type: object
+      required:
+      - templateNo
+      - responseRequired
+      - checkValue
+      properties:
+        templateNo:
+          type: string
+        lineNo:
+          type: integer
+          format: int32
+        responseRequired:
+          type: string
+        checkValue:
+          type: string
+  DrGetVehiclesResponse:
+    allOf:
+    - $ref: '#/definitions/OkListResponseOfDrGetVehiclesResponsePayload'
+    - type: object
+  OkListResponseOfDrGetVehiclesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfListOfDrGetVehiclesResponsePayload'
+    - type: object
+  OkResponseOfListOfDrGetVehiclesResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          type: array
+          items:
+            $ref: '#/definitions/DrGetVehiclesResponsePayload'
+  DrGetVehiclesResponsePayload:
+    type: object
+    required:
+    - licensePlateNumber
+    - vehicleNo
+    - description
+    - vehicleStatus
+    properties:
+      licensePlateNumber:
+        type: string
+      vehicleNo:
+        type: string
+      description:
+        type: string
+      vehicleStatus:
+        type: string
+  UmNotificationsResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrNotificationsResponsePayload'
+    - type: object
+  OkResponseOfDrNotificationsResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrNotificationsResponsePayload'
+  DrNotificationsResponsePayload:
+    type: object
+    required:
+    - notifications
+    properties:
+      count:
+        type: integer
+        format: int32
+      notifications:
+        type: array
+        items:
+          $ref: '#/definitions/DrNotificationResponse'
+  DrNotificationResponse:
+    type: object
+    required:
+    - notificationDetail
+    - createdTime
+    - auxiliaryIndex1
+    - auxiliaryIndex2
+    - userSecurityIdFilterOnly
+    - enwisAppFilterOnly
+    - read
+    properties:
+      notificationDetail:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      createdTime:
+        type: string
+      createdDay:
+        type: integer
+        format: int32
+      createdMonth:
+        type: integer
+        format: int32
+      createdYear:
+        type: integer
+        format: int32
+      auxiliaryIndex1:
+        type: string
+      auxiliaryIndex2:
+        type: string
+      auxiliaryIndex3:
+        type: integer
+        format: int32
+      auxiliaryIndex4:
+        type: integer
+        format: int32
+      auxiliaryIndex5:
+        type: integer
+        format: int32
+      userSecurityIdFilterOnly:
+        type: string
+      enwisAppFilterOnly:
+        type: string
+      read:
+        type: string
+  UmSendUserPushNotificationResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrSendUserPushNotificationResponsePayload'
+    - type: object
+  OkResponseOfDrSendUserPushNotificationResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrSendUserPushNotificationResponsePayload'
+  DrSendUserPushNotificationResponsePayload:
+    type: object
+    required:
+    - filters
+    - title
+    - message
+    - data
+    properties:
+      appId:
+        type: integer
+        format: int32
+      source:
+        type: integer
+        format: int32
+      status:
+        type: integer
+        format: int32
+      filters:
+        type: string
+      title:
+        type: string
+      message:
+        type: string
+      data:
+        type: string
+      updatedAt:
+        type: string
+        format: date-time
+      createdAt:
+        type: string
+        format: date-time
+      id:
+        type: integer
+        format: int32
+  UmUpdateNotificationResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfDrUpdateNotificationResponsePayload'
+    - type: object
+  OkResponseOfDrUpdateNotificationResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/DrUpdateNotificationResponsePayload'
+  DrUpdateNotificationResponsePayload:
+    type: object
+    required:
+    - requestStatus
+    properties:
+      requestStatus:
+        type: string
+  UmLoginResponse:
+    allOf:
+    - $ref: '#/definitions/OkResponseOfUmLoginResponsePayload'
+    - type: object
+  OkResponseOfUmLoginResponsePayload:
+    allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - type: object
+      required:
+      - payload
+      properties:
+        payload:
+          $ref: '#/definitions/UmLoginResponsePayload'
+  UmLoginResponsePayload:
+    type: object
+    required:
+    - token
+    - expiresAt
+    - companyName
+    - name
+    - companyInfoName
+    - eMail
+    - firstName
+    - surname
+    - fullName
+    properties:
+      token:
+        type: string
+      expiresAt:
+        type: string
+      companyName:
+        type: string
+      name:
+        type: string
+      companyInfoName:
+        type: string
+      eMail:
+        type: string
+      firstName:
+        type: string
+      surname:
+        type: string
+      fullName:
+        type: string
+  UsersResponse:
+    type: array
+    items:
+      $ref: '#/definitions/UserResponse'
+  UserResponse:
+    allOf:
+    - $ref: '#/definitions/UserDetails'
+    - type: object
+  UserDetails:
+    type: object
+    required:
+    - userID
+    properties:
+      userID:
+        type: integer
+        format: int32
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      navUserName:
+        type: string
+      activationDate:
+        type: string
+        format: date-time
+      loginsCount:
+        type: integer
+        format: int32
+      lastLoginDate:
+        type: string
+        format: date-time
+      lastLoginAppID:
+        type: string
+      role:
+        type: string
+      userGUID:
+        type: string
+      jwtExpiryTime:
+        type: integer
+        format: int32
+      archivedFlag:
+        type: string
+      languageCode:
+        type: string
+      instanceID:
+        type: string
+      employeeWMR:
+        type: string
+      backend:
+        type: integer
+        format: int32
+  PaginationResponseOfUserResponse:
+    type: object
+    required:
+    - data
+    - currentPage
+    - totalPages
+    - totalCount
+    - pageSize
+    - hasPreviousPage
+    - hasNextPage
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/UserResponse'
+      currentPage:
+        type: integer
+        format: int32
+      totalPages:
+        type: integer
+        format: int32
+      totalCount:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      hasPreviousPage:
+        type: boolean
+      hasNextPage:
+        type: boolean
+  GetUsersQuery:
+    allOf:
+    - $ref: '#/definitions/PagedRequest'
+    - type: object
+      properties:
+        includeInactive:
+          type: boolean
+        nameContains:
+          type: string
+        employeeWmrContains:
+          type: string
+        emailContains:
+          type: string
+        backend:
+          type: string
+  PagedRequest:
+    type: object
+    required:
+    - pageNumber
+    - pageSize
+    properties:
+      pageNumber:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+securityDefinitions:
+  Bearer:
+    type: basic
+    description: Provide your Bearer token to access this API
+  Basic:
+    type: basic
+    description: 'Provide header [Authentication: Basic BASE64] to access this API'

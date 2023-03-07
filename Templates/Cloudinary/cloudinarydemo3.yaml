@@ -11,20 +11,15 @@ schemes:
   
 paths:
 
-  /{cloudname}/{resourcetype}/{transformation}/upload:
+  /{cloudname}/{resourcetype}/destroy:
     post:
-      summary: resource upload with transformation
-      description: resource upload with transformation
+      summary: delete file
+      description: delete file
       produces:
         - application/json
       consumes:
         - multipart/form-data
       parameters:
-        - in: formData
-          name: file
-          type: file
-          description: The file to upload. Can be the actual data (byte array buffer), the Data URI (Base64 encoded), a remote FTP, HTTP or HTTPS URL of an existing file, or a private storage bucket (S3 or Google Storage) URL of a whitelisted bucket.
-          x-ct-mimetype: image/png
         - in: path
           name: cloudname
           type: string
@@ -35,15 +30,6 @@ paths:
           type: string
           required: true
           description: eg image or video or raw or auto
-        - in: path
-          name: transformation
-          type: string
-          required: true
-          description: eg w_200,h_200,c_fill,r_max
-        - in: formData
-          name: upload_preset
-          type: string
-          description: The name of an unsigned upload preset that you defined for unsigned uploading to your Cloudinary account
         - in: formData
           name: api_key
           type: string
@@ -56,50 +42,18 @@ paths:
           name: signature
           type: string
           description: (Req. for Authenticated request). A signature of all request parameters including the 'timestamp' parameter but excluding the 'api_key', 'resource_type', 'cloud_name' and 'file' parameters, based on the API Secret of your Cloudinary account. The signature is valid for 1 hour. See Generating authentication signatures for more details.
-        
+        - in: formData
+          name: public_id
+          type: string
+          description: your public id for image
         
 
       responses:
         200:
           description: OK
-          schema:
-            type: object
-            properties:
-              asset_id: 
-                type: string
-              public_id: 
-                type: string
-              version: 
-                type: number
-              version_id: 
-                type: string
-              signature: 
-                type: string
-              width: 
-                type: number
-              height: 
-                type: number
-              resource_type: 
-                type: string
-              created_at: 
-                type: string
-                format: date-time
-              etag: 
-                type: string
-              placeholder: 
-                type: boolean
-              url: 
-                type: string
-              secure_url: 
-                type: string
-              folder: 
-                type: string
-              original_filename: 
-                type: string
-              original_extension: 
-                type: string
-              api_key: 
-                type: string
+        default:
+          description: error
+          
 
   /{cloudname}/{resourcetype}/upload:
     post:
@@ -141,6 +95,14 @@ paths:
           name: signature
           type: string
           description: (Req. for Authenticated request). A signature of all request parameters including the 'timestamp' parameter but excluding the 'api_key', 'resource_type', 'cloud_name' and 'file' parameters, based on the API Secret of your Cloudinary account. The signature is valid for 1 hour. See Generating authentication signatures for more details.
+        - in: formData
+          name: public_id
+          type: string
+          description: your public id for image
+        - in: formData
+          name: eager
+          type: string
+          description: eager transformation
         
         
 
@@ -185,3 +147,5 @@ paths:
                 type: string
               api_key: 
                 type: string
+        default:
+          description: error
