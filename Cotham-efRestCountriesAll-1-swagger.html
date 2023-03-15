@@ -1,0 +1,137 @@
+swagger: '2.0'
+info:
+  version: '0.2'
+  title: 'RestCountries - all countries info'
+  description: 'RestCountries - all countries info'
+
+host: restcountries.com
+basePath: /v3.1
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /all:
+    get:
+      summary: Get all countries info
+      description: Get all countries info
+      tags:
+        - 1. RestCountries - country info
+      parameters:
+        - in: path
+          name: Country
+          type: string
+          description: country name (e.g. 'France')
+          required: true
+        - in: query
+          name: fullText
+          type: string
+          description: whether full text is set
+          default: true
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: object
+                  properties:
+                    common:
+                      type: string
+                    official:
+                      type: string
+                    nativeName:
+                      type: object
+                      properties:
+                        eng:
+                          type: object
+                          properties:
+                            official:
+                              type: string
+                            common:
+                              type: string
+                        fra:
+                          type: object
+                          properties:
+                            official:
+                              type: string
+                            common:
+                              type: string    
+                tld:
+                  type: array
+                  items:
+                    type: string
+                cca2:
+                  type: string
+                ccn3:
+                  type: string
+                cca3:
+                  type: string
+                cioc:
+                  type: string
+                independent:
+                  type: boolean
+                status:
+                  type: string
+                unMember:
+                  type: boolean
+                    
+                region:
+                  type: string
+                subregion:
+                  type: string
+                  
+                flag:
+                  type: string
+                maps:
+                  type: object
+                  properties:
+                    googleMaps:
+                      type: string
+                    openStreetMaps:
+                      type: string
+                population:
+                  type: integer
+                  
+                flags:
+                  type: object
+                  properties:
+                    png:
+                      type: string
+                    svg:
+                      type: string
+                coatOfArms:
+                  type: object
+                  properties:
+                    png:
+                      type: string
+                    svg:
+                      type: string
+                      
+                latlng:
+                      type: array
+                      items:
+                        type: string
+
+                capitalInfo:
+                  type: object
+                  properties:
+                    latlng:
+                      type: array
+                      items:
+                        type: string
+                 
+                  
+        default:
+          description: Failed Server Response
