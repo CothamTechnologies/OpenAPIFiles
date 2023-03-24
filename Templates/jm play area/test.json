@@ -1,0 +1,594 @@
+{
+    "x-generator": "NSwag v13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))",
+    "swagger": "2.0",
+    "info": {
+        "title": "Tegos.WasteServices.Api.Host v1.0.0.0",
+        "description": "\nOpenApi Schema: <small><a href='v1/swagger.valid.yaml' target='_blank'>`swagger.valid.yaml`</a></small><br/><br/>\n⛔ This API can only be accessed by authorised users ⛔ Your IP (52.21.147.173) is being recorded on any action taken against this service.\n<br/>Use `/authenticate` operation to generate the `Bearer Jwt Token` and then authorise yourself on the page and you're ready to play around 🚀!\n<br/>If you need to generate your client side code from the `swagger` definition file shown above please visit the following link to learn more: `https://github.com/Azure/autorest`\n<br/><br/>  `Handcrafted with ❤️ Tegos Dev Team ` ",
+        "contact": {
+            "name": "Tegos Dev Team 🚀",
+            "url": "https://www.tegos.com/",
+            "email": "tegos.support@tegos.co.uk"
+        },
+        "version": "v1.0"
+    },
+    "host": "tegossl-apps-prod.azurewebsites.net",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "produces": [
+        "text/plain",
+        "application/json",
+        "text/json"
+    ],
+    "paths": {
+        "/drGetOpenTourDetails.json": {
+            "post": {
+                "tags": [
+                    "Driver"
+                ],
+                "summary": "DrGetOpenTourDetails",
+                "description": "DrGetOpenTourDetails",
+                "operationId": "DrGetOpenTourDetails",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "params[jwt]",
+                        "in": "formData",
+                        "required": true,
+                        "description": "Jwt",
+                        "x-nullable": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "params[clientIdentifier]",
+                        "in": "formData",
+                        "required": true,
+                        "description": "ClientIdentifier",
+                        "x-nullable": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "params[tourNo]",
+                        "in": "formData",
+                        "description": "TourNo",
+                        "format": "int32",
+                        "x-nullable": true,
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "allOf": [
+                                                {
+                                                    "type": "object",
+                                                    "x-abstract": true,
+                                                    "required": [
+                                                        "responseMessage",
+                                                        "sessionToken",
+                                                        "requestedMethod",
+                                                        "requestedFormat",
+                                                        "timestamp",
+                                                        "requestReceivedTime",
+                                                        "requestProcessingTime"
+                                                    ],
+                                                    "properties": {
+                                                        "responseCode": {
+                                                            "type": "integer",
+                                                            "format": "int32"
+                                                        },
+                                                        "responseMessage": {
+                                                            "type": "string"
+                                                        },
+                                                        "sessionToken": {
+                                                            "type": "string"
+                                                        },
+                                                        "requestedMethod": {
+                                                            "type": "string"
+                                                        },
+                                                        "requestedFormat": {
+                                                            "type": "string"
+                                                        },
+                                                        "timestamp": {
+                                                            "type": "string"
+                                                        },
+                                                        "requestReceivedTime": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxAllowedRequestTime": {
+                                                            "type": "integer",
+                                                            "format": "int32"
+                                                        },
+                                                        "requestProcessingTime": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "required": [
+                                                        "payload"
+                                                    ],
+                                                    "properties": {
+                                                        "payload": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "allOf": [
+                                                                    {
+                                                                        "allOf": [
+                                                                            {
+                                                                                "type": "object",
+                                                                                "required": [
+                                                                                    "driverEmail",
+                                                                                    "drTourId",
+                                                                                    "tourNo",
+                                                                                    "tourDescription",
+                                                                                    "tourScheduledDate",
+                                                                                    "tourVehicleReg",
+                                                                                    "tourStartMileage",
+                                                                                    "tourEndMileage",
+                                                                                    "timeCreated",
+                                                                                    "timeUpdated",
+                                                                                    "tourStatus"
+                                                                                ],
+                                                                                "properties": {
+                                                                                    "driverEmail": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "drTourId": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourNo": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourDescription": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourScheduledDate": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourVehicleReg": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourStartMileage": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourEndMileage": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "timeCreated": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "timeUpdated": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourStatus": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "type": "object",
+                                                                                "required": [
+                                                                                    "tourBackendId",
+                                                                                    "tourUserId"
+                                                                                ],
+                                                                                "properties": {
+                                                                                    "tourBackendId": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "tourUserId": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "object",
+                                                                        "required": [
+                                                                            "jobs",
+                                                                            "vehicleChecks"
+                                                                        ],
+                                                                        "properties": {
+                                                                            "jobs": {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "allOf": [
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "required": [
+                                                                                                "sequenceNo",
+                                                                                                "orderNo",
+                                                                                                "jobStatus",
+                                                                                                "tour",
+                                                                                                "drJobId",
+                                                                                                "timeCreated",
+                                                                                                "timeUpdated",
+                                                                                                "customerName",
+                                                                                                "taskName",
+                                                                                                "taskAddress",
+                                                                                                "taskCity",
+                                                                                                "taskPostCode",
+                                                                                                "signatureName",
+                                                                                                "signature",
+                                                                                                "reasonCode",
+                                                                                                "driverNotes"
+                                                                                            ],
+                                                                                            "properties": {
+                                                                                                "sequenceNo": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "orderNo": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "jobStatus": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "tour": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "drJobId": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "timeCreated": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "timeUpdated": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "customerName": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "taskName": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "taskAddress": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "taskCity": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "taskPostCode": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "signatureName": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "signature": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "reasonCode": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "driverNotes": {
+                                                                                                    "type": "string"
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "required": [
+                                                                                                "serviceLines",
+                                                                                                "photos"
+                                                                                            ],
+                                                                                            "properties": {
+                                                                                                "serviceLines": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "allOf": [
+                                                                                                            {
+                                                                                                                "type": "object",
+                                                                                                                "required": [
+                                                                                                                    "orderLineNo",
+                                                                                                                    "serviceDescription",
+                                                                                                                    "lineComment",
+                                                                                                                    "confirmedQty",
+                                                                                                                    "job",
+                                                                                                                    "drServiceLineId",
+                                                                                                                    "timeCreated",
+                                                                                                                    "timeUpdated",
+                                                                                                                    "orderQty"
+                                                                                                                ],
+                                                                                                                "properties": {
+                                                                                                                    "orderLineNo": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "serviceDescription": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "lineComment": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "confirmedQty": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "job": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "drServiceLineId": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "timeCreated": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "timeUpdated": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "orderQty": {
+                                                                                                                        "type": "string"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "type": "object",
+                                                                                                                "required": [
+                                                                                                                    "materialDescription",
+                                                                                                                    "equipmentDescription"
+                                                                                                                ],
+                                                                                                                "properties": {
+                                                                                                                    "materialDescription": {
+                                                                                                                        "type": "string"
+                                                                                                                    },
+                                                                                                                    "equipmentDescription": {
+                                                                                                                        "type": "string"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                },
+                                                                                                "photos": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "object",
+                                                                                                        "required": [
+                                                                                                            "photo",
+                                                                                                            "timeCreated",
+                                                                                                            "timeUpdated"
+                                                                                                        ],
+                                                                                                        "properties": {
+                                                                                                            "drJobPhotoId": {
+                                                                                                                "type": "integer",
+                                                                                                                "format": "int32"
+                                                                                                            },
+                                                                                                            "job": {
+                                                                                                                "type": "integer",
+                                                                                                                "format": "int32"
+                                                                                                            },
+                                                                                                            "photo": {
+                                                                                                                "type": "string",
+                                                                                                                "format": "byte",
+                                                                                                                "pattern": "/^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$/"
+                                                                                                            },
+                                                                                                            "timeCreated": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "timeUpdated": {
+                                                                                                                "type": "string"
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "vehicleChecks": {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "allOf": [
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "required": [
+                                                                                                "scheduledDate",
+                                                                                                "vehicleReg",
+                                                                                                "drVehicleCheckId",
+                                                                                                "timeCreated",
+                                                                                                "timeUpdated",
+                                                                                                "driverName",
+                                                                                                "driverSignature",
+                                                                                                "checkStatus"
+                                                                                            ],
+                                                                                            "properties": {
+                                                                                                "scheduledDate": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "vehicleReg": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "drVehicleCheckId": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "timeCreated": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "timeUpdated": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "driverName": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "driverSignature": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "checkStatus": {
+                                                                                                    "type": "string"
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "object",
+                                                                                            "required": [
+                                                                                                "tour",
+                                                                                                "vehicleCheckItems"
+                                                                                            ],
+                                                                                            "properties": {
+                                                                                                "tour": {
+                                                                                                    "type": "string"
+                                                                                                },
+                                                                                                "vehicleCheckItems": {
+                                                                                                    "type": "array",
+                                                                                                    "items": {
+                                                                                                        "type": "object",
+                                                                                                        "required": [
+                                                                                                            "drVehicleCheckItemId",
+                                                                                                            "timeCreated",
+                                                                                                            "timeUpdated",
+                                                                                                            "checkDescription",
+                                                                                                            "checkAnswer",
+                                                                                                            "checkComments",
+                                                                                                            "vehicleCheck",
+                                                                                                            "vehicleCheckItemPhotos"
+                                                                                                        ],
+                                                                                                        "properties": {
+                                                                                                            "drVehicleCheckItemId": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "timeCreated": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "timeUpdated": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "checkDescription": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "checkAnswer": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "checkComments": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "vehicleCheck": {
+                                                                                                                "type": "string"
+                                                                                                            },
+                                                                                                            "vehicleCheckItemPhotos": {
+                                                                                                                "type": "array",
+                                                                                                                "items": {
+                                                                                                                    "type": "object",
+                                                                                                                    "required": [
+                                                                                                                        "checkItemPhoto",
+                                                                                                                        "vehicleCheckItem",
+                                                                                                                        "drVehicleCheckItemPhotoId",
+                                                                                                                        "timeCreated",
+                                                                                                                        "timeUpdated"
+                                                                                                                    ],
+                                                                                                                    "properties": {
+                                                                                                                        "checkItemPhoto": {
+                                                                                                                            "type": "string"
+                                                                                                                        },
+                                                                                                                        "vehicleCheckItem": {
+                                                                                                                            "type": "string"
+                                                                                                                        },
+                                                                                                                        "drVehicleCheckItemPhotoId": {
+                                                                                                                            "type": "string"
+                                                                                                                        },
+                                                                                                                        "timeCreated": {
+                                                                                                                            "type": "string"
+                                                                                                                        },
+                                                                                                                        "timeUpdated": {
+                                                                                                                            "type": "string"
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "object"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "additionalProperties": {},
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        },
+                                        "detail": {
+                                            "type": "string"
+                                        },
+                                        "instance": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "additionalProperties": {},
+                                    "required": [
+                                        "errors"
+                                    ],
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    },
+                    {
+                        "Basic": []
+                    }
+                ]
+            }
+        }
+    }
