@@ -124,84 +124,84 @@ paths:
             type: object
             properties:
             
-            code:
-              type: string
-            message:
-              type: string
-            cnt:
-              type: string
-            list:
-              type: array
-              items:
-                type: object
-                properties:
-                  dt:
-                    type: string
-                  main:
-                    type: object
-                    properties:
-                      temp:
-                        type: number
-                      feels_like:
-                        type: number
-                      temp_min:
-                        type: number
-                      temp_max:
-                        type: number
-                      pressure:
-                        type: number
-                      humidity:
-                        type: integer
-                  visibility:
-                    type: integer
-                  wind:
-                    type: object
-                    properties:
-                      speed:
-                        type: number
-                      deg:
-                        type: number
-                      gust:
-                        type: number
-                  pop:
-                    type: number
-                  rain:
-                    type: object
-                    properties:
-                      3h:
-                        type: number
-                   sys:
-                     type: object
-                     properties:
-                       type: string
-                   dt_text:
-                     type: string
-                    
-            
-            city:
-              type: object
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-                coord:
+              code:
+                type: string
+              message:
+                type: string
+              cnt:
+                type: string
+              list:
+                type: array
+                items:
                   type: object
                   properties:
-                    lon:
+                    dt:
+                      type: string
+                    main:
+                      type: object
+                      properties:
+                        temp:
+                          type: number
+                        feels_like:
+                          type: number
+                        temp_min:
+                          type: number
+                        temp_max:
+                          type: number
+                        pressure:
+                          type: number
+                        humidity:
+                          type: integer
+                    visibility:
+                      type: integer
+                    wind:
+                      type: object
+                      properties:
+                        speed:
+                          type: number
+                        deg:
+                          type: number
+                        gust:
+                          type: number
+                    pop:
                       type: number
-                    lat:
-                      type: number
-                country:
-                  type: string
-                population:
-                  type: string
-                timezone:
-                  type: string
-                sunrise:
-                  type: string
-                sunset:
-                  type: string
+                    rain:
+                      type: object
+                      properties:
+                        3h:
+                          type: number
+                    sys:
+                      type: object
+                      properties:
+                        pod:
+                          type: string
+                        dt_text:
+                          type: string
+                    
+              city:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  coord:
+                    type: object
+                    properties:
+                      lon:
+                        type: number
+                      lat:
+                        type: number
+                  country:
+                    type: string
+                  population:
+                    type: string
+                  timezone:
+                    type: string
+                  sunrise:
+                    type: string
+                  sunset:
+                    type: string
                   
                   
                   
