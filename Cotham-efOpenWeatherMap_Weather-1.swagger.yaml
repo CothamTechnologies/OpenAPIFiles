@@ -45,9 +45,9 @@ paths:
                 type: object
                 properties:
                   lon:
-                    type: float
+                    type: number
                   lat:
-                    type: float
+                    type: number
               weather:
                 type: array
                 items:
@@ -67,15 +67,15 @@ paths:
                 type: object
                 properties:
                   temp:
-                    type: float
+                    type: number
                   feels_like:
-                    type: float
+                    type: number
                   temp_min:
-                    type: float
+                    type: number
                   temp_max:
-                    type: float
+                    type: number
                   pressure:
-                    type: float
+                    type: number
                   humidity:
                     type: integer
               visibility:
@@ -84,7 +84,7 @@ paths:
                 type: object
                 properties:
                   speed:
-                    type: float
+                    type: number
                   deg:
                     type: integer        
         default:
