@@ -1,0 +1,212 @@
+swagger: '2.0'
+info:
+  version: '0.2'
+  title: 'Open Weather Map - weather'
+  description: 'Open Weather Map - weather'
+
+host: api.openweathermap.org
+basePath: /data/2.5
+
+schemes:
+  - http
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /weather:
+    get:
+      summary: Get Weather Data
+      description: Get Weather Data
+      tags:
+        - 1. Open Weather Map
+      parameters:
+        - in: query
+          name: q
+          type: string
+          description: maximum number of records to retrieve
+          required: true
+        - in: query
+          name: APPID
+          type: string
+          description: view type (e.g. 'List')
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              coord:
+                type: object
+                properties:
+                  lon:
+                    type: number
+                  lat:
+                    type: number
+              weather:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    main:
+                      type: string
+                    description:
+                      type: string
+                    icon:
+                      type: string
+              base:
+                type: string
+              main:
+                type: object
+                properties:
+                  temp:
+                    type: number
+                  feels_like:
+                    type: number
+                  temp_min:
+                    type: number
+                  temp_max:
+                    type: number
+                  pressure:
+                    type: number
+                  humidity:
+                    type: integer
+              visibility:
+                type: integer
+              wind:
+                type: object
+                properties:
+                  speed:
+                    type: number
+                  deg:
+                    type: integer        
+        default:
+          description: Failed Server Response
+
+  /forecast:
+    get:
+      summary: Get Weather Forecast Data
+      description: Get Weather Forecast Data
+      tags:
+        - 1. Open Weather Map
+      parameters:
+        - in: query
+          name: lat
+          type: string
+          description: latitude
+          required: true
+        - in: query
+          name: lon
+          type: string
+          description: longitude
+          required: true
+        - in: query
+          name: q
+          type: string
+          description: query
+          required: true
+        - in: query
+          name: APPID
+          type: string
+          description: app key
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+            
+              code:
+                type: string
+              message:
+                type: string
+              cnt:
+                type: string
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dt:
+                      type: string
+                    main:
+                      type: object
+                      properties:
+                        temp:
+                          type: number
+                        feels_like:
+                          type: number
+                        temp_min:
+                          type: number
+                        temp_max:
+                          type: number
+                        pressure:
+                          type: number
+                        humidity:
+                          type: integer
+                    visibility:
+                      type: integer
+                    wind:
+                      type: object
+                      properties:
+                        speed:
+                          type: number
+                        deg:
+                          type: number
+                        gust:
+                          type: number
+                    pop:
+                      type: number
+                    rain:
+                      type: object
+                      properties:
+                        3h:
+                          type: number
+                    sys:
+                      type: object
+                      properties:
+                        pod:
+                          type: string
+                        dt_text:
+                          type: string
+                    
+              city:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  coord:
+                    type: object
+                    properties:
+                      lon:
+                        type: number
+                      lat:
+                        type: number
+                  country:
+                    type: string
+                  population:
+                    type: string
+                  timezone:
+                    type: string
+                  sunrise:
+                    type: string
+                  sunset:
+                    type: string
+                  
+                  
+                  
+                  
+
+ 
+        default:
+          description: Failed Server Response
