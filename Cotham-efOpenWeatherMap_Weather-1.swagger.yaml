@@ -49,7 +49,7 @@ paths:
                   lat:
                     type: float
               weather:
-                type: array:
+                type: array
                 items:
                   type: object
                   properties:
