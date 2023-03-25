@@ -59,7 +59,7 @@ paths:
                         
         default:
           description: Failed Server 
-  /Servicexs/{recordId}:
+  /Services/{recordId}:
     post:
       summary: update service accesses 
       description: update service accesses
