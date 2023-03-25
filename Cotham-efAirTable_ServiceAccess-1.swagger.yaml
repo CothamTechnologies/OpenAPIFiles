@@ -30,16 +30,6 @@ paths:
           type: string
           description: api key ('Bearer YOUR_API_KEY')
           required: true
-        - in: query
-          name: maxRecords
-          type: string
-          description: maximum number of records to retrieve
-          required: true
-        - in: query
-          name: view
-          type: string
-          description: view type (e.g. 'List')
-          required: true
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
@@ -51,69 +41,14 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
+                    Name:
                       type: string
-                    createdTime:
+                    Key:
                       type: string
-                    fields:
-                      type: object
-                      properties:
-                        Item:
-                          type: string
-                        Purchased:
-                          type: boolean               
-                        Quantity:
-                           type: string
-                        Image:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                              width:
-                                type: integer
-                              height:
-                                type: integer
-                              url:
-                                type: string
-                              filename:
-                                type: string
-                              size:
-                                type: integer
-                              type:
-                                type: string
-                              thumbnails:
-                                type: object
-                                properties:
-                                  small:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      width:
-                                        type: integer
-                                      height:
-                                        type: integer
-                                  large:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      width:
-                                        type: integer
-                                      height:
-                                        type: integer
-                                  full:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      width:
-                                        type: integer
-                                      height:
-                                        type: integer
-                         
-                  
+                    Username:
+                      type: string
+                    Password:
+                      type: string
+                        
         default:
           description: Failed Server Response
