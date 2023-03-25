@@ -1,8 +1,8 @@
-swagger: '2.0'
+ swagger: '2.0'
 info:
   version: '0.2'
-  title: 'Airtable Groceries List'
-  description: 'Airtable Groceries List'
+  title: 'Airtable Service Accesses'
+  description: 'Airtable Service Accesses'
 
 host: api.airtable.com
 basePath: /v0/appwEHI5Sf4k6reAh
@@ -18,7 +18,7 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /Groceries:
+  /ServiceAccess:
     get:
       summary: Get Groceries List
       description: Get Groceries List
