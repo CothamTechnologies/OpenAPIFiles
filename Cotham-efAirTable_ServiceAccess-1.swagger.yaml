@@ -5,7 +5,7 @@ info:
   description: 'Airtable Service Accesses'
 
 host: api.airtable.com
-basePath: /v0/appwEHI5Sf4k6reAh
+basePath: /v0/appzr1xpisb5H9AgG
 
 schemes:
   - https
@@ -18,7 +18,7 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /ServiceAccess:
+  /Services:
     get:
       summary: Get Service Accesses
       description: Get Service Accesses
