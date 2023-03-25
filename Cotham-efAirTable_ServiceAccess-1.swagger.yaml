@@ -41,13 +41,20 @@ paths:
                 items:
                   type: object
                   properties:
-                    Name:
+                    createdTime:
                       type: string
-                    Key:
-                      type: string
-                    Username:
-                      type: string
-                    Password:
+                    fields:
+                      type: object
+                      properties:
+                        Name:
+                          type: string
+                        Key:
+                          type: string
+                        Username:
+                          type: string
+                        Password:
+                          type: string
+                    id:
                       type: string
                         
         default:
