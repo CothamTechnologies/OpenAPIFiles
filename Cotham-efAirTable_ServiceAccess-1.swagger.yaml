@@ -20,10 +20,10 @@ schemes:
 paths:
   /ServiceAccess:
     get:
-      summary: Get Groceries List
-      description: Get Groceries List
+      summary: Get Service Accesses
+      description: Get Service Accesses
       tags:
-        - 1. Airtable Groceries List
+        - 1. Airtable Service Accesses
       parameters:
         - in: header
           name: Authorization
