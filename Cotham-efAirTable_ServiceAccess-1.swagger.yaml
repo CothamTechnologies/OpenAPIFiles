@@ -62,8 +62,8 @@ paths:
  
   /Services:
     patch:
-      summary: update service accesses 
-      description: update service accesses
+      summary: update service accesses v1
+      description: update service accesses v1
       tags:
         - 1. Airtable Service Accesses
       parameters:
@@ -128,8 +128,8 @@ paths:
  
   /Services/{recordId}:
     patch:
-      summary: update service accesses 
-      description: update service accesses
+      summary: update service accesses v2
+      description: update service accesses v2
       tags:
         - 1. Airtable Service Accesses
       parameters:
