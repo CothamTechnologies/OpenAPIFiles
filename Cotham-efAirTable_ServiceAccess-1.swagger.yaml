@@ -60,7 +60,7 @@ paths:
         default:
           description: Failed Server 
  
-  /Services:
+  /ServicesY:
     patch:
       summary: update service accesses v1
       description: update service accesses v1
