@@ -59,6 +59,73 @@ paths:
                         
         default:
           description: Failed Server 
+ 
+ /Services:
+    patch:
+      summary: update service accesses 
+      description: update service accesses
+      tags:
+        - 1. Airtable Service Accesses
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: api key ('Bearer YOUR_API_KEY')
+          required: true
+        - in: path
+          name: recordId
+          type: string
+          description: record Id
+          required: true
+        - in: body
+          name: data
+          schema:
+            type: object
+            properties:
+              records:
+              type: array
+              items:
+                type: object
+                properties:
+                  fields:
+                    type: object
+                    properties:
+                      Name:
+                        type: string
+                      Key:
+                        type: string
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+            
+          description: api key ('Bearer YOUR_API_KEY')
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              createdTime:
+                type: string
+              fields:
+                type: object
+                properties:
+                  Name:
+                    type: string
+                  Key:
+                    type: string
+                  Username:
+                    type: string
+                  Password:
+                    type: string
+              id:
+                type: string
+                      
+        default:
+          description: Failed Server Response
+ 
   /Services/{recordId}:
     patch:
       summary: update service accesses 
