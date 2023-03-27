@@ -67,8 +67,8 @@ paths:
   
   /tenants/{id}/solutions:
     get:
-      summary: Get Tenants
-      description: Get Tenants
+      summary: Get Tenant Solutions
+      description: Get Tenant Solutions
       produces:
         - application/json 
       parameters:
