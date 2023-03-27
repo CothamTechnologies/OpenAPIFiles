@@ -1,0 +1,49 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'AWS Cognito IDP API Confirm Sign Up'
+  description: 'AWS Cognito IDP API Confirm Sign Up'
+
+host: cognito-idp.eu-west-2.amazonaws.com
+basePath: 
+schemes: 
+  - https
+  
+paths:
+
+  /:
+    post:
+      summary: Confirm Sign Up
+      description: Confirm Sign Up
+      produces:
+        - application/json
+      consumes:
+        - application/x-amz-json-1.1
+      
+      parameters:
+        - in: header
+          name: X-Amz-Target
+          type: string
+          description: use - AWSCognitoIdentityProviderService.ConfirmSignUp
+          required: true
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: 
+              Username:
+                type: string
+              ConfirmationCode:
+                type: string
+              ClientId:
+                type: string
+        
+      responses:
+        200:
+          description: OK
+
+        default:
+          description: server error
+
+ 

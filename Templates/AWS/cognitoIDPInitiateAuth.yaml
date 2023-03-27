@@ -1,0 +1,70 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'AWS Cognito IDP Login'
+  description: 'AWS Cognito IDP Login'
+
+host: cognito-idp.eu-west-2.amazonaws.com
+basePath: 
+schemes: 
+  - https
+  
+paths:
+
+  /:
+    post:
+      summary: login
+      description: login
+      produces:
+        - application/json
+      consumes:
+        - application/x-amz-json-1.1
+      
+      parameters:
+        - in: header
+          name: X-Amz-Target
+          type: string
+          description: use - AWSCognitoIdentityProviderService.InitiateAuth
+          required: true
+        - name: Body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: 
+              AuthParameters:
+                type: object
+                properties: 
+                  USERNAME:
+                    type: string
+                  PASSWORD:
+                    type: string
+              AuthFlow:
+                type: string
+              ClientId:
+                type: string
+        
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              AuthenticationResult:
+                type: object
+                properties: 
+                  AccessToken:
+                    type: string
+                  ExpiresIn:
+                    type: string
+                  IdToken:
+                    type: string
+                  RefreshToken:
+                    type: string
+                  TokenType:
+                    type: string
+
+        default:
+          description: server error
+
+ 

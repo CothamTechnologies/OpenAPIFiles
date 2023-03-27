@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: 'AWS Cognito IDP API'
-  description: 'AWS Cognito IDP API'
+  title: 'AWS Cognito IDP API Sign Up'
+  description: 'AWS Cognito IDP API Sign Up'
 
 host: cognito-idp.eu-west-2.amazonaws.com
 basePath: 
@@ -13,8 +13,8 @@ paths:
 
   /:
     post:
-      summary: login
-      description: login
+      summary: Sign Up
+      description: Sign Up
       produces:
         - application/json
       consumes:
@@ -24,7 +24,7 @@ paths:
         - in: header
           name: X-Amz-Target
           type: string
-          description: use - AWSCognitoIdentityProviderService.InitiateAuth
+          description: use - AWSCognitoIdentityProviderService.SignUp
           required: true
         - name: Body
           in: body
@@ -32,14 +32,9 @@ paths:
           schema:
             type: object
             properties: 
-              AuthParameters:
-                type: object
-                properties: 
-                  USERNAME:
-                    type: string
-                  PASSWORD:
-                    type: string
-              AuthFlow:
+              Username:
+                type: string
+              Password:
                 type: string
               ClientId:
                 type: string
@@ -50,19 +45,19 @@ paths:
           schema:
             type: object
             properties:
-              AuthenticationResult:
+              CodeDeliveryDetails:
                 type: object
                 properties: 
-                  AccessToken:
+                  AttributeName:
                     type: string
-                  ExpiresIn:
+                  DeliveryMedium:
                     type: string
-                  IdToken:
+                  Destination:
                     type: string
-                  RefreshToken:
-                    type: string
-                  TokenType:
-                    type: string
+              UserConfirmed:
+                type: string
+              UserSub:
+                type: string
 
         default:
           description: server error
