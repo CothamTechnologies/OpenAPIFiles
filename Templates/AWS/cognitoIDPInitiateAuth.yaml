@@ -39,6 +39,8 @@ paths:
                     type: string
                   PASSWORD:
                     type: string
+                  REFRESH_TOKEN:
+                    type: string
               AuthFlow:
                 type: string
               ClientId:
