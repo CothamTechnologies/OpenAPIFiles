@@ -1,0 +1,563 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "dev-floProAPI"
+host: "vh2xsj6v72.execute-api.eu-west-2.amazonaws.com"
+basePath: "/dev"
+schemes:
+- "https"
+paths:
+  /connectors:
+    get:
+      parameters:
+      - name: "select"
+        in: "query"
+        required: false
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "createconnector"
+        required: true
+        schema:
+          $ref: "#/definitions/createconnector"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /connectors/fromlib:
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "createconnectorfromlib"
+        required: true
+        schema:
+          $ref: "#/definitions/createconnectorfromlib"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /connectors/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    put:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "updateconnector"
+        required: true
+        schema:
+          $ref: "#/definitions/updateconnector"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /connectorslib:
+    get:
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "createconnectorlib"
+        required: true
+        schema:
+          $ref: "#/definitions/createconnectorlib"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /connectorslib/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    put:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "updateconnectorlib"
+        required: true
+        schema:
+          $ref: "#/definitions/updateconnectorlib"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /solutions:
+    get:
+      parameters:
+      - name: "select"
+        in: "query"
+        required: false
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "createsolution"
+        required: true
+        schema:
+          $ref: "#/definitions/createsolution"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /solutions/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    put:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "updatesolution"
+        required: true
+        schema:
+          $ref: "#/definitions/updatesolution"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /solutions/{id}/copy:
+    put:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "copysolution"
+        required: true
+        schema:
+          $ref: "#/definitions/copysolution"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /solutions/{id}/share:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /solutions/{id}/versions:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /tenants:
+    get:
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /tenants/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    put:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "updatetenant"
+        required: true
+        schema:
+          $ref: "#/definitions/updatetenant"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /tenants/{id}/solutions:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /tenants/{id}/users:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /users:
+    get:
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "inviteuser"
+        required: true
+        schema:
+          $ref: "#/definitions/inviteuser"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /users/me:
+    get:
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /users/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    put:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "updateuser"
+        required: true
+        schema:
+          $ref: "#/definitions/updateuser"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /versions:
+    post:
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /versions/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    put:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+  /versions/{id}/makecurrent:
+    put:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+      security:
+      - CognitoAuthorizer: []
+securityDefinitions:
+  CognitoAuthorizer:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    x-amazon-apigateway-authtype: "cognito_user_pools"
+definitions:
+  createconnector:
+    type: "object"
+    required:
+    - "name"
+    - "sourceSwaggerUrl"
+    properties:
+      sourceSwaggerUrl:
+        type: "string"
+      name:
+        type: "string"
+      connectorDescription:
+        type: "string"
+  createconnectorlib:
+    type: "object"
+    required:
+    - "category"
+    - "configurationType"
+    - "name"
+    - "sourceSwaggerUrl"
+    properties:
+      apiProviderName:
+        type: "string"
+      configuration:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            propertyName:
+              type: "string"
+      base64Image:
+        type: "string"
+      sourceSwaggerUrl:
+        type: "string"
+      name:
+        type: "string"
+      apiDocumentationUrl:
+        type: "string"
+      category:
+        type: "string"
+      connectorDescription:
+        type: "string"
+      configurationType:
+        type: "string"
+  updatesolution:
+    type: "object"
+    required:
+    - "solutionName"
+    - "thumbnailImageBase64"
+    properties:
+      thumbnailImageBase64:
+        type: "string"
+      solutionName:
+        type: "string"
+      versionsName:
+        type: "string"
+  updateconnectorlib:
+    type: "object"
+    required:
+    - "category"
+    - "configurationType"
+    - "name"
+    - "sourceSwaggerUrl"
+    properties:
+      apiProviderName:
+        type: "string"
+      configuration:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            propertyName:
+              type: "string"
+      base64Image:
+        type: "string"
+      sourceSwaggerUrl:
+        type: "string"
+      name:
+        type: "string"
+      apiDocumentationUrl:
+        type: "string"
+      category:
+        type: "string"
+      connectorDescription:
+        type: "string"
+      configurationType:
+        type: "string"
+  createsolution:
+    type: "object"
+    required:
+    - "currentVersionID"
+    - "currentVersionName"
+    - "solutionID"
+    - "solutionName"
+    properties:
+      currentVersionName:
+        type: "string"
+      thumbnailImageBase64:
+        type: "string"
+      solutionName:
+        type: "string"
+      currentVersionID:
+        type: "string"
+      solutionID:
+        type: "string"
+  updateconnector:
+    type: "object"
+    required:
+    - "category"
+    - "name"
+    properties:
+      templateSwaggerS3Url:
+        type: "string"
+      apiProviderName:
+        type: "string"
+      Type:
+        type: "string"
+      base64Image:
+        type: "string"
+      name:
+        type: "string"
+      apiDocumentationUrl:
+        type: "string"
+      description:
+        type: "string"
+      category:
+        type: "string"
+  inviteuser:
+    type: "object"
+    required:
+    - "email"
+    properties:
+      MessageAction:
+        type: "string"
+      email:
+        type: "string"
+  updatetenant:
+    type: "object"
+    required:
+    - "isDisabled"
+    - "license"
+    properties:
+      license:
+        type: "string"
+      isDisabled:
+        type: "boolean"
+  copysolution:
+    type: "object"
+    properties:
+      copyto:
+        type: "string"
+  createconnectorfromlib:
+    type: "object"
+    required:
+    - "sourceConnectionID"
+    properties:
+      configuration:
+        type: "object"
+        properties: {}
+      sourceConnectionID:
+        type: "string"
+  updateuser:
+    type: "object"
+    required:
+    - "isDisabled"
+    - "userRole"
+    properties:
+      isDisabled:
+        type: "boolean"
+      userRole:
+        type: "string"

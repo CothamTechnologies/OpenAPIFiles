@@ -1,0 +1,88 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "dev-floProAPI"
+host: "vh2xsj6v72.execute-api.eu-west-2.amazonaws.com"
+basePath: "/dev"
+schemes:
+- "https"
+
+
+paths:
+  
+  /tenants:
+    get:
+      summary: Get Tenants
+      description: Get Tenants
+      produces:
+        - application/json   
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: ID Token
+          required: true
+      responses: 
+        200:
+          description: OK
+          schema:
+            type: object
+            properties: 
+              payload: 
+                type: object
+                properties: 
+                  Items: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        isoDateTimeUpdatedAt: 
+                          type: string
+                        license: 
+                          type: string
+                        isDisabled: 
+                          type: boolean
+                        updatedAt: 
+                          type: string
+                        tenantAdminEmail: 
+                          type: string
+                        solutionBucket: 
+                          type: string
+                        TenantID: 
+                          type: string
+                        floDBkey: 
+                          type: string
+                        clientId: 
+                          type: string
+                  Count: 
+                    type: number
+                  ScannedCount: 
+                    type: number
+              result: 
+                type: string
+              resultMessage: 
+                type: string
+      
+  
+  /tenants/{id}/solutions:
+    get:
+      summary: Get Tenants
+      description: Get Tenants
+      produces:
+        - application/json 
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: ID Token
+          required: true
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+      responses: 
+        200:
+          description: OK
+
+  
