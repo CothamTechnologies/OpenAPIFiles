@@ -83,21 +83,21 @@ paths:
             type: object
             properties:
               records:
-              type: array
-              items:
-                type: object
-                properties:
-                  fields:
-                    type: object
-                    properties:
-                      Name:
-                        type: string
-                      Key:
-                        type: string
-                      Username:
-                        type: string
-                      Password:
-                        type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      type: object
+                      properties:
+                        Name:
+                          type: string
+                        Key:
+                          type: string
+                        Username:
+                          type: string
+                        Password:
+                          type: string
             
           description: api key ('Bearer YOUR_API_KEY')
           required: true
