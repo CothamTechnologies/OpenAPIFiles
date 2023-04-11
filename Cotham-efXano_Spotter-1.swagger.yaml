@@ -1,0 +1,48 @@
+swagger: '2.0'
+info:
+  version: '0.2'
+  title: 'Xano - EF Spotter'
+  description: 'Xano - EF Spotter'
+
+host: x8ki-letl-twmt.n7.xano.io
+basePath: /api:QQ1WFO_I
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /auth/login:
+    get:
+      summary: Login
+      description: Login
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: query
+          name: email
+          type: string
+          description: user email address
+          required: true
+        - in: query
+          name: password
+          type: string
+          description: user password
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              authToken:
+                type: string
+                       
+        default:
+          description: Failed Server
