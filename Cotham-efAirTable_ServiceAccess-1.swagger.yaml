@@ -19,7 +19,7 @@ schemes:
 
 paths:
   /Services:
-    post:
+    get:
       summary: Get Service Accesses
       description: Get Service Accesses
       tags:
