@@ -49,7 +49,7 @@ paths:
           
   /auth/me:
     get:
-      summary: Loginx
+      summary: Login
       description: Login
       tags:
         - 1. Xano - EF Spotter
