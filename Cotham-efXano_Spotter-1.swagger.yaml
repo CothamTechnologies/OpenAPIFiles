@@ -19,7 +19,7 @@ schemes:
 
 paths:
   /auth/login:
-    get:
+    post:
       summary: Login
       description: Login
       tags:
