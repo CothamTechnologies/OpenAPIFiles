@@ -122,6 +122,41 @@ paths:
           type: string
           description: authorization token
           required: true
+        - in: query
+          name: user_id
+          type: integer
+          description: authorization token
+          required: true
+        - in: query
+          name: latitude
+          type: number
+          description: authorization token
+          required: true
+        - in: query
+          name: longitude
+          type: number
+          description: authorization token
+          required: true
+        - in: query
+          name: image
+          type: string
+          description: authorization token
+          required: true
+        - in: query
+          name: notes
+          type: string
+          description: authorization token
+          required: true
+        - in: query
+          name: cars_id
+          type: integer
+          description: authorization token
+          required: true
+        - in: header
+          name: colors_id
+          type: integer
+          description: authorization token
+          required: true
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
