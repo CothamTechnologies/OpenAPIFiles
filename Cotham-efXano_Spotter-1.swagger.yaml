@@ -47,6 +47,30 @@ paths:
         default:
           description: Failed Server
           
+  /auth/me:
+    get:
+      summary: Login
+      description: Login
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: query
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              user:
+                type: string
+                       
+        default:
+          description: Failed Server 
+          
   /cars:
     get:
       summary: Get List of Cars
