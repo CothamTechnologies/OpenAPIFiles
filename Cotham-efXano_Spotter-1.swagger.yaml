@@ -128,25 +128,25 @@ paths:
           description: authorization token
           required: true
        responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                latitude:
-                  type: number
-                image:
-                  type: string
-               notes:
-                  type: string
+         200:
+           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+           schema:
+             type: array
+             items:
+               type: object
+               properties:
+                 user_id:
+                   type: integer
+                 latitude:
+                   type: number
+                 image:
+                   type: string
+                notes:
+                   type: string
                 cars_id:
-                  type: integer
-               colors_id:
-                  type: integer
+                   type: integer
+                colors_id:
+                   type: integer
         default:
           description: Failed Server
           
