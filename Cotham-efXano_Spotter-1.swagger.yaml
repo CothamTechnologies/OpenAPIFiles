@@ -105,6 +105,8 @@ paths:
                   type: string
                 Model:
                   type: string
+                Image:
+                  type: string
                        
         default:
           description: Failed Server
