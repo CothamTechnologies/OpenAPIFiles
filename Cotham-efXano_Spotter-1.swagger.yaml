@@ -147,6 +147,8 @@ paths:
                   type: integer
                 colors_id:
                   type: integer
+                created_at:
+                  type: string
         default:
           description: Failed Server
           
