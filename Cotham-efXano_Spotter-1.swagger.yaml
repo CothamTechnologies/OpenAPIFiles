@@ -110,6 +110,47 @@ paths:
                        
         default:
           description: Failed Server
+          
+  /sightings/{sightings_id}
+    delete:
+      summary: Delete a Sighting
+      description: Delete a Sighting
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: path
+          name: sightings_id
+          type: integer
+          description: sightings id
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              latitude:
+                type: number
+              image:
+                type: string
+              notes:
+                type: string
+              cars_id:
+                type: integer
+              colors_id:
+                type: integer
+        default:
+          description: Failed Server
+          
+          
+          
   /sightings:
     get:
       summary: Get Sightings
@@ -154,42 +195,7 @@ paths:
         default:
           description: Failed Server
           
-    delete:
-      summary: Delete a Sighting
-      description: Delete a Sighting
-      tags:
-        - 1. Xano - EF Spotter
-      parameters:        
-        - in: header
-          name: authorization
-          type: string
-          description: authorization token
-          required: true
-        - in: query
-          name: sightings_id
-          type: integer
-          description: sightings id
-          required: true
-      responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: integer
-              latitude:
-                type: number
-              image:
-                type: string
-              notes:
-                type: string
-              cars_id:
-                type: integer
-              colors_id:
-                type: integer
-        default:
-          description: Failed Server
+
     
     post:
       summary: Post a Sighting
