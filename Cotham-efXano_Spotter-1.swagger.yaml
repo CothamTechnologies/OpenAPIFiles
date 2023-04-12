@@ -54,7 +54,7 @@ paths:
       tags:
         - 1. Xano - EF Spotter
       parameters:        
-        - in: query
+        - in: header
           name: authorization
           type: string
           description: authorization token
