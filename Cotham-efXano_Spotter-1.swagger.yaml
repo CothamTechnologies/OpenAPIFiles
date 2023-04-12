@@ -20,7 +20,7 @@ schemes:
 paths:
   /auth/login:
     post:
-      summary: Loginxx
+      summary: Login
       description: Login
       tags:
         - 1. Xano - EF Spotter
