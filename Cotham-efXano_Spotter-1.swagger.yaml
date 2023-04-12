@@ -135,6 +135,8 @@ paths:
             items:
               type: object
               properties:
+                id:
+                  type: integer
                 user_id:
                   type: integer
                 latitude:
