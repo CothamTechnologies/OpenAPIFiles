@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '0.2'
   title: 'Xano - EF Spotter'
-  description: 'Xano - EF Spotter'z
+  description: 'Xano - EF Spotter'
 
 host: x8ki-letl-twmt.n7.xano.io
 basePath: /api:QQ1WFO_I
