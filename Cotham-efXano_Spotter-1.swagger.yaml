@@ -49,8 +49,8 @@ paths:
           
   /cars:
     post:
-      summary: Login
-      description: Login
+      summary: Get List of Cars
+      description: Get List of Cars
       tags:
         - 1. Xano - EF Spotter
       parameters:        
