@@ -63,19 +63,18 @@ paths:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
           schema:
-            type: object
-            properties:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  created_at:
-                    type: string
-                  make:
-                    type: string
-                  model:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                created_at:
+                  type: string
+                make:
+                  type: string
+                model:
+                  type: string
                        
         default:
           description: Failed Server
