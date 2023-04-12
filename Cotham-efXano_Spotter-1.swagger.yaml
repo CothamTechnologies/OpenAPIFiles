@@ -48,7 +48,7 @@ paths:
           description: Failed Server
           
   /cars:
-    post:
+    get:
       summary: Get List of Cars
       description: Get List of Cars
       tags:
