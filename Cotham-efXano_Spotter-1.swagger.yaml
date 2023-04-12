@@ -65,7 +65,13 @@ paths:
           schema:
             type: object
             properties:
-              user:
+              created_at:
+                type: string
+              email:
+                type: string
+              id:
+                type: integer
+              name:
                 type: string
                        
         default:
