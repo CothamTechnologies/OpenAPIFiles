@@ -166,7 +166,7 @@ paths:
           description: authorization token
           required: true
         - in: query
-          name: id
+          name: sightings_id
           type: integer
           description: sightings id
           required: true
