@@ -192,6 +192,17 @@ paths:
                   type: integer
                 created_at:
                   type: string
+                _cars:
+                  type: object
+                  properties:
+                    Make:
+                      type: string
+                    Model:
+                      type: string
+                    created_at:
+                      type: string
+                    id:
+                      type: integer
         default:
           description: Failed Server
           
