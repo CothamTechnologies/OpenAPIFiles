@@ -150,6 +150,44 @@ paths:
           description: Failed Server
           
           
+  /modules:
+    get:
+      summary: Get Modules
+      description: Get Modules
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: query
+          name: user_id
+          type: integer
+          description: authorization token
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                created_at:
+                  type: string
+                name:
+                  type: string
+                module_items_id:
+                  type: string
+        default:
+          description: Failed Server
+          
+          
+          
           
   /sightings:
     get:
