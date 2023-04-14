@@ -73,6 +73,12 @@ paths:
                 type: integer
               name:
                 type: string
+              modules_id:
+                type: array
+                items:
+                  type: string
+              active_module_id:
+                type: string
                        
         default:
           description: Failed Server 
