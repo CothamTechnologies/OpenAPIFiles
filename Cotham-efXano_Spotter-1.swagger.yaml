@@ -427,8 +427,8 @@ paths:
          
   /user/{user_id}:
     post:
-      summary: Post a Sighting
-      description: Post a Sighting
+      summary: Update user info (to update active module)
+      description: Update user info (to update active module)
       tags:
         - 1. Xano - EF Spotter
       parameters:        
