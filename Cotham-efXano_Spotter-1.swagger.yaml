@@ -340,6 +340,11 @@ paths:
           description: authorization token
           required: true
         - in: query
+          name: module_item_id
+          type: integer
+          description: authorization token
+          required: true
+        - in: query
           name: cars_id
           type: integer
           description: authorization token
