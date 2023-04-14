@@ -443,6 +443,16 @@ paths:
           description: authorization token
           required: true
         - in: query
+          name: name
+          type: string
+          description: name
+          required: true
+        - in: query
+          name: email
+          type: string
+          description: name
+          required: true
+        - in: query
           name: active_module_id
           type: number
           description: authorization token
