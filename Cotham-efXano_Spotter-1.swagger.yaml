@@ -353,7 +353,7 @@ paths:
           description: authorization token
           required: true
         - in: query
-          name: module_item_id
+          name: module_items_id
           type: integer
           description: authorization token
           required: true
