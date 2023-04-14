@@ -285,8 +285,21 @@ paths:
                   type: integer
                 colors_id:
                   type: integer
+                module_item_id:
+                  type: integer
                 created_at:
                   type: string
+                _module_items:
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                    primaryIdentifier:
+                      type: string
+                    secondaryIdentifier:
+                      type: string
+                    points:
+                      type: integer
                 _cars:
                   type: object
                   properties:
