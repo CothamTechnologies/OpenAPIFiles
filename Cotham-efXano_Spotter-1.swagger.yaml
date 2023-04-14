@@ -437,7 +437,7 @@ paths:
           type: string
           description: authorization token
           required: true
-        - in: query
+        - in: path
           name: user_id
           type: integer
           description: authorization token
