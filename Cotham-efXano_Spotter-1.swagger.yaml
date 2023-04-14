@@ -198,6 +198,52 @@ paths:
           description: Failed Server
           
           
+  /module_items:
+    get:
+      summary: Get Module Items
+      description: Get Module Items (e.g. cat, dog, fox) for a given module (e.g. animals)
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: query
+          name: modules_id
+          type: integer
+          description: the id of the required module
+          required: true
+        - in: query
+          name: user_id
+          type: integer
+          description: the user id (not planned to be used here however)
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                created_at:
+                  type: string
+                category:
+                  type: string
+                primaryIdentifier:
+                  type: string
+                secondaryIdentifier:
+                  type: string
+                points:
+                  type: string
+        default:
+          description: Failed Server
+          
+          
           
           
   /sightings:
