@@ -315,9 +315,7 @@ paths:
                       type: integer
         default:
           description: Failed Server
-          
-
-    
+         
     post:
       summary: Post a Sighting
       description: Post a Sighting
@@ -367,6 +365,86 @@ paths:
         - in: header
           name: colors_id
           type: integer
+          description: authorization token
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              latitude:
+                type: number
+              image:
+                type: string
+              notes:
+                type: string
+              cars_id:
+                type: integer
+              colors_id:
+                type: integer
+        default:
+          description: Failed Server
+          
+          
+  /user:
+    get:
+      summary: Get Users
+      description: Get Users
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: number
+                email:
+                  type: string
+                active_module_id:
+                  type: string
+                _modules_id_items:
+                  type: array
+                  items:
+                    type: string
+        default:
+          description: Failed Server
+         
+         
+  /user/{user_id}:
+    post:
+      summary: Post a Sighting
+      description: Post a Sighting
+      tags:
+        - 1. Xano - EF Spotter
+      parameters:        
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: query
+          name: user_id
+          type: integer
+          description: authorization token
+          required: true
+        - in: query
+          name: active_module_id
+          type: number
           description: authorization token
           required: true
       responses:
