@@ -169,9 +169,14 @@ paths:
           description: authorization token
           required: true
         - in: query
+          name: modules_id
+          type: integer
+          description: the id of the required module
+          required: true
+        - in: query
           name: user_id
           type: integer
-          description: authorization token
+          description: the user id (not planned to be used here however)
           required: true
       responses:
         200:
