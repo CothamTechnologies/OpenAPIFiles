@@ -52,8 +52,26 @@
                   "name": {
                      "type": "string"
                   },
+                  "description": {
+                     "type": "string"
+                  },
+                  "category": {
+                     "type": "string"
+                  },
+                  "serviceProvider": {
+                     "type": "string"
+                  },
+                  "serviceProviderIcon": {
+                     "type": "string"
+                  },
                   "sampleUrl": {
                      "type": "string"
+                  },
+                  "explicitParams": {
+                     "type": "array"
+                     "items": {
+                      "type: "string"
+                     }
                   },
                   "fieldA": {
                      "type": "string"
