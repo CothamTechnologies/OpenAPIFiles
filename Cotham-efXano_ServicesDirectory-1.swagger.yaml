@@ -11,7 +11,7 @@
     "https"
   ],
   "paths": {
-    "/efserviceaccess": {
+    "/efservicedescriptions": {
       "get": {
         "summary": "Get Services Directory",
         "description": "Get Services Directory",
