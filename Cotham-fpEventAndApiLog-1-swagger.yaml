@@ -1,0 +1,83 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Flo System - Event and API Logger'
+  description: 'Flo System - Event and API Logger'
+
+host: localhost
+basePath: /v1
+
+schemes:
+  - http
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /log:
+    get:
+      summary: Position Stack Forward Geocoding API
+      description: Position Stack Forward Geocoding API
+      tags:
+        - 1. Position Stack Geocoding
+      parameters:
+        - in: query
+          name: [placeholder]
+          type: string
+          description: [placeholder]
+          required: false
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                    userId:
+                      type: string
+                    eventType:
+                      type: string
+                    eventName:
+                      type: string
+                    eventId:
+                      type: string
+                    eventOutcomeString:
+                      type: string
+#                     eventOutcomeStructure:
+#                       type: array
+#                       items:
+#                         type: object
+#                         properties:
+#                           conditionElement1:
+#                             type: String
+#                           conditionElement2:
+#                             type: String
+#                     eventConditions:
+#                       type: array
+#                       items:
+#                         type: object
+#                         properties:
+#                           conditionElement1:
+#                             type: String
+#                           conditionElement2:
+#                             type: String
+                    
+                    
+                    latitude:
+                      type: string
+                    longitude:
+                      type: string
+
+
+        default:
+          description: Failed Server Response
