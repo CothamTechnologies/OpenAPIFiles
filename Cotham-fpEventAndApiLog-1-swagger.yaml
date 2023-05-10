@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '1.0'
   title: 'Flo System - Event and API Logger'
-  description: 'Flo System - Event and API Logger'
+  description: 'Flo System - Event and API Logger
 
 host: localhost
 basePath: /v1
