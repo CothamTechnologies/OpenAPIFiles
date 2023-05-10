@@ -24,9 +24,11 @@ paths:
       description: Flo System - Event and API Logger
       tags:
         - 1. Position Stack Geocoding
+      consumes:
+        - application/x-www-form-urlencoded
       parameters:
-        - in: body
-          name: log
+        - in: formData
+          name: params[log]
           type: string
           description: log to transfer
           required: false
