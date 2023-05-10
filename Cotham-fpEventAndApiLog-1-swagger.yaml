@@ -73,6 +73,12 @@ paths:
 #                             type: String
                     
                     
+                    associatedElementType:
+                      type: string
+                    associatedElementName:
+                      type: string
+                    associatedElementId:
+                      type: string
                     latitude:
                       type: string
                     longitude:
