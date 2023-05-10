@@ -79,6 +79,10 @@ paths:
                       type: string
                     associatedElementId:
                       type: string
+                    associatedSceneName:
+                      type: string
+                    associatedCollectionName:
+                      type: string
                     latitude:
                       type: string
                     longitude:
