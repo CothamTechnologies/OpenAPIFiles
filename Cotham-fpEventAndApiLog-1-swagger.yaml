@@ -26,9 +26,9 @@ paths:
         - 1. Position Stack Geocoding
       parameters:
         - in: query
-          name: [placeholder]
+          name: placeholder
           type: string
-          description: [placeholder]
+          description: placeholder
           required: false
       responses:
         200:
