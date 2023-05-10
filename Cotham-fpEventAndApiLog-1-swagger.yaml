@@ -83,6 +83,10 @@ paths:
                       type: string
                     associatedCollectionName:
                       type: string
+                    associatedSolutionName:
+                      type: string
+                    associatedSolutionVersion:
+                      type: string
                     latitude:
                       type: string
                     longitude:
