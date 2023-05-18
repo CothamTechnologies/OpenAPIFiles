@@ -4,8 +4,8 @@ info:
   title: 'Flo System - Event and API Logger'
   description: 'Flo System - Event and API Logger'
 
-host: localhost
-basePath: /v1
+host: x8ki-letl-twmt.n7.xano.io
+basePath: /api:Yn8L5v8L
 
 schemes:
   - https
@@ -18,17 +18,22 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /transferLog:
+  /eventlog:
     post:
       summary: Flo System - Event and API Logger
       description: Flo System - Event and API Logger
       tags:
         - 1. Position Stack Geocoding
       consumes:
-        - application/x-www-form-urlencoded
+        - application/json
       parameters:
-        - in: formData
-          name: params[log]
+        - in: body
+          name: eventLogString
+          type: string
+          description: log to transfer
+          required: false
+        - in: body
+          name: timestamp
           type: string
           description: log to transfer
           required: false
