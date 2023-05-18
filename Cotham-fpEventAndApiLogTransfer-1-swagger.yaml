@@ -34,15 +34,17 @@ paths:
           schema:
             type: object
             properties:
-              query:
+              eventLogString:
                 type: string
-              variables:
-                type: object
-                properties:
-                  eventLogString:
-                    type: string
-                  timestamp:
-                    type: string      
+              timestamp:
+                type: string
+#               variables:
+#                 type: object
+#                 properties:
+#                   eventLogString:
+#                     type: string
+#                   timestamp:
+#                     type: string      
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
