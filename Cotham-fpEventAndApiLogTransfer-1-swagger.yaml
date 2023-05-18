@@ -34,13 +34,22 @@ paths:
           schema:
             type: object
             properties:
-              data:
-                type: object
-                properties:
-                  eventLogString:
-                    type: string
-                  timestamp:
-                    type: string  
+              eventLogString:
+                type: string
+              timestamp:
+                type: string
+            
+            
+            
+#               data:
+#                 type: object
+#                 properties:
+#                   eventLogString:
+#                     type: string
+#                   timestamp:
+#                     type: string
+             
+                   
 #               variables:
 #                 type: object
 #                 properties:
