@@ -27,16 +27,18 @@ paths:
       consumes:
         - application/json
       parameters:
+      
         - in: body
-          name: eventLogString
-          type: string
-          description: log to transfer
-          required: false
-        - in: body
-          name: timestamp
-          type: string
-          description: log to transfer
-          required: false
+          name: body
+          description: event log info
+          required: true
+          schema:
+            type: object
+            properties:
+              eventLogString:
+                type: string
+              timestamp:
+                type: string      
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
