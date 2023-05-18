@@ -38,8 +38,8 @@ paths:
                 type: string
               timestamp:
                 type: string
-              jsonTest1:
-                type: string
+#               jsonTest1:
+#                 type: string
             
             
             
