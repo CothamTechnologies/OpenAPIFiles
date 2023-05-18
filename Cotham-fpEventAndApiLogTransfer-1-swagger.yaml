@@ -27,7 +27,6 @@ paths:
       consumes:
         - application/json
       parameters:
-      
         - in: body
           name: body
           description: event log info
