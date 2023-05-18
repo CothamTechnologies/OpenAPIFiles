@@ -24,8 +24,8 @@ paths:
       description: Flo System - Event and API Logger
       tags:
         - 1. Position Stack Geocoding
-      consumes:
-        - application/json
+#       consumes:
+#         - application/json
       parameters:
         - in: body
           name: body
