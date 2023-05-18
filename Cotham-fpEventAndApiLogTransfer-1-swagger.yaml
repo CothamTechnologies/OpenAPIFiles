@@ -25,7 +25,8 @@ paths:
       tags:
         - 1. Position Stack Geocoding
       consumes:
-        - application/json
+#         - application/json
+        - multipart/form-data
       parameters:
         - in: body
           name: body
@@ -34,22 +35,22 @@ paths:
           schema:
             type: object
             properties:
-#               eventLogString:
-#                 type: string
-#               timestamp:
-#                 type: string
-# #               jsonTest1:
-# #                 type: string
+              eventLogString:
+                type: string
+              timestamp:
+                type: string
+              jsonTest1:
+                type: string
             
             
             
-              data:
-                type: object
-                properties:
-                  eventLogString:
-                    type: string
-                  timestamp:
-                    type: string
+#               data:
+#                 type: object
+#                 properties:
+#                   eventLogString:
+#                     type: string
+#                   timestamp:
+#                     type: string
              
                    
 #               variables:
