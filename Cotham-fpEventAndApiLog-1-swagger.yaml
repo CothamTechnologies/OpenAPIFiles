@@ -18,7 +18,7 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /log:
+  /logEvent:
     get:
       summary: Flo System - Event and API Logger
       description: Flo System - Event and API Logger
