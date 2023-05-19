@@ -95,3 +95,62 @@ paths:
 
         default:
           description: Failed Server Response
+          
+  /logApi:
+    get:
+      summary: Flo System - Event and API Logger
+      description: Flo System - Event and API Logger
+      tags:
+        - 1. Position Stack Geocoding
+      parameters:
+        - in: query
+          name: placeholder
+          type: string
+          description: placeholder
+          required: false
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                    userId:
+                      type: string
+                    apiName:
+                      type: string
+                    apiId:
+                      type: string
+                    apiRequestBody:
+                      type: string
+
+                    apiResponseDecodedData:
+                      type: string
+                      
+                    associatedElementType:
+                      type: string
+                    associatedElementName:
+                      type: string
+                    associatedElementId:
+                      type: string
+                    associatedSceneName:
+                      type: string
+                    associatedCollectionName:
+                      type: string
+                    associatedSolutionName:
+                      type: string
+                    associatedSolutionVersion:
+                      type: string
+                    latitude:
+                      type: string
+                    longitude:
+                      type: string
+
+        default:
+          description: Failed Server Response
