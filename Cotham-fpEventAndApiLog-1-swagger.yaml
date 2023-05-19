@@ -132,6 +132,10 @@ paths:
 
                     apiResponseDecodedData:
                       type: string
+                    apiResponseCode:
+                      type: string
+                    apiErrorMessage:
+                      type: string
                       
                     associatedElementType:
                       type: string
