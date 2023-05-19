@@ -40,11 +40,11 @@ paths:
                 type: string
               eventLogString:
                 type: string
-              apiRequestLogSting:
+              apiRequestLogString:
                 type: string
-              apiResponseLogSting:
+              apiResponseLogString:
                 type: string
-              apiCompleteLogSting:
+              apiCompleteLogString:
                 type: string
               jsonTest1:
                 type: string
