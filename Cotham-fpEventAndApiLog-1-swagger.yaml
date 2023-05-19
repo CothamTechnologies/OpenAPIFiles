@@ -139,7 +139,7 @@ paths:
                       type: string
                     associatedElementId:
                       type: string
-                    associatedSceneName:
+                    currentSceneName:
                       type: string
                     associatedCollectionName:
                       type: string
