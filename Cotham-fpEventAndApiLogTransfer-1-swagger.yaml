@@ -38,13 +38,13 @@ paths:
             properties:
               timestamp:
                 type: string
-              eventLogString:
+              eventLog:
                 type: string
-              apiRequestLogString:
+              apiRequestLog:
                 type: string
-              apiResponseLogString:
+              apiResponseLog:
                 type: string
-              apiCompleteLogString:
+              apiCompleteLog:
                 type: string
               jsonTest1:
                 type: string
