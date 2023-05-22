@@ -48,6 +48,7 @@ paths:
                 type: string
               jsonTest1:
                 type: object
+                properties:
 
 #               data:
 #                 type: object
