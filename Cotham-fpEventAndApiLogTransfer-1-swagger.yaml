@@ -47,7 +47,7 @@ paths:
               apiCompleteLog:
                 type: string
               jsonTest1:
-                type: string
+                type: object
 
 #               data:
 #                 type: object
