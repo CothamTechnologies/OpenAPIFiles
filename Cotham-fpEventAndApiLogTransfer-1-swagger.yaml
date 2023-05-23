@@ -18,7 +18,7 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /eventLog:
+  /eventlog:
     post:
       summary: Flo System - Event and API Log Transfer
       description: Flo System - Event and API Log Transfer
