@@ -18,12 +18,12 @@ schemes:
 #  - basicAuth: []
 
 paths:
-  /eventlog:
+  /eventLog:
     post:
-      summary: Flo System - Event and API Logger
-      description: Flo System - Event and API Logger
+      summary: Flo System - Event and API Log Transfer
+      description: Flo System - Event and API Log Transfer
       tags:
-        - 1. Position Stack Geocoding
+        - 1. Event and API Log System
       consumes:
          - application/json
 #         - multipart/form-data
@@ -44,10 +44,14 @@ paths:
                 type: string
               apiResponseLog:
                 type: string
-              apiCompleteLog:
+              offlineCacheLog:
                 type: string
-              jsonTest1:
+              offlineReplayLog:
                 type: string
+#               apiCompleteLog:
+#                 type: string
+#               jsonTest1:
+#                 type: string
 #                 type: object
 #                 properties:
 #                   placeholder:
@@ -72,7 +76,7 @@ paths:
 #                     type: string      
       responses:
         200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          description: Return a defined response format
           schema:
             type: object
             properties:
