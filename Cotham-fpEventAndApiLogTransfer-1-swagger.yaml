@@ -50,7 +50,9 @@ paths:
                 type: string
               offlineCacheLog:
                 type: string
-              offlineReplayLog:
+              offlineReplayRequestLog:
+                type: string
+              offlineReplayResponseLog:
                 type: string
 
       responses:
