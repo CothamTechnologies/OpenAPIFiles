@@ -50,32 +50,7 @@ paths:
                 type: string
               offlineReplayLog:
                 type: string
-#               apiCompleteLog:
-#                 type: string
-#               jsonTest1:
-#                 type: string
-#                 type: object
-#                 properties:
-#                   placeholder:
-#                     type: string
 
-
-#               data:
-#                 type: object
-#                 properties:
-#                   eventLogString:
-#                     type: string
-#                   timestamp:
-#                     type: string
-             
-                   
-#               variables:
-#                 type: object
-#                 properties:
-#                   eventLogString:
-#                     type: string
-#                   timestamp:
-#                     type: string      
       responses:
         200:
           description: Return a defined response format
@@ -101,26 +76,6 @@ paths:
                       type: string
                     eventOutcomeString:
                       type: string
-#                     eventOutcomeStructure:
-#                       type: array
-#                       items:
-#                         type: object
-#                         properties:
-#                           conditionElement1:
-#                             type: String
-#                           conditionElement2:
-#                             type: String
-#                     eventConditions:
-#                       type: array
-#                       items:
-#                         type: object
-#                         properties:
-#                           conditionElement1:
-#                             type: String
-#                           conditionElement2:
-#                             type: String
-                    
-                    
                     associatedElementType:
                       type: string
                     associatedElementName:
