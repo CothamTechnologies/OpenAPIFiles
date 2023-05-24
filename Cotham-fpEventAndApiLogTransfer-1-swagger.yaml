@@ -38,6 +38,8 @@ paths:
             properties:
               timestamp:
                 type: string
+              driverId:
+                type: string
               formattedDate:
                 type: string
               eventLog:
