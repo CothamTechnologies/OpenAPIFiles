@@ -38,6 +38,8 @@ paths:
             properties:
               timestamp:
                 type: string
+              formattedDate:
+                type: string
               eventLog:
                 type: string
               apiRequestLog:
@@ -86,6 +88,8 @@ paths:
                   type: object
                   properties:
                     timestamp:
+                      type: string
+                    formattedDate:
                       type: string
                     userId:
                       type: string
