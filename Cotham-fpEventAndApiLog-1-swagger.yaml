@@ -43,6 +43,8 @@ paths:
                   properties:
                     timestamp:
                       type: string
+                    formattedDate:
+                      type: string
                     userId:
                       type: string
                     eventType:
@@ -120,6 +122,8 @@ paths:
                   type: object
                   properties:
                     timestamp:
+                      type: string
+                    formattedDate:
                       type: string
                     userId:
                       type: string
