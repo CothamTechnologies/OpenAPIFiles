@@ -12,6 +12,7 @@
   ],
   "paths": {
     "/efserviceaccess": {
+      
       "get": {
         "summary": "Get User Services Accesses",
         "description": "Get User Services Accesses",
