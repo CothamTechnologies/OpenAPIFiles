@@ -49,10 +49,10 @@
                      "type": "string"
                   },
                   "id": {
-                     "type": "integer"
+                     "type": "number"
                   },
                   "userId": {
-                     "type": "integer"
+                     "type": "number"
                   }
                   
                 }
