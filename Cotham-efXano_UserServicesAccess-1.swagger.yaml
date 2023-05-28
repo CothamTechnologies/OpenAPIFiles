@@ -47,7 +47,7 @@
                   },
                   "password": {
                      "type": "string"
-                  }
+                  },
                   "id": {
                      "type": "integer"
                   },
