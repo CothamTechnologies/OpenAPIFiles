@@ -48,6 +48,12 @@
                   "password": {
                      "type": "string"
                   }
+                  "id": {
+                     "type": "integer"
+                  },
+                  "userId": {
+                     "type": "integer"
+                  }
                   
                 }
                 
