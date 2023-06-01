@@ -56,12 +56,6 @@
                   },
                   "primaryUrlFragment": {
                      "type": "string"
-                  },
-                  "associatedUrlFragments": {
-                     "type": "array",
-                     "items": {
-                       "type": "string"
-                     }
                   }
                   
                 }
