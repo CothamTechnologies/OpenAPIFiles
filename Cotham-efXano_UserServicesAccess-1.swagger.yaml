@@ -56,6 +56,9 @@
                   },
                   "primaryUrlFragment": {
                      "type": "string"
+                  },
+                  "associatedParameterName": {
+                     "type": "string"
                   }
                   
                 }
