@@ -53,7 +53,16 @@
                   },
                   "userId": {
                      "type": "number"
-                  }
+                  },
+                  "primaryUrlFragment": {
+                     "type": "string"
+                  },
+                  "associatedUrlFragments": {
+                     "type": "array"
+                     "items": {
+                       "type": "string"
+                     }
+                  },
                   
                 }
                 
