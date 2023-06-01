@@ -58,7 +58,7 @@
                      "type": "string"
                   },
                   "associatedUrlFragments": {
-                     "type": "array"
+                     "type": "array",
                      "items": {
                        "type": "string"
                      }
