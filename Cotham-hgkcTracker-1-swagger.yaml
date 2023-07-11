@@ -77,7 +77,7 @@ paths:
                 type: string
               lastName:
                 type: string
-              _organisationCC:
+              _organisation:
                 type: object
                 properties:
                   id:
