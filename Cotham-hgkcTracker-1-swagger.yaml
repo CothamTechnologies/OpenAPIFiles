@@ -1,11 +1,11 @@
 swagger: '2.0'
 info:
   version: '0.2'
-  title: 'Xano - EF Spotter'
-  description: 'Xano - EF Spotter'
+  title: 'Xano - Cotham-HGKC Exec ROI Tracker'
+  description: 'Xano - Cotham-HGKC Exec ROI Tracker'
 
 host: x8ki-letl-twmt.n7.xano.io
-basePath: /api:QQ1WFO_I
+basePath: /api:teyCcXuL
 
 schemes:
   - https
@@ -23,7 +23,7 @@ paths:
       summary: Login
       description: Login
       tags:
-        - 1. Xano - EF Spotter
+        - 1. Xano - Cotham-HGKC Exec ROI Tracker
       parameters:        
         - in: query
           name: email
@@ -52,7 +52,7 @@ paths:
       summary: Login
       description: Login
       tags:
-        - 1. Xano - EF Spotter
+        - 1. Xano - Cotham-HGKC Exec ROI Tracker
       parameters:        
         - in: header
           name: authorization
