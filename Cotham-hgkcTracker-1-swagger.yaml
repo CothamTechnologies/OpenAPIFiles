@@ -184,6 +184,59 @@ paths:
                           type: integer
         default:
           description: Failed Server
+
+
+          # delete:
+    #   summary: Update user info (to update active module)
+    #   description: Update user info (to update active module)
+    #   tags:
+    #     - 1. Xano - EF Spotter
+    #   parameters:        
+    #     - in: header
+    #       name: authorization
+    #       type: string
+    #       description: authorization token
+    #       required: true
+    #     - in: path
+    #       name: user_id
+    #       type: integer
+    #       description: authorization token
+    #       required: true
+    #     - in: query
+    #       name: name
+    #       type: string
+    #       description: name
+    #       required: true
+    #     - in: query
+    #       name: email
+    #       type: string
+    #       description: name
+    #       required: true
+    #     - in: query
+    #       name: active_module_id
+    #       type: number
+    #       description: authorization token
+    #       required: true
+    #   responses:
+    #     200:
+    #       description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+    #       schema:
+    #         type: object
+    #         properties:
+    #           user_id:
+    #             type: integer
+    #           latitude:
+    #             type: number
+    #           image:
+    #             type: string
+    #           notes:
+    #             type: string
+    #           cars_id:
+    #             type: integer
+    #           colors_id:
+    #             type: integer
+    #     default:
+    #       description: Failed Server
           
           
   /modules:
@@ -453,57 +506,5 @@ paths:
                     type: string
         default:
           description: Failed Server
-         
-         
-  /user/{user_id}:
-    post:
-      summary: Update user info (to update active module)
-      description: Update user info (to update active module)
-      tags:
-        - 1. Xano - EF Spotter
-      parameters:        
-        - in: header
-          name: authorization
-          type: string
-          description: authorization token
-          required: true
-        - in: path
-          name: user_id
-          type: integer
-          description: authorization token
-          required: true
-        - in: query
-          name: name
-          type: string
-          description: name
-          required: true
-        - in: query
-          name: email
-          type: string
-          description: name
-          required: true
-        - in: query
-          name: active_module_id
-          type: number
-          description: authorization token
-          required: true
-      responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: integer
-              latitude:
-                type: number
-              image:
-                type: string
-              notes:
-                type: string
-              cars_id:
-                type: integer
-              colors_id:
-                type: integer
-        default:
-          description: Failed Server
+        
+    
