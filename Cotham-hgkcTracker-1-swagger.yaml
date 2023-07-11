@@ -176,12 +176,10 @@ paths:
                       type: integer
                     name:
                       type: string
-                    priorityCategories_id:
+                    prioritycategories_id:
                       type: array
                       items:
-                        type: object
-                        properties:
-                          type: integer
+                        type: integer
         default:
           description: Failed Server
 
