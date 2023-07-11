@@ -49,8 +49,8 @@ paths:
           
   /auth/me:
     get:
-      summary: Login
-      description: Login
+      summary: Get User Info
+      description: Get User Info
       tags:
         - 1. Xano - Cotham-HGKC Exec ROI Tracker
       parameters:        
