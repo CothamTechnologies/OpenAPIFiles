@@ -77,15 +77,6 @@ paths:
                 type: string
               lastName:
                 type: string
-              _organisation:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  logo:
-                    type: string
               modules_id:
                 type: array
                 items:
