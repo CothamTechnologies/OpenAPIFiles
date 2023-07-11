@@ -179,7 +179,14 @@ paths:
                     prioritycategories_id:
                       type: array
                       items:
-                        type: integer
+                        type: object
+                        properties:
+                          created_at:
+                            type: string
+                          id:
+                            type: integer
+                          name:
+                            type: string
         default:
           description: Failed Server
 
