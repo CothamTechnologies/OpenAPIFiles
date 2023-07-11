@@ -129,9 +129,6 @@ paths:
                        
         default:
           description: Failed Server
-
-https://x8ki-letl-twmt.n7.xano.io/api:teyCcXuL/user/{user_id}
-
           
   /user/{user_id}:
     get:
