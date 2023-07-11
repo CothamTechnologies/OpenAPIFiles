@@ -49,8 +49,8 @@ paths:
           
   /auth/me:
     get:
-      summary: Get User Info
-      description: Get User Info
+      summary: Get Me Info
+      description: Get Me Info
       tags:
         - 1. Xano - Cotham-HGKC Exec ROI Tracker
       parameters:        
@@ -129,11 +129,14 @@ paths:
                        
         default:
           description: Failed Server
+
+https://x8ki-letl-twmt.n7.xano.io/api:teyCcXuL/user/{user_id}
+
           
-  /sightings/{sightings_id}:
+  /user/{user_id}:
     delete:
-      summary: Delete a Sighting
-      description: Delete a Sighting
+      summary: Get User Record
+      description: Get User Record
       tags:
         - 1. Xano - EF Spotter
       parameters:        
@@ -143,9 +146,9 @@ paths:
           description: authorization token
           required: true
         - in: path
-          name: sightings_id
+          name: user_id
           type: integer
-          description: sightings id
+          description: user id
           required: true
       responses:
         200:
@@ -153,18 +156,35 @@ paths:
           schema:
             type: object
             properties:
-              user_id:
-                type: integer
-              latitude:
-                type: number
-              image:
+              email:
                 type: string
-              notes:
+              firstName:
                 type: string
-              cars_id:
+              lastName:
+                type: string
+              id:
                 type: integer
-              colors_id:
+              name:
+                type: string
+              organisation_id:
                 type: integer
+              priorities_id:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: string
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    priorityCategories_id:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type: integer
         default:
           description: Failed Server
           
