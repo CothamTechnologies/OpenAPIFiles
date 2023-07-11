@@ -75,7 +75,7 @@ paths:
                 type: string
               firstName:
                 type: string
-              lastNamex:
+              lastName:
                 type: string
               _organisation:
                 type: object
