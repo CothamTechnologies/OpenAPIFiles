@@ -73,6 +73,10 @@ paths:
                 type: integer
               name:
                 type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
               modules_id:
                 type: array
                 items:
