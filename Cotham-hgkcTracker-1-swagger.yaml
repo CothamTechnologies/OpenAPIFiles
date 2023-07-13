@@ -161,7 +161,7 @@ paths:
         - in: header
           name: consumes
           type: string
-          description: authorization token
+          description: consumes setting
           required: true
         - in: body
           name: feedback form
