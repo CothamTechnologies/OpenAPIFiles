@@ -86,6 +86,8 @@ paths:
                     type: string
                   logo:
                     type: string
+                  programmeLogo:
+                    type: string
               modules_id:
                 type: array
                 items:
