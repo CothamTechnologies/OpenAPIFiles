@@ -155,35 +155,24 @@ paths:
           description: authorization token
           required: true
         - in: body
-          name: user_id
-          type: string
-          description: user id
-          required: true
-        - in: body
-          name: priorityCategories_id
-          type: string
-          description: priority categories id
-          required: true
-        - in: body
-          name: score
-          type: integer
-          description: score
-          required: true
-        - in: body
-          name: describeText
-          type: string
-          description: event description text
-          required: true
-        - in: body
-          name: reasonScoreText
-          type: string
-          description: reason for score text
-          required: true
-        - in: body
-          name: reflectionText
-          type: string
-          description: event reflection text
-          required: true
+          name: feedback form
+          description: completed feedback form
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              priorityCategories_id:
+                type: integer
+              score:
+                type: integer
+              describeText:
+                type: string
+              reasonScoreText:
+                type: string
+              reflectionText:
+                type: string
+              
       responses:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
