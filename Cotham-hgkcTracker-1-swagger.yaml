@@ -188,22 +188,20 @@ paths:
         200:
           description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
           schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                created_at:
-                  type: string
-                score:
-                  type: string
-                describeText:
-                  type: string
-                reasonScoreText:
-                  type: string
-                reflectionText:
-                  type: string
+            type: object
+            properties:
+              id:
+                type: string
+              created_at:
+                type: string
+              score:
+                type: string
+              describeText:
+                type: string
+              reasonScoreText:
+                type: string
+              reflectionText:
+                type: string
                        
         default:
           description: Failed Server
