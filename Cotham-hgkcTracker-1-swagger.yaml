@@ -103,7 +103,7 @@ paths:
       summary: Get List of Feedback items
       description: Get List of Feedback items
       tags:
-        - 1. Xano - EF Spotter
+        - 1. Xano - Cotham-HGKC Exec ROI Tracker
       parameters:        
         - in: header
           name: authorization
@@ -143,13 +143,77 @@ paths:
                        
         default:
           description: Failed Server
+    post:
+      summary: Post feedback item
+      description: Post feeback item
+      tags:
+        - 1. Xano - Cotham-HGKC Exec ROI Tracker
+      parameters:        
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: body
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: body
+          name: priorityCategories_id
+          type: string
+          description: priority categories id
+          required: true
+        - in: body
+          name: score
+          type: integer
+          description: score
+          required: true
+        - in: body
+          name: describeText
+          type: string
+          description: event description text
+          required: true
+        - in: body
+          name: reasonScoreText
+          type: string
+          description: reason for score text
+          required: true
+        - in: body
+          name: reflectionText
+          type: string
+          description: event reflection text
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                created_at:
+                  type: string
+                score:
+                  type: string
+                describeText:
+                  type: string
+                reasonScoreText:
+                  type: string
+                reflectionText:
+                  type: string
+                       
+        default:
+          description: Failed Server
           
   /user/{user_id}:
     get:
       summary: Get User Record
       description: Get User Record
       tags:
-        - 1. Xano - EF Spotter
+        - 1. Xano - Cotham-HGKC Exec ROI Tracker
       parameters:        
         - in: header
           name: authorization
