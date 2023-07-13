@@ -187,6 +187,16 @@ paths:
                             type: integer
                           name:
                             type: string
+                          describeQuestion:
+                            type: string
+                          scoreQuestion:
+                            type: string
+                          reasonsScoreQuestion:
+                            type: string
+                          reflectionQuestion:
+                            type: string
+                          360Question:
+                            type: string
         default:
           description: Failed Server
 
