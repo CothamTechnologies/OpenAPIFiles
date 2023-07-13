@@ -148,6 +148,10 @@ paths:
       description: Post feeback item
       tags:
         - 1. Xano - Cotham-HGKC Exec ROI Tracker
+      consumes:
+        - application/json
+      produces:
+        - application/json
       parameters:        
         - in: header
           name: authorization
