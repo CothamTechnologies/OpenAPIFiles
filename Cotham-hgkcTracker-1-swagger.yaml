@@ -98,10 +98,10 @@ paths:
         default:
           description: Failed Server 
           
-  /cars:
+  /feedback:
     get:
-      summary: Get List of Cars
-      description: Get List of Cars
+      summary: Get List of Feedback items
+      description: Get List of Feedback items
       tags:
         - 1. Xano - EF Spotter
       parameters:        
@@ -109,6 +109,16 @@ paths:
           name: authorization
           type: string
           description: authorization token
+          required: true
+        - in: query
+          name: user_id
+          type: string
+          description: user id
+          required: true
+        - in: query
+          name: priorityCategories_id
+          type: string
+          description: priority categories id
           required: true
       responses:
         200:
@@ -122,11 +132,13 @@ paths:
                   type: string
                 created_at:
                   type: string
-                Make:
+                score:
                   type: string
-                Model:
+                describeText:
                   type: string
-                Image:
+                reasonScoreText:
+                  type: string
+                reflectionText:
                   type: string
                        
         default:
