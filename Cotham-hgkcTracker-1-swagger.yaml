@@ -181,6 +181,8 @@ paths:
                 type: string
               reflectionText:
                 type: string
+              formattedTime:
+                type: string
               
       responses:
         200:
@@ -203,6 +205,8 @@ paths:
               reasonScoreText:
                 type: string
               reflectionText:
+                type: string
+              formattedTime:
                 type: string
                        
         default:
