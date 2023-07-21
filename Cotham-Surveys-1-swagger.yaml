@@ -1,0 +1,285 @@
+swagger: "2.0"
+info:
+  version: "0.2"
+  title: "Xano - Cotham-Surveys"
+  description: "Xano - Cotham-Surveys"
+
+host: x8ki-letl-twmt.n7.xano.io
+basePath: /api:7Iv2W5kC
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      description: Login
+      tags:
+        - 1. Xano - Cotham-Surveys
+      parameters:
+        - in: query
+          name: email
+          type: string
+          description: user email address
+          required: true
+        - in: query
+          name: password
+          type: string
+          description: user password
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              authToken:
+                type: string
+
+        default:
+          description: Failed Server
+
+  /auth/me:
+    get:
+      summary: Get Me Info
+      description: Get Me Info
+      tags:
+        - 1. Xano - Cotham-Surveys
+      parameters:
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              created_at:
+                type: string
+              email:
+                type: string
+              id:
+                type: integer
+              name:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              _organisation:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  logo:
+                    type: string
+                  programmeLogo:
+                    type: string
+              modules_id:
+                type: array
+                items:
+                  type: string
+              active_module_id:
+                type: string
+
+        default:
+          description: Failed Server
+
+  /feedback:
+    get:
+      summary: Get List of Feedback items
+      description: Get List of Feedback items
+      tags:
+        - 1. Xano - Cotham-Surveys
+      parameters:
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: query
+          name: user_id
+          type: integer
+          description: user id
+          required: true
+        - in: query
+          name: secondaryCategories_id
+          type: integer
+          description: secondary categories id
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                created_at:
+                  type: string
+                score:
+                  type: string
+                describeText:
+                  type: string
+                reasonScoreText:
+                  type: string
+                reflectionText:
+                  type: string
+                formattedTime:
+                  type: string
+
+        default:
+          description: Failed Server
+    post:
+      summary: Post feedback item
+      description: Post feeback item
+      tags:
+        - 1. Xano - Cotham-Surveys
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: header
+          name: consumes
+          type: string
+          description: consumes setting
+          required: true
+        - in: body
+          name: feedback form
+          description: completed feedback form
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              secondaryCategories_id:
+                type: integer
+              score:
+                type: integer
+              describeText:
+                type: string
+              reasonScoreText:
+                type: string
+              reflectionText:
+                type: string
+              formattedTime:
+                type: string
+
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user_id:
+                type: string
+              created_at:
+                type: string
+              secondaryCategories_id:
+                type: string
+              score:
+                type: string
+              describeText:
+                type: string
+              reasonScoreText:
+                type: string
+              reflectionText:
+                type: string
+              formattedTime:
+                type: string
+
+        default:
+          description: Failed Server
+
+  /user/{user_id}:
+    get:
+      summary: Get User Record
+      description: Get User Record
+      tags:
+        - 1. Xano - Cotham-Surveys
+      parameters:
+        - in: header
+          name: authorization
+          type: string
+          description: authorization token
+          required: true
+        - in: path
+          name: user_id
+          type: integer
+          description: user id
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              id:
+                type: integer
+              name:
+                type: string
+              organisation_id:
+                type: integer
+              primaryCategories_id:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: string
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    secondaryCategories_id:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          created_at:
+                            type: string
+                          id:
+                            type: integer
+                          name:
+                            type: string
+                          describeQuestion:
+                            type: string
+                          scoreQuestion:
+                            type: string
+                          reasonsScoreQuestion:
+                            type: string
+                          reflectionQuestion:
+                            type: string
+                          360Question:
+                            type: string
+        default:
+          description: Failed Server
