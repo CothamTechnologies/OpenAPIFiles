@@ -1,8 +1,8 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  version: "0.2"
-  title: "Xano - Cotham-Surveys"
-  description: "Xano - Cotham-Surveys"
+  version: '0.2'
+  title: 'Xano - Cotham-Surveys'
+  description: 'Xano - Cotham-Surveys'
 
 host: x8ki-letl-twmt.n7.xano.io
 basePath: /api:7Iv2W5kC
