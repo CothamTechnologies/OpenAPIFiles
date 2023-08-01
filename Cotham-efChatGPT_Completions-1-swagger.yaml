@@ -1,0 +1,126 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'RapidApi AI'
+  description: 'RapidApi AI Services'
+
+host: openai80.p.rapidapi.com #weather338.p.rapidapi.com
+basePath: /chat #/locations
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /search:
+    get:
+      summary: Search
+      description: Search
+      tags:
+        - 1. RapidApi AI
+      parameters:        
+        - in: header
+          name: X-RapidAPI-Host
+          type: string
+          description: search value
+          required: true
+        - in: header
+          name: X-RapidAPI-Key
+          type: string
+          description: search value
+          required: true
+        - in: query
+          name: query
+          type: string
+          description: search value
+          required: true
+        - in: query
+          name: language
+          type: string
+          description: language
+          required: true
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              authToken:
+                type: string
+                       
+        default:
+          description: Failed Server
+          
+  /completions:
+    post:
+      summary: ChatGPT Completions
+      description: ChatGPT Completions
+      tags:
+        - 1. Chat GPT - Completions
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:        
+        - in: header
+          name: X-RapidAPI-Host
+          type: string
+          description: Rapid API Host
+          required: true
+        - in: header
+          name: X-RapidAPI-Key
+          type: string
+          description: Rapid API Key
+          required: true
+        - in: body
+          name: body
+          description: completed feedback form
+          schema:
+            type: object
+            properties:
+              model:
+                type: string
+              messages:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    role:
+                      type: string
+                    content:
+                      type: string
+              
+              
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user_id:
+                type: string
+              created_at:
+                type: string
+              prioritycategories_id:
+                type: string
+              score:
+                type: string
+              describeText:
+                type: string
+              reasonScoreText:
+                type: string
+              reflectionText:
+                type: string
+              formattedTime:
+                type: string
+                       
+        default:
+          description: Failed Server
