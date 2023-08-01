@@ -1,11 +1,11 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: 'RapidApi AI'
-  description: 'RapidApi AI Services'
+  title: 'Open AI - Chat GPT'
+  description: 'Open AI - Chat GPT'
 
-host: openai80.p.rapidapi.com #weather338.p.rapidapi.com
-basePath: /chat #/locations
+host: api.openai.com #weather338.p.rapidapi.com
+basePath: /v1/chat #/locations
 
 schemes:
   - https
@@ -23,7 +23,7 @@ paths:
       summary: Search
       description: Search
       tags:
-        - 1. RapidApi AI
+        - 1. Open AI - Chat GPT
       parameters:        
         - in: header
           name: X-RapidAPI-Host
@@ -62,21 +62,16 @@ paths:
       summary: ChatGPT Completions
       description: ChatGPT Completions
       tags:
-        - 1. Chat GPT - Completions
+        - 1. Open AI - Chat GPT
       consumes:
         - application/json
       produces:
         - application/json
       parameters:        
         - in: header
-          name: X-RapidAPI-Host
+          name: Authorization
           type: string
-          description: Rapid API Host
-          required: true
-        - in: header
-          name: X-RapidAPI-Key
-          type: string
-          description: Rapid API Key
+          description: Authorization
           required: true
         - in: body
           name: body
