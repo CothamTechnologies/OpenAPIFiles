@@ -99,24 +99,39 @@ paths:
           schema:
             type: object
             properties:
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    finish_reason:
+                      type: string
+                    index:
+                      type: integer
+                    message:
+                      type: object
+                      properties:
+                        content:
+                          type: string
+                        role:
+                          type: string
+              created:
+                type: string
               id:
                 type: string
-              user_id:
+              model:
                 type: string
-              created_at:
+              object:
                 type: string
-              prioritycategories_id:
-                type: string
-              score:
-                type: string
-              describeText:
-                type: string
-              reasonScoreText:
-                type: string
-              reflectionText:
-                type: string
-              formattedTime:
-                type: string
+              usage:
+                type: object
+                properties:
+                  completion_tokens:
+                    type: string
+                  prompt_tokens:
+                    type: string
+                  total_tokens:
+                    type: string
                        
         default:
           description: Failed Server
