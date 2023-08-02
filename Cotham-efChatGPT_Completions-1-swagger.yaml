@@ -82,14 +82,15 @@ paths:
               model:
                 type: string
               messages:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    role:
-                      type: string
-                    content:
-                      type: string
+                type: string # but to contain a JSON array structure per the commented out structure below
+                #type: array
+                #items:
+                #  type: object
+                #  properties:
+                #    role:
+                #      type: string
+                #    content:
+                #      type: string
               
               
       responses:
