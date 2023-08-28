@@ -72,10 +72,19 @@
 											"type": "string"
 										}
 									},
-									"fieldA": {
+									"serviceDescription": {
 										"type": "string"
 									},
-									"fieldB": {
+									"serviceDescriptionUrl": {
+										"type": "string"
+									},
+									"servicePath": {
+										"type": "string"
+									},
+									"serviceMethod": {
+										"type": "string"
+									},
+									"version": {
 										"type": "string"
 									}
 
