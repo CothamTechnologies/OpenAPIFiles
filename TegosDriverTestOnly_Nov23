@@ -150,7 +150,7 @@ paths:
                   properties:
                     code:
                       type: string
-                    codeDescription:
+                    description:
                       type: string
               sessionToken:
                 type: string
