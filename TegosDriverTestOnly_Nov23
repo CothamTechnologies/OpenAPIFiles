@@ -7,7 +7,7 @@ schemes:
     - http
 swagger: "2.0"
 info:
-    description: "\r\nOpenapi Schema: <small><a href='v1/swagger.valid.yaml' target='_blank'>`swagger.valid.yaml`</a></small><br/><br/>\r\nâ›” This API can only be accessed by authorised users â›” Your IP (0.0.0.1) is being recorded on any action taken against this service.\r\n<br/>Use `/authenticate` operation to generate the `Bearer Jwt Token` and then authorise yourself on the page and you're ready to play around \U0001F680!\r\n<br/>If you need to generate your client side code from the `swagger` definition file shown above please visit the following link to learn more: `https://github.com/Azure/autorest`\r\n<br/><br/>  `Handcrafted with â¤ï¸ Tegos Dev Team ` "
+    description: descriptionGoesHere
     title: Tegos.WasteServices.Api.Host v1.0.0.0
     contact:
         name: "Tegos Dev Team \U0001F680"
