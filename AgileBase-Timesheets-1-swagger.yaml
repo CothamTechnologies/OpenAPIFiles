@@ -14,27 +14,32 @@ info:
         url: https://www.tegos.com/
         email: tegos.support@tegos.co.uk
     version: v1.0
-host: tegossl-apps-test.azurewebsites.net
+host: https://cloud.agilebase.co.uk/agileBase
 paths:
 
-  /drGetSupportInfo.json/:
+  /Public.ab/:
     post:
       summary: GetSupportInfo
       description: GetSupportInfo
       tags:
         - 1. Driver App
       consumes:
-        - application/x-www-form-urlencoded
+        - application/json
       parameters:
-        - in: formData
-          name: params[jwt]
+        - in: header
+          name: Authorization
           type: string
-          description: jwt
+          description: token
           required: true
-        - in: formData
-          name: params[clientIdentifier]
+        - in: body
+          name: t
           type: string
-          description: clientIdentifier
+          description: Table ID
+          required: true
+        - in: body
+          name: c
+          type: string
+          description: Company ID
           required: true
         
       responses:
