@@ -4,23 +4,18 @@ produces:
     - text/json
 schemes:
     - https
-    - http
 swagger: "2.0"
 info:
-    description: descriptionGoesHere
-    title: Tegos.WasteServices.Api.Host v1.0.0.0
-    contact:
-        name: "Tegos Dev Team \U0001F680"
-        url: https://www.tegos.com/
-        email: tegos.support@tegos.co.uk
+    description: Cotham-AgileBase Timesheets service
+    title: Cotham-AgileBase Timesheets service
     version: v1.0
 host: https://cloud.agilebase.co.uk/agileBase
 paths:
 
   /Public.ab/:
     post:
-      summary: GetSupportInfo
-      description: GetSupportInfo
+      summary: Timesheets service
+      description: Timesheets service
       tags:
         - 1. Driver App
       consumes:
@@ -31,16 +26,75 @@ paths:
           type: string
           description: token
           required: true
+          
         - in: body
           name: t
           type: string
           description: Table ID
           required: true
+          
         - in: body
           name: c
           type: string
           description: Company ID
           required: true
+        
+        - in: body
+          name: update_record
+          type: string
+          description: Company ID
+          default: true
+          required: true
+        
+        - in: body
+          name: row_id
+          type: string
+          description: Row ID
+          required: true
+        
+        - in: body
+          name: includeslunch_sionsfhtd0
+          type: string
+          description: Includes Lunch
+          required: true
+        
+        - in: body
+          name: attendance_onsfht
+          type: string
+          description: Went Ahead
+          required: true
+        
+        - in: body
+          name: location_nsfh
+          type: string
+          description: Location
+          required: true
+        
+        - in: body
+          name: reason_sf
+          type: string
+          description: Reason
+          required: true
+
+        - in: body
+          name: hoursworked_ionsfhtd
+          type: string
+          description: Hours worked with client
+          required: true
+
+        - in: body
+          name: mileage_nsfh
+          type: string
+          description: Mileage
+          required: true
+
+        - in: body
+          name: notesaboutmilea_ssionsfhtd0q
+          type: string
+          description: Notes (about mileage/expenses only)
+          required: true
+
+        
         
       responses:
         200:
@@ -117,60 +171,3 @@ paths:
                 
         default:
           description: Failed Server Response
-
-  /drGetReasonCodes.json/:
-    post:
-      summary: drGetReasonCodes
-      description: drGetReasonCodes
-      tags:
-        - 1. Driver App
-      consumes:
-        - application/x-www-form-urlencoded
-      parameters:
-        - in: formData
-          name: params[jwt]
-          type: string
-          description: jwt
-          required: true
-        - in: formData
-          name: params[clientIdentifier]
-          type: string
-          description: clientIdentifier
-          required: true
-
-      responses:
-        200:
-          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
-          schema:
-            type: object
-            properties:
-              responseCode:
-                type: integer
-              responseMessage:
-                type: string
-              payload:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    code:
-                      type: string
-                    description:
-                      type: string
-              sessionToken:
-                type: string
-              requestedMethod:
-                type: string
-              requestedFormat:
-                type: string
-              timestamp:
-                type: string
-                format: time
-              requestReceivedTime:
-                type: string
-                format: time
-              maxAllowedRequestTime:
-                type: integer 
-              requestProcessingTime:
-                type: string
-                format: double
