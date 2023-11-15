@@ -1,0 +1,104 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Flo System - Event and API Logger'
+  description: 'Flo System - Event and API Logger'
+
+host: x8ki-letl-twmt.n7.xano.io
+basePath: /api:Yn8L5v8L
+
+schemes:
+  - https
+#securityDefinitions:
+#  basicAuth:
+#    type: basic
+
+## To apply Basic auth to the whole API:
+#security:
+#  - basicAuth: []
+
+paths:
+  /eventlog:
+    post:
+      summary: Flo System - Event and API Log Transfer
+      description: Flo System - Event and API Log Transfer
+      tags:
+        - 1. Event and API Log System
+      consumes:
+         - application/json
+#         - multipart/form-data
+#         - application/x-www-form-urlencoded
+      parameters:
+        - in: body
+          name: body
+          description: event log info
+          required: true
+          schema:
+            type: object
+            properties:
+              timestamp:
+                type: string
+              driverId:
+                type: string
+              logTransferDate:
+                type: string
+              eventLog:
+                type: string
+              apiRequestLog:
+                type: string
+              apiResponseLog:
+                type: string
+              offlineCacheLog:
+                type: string
+              offlineReplayRequestLog:
+                type: string
+              offlineReplayResponseLog:
+                type: string
+
+      responses:
+        200:
+          description: Return a defined response format
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                    formattedDate:
+                      type: string
+                    userId:
+                      type: string
+                    eventType:
+                      type: string
+                    eventName:
+                      type: string
+                    eventId:
+                      type: string
+                    eventOutcomeString:
+                      type: string
+                    associatedElementType:
+                      type: string
+                    associatedElementName:
+                      type: string
+                    associatedElementId:
+                      type: string
+                    associatedSceneName:
+                      type: string
+                    associatedCollectionName:
+                      type: string
+                    associatedSolutionName:
+                      type: string
+                    associatedSolutionVersion:
+                      type: string
+                    latitude:
+                      type: string
+                    longitude:
+                      type: string
+
+
+        default:
+          description: Failed Server Response

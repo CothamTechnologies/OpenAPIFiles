@@ -1,0 +1,266 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.2",
+    "title": "User Services Accesses",
+    "description": "User Services Accesses"
+  },
+  "host": "x8ki-letl-twmt.n7.xano.io",
+  "basePath": "/api:5sVwjuaK",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/efserviceaccess": {
+      
+      "get": {
+        "summary": "Get User Services Accesses",
+        "description": "Get User Services Accesses",
+        "tags": [
+          "1. Airtable Service Accesses"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "description": "api key ('Bearer YOUR_API_KEY')",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                     "type": "string"
+                  },
+                  "key": {
+                     "type": "string"
+                  },
+                  "username": {
+                     "type": "string"
+                  },
+                  "password": {
+                     "type": "string"
+                  },
+                  "id": {
+                     "type": "number"
+                  },
+                  "userId": {
+                     "type": "number"
+                  },
+                  "primaryUrlFragment": {
+                     "type": "string"
+                  },
+                  "associatedParameterName": {
+                     "type": "string"
+                  }
+                  
+                }
+                
+              }
+            
+              
+            }
+            
+            
+          },
+          "default": {
+            "description": "Failed Server"
+          }
+        }
+      }
+    },
+    "/ServicesW": {
+      "patch": {
+        "summary": "update service accesses v1 - W",
+        "description": "update service accesses v1 - W",
+        "tags": [
+          "1. Airtable Service Accesses"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "description": "api key ('Bearer YOUR_API_KEY')",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "recordId",
+            "type": "string",
+            "description": "record Id",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "records": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fields": {
+                        "type": "object",
+                        "properties": {
+                          "Name": {
+                            "type": "string"
+                          },
+                          "Key": {
+                            "type": "string"
+                          },
+                          "Username": {
+                            "type": "string"
+                          },
+                          "Password": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "api key ('Bearer YOUR_API_KEY')",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "createdTime": {
+                  "type": "string"
+                },
+                "fields": {
+                  "type": "object",
+                  "properties": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Username": {
+                      "type": "string"
+                    },
+                    "Password": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Failed Server Response"
+          }
+        }
+      }
+    },
+    "/Services/{recordId}": {
+      "patch": {
+        "summary": "update service accesses v2",
+        "description": "update service accesses v2",
+        "tags": [
+          "1. Airtable Service Accesses"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "description": "api key ('Bearer YOUR_API_KEY')",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "recordId",
+            "type": "string",
+            "description": "record Id",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fields": {
+                  "type": "object",
+                  "properties": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Username": {
+                      "type": "string"
+                    },
+                    "Password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "api key ('Bearer YOUR_API_KEY')",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "createdTime": {
+                  "type": "string"
+                },
+                "fields": {
+                  "type": "object",
+                  "properties": {
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Key": {
+                      "type": "string"
+                    },
+                    "Username": {
+                      "type": "string"
+                    },
+                    "Password": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Failed Server Response"
+          }
+        }
+      }
+    }
+  }
+}

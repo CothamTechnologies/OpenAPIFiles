@@ -62,8 +62,8 @@ paths:
  
   /ServicesW:
     patch:
-      summary: update service accesses v1
-      description: update service accesses v1
+      summary: update service accesses v1 - W
+      description: update service accesses v1 - W
       tags:
         - 1. Airtable Service Accesses
       parameters:
@@ -83,21 +83,21 @@ paths:
             type: object
             properties:
               records:
-              type: array
-              items:
-                type: object
-                properties:
-                  fields:
-                    type: object
-                    properties:
-                      Name:
-                        type: string
-                      Key:
-                        type: string
-                      Username:
-                        type: string
-                      Password:
-                        type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fields:
+                      type: object
+                      properties:
+                        Name:
+                          type: string
+                        Key:
+                          type: string
+                        Username:
+                          type: string
+                        Password:
+                          type: string
             
           description: api key ('Bearer YOUR_API_KEY')
           required: true
