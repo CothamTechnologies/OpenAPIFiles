@@ -1,0 +1,4372 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "GoTrue REST API (Supabase Auth)",
+        "version": "latest",
+        "description": "GoTrue is the software behind [Supabase Auth](https://supabase.com/auth). This is its REST API.\n\n**Notes:**\n- HTTP 5XX errors are not listed for each endpoint.\n  These should be handled globally. Not all HTTP 5XX errors are generated from GoTrue, and they may serve non-JSON content. Make sure you inspect the `Content-Type` header before parsing as JSON.\n- Error responses are somewhat inconsistent.\n  Avoid using the `msg` and HTTP status code to identify errors. HTTP 400 and 422 are used interchangeably in many APIs.\n- If the server has CAPTCHA protection enabled, the verification token should be included in the request body.\n- Rate limit errors are consistently raised with the HTTP 429 code.\n- Enums are used only in request bodies / parameters and not in responses to ensure wide compatibility with code generators that fail to include an unknown enum case.\n\n**Backward compatibility:**\n- Endpoints marked as _Experimental_ may change without notice.\n- Endpoints marked as _Deprecated_ will be supported for at least 3 months since being marked as deprecated.\n- HTTP status codes like 400, 404, 422 may change for the same underlying error condition."
+    },
+    "host": "{project}.supabase.co",
+    "basePath": "/auth/v1",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/token": {
+            "post": {
+                "summary": "Issues access and refresh tokens based on grant type.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "grant_type",
+                        "in": "query",
+                        "required": true,
+                        "description": "What grant type should be used to issue an access and refresh token. Note that `id_token` is only offered in experimental mode. CAPTCHA protection is not effective on the `refresh_token` grant flow.\n",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "refresh_token": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "id_token": {
+                                    "type": "string"
+                                },
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "nonce": {
+                                    "type": "string"
+                                },
+                                "provider": {
+                                    "type": "string"
+                                },
+                                "client_id": {
+                                    "type": "string"
+                                },
+                                "issuer": {
+                                    "type": "string"
+                                },
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "auth_code": {
+                                    "type": "string"
+                                },
+                                "code_verifier": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An access and refresh token have been successfully issued.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "refresh_token": {
+                                    "type": "string"
+                                },
+                                "token_type": {
+                                    "type": "string"
+                                },
+                                "expires_in": {
+                                    "type": "integer"
+                                },
+                                "expires_at": {
+                                    "type": "integer"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "deleted_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "HTTP Internal Server Error.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "summary": "Logs out a user.",
+                "parameters": [
+                    {
+                        "name": "scope",
+                        "in": "query",
+                        "description": "(Optional.) Determines how the user should be logged out. When `global` is used, the user is logged out from all active sessions. When `local` is used, the user is logged out from the current session. When `others` is used, the user is logged out from all other sessions except the current one. Clients should remove stored access and refresh tokens except when `others` is used.\n",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content returned on successful logout."
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/verify": {
+            "get": {
+                "summary": "Authenticate by verifying the posession of a one-time token. Usually for use as clickable links.",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "redirect_to",
+                        "in": "query",
+                        "description": "(Optional) URL to redirect back into the app on after verification completes successfully. If not specified will use the \"Site URL\" configuration option. If not allowed per the allow list it will use the \"Site URL\" configuration option.\n",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "HTTP See Other redirect response where `Location` is a specially formatted URL that includes an `access_token`, `refresh_token`, `expires_in` as URL query encoded values in the URL fragment (anything after `#`). These values are encoded in the fragment as this value is only visible to the browser handling the redirect and is not sent to the server.\n"
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Authenticate by verifying the posession of a one-time token.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "token": {
+                                    "type": "string"
+                                },
+                                "token_hash": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "redirect_to": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An access and refresh token.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "refresh_token": {
+                                    "type": "string"
+                                },
+                                "token_type": {
+                                    "type": "string"
+                                },
+                                "expires_in": {
+                                    "type": "integer"
+                                },
+                                "expires_at": {
+                                    "type": "integer"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "deleted_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/authorize": {
+            "get": {
+                "summary": "Redirects to an external OAuth provider. Usually for use as clickable links.",
+                "parameters": [
+                    {
+                        "name": "provider",
+                        "in": "query",
+                        "description": "Name of the OAuth provider.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "scopes",
+                        "in": "query",
+                        "required": true,
+                        "description": "Space separated list of OAuth scopes to pass on to `provider`.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "invite_token",
+                        "in": "query",
+                        "description": "(Optional) A token representing a previous invitation of the user. A successful sign-in with OAuth will mark the invitation as completed.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "redirect_to",
+                        "in": "query",
+                        "description": "(Optional) URL to redirect back into the app on after OAuth sign-in completes successfully or not. If not specified will use the \"Site URL\" configuration option. If not allowed per the allow list it will use the \"Site URL\" configuration option.\n",
+                        "type": "string"
+                    },
+                    {
+                        "name": "code_challenge_method",
+                        "in": "query",
+                        "description": "(Optional) Method used to encrypt the verifier. Can be `plain` (no transformation) or `s256` (where SHA-256 is used). It is always recommended that `s256` is used.",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "HTTP Redirect to the OAuth identity provider's authorization URL.\n"
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "summary": "Signs a user up.",
+                "description": "Creates a new user.\n",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "channel": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "data": {},
+                                "code_challenge": {
+                                    "type": "string"
+                                },
+                                "code_challenge_method": {
+                                    "type": "string"
+                                },
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user already exists and is not confirmed (in which case a user object is returned). A user did not exist and is signed up. If email or phone confirmation is enabled, returns a user object. If confirmation is disabled, returns an access token and refresh token response.\n",
+                        "schema": {}
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/recover": {
+            "post": {
+                "summary": "Request password recovery.",
+                "description": "Users that have forgotten their password can have it reset with this API.\n",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "code_challenge": {
+                                    "type": "string"
+                                },
+                                "code_challenge_method": {
+                                    "type": "string"
+                                },
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A recovery email has been sent to the address. An empty JSON object is returned. To obfuscate whether such an email address already exists in the system this response is sent regardless whether the address exists or not.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Returned when unable to validate the email address.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/resend": {
+            "post": {
+                "summary": "Resends a one-time password (OTP) through email or SMS.",
+                "description": "Allows a user to resend an existing signup, sms, email_change or phone_change OTP.\n",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                },
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A One-Time Password was sent to the email or phone. To obfuscate whether such an address or number already exists in the system this response is sent in both cases.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message_id": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Returned when unable to validate the email address or phone number.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/magiclink": {
+            "post": {
+                "summary": "Authenticate a user by sending them a magic link.",
+                "description": "A magic link is a special type of URL that includes a One-Time Password. When a user visits this link in a browser they are immediately authenticated.\n",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "data": {},
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A recovery email has been sent to the address. An empty JSON object is returned. To obfuscate whether such an email address already exists in the system this response is sent regardless whether the address exists or not.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Returned when unable to validate the email address.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/otp": {
+            "post": {
+                "summary": "Authenticate a user by sending them a One-Time Password over email or SMS.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "channel": {
+                                    "type": "string"
+                                },
+                                "create_user": {
+                                    "type": "boolean"
+                                },
+                                "data": {},
+                                "code_challenge_method": {
+                                    "type": "string"
+                                },
+                                "code_challenge": {
+                                    "type": "string"
+                                },
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A One-Time Password was sent to the email or phone. To obfuscate whether such an address or number already exists in the system this response is sent in both cases.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message_id": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Returned when unable to validate the email or phone number.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "summary": "Fetch the latest user account information.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's account information.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update certain properties of the current user account.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "nonce": {
+                                    "type": "string"
+                                },
+                                "data": {},
+                                "app_metadata": {},
+                                "channel": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's updated account information.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/reauthenticate": {
+            "post": {
+                "summary": "Reauthenticates the possession of an email or phone number for the purpose of password change.",
+                "description": "For a password to be changed on a user account, the user's email or phone number needs to be confirmed before they are allowed to set a new password. This requirement is configurable. This API sends a confirmation email or SMS message. A nonce in this message can be provided in `PUT /user` to change the password on the account.\n",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A One-Time Password was sent to the user's email or phone.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/factors": {
+            "post": {
+                "summary": "Begin enrolling a new factor for MFA.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "factor_type": {
+                                    "type": "string"
+                                },
+                                "friendly_name": {
+                                    "type": "string"
+                                },
+                                "issuer": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A new factor was created in the unverified state. Call `POST /factors/{factorId}/verify' to verify it.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                },
+                                "totp": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/factors/{factorId}/challenge": {
+            "post": {
+                "summary": "Create a new challenge for a MFA factor.",
+                "parameters": [
+                    {
+                        "name": "factorId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A new challenge was generated for the factor. Use `POST /factors/{factorId}/verify` to verify the challenge.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "expires_at": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/factors/{factorId}/verify": {
+            "post": {
+                "summary": "Verify a challenge on a factor.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "factorId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "challenge_id": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This challenge has been verified. Client libraries should replace their stored access and refresh tokens with the ones provided in this response. These new credentials have an increased Authenticator Assurance Level (AAL).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "refresh_token": {
+                                    "type": "string"
+                                },
+                                "token_type": {
+                                    "type": "string"
+                                },
+                                "expires_in": {
+                                    "type": "integer"
+                                },
+                                "expires_at": {
+                                    "type": "integer"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "deleted_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/factors/{factorId}": {
+            "delete": {
+                "summary": "Remove a MFA factor from a user.",
+                "parameters": [
+                    {
+                        "name": "factorId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This MFA factor is removed (unenrolled) and cannot be used for increasing the AAL level of user's sessions. Client libraries should use the `POST /token?grant_type=refresh_token` endpoint to get a new access and refresh token with a decreased AAL.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/callback": {
+            "get": {
+                "summary": "Redirects OAuth flow errors to the frontend app.",
+                "description": "When an OAuth sign-in flow fails for any reason, the error message needs to be delivered to the frontend app requesting the flow. This callback delivers the errors as `error` and `error_description` query params. Usually this request is not called directly.\n",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "HTTP Redirect to a URL containing the `error` and `error_description` query parameters which should be shown to the user requesting the OAuth sign-in flow.\n"
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Redirects OAuth flow errors to the frontend app.",
+                "description": "When an OAuth sign-in flow fails for any reason, the error message needs to be delivered to the frontend app requesting the flow. This callback delivers the errors as `error` and `error_description` query params. Usually this request is not called directly.\n",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "HTTP Redirect to a URL containing the `error` and `error_description` query parameters which should be shown to the user requesting the OAuth sign-in flow.\n"
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/sso": {
+            "post": {
+                "summary": "Initiate a Single-Sign On flow.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "domain": {
+                                    "type": "string"
+                                },
+                                "provider_id": {
+                                    "type": "string"
+                                },
+                                "redirect_to": {
+                                    "type": "string"
+                                },
+                                "skip_http_redirect": {
+                                    "type": "boolean"
+                                },
+                                "code_challenge": {
+                                    "type": "string"
+                                },
+                                "code_challenge_method": {
+                                    "type": "string"
+                                },
+                                "gotrue_meta_security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "captcha_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returned only when `skip_http_redirect` is `true` and the SSO provider could be identified from the `provider_id` or `domain`. Client libraries should use the returned URL to redirect or open a browser.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "303": {
+                        "description": "Returned only when `skip_http_redirect` is `false` or not present and the SSO provider could be identified from the `provider_id` or `domain`. Client libraries should follow the redirect. 303 is used instead of 302 because the request should be executed with a `GET` verb.\n"
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Returned when the SSO provider could not be identified.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/saml/metadata": {
+            "get": {
+                "summary": "Returns the SAML 2.0 Metadata XML.",
+                "description": "The metadata XML can be downloaded or used for the SAML 2.0 Metadata URL discovery mechanism. This URL is the SAML 2.0 EntityID of the Service Provider implemented by this server.\n",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "If set to `true` will add a `Content-Disposition` header to the response which will trigger a download dialog on the browser.\n",
+                        "type": "boolean"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A valid SAML 2.0 Metadata XML document. Should be cached according to the `Cache-Control` header and/or caching data specified in the document itself.\n"
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/saml/acs": {
+            "post": {
+                "summary": "SAML 2.0 Assertion Consumer Service (ACS) endpoint.",
+                "description": "Implements the SAML 2.0 Assertion Consumer Service (ACS) endpoint supporting the POST and Artifact bindings.\n",
+                "parameters": [
+                    {
+                        "name": "RelayState",
+                        "in": "query"
+                    },
+                    {
+                        "name": "SAMLArt",
+                        "in": "query",
+                        "description": "See the SAML 2.0 ACS specification. Cannot be used without a UUID `RelayState` parameter.\n",
+                        "type": "string"
+                    },
+                    {
+                        "name": "SAMLResponse",
+                        "in": "query",
+                        "description": "See the SAML 2.0 ACS specification. Must be present unless `SAMLArt` is specified. If `RelayState` is not a UUID, the SAML Response is unpacked and the identity provider is identified from the response.\n",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "HTTP See Other redirect response where `Location` is a specially formatted URL that includes an `access_token`, `refresh_token`, `expires_in` as URL query encoded values in the URL fragment (anything after `#`). These values are encoded in the fragment as this value is only visible to the browser handling the redirect and is not sent to the server.\n"
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "HTTP Too Many Requests response, when a rate limiter has been breached.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/invite": {
+            "post": {
+                "summary": "Invite a user by email.",
+                "description": "Sends an invitation email which contains a link that allows the user to sign-in.\n",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "data": {}
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An invitation has been sent to the user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "User already exists and has confirmed their address.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/generate_link": {
+            "post": {
+                "summary": "Generate a link to send in an email message.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "data": {},
+                                "redirect_to": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User profile and generated link information.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "action_link": {
+                                    "type": "string"
+                                },
+                                "email_otp": {
+                                    "type": "string"
+                                },
+                                "hashed_token": {
+                                    "type": "string"
+                                },
+                                "verification_type": {
+                                    "type": "string"
+                                },
+                                "redirect_to": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Has multiple meanings:\n  - User already exists\n  - Provided password does not meet minimum criteria\n  - Secure email change not enabled\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/audit": {
+            "get": {
+                "summary": "Fetch audit log events.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of audit logs.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "payload": {
+                                        "type": "object",
+                                        "properties": {
+                                            "log_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "created_at": {
+                                        "type": "string"
+                                    },
+                                    "ip_address": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/users": {
+            "get": {
+                "summary": "Fetch a listing of users.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A page of users.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "users": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "deleted_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/users/{userId}": {
+            "get": {
+                "summary": "Fetch user account data for a user.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's account data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update user's account data.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's account data was updated.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a user.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's account data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "aud": {
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "email_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                },
+                                "phone_confirmed_at": {
+                                    "type": "string"
+                                },
+                                "confirmation_sent_at": {
+                                    "type": "string"
+                                },
+                                "confirmed_at": {
+                                    "type": "string"
+                                },
+                                "recovery_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_email": {
+                                    "type": "string"
+                                },
+                                "email_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "new_phone": {
+                                    "type": "string"
+                                },
+                                "phone_change_sent_at": {
+                                    "type": "string"
+                                },
+                                "reauthentication_sent_at": {
+                                    "type": "string"
+                                },
+                                "last_sign_in_at": {
+                                    "type": "string"
+                                },
+                                "app_metadata": {},
+                                "user_metadata": {},
+                                "factors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "factor_type": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "identities": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                },
+                                "banned_until": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "deleted_at": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/users/{userId}/factors": {
+            "get": {
+                "summary": "List all of the MFA factors for a user.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's MFA factors.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "friendly_name": {
+                                        "type": "string"
+                                    },
+                                    "factor_type": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/users/{userId}/factors/{factorId}": {
+            "put": {
+                "summary": "Update a user's MFA factor.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's MFA factor.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "type": "string"
+                                },
+                                "friendly_name": {
+                                    "type": "string"
+                                },
+                                "factor_type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user and/or factor.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove a user's MFA factor.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's MFA factor.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "type": "string"
+                                },
+                                "friendly_name": {
+                                    "type": "string"
+                                },
+                                "factor_type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There is no such user and/or factor.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/sso/providers": {
+            "get": {
+                "summary": "Fetch a list of all registered SSO providers.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of all providers.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "saml": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "attribute_mapping": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "keys": {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Register a new SSO provider.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "metadata_url": {
+                                    "type": "string"
+                                },
+                                "metadata_xml": {
+                                    "type": "string"
+                                },
+                                "domains": {
+                                    "type": "string"
+                                },
+                                "attribute_mapping": {
+                                    "type": "object",
+                                    "properties": {
+                                        "keys": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SSO provider was created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "sso_domains": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "domain": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "saml": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attribute_mapping": {
+                                            "type": "object",
+                                            "properties": {
+                                                "keys": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/sso/providers/{ssoProviderId}": {
+            "get": {
+                "summary": "Fetch SSO provider details.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SSO provider exists with these details.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "sso_domains": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "domain": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "saml": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attribute_mapping": {
+                                            "type": "object",
+                                            "properties": {
+                                                "keys": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "A provider with this UUID does not exist.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update details about a SSO provider.",
+                "description": "You can only update only one of `metadata_url` or `metadata_xml` at once. The SAML Metadata represented by these updates must advertize the same Identity Provider EntityID. Do not include the `domains` or `attribute_mapping` property to keep the existing database values.\n",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "metadata_url": {
+                                    "type": "string"
+                                },
+                                "metadata_xml": {
+                                    "type": "string"
+                                },
+                                "domains": {
+                                    "type": "string"
+                                },
+                                "attribute_mapping": {
+                                    "type": "object",
+                                    "properties": {
+                                        "keys": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SSO provider details were updated.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "sso_domains": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "domain": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "saml": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attribute_mapping": {
+                                            "type": "object",
+                                            "properties": {
+                                                "keys": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "HTTP Bad Request response. Can occur if the passed in JSON cannot be unmarshalled properly or when CAPTCHA verification was not successful. In certain cases can also occur when features are disabled on the server (e.g. sign ups). It may also mean that the operation failed due to some constraint not being met (such a user already exists for example).\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "A provider with this UUID does not exist.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove an SSO provider.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SSO provider was removed.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "sso_domains": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "domain": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "saml": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attribute_mapping": {
+                                            "type": "object",
+                                            "properties": {
+                                                "keys": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "HTTP Unauthorizred response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "HTTP Forbidden response.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "A provider with this UUID does not exist.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "error_description": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Service healthcheck.",
+                "description": "Ping this endpoint to receive information about the health of the service.",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service is healthy.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "version": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Service is not healthy. Retriable with exponential backoff.\n"
+                    },
+                    "502": {
+                        "description": "Service is not healthy: infrastructure issue. Usually not retriable.\n"
+                    },
+                    "503": {
+                        "description": "Service is not healthy: infrastrucutre issue. Retriable with exponential backoff.\n"
+                    },
+                    "504": {
+                        "description": "Service is not healthy: request timed out. Retriable with exponential backoff.\n"
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/settings": {
+            "get": {
+                "summary": "Retrieve some of the public settings of the server.",
+                "description": "Use this endpoint to configure parts of any authentication UIs depending on the configured settings.\n",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "apikey",
+                        "type": "apiKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Currently applicable settings of the server.\n",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "disable_signup": {
+                                    "type": "boolean"
+                                },
+                                "mailer_autoconfirm": {
+                                    "type": "boolean"
+                                },
+                                "phone_autoconfirm": {
+                                    "type": "boolean"
+                                },
+                                "sms_provider": {
+                                    "type": "string"
+                                },
+                                "mfa_enabled": {
+                                    "type": "boolean"
+                                },
+                                "saml_enabled": {
+                                    "type": "boolean"
+                                },
+                                "external": {}
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                }
+            }
+        }
+    }
+}
