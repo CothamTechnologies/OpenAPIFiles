@@ -1,0 +1,1722 @@
+swagger: '2.0'
+info:
+  title: Cloud Firestore API
+  version: v1beta1
+  description: 'Accesses the NoSQL document database built for automatic scaling, high performance, and ease of application development. '
+host: firestore.googleapis.com
+basePath: /
+schemes:
+  - https
+paths:
+  /v1beta1/{database}/documents:batchGet:
+    post:
+      summary: ''
+      description: Gets multiple documents. Documents returned by this method are not guaranteed to be returned in the same order that they were requested.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              documents:
+                type: string
+              mask:
+                type: object
+                properties:
+                  fieldPaths:
+                    type: string
+              newTransaction:
+                type: object
+                properties:
+                  readWrite:
+                    type: object
+                    properties:
+                      retryTransaction:
+                        type: string
+              readTime:
+                type: string
+              transaction:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{database}/documents:batchWrite:
+    post:
+      summary: ''
+      description: Applies a batch of write operations. The BatchWrite method does not apply the write operations atomically and can apply them out of order. Method does not allow more than one write per document. Each write succeeds or fails independently. See the BatchWriteResponse for the success status of each write. If you require an atomically applied set of writes, use Commit instead.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{database}/documents:beginTransaction:
+    post:
+      summary: ''
+      description: Starts a new transaction.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              options:
+                type: object
+                properties:
+                  readWrite:
+                    type: object
+                    properties:
+                      retryTransaction:
+                        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              transaction:
+                type: string
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{database}/documents:commit:
+    post:
+      summary: ''
+      description: Commits a transaction, while optionally updating documents.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{database}/documents:listen:
+    post:
+      summary: ''
+      description: Listens to changes. This method is only available via gRPC or WebChannel (not REST).
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{database}/documents:rollback:
+    post:
+      summary: ''
+      description: Rolls back a transaction.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              transaction:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{database}/documents:write:
+    post:
+      summary: ''
+      description: Streams batches of document updates and deletes, in order. This method is only available via gRPC or WebChannel (not REST).
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`. This is only required in the first message.'
+          in: path
+          name: database
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{name}:
+    delete:
+      summary: ''
+      description: Deletes an index.
+      produces:
+        - application/json
+      parameters:
+        - description: 'The index name. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`'
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
+          in: query
+          name: currentDocument.exists
+          type: boolean
+        - description: When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
+          in: query
+          name: currentDocument.updateTime
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: Error
+    get:
+      summary: ''
+      description: Gets an index.
+      produces:
+        - application/json
+      parameters:
+        - description: 'The name of the index. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`'
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: The list of field paths in the mask. See Document.fields for a field path syntax reference.
+          in: query
+          name: mask.fieldPaths
+          type: string
+        - description: Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
+          in: query
+          name: readTime
+          type: string
+        - description: Reads the document in a transaction.
+          in: query
+          name: transaction
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              collectionId:
+                type: string
+              fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+              name:
+                type: string
+              state:
+                type: string
+        default:
+          description: Error
+    patch:
+      summary: ''
+      description: Updates or inserts a document.
+      produces:
+        - application/json
+      parameters:
+        - description: The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
+          in: query
+          name: currentDocument.exists
+          type: boolean
+        - description: When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
+          in: query
+          name: currentDocument.updateTime
+          type: string
+        - description: The list of field paths in the mask. See Document.fields for a field path syntax reference.
+          in: query
+          name: mask.fieldPaths
+          type: string
+        - description: The list of field paths in the mask. See Document.fields for a field path syntax reference.
+          in: query
+          name: updateMask.fieldPaths
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{name}:exportDocuments:
+    post:
+      summary: ''
+      description: Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              collectionIds:
+                type: string
+              outputUriPrefix:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              done:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+              metadata: {}
+              name:
+                type: string
+              response: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{name}:importDocuments:
+    post:
+      summary: ''
+      description: Imports documents into Google Cloud Firestore. Existing documents with the same name are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportDocuments operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Firestore.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.'
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              collectionIds:
+                type: string
+              inputUriPrefix:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              done:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+              metadata: {}
+              name:
+                type: string
+              response: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{parent}/indexes:
+    get:
+      summary: ''
+      description: Lists the indexes that match the specified filters.
+      produces:
+        - application/json
+      parameters:
+        - description: 'The database name. For example: `projects/{project_id}/databases/{database_id}`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - in: query
+          name: filter
+          type: string
+        - description: The standard List page size.
+          in: query
+          name: pageSize
+          type: integer
+        - description: The standard List page token.
+          in: query
+          name: pageToken
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              indexes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    state:
+                      type: string
+              nextPageToken:
+                type: string
+        default:
+          description: Error
+    post:
+      summary: ''
+      description: Creates the specified index. A newly created index's initial state is `CREATING`. On completion of the returned google.longrunning.Operation, the state will be `READY`. If the index already exists, the call will return an `ALREADY_EXISTS` status. During creation, the process could result in an error, in which case the index will move to the `ERROR` state. The process can be recovered by fixing the data that caused the error, removing the index with delete, then re-creating the index with create. Indexes with a single field cannot be created.
+      produces:
+        - application/json
+      parameters:
+        - description: 'The name of the database this index will apply to. For example: `projects/{project_id}/databases/{database_id}`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              collectionId:
+                type: string
+              fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+              name:
+                type: string
+              state:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              done:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+              metadata: {}
+              name:
+                type: string
+              response: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{parent}/{collectionId}:
+    get:
+      summary: ''
+      description: Lists documents.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: 'Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.'
+          in: path
+          name: collectionId
+          required: true
+          type: string
+        - description: The list of field paths in the mask. See Document.fields for a field path syntax reference.
+          in: query
+          name: mask.fieldPaths
+          type: string
+        - description: 'Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.'
+          in: query
+          name: orderBy
+          type: string
+        - description: Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
+          in: query
+          name: pageSize
+          type: integer
+        - description: Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
+          in: query
+          name: pageToken
+          type: string
+        - description: Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
+          in: query
+          name: readTime
+          type: string
+        - description: If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
+          in: query
+          name: showMissing
+          type: boolean
+        - description: Perform the read as part of an already active transaction.
+          in: query
+          name: transaction
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+    post:
+      summary: ''
+      description: Creates a new document.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: 'Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.'
+          in: path
+          name: collectionId
+          required: true
+          type: string
+        - description: The client-assigned document ID to use for this document. Optional. If not specified, an ID will be assigned by the service.
+          in: query
+          name: documentId
+          type: string
+        - description: The list of field paths in the mask. See Document.fields for a field path syntax reference.
+          in: query
+          name: mask.fieldPaths
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{parent}:listCollectionIds:
+    post:
+      summary: ''
+      description: Lists all the collection IDs underneath a document.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+              readTime:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              collectionIds:
+                type: string
+              nextPageToken:
+                type: string
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{parent}:partitionQuery:
+    post:
+      summary: ''
+      description: Partitions a query by returning partition cursors that can be used to run the query in parallel. The returned partition cursors are split points that can be used by RunQuery as starting/end points for the query results.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents`. Document resource names are not supported; only database resource names can be specified.'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{parent}:runAggregationQuery:
+    post:
+      summary: ''
+      description: 'Runs an aggregation query. Rather than producing Document results like Firestore.RunQuery, this API allows running an aggregation to produce a series of AggregationResult server-side. High-Level Example: ``` -- Return the number of documents in table given a filter. SELECT COUNT(*) FROM ( SELECT * FROM k where a = true ); ```'
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /v1beta1/{parent}:runQuery:
+    post:
+      summary: ''
+      description: Runs a query.
+      produces:
+        - application/json
+      parameters:
+        - description: 'Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`'
+          in: path
+          name: parent
+          required: true
+          type: string
+        - description: V1 error format.
+          in: query
+          name: $.xgafv
+          type: string
+        - description: OAuth access token.
+          in: query
+          name: access_token
+          type: string
+        - description: Data format for response.
+          in: query
+          name: alt
+          type: string
+        - description: JSONP
+          in: query
+          name: callback
+          type: string
+        - description: Selector specifying which fields to include in a partial response.
+          in: query
+          name: fields
+          type: string
+        - description: API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+          in: query
+          name: key
+          type: string
+        - description: OAuth 2.0 token for the current user.
+          in: query
+          name: oauth_token
+          type: string
+        - description: Returns response with indentations and line breaks.
+          in: query
+          name: prettyPrint
+          type: boolean
+        - description: Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+          in: query
+          name: quotaUser
+          type: string
+        - description: Upload protocol for media (e.g. "raw", "multipart").
+          in: query
+          name: upload_protocol
+          type: string
+        - description: Legacy upload protocol for media (e.g. "media", "multipart").
+          in: query
+          name: uploadType
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+        default:
+          description: Error
+      consumes:
+        - application/json
