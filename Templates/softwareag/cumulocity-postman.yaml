@@ -1,0 +1,1610 @@
+swagger: '2.0'
+info:
+  title: Cumulocity API
+  version: 1.0.0
+  description: |-
+    Environment variables for this Postman Collection:
+
+    url = the IP adress/domain of your cumulocity server
+    auth = your base64 encoded tenant/username:password or username:password
+host: '{{url}}'
+basePath: ''
+schemes:
+  - https
+paths:
+  /alarm/alarms:
+    get:
+      summary: Get collection of alarms
+      description: '#### For a detailed description of the API please check out our [Alarm Reference Guide](http://cumulocity.com/guides/reference/alarms/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create new alarm
+      description: '#### For a detailed description of the API please check out our [Alarm Reference Guide](http://cumulocity.com/guides/reference/alarms/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /alarm/alarms/{alarmId}:
+    put:
+      summary: Clear an alarm
+      description: '#### For a detailed description of the API please check out our [Measurement Reference Guide](http://cumulocity.com/guides/reference/measurements/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: alarmId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /application/plugins:
+    get:
+      summary: Get plugin collection
+      description: '#### For a detailed description of the API please check out our [Application Reference Guide](http://cumulocity.com/guides/reference/applications/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /application/applications:
+    get:
+      summary: Get application collection
+      description: '#### For a detailed description of the API please check out our [Application Reference Guide](http://cumulocity.com/guides/reference/applications/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /application/applications/{applicationId}:
+    get:
+      summary: Get specific application
+      description: '#### For a detailed description of the API please check out our [Application Reference Guide](http://cumulocity.com/guides/reference/applications/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: applicationId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /audit/auditRecords:
+    get:
+      summary: Get audit records
+      description: '#### For a detailed description of the API please check out our [Auditing Reference Guide](http://cumulocity.com/guides/reference/auditing/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create audit record
+      description: '#### For a detailed description of the API please check out our [Auditing Reference Guide](http://cumulocity.com/guides/reference/auditing/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete audit records for time filter
+      description: '#### For a detailed description of the API please check out our [Auditing Reference Guide](http://cumulocity.com/guides/reference/auditing/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: dateTo
+          in: query
+          type: string
+        - name: dateFrom
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /inventory/binaries:
+    get:
+      summary: Get collection of Binaries (no download)
+      description: '#### For a detailed description of the API please check out our [Binaries Reference Guide](http://cumulocity.com/guides/reference/binaries/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Upload text file
+      description: '#### For a detailed description of the API please check out our [Binaries Reference Guide](http://cumulocity.com/guides/reference/binaries/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              object:
+                type: string
+              filesize:
+                type: integer
+              file:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+      consumes:
+        - multipart/form-data
+  /inventory/binaries/{binaryId}:
+    get:
+      summary: Download a binary
+      description: '#### For a detailed description of the API please check out our [Binaries Reference Guide](http://cumulocity.com/guides/reference/binaries/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: binaryId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    put:
+      summary: Replace a binary
+      description: '#### For a detailed description of the API please check out our [Binaries Reference Guide](http://cumulocity.com/guides/reference/binaries/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: binaryId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete a binary
+      description: '#### For a detailed description of the API please check out our [Binaries Reference Guide](http://cumulocity.com/guides/reference/binaries/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: binaryId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /cep/modules:
+    get:
+      summary: Get all CEP modules
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: 'Example: MeasurementSimulator'
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /cep/modules/{id}:
+    get:
+      summary: Get content of single module
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    put:
+      summary: Undeploy CEP module
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete CEP module
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /platform:
+    get:
+      summary: Platform
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /alarm:
+    get:
+      summary: Alarm
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /audit:
+    get:
+      summary: Audit
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /devicecontrol:
+    get:
+      summary: DeviceControl
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /event:
+    get:
+      summary: Event
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /identity:
+    get:
+      summary: Identity
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /inventory:
+    get:
+      summary: Inventory
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /measurement:
+    get:
+      summary: Measurement
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user:
+    get:
+      summary: User
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /devicecontrol/operations:
+    get:
+      summary: Get PENDING operations
+      description: '#### For a detailed description of the API please check out our [Device Control Reference Guide](http://cumulocity.com/guides/reference/device-control/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: status
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete operations for time filter
+      description: '#### For a detailed description of the API please check out our [Device Control Reference Guide](http://cumulocity.com/guides/reference/device-control/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: dateTo
+          in: query
+          type: string
+        - name: dateFrom
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /devicecontrol/operations/{operationId}:
+    get:
+      summary: Get a specific operation
+      description: '#### For a detailed description of the API please check out our [Device Control Reference Guide](http://cumulocity.com/guides/reference/device-control/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: operationId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    put:
+      summary: Fail operation
+      description: '#### For a detailed description of the API please check out our [Device Control Reference Guide](http://cumulocity.com/guides/reference/device-control/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: operationId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /devicecontrol/operations/:
+    post:
+      summary: Create shell operation
+      description: '#### For a detailed description of the API please check out our [Device Control Reference Guide](http://cumulocity.com/guides/reference/device-control/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /notification/operations:
+    post:
+      summary: Disconnect session
+      description: '#### For a detailed description of the API please check out our [SmartREST Reference Guide](http://cumulocity.com/guides/reference/smartrest/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: X-Id
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /devicecontrol/newDeviceRequests:
+    post:
+      summary: Add new device request
+      description: '#### For a detailed description of the API please check out our [Device Control Reference Guide](http://cumulocity.com/guides/reference/device-control/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /devicecontrol/newDeviceRequests/{id}:
+    put:
+      summary: Accept device request
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /event/events:
+    get:
+      summary: Get collection of events
+      description: '#### For a detailed description of the API please check out our [Event Reference Guide](http://cumulocity.com/guides/reference/events/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create LocationUpdate event for motion tracking
+      description: '#### For a detailed description of the API please check out our [Event Reference Guide](http://cumulocity.com/guides/reference/events/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /identity/globalIds/{deviceId}/externalIds:
+    get:
+      summary: Get all externalIds registered for a managedObject
+      description: '#### For a detailed description of the API please check out our [Identity Reference Guide](http://cumulocity.com/guides/reference/identity/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create an externalId for a managedObject
+      description: '#### For a detailed description of the API please check out our [Identity Reference Guide](http://cumulocity.com/guides/reference/identity/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /identity/externalIds/{externalIdType}/{externalId}:
+    get:
+      summary: Get ManagedObject for a specific externalId
+      description: '#### For a detailed description of the API please check out our [Identity Reference Guide](http://cumulocity.com/guides/reference/identity/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: externalIdType
+          in: path
+          type: string
+          required: true
+        - name: externalId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  //identity/externalIds/{type}/{externalId}:
+    delete:
+      summary: Remove externalId from a managed object
+      description: '#### For a detailed description of the API please check out our [Identity Reference Guide](http://cumulocity.com/guides/reference/identity/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: type
+          in: path
+          type: string
+          required: true
+        - name: externalId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /inventory/managedObjects:
+    get:
+      summary: Get collection of groups
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: fragmentType
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create Agent
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /inventory/managedObjects/{deviceId}:
+    get:
+      summary: Get a specific managedObject
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    put:
+      summary: Update configuration
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete a specific managedObject
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /inventory/managedObjects/{deviceId}/childDevices:
+    post:
+      summary: Add a managedObject reference to the childDevices of another managedObject as childDevice
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /inventory/managedObjects/{deviceId}/childAssets:
+    post:
+      summary: Add a managedObject reference to the childDevices of another managedObject as childAsset
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /managedObjects/{parentId}/childDevices/{childId}:
+    delete:
+      summary: Unassign a child from childDevices
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: parentId
+          in: path
+          type: string
+          required: true
+        - name: childId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /managedObjects/{parentId}/childAssets/{childId}:
+    delete:
+      summary: Unassign a child from childAssets
+      description: '#### For a detailed description of the API please check out our [Inventory Reference Guide](http://cumulocity.com/guides/reference/inventory/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: parentId
+          in: path
+          type: string
+          required: true
+        - name: childId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /measurement/measurements:
+    get:
+      summary: Get measurments for time range
+      description: '#### For a detailed description of the API please check out our [Measurement Reference Guide](http://cumulocity.com/guides/reference/measurements/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: dateTo
+          in: query
+          type: string
+        - name: dateFrom
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create multiple measurements
+      description: '#### For a detailed description of the API please check out our [Measurement Reference Guide](http://cumulocity.com/guides/reference/measurements/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: 'Delete measurements for time filter '
+      description: '#### For a detailed description of the API please check out our [Measurement Reference Guide](http://cumulocity.com/guides/reference/measurements/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: dateTo
+          in: query
+          type: string
+        - name: dateFrom
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /measurement/measurements/{measurementId}:
+    get:
+      summary: Get specific measurement
+      description: '#### For a detailed description of the API please check out our [Measurement Reference Guide](http://cumulocity.com/guides/reference/measurements/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: measurementId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /measurement/measurements/series:
+    get:
+      summary: Get measurement series
+      description: '#### For a detailed description of the API please check out our [Measurement Reference Guide](http://cumulocity.com/guides/reference/measurements/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: source
+          in: query
+          type: string
+        - name: dateFrom
+          in: query
+          type: string
+        - name: dateTo
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /notification/realtime:
+    post:
+      summary: Disconnect session
+      description: '#### For a detailed description of the API please check out our [Real-time Notification Reference Guide](http://cumulocity.com/guides/reference/real-time-notifications/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /s/:
+    post:
+      summary: Register Response Templates
+      description: |-
+        #### For a detailed description of the API please check out our [SmartREST Reference Guide](http://cumulocity.com/guides/reference/smartrest/)
+
+        You have to register all templates (request and response) in one single request.
+
+        For a better overview this example contains only response templates.
+
+        ###### Syntax:
+        11,{unique id},{base},{condition},{response value},{response value}, ...
+
+
+        * unique id: message identifier inside die SmartREST template
+        * base: the base object that should be check for objects (e.g. $.operations in an operation collection)
+        * condition: only objects with this fragments will be returned
+        * response value: value to return from the object
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: X-Id
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/tenants:
+    get:
+      summary: Get collection of tenants
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create tenant
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    put:
+      summary: Update a tenant
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/tenants/{tenantId}:
+    get:
+      summary: Get specific tenant
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: tenantId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete specific tenant
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: tenantId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/statistics:
+    get:
+      summary: Get collection of tenant statistics
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/statistics/summary:
+    get:
+      summary: Get  tenant statistic summary
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/statistics/allTenantsSummary:
+    get:
+      summary: Get  tenant statistic summary over all tenants
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/tenants/{tenantId}/applications:
+    get:
+      summary: Get collection of tenant applications
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: tenantId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Add application to tenant
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: tenantId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/options:
+    get:
+      summary: Get collection of tenant options
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    post:
+      summary: Create tenant option
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/system/options:
+    get:
+      summary: Get collection of system options
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/options/{category}/{key}:
+    get:
+      summary: Get specific tenant option
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: category
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    put:
+      summary: Update tenant option
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: Accept
+          in: header
+          type: string
+        - name: category
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+    delete:
+      summary: Delete tenant option
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: category
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/system/options/{category}/{key}:
+    get:
+      summary: Get specific system option
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: category
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /tenant/system/options/system/version:
+    get:
+      summary: Get system version
+      description: '#### For a detailed description of the API please check out our [Tenant Reference Guide](http://cumulocity.com/guides/reference/tenants/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user/currentUser:
+    get:
+      summary: Get current user information
+      description: '#### For a detailed description of the API please check out our [User Reference Guide](http://cumulocity.com/guides/reference/users/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user/roles:
+    get:
+      summary: Get collection of roles for user
+      description: '#### For a detailed description of the API please check out our [User Reference Guide](http://cumulocity.com/guides/reference/users/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user/{tenant}/groups:
+    get:
+      summary: Get User Groups
+      description: '#### For a detailed description of the API please check out our [User Reference Guide](http://cumulocity.com/guides/reference/users/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: tenant
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user/{tenant}/users:
+    post:
+      summary: Create new user with device permissions
+      description: '#### For a detailed description of the API please check out our [User Reference Guide](http://cumulocity.com/guides/reference/users/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: Content-Type
+          in: header
+          type: string
+        - name: tenant
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user/{tenant}/users/{yourUserName}:
+    delete:
+      summary: Delete a User
+      description: '#### For a detailed description of the API please check out our [User Reference Guide](http://cumulocity.com/guides/reference/users/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: yourUserName
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+  /user/{tenant}/groups/{groupId}/users/{yourUserName}:
+    delete:
+      summary: Remove a User from a Usergroup
+      description: '#### For a detailed description of the API please check out our [User Reference Guide](http://cumulocity.com/guides/reference/users/)'
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: yourUserName
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+        default:
+          description: Error
+security:
+  - basicAuth: []
+securityDefinitions:
+  basicAuth:
+    type: basic
