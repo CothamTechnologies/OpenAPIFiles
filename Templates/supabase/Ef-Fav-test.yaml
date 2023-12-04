@@ -15,7 +15,7 @@ paths:
       consumes:
         - application/json
       parameters:
-        - name: drinkId
+        - name: drinkid
           required: false
           in: query
           type: string
@@ -23,11 +23,11 @@ paths:
           required: false
           in: query
           type: string
-        - name: drinkName
+        - name: drinkname
           required: false
           in: query
           type: string
-        - name: drinkThumb
+        - name: drinkthumb
           required: false
           in: query
           type: string
@@ -78,23 +78,22 @@ paths:
           schema:
             items:
               required:
-                - drinkId
-                - created_at
+                - drinkid
               properties:
-                drinkId:
+                drinkid:
                   description: |-
                     Note:
                     This is a Primary Key.<pk/>
-                  format: bigint
-                  type: integer
+                  format: text
+                  type: string
                 created_at:
                   default: now()
                   format: timestamp with time zone
                   type: string
-                drinkName:
+                drinkname:
                   format: text
                   type: string
-                drinkThumb:
+                drinkthumb:
                   format: text
                   type: string
               type: object
@@ -115,23 +114,22 @@ paths:
           in: body
           schema:
             required:
-              - drinkId
-              - created_at
+              - drinkid
             properties:
-              drinkId:
+              drinkid:
                 description: |-
                   Note:
                   This is a Primary Key.<pk/>
-                format: bigint
-                type: integer
+                format: text
+                type: string
               created_at:
                 default: now()
                 format: timestamp with time zone
                 type: string
-              drinkName:
+              drinkname:
                 format: text
                 type: string
-              drinkThumb:
+              drinkthumb:
                 format: text
                 type: string
             type: object
@@ -162,7 +160,7 @@ paths:
       consumes:
         - application/json
       parameters:
-        - name: drinkId
+        - name: drinkid
           required: false
           in: query
           type: string
@@ -170,11 +168,11 @@ paths:
           required: false
           in: query
           type: string
-        - name: drinkName
+        - name: drinkname
           required: false
           in: query
           type: string
-        - name: drinkThumb
+        - name: drinkthumb
           required: false
           in: query
           type: string
@@ -200,7 +198,7 @@ paths:
       consumes:
         - application/json
       parameters:
-        - name: drinkId
+        - name: drinkid
           required: false
           in: query
           type: string
@@ -208,11 +206,11 @@ paths:
           required: false
           in: query
           type: string
-        - name: drinkName
+        - name: drinkname
           required: false
           in: query
           type: string
-        - name: drinkThumb
+        - name: drinkthumb
           required: false
           in: query
           type: string
@@ -222,23 +220,22 @@ paths:
           in: body
           schema:
             required:
-              - drinkId
-              - created_at
+              - drinkid
             properties:
-              drinkId:
+              drinkid:
                 description: |-
                   Note:
                   This is a Primary Key.<pk/>
-                format: bigint
-                type: integer
+                format: text
+                type: string
               created_at:
                 default: now()
                 format: timestamp with time zone
                 type: string
-              drinkName:
+              drinkname:
                 format: text
                 type: string
-              drinkThumb:
+              drinkthumb:
                 format: text
                 type: string
             type: object
