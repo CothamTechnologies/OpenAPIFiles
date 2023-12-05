@@ -1,6 +1,7 @@
 swagger: "2.0"
 info:
-  title: Supabase Auth
+  title: Supabase Authentication
+  description: Supabase Authentication docs https://github.com/supabase/gotrue#endpoints
   version: 1.0.0
 host: iefolulqazagcyqqgnbr.supabase.co
 basePath: /auth/v1
