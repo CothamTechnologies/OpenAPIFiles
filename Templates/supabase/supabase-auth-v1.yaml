@@ -1,0 +1,449 @@
+swagger: "2.0"
+info:
+  title: Supabase Auth
+  version: 1.0.0
+host: iefolulqazagcyqqgnbr.supabase.co
+basePath: /auth/v1
+schemes:
+  - https
+paths:
+  /signup:
+    post:
+      summary: Signup
+      description: "Signup User"
+      produces:
+        - application/json
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              aud:
+                type: string
+              role:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              confirmation_sent_at:
+                type: string
+              app_metadata:
+                type: object
+                properties:
+                  provider:
+                    type: string
+                  providers:
+                    type: array
+                    items:
+                      type: string
+              user_metadata:
+                type: object
+                properties:
+                  identities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        user_id:
+                          type: string
+                        identity_data:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                            email_verified:
+                              type: boolean
+                            phone_verified:
+                              type: boolean
+                            sub:
+                              type: string
+                        provider:
+                          type: string
+                        last_sign_in_at:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+              created_at:
+                type: string
+              updated_at:
+                type: string
+
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /token:
+    post:
+      summary: SignIn or refresh token
+      description: "User Sign In or refresh Token"
+      produces:
+        - application/json
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+        - name: grant_type
+          default: "password"
+          in: query
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+              refresh_token:
+                type: string
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+              token_type:
+                type: string
+              expires_in:
+                type: number
+              expires_at:
+                type: number
+              refresh_token:
+                type: string
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  aud:
+                    type: string
+                  role:
+                    type: string
+                  email:
+                    type: string
+                  email_confirmed_at:
+                    type: string
+                  phone:
+                    type: string
+                  confirmation_sent_at:
+                    type: string
+                  confirmed_at:
+                    type: string
+                  last_sign_in_at:
+                    type: string
+                  app_metadata:
+                    type: object
+                    properties:
+                      provider:
+                        type: string
+                      providers:
+                        type: array
+                        items:
+                          type: string
+                  user_metadata:
+                    type: object
+                    properties:
+                      identities:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            user_id:
+                              type: string
+                            identity_data:
+                              type: object
+                              properties:
+                                email:
+                                  type: string
+                                email_verified:
+                                  type: boolean
+                                phone_verified:
+                                  type: boolean
+                                sub:
+                                  type: string
+                            provider:
+                              type: string
+                            last_sign_in_at:
+                              type: string
+                            created_at:
+                              type: string
+                            updated_at:
+                              type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /user:
+    get:
+      summary: Get user
+      description: "get user details"
+      produces:
+        - application/json
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              aud:
+                type: string
+              role:
+                type: string
+              email:
+                type: string
+              email_confirmed_at:
+                type: string
+              phone:
+                type: string
+              confirmation_sent_at:
+                type: string
+              confirmed_at:
+                type: string
+              recovery_sent_at:
+                type: string
+              last_sign_in_at:
+                type: string
+              app_metadata:
+                type: object
+                properties:
+                  provider:
+                    type: string
+                  providers:
+                    type: array
+                    items:
+                      type: string
+              user_metadata:
+                type: object
+                properties:
+                  customData1:
+                    type: string
+                  customData10:
+                    type: string
+                  customData2:
+                    type: string
+                  customData3:
+                    type: string
+                  customData4:
+                    type: string
+                  customData5:
+                    type: string
+                  customData6:
+                    type: string
+                  customData7:
+                    type: string
+                  customData8:
+                    type: string
+                  customData9:
+                    type: string
+
+              identities:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    user_id:
+                      type: string
+                    identity_data:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        email_verified:
+                          type: boolean
+                        phone_verified:
+                          type: boolean
+                        sub:
+                          type: string
+                    provider:
+                      type: string
+                    last_sign_in_at:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+              created_at:
+                type: string
+              updated_at:
+                type: string
+        default:
+          description: Error
+    put:
+      summary: update user data
+      description: "update user data"
+      produces:
+        - application/json
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  customData1:
+                    type: string
+                  customData2:
+                    type: string
+                  customData3:
+                    type: string
+                  customData4:
+                    type: string
+                  customData5:
+                    type: string
+                  customData6:
+                    type: string
+                  customData7:
+                    type: string
+                  customData8:
+                    type: string
+                  customData9:
+                    type: string
+                  customData10:
+                    type: string
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              aud:
+                type: string
+              role:
+                type: string
+              email:
+                type: string
+              email_confirmed_at:
+                type: string
+              phone:
+                type: string
+              confirmation_sent_at:
+                type: string
+              confirmed_at:
+                type: string
+              recovery_sent_at:
+                type: string
+              last_sign_in_at:
+                type: string
+              app_metadata:
+                type: object
+                properties:
+                  provider:
+                    type: string
+                  providers:
+                    type: array
+                    items:
+                      type: string
+              user_metadata:
+                type: object
+                properties:
+                  customData1:
+                    type: string
+                  customData10:
+                    type: string
+                  customData2:
+                    type: string
+                  customData3:
+                    type: string
+                  customData4:
+                    type: string
+                  customData5:
+                    type: string
+                  customData6:
+                    type: string
+                  customData7:
+                    type: string
+                  customData8:
+                    type: string
+                  customData9:
+                    type: string
+              identities:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    user_id:
+                      type: string
+                    identity_data:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                        email_verified:
+                          type: boolean
+                        phone_verified:
+                          type: boolean
+                        sub:
+                          type: string
+                    provider:
+                      type: string
+                    last_sign_in_at:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+              created_at:
+                type: string
+              updated_at:
+                type: string
+
+        default:
+          description: Error
+      consumes:
+        - application/json
