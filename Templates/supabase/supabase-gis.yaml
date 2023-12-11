@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  title: Supabase GIS
+  version: 1.0.0
+host: iefolulqazagcyqqgnbr.supabase.co
+basePath: /rest/v1/rpc
+schemes:
+  - https
+paths:
+  /nearest_metofficesite:
+    post:
+      summary: Supabase GIS metoffice nearest
+      description: ""
+      produces:
+        - application/json
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              lat:
+                type: string
+              long:
+                type: string
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              long:
+                type: string
+              lat:
+                type: string
+              dist_meters:
+                type: string
+        default:
+          description: Error
+      consumes:
+        - application/json
+  /nearest_easite:
+    post:
+      summary: Supabase GIS EA site nearest
+      description: ""
+      produces:
+        - application/json
+      parameters:
+        - name: apikey
+          in: header
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              lat:
+                type: string
+              long:
+                type: string
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              long:
+                type: string
+              lat:
+                type: string
+              dist_meters:
+                type: string
+        default:
+          description: Error
+      consumes:
+        - application/json
