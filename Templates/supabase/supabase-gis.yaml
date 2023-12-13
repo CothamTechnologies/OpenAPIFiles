@@ -9,7 +9,7 @@ schemes:
 paths:
   /nearest_metofficesite:
     post:
-      summary: Supabase GIS metoffice nearest
+      summary: Supabase GIS metoffice nearestx
       description: ""
       produces:
         - application/json
