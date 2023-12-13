@@ -34,18 +34,20 @@ paths:
         "200":
           description: Successful response
           schema:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              long:
-                type: string
-              lat:
-                type: string
-              dist_meters:
-                type: string
+            type: array
+            items:      
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                long:
+                  type: string
+                lat:
+                  type: string
+                dist_meters:
+                  type: string
         default:
           description: Error
       consumes:
@@ -77,18 +79,20 @@ paths:
         "200":
           description: Successful response
           schema:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              long:
-                type: string
-              lat:
-                type: string
-              dist_meters:
-                type: string
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                long:
+                  type: string
+                lat:
+                  type: string
+                dist_meters:
+                  type: string
         default:
           description: Error
       consumes:
