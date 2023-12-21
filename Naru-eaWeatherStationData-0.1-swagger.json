@@ -4,7 +4,7 @@
     "https"
   ],
   "paths" : {
-    "\/flood-monitoring\/id\/stations\/{3401TH}" : {
+    "\/flood-monitoring\/id\/stations\/{stationReference}" : {
       "get" : {
         "summary" : "summary of the service",
         "consumes" : [
@@ -308,8 +308,8 @@
           {
             "in" : "path",
             "default" : "",
-            "name" : "3401TH",
-            "description" : "3401TH"
+            "name" : "stationReference",
+            "description" : "stationReference"
           }
         ]
       }
