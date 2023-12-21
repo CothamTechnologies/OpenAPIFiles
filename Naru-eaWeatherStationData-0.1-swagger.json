@@ -84,7 +84,26 @@
                             }
                           },
                           "latestReading" : {
-                            "type" : "string"
+                            "type" : "object",
+                            "properties": {
+                              "date" : {
+                                "type" : "string",
+                                "format" : "date"
+                              },
+                              "value" : {
+                                "type" : "number"
+                              },
+                              "dateTime" : {
+                                "type" : "string",
+                                "format" : "date-time"
+                              },
+                              "measure" : {
+                                "type" : "string"
+                              },
+                              "@id" : {
+                                "type" : "string"
+                              }
+                            }
                           },
                           "parameter" : {
                             "type" : "string"
