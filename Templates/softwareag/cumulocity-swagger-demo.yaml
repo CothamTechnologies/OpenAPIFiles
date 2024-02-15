@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: Cumulocity REST API for EF Demo
   version: "0.1"
-  title: Cumulocity REST API for EF Demo
+  title: Cumulocity REST API for EF Demo.
 
 host: cothamtechnologies.cumulocity.com
 
