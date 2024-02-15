@@ -1,0 +1,94 @@
+swagger: "2.0"
+info:
+  description: Cumulocity REST API for EF Demo
+  version: "0.1"
+  title: Cumulocity REST API for EF Demo
+
+host: cothamtechnologies.cumulocity.com
+
+schemes:
+  - https
+
+securityDefinitions:
+  auth:
+    type: basic
+
+paths:
+  /alarm/alarms/{alarmId}:
+    put:
+      summary: Update an Alarm
+      description: Update an Alarm - Only text, status, severity and custom properties can be modified. Non-modifiable fields will be ignored when provided in request.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+        - in: path
+          name: alarmId
+          description: Alarm id.
+          required: true
+          type: string
+        - in: body
+          name: Alarm
+          description: The alarm properties to update
+          required: true
+          schema:
+            type: object
+            properties:
+              text:
+                type: string
+              status:
+                type: string
+              severity:
+                type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              self:
+                type: integer
+              id:
+                type: string
+              time:
+                type: string
+              type:
+                type: string
+              creationTime:
+                type: integer
+              text:
+                type: string
+              status:
+                type: string
+              severity:
+                type: string
+              count:
+                type: integer
+              firstOccurrenceTime:
+                type: string
+              source:
+                type: object
+                properties:
+                  self:
+                    type: string
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    type: string
+        default:
+          description: Other Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              info:
+                type: string
+              message:
+                type: string
