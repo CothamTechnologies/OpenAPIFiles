@@ -1,0 +1,353 @@
+{
+  "swagger" : "2.0",
+  "schemes" : [
+    "https"
+  ],
+  "paths" : {
+    "\/flood-monitoring\/id\/stations\/{stationReference}" : {
+      "get" : {
+        "summary" : "summary of the service",
+        "consumes" : [
+          "application\/json"
+        ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "@context" : {
+                  "type" : "string"
+                },
+                "meta" : {
+                  "type" : "object",
+                  "properties" : {
+                    "version" : {
+                      "type" : "string"
+                    },
+                    "documentation" : {
+                      "type" : "string"
+                    },
+                    "comment" : {
+                      "type" : "string"
+                    },
+                    "hasFormat" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "publisher" : {
+                      "type" : "string"
+                    },
+                    "licence" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "wiskiID" : {
+                      "type" : "string"
+                    },
+                    "status" : {
+                      "type" : "string"
+                    },
+                    "eaAreaName" : {
+                      "type" : "string"
+                    },
+                    "measures" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "stationReference" : {
+                            "type" : "string"
+                          },
+                          "parameterName" : {
+                            "type" : "string"
+                          },
+                          "label" : {
+                            "type" : "string"
+                          },
+                          "period" : {
+                            "type" : "integer",
+                            "format" : "int32"
+                          },
+                          "@id" : {
+                            "type" : "string"
+                          },
+                          "type" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "string"
+                            }
+                          },
+                          "latestReading" : {
+                            "type" : "object",
+                            "properties": {
+                              "date" : {
+                                "type" : "string",
+                                "format" : "date"
+                              },
+                              "value" : {
+                                "type" : "number"
+                              },
+                              "dateTime" : {
+                                "type" : "string",
+                                "format" : "date-time"
+                              },
+                              "measure" : {
+                                "type" : "string"
+                              },
+                              "@id" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "parameter" : {
+                            "type" : "string"
+                          },
+                          "unitName" : {
+                            "type" : "string"
+                          },
+                          "valueType" : {
+                            "type" : "string"
+                          },
+                          "qualifier" : {
+                            "type" : "string"
+                          },
+                          "notation" : {
+                            "type" : "string"
+                          },
+                          "station" : {
+                            "type" : "string"
+                          }
+                        }
+                      }
+                    },
+                    "catchmentName" : {
+                      "type" : "string"
+                    },
+                    "downstageScale" : {
+                      "type" : "object",
+                      "properties" : {
+                        "scaleMax" : {
+                          "type" : "integer",
+                          "format" : "int32"
+                        },
+                        "typicalRangeHigh" : {
+                          "type" : "integer",
+                          "format" : "int32"
+                        },
+                        "typicalRangeLow" : {
+                          "type" : "number"
+                        },
+                        "minOnRecord" : {
+                          "type" : "object",
+                          "properties" : {
+                            "@id" : {
+                              "type" : "string"
+                            },
+                            "dateTime" : {
+                              "type" : "string"
+                            },
+                            "value" : {
+                              "type" : "number"
+                            }
+                          }
+                        },
+                        "datum" : {
+                          "type" : "number"
+                        },
+                        "highestRecent" : {
+                          "type" : "object",
+                          "properties" : {
+                            "@id" : {
+                              "type" : "string"
+                            },
+                            "dateTime" : {
+                              "type" : "string"
+                            },
+                            "value" : {
+                              "type" : "number"
+                            }
+                          }
+                        },
+                        "maxOnRecord" : {
+                          "type" : "object",
+                          "properties" : {
+                            "@id" : {
+                              "type" : "string"
+                            },
+                            "dateTime" : {
+                              "type" : "string"
+                            },
+                            "value" : {
+                              "type" : "number"
+                            }
+                          }
+                        },
+                        "@id" : {
+                          "type" : "string"
+                        }
+                      }
+                    },
+                    "easting" : {
+                      "type" : "integer",
+                      "format" : "int32"
+                    },
+                    "town" : {
+                      "type" : "string"
+                    },
+                    "long" : {
+                      "type" : "number"
+                    },
+                    "type" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "northing" : {
+                      "type" : "integer",
+                      "format" : "int32"
+                    },
+                    "stationReference" : {
+                      "type" : "string"
+                    },
+                    "RLOIid" : {
+                      "type" : "string"
+                    },
+                    "label" : {
+                      "type" : "string"
+                    },
+                    "lat" : {
+                      "type" : "number"
+                    },
+                    "stageScale" : {
+                      "type" : "object",
+                      "properties" : {
+                        "scaleMax" : {
+                          "type" : "integer",
+                          "format" : "int32"
+                        },
+                        "typicalRangeHigh" : {
+                          "type" : "number"
+                        },
+                        "typicalRangeLow" : {
+                          "type" : "number"
+                        },
+                        "minOnRecord" : {
+                          "type" : "object",
+                          "properties" : {
+                            "@id" : {
+                              "type" : "string"
+                            },
+                            "dateTime" : {
+                              "type" : "string"
+                            },
+                            "value" : {
+                              "type" : "number"
+                            }
+                          }
+                        },
+                        "datum" : {
+                          "type" : "number"
+                        },
+                        "highestRecent" : {
+                          "type" : "object",
+                          "properties" : {
+                            "@id" : {
+                              "type" : "string"
+                            },
+                            "dateTime" : {
+                              "type" : "string"
+                            },
+                            "value" : {
+                              "type" : "number"
+                            }
+                          }
+                        },
+                        "maxOnRecord" : {
+                          "type" : "object",
+                          "properties" : {
+                            "@id" : {
+                              "type" : "string"
+                            },
+                            "dateTime" : {
+                              "type" : "string"
+                            },
+                            "value" : {
+                              "type" : "number"
+                            }
+                          }
+                        },
+                        "@id" : {
+                          "type" : "string"
+                        }
+                      }
+                    },
+                    "eaRegionName" : {
+                      "type" : "string"
+                    },
+                    "riverName" : {
+                      "type" : "string"
+                    },
+                    "@id" : {
+                      "type" : "string"
+                    },
+                    "notation" : {
+                      "type" : "string"
+                    },
+                    "dateOpened" : {
+                      "type" : "string",
+                      "format" : "date"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "general error"
+          },
+          "409" : {
+            "description" : "network not available"
+          }
+        },
+        "description" : "more information in relation to the service",
+        "produces" : [
+          "application\/json"
+        ],
+        "tags" : [
+          "admins"
+        ],
+        "parameters" : [
+          {
+            "in" : "path",
+            "default" : "",
+            "name" : "stationReference",
+            "description" : "stationReference"
+          }
+        ]
+      }
+    }
+  },
+  "host" : "environment.data.gov.uk",
+  "tags" : [
+    {
+      "name" : "admins",
+      "description" : "Secured Admin-only calls"
+    },
+    {
+      "name" : "developers",
+      "description" : "Operations available to regular developers"
+    }
+  ],
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "Internal FloFrame Service API Framework",
+    "description" : "Internal FloFrame Service API Framework"
+  }
+}
