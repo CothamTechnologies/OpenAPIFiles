@@ -38,11 +38,7 @@ paths:
           schema:
             type: object
             properties:
-              text:
-                type: string
               status:
-                type: string
-              severity:
                 type: string
       responses:
         200:
