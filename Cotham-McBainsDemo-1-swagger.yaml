@@ -6,10 +6,10 @@ schemes:
     - https
 swagger: "2.0"
 info:
-    description: Cotham-McBains Demo service
+    description: Cotham-McBains Demo serv
     title: Cotham-McBains Demo service
     version: v1.0
-host: https://x8ki-letl-twmt.n7.xano.io
+host: https://x8ki-letl-twmt.n7.xano.i0
 paths:
 
   /api:O4oOY7Ui/mcbainsimagestorage/:
