@@ -27,18 +27,17 @@ paths:
           type: string
           description: token
           required: true
-          
+
         - in: body
-          name: base64Image
-          type: string
-          description: Image Capture for Report Item
-          required: true
-          
-        - in: body
-          name: Description
-          type: string
-          description: Text Description for Report Item
-          required: true
+          name: feedback form
+          description: completed feedback form
+          schema:
+            type: object
+            properties:
+              base64Image:
+                type: string
+              Description:
+                type: string
         
       responses:
         200:
