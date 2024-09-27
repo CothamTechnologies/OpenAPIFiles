@@ -9,7 +9,7 @@ info:
     description: Cotham-McBains Demo service
     title: Cotham-McBains Demo service
     version: v1.0
-host: https://x8ki-letl-twmt.n7.xano.i0
+host: x8ki-letl-twmt.n7.xano.i0
 paths:
 
   /api:O4oOY7Ui/mcbainsimagestorage/:
