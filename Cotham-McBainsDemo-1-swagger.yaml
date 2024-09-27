@@ -9,15 +9,15 @@ info:
     description: Cotham-AgileBase Timesheets service
     title: Cotham-AgileBase Timesheets service
     version: v1.0
-host: https://cloud.agilebase.co.uk/agileBase
+host: https://x8ki-letl-twmt.n7.xano.io/api:O4oOY7Ui
 paths:
 
-  /Public.ab/:
+  /mcbainsimagestorage/:
     post:
-      summary: Timesheets service
-      description: Timesheets service
+      summary: Location Report Storage
+      description: Location Report Storage with image and description
       tags:
-        - 1. Driver App
+        - 1. McBains Demo App
       consumes:
         - application/json
       parameters:
@@ -28,73 +28,16 @@ paths:
           required: true
           
         - in: body
-          name: t
+          name: base64Image
           type: string
-          description: Table ID
+          description: Image Capture for Report Item
           required: true
           
         - in: body
-          name: c
+          name: description
           type: string
-          description: Company ID
+          description: Text Description for Report Item
           required: true
-        
-        - in: body
-          name: update_record
-          type: string
-          description: Company ID
-          default: true
-          required: true
-        
-        - in: body
-          name: row_id
-          type: string
-          description: Row ID
-          required: true
-        
-        - in: body
-          name: includeslunch_sionsfhtd0
-          type: string
-          description: Includes Lunch
-          required: true
-        
-        - in: body
-          name: attendance_onsfht
-          type: string
-          description: Went Ahead
-          required: true
-        
-        - in: body
-          name: location_nsfh
-          type: string
-          description: Location
-          required: true
-        
-        - in: body
-          name: reason_sf
-          type: string
-          description: Reason
-          required: true
-
-        - in: body
-          name: hoursworked_ionsfhtd
-          type: string
-          description: Hours worked with client
-          required: true
-
-        - in: body
-          name: mileage_nsfh
-          type: string
-          description: Mileage
-          required: true
-
-        - in: body
-          name: notesaboutmilea_ssionsfhtd0q
-          type: string
-          description: Notes (about mileage/expenses only)
-          required: true
-
-        
         
       responses:
         200:
