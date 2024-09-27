@@ -9,10 +9,10 @@ info:
     description: Cotham-McBains Demo service
     title: Cotham-McBains Demo service
     version: v1.0
-host: https://x8ki-letl-twmt.n7.xano.io/api:O4oOY7Ui
+host: https://x8ki-letl-twmt.n7.xano.io
 paths:
 
-  /mcbainsimagestorage/:
+  /api:O4oOY7Ui/mcbainsimagestorage/:
     post:
       summary: Location Report Storage
       description: Location Report Storage with image and description
