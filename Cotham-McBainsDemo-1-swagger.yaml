@@ -6,8 +6,8 @@ schemes:
     - https
 swagger: "2.0"
 info:
-    description: Cotham-AgileBase Timesheets service
-    title: Cotham-AgileBase Timesheets service
+    description: Cotham-McBains Demo service
+    title: Cotham-McBains Demo service
     version: v1.0
 host: https://x8ki-letl-twmt.n7.xano.io/api:O4oOY7Ui
 paths:
@@ -34,7 +34,7 @@ paths:
           required: true
           
         - in: body
-          name: description
+          name: Description
           type: string
           description: Text Description for Report Item
           required: true
