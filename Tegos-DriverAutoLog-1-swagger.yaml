@@ -1,0 +1,101 @@
+produces:
+    - text/plain
+    - application/json
+    - text/json
+schemes:
+    - https
+swagger: "2.0"
+info:
+    description: Tegos Driver AutoLog post service
+    title: Tegos Driver AutoLog post service   https://x8ki-letl-twmt.n7.xano.io/api:V3H-u1uB/eventlognew
+    version: v1.0
+host: x8ki-letl-twmt.n7.xano.io
+basePath: /api:V3H-u1uB
+paths:
+
+  /eventlognew:
+    post:
+      summary: Driver Log entry posting
+      description: Driver Log entry posting
+      tags:
+        - 1. Tegos Driver App
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: token
+          required: true
+
+        - in: body
+          name: feedback form
+          description: completed feedback form
+          schema:
+            type: object
+            properties:
+              driverID:
+                type: string
+              timestamp:
+                type: string
+              eventLog:
+                type: string
+              apiRequestLog:
+                type: string
+              apiResponseLog:
+                type: string
+              offlineCacheLog:
+                type: string
+              offlineReplayRequestLog:
+                type: string
+              offlineReplayResponseLog:
+                type: string
+              eventLogString:
+                type: string
+              jsonTest1:
+                type: string
+              logTransferDate:
+                type: string
+        
+      responses:
+        200:
+          description: Return a standard response format for JSONRPC - if responseCode in this response is a success (1). Any other response code is an error.
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: integer
+              responseMessage:
+                type: string
+              payload:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  driverID:
+                    type: string
+                  timestamp:
+                    type: string
+                  eventLog:
+                    type: string
+                  apiRequestLog:
+                    type: string
+                  apiResponseLog:
+                    type: string
+                  offlineCacheLog:
+                    type: string
+                  offlineReplayRequestLog:
+                    type: string
+                  offlineReplayResponseLog:
+                    type: string
+                  eventLogString:
+                    type: string
+                  jsonTest1:
+                    type: string
+                  logTransferDate:
+                    type: string
+                
+        default:
+          description: Failed Server Response
